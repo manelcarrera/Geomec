@@ -2,6 +2,34 @@
 
 This document describes the repository as it exists in this source tree. It covers the main application, shared libraries, bundled third-party components, tests, and the separate Windows and Linux build paths.
 
+## Table of contents
+
+1. [Repository Overview](#1-repository-overview)
+2. [Main Application and Modules](#2-main-application-and-modules)
+   - 2.1 [Main Windows application: `geomec/`](#21-main-windows-application-geomec)
+   - 2.2 [Framework and domain libraries](#22-framework-and-domain-libraries)
+     - 2.2.1 [`fw51/`](#221-fw51)
+     - 2.2.2 [`lib/`](#222-lib)
+   - 2.3 [Executables and integrations](#23-executables-and-integrations)
+3. [External Dependencies](#3-external-dependencies)
+   - 3.1 [Required platform/runtime dependencies](#31-required-platformruntime-dependencies)
+   - 3.2 [Bundled dependencies under `third_party/`](#32-bundled-dependencies-under-third_party)
+4. [Windows Build](#4-windows-build)
+   - 4.1 [Toolchain and SDK prerequisites](#41-toolchain-and-sdk-prerequisites)
+   - 4.2 [Required environment variables](#42-required-environment-variables)
+   - 4.3 [Configure licensing and Diana](#43-configure-licensing-and-diana)
+   - 4.4 [Compile with Visual Studio](#44-compile-with-visual-studio)
+   - 4.5 [Windows deployment](#45-windows-deployment)
+5. [Linux Build](#5-linux-build)
+   - 5.1 [Linux prerequisites](#51-linux-prerequisites)
+   - 5.2 [Configure and compile the qmake graph](#52-configure-and-compile-the-qmake-graph)
+   - 5.3 [Linux build caveats](#53-linux-build-caveats)
+   - 5.4 [Linux deployment](#54-linux-deployment)
+6. [Testing and Smoke Checks](#6-testing-and-smoke-checks)
+7. [Recommended Build Order](#7-recommended-build-order)
+8. [Files to Read First](#8-files-to-read-first)
+9. [Current Repository Limitations](#9-current-repository-limitations)
+
 ## 1. Repository Overview
 
 Geomec is a large C++ application made of several layers:
@@ -80,7 +108,7 @@ The corresponding Visual Studio project is `geomec/Geomec.vcxproj`. The root sol
 
 ### 2.2 Framework and domain libraries
 
-#### `fw51/`
+#### 2.2.1 `fw51/`
 
 FW51 contains reusable geometry and numerical data structures:
 
@@ -93,7 +121,7 @@ FW51 contains reusable geometry and numerical data structures:
 - `Triangle`: triangle and surface mesh support.
 - `GuiFrame`: GUI framework code; the qmake project marks this as not normally used.
 
-#### `lib/`
+#### 2.2.2 `lib/`
 
 The main library groups listed by `geomec.pro` are:
 

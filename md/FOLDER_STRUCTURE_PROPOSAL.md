@@ -6,6 +6,14 @@ records what was actually changed. All four phases described below have now
 been applied to the working tree — see "Status" at the end for what that
 means and does not mean.
 
+## Table of contents
+
+1. [Was the original structure OK?](#1-was-the-original-structure-ok)
+2. [Structure as implemented](#2-structure-as-implemented)
+   - 2.1 [Deviations from the original diagram](#21-deviations-from-the-original-diagram)
+3. [What was done](#3-what-was-done)
+4. [Status](#4-status)
+
 ## 1. Was the original structure OK?
 
 Not wrong, but it had real, measurable issues:
@@ -92,7 +100,7 @@ Geomec/
   cross-platform stays as one tree.
 - `archive/` gets clearly-dead legacy material out of the tree.
 
-### Deviations from the original diagram
+### 2.1 Deviations from the original diagram
 
 The structure actually implemented differs from the first draft in this
 document in a few deliberate ways, discovered while doing the work:
