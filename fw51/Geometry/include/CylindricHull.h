@@ -4,38 +4,35 @@
 #include "IPoint.h"
 #include "VectorTempl.h"
 
-namespace geo
-{
+namespace geo {
 
-class GEOMETRY_EXPORT CCylindricHull
-{
-  struct Vector
-  {
-  double x;
-  double y;
-  double z;
+class GEOMETRY_EXPORT CCylindricHull {
+  struct Vector {
+    double x;
+    double y;
+    double z;
 
-  Vector();
-  Vector(const geo::IPoint& point);
-  Vector(const geo::IPoint& point, const Vector& origin);
+    Vector();
+    Vector(const geo::IPoint &point);
+    Vector(const geo::IPoint &point, const Vector &origin);
   };
 
-  //const double EPSILON = 0.1;
+  // const double EPSILON = 0.1;
 
-  public:
-  typedef std::vector <const IPoint*> IPointSet;
+public:
+  typedef std::vector<const IPoint *> IPointSet;
 
-  CCylindricHull(const IPointSet& points, double radius);
+  CCylindricHull(const IPointSet &points, double radius);
   virtual ~CCylindricHull();
 
-  virtual bool Contains(const IPoint& point, bool includeEdge) const;
+  virtual bool Contains(const IPoint &point, bool includeEdge) const;
 
   double Radius() const;
   void Radius(double radius);
 
-  private:
-  CCylindricHull(const CCylindricHull& rhs);
-  CCylindricHull& operator = (CCylindricHull rhs);
+private:
+  CCylindricHull(const CCylindricHull &rhs);
+  CCylindricHull &operator=(CCylindricHull rhs);
 
   double m_radius;
   double m_radiusSquared;
@@ -52,4 +49,4 @@ class GEOMETRY_EXPORT CCylindricHull
 
 } // namespace geo
 
-#endif  // _CylindricHull_h_
+#endif // _CylindricHull_h_

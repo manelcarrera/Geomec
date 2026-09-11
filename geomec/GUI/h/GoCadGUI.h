@@ -6,22 +6,21 @@ class CHexaModel;
 
 #include "TetraGUI.h"
 
-class CGoCadGUI : public CTetraGUI
-{
+class CGoCadGUI : public CTetraGUI {
 public:
-  CGoCadGUI(CFemAppGUI* parentGUI, CGoCadModel* goCadModel);
+  CGoCadGUI(CFemAppGUI *parentGUI, CGoCadModel *goCadModel);
 
-  void Convert(const CHexaModel& model);
+  void Convert(const CHexaModel &model);
 
   virtual void OnCloseModel();
 
-  CGoCadModel* model() const;
+  CGoCadModel *model() const;
 
 private:
-  CGoCadGUI(const CGoCadGUI& rhs);
-  CGoCadGUI& operator = (const CGoCadGUI& rhs);
+  CGoCadGUI(const CGoCadGUI &rhs);
+  CGoCadGUI &operator=(const CGoCadGUI &rhs);
 
-  CGoCadModel* m_goCadModel;
+  CGoCadModel *m_goCadModel;
 };
 
-#endif  // _GoCadGUI_h_
+#endif // _GoCadGUI_h_

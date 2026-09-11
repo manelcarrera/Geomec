@@ -1,14 +1,12 @@
 // This are the defines of the typeid's for the value proxies.
 
-#define NEW_ITEM_ID		         00
-#define COORDINATE_ID	         10
-#define FORMATION_ID	         20
-#define RESERVOIR_ID	         30
-#define VALUE_ID		           40
-#define MAT_PARAM_ID           50
+#define NEW_ITEM_ID 00
+#define COORDINATE_ID 10
+#define FORMATION_ID 20
+#define RESERVOIR_ID 30
+#define VALUE_ID 40
+#define MAT_PARAM_ID 50
 #define FORMATION_THICKNESS_ID 60
-
-
 
 // The rpn calculator saves data in the registry and in the project file. Therefore the
 // the rpn calculator cannot use the versioning system of the project file system. The
@@ -16,9 +14,9 @@
 // formula in a string stream. This stream uses it's own versioning system. The string
 // stream can be stored in the project file and in the registry.
 
-#define RPN_VERSION_MAJOR		1
-#define RPN_VERSION_MINOR		0
-#define RPN_VERSION_REVISION	12
+#define RPN_VERSION_MAJOR 1
+#define RPN_VERSION_MINOR 0
+#define RPN_VERSION_REVISION 12
 
 ////////////////////////////////////////////////////////////////////////////////
 // Comment	: Initial version

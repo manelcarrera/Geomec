@@ -25,90 +25,65 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagInt.h"
 #include "RescueModel.h"
+#include "myHeaders.h"
 
-cBagInt::cBagInt()
-{
+cBagInt::cBagInt() {
   allocated = 10;
   count = 0;
-  objects = (RESCUEINT64 *) malloc(sizeof(RESCUEINT64) * (size_t) allocated);
+  objects = (RESCUEINT64 *)malloc(sizeof(RESCUEINT64) * (size_t)allocated);
 }
 
-cBagInt::~cBagInt()
-{
-  free(objects);
-}
+cBagInt::~cBagInt() { free(objects); }
 
-void cBagInt::operator+=(RESCUEINT64 newObject)
-{
-  if (allocated == count)
-  {
-  allocated += 10;
-  objects = (RESCUEINT64 *) realloc(objects, sizeof(RESCUEINT64) * (size_t) allocated);
+void cBagInt::operator+=(RESCUEINT64 newObject) {
+  if (allocated == count) {
+    allocated += 10;
+    objects = (RESCUEINT64 *)realloc(objects, sizeof(RESCUEINT64) * (size_t)allocated);
   }
   objects[count++] = newObject;
 }
 
-RESCUEBOOL cBagInt::operator-=(RESCUEINT64 existingObject)
-{
+RESCUEBOOL cBagInt::operator-=(RESCUEINT64 existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
   return found;
 }
 
-RESCUEINT64 cBagInt::NthObject(RESCUEINT64 ordinal)
-{
-  if (ordinal < 0 || ordinal >= count)
-  {
-  return 0;
-  }
-  else
-  {
-  return objects[ordinal];
+RESCUEINT64 cBagInt::NthObject(RESCUEINT64 ordinal) {
+  if (ordinal < 0 || ordinal >= count) {
+    return 0;
+  } else {
+    return objects[ordinal];
   }
 }
 
-RESCUEBOOL cBagInt::Contains(RESCUEINT64 example)
-{
+RESCUEBOOL cBagInt::Contains(RESCUEINT64 example) {
   RESCUEBOOL myReturn = FALSE;
-  if (count > 0)
-  {
-  RESCUEINT64 loop;
-  for (loop = 0; loop < count && myReturn == FALSE; loop++)
-  {
-      if (objects[loop] == example)
-      {
-    myReturn = TRUE;
+  if (count > 0) {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count && myReturn == FALSE; loop++) {
+      if (objects[loop] == example) {
+        myReturn = TRUE;
       }
-  }
+    }
   }
   return myReturn;
 }
-
-
-
-

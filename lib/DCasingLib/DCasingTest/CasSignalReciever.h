@@ -12,12 +12,12 @@
 #include <qobject.h>
 class CDCasing;
 
-class CCasingSignalReciever :public QObject 
-{
+class CCasingSignalReciever : public QObject {
 
   Q_OBJECT;
+
 public:
-  CCasingSignalReciever(CDCasing * obj = NULL);
+  CCasingSignalReciever(CDCasing *obj = NULL);
   ~CCasingSignalReciever();
 public slots:
   void OnMessage(QString str);
@@ -25,9 +25,8 @@ public slots:
   void OnWarning(QString str);
   void OnFinished();
 
-private : 
-  CDCasing * m_obj;
+private:
+  CDCasing *m_obj;
 };
-
 
 #endif // !defined(AFX_CASSIGNALRECIEVER_H__187E07F6_E7E5_48E9_AA6A_CE66858BB914__INCLUDED_)

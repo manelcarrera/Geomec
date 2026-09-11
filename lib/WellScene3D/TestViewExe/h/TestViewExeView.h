@@ -9,53 +9,49 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-
-class CTestViewExeView : public COpenGLView
-{
+class CTestViewExeView : public COpenGLView {
 protected: // create from serialization only
   CTestViewExeView();
   DECLARE_DYNCREATE(CTestViewExeView)
 
-// Attributes
+  // Attributes
 public:
-  CTestViewExeDoc* GetDocument();
-// Operations
+  CTestViewExeDoc *GetDocument();
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTestViewExeView)
-  public:
-  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-  protected:
-  virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-  virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-  virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
-  virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
+public:
+  virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
+
+protected:
+  virtual BOOL OnPreparePrinting(CPrintInfo *pInfo);
+  virtual void OnBeginPrinting(CDC *pDC, CPrintInfo *pInfo);
+  virtual void OnEndPrinting(CDC *pDC, CPrintInfo *pInfo);
+  virtual void OnUpdate(CView *pSender, LPARAM lHint, CObject *pHint);
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 public:
   virtual ~CTestViewExeView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
 protected:
-
-// Generated message map functions
+  // Generated message map functions
 protected:
   //{{AFX_MSG(CTestViewExeView)
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
+  // NOTE - the ClassWizard will add and remove member functions here.
+  //    DO NOT EDIT what you see in these blocks of generated code !
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };
 
-#ifndef _DEBUG  // debug version in TestViewExeView.cpp
-inline CTestViewExeDoc* CTestViewExeView::GetDocument()
-   { return (CTestViewExeDoc*)m_pDocument; }
+#ifndef _DEBUG // debug version in TestViewExeView.cpp
+inline CTestViewExeDoc *CTestViewExeView::GetDocument() { return (CTestViewExeDoc *)m_pDocument; }
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

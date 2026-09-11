@@ -1,7 +1,6 @@
 #ifndef _IT_Geomec_Interface_Volume
 #define _IT_Geomec_Interface_Volume
 
-
 #include "IT_Geomec_Interface.h"
 
 typedef IT_Geomec_Interface base;
@@ -10,17 +9,19 @@ class MaterialParameter;
 class Reservoir;
 class Displacement;
 
-class IT_Geomec_Interface_Volume : public IT_Geomec_Interface
-{
+class IT_Geomec_Interface_Volume : public IT_Geomec_Interface {
 public:
-//private:
-  //--------------------------------------------------- Formations -----------------------------------------------------------------
-  static IT_Data::TPointsV points( int reservoir_id );
-  static IT_Data::T3ValuesV subsidence( int reservoir_id, int depletion_id,  base::TDisplacementComponentV component_v );
-  static IT_Data::T3ValuesV measured_subsidence( int reservoir_id, int displacement_id, base::TDisplacementComponentV component_v );
+  // private:
+  //--------------------------------------------------- Formations
+  //-----------------------------------------------------------------
+  static IT_Data::TPointsV points(int reservoir_id);
+  static IT_Data::T3ValuesV subsidence(int reservoir_id, int depletion_id, base::TDisplacementComponentV component_v);
+  static IT_Data::T3ValuesV measured_subsidence(int reservoir_id, int displacement_id,
+                                                base::TDisplacementComponentV component_v);
 
   /*
-    Returns points, tetrahedrons, parameters and a header with info on the provided parameters of the requested reservoir (volume).
+    Returns points, tetrahedrons, parameters and a header with info on the provided parameters of the requested
+    reservoir (volume).
 
     No re-index made.
 
@@ -45,7 +46,7 @@ public:
               tokens in a string with token delimiter '*'
 
   */
-  static Reservoir& reservoir( int reservoir_id );
+  static Reservoir &reservoir(int reservoir_id);
   /*
     Returns the requested volume property for a given reservoir's depletion stage.
 
@@ -56,11 +57,11 @@ public:
     Paraemeters:
     ------------
       reservoir_id:	reservoir position in the model tree
-      
+
       depletion_id:	depletion stage
 
       parameter_id:	parameter to retrieve
-              accepted values (so far): 
+              accepted values (so far):
                 poisons ratio
                 reduction factor
 
@@ -69,15 +70,18 @@ public:
       Vals:			parameter's values per each volume element
               1-D doubles vector
   */
-  static MaterialParameter& material_parameter( int reservoir_id, int depletion_id, eMaterialParameter _material_id = PoissonsRatio_ );
+  static MaterialParameter &material_parameter(int reservoir_id, int depletion_id,
+                                               eMaterialParameter _material_id = PoissonsRatio_);
 
-  //--------------------------------------------------- depletion -----------------------------------------------------------------
+  //--------------------------------------------------- depletion
+  //-----------------------------------------------------------------
 
-  //--------------------------------------------------- Displacement -----------------------------------------------------------------
+  //--------------------------------------------------- Displacement
+  //-----------------------------------------------------------------
   /*
     Volume displacement for a given reservoir and depletion stage.
 
-    Displacement in any of three components (x,y,z) can be retrieved. 
+    Displacement in any of three components (x,y,z) can be retrieved.
 
     Values are per point.
 
@@ -85,8 +89,8 @@ public:
     -------
       reservoir_id:	idx
       depletion_id	idx
-      component_v:	vector any ordered combination of components x, y and z: 
-              {'x'}, {'y'}, {'z'}, {'x','y'}, {'x','z'}, {'y','z'}, {'x','y','z'}  
+      component_v:	vector any ordered combination of components x, y and z:
+              {'x'}, {'y'}, {'z'}, {'x','y'}, {'x','z'}, {'y','z'}, {'x','y','z'}
 
     Return:
     -------
@@ -98,7 +102,7 @@ public:
             it can be 1-D, 2-D or 3-D depending on the components requested
 
       dx,dy,dz:	1-D (each) subsidence value per component and per point
-      
+
       header:		informs on the components retrieved
             Examples: 'x y z dz', 'x y z dx dz' ('x y z in the begining is mandatory')
 
@@ -106,12 +110,13 @@ public:
             double value
 
   */
-  static Displacement& displacement_DEPRECATED( int reservoir_id, int depletion_id, base::TDisplacementComponentV component_v = { base::eComponent::Z } );
-  
+  static Displacement &displacement_DEPRECATED(int reservoir_id, int depletion_id,
+                                               base::TDisplacementComponentV component_v = {base::eComponent::Z});
+
   /*
     Measured volume displacement retrieved from the data storage section after being imported from a file.
 
-    Displacement in any of three components (x,y,z) can be retrieved. 
+    Displacement in any of three components (x,y,z) can be retrieved.
 
     Values are per point.
 
@@ -119,8 +124,8 @@ public:
     -------
       reservoir_id:		reservoir idx for the displacement to be mapped
       displacement_id:	displacement idx (order in the data storage section)
-      component_v:		vector any ordered combination of components x, y and z: 
-                {'x'}, {'y'}, {'z'}, {'x','y'}, {'x','z'}, {'y','z'}, {'x','y','z'}  
+      component_v:		vector any ordered combination of components x, y and z:
+                {'x'}, {'y'}, {'z'}, {'x','y'}, {'x','z'}, {'y','z'}, {'x','y','z'}
 
     Return:
     -------
@@ -139,13 +144,11 @@ public:
             double value
 
   */
-  static Displacement& measured_displacement_DEPRECATED( int reservoir_id, int displacement_id,  base::TDisplacementComponentV component_v );
+  static Displacement &measured_displacement_DEPRECATED(int reservoir_id, int displacement_id,
+                                                        base::TDisplacementComponentV component_v);
 
 public:
-
-  IT_Geomec_Interface_Volume(){};
-
+  IT_Geomec_Interface_Volume() {};
 };
-
 
 #endif

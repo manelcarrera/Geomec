@@ -26,24 +26,18 @@
  * MODULE CONTROLLER:
  *   Logica
  *****************************************************************/
-#include "stdafx.h"
 #include "MessageReporter.h"
+#include "stdafx.h"
 #include <windows.h>
 
-MessageReporter::MessageReporter(void)
-{
-}
+MessageReporter::MessageReporter(void) {}
 
-MessageReporter::~MessageReporter(void)
-{
-}
+MessageReporter::~MessageReporter(void) {}
 
-int MessageReporter::ShowMessageBox(const char *message, const char *caption)
-{
+int MessageReporter::ShowMessageBox(const char *message, const char *caption) {
   return MessageBox(0, message, caption, MB_OK | MB_TOPMOST);
 }
 
-int MessageReporter::ShowRetryBox(const char *message, const char *caption)
-{
+int MessageReporter::ShowRetryBox(const char *message, const char *caption) {
   return MessageBox(0, message, caption, MB_RETRYCANCEL | MB_ICONEXCLAMATION | MB_TOPMOST) != IDCANCEL;
 }

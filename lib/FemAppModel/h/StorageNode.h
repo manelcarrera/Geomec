@@ -14,8 +14,8 @@ class CDoubleQuantity;
 #include "ArchiveInterface.h"
 #include "GraphEntry.h"
 
-#define RECALCULATE_ALL			0
-#define RECALCULATE_LINEAR		1
+#define RECALCULATE_ALL 0
+#define RECALCULATE_LINEAR 1
 
 #define IGNORE_ARCHIVE_BOOL_COMPAT
 
@@ -36,8 +36,8 @@ class CDoubleQuantity;
 // - Change the storage code such that an int is explicitly written
 // - Change the reading code such that a bool is explicitly read and define IGNORE_ARCHIVE_BOOL_COMPAT to get
 //    rid of the error message
-CArchive& operator<<(CArchive& ar, bool b);
-CArchive& operator>>(CArchive& ar, bool& b);
+CArchive &operator<<(CArchive &ar, bool b);
+CArchive &operator>>(CArchive &ar, bool &b);
 #endif
 #endif
 
@@ -46,43 +46,43 @@ class CFemAppModel;
 
 #include "IProgressBase.h"
 
-class CStorageNode : public CGraphNode 
-{
+class CStorageNode : public CGraphNode {
   int m_nIndex;
-  CFemAppModel& m_model;
-public:
-// Type defs
-  typedef IProgressBase		TPROGRESS;
-  typedef CArchiveInterface	TSTREAM;
-  typedef CStreamVersion			TSTREAMVERSION;
+  CFemAppModel &m_model;
 
-// Construction
-  CStorageNode(CFemAppModel& model);
-  CStorageNode(const QString &strName, CFemAppModel& model);
-  CStorageNode(const unsigned int uName, CFemAppModel& model);
+public:
+  // Type defs
+  typedef IProgressBase TPROGRESS;
+  typedef CArchiveInterface TSTREAM;
+  typedef CStreamVersion TSTREAMVERSION;
+
+  // Construction
+  CStorageNode(CFemAppModel &model);
+  CStorageNode(const QString &strName, CFemAppModel &model);
+  CStorageNode(const unsigned int uName, CFemAppModel &model);
   CStorageNode(const CStorageNode &rhs);
   virtual ~CStorageNode();
 
-// Assignment and equal
-  CStorageNode& operator=(const CStorageNode &rhs);
+  // Assignment and equal
+  CStorageNode &operator=(const CStorageNode &rhs);
   bool operator==(const CStorageNode &rhs) const;
 
-// Save and load functions filos
+  // Save and load functions filos
   virtual bool Empty() const = 0;
   int Index() const;
   virtual long SavedItems() const = 0;
 
-// Save and load stream
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Save and load stream
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
   void Index(int nIndex);
 
-// Save and load quantities
+  // Save and load quantities
   virtual void Load(CDoubleQuantity &quantity, TSTREAM &stream) const;
   virtual void Save(const CDoubleQuantity &quantity, TSTREAM &stream) const;
 
-  CFemAppModel& Model();
-  const CFemAppModel& Model() const;
+  CFemAppModel &Model();
+  const CFemAppModel &Model() const;
 
   // Model invalidation ...
   void InvalidateStorage();
@@ -91,66 +91,49 @@ public:
   // Modified invalidates the file
   virtual void Modified(enum ModifiedHint uHint = Default);
 
-  virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitStorageNode(*this); }
-  virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitStorageNode(*this); }
+  virtual bool Accept(graphnode::IConstVisitor &visitor) const { return visitor.VisitStorageNode(*this); }
+  virtual bool Accept(graphnode::IVisitor &visitor) { return visitor.VisitStorageNode(*this); }
 };
 
-template<class T>
-class CStorageNodeEntry : public CGraphEntryTemp<T>
-{
+template <class T> class CStorageNodeEntry : public CGraphEntryTemp<T> {
 public:
-  typedef CStorageNode::TPROGRESS		TPROGRESS;
-  typedef CStorageNode::TSTREAM		TSTREAM;
+  typedef CStorageNode::TPROGRESS TPROGRESS;
+  typedef CStorageNode::TSTREAM TSTREAM;
 
-  CStorageNodeEntry(const int nEntryId, const unsigned int uIconId, const QString& strName, CFemAppModel& model)
-    : CGraphEntryTemp<T>(nEntryId, uIconId, strName, model)
-  {
-  }
+  CStorageNodeEntry(const int nEntryId, const unsigned int uIconId, const QString &strName, CFemAppModel &model)
+      : CGraphEntryTemp<T>(nEntryId, uIconId, strName, model) {}
 
-  CStorageNodeEntry(const int nEntryId, const unsigned int uIconId, const unsigned int uNameId, CFemAppModel& model)
-    : CGraphEntryTemp<T>(nEntryId, uIconId, uNameId, model)
-  {
-  }
+  CStorageNodeEntry(const int nEntryId, const unsigned int uIconId, const unsigned int uNameId, CFemAppModel &model)
+      : CGraphEntryTemp<T>(nEntryId, uIconId, uNameId, model) {}
 
-  virtual long SavedItems() const
-  {
+  virtual long SavedItems() const {
     long lRet = 0;
-    typename CGraphEntryTemp <T> ::TNodeSet stNode =
-      CGraphEntryTemp <T> ::EntryNodes();
-    for(typename CGraphEntryTemp <T> ::TNodeSet::iterator it =
-      stNode.begin(); it != stNode.end(); it++)
-    {
+    typename CGraphEntryTemp<T>::TNodeSet stNode = CGraphEntryTemp<T>::EntryNodes();
+    for (typename CGraphEntryTemp<T>::TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++) {
       lRet += (*it)->SavedItems();
     }
     return lRet;
   }
 
-  virtual void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
-  {
+  virtual void LoadStream(CFemAppModel &model, TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress) {
     int nSize;
     stream >> nSize;
-    for(int i = 0; i < nSize; i++)
-    {
-      T* pStorageNode = new T(model);
+    for (int i = 0; i < nSize; i++) {
+      T *pStorageNode = new T(model);
       pStorageNode->LoadStream(stream, version, progress);
-      assert( pStorageNode->CGraphNode::parent() == this );
+      assert(pStorageNode->CGraphNode::parent() == this);
     }
   }
-  
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress)
-  {
-    typename CGraphEntryTemp <T> ::TNodeSet stNode =
-      CGraphEntryTemp <T> ::EntryNodes();
-  int nSize = (int)stNode.size();
+
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress) {
+    typename CGraphEntryTemp<T>::TNodeSet stNode = CGraphEntryTemp<T>::EntryNodes();
+    int nSize = (int)stNode.size();
     stream << nSize;
-    for(typename CGraphEntryTemp <T> ::TNodeSet::iterator it =
-      stNode.begin(); it != stNode.end(); it++)
-    {
-      assert( (*it)->CGraphNode::parent() == this );
+    for (typename CGraphEntryTemp<T>::TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++) {
+      assert((*it)->CGraphNode::parent() == this);
       (*it)->SaveStream(stream, progress);
-    }		
+    }
   }
 };
-
 
 #endif // !defined(AFX_STORAGENODE_H__B7B2B7DB_DB8E_496B_970C_14AA979F1E85__INCLUDED_)

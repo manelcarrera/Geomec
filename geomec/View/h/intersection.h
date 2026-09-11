@@ -3,4 +3,4 @@
 
 #include "Inventor\SbVec.h"
 
-bool selfIntersects (const std::vector<SbVec2f> & polygon);
+bool selfIntersects(const std::vector<SbVec2f> &polygon);

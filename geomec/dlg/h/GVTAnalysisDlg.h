@@ -10,18 +10,18 @@ class CGVTSettings;
 
 // CGVTAnalysisDlg dialog
 
-class CGVTAnalysisDlg : public CDialog
-{
+class CGVTAnalysisDlg : public CDialog {
   DECLARE_DYNAMIC(CGVTAnalysisDlg)
   CGVTSettings &m_GVTSettings;
 
   void SetStartState();
   void DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck);
+
 public:
-  CGVTAnalysisDlg(CGVTSettings &settings, CWnd* pParent = NULL);   // standard constructor
+  CGVTAnalysisDlg(CGVTSettings &settings, CWnd *pParent = NULL); // standard constructor
   virtual ~CGVTAnalysisDlg();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CGVTAnalysisDlg)
   enum { IDD = IDD_GVT_ANALYSIS };
   CStatic m_GridCheck;
@@ -32,9 +32,8 @@ public:
 
   //{{AFX_VIRTUAL(CGVTAnalysisDlg)
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
-  
 
   // Generated message map functions
   //{{AFX_MSG(CGVTAnalysisDlg)
@@ -44,10 +43,9 @@ protected:
 public:
   afx_msg void OnBnClickedGvtSettButton();
   afx_msg void OnBnClickedGvtStartButton();
-  afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, unsigned int nCtlColor);
+  afx_msg HBRUSH OnCtlColor(CDC *pDC, CWnd *pWnd, unsigned int nCtlColor);
 
 private:
-  
 public:
   afx_msg void OnBnClickedCheckNewPointsets();
 };

@@ -7,17 +7,16 @@
 
 // DianaX.h : main header file for DIANAX.DLL
 
-#if !defined( __AFXCTL_H__ )
-  #error include 'afxctl.h' before including this file
+#if !defined(__AFXCTL_H__)
+#error include 'afxctl.h' before including this file
 #endif
 
-#include "resource.h"       // main symbols
+#include "resource.h" // main symbols
 
 /////////////////////////////////////////////////////////////////////////////
 // CDianaXApp : See DianaX.cpp for implementation.
 
-class CDianaXApp : public COleControlModule
-{
+class CDianaXApp : public COleControlModule {
 public:
   BOOL InitInstance();
   int ExitInstance();

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // IValue.h: interface for the IValue class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -12,8 +12,8 @@
 
 #include "dimple.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "GeometryExports.h"
 
@@ -21,8 +21,7 @@ namespace geo {
 
 class CValue;
 
-class GEOMETRY_EXPORT IValue  
-{
+class GEOMETRY_EXPORT IValue {
 public:
   IValue();
   virtual ~IValue();
@@ -57,9 +56,9 @@ public:
 
   virtual std::string Representation() const = 0;
 
-  bool operator<(const IValue& rhs) const;
+  bool operator<(const IValue &rhs) const;
 };
 
-}
+} // namespace geo
 
 #endif // !defined(AFX_IVALUE_H__45603E69_BDF5_4839_83C5_9E5579D19854__INCLUDED_)

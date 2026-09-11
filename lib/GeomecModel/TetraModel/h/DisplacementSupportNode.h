@@ -14,23 +14,15 @@
 
 class CModelBase;
 
-class CDisplacementSupportNode : public C3DSupportNode  
-{
+class CDisplacementSupportNode : public C3DSupportNode {
   friend class CNodalSupportDlg;
 
 public:
-  class CNodalSupportDef
-  {
+  class CNodalSupportDef {
   public:
-    class CSupportDef
-    {
+    class CSupportDef {
     public:
-      typedef enum _SupportType
-      {
-        ST_NONE = 0,
-        ST_LOCAL,
-        ST_GLOBAL
-      } TSupportType;
+      typedef enum _SupportType { ST_NONE = 0, ST_LOCAL, ST_GLOBAL } TSupportType;
 
       CSupportDef();
       ~CSupportDef();
@@ -41,8 +33,8 @@ public:
       geo::IVector &LocalVector();
       const geo::IVector &LocalVector() const;
 
-      CSupportDef Interpolate(const CSupportDef &rhs, const double &dist, const double &distrhs,
-        const geo::IPoint &pt, const geo::IMatrix &MatPreMult, const geo::IPoint &ptReference) const;
+      CSupportDef Interpolate(const CSupportDef &rhs, const double &dist, const double &distrhs, const geo::IPoint &pt,
+                              const geo::IMatrix &MatPreMult, const geo::IPoint &ptReference) const;
 
       // always returns a vector based on the support type
       // the matrix and points are used if ST_GLOBAL is set
@@ -66,7 +58,8 @@ public:
     // the premult matrix is derived from the global tensor
     // the ptReference is the reference point for the global tensor
     CNodalSupportDef Interpolate(const CNodalSupportDef &rhs, const double &dist, const double &distrhs,
-      const geo::IPoint &pt, const geo::IMatrix &MatPreMult, const geo::IPoint &ptReference) const;
+                                 const geo::IPoint &pt, const geo::IMatrix &MatPreMult,
+                                 const geo::IPoint &ptReference) const;
 
     const CSupportDef &SupportDef(const CDepletionStage &stage) const;
     CSupportDef &SupportDef(const CDepletionStage &stage);
@@ -76,7 +69,7 @@ public:
     void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
   private:
-    typedef std::map<const CDepletionStage*, CSupportDef> TSupportMap;
+    typedef std::map<const CDepletionStage *, CSupportDef> TSupportMap;
     TSupportMap m_SupportMap;
   };
 
@@ -86,19 +79,19 @@ public:
 
   virtual unsigned int IconId() const;
 
-// Save and load stream
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Save and load stream
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
   virtual bool Empty() const;
   virtual long SavedItems() const;
 
   virtual int DisplayListSize() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
 
   virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
   void OnMeshModified();
 
-  virtual COpenGLNode::CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
+  virtual COpenGLNode::CDrawDef *OnCreateDrawDef(const geo::IObject &object) const;
 
   virtual bool UsingGlobalTensor(const CDepletionStage &Stage) const;
   virtual void OnGlobalTensorInputUndefined(const CDepletionStage &Stage) const;
@@ -109,48 +102,45 @@ public:
   const geo::IPoint &ReferencePoint() const;
 
   static geo::CVector DisplacementFromStrainTensor(const geo::IPoint &pt, const geo::IPoint &ptReference,
-    const geo::IMatrix &MatPreMult);
+                                                   const geo::IMatrix &MatPreMult);
 
-  geo::CVector DisplacementFromDistribution(const geo::IPoint &pt,const CDepletionStage &stage) const;
+  geo::CVector DisplacementFromDistribution(const geo::IPoint &pt, const CDepletionStage &stage) const;
 
   virtual bool IsValidValueTypeId(unsigned int uValueType) const;
 
-  typedef std::vector <const geo::IPoint*> TCornerNodeVec;
+  typedef std::vector<const geo::IPoint *> TCornerNodeVec;
 
   TCornerNodeVec getCornerNodes() const;
   void setSelectedPoint(const geo::IPoint *selectedPoint);
-  const geo::IPoint* getSelectedPoint() const;
+  const geo::IPoint *getSelectedPoint() const;
 
-  geo::CMatrix CreateGlobalTensorPreMultMatrix(const CDepletionStage& stage) const;
+  geo::CMatrix CreateGlobalTensorPreMultMatrix(const CDepletionStage &stage) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitDisplacementSupportNode);
 
 private:
-  class CNodeDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CNodeDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CNodeDrawDef(const COpenGLNode& node);
+    CNodeDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
     virtual DrawDecisionFloat PointSize() const;
   };
 
-  class CSelectedNodeDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CSelectedNodeDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CSelectedNodeDrawDef(const COpenGLNode& node);
+    CSelectedNodeDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
     virtual DrawDecisionFloat PointSize() const;
   };
 
-  class CReferenceNodeDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CReferenceNodeDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CReferenceNodeDrawDef(const COpenGLNode& node);
+    CReferenceNodeDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
     virtual DrawDecisionFloat PointSize() const;
   };
 
-  typedef std::map<const geo::IPoint*, std::vector<const geo::ILine*>, geo::ICoordinate::CCoordinateLess> TPtLinesMap;
+  typedef std::map<const geo::IPoint *, std::vector<const geo::ILine *>, geo::ICoordinate::CCoordinateLess> TPtLinesMap;
 
   mutable TCornerNodeVec m_vcCornerNodes;
   mutable const geo::IPoint *m_pSelectedPoint;
@@ -159,7 +149,7 @@ private:
 public:
   typedef std::map<geo::CPoint, CNodalSupportDef> TStageSupportMap;
 
-  TStageSupportMap& getSupports() const;
+  TStageSupportMap &getSupports() const;
 
 private:
   mutable TStageSupportMap m_Supports;
@@ -169,8 +159,8 @@ private:
   void UpdateStageSupportMap() const;
   void DetermineReferencePoint(const geo::IPoint *pt) const;
   void DetermineGenericReferencePoint(TPtLinesMap &mpLines) const;
-  //void ClearChildren();
-  //void CreateChildren();
+  // void ClearChildren();
+  // void CreateChildren();
 };
 
 #endif // !defined(AFX_DISPLACEMENTSUPPORTNODE_H__44007B2A_91A7_4F4B_AD49_29302D6AFA63__INCLUDED_)

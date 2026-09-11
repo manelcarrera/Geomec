@@ -2,10 +2,9 @@
 
 #include <QString>
 
-class CEnvironment
-{
+class CEnvironment {
 public:
-  static CEnvironment* instance();
+  static CEnvironment *instance();
 
   static QString DIAPATH;
   static QString DIASHARE;
@@ -18,14 +17,13 @@ public:
   static QString DIAERRPATH;
   static QString APP_SPC_LOGGING;
 
-  QString get( QString key ) const;
-
+  QString get(QString key) const;
 
 private:
-  static CEnvironment* m_singleton;
+  static CEnvironment *m_singleton;
 
 private:
   CEnvironment();
-  CEnvironment(const CEnvironment& rhs);
-  CEnvironment& operator = (const CEnvironment& rhs);
+  CEnvironment(const CEnvironment &rhs);
+  CEnvironment &operator=(const CEnvironment &rhs);
 };

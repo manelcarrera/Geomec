@@ -3,20 +3,18 @@
 
 #include "ParameterLimit.h"
 
-namespace cora
-{
+namespace cora {
 
-class CParameterHorizon : public CParameterLimit
-{
-  public:
+class CParameterHorizon : public CParameterLimit {
+public:
   CParameterHorizon();
   virtual ~CParameterHorizon();
 
-  private:
-  CParameterHorizon(const CParameterHorizon& rhs);
-  CParameterHorizon& operator = (const CParameterHorizon& rhs);
+private:
+  CParameterHorizon(const CParameterHorizon &rhs);
+  CParameterHorizon &operator=(const CParameterHorizon &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ParameterHorizon_h_
+#endif // _cora_ParameterHorizon_h_

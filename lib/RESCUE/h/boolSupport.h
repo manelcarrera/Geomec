@@ -3,7 +3,7 @@
   boolSupport.h
 
   Some compilers don't support bool, TRUE, and FALSE, even though they are ANSI
-  standard.  Sigh . . .  
+  standard.  Sigh . . .
 
   If you define a bool, usually you have to match a type which is used for that
   purpose in some other system headers, for example the C++ IO headers.  Failure
@@ -33,5 +33,3 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
-
-

@@ -11,10 +11,10 @@
 
 #include "WellSymbolBase.h"
 
-class CArrowLabelSymbol  : public CWellSymbolBase
-{
+class CArrowLabelSymbol : public CWellSymbolBase {
 public:
-  CArrowLabelSymbol(const geo::CPoint& position , const geo::IVector &dir , const QString& description,bool autoDelete=true);
+  CArrowLabelSymbol(const geo::CPoint &position, const geo::IVector &dir, const QString &description,
+                    bool autoDelete = true);
 };
 
 #endif // !defined(AFX_ARROWLABELSYMBOL_H__A3A5E196_7C64_4F4D_B823_37364E5F3975__INCLUDED_)

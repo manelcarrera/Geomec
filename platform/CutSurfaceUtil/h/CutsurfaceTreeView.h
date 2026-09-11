@@ -9,51 +9,47 @@
 
 #include <afxcview.h>
 
-
 class CCutSurfaceFrame;
 
 /////////////////////////////////////////////////////////////////////////////
 // CCutsurfaceTreeView view
 
-class CCutsurfaceTreeView : public CTreeView
-{
-  
+class CCutsurfaceTreeView : public CTreeView {
+
 protected:
-  CCutsurfaceTreeView();           // protected constructor used by dynamic creation
+  CCutsurfaceTreeView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CCutsurfaceTreeView)
 
-// Attributes
+  // Attributes
 public:
-
-  void SetFrame(CCutSurfaceFrame* frame){m_pFrame=frame;}
-// Operations
+  void SetFrame(CCutSurfaceFrame *frame) { m_pFrame = frame; }
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CCutsurfaceTreeView)
-  protected:
-  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+protected:
+  virtual void OnDraw(CDC *pDC); // overridden to draw this view
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CCutsurfaceTreeView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(CCutsurfaceTreeView)
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-  void		OnLButtonDown(unsigned int nFlags,CPoint point);
+  void OnLButtonDown(unsigned int nFlags, CPoint point);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 private:
-  CCutSurfaceFrame* m_pFrame;
+  CCutSurfaceFrame *m_pFrame;
 };
 
 /////////////////////////////////////////////////////////////////////////////

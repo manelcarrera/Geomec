@@ -17,9 +17,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "gts.h"
-#include "gts-private.h"
 #include "config.h"
+#include "gts-private.h"
+#include "gts.h"
 
 const guint gts_major_version = GTS_MAJOR_VERSION;
 const guint gts_minor_version = GTS_MINOR_VERSION;
@@ -27,10 +27,9 @@ const guint gts_micro_version = GTS_MICRO_VERSION;
 const guint gts_interface_age = GTS_INTERFACE_AGE;
 const guint gts_binary_age = GTS_BINARY_AGE;
 
-static gboolean char_in_string (char c, const char * s)
-{
+static gboolean char_in_string(char c, const char *s) {
   while (*s != '\0')
-  if (*(s++) == c)
+    if (*(s++) == c)
       return TRUE;
   return FALSE;
 }
@@ -48,33 +47,30 @@ static gboolean char_in_string (char c, const char * s)
  *
  * Returns: the last character read from @fptr.
  */
-gint gts_get_token (FILE * fptr, GString * buf, 
-      const char * delimiters,
-      const char * comments)
-{
+gint gts_get_token(FILE *fptr, GString *buf, const char *delimiters, const char *comments) {
   gint c;
   gboolean in_string = FALSE;
 
-  g_return_val_if_fail (fptr != NULL, EOF);
-  g_return_val_if_fail (buf != NULL, EOF);
-  g_return_val_if_fail (delimiters != NULL, EOF);
-  g_return_val_if_fail (comments != NULL, EOF);
+  g_return_val_if_fail(fptr != NULL, EOF);
+  g_return_val_if_fail(buf != NULL, EOF);
+  g_return_val_if_fail(delimiters != NULL, EOF);
+  g_return_val_if_fail(comments != NULL, EOF);
 
   buf->str[0] = '\0';
   buf->len = 0;
-  c = fgetc (fptr);
+  c = fgetc(fptr);
 
   // TNO in below function calls "c" was changed into "(char)c" to prevent warning in compile time....
-  while (c != EOF && (!in_string || !char_in_string ((char)c, delimiters))) {
-  if (char_in_string ((char)c, comments))
-      gts_get_newline (fptr);
-  else if (in_string)
-      g_string_append_c (buf, (char)c);
-  else if (!char_in_string ((char)c, delimiters)) {
+  while (c != EOF && (!in_string || !char_in_string((char)c, delimiters))) {
+    if (char_in_string((char)c, comments))
+      gts_get_newline(fptr);
+    else if (in_string)
+      g_string_append_c(buf, (char)c);
+    else if (!char_in_string((char)c, delimiters)) {
       in_string = TRUE;
-      g_string_append_c (buf, (char)c);
-  }      
-  c = fgetc (fptr);
+      g_string_append_c(buf, (char)c);
+    }
+    c = fgetc(fptr);
   }
   return c;
 }
@@ -85,89 +81,72 @@ gint gts_get_token (FILE * fptr, GString * buf,
  *
  * Reads characters from @fptr until a '\n' character is met.
  */
-void gts_get_newline (FILE * fptr)
-{
+void gts_get_newline(FILE *fptr) {
   gint c;
 
-  g_return_if_fail (fptr != NULL);
-  
-  c = fgetc (fptr);
+  g_return_if_fail(fptr != NULL);
+
+  c = fgetc(fptr);
   while (c != EOF && c != '\n')
-  c = fgetc (fptr);
+    c = fgetc(fptr);
 }
 
 #ifdef DEBUG_FUNCTIONS
-static GHashTable * ids = NULL;
+static GHashTable *ids = NULL;
 static guint next_id = 1;
 
-guint id (gpointer p)
-{
-  g_return_val_if_fail (p != NULL, 0);
-  g_return_val_if_fail (ids != NULL, 0);
-  g_assert (g_hash_table_lookup (ids, p));
-  return GPOINTER_TO_UINT (g_hash_table_lookup (ids, p));
+guint id(gpointer p) {
+  g_return_val_if_fail(p != NULL, 0);
+  g_return_val_if_fail(ids != NULL, 0);
+  g_assert(g_hash_table_lookup(ids, p));
+  return GPOINTER_TO_UINT(g_hash_table_lookup(ids, p));
 }
 
-void id_insert (gpointer p)
-{
-  g_return_if_fail (p != NULL);
-  if (ids == NULL) ids = g_hash_table_new (NULL, NULL);
-  g_assert (g_hash_table_lookup (ids, p) == NULL);
-  g_hash_table_insert (ids, p, GUINT_TO_POINTER (next_id++));
+void id_insert(gpointer p) {
+  g_return_if_fail(p != NULL);
+  if (ids == NULL)
+    ids = g_hash_table_new(NULL, NULL);
+  g_assert(g_hash_table_lookup(ids, p) == NULL);
+  g_hash_table_insert(ids, p, GUINT_TO_POINTER(next_id++));
 }
 
-void id_remove (gpointer p)
-{
-  g_assert (g_hash_table_lookup (ids, p));  
-  g_hash_table_remove (ids, p);
+void id_remove(gpointer p) {
+  g_assert(g_hash_table_lookup(ids, p));
+  g_hash_table_remove(ids, p);
 }
 
-void gts_write_triangle (GtsTriangle * t, 
-       GtsPoint * o,
-       FILE * fptr)
-{
+void gts_write_triangle(GtsTriangle *t, GtsPoint *o, FILE *fptr) {
   gdouble xo = o ? o->x : 0.0;
   gdouble yo = o ? o->y : 0.0;
   gdouble zo = o ? o->z : 0.0;
 
-  g_return_if_fail (t != NULL && fptr != NULL);
+  g_return_if_fail(t != NULL && fptr != NULL);
 
-  fprintf (fptr, "(hdefine geometry \"t%d\" { =\n", id (t));
-  fprintf (fptr, "OFF 3 1 0\n"
-     "%g %g %g\n%g %g %g\n%g %g %g\n3 0 1 2\n})\n"
-     "(geometry \"t%d\" { : \"t%d\"})\n"
-     "(normalization \"t%d\" none)\n",
-     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->x - xo, 
-     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->y - yo,
-     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->z - zo,
-     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->x - xo, 
-     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->y - yo, 
-     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->z - zo,
-     GTS_POINT (gts_triangle_vertex (t))->x - xo,
-     GTS_POINT (gts_triangle_vertex (t))->y - yo,
-     GTS_POINT (gts_triangle_vertex (t))->z - zo,
-     id (t), id (t), id (t));
+  fprintf(fptr, "(hdefine geometry \"t%d\" { =\n", id(t));
+  fprintf(fptr,
+          "OFF 3 1 0\n"
+          "%g %g %g\n%g %g %g\n%g %g %g\n3 0 1 2\n})\n"
+          "(geometry \"t%d\" { : \"t%d\"})\n"
+          "(normalization \"t%d\" none)\n",
+          GTS_POINT(GTS_SEGMENT(t->e1)->v1)->x - xo, GTS_POINT(GTS_SEGMENT(t->e1)->v1)->y - yo,
+          GTS_POINT(GTS_SEGMENT(t->e1)->v1)->z - zo, GTS_POINT(GTS_SEGMENT(t->e1)->v2)->x - xo,
+          GTS_POINT(GTS_SEGMENT(t->e1)->v2)->y - yo, GTS_POINT(GTS_SEGMENT(t->e1)->v2)->z - zo,
+          GTS_POINT(gts_triangle_vertex(t))->x - xo, GTS_POINT(gts_triangle_vertex(t))->y - yo,
+          GTS_POINT(gts_triangle_vertex(t))->z - zo, id(t), id(t), id(t));
 }
 
-void gts_write_segment (GtsSegment * s, 
-      GtsPoint * o,
-      FILE * fptr)
-{
+void gts_write_segment(GtsSegment *s, GtsPoint *o, FILE *fptr) {
   gdouble xo = o ? o->x : 0.0;
   gdouble yo = o ? o->y : 0.0;
   gdouble zo = o ? o->z : 0.0;
 
-  g_return_if_fail (s != NULL && fptr != NULL);
+  g_return_if_fail(s != NULL && fptr != NULL);
 
-  fprintf (fptr, "(geometry \"s%d\" { =\n", id (s));
-  fprintf (fptr, "VECT 1 2 0 2 0 %g %g %g %g %g %g })\n"
-     "(normalization \"s%d\" none)\n",
-     GTS_POINT (s->v1)->x - xo, 
-     GTS_POINT (s->v1)->y - yo, 
-     GTS_POINT (s->v1)->z - zo,
-     GTS_POINT (s->v2)->x - xo, 
-     GTS_POINT (s->v2)->y - yo, 
-     GTS_POINT (s->v2)->z - zo,
-     id (s));
+  fprintf(fptr, "(geometry \"s%d\" { =\n", id(s));
+  fprintf(fptr,
+          "VECT 1 2 0 2 0 %g %g %g %g %g %g })\n"
+          "(normalization \"s%d\" none)\n",
+          GTS_POINT(s->v1)->x - xo, GTS_POINT(s->v1)->y - yo, GTS_POINT(s->v1)->z - zo, GTS_POINT(s->v2)->x - xo,
+          GTS_POINT(s->v2)->y - yo, GTS_POINT(s->v2)->z - zo, id(s));
 }
 #endif /* DEBUG_FUNCTIONS */

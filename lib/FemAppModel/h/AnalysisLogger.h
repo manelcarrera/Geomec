@@ -4,8 +4,7 @@
 #include "IDCAnalysisLogger.h"
 #include "StorageNode.h"
 
-class CAnalysisLogger : public dia::IAnalysisLogger
-{
+class CAnalysisLogger : public dia::IAnalysisLogger {
 public:
   CAnalysisLogger();
   ~CAnalysisLogger();
@@ -14,8 +13,8 @@ public:
   long SavedItems() const;
 
   // load and save the log to a streamfile
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress) const;
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress) const;
 
 private:
   bool m_bFilterBadShapeWarnings;

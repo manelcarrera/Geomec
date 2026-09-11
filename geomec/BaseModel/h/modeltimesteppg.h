@@ -9,121 +9,117 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CModelTimestepPg dialog
-#include <vector>
 #include "ComboListCtrl.h"
 #include "ISubListObject.h"
-//#include "DepletionStage.h"
-#include "geomectime.h"
+#include <vector>
+// #include "DepletionStage.h"
 #include "DepletionStage.h"
+#include "geomectime.h"
 
 class CModelBase;
-class CModelTimestepPg : public CPropertyPage
-{
-  class CTimeStepListObject : public IListObject
-  {
-  CModelTimestepPg& m_dlg;
+class CModelTimestepPg : public CPropertyPage {
+  class CTimeStepListObject : public IListObject {
+    CModelTimestepPg &m_dlg;
     CGeomecTime m_Time;
     CString m_sName;
-    CDepletionStage* m_pStage;
+    CDepletionStage *m_pStage;
     CDepletionStage::eOutputType m_OutputType;
-  bool m_bInserted;
+    bool m_bInserted;
 
   public:
     // Construction
-    CTimeStepListObject(CModelTimestepPg& dlg, CListCtrl& ctrl, CDepletionStage& stage);
-  CTimeStepListObject(CModelTimestepPg& dlg, CListCtrl& ctrl, int nIndex);
-    CTimeStepListObject(CModelTimestepPg& dlg, CListCtrl& ctrl, const CString& sName, const CGeomecTime &time, CDepletionStage::eOutputType output_type);
-    CTimeStepListObject(CTimeStepListObject& list_object);
+    CTimeStepListObject(CModelTimestepPg &dlg, CListCtrl &ctrl, CDepletionStage &stage);
+    CTimeStepListObject(CModelTimestepPg &dlg, CListCtrl &ctrl, int nIndex);
+    CTimeStepListObject(CModelTimestepPg &dlg, CListCtrl &ctrl, const CString &sName, const CGeomecTime &time,
+                        CDepletionStage::eOutputType output_type);
+    CTimeStepListObject(CTimeStepListObject &list_object);
 
-  void Destroy();
+    void Destroy();
     // Functions
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
     virtual unsigned int Icon() const;
 
-  void Inserted(bool value) { m_bInserted = value; }
-  const bool Inserted() const { return m_bInserted; }
+    void Inserted(bool value) { m_bInserted = value; }
+    const bool Inserted() const { return m_bInserted; }
 
-  const CString &Name() { return m_sName; }
+    const CString &Name() { return m_sName; }
     // Time
     const CGeomecTime &Time() const;
-  CGeomecTime &Time();
+    CGeomecTime &Time();
     void Time(const CGeomecTime &time);
-  
 
     // Output type
     CDepletionStage::eOutputType OutputType() const;
     void setOutputType(CDepletionStage::eOutputType output_type);
 
     void Apply();
-  private:
-  void ShiftTimes(CGeomecTime time, int fromIndex);
 
+  private:
+    void ShiftTimes(CGeomecTime time, int fromIndex);
   };
-  
-  class CYearSubObject : public ISubListObject
-  {
+
+  class CYearSubObject : public ISubListObject {
     CTimeStepListObject &m_parent;
+
   public:
     CYearSubObject(CTimeStepListObject &parent);
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
   };
 
-  class CMonthSubObject : public ISubListObject
-  {
+  class CMonthSubObject : public ISubListObject {
     CTimeStepListObject &m_parent;
+
   public:
     CMonthSubObject(CTimeStepListObject &parent);
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
   };
 
-  class COutputSubObject : public ISubListObject
-  {
-    CTimeStepListObject& m_parent;
+  class COutputSubObject : public ISubListObject {
+    CTimeStepListObject &m_parent;
 
   public:
-    COutputSubObject(CTimeStepListObject& parent);
+    COutputSubObject(CTimeStepListObject &parent);
     virtual QString Text() const;
 
     void setOutputType(CDepletionStage::eOutputType output_type);
     CDepletionStage::eOutputType OutputType() const;
 
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
   };
 
   CModelBase &m_model;
   int m_nTimeSteps;
   bool m_bCancelling;
+
 public:
-  //##ModelId=3BC55D6101DC
-  CModelTimestepPg(CModelBase& model);
-  //##ModelId=3BC55D6101EA
+  // ##ModelId=3BC55D6101DC
+  CModelTimestepPg(CModelBase &model);
+  // ##ModelId=3BC55D6101EA
   ~CModelTimestepPg();
 
-  class CTSComboListCtrl : public CComboListCtrl
-  {
+  class CTSComboListCtrl : public CComboListCtrl {
   public:
     CTSComboListCtrl();
 
   protected:
-    virtual void OnGetComboItems(int iRowIndex, int iColumnIndex, CStringList& lstItems);
+    virtual void OnGetComboItems(int iRowIndex, int iColumnIndex, CStringList &lstItems);
   };
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CModelTimestepPg)
   enum { IDD = IDD_ATTRI_MODEL_TIMESTEP };
-  CTSComboListCtrl	m_lbTimestep;
-  int		m_dd;
+  CTSComboListCtrl m_lbTimestep;
+  int m_dd;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generate virtual function overrides
   //{{AFX_VIRTUAL(CModelTimestepPg)
 public:
@@ -133,10 +129,10 @@ public:
   void UpdateCleanupCheckbox();
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual BOOL OnKillActive();
   // Generated message map functions
@@ -153,7 +149,7 @@ private:
   void Decrease(const int n);
   void Increase(const int n);
   void Insert(const int prev, const int next);
-  bool IsNumerique(const CString& s);
+  bool IsNumerique(const CString &s);
   void CheckOutputTypeLastStage();
   bool CheckTimes() const;
   bool HasRestarts();

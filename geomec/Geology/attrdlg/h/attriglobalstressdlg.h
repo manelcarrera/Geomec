@@ -13,28 +13,25 @@
 #include "AttributesTemplate.h"
 #include "GlobalInitialStressNode.h"
 
-class CAttriGlobalStressDlg : public CAttributesTemplate<CGlobalInitialStressNode>
-{
-// Construction
+class CAttriGlobalStressDlg : public CAttributesTemplate<CGlobalInitialStressNode> {
+  // Construction
 public:
-  CAttriGlobalStressDlg(CGlobalInitialStressNode& stress, CWnd* pParent = NULL);   // standard constructor
+  CAttriGlobalStressDlg(CGlobalInitialStressNode &stress, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriGlobalStressDlg)
   enum { IDD = IDD_ATTRI_GLOBAL_STRESS };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriGlobalStressDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriGlobalStressDlg)
   //}}AFX_MSG

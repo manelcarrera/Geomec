@@ -1,52 +1,37 @@
 #include <cassert>
 
 #include "FilterValueTypes.h"
-#include "ValueTypes.h"
-#include "Materials.h"
-#include "mlMaterial.h"
-#include "MaterialHelperFactory.h"
 #include "LibraryMaterial.h"
+#include "MaterialHelperFactory.h"
+#include "Materials.h"
+#include "ValueTypes.h"
+#include "mlMaterial.h"
 
-namespace cora
-{
+namespace cora {
 
 CFilterValueTypes::CFilterValueTypes(int materialModel)
-: m_excludedValueTypes(fillExcludedValueTypes(materialModel))
-, m_allLinearValueTypes(fillAllLinearValueTypes())
-, m_materialModel(materialModel)
-{
-}
+    : m_excludedValueTypes(fillExcludedValueTypes(materialModel)), m_allLinearValueTypes(fillAllLinearValueTypes()),
+      m_materialModel(materialModel) {}
 
-bool CFilterValueTypes::isValueTypeAllowed(size_t valueType) const
-{
-  if (isValueTypeLinear(valueType))
-  {
-  return isValueTypeExcluded(valueType) ? false : true;
-  }
-  else
-  {
-  if (m_materialModel == MM_CAMCLAY)
-  {
+bool CFilterValueTypes::isValueTypeAllowed(size_t valueType) const {
+  if (isValueTypeLinear(valueType)) {
+    return isValueTypeExcluded(valueType) ? false : true;
+  } else {
+    if (m_materialModel == MM_CAMCLAY) {
       return isValueTypeExcluded(valueType) ? false : true;
-  }
-  else if (m_materialModel == MM_MOHRCOULOMB)
-  {
+    } else if (m_materialModel == MM_MOHRCOULOMB) {
       return true;
-  }
-  else
-  {
+    } else {
       return false;
-  }
+    }
   }
 }
 
-bool CFilterValueTypes::isValueTypeExcluded(size_t valueType) const
-{
+bool CFilterValueTypes::isValueTypeExcluded(size_t valueType) const {
   return (m_excludedValueTypes.find(valueType) != m_excludedValueTypes.end());
 }
 
-bool CFilterValueTypes::isValueTypeLinear(size_t valueType) const
-{
+bool CFilterValueTypes::isValueTypeLinear(size_t valueType) const {
   return (m_allLinearValueTypes.find(valueType) != m_allLinearValueTypes.end());
 }
 
@@ -54,15 +39,13 @@ bool CFilterValueTypes::isValueTypeLinear(size_t valueType) const
 
 // static
 
-CFilterValueTypes::TFilterSet CFilterValueTypes::fillExcludedValueTypes(
-  int materialModel)
-{
+CFilterValueTypes::TFilterSet CFilterValueTypes::fillExcludedValueTypes(int materialModel) {
   TFilterSet excludedValueTypes;
-  std::pair <TFilterSet::iterator, bool> insertedExcludedValueType;
+  std::pair<TFilterSet::iterator, bool> insertedExcludedValueType;
 
   // linear
 
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_GRAINSTIFFNESS);  // "Grain Bulk Modulus"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_GRAINSTIFFNESS); // "Grain Bulk Modulus"
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_DYNUNISTIFFNESS); // "Dynamic Uniaxial Stiffness"
   assert(insertedExcludedValueType.second);
@@ -70,59 +53,54 @@ CFilterValueTypes::TFilterSet CFilterValueTypes::fillExcludedValueTypes(
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_VELOCITYS); // "Vs"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_POROSITY);  // "Porosity"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_POROSITY); // "Porosity"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_PERMEA);  // "Permeability"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_PERMEA); // "Permeability"
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_VISCOSITY); // "Viscosity"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_FLUID_BULK_MOD);  // "Fluid bulk modulus"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_FLUID_BULK_MOD); // "Fluid bulk modulus"
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_FLUID_DENSITY); // "Fluid Density"
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_VELOCITYP); // "Vp"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_THERMAL_EXPANSION); // "Volumetric Thermal Expansion"
+  insertedExcludedValueType =
+      excludedValueTypes.insert(IDT_VALUETYPE_THERMAL_EXPANSION); // "Volumetric Thermal Expansion"
   assert(insertedExcludedValueType.second);
   insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_THERM_CONDUCT); // "Thermal Conductivity"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_THERM_CAPACI);  // "Thermal Capacity"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_THERM_CAPACI); // "Thermal Capacity"
   assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_FLUIDX);  // "Fluid Thermal Expansion Coefficient"
-  assert(insertedExcludedValueType.second);
-
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_DUMMY);  // "Dummy"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_FLUIDX); // "Fluid Thermal Expansion Coefficient"
   assert(insertedExcludedValueType.second);
 
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_KRAD);  // "Krad"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_DUMMY); // "Dummy"
   assert(insertedExcludedValueType.second);
 
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_KTAN);  // "Ktan"
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_KRAD); // "Krad"
+  assert(insertedExcludedValueType.second);
+
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_KTAN); // "Ktan"
   assert(insertedExcludedValueType.second);
 
   // non-linear
 
-  if (materialModel == MM_CAMCLAY)
-  {
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_CAPSHAPE);  // "Cap Shape Factor"
-  assert(insertedExcludedValueType.second);
-  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_TENSILE_STRETCH); // "Tensile stretch"
-  assert(insertedExcludedValueType.second);
-  }
-  else if (materialModel == MM_MOHRCOULOMB)
-  {
-  }
-  else
-  {
+  if (materialModel == MM_CAMCLAY) {
+    insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_CAPSHAPE); // "Cap Shape Factor"
+    assert(insertedExcludedValueType.second);
+    insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_TENSILE_STRETCH); // "Tensile stretch"
+    assert(insertedExcludedValueType.second);
+  } else if (materialModel == MM_MOHRCOULOMB) {
+  } else {
   }
 
   return excludedValueTypes;
 }
 
-CFilterValueTypes::TFilterSet CFilterValueTypes::fillAllLinearValueTypes()
-{
+CFilterValueTypes::TFilterSet CFilterValueTypes::fillAllLinearValueTypes() {
   TFilterSet allLinearValueTypes;
-  std::pair <TFilterSet::iterator, bool> insertedLinearValueType;
+  std::pair<TFilterSet::iterator, bool> insertedLinearValueType;
 
   insertedLinearValueType = allLinearValueTypes.insert(IDT_VALUETYPE_YOUNGMODULUS_NORM);
   assert(insertedLinearValueType.second);
@@ -234,16 +212,13 @@ CFilterValueTypes::TFilterSet CFilterValueTypes::fillAllLinearValueTypes()
   return allLinearValueTypes;
 }
 
-namespace
-{
+namespace {
 
 const QString MATERIAL = "linear material";
 
 } // anonymous namespace
 
-void CFilterValueTypes::addLinearModelValueTypes(
-  TFilterSet& allLinearValueTypes)
-{
+void CFilterValueTypes::addLinearModelValueTypes(TFilterSet &allLinearValueTypes) {
   const CMaterialHelperFactory *f = CMaterialHelperFactory::Instance();
   assert(f);
 
@@ -254,13 +229,10 @@ void CFilterValueTypes::addLinearModelValueTypes(
 
   materialCreator->Create(MATERIAL, *material);
 
-  CLibraryMaterial* libraryMaterial =
-      dynamic_cast <CLibraryMaterial*> (material);
+  CLibraryMaterial *libraryMaterial = dynamic_cast<CLibraryMaterial *>(material);
 
-  for (size_t p = 0; (libraryMaterial != 0) &&
-      (p < libraryMaterial->ParameterSize()); ++p)
-  {
-      allLinearValueTypes.insert(libraryMaterial->Parameter(p).ValueTypeID());
+  for (size_t p = 0; (libraryMaterial != 0) && (p < libraryMaterial->ParameterSize()); ++p) {
+    allLinearValueTypes.insert(libraryMaterial->Parameter(p).ValueTypeID());
   }
 
   materialCreator->Destroy(material);

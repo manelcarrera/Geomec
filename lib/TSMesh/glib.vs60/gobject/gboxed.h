@@ -19,48 +19,34 @@
 #ifndef __G_BOXED_H__
 #define __G_BOXED_H__
 
-#include        <gobject/gtype.h>
-
+#include <gobject/gtype.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-
 /* --- type macros --- */
-#define G_TYPE_IS_BOXED(type)	(G_TYPE_FUNDAMENTAL (type) == G_TYPE_BOXED)
-#define G_IS_VALUE_BOXED(value)	(G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_BOXED))
-
+#define G_TYPE_IS_BOXED(type) (G_TYPE_FUNDAMENTAL(type) == G_TYPE_BOXED)
+#define G_IS_VALUE_BOXED(value) (G_TYPE_CHECK_VALUE_TYPE((value), G_TYPE_BOXED))
 
 /* --- typedefs --- */
-typedef struct _GBoxed	GBoxed;
-typedef gpointer (*GBoxedCopyFunc)	(gpointer	 boxed);
-typedef void     (*GBoxedFreeFunc)	(gpointer	 boxed);
-
+typedef struct _GBoxed GBoxed;
+typedef gpointer (*GBoxedCopyFunc)(gpointer boxed);
+typedef void (*GBoxedFreeFunc)(gpointer boxed);
 
 /* --- prototypes --- */
-GBoxed*		g_boxed_copy			(GType		 boxed_type,
-             gconstpointer	 src_boxed);
-void		g_boxed_free			(GType		 boxed_type,
-             gpointer	 boxed);
-void            g_value_set_boxed       	(GValue         *value,
-             gconstpointer   boxed);
-void            g_value_set_static_boxed	(GValue         *value,
-             gconstpointer   boxed);
-gpointer	g_value_get_boxed       	(const GValue   *value);
-gpointer	g_value_dup_boxed       	(GValue         *value);
-
+GBoxed *g_boxed_copy(GType boxed_type, gconstpointer src_boxed);
+void g_boxed_free(GType boxed_type, gpointer boxed);
+void g_value_set_boxed(GValue *value, gconstpointer boxed);
+void g_value_set_static_boxed(GValue *value, gconstpointer boxed);
+gpointer g_value_get_boxed(const GValue *value);
+gpointer g_value_dup_boxed(GValue *value);
 
 /* --- convenience --- */
-GType	g_boxed_type_register_static	(const gchar   *name,
-           GBoxedCopyFunc	boxed_copy,
-           GBoxedFreeFunc	boxed_free);
-
-
-
+GType g_boxed_type_register_static(const gchar *name, GBoxedCopyFunc boxed_copy, GBoxedFreeFunc boxed_free);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
-#endif	/* __G_BOXED_H__ */
+#endif /* __G_BOXED_H__ */

@@ -1,7 +1,7 @@
 #ifndef EXPORTIDMSTABOR_H
 #define EXPORTIDMSTABOR_H
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "AnalysisType.h"
 
@@ -10,34 +10,28 @@ class CDepletionStage;
 class CNewGeoWellPoint;
 class CNewWellPoint;
 
-class CExportIDMStabor
-{
+class CExportIDMStabor {
 private:
   static std::vector<std::string> m_fieldNames;
   static std::vector<std::string> m_units;
   static bool m_classInited;
-  const CModelBase& m_model;
-  const CDepletionStage& m_stage;
-  const CAnalysisType& m_antype;
-  const std::list<CNewWellPoint>* m_pNewPointList;
+  const CModelBase &m_model;
+  const CDepletionStage &m_stage;
+  const CAnalysisType &m_antype;
+  const std::list<CNewWellPoint> *m_pNewPointList;
 
 public:
-  CExportIDMStabor
-  ( const CModelBase& model
-  , const CDepletionStage& stage
-  , const CAnalysisType& antype
-  , const std::list<CNewWellPoint>* pNewPointList
-  );
+  CExportIDMStabor(const CModelBase &model, const CDepletionStage &stage, const CAnalysisType &antype,
+                   const std::list<CNewWellPoint> *pNewPointList);
   bool eksport(const std::string &filename);
 };
 
-class CExportIDMStaborRow
-{
+class CExportIDMStaborRow {
 private:
-  const CModelBase& m_model;
-  const CDepletionStage& m_stage;
-  const CAnalysisType& m_antype;
-  const CNewGeoWellPoint* m_pNewWellPoint;
+  const CModelBase &m_model;
+  const CDepletionStage &m_stage;
+  const CAnalysisType &m_antype;
+  const CNewGeoWellPoint *m_pNewWellPoint;
 
   bool m_validRow;
   int m_rowNr;
@@ -60,11 +54,11 @@ private:
   bool m_validNorthEastShearStress;
   bool m_validEastDepthShearStress;
   bool m_validNorthDepthShearStress;
-  //double m_porePressure_kPa_m;
-  //double m_vertTSG;
-  //double m_maxHorTSG;
-  //double m_minHorTSG;
-  //double m_azimuthMaxHor;
+  // double m_porePressure_kPa_m;
+  // double m_vertTSG;
+  // double m_maxHorTSG;
+  // double m_minHorTSG;
+  // double m_azimuthMaxHor;
   bool m_undrained;
   double m_biotAlpha;
   double m_skemptonCoefficient;
@@ -77,39 +71,29 @@ private:
   double m_dilatationAngle;
   bool m_isotropy;
   double m_youngsModulus;
-  //double m_inPlaneYoungsModulus;
-  //double m_YoungsModulusPerpendicularToBeddingPlane;
-  //double m_dipAzimuth;
-  //double m_dipAngle;
+  // double m_inPlaneYoungsModulus;
+  // double m_YoungsModulusPerpendicularToBeddingPlane;
+  // double m_dipAzimuth;
+  // double m_dipAngle;
   double m_poissonRatio;
-  //double m_hardeningType;
-  //double m_hardeningGradient;
-  //double m_fractureEnergy;
+  // double m_hardeningType;
+  // double m_hardeningGradient;
+  // double m_fractureEnergy;
 public:
-  CExportIDMStaborRow
-  ( const CModelBase& pModel
-  , const CDepletionStage& pStage
-  , const CAnalysisType& antype
-  , const CNewGeoWellPoint* pNewPoint
-  , int rowNr
-  );
-  void eksport( std::ostream &stream );
+  CExportIDMStaborRow(const CModelBase &pModel, const CDepletionStage &pStage, const CAnalysisType &antype,
+                      const CNewGeoWellPoint *pNewPoint, int rowNr);
+  void eksport(std::ostream &stream);
 };
 
-class CStartIDMStaborDlg : public CDialog
-{
+class CStartIDMStaborDlg : public CDialog {
 private:
 public:
+  CStartIDMStaborDlg(std::list<CNewWellPoint> *pNewPointList, CModelBase &model,
+                     CWnd *pParent = NULL); // standard constructor
 
-  CStartIDMStaborDlg
-  ( std::list<CNewWellPoint>* pNewPointList
-  , CModelBase& model
-  , CWnd* pParent = NULL
-  );   // standard constructor
-  
 protected:
   virtual BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 
   DECLARE_MESSAGE_MAP()
 
@@ -121,12 +105,12 @@ private:
   CAnalysisType::TAnalysisType AnalysisType() const;
 
 private:
-  CModelBase& m_model;
-  std::list<CNewWellPoint>* m_pNewPointList;
+  CModelBase &m_model;
+  std::list<CNewWellPoint> *m_pNewPointList;
   int m_nAnalysisType;
   int m_nStage;
   CString m_strFileName;
-  std::vector<const CDepletionStage*> m_vcStages;
+  std::vector<const CDepletionStage *> m_vcStages;
 };
 
-#endif //EXPORTIDMSTABOR_H
+#endif // EXPORTIDMSTABOR_H

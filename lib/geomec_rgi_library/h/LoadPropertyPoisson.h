@@ -3,25 +3,22 @@
 
 #include "CalculateShearModulus.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CLoadPropertyPoisson : public CCalculateShearModulus
-{
-  public:
+class CLoadPropertyPoisson : public CCalculateShearModulus {
+public:
   using CLoadPropertyBase::loadProperty;
 
-  CLoadPropertyPoisson(const RGProperty& rgProperty, RGInterface& rgi,
-      CModelBase& modelBase, CRockMechProcessor& rmp);
+  CLoadPropertyPoisson(const RGProperty &rgProperty, RGInterface &rgi, CModelBase &modelBase, CRockMechProcessor &rmp);
   virtual ~CLoadPropertyPoisson();
 
   virtual bool loadProperty();
 
-  private:
-  CLoadPropertyPoisson(const CLoadPropertyPoisson& rhs);
-  CLoadPropertyPoisson& operator = (const CLoadPropertyPoisson& rhs);
+private:
+  CLoadPropertyPoisson(const CLoadPropertyPoisson &rhs);
+  CLoadPropertyPoisson &operator=(const CLoadPropertyPoisson &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _LoadPropertyPoisson_h_
+#endif // _LoadPropertyPoisson_h_

@@ -14,38 +14,26 @@
 
 #include "idianax.h"
 
-class CDianaX : public CWnd//, public IDianaX //FIXME: MCR: MFC multiple inheritance 
+class CDianaX : public CWnd //, public IDianaX //FIXME: MCR: MFC multiple inheritance
 {
 protected:
   DECLARE_DYNCREATE(CDianaX)
 public:
-  CLSID const& GetClsid()
-  {
-    static CLSID const clsid
-      = { 0x3a01bc17, 0xba9f, 0x11d2, { 0xb3, 0xb4, 0x0, 0x10, 0x4b, 0x25, 0x56, 0xd9 } };
+  CLSID const &GetClsid() {
+    static CLSID const clsid = {0x3a01bc17, 0xba9f, 0x11d2, {0xb3, 0xb4, 0x0, 0x10, 0x4b, 0x25, 0x56, 0xd9}};
     return clsid;
   }
-  virtual BOOL Create(LPCTSTR lpszClassName,
-            LPCTSTR lpszWindowName, 
-            DWORD dwStyle,
-            const RECT& rect,
-            CWnd* pParentWnd, 
-            unsigned int nID,
-            CCreateContext* pContext = NULL)
-  { return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID); }
+  virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT &rect, CWnd *pParentWnd,
+                      unsigned int nID, CCreateContext *pContext = NULL) {
+    return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID);
+  }
 
-  BOOL Create(LPCTSTR lpszWindowName, 
-        DWORD dwStyle,
-        const RECT& rect, 
-        CWnd* pParentWnd, 
-        unsigned int nID,
-        CFile* pPersist = NULL, 
-        BOOL bStorage = FALSE,
-        BSTR bstrLicKey = NULL)
-  { return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID,
-    pPersist, bStorage, bstrLicKey); }
+  BOOL Create(LPCTSTR lpszWindowName, DWORD dwStyle, const RECT &rect, CWnd *pParentWnd, unsigned int nID,
+              CFile *pPersist = NULL, BOOL bStorage = FALSE, BSTR bstrLicKey = NULL) {
+    return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID, pPersist, bStorage, bstrLicKey);
+  }
 
-// Attributes
+  // Attributes
 public:
   BOOL GetShowDialog();
   void SetShowDialog(BOOL);
@@ -69,10 +57,11 @@ public:
   long GetNumberOfAppSpcMessages();
   void SetNumberOfAppSpcMessages(long);
 
-// Operations
+  // Operations
 public:
   bool SetEnvironmentVar(LPCTSTR VarName, LPCTSTR Value);
-  short ExecuteDiana(LPCTSTR ExeName, LPCTSTR WorkingDir, LPCTSTR ComFile, LPCTSTR DatFile, LPCTSTR FilosFile, LPCTSTR BaseName);
+  short ExecuteDiana(LPCTSTR ExeName, LPCTSTR WorkingDir, LPCTSTR ComFile, LPCTSTR DatFile, LPCTSTR FilosFile,
+                     LPCTSTR BaseName);
   bool GetCalculationResult();
   BOOL SetUserMagic(LPCTSTR Leader, LPCTSTR Trailer);
   void AboutBox();

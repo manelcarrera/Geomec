@@ -14,12 +14,10 @@
 #include "boolSupport.h"
 #include <stdlib.h>
 
-
 class RescueGeobodyVolume;
 class RescueContext;
 
-class cSetRescueGeobodyVolume
-{
+class cSetRescueGeobodyVolume {
 protected:
   RescueGeobodyVolume **objects;
   RESCUEINT64 allocated;
@@ -36,14 +34,15 @@ public:
   RescueGeobodyVolume *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueGeobodyVolume *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueGeobodyVolume *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
   void FindUniquePropertyNames(cSetString *container);
+
 private:
   void DropWireframeMemory();
   void UnArchiveWireframeData(RescueModel *model, FILE *archiveFile);
@@ -54,6 +53,3 @@ private:
 };
 
 #endif
-
-
-

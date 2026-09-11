@@ -21,7 +21,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_QUEUE_H__
@@ -31,34 +31,29 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GQueue		GQueue;
+typedef struct _GQueue GQueue;
 
-struct _GQueue
-{
+struct _GQueue {
   GList *head;
   GList *tail;
-  guint  length;
+  guint length;
 };
 
 /* Queues
  */
-GQueue*  g_queue_new            (void);
-void     g_queue_free           (GQueue  *queue);
-void     g_queue_push_head      (GQueue  *queue,
-         gpointer data);
-void     g_queue_push_tail      (GQueue  *queue,
-         gpointer data);
-gpointer g_queue_pop_head       (GQueue  *queue);
-gpointer g_queue_pop_tail       (GQueue  *queue);
-gboolean g_queue_is_empty       (GQueue  *queue);
-gpointer g_queue_peek_head      (GQueue  *queue);
-gpointer g_queue_peek_tail      (GQueue  *queue);
-void     g_queue_push_head_link (GQueue  *queue,
-         GList   *link);
-void     g_queue_push_tail_link (GQueue  *queue,
-         GList   *link);
-GList*   g_queue_pop_head_link  (GQueue  *queue);
-GList*   g_queue_pop_tail_link  (GQueue  *queue);
+GQueue *g_queue_new(void);
+void g_queue_free(GQueue *queue);
+void g_queue_push_head(GQueue *queue, gpointer data);
+void g_queue_push_tail(GQueue *queue, gpointer data);
+gpointer g_queue_pop_head(GQueue *queue);
+gpointer g_queue_pop_tail(GQueue *queue);
+gboolean g_queue_is_empty(GQueue *queue);
+gpointer g_queue_peek_head(GQueue *queue);
+gpointer g_queue_peek_tail(GQueue *queue);
+void g_queue_push_head_link(GQueue *queue, GList *link);
+void g_queue_push_tail_link(GQueue *queue, GList *link);
+GList *g_queue_pop_head_link(GQueue *queue);
+GList *g_queue_pop_tail_link(GQueue *queue);
 
 G_END_DECLS
 

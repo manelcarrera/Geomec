@@ -2,25 +2,21 @@
 
 #include <QAbstractEventDispatcher>
 
-Worker::Worker() 
-{
+Worker::Worker() {
   // you could copy data from constructor arguments to internal variables here.
 }
- 
-Worker::~Worker() 
-{
+
+Worker::~Worker() {
   // free resources
 }
- 
-void Worker::process() 
-{
+
+void Worker::process() {
   // allocate resources using new here
   qDebug("process : 1");
   m_quit = false;
-  while( !m_quit )
-  {
-    QThread::sleep( 1 );
-    m_thread.eventDispatcher()->processEvents( QEventLoop::AllEvents );
+  while (!m_quit) {
+    QThread::sleep(1);
+    m_thread.eventDispatcher()->processEvents(QEventLoop::AllEvents);
   }
   qDebug("process : 2");
 
@@ -29,12 +25,10 @@ void Worker::process()
   emit finished();
 }
 
-void Worker::stop() 
-{
+void Worker::stop() {
   qDebug("stop");
   qDebug("wait : before");
   m_quit = true;
   m_thread.wait();
   qDebug("wait : after");
-
 }

@@ -1,26 +1,25 @@
 #include "Geomec.h"
-//#include "afxcmn.h"
+// #include "afxcmn.h"
 #include "TimeLapseControlObjects.h"
 
 class CQBSettings;
 
 // CQuickBlocksDlg dialog
 
-class CQuickBlocksDlg : public CDialog
-{
+class CQuickBlocksDlg : public CDialog {
   DECLARE_DYNAMIC(CQuickBlocksDlg)
-  
+
   CQBSettings &m_Source;
- 
+
 public:
-  CQuickBlocksDlg(CQBSettings &grid, CWnd* pParent = NULL);   // standard constructor
+  CQuickBlocksDlg(CQBSettings &grid, CWnd *pParent = NULL); // standard constructor
   virtual ~CQuickBlocksDlg();
 
-// Dialog Data
+  // Dialog Data
   enum { IDD = IDD_QB_DLG };
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual BOOL OnInitDialog();
 
   DECLARE_MESSAGE_MAP()
@@ -38,9 +37,11 @@ public:
   afx_msg void OnBnClickedQbRemoveDeplstage();
   afx_msg void OnBnClickedQbAddDeplstage2();
   afx_msg void OnBnClickedQbRemoveDeplstage2();
+
 protected:
   CTimeLapseComboListCtrl m_lbPressures;
   CTimeLapseComboListCtrl m_lbTemperatures;
+
 public:
   afx_msg void OnBnClickedButtonQbWriteDat();
   afx_msg void OnBnClickedQbSelectForms();

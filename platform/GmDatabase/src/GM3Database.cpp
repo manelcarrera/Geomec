@@ -2,21 +2,18 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
 #include "GM3Database.h"
 #include "GM3TableDef.h"
 #include "gm3IncompleteException.h"
+#include "stdafx.h"
 /////////////////////////////////////////////////////////////////////
 // Implementation of C3DDatabase Base class
 //////////////////////////////////////////////////////////////////////
-namespace gm { 
+namespace gm {
 
-C3DDatabase::C3DDatabase()
-{
-}
+C3DDatabase::C3DDatabase() {}
 
-void C3DDatabase::OpenDB(const CString &strPathName, const BOOL bComplete)
-{
+void C3DDatabase::OpenDB(const CString &strPathName, const BOOL bComplete) {
 #ifndef _WIN64
   // Set the complete flag
   m_bComplete = bComplete;
@@ -31,8 +28,7 @@ void C3DDatabase::OpenDB(const CString &strPathName, const BOOL bComplete)
   strQuery += "]";
   rs.Open(dbOpenTable, strQuery, dbReadOnly);
 
-  if (rs.IsEOF()) 
-  {
+  if (rs.IsEOF()) {
     // Throw incomplete exception ...
     throw new CIncompleteException();
   }
@@ -46,4 +42,4 @@ void C3DDatabase::OpenDB(const CString &strPathName, const BOOL bComplete)
 #endif
 }
 
-}
+} // namespace gm

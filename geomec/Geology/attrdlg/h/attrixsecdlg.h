@@ -14,32 +14,28 @@
 
 class CUnitNode;
 
-class CAttriXSecDlg : public CDialog
-{
-  
-// Construction
-public:
-  CAttriXSecDlg(CCrossSection &Xsec, CWnd* pParent = NULL);   // standard constructor
+class CAttriXSecDlg : public CDialog {
 
-// Dialog Data
+  // Construction
+public:
+  CAttriXSecDlg(CCrossSection &Xsec, CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CAttriXSecDlg)
   enum { IDD = IDD_ATTRI_XSEC };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriXSecDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
 
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriXSecDlg)
   virtual BOOL OnInitDialog();
@@ -54,7 +50,7 @@ private:
   bool TryApply();
 
 private:
-  CCrossSection& m_xsec;
+  CCrossSection &m_xsec;
   CCrossSection::OrientationType m_constraintScreen;
   CCrossSection::OrientationType m_constraintBookmarked;
 
@@ -73,6 +69,7 @@ private:
   geo::CPoint m_ptSecond;
   double m_dDepth;
   int m_crossSectionType;
+
 public:
   afx_msg void OnCopyFromBookmarked();
   afx_msg void OnCopyFromScreen();

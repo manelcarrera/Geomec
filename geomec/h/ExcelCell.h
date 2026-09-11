@@ -7,11 +7,10 @@ class _Worksheet;
 
 typedef std::vector<VARIANT> TContentVec;
 
-class CExcelCell
-{
+class CExcelCell {
 private:
-  const TContentVec* m_pvcReadContents;
-  mutable TContentVec* m_pvcWriteContents;
+  const TContentVec *m_pvcReadContents;
+  mutable TContentVec *m_pvcWriteContents;
   long m_nRowLength;
   int m_row;
   int m_column;
@@ -23,12 +22,12 @@ private:
   TWriteBuffer m_buffer;
 
 private:
-  std::pair<const TContentVec*, int> GetWriteBufferAndRowLength() const;
+  std::pair<const TContentVec *, int> GetWriteBufferAndRowLength() const;
 
 public:
   // reading
-  CExcelCell(const TContentVec& vcReadContents, long nRowLength, int nRow, int nCol);
-  CExcelCell(const TContentVec& vcReadContents, long nRowLength, int nRow, int nCol, int nRowSize);
+  CExcelCell(const TContentVec &vcReadContents, long nRowLength, int nRow, int nCol);
+  CExcelCell(const TContentVec &vcReadContents, long nRowLength, int nRow, int nCol, int nRowSize);
 
   VARIANT getValue() const;
   bool isEmpty() const;
@@ -42,10 +41,10 @@ public:
   CExcelCell(int nRow, int nCol);
 
   void setValue(VARIANT varValue);
-  void writeString(const QString& sValue);
-  void WriteString(const CString& sValue);
+  void writeString(const QString &sValue);
+  void WriteString(const CString &sValue);
   void WriteStringID(unsigned int uValue);
-  void writeDouble(const double& dValue);
+  void writeDouble(const double &dValue);
 
   void WriteToSheet(_Worksheet ws) const;
 
@@ -59,9 +58,9 @@ public:
   int rowSize() const;
 
   // error messages
-  void throwMessage(const QString& sMessage) const;
-  void ThrowMessage(const CString& sMessage) const;
+  void throwMessage(const QString &sMessage) const;
+  void ThrowMessage(const CString &sMessage) const;
   void ThrowMessageID(unsigned int uMessage) const;
 };
 
-#endif  // _ExcelCell_h_
+#endif // _ExcelCell_h_

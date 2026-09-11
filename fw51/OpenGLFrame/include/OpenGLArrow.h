@@ -17,11 +17,10 @@ namespace geo {
 class CLine;
 class CConus;
 class CVector;
-}
-
+} // namespace geo
 
 //*******************************************************************
-//              
+//
 //  FILE:       openglarrow.h
 //  AUTHOR:     htg
 //  PROJECT:    DrillTest
@@ -32,39 +31,36 @@ class CVector;
 
 //*******************************************************************
 
-
-//a struct describing the shape of the arrow
-struct OPENGLFRAME_EXPORT TOpenGLArrowShapeDef
-{
-  TOpenGLArrowShapeDef(   const double& head_ratio=0.7,
-              const double& radius_ratio=0.4,
-              const double& width_ratio=0.3 )
-  {
-    HeadRatio   = head_ratio;
+// a struct describing the shape of the arrow
+struct OPENGLFRAME_EXPORT TOpenGLArrowShapeDef {
+  TOpenGLArrowShapeDef(const double &head_ratio = 0.7, const double &radius_ratio = 0.4,
+                       const double &width_ratio = 0.3) {
+    HeadRatio = head_ratio;
     RadiusRatio = radius_ratio;
-    WidthRatio  = width_ratio;
+    WidthRatio = width_ratio;
   }
   double HeadRatio;
   double RadiusRatio;
   double WidthRatio;
 };
 
-class OPENGLFRAME_EXPORT COpenGLArrow  : public geo::IArray
-{
-  geo::CConus* m_pLine;
-  geo::CConus* m_pConus;
+class OPENGLFRAME_EXPORT COpenGLArrow : public geo::IArray {
+  geo::CConus *m_pLine;
+  geo::CConus *m_pConus;
 
 public:
-  COpenGLArrow(const geo::IPoint& base_point, const geo::IVector& vector,const TOpenGLArrowShapeDef& shape = TOpenGLArrowShapeDef());
-  COpenGLArrow( const COpenGLArrow& rhs );
+  COpenGLArrow(const geo::IPoint &base_point, const geo::IVector &vector,
+               const TOpenGLArrowShapeDef &shape = TOpenGLArrowShapeDef());
+  COpenGLArrow(const COpenGLArrow &rhs);
   virtual ~COpenGLArrow();
-  virtual const geo::IObject& ObjectBase(size_t nIndex) const;
-  virtual geo::IObject& ObjectBase(size_t nIndex);
+  virtual const geo::IObject &ObjectBase(size_t nIndex) const;
+  virtual geo::IObject &ObjectBase(size_t nIndex);
   virtual void Remove(int nIndex);
   virtual size_t Size() const;
   virtual void Clear();
   const geo::CVector Dir() const;
-  void Change(const geo::IPoint& base_point, const geo::IVector& vector,const TOpenGLArrowShapeDef& shape = TOpenGLArrowShapeDef());
+  void Change(const geo::IPoint &base_point, const geo::IVector &vector,
+              const TOpenGLArrowShapeDef &shape = TOpenGLArrowShapeDef());
 };
 
 #endif // !defined(AFX_OPENGLARROW_H__3521E59E_BAA4_4107_B20D_C6CC9297CAF4__INCLUDED_)

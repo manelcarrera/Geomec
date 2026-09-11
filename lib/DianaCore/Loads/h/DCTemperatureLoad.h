@@ -15,8 +15,7 @@ namespace dia {
 
 class CLoadManager;
 
-class CTemperatureLoad : public IStructuralLoad  
-{
+class CTemperatureLoad : public IStructuralLoad {
 public:
   // same value in all nodes
   CTemperatureLoad(CLoadCase &loadcase, double size, const geo::IElement &element);
@@ -29,7 +28,7 @@ public:
   const geo::IElement &Element() const;
 
 private:
-  const geo::IElement& m_Element;
+  const geo::IElement &m_Element;
 };
 
 } // namespace dia

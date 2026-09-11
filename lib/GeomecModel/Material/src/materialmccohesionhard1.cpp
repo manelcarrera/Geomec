@@ -5,13 +5,10 @@
 
 #include "Material.h"
 
-CMaterialMCCohesionHard1::CMaterialMCCohesionHard1(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: CMaterialMohrCo(entry, libmat)
-{
-}
+CMaterialMCCohesionHard1::CMaterialMCCohesionHard1(CMaterialEntry &entry, CLibraryMaterial &libmat)
+    : CMaterialMohrCo(entry, libmat) {}
 
-bool CMaterialMCCohesionHard1::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+bool CMaterialMCCohesionHard1::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   ftn_double_t kapcoh[4];
 
   kapcoh[0] = 0;
@@ -25,29 +22,27 @@ bool CMaterialMCCohesionHard1::Write(const CFFMaterial &ffmat, dia::IDianaRunner
 }
 
 // Interface for dia::IElementProperty
-int CMaterialMCCohesionHard1::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialMCCohesionHard1::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = 4;
 
   size += CMaterialMohrCo::WriteFilosParamSize(ffmat, diarunner);
   return size;
 }
 
-bool CMaterialMCCohesionHard1::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
-  if (i < 4)
-  {
-  QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
-  strncpy(name, kapcoh.toStdString().c_str(), 10);
-  return true;
+bool CMaterialMCCohesionHard1::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                                   char *name) const {
+  if (i < 4) {
+    QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
+    strncpy(name, kapcoh.toStdString().c_str(), 10);
+    return true;
   }
   i -= 4;
 
   return CMaterialMohrCo::WriteFilosParamName(ffmat, diarunner, i, name);
 }
 
-void CMaterialMCCohesionHard1::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialMCCohesionHard1::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner,
+                                                     double *values, int stride) const {
   *values = 0; // KAPCOH(1)
   values += stride;
 

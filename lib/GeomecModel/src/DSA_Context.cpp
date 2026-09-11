@@ -1,13 +1,11 @@
 #include "DSA_Context.h"
 #include "Printer.h"
 
-namespace
-{
-  Printer* printer = Printer::instance(Printer::RunA);
+namespace {
+Printer *printer = Printer::instance(Printer::RunA);
 }
 
-DSA_Context::DSA_Context()
-{
+DSA_Context::DSA_Context() {
   printer->info("context : new");
 
   out.statuses = dia::IAnalysisStatusContainer();
@@ -27,7 +25,6 @@ DSA_Context::DSA_Context()
   scene.history = nullptr;
   scene.wellpath = nullptr;
 
-
   // Logs
   time.start = QDateTime::currentDateTime();
   time.save.start = QDateTime::currentDateTime();
@@ -41,7 +38,4 @@ DSA_Context::DSA_Context()
   retrieve = nullptr;
 }
 
-DSA_Context::~DSA_Context()
-{
-  printer->info("context : deleted : nothing to delete");
-}
+DSA_Context::~DSA_Context() { printer->info("context : deleted : nothing to delete"); }

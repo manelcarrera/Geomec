@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMesh wrapper class
 
-class CMesh : public COleDispatchDriver
-{
+class CMesh : public COleDispatchDriver {
 public:
-  CMesh() {}		// Calls COleDispatchDriver default constructor
+  CMesh() {} // Calls COleDispatchDriver default constructor
   CMesh(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CMesh(const CMesh& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CMesh(const CMesh &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   double GetBoreholeRadius();
   void SetBoreholeRadius(double);
@@ -34,7 +33,7 @@ public:
   BOOL GetQuarterMesh();
   void SetQuarterMesh(BOOL);
 
-// Operations
+  // Operations
 public:
   BOOL SetDefault();
 };

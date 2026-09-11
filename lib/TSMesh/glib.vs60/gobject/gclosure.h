@@ -19,65 +19,48 @@
 #ifndef __G_CLOSURE_H__
 #define __G_CLOSURE_H__
 
-
-#include        <gobject/gtype.h>
-
+#include <gobject/gtype.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-
-
 /* --- defines --- */
-#define	G_CLOSURE_NEEDS_MARSHAL(closure) (((GClosure*) (closure))->marshal == NULL)
-#define	G_CCLOSURE_SWAP_DATA(cclosure)	 (((GClosure*) (closure))->derivative_flag)
-#define	G_CALLBACK(f)			 ((GCallback) (f))
-
+#define G_CLOSURE_NEEDS_MARSHAL(closure) (((GClosure *)(closure))->marshal == NULL)
+#define G_CCLOSURE_SWAP_DATA(cclosure) (((GClosure *)(closure))->derivative_flag)
+#define G_CALLBACK(f) ((GCallback)(f))
 
 /* -- typedefs --- */
-typedef struct _GClosure		 GClosure;
-typedef struct _GClosureNotifyData	 GClosureNotifyData;
-typedef	gpointer GCallback;
-typedef void  (*GClosureNotify)		(gpointer	 data,
-           GClosure	*closure);
-typedef void  (*GClosureMarshal)	(GClosure	*closure,
-           GValue         *return_value,
-           guint           n_param_values,
-           const GValue   *param_values,
-           gpointer        invocation_hint,
-           gpointer	 marshal_data);
-typedef struct _GCClosure		 GCClosure;
-
+typedef struct _GClosure GClosure;
+typedef struct _GClosureNotifyData GClosureNotifyData;
+typedef gpointer GCallback;
+typedef void (*GClosureNotify)(gpointer data, GClosure *closure);
+typedef void (*GClosureMarshal)(GClosure *closure, GValue *return_value, guint n_param_values,
+                                const GValue *param_values, gpointer invocation_hint, gpointer marshal_data);
+typedef struct _GCClosure GCClosure;
 
 /* --- structures --- */
-struct _GClosureNotifyData
-{
-  gpointer       data;
+struct _GClosureNotifyData {
+  gpointer data;
   GClosureNotify notify;
 };
-struct _GClosure
-{
-  /*< private >*/	guint	 ref_count : 15;
-  /*< private >*/	guint	 meta_marshal : 1;
-  /*< private >*/	guint	 n_guards : 1;
-  /*< private >*/	guint	 n_fnotifiers : 2;	/* finalization notifiers */
-  /*< private >*/	guint	 n_inotifiers : 8;	/* invalidation notifiers */
-  /*< private >*/	guint	 in_inotify : 1;
-  /*< private >*/	guint	 floating : 1;
-  /*< protected >*/	guint	 derivative_flag : 1;
-  /*< puplic >*/	guint	 in_marshal : 1;
-  /*< public >*/	guint	 is_invalid : 1;
+struct _GClosure {
+  /*< private >*/ guint ref_count : 15;
+  /*< private >*/ guint meta_marshal : 1;
+  /*< private >*/ guint n_guards : 1;
+  /*< private >*/ guint n_fnotifiers : 2; /* finalization notifiers */
+  /*< private >*/ guint n_inotifiers : 8; /* invalidation notifiers */
+  /*< private >*/ guint in_inotify : 1;
+  /*< private >*/ guint floating : 1;
+  /*< protected >*/ guint derivative_flag : 1;
+  /*< puplic >*/ guint in_marshal : 1;
+  /*< public >*/ guint is_invalid : 1;
 
-  /*< private >*/	void   (*marshal)  (GClosure       *closure,
-            GValue /*out*/ *return_value,
-            guint           n_param_values,
-            const GValue   *param_values,
-            gpointer        invocation_hint,
-            gpointer	    marshal_data);
-  /*< protected >*/	gpointer data;
+  /*< private >*/ void (*marshal)(GClosure *closure, GValue /*out*/ *return_value, guint n_param_values,
+                                  const GValue *param_values, gpointer invocation_hint, gpointer marshal_data);
+  /*< protected >*/ gpointer data;
 
-  /*< private >*/	GClosureNotifyData *notifiers;
+  /*< private >*/ GClosureNotifyData *notifiers;
 
   /* invariants/constrains:
    * - ->marshal and ->data are _invalid_ as soon as ->is_invalid==TRUE
@@ -92,59 +75,32 @@ struct _GClosure
 };
 /* closure for C function calls, callback() is the user function
  */
-struct _GCClosure
-{
-  GClosure	closure;
-  gpointer	callback;
+struct _GCClosure {
+  GClosure closure;
+  gpointer callback;
 };
 
+/* --- prototypes --- */
+GClosure *g_cclosure_new(GCallback callback_func, gpointer user_data, GClosureNotify destroy_data);
+GClosure *g_cclosure_new_swap(GCallback callback_func, gpointer user_data, GClosureNotify destroy_data);
+GClosure *g_signal_type_cclosure_new(GType itype, guint struct_offset);
 
 /* --- prototypes --- */
-GClosure*	g_cclosure_new			(GCallback	callback_func,
-             gpointer	user_data,
-             GClosureNotify destroy_data);
-GClosure*	g_cclosure_new_swap		(GCallback	callback_func,
-             gpointer	user_data,
-             GClosureNotify destroy_data);
-GClosure*	g_signal_type_cclosure_new	(GType          itype,
-             guint          struct_offset);
-
-
-/* --- prototypes --- */
-GClosure*	g_closure_ref			(GClosure	*closure);
-void		g_closure_unref			(GClosure	*closure);
+GClosure *g_closure_ref(GClosure *closure);
+void g_closure_unref(GClosure *closure);
 /* intimidating */
-GClosure*	g_closure_new_simple		(guint		 sizeof_closure,
-             gpointer	 data);
-void		g_closure_add_fnotify		(GClosure       *closure,
-             gpointer	 notify_data,
-             GClosureNotify	 notify_func);
-void		g_closure_remove_fnotify	(GClosure       *closure,
-             gpointer	 notify_data,
-             GClosureNotify	 notify_func);
-void		g_closure_add_inotify		(GClosure       *closure,
-             gpointer	 notify_data,
-             GClosureNotify	 notify_func);
-void		g_closure_remove_inotify	(GClosure       *closure,
-             gpointer	 notify_data,
-             GClosureNotify	 notify_func);
-void		g_closure_add_marshal_guards	(GClosure	*closure,
-             gpointer        pre_marshal_data,
-             GClosureNotify	 pre_marshal_notify,
-             gpointer        post_marshal_data,
-             GClosureNotify	 post_marshal_notify);
-void		g_closure_set_marshal		(GClosure	*closure,
-             GClosureMarshal marshal);
-void		g_closure_set_meta_marshal	(GClosure       *closure,
-             gpointer	 marshal_data,
-             GClosureMarshal meta_marshal);
-void		g_closure_invalidate		(GClosure	*closure);
-void		g_closure_invoke		(GClosure 	*closure,
-             GValue	/*out*/	*return_value,
-             guint		 n_param_values,
-             const GValue	*param_values,
-             gpointer	 invocation_hint);
-
+GClosure *g_closure_new_simple(guint sizeof_closure, gpointer data);
+void g_closure_add_fnotify(GClosure *closure, gpointer notify_data, GClosureNotify notify_func);
+void g_closure_remove_fnotify(GClosure *closure, gpointer notify_data, GClosureNotify notify_func);
+void g_closure_add_inotify(GClosure *closure, gpointer notify_data, GClosureNotify notify_func);
+void g_closure_remove_inotify(GClosure *closure, gpointer notify_data, GClosureNotify notify_func);
+void g_closure_add_marshal_guards(GClosure *closure, gpointer pre_marshal_data, GClosureNotify pre_marshal_notify,
+                                  gpointer post_marshal_data, GClosureNotify post_marshal_notify);
+void g_closure_set_marshal(GClosure *closure, GClosureMarshal marshal);
+void g_closure_set_meta_marshal(GClosure *closure, gpointer marshal_data, GClosureMarshal meta_marshal);
+void g_closure_invalidate(GClosure *closure);
+void g_closure_invoke(GClosure *closure, GValue /*out*/ *return_value, guint n_param_values, const GValue *param_values,
+                      gpointer invocation_hint);
 
 /* FIXME:
    OK:  data_object::destroy		-> closure_invalidate();
@@ -156,7 +112,6 @@ void		g_closure_invoke		(GClosure 	*closure,
    - need marshaller repo with decent aliasing to base types
    - provide marshaller collection, virtually covering anything out there
 */
-
 
 #ifdef __cplusplus
 }

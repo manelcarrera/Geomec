@@ -11,11 +11,10 @@
 
 #include "ValueTypeFactory.h"
 
-class IProperty  
-{
-  CGraphModel& m_model;
-  CPointSet* m_pPointSet;
-  std::vector<CValueType*> m_vcValueType;
+class IProperty {
+  CGraphModel &m_model;
+  CPointSet *m_pPointSet;
+  std::vector<CValueType *> m_vcValueType;
 
   typedef std::pair<unsigned int, unsigned int> TValueType;
   typedef std::vector<unsigned int> TComponentVec;
@@ -24,29 +23,28 @@ class IProperty
   TValueTypeMap m_mpValueType;
   TValueTypeMap m_mpComponent;
 
-  typedef std::map<unsigned int, std::vector<TComponentVec> > THeaderTagMap;
+  typedef std::map<unsigned int, std::vector<TComponentVec>> THeaderTagMap;
   THeaderTagMap m_mpHeader;
 
-// Definition of the header map
+  // Definition of the header map
   virtual BOOL DefineValueType(unsigned int uHeaderID, unsigned int uValueTypeID, unsigned int uMode);
-  virtual BOOL DefineComponent(unsigned int uHeaderID, unsigned int uValueTypeID, unsigned int uComponentID, unsigned int uMode);
+  virtual BOOL DefineComponent(unsigned int uHeaderID, unsigned int uValueTypeID, unsigned int uComponentID,
+                               unsigned int uMode);
 
 public:
-// Construction 
-  IProperty(CGraphModel& model);
+  // Construction
+  IProperty(CGraphModel &model);
   virtual ~IProperty();
 
-// Definition of Value Types
+  // Definition of Value Types
   size_t ValueTypeSize() const;
-  const CValueType& ValueType(size_t nIndex) const;
-  CValueType& ValueType(size_t nIndex);
-  BOOL AddValueType(CValueType& value_type);
+  const CValueType &ValueType(size_t nIndex) const;
+  CValueType &ValueType(size_t nIndex);
+  BOOL AddValueType(CValueType &value_type);
 
-// Create value type
+  // Create value type
   BOOL CreateValueType(const CString &sHeaderTag);
-  const CString& HeaderTag(CValueComponent &component) const;
-
-
+  const CString &HeaderTag(CValueComponent &component) const;
 };
 
 #endif // !defined(AFX_IPROPERTY_H__1AAA0899_3BC8_4D11_A9FF_D63F079CE4BE__INCLUDED_)

@@ -6,30 +6,22 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
-class CSummaryResultFile
-{
-  public:
-  CSummaryResultFile(const QString& fileName);
+class CSummaryResultFile {
+public:
+  CSummaryResultFile(const QString &fileName);
   ~CSummaryResultFile();
 
-  enum TResultValue
-  {
-      RESULT_VALUE_OK,
-      RESULT_VALUE_INCONSISTENT,
-      RESULT_VALUE_TOO_MANY,
-      RESULT_VALUE_DIVERGENCE
-  };
+  enum TResultValue { RESULT_VALUE_OK, RESULT_VALUE_INCONSISTENT, RESULT_VALUE_TOO_MANY, RESULT_VALUE_DIVERGENCE };
 
   TResultValue getResultValue() const;
   void setResultValue(TResultValue resultValue);
-  void addAdditionalInformation(const QString& additionalInformation);
+  void addAdditionalInformation(const QString &additionalInformation);
 
-  private:
-  CSummaryResultFile(const CSummaryResultFile& rhs);
-  CSummaryResultFile& operator = (CSummaryResultFile rhs);
+private:
+  CSummaryResultFile(const CSummaryResultFile &rhs);
+  CSummaryResultFile &operator=(CSummaryResultFile rhs);
 
   std::ofstream m_summaryResultFile;
   TResultValue m_resultValue;
@@ -38,4 +30,4 @@ class CSummaryResultFile
 
 } // namespace cora
 
-#endif  // _cora_SummaryResultFile_h_
+#endif // _cora_SummaryResultFile_h_

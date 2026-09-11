@@ -3,14 +3,11 @@
 
 #pragma once
 
-
-#include <string>
-#include <list>
 #include <iostream>
+#include <list>
+#include <string>
 
-
-class Template
-{
+class Template {
 public:
   Template(std::string path, std::string templateFile);
 
@@ -19,19 +16,16 @@ public:
 private:
   static std::string getGUID();
 
-  struct TemplatePart
-  {
+  struct TemplatePart {
     virtual void write(std::ostream &fs) = 0;
   };
-  struct TemplatePartString : public TemplatePart
-  {
+  struct TemplatePartString : public TemplatePart {
     std::string m_Part;
     TemplatePartString(std::string part) : m_Part(part) {}
 
     virtual void write(std::ostream &fs) { fs << m_Part; }
   };
-  struct TemplatePartGUID : public TemplatePart
-  {
+  struct TemplatePartGUID : public TemplatePart {
     TemplatePartGUID() {}
 
     virtual void write(std::ostream &fs) { fs << getGUID(); }
@@ -40,7 +34,5 @@ private:
   std::string m_Path;
   std::list<TemplatePart *> m_List;
 };
-
-
 
 #endif

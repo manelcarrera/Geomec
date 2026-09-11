@@ -1,17 +1,17 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // Voxet.cpp: implementation of the CVoxet class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <cmath>
-#include <cstdlib>  // for size_t
 #include "FvEclipseCell.h"
 #include "dimple.h"
+#include <cmath>
+#include <cstdlib> // for size_t
 
 // bodyface names
-static const char XI1[]   = "XI1";
-static const char XI2[]   = "XI2";
-static const char ETA1[]  = "ETA1";
-static const char ETA2[]  = "ETA2";
+static const char XI1[] = "XI1";
+static const char XI2[] = "XI2";
+static const char ETA1[] = "ETA1";
+static const char ETA2[] = "ETA2";
 static const char ZETA1[] = "ZETA1";
 static const char ZETA2[] = "ZETA2";
 
@@ -68,114 +68,86 @@ void CEclipseCell::CreateFaces() const
 }
 */
 
-CEclipseCell::CEclipseCell()
-: m_array(2, 2, 2)
-{
+CEclipseCell::CEclipseCell() : m_array(2, 2, 2) {}
+
+CEclipseCell::CEclipseCell(const CEclipseCell &rhs) : m_array(rhs.m_array) {
+  //	assert(m_vcFace.size() == 0);
 }
 
-CEclipseCell::CEclipseCell(const CEclipseCell& rhs)
-: m_array(rhs.m_array)
-{
-//	assert(m_vcFace.size() == 0);
+CEclipseCell::~CEclipseCell() {
+  //	for(int i = 0; i < m_vcFace.size(); i++)
+  //		delete m_vcFace[i];
 }
 
-CEclipseCell::~CEclipseCell()
-{
-//	for(int i = 0; i < m_vcFace.size(); i++)
-//		delete m_vcFace[i];
-}
-
-CEclipseCell& CEclipseCell::operator=(const CEclipseCell &rhs)
-{
+CEclipseCell &CEclipseCell::operator=(const CEclipseCell &rhs) {
   m_array = rhs.m_array;
   return *this;
 }
 
 // This function returns the points of the cell in a vector but in ordered  fashion:
-// The four lower points first (smalles Z value) and the four upper points next. The points are also put in the 
+// The four lower points first (smalles Z value) and the four upper points next. The points are also put in the
 // vector counter clock wise. (for non negative volumes and such)
-std::vector<const geo::IPoint*> CEclipseCell::Points() const
-{
-  std::vector<const geo::IPoint*> vcRet;
-  const geo::IPoint &Pt0 = InternalPoint(0); 
-  const geo::IPoint &Pt1 = InternalPoint(1); 
-  const geo::IPoint &Pt2 = InternalPoint(2); 
-  const geo::IPoint &Pt3 = InternalPoint(3); 
+std::vector<const geo::IPoint *> CEclipseCell::Points() const {
+  std::vector<const geo::IPoint *> vcRet;
+  const geo::IPoint &Pt0 = InternalPoint(0);
+  const geo::IPoint &Pt1 = InternalPoint(1);
+  const geo::IPoint &Pt2 = InternalPoint(2);
+  const geo::IPoint &Pt3 = InternalPoint(3);
   const geo::IPoint &Pt4 = InternalPoint(4);
-
 
   bool bCounterClock = false;
   int i;
 
-  if(Pt0.X() < Pt1.X() && Pt0.Y() < Pt3.Y() && Pt0.X() < Pt2.X() && Pt0.Y() < Pt2.Y())
+  if (Pt0.X() < Pt1.X() && Pt0.Y() < Pt3.Y() && Pt0.X() < Pt2.X() && Pt0.Y() < Pt2.Y())
     bCounterClock = true;
-  else if(Pt0.X() > Pt3.X() && Pt0.Y() < Pt1.Y() && Pt0.X() > Pt2.X() && Pt0.Y() < Pt2.Y())
+  else if (Pt0.X() > Pt3.X() && Pt0.Y() < Pt1.Y() && Pt0.X() > Pt2.X() && Pt0.Y() < Pt2.Y())
     bCounterClock = true;
-  else if(Pt0.X() > Pt1.X() && Pt0.Y() > Pt3.Y() && Pt0.X() > Pt2.X() && Pt0.Y() > Pt2.Y())
+  else if (Pt0.X() > Pt1.X() && Pt0.Y() > Pt3.Y() && Pt0.X() > Pt2.X() && Pt0.Y() > Pt2.Y())
     bCounterClock = true;
-  else if(Pt0.X() < Pt3.X() && Pt0.Y() > Pt1.Y() && Pt0.X() < Pt2.X() && Pt0.Y() > Pt2.Y())
+  else if (Pt0.X() < Pt3.X() && Pt0.Y() > Pt1.Y() && Pt0.X() < Pt2.X() && Pt0.Y() > Pt2.Y())
     bCounterClock = true;
 
-  if(Pt0.Z() < Pt4.Z())
-  {
-    if(bCounterClock)
-    {
-      for(i = 0; i < 4; i++)
-      {
+  if (Pt0.Z() < Pt4.Z()) {
+    if (bCounterClock) {
+      for (i = 0; i < 4; i++) {
         vcRet.push_back(&InternalPoint(i));
       }
-      for(i = 4; i < 8; i++)
-      {
+      for (i = 4; i < 8; i++) {
         vcRet.push_back(&InternalPoint(i));
       }
-    }
-    else
-    {
-      for(i = 3; i > -1; i--)
-      {
+    } else {
+      for (i = 3; i > -1; i--) {
         vcRet.push_back(&InternalPoint(i));
       }
-      for(i = 7; i > 3; i--)
-      {
+      for (i = 7; i > 3; i--) {
         vcRet.push_back(&InternalPoint(i));
       }
     }
-  }
-  else if(Pt0.Z() > Pt4.Z())
-  {
-    if(bCounterClock)
-    {
-      for(i = 4; i < 8; i++)
-      {
+  } else if (Pt0.Z() > Pt4.Z()) {
+    if (bCounterClock) {
+      for (i = 4; i < 8; i++) {
         vcRet.push_back(&InternalPoint(i));
       }
-      for(i = 0; i < 4; i++)
-      {
+      for (i = 0; i < 4; i++) {
         vcRet.push_back(&InternalPoint(i));
       }
-    }
-    else
-    {
-      for(i = 7; i > 3; i--)
-      {
+    } else {
+      for (i = 7; i > 3; i--) {
         vcRet.push_back(&InternalPoint(i));
       }
-      for(i = 3; i > -1; i--)
-      {
+      for (i = 3; i > -1; i--) {
         vcRet.push_back(&InternalPoint(i));
       }
     }
   }
-  
+
   return vcRet;
 }
 
-const geo::IPoint &CEclipseCell::InternalPoint(int nIndex) const
-{
+const geo::IPoint &CEclipseCell::InternalPoint(int nIndex) const {
   const geo::IPoint *ret = 0;
 
-  switch(nIndex)
-  {
+  switch (nIndex) {
   case 0:
     ret = &GetAt(0, 0, 0);
     break;
@@ -206,16 +178,12 @@ const geo::IPoint &CEclipseCell::InternalPoint(int nIndex) const
 
   return *ret;
 }
-const geo::IPoint& CEclipseCell::Point(int nIndex) const
-{
-  std::vector<const geo::IPoint*> points = Points();
+const geo::IPoint &CEclipseCell::Point(int nIndex) const {
+  std::vector<const geo::IPoint *> points = Points();
   return *points[nIndex];
 }
 
-void CEclipseCell::Point(int /*nIndex*/, const geo::IPoint& /*pt*/)
-{
-  assert(false);
-}
+void CEclipseCell::Point(int /*nIndex*/, const geo::IPoint & /*pt*/) { assert(false); }
 
 /*
 int CEclipseCell::NrOfPoints() const
@@ -237,15 +205,12 @@ int CEclipseCell::NrOfFaces() const
   return m_vcFace.size();
 }
 */
-double CEclipseCell::Volume() const
-{
-  return  (GetAt(0, 0, 0).X() - GetAt(1, 1, 1).X()) *
-      (GetAt(0, 0, 0).Y() - GetAt(1, 1, 1).Y()) *
-      (GetAt(0, 0, 0).Z() - GetAt(1, 1, 1).Z());
+double CEclipseCell::Volume() const {
+  return (GetAt(0, 0, 0).X() - GetAt(1, 1, 1).X()) * (GetAt(0, 0, 0).Y() - GetAt(1, 1, 1).Y()) *
+         (GetAt(0, 0, 0).Z() - GetAt(1, 1, 1).Z());
 }
 
-const geo::IPoint& CEclipseCell::GetAt(int x, int y, int z) const
-{
+const geo::IPoint &CEclipseCell::GetAt(int x, int y, int z) const {
   assert((x > -1) && (x < 2));
   assert((y > -1) && (y < 2));
   assert((z > -1) && (z < 2));
@@ -253,8 +218,7 @@ const geo::IPoint& CEclipseCell::GetAt(int x, int y, int z) const
   return *(m_array.get_at(x, y, z));
 }
 
-geo::IPoint& CEclipseCell::GetAt(int x, int y, int z)
-{
+geo::IPoint &CEclipseCell::GetAt(int x, int y, int z) {
   assert((x > -1) && (x < 2));
   assert((y > -1) && (y < 2));
   assert((z > -1) && (z < 2));
@@ -262,26 +226,21 @@ geo::IPoint& CEclipseCell::GetAt(int x, int y, int z)
   return *(m_array.get_at(x, y, z));
 }
 
-void CEclipseCell::SetAt(int x, int y, int z, const geo::IPoint* point) 
-{
+void CEclipseCell::SetAt(int x, int y, int z, const geo::IPoint *point) {
   assert((x > -1) && (x < 2));
   assert((y > -1) && (y < 2));
   assert((z > -1) && (z < 2));
 
-  m_array.set_at(x, y, z, (geo::CPoint*)point);
+  m_array.set_at(x, y, z, (geo::CPoint *)point);
 }
 
-geo::CPoint CEclipseCell::CentreOfGravity() const
-{
+geo::CPoint CEclipseCell::CentreOfGravity() const {
   // Middle Z = 0 of
-  return geo::CPoint((GetAt(0, 0, 0).X() + GetAt(1, 1, 1).X()) / 2,
-             (GetAt(0, 0, 0).Y() + GetAt(1, 1, 1).Y()) / 2,
-             (GetAt(0, 0, 0).Z() + GetAt(1, 1, 1).Z()) / 2 );
-  
+  return geo::CPoint((GetAt(0, 0, 0).X() + GetAt(1, 1, 1).X()) / 2, (GetAt(0, 0, 0).Y() + GetAt(1, 1, 1).Y()) / 2,
+                     (GetAt(0, 0, 0).Z() + GetAt(1, 1, 1).Z()) / 2);
 }
 
-bool CEclipseCell::IsPinchOut() const
-{
+bool CEclipseCell::IsPinchOut() const {
   const geo::IPoint &pt1 = InternalPoint(0);
   const geo::IPoint &pt2 = InternalPoint(1);
   const geo::IPoint &pt3 = InternalPoint(2);
@@ -291,35 +250,33 @@ bool CEclipseCell::IsPinchOut() const
   const geo::IPoint &pt7 = InternalPoint(6);
   const geo::IPoint &pt8 = InternalPoint(7);
 
-  if(fabs(pt1.Z() - pt5.Z()) < EPS)
+  if (fabs(pt1.Z() - pt5.Z()) < EPS)
     return true;
-  if(fabs(pt2.Z() - pt6.Z()) < EPS)
+  if (fabs(pt2.Z() - pt6.Z()) < EPS)
     return true;
-  if(fabs(pt3.Z() - pt7.Z()) < EPS)
+  if (fabs(pt3.Z() - pt7.Z()) < EPS)
     return true;
-  if(fabs(pt4.Z() - pt8.Z()) < EPS)
+  if (fabs(pt4.Z() - pt8.Z()) < EPS)
     return true;
 
   return false;
 }
 
-bool CEclipseCell::Contains(const geo::IPoint &/*point*/, bool /*bIncludeEdge*/) const
-{
-  assert(false);	// NOT IMPLEMENTED YET...
+bool CEclipseCell::Contains(const geo::IPoint & /*point*/, bool /*bIncludeEdge*/) const {
+  assert(false); // NOT IMPLEMENTED YET...
   return false;
 }
 
-geo::CValue CEclipseCell::InterpolateValue(const geo::IPoint &/*point*/, const std::vector<geo::CValue> &values) const
-{
-  if(ContainsInvalidValue(values)) return geo::CValue();
+geo::CValue CEclipseCell::InterpolateValue(const geo::IPoint & /*point*/,
+                                           const std::vector<geo::CValue> &values) const {
+  if (ContainsInvalidValue(values))
+    return geo::CValue();
 
   assert(false);
   return geo::CValue();
 }
-  
-std::set<geo::CPoint> CEclipseCell::Intersection(const geo::IPlane &/*plane*/) const
-{
+
+std::set<geo::CPoint> CEclipseCell::Intersection(const geo::IPlane & /*plane*/) const {
   assert(false);
   return std::set<geo::CPoint>();
 }
-

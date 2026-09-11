@@ -2,13 +2,10 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-
 #include "MaterialServer.h"
 #include "DepletionStage.h"
 
-CMaterialServer::CMaterialServer(TMaterialServerParent &parent, const CDepletionStage& stage)
-: TBase(parent, stage)
-{
+CMaterialServer::CMaterialServer(TMaterialServerParent &parent, const CDepletionStage &stage) : TBase(parent, stage) {
   reParent(&parent);
-  LinkTo(const_cast<CDepletionStage&>(stage));
+  LinkTo(const_cast<CDepletionStage &>(stage));
 }

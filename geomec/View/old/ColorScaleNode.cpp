@@ -4,17 +4,19 @@
 
 #include "stdafx.h"
 #ifdef _MSC_VER
-#pragma warning ( disable : 4786 )
-#endif  // _MSC_VER
-#include "geomec.h"
+#pragma warning(disable : 4786)
+#endif // _MSC_VER
+#include "ColorGradient.h"
 #include "ColorScaleNode.h"
 #include "OpenGLSceneBase.h"
-#include "ColorGradient.h"
+#include "geomec.h"
 #include "hotspot.h"
 
 #ifdef _DEBUG
-#ifdef _MSC_VER#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
+#ifdef _MSC_VER
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
 #define new DEBUG_NEW
 #endif
 
@@ -22,43 +24,28 @@ static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CColorScaleNode::CColorScaleNode(CGraphModel &model)
-: CStorageNode(model)
-{
+CColorScaleNode::CColorScaleNode(CGraphModel &model) : CStorageNode(model) {
   // Child links to colorscale entry
 }
 
-CColorScaleNode::CColorScaleNode(const CString& strName, CGraphModel &model)
-: CStorageNode(strName, model)
-{
+CColorScaleNode::CColorScaleNode(const CString &strName, CGraphModel &model) : CStorageNode(strName, model) {
   // Child links to colorscale entry
 }
 
-CColorScaleNode::CColorScaleNode(const UINT uName, CGraphModel &model)
-: CStorageNode(uName, model)
-{
+CColorScaleNode::CColorScaleNode(const UINT uName, CGraphModel &model) : CStorageNode(uName, model) {
   // Child links to colorscale entry
 }
 
-CColorScaleNode::CColorScaleNode(const CColorScaleNode &rhs)
-: CStorageNode(rhs)
-{
-  ASSERT(!rhs.IsCopy());
-}
+CColorScaleNode::CColorScaleNode(const CColorScaleNode &rhs) : CStorageNode(rhs) { ASSERT(!rhs.IsCopy()); }
 
-bool CColorScaleNode::operator==(const CColorScaleNode& rhs) const
-{
-  return CModelNode::operator ==(rhs);
-}
+bool CColorScaleNode::operator==(const CColorScaleNode &rhs) const { return CModelNode::operator==(rhs); }
 
-CColorScaleNode& CColorScaleNode::operator=(const CColorScaleNode& rhs)
-{
+CColorScaleNode &CColorScaleNode::operator=(const CColorScaleNode &rhs) {
   CModelNode::operator=(rhs);
   return *this;
 }
 
-COLORREF CColorScaleNode::LoadColor(TSTREAM& stream)
-{
+COLORREF CColorScaleNode::LoadColor(TSTREAM &stream) {
   int nRed, nGreen, nBlue;
   stream >> nRed;
   stream >> nGreen;
@@ -66,8 +53,7 @@ COLORREF CColorScaleNode::LoadColor(TSTREAM& stream)
   return RGB(nRed, nGreen, nBlue);
 }
 
-void CColorScaleNode::SaveColor(TSTREAM& stream, COLORREF color)
-{
+void CColorScaleNode::SaveColor(TSTREAM &stream, COLORREF color) {
   int nRed = GetRValue(color);
   int nGreen = GetGValue(color);
   int nBlue = GetBValue(color);

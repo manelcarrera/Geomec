@@ -1,9 +1,9 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "ModelOperationStack.h"
-#include "ModelOperation.h"
 #include "CompositeUndo.h"
-#include "UndoOperation.h"
 #include "DocumentBase.h"
+#include "ModelOperation.h"
+#include "UndoOperation.h"
 
 #include <QStringList>
 #include <QVector>
@@ -26,76 +26,69 @@
 /*!
   Constructs the CModelOperationStack for a specific document.
 */
-CModelOperationStack::CModelOperationStack( CDocumentBase& document )
-: QObject( 0 ),
-  m_document( document ),
-  m_hasCleanState( true ),
-  m_cleanState( 0 ),
-  m_pending( 0 ),
-  m_enabled( true ),
-  m_state( STACK_WAIT )
-{
-  setObjectName( "ModelOperationStack" );
+CModelOperationStack::CModelOperationStack(CDocumentBase &document)
+    : QObject(0), m_document(document), m_hasCleanState(true), m_cleanState(0), m_pending(0), m_enabled(true),
+      m_state(STACK_WAIT) {
+  setObjectName("ModelOperationStack");
 }
 
 /*!
   Destroys the object and frees any allocated resources.
 */
-CModelOperationStack::~CModelOperationStack()
-{
-  CModelOperation* pending = m_pending;
-  while ( pending ) {
-  pending->m_stack = 0;
-  pending = pending->m_pending;
+CModelOperationStack::~CModelOperationStack() {
+  CModelOperation *pending = m_pending;
+  while (pending) {
+    pending->m_stack = 0;
+    pending = pending->m_pending;
   }
-  while ( m_undoStack.size() ) delete m_undoStack.pop();
-  while ( m_redoStack.size() ) delete m_redoStack.pop();
+  while (m_undoStack.size())
+    delete m_undoStack.pop();
+  while (m_redoStack.size())
+    delete m_redoStack.pop();
 }
 
 /*!
   Returns whether or not the latest state change can be reverted.
 */
-bool CModelOperationStack::canUndo() const
-{
-  if ( !m_enabled ) return false;
-  if ( m_pending )  return false;
-  if ( m_undoStack.size() == 0 ) return false;
+bool CModelOperationStack::canUndo() const {
+  if (!m_enabled)
+    return false;
+  if (m_pending)
+    return false;
+  if (m_undoStack.size() == 0)
+    return false;
   return true;
 }
 
 /*!
   Returns whether or not the latest, reverted state change can be redone.
 */
-bool CModelOperationStack::canRedo() const
-{
-  if ( !m_enabled ) return false;
-  if ( m_pending )  return false;
-  if ( m_redoStack.size() == 0 ) return false;
+bool CModelOperationStack::canRedo() const {
+  if (!m_enabled)
+    return false;
+  if (m_pending)
+    return false;
+  if (m_redoStack.size() == 0)
+    return false;
   return true;
 }
 
 /*!
   Returns whether or not the document state matches its state in storage.
 */
-bool CModelOperationStack::isClean() const
-{
-  return m_hasCleanState && m_cleanState == 0;
-}
+bool CModelOperationStack::isClean() const { return m_hasCleanState && m_cleanState == 0; }
 
 /*!
   Returns whether or not the capturing of state changes is enabled or not.
 */
-bool CModelOperationStack::isEnabled() const
-{
-  return m_enabled;
-}
+bool CModelOperationStack::isEnabled() const { return m_enabled; }
 
 /*!
   Returns the description of the state change that can be reverted.
 */
-QString CModelOperationStack::undoText() const
-{
-  if ( canUndo() ) return m_undoStack.top()->text();
+QString CModelOperationStack::undoText() const {
+  if (canUndo())
+    return m_undoStack.top()->text();
   return QString::null;
 }
 
@@ -103,9 +96,9 @@ QString CModelOperationStack::undoText() const
   Returns the description of the state change that has been reverted but
   can be redone.
 */
-QString CModelOperationStack::redoText() const
-{
-  if ( canRedo() ) return m_redoStack.top()->text();
+QString CModelOperationStack::redoText() const {
+  if (canRedo())
+    return m_redoStack.top()->text();
   return QString::null;
 }
 
@@ -113,16 +106,15 @@ QString CModelOperationStack::redoText() const
   Reverts the latest state change.
   Any changes resulting from this are collected and added to the redo stack.
 */
-void CModelOperationStack::undo()
-{
-  DIA_ASSERT( canUndo() );
+void CModelOperationStack::undo() {
+  DIA_ASSERT(canUndo());
   m_state = STACK_UNDO;
   {
-  CUndoOperation* undoOperation = m_undoStack.pop();
-  // Block the gui and collect redo operation(s).
-  CModelOperation block( m_document, undoOperation->text() );
-  undoOperation->undo( m_document );
-  delete undoOperation;
+    CUndoOperation *undoOperation = m_undoStack.pop();
+    // Block the gui and collect redo operation(s).
+    CModelOperation block(m_document, undoOperation->text());
+    undoOperation->undo(m_document);
+    delete undoOperation;
   }
   m_state = STACK_WAIT;
   emit changed();
@@ -133,17 +125,16 @@ void CModelOperationStack::undo()
   Any changes resulting from this are collected and added to the undo stack
   again.
 */
-void CModelOperationStack::redo()
-{
-  DIA_ASSERT( canRedo() );
+void CModelOperationStack::redo() {
+  DIA_ASSERT(canRedo());
   m_state = STACK_REDO;
   {
-  CUndoOperation* redoOperation = m_redoStack.pop();
-  // Block the gui and collect undo operation(s).
-  CModelOperation block( m_document, redoOperation->text() );
-  
-  redoOperation->undo( m_document );
-  delete redoOperation;
+    CUndoOperation *redoOperation = m_redoStack.pop();
+    // Block the gui and collect undo operation(s).
+    CModelOperation block(m_document, redoOperation->text());
+
+    redoOperation->undo(m_document);
+    delete redoOperation;
   }
   m_state = STACK_WAIT;
   emit changed();
@@ -152,12 +143,12 @@ void CModelOperationStack::redo()
 /*!
   Sets the current document state to match against the document storage.
 */
-void CModelOperationStack::setClean()
-{
-  if ( isClean() ) return;
+void CModelOperationStack::setClean() {
+  if (isClean())
+    return;
   m_hasCleanState = true;
   m_cleanState = 0;
-  emit cleanChanged( true );
+  emit cleanChanged(true);
 }
 
 /*!
@@ -165,10 +156,10 @@ void CModelOperationStack::setClean()
   It is advisable to disable the capturing during loading or creation of the
   document.
 */
-void CModelOperationStack::setEnabled( bool on )
-{
-  DIA_ASSERT( m_state == STACK_WAIT );
-  if ( m_enabled == on ) return;
+void CModelOperationStack::setEnabled(bool on) {
+  DIA_ASSERT(m_state == STACK_WAIT);
+  if (m_enabled == on)
+    return;
   m_enabled = on;
   emit changed();
 }
@@ -176,10 +167,11 @@ void CModelOperationStack::setEnabled( bool on )
 /*!
   Clears all captured state changes and marks the document to be clean.
 */
-void CModelOperationStack::clear()
-{
-  while ( m_undoStack.size() ) delete m_undoStack.pop();
-  while ( m_redoStack.size() ) delete m_redoStack.pop();
+void CModelOperationStack::clear() {
+  while (m_undoStack.size())
+    delete m_undoStack.pop();
+  while (m_redoStack.size())
+    delete m_redoStack.pop();
   emit changed();
   setClean();
 }
@@ -188,13 +180,12 @@ void CModelOperationStack::clear()
   Called when a new operation comes into existence. While this new
   operation is pending, nothing can be done with the stack.
 */
-void CModelOperationStack::beginOperation( CModelOperation& operation )
-{
-  if ( m_pending ) {
-  m_pending->beginOperation( operation );
+void CModelOperationStack::beginOperation(CModelOperation &operation) {
+  if (m_pending) {
+    m_pending->beginOperation(operation);
   } else {
-  m_pending = &operation;
-  emit operationStarted();
+    m_pending = &operation;
+    emit operationStarted();
   }
 }
 
@@ -202,15 +193,14 @@ void CModelOperationStack::beginOperation( CModelOperation& operation )
   Called when an operation ends. If the last operation ends, the changes
   collected are taken over.
 */
-void CModelOperationStack::endOperation( CModelOperation& operation )
-{
-  DIA_ASSERT( m_pending );
-  if ( m_pending != &operation ) {
-  m_pending->endOperation( operation );
+void CModelOperationStack::endOperation(CModelOperation &operation) {
+  DIA_ASSERT(m_pending);
+  if (m_pending != &operation) {
+    m_pending->endOperation(operation);
   } else {
-  m_pending = 0;
-  push( operation );
-  emit operationFinished();
+    m_pending = 0;
+    push(operation);
+    emit operationFinished();
   }
 }
 
@@ -226,36 +216,38 @@ void CModelOperationStack::endOperation( CModelOperation& operation )
 
   Any changes in the stack are signalled.
 */
-void CModelOperationStack::push( CUndoOperation* undo )
-{
+void CModelOperationStack::push(CUndoOperation *undo) {
   bool wasClean = isClean();
-  switch ( m_state ) {
+  switch (m_state) {
   case STACK_WAIT:
-      if ( m_hasCleanState && m_cleanState > 0 ) {
-    // clean state in redo stack, not reachable anymore
-    m_hasCleanState = false;
-      }
-      // New state, redoes invalid
-      while ( m_redoStack.size() ) delete m_redoStack.pop();
+    if (m_hasCleanState && m_cleanState > 0) {
+      // clean state in redo stack, not reachable anymore
+      m_hasCleanState = false;
+    }
+    // New state, redoes invalid
+    while (m_redoStack.size())
+      delete m_redoStack.pop();
   case STACK_REDO:
-      if ( m_hasCleanState ) m_cleanState--;
-      m_undoStack.push( undo );
-      break;
+    if (m_hasCleanState)
+      m_cleanState--;
+    m_undoStack.push(undo);
+    break;
   case STACK_UNDO:
-      if ( m_hasCleanState ) m_cleanState++;
-      m_redoStack.push( undo );
+    if (m_hasCleanState)
+      m_cleanState++;
+    m_redoStack.push(undo);
   }
-  if ( wasClean != isClean() ) emit cleanChanged( isClean() );
+  if (wasClean != isClean())
+    emit cleanChanged(isClean());
 }
 
 /*!
   Takes over the changes collected by the operation.
 */
-void CModelOperationStack::push( CModelOperation& operation )
-{
-  if ( !operation.isEmpty() ) {
-  push( new CCompositeUndo( operation.m_localStack, operation.text() ) );
-  emit changed();
+void CModelOperationStack::push(CModelOperation &operation) {
+  if (!operation.isEmpty()) {
+    push(new CCompositeUndo(operation.m_localStack, operation.text()));
+    emit changed();
   }
 }
 
@@ -263,12 +255,10 @@ void CModelOperationStack::push( CModelOperation& operation )
   Get names of all undo operations in stack (in reversed order).
   \retval QStringList list of undo names
 */
-QStringList CModelOperationStack::undoNames()
-{
+QStringList CModelOperationStack::undoNames() {
   QStringList undoList;
-  for (int i = m_undoStack.size(); i > 0; --i)
-  {
-  undoList << m_undoStack.at(i-1)->text();
+  for (int i = m_undoStack.size(); i > 0; --i) {
+    undoList << m_undoStack.at(i - 1)->text();
   }
   return undoList;
 }
@@ -277,12 +267,10 @@ QStringList CModelOperationStack::undoNames()
   Get names of all redo operations in stack (in reversed order).
   \retval QStringList list of redo names
 */
-QStringList CModelOperationStack::redoNames()
-{
+QStringList CModelOperationStack::redoNames() {
   QStringList redoList;
-  for (int i = m_redoStack.size(); i > 0; --i)
-  {
-  redoList << m_redoStack.at(i-1)->text();
+  for (int i = m_redoStack.size(); i > 0; --i) {
+    redoList << m_redoStack.at(i - 1)->text();
   }
   return redoList;
 }
@@ -295,15 +283,9 @@ QStringList CModelOperationStack::redoNames()
   scope where the operation stack must be disabled. When the variable goes
   out of scope the previous state of the operation stack is restored.
 */
-CDisableOperationStack::CDisableOperationStack( CDocumentBase* doc )
-  : m_document( doc )
-{
+CDisableOperationStack::CDisableOperationStack(CDocumentBase *doc) : m_document(doc) {
   m_previousState = m_document->operationStack().isEnabled();
-  m_document->operationStack().setEnabled( false );
+  m_document->operationStack().setEnabled(false);
 }
 
-CDisableOperationStack::~CDisableOperationStack()
-{
-  m_document->operationStack().setEnabled( m_previousState );
-}
-
+CDisableOperationStack::~CDisableOperationStack() { m_document->operationStack().setEnabled(m_previousState); }

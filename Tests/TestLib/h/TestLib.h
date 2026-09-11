@@ -1,19 +1,17 @@
 #ifndef _TEST_LIB_H__
 #define _TEST_LIB_H__
 
-#include <string>
-#include <algorithm> 
-#include <functional> 
+#include <algorithm>
 #include <cctype>
+#include <functional>
 #include <locale>
-
+#include <string>
 
 #include "TestFormation.h"
 #include "TestHorizon.h"
 #include "TestMaterial.h"
 #include "TestSoilModel.h"
 #include "TestSoilModelFactory.h"
-
 
 class CModelBase;
 class CAnalysisLogger;
@@ -22,17 +20,13 @@ class IPointSet;
 
 #include "AnalysisType.h"
 
-namespace controller{ struct Params; }
+namespace controller {
+struct Params;
+}
 
-namespace test_lib
-{
+namespace test_lib {
 
-
-
-
-
-class FileCompare
-{
+class FileCompare {
 public:
   static inline std::string &ltrim(std::string &s);
   static inline std::string &rtrim(std::string &s);
@@ -45,16 +39,11 @@ public:
   static bool IdenticalTokens(std::string file_0, std::string file_1, double epsilon = 1e-6);
 };
 
-
-
-
-
-class TestLib
-{
+class TestLib {
   static char test_model_path[256];
   static char test_exec_path[256];
 
-  static std::map<unsigned int, QTextStream*> m_osMap;
+  static std::map<unsigned int, QTextStream *> m_osMap;
 
 public:
   static const char *ModelPath();
@@ -66,7 +55,7 @@ public:
   static unsigned int getThreadID();
 
   // TODO: make these thread-safe (when we run tests in parallel, if ever)
-  static QTextStream* CurrentOutput();
+  static QTextStream *CurrentOutput();
   static void CurrentOutput(QTextStream *os);
 
   static std::string getDateTime();
@@ -80,33 +69,33 @@ public:
   static QString getDefaultAppVersion();
   static CAnalysisLogger *getDefaultAnalysisLogger();
 
-  static CModelBase* newModel(CAnalysisLogger *pLogger = getDefaultAnalysisLogger());
-  static CModelBase* loadModel(QString fileName, CAnalysisLogger *pLogger = getDefaultAnalysisLogger());
-  static int runModel(CModelBase *pModel, QString sModelFile, CAnalysisType::TAnalysisType anyType = CAnalysisType::AT_NONLIN, QString sAppVersion = getDefaultAppVersion());
+  static CModelBase *newModel(CAnalysisLogger *pLogger = getDefaultAnalysisLogger());
+  static CModelBase *loadModel(QString fileName, CAnalysisLogger *pLogger = getDefaultAnalysisLogger());
+  static int runModel(CModelBase *pModel, QString sModelFile,
+                      CAnalysisType::TAnalysisType anyType = CAnalysisType::AT_NONLIN,
+                      QString sAppVersion = getDefaultAppVersion());
   //
   // to run Export
   //
-  static int run_model(	const controller::Params& p, 
-            const QString& sModelFile,
-            const QString& results_path=QString(), 
-            QString app_version  = getDefaultAppVersion() );
+  static int run_model(const controller::Params &p, const QString &sModelFile, const QString &results_path = QString(),
+                       QString app_version = getDefaultAppVersion());
 
-  static int runModelWithSave(CModelBase *pModel, QString sModelFile, CAnalysisType::TAnalysisType anyType = CAnalysisType::AT_NONLIN, QString sAppVersion = getDefaultAppVersion());
+  static int runModelWithSave(CModelBase *pModel, QString sModelFile,
+                              CAnalysisType::TAnalysisType anyType = CAnalysisType::AT_NONLIN,
+                              QString sAppVersion = getDefaultAppVersion());
   static int runStepsModel(CModelBase *pModel, QString sModelFile, QString sAppVersion = getDefaultAppVersion());
-  static bool saveModel(CModelBase& model, QString sModelFile);
+  static bool saveModel(CModelBase &model, QString sModelFile);
   static void closeModel(CModelBase **pModel);
 
-  static const IPointSet *getPointSet(const CModelBase *pModel, const QString& pointset);
+  static const IPointSet *getPointSet(const CModelBase *pModel, const QString &pointset);
 
   typedef std::set<CExportResultData *> TMacros;
-  static void importResultMacroLibrary(TMacros& macros, CModelBase *pModel, QString sExportMacroLib = QString());
+  static void importResultMacroLibrary(TMacros &macros, CModelBase *pModel, QString sExportMacroLib = QString());
 
   static void Log(const char *);
   static void Log(QString *);
 };
 
-
-}
-
+} // namespace test_lib
 
 #endif

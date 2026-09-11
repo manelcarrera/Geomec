@@ -13,23 +13,21 @@ class COpenGLView;
 class COpenGLScene;
 class CWellEditDlg;
 
-class AFX_EXT_CLASS CWellEditFrame : public CFrameWnd
-{
+class AFX_EXT_CLASS CWellEditFrame : public CFrameWnd {
   DECLARE_DYNCREATE(CWellEditFrame)
 protected:
-
 public:
-  CWellEditFrame();        
-  void Init(COpenGLView* pView,CWellEditDlg* m_pDlg);
+  CWellEditFrame();
+  void Init(COpenGLView *pView, CWellEditDlg *m_pDlg);
 
 public:
   bool IsDirty();
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellEditFrame)
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CWellEditFrame();
 
@@ -41,30 +39,29 @@ protected:
   afx_msg void OnCloseupComboSpreadType();
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
-  COpenGLView* m_pView;
-  CWellEditDlg* m_pDlg;
+  COpenGLView *m_pView;
+  CWellEditDlg *m_pDlg;
   bool m_Dirty;
 
-  COpenGLScene*  CurrentScene();
-  void		  On3dvLockDepth();
-  void		  OnUpdate3DViewButtons(CCmdUI* pCmdUI);
-  void		  On3dvLockEast();
-  void		  On3dvLockNorth();
-  void		  On3dvLockReset();
-  void		  On3dvZoomReset();
-  void		  On3dvZoomWindow();
-  void		  On3dvZoomin();
-  void		  On3dvZoomout();
-  void		  On3dvCopypicture();
-  void		  On3dvViewAxis();
-  void		  On3dvViewBeDirec();
-  void		  On3dvViewBoundary();
-  void		  On3dvViewEDirec();
-  void		  On3dvViewLighting();
-  void		  On3dvViewNDirec();
-  void		  On3dvViewPerspective();
-  void		  On3dvViewZDirec();
-
+  COpenGLScene *CurrentScene();
+  void On3dvLockDepth();
+  void OnUpdate3DViewButtons(CCmdUI *pCmdUI);
+  void On3dvLockEast();
+  void On3dvLockNorth();
+  void On3dvLockReset();
+  void On3dvZoomReset();
+  void On3dvZoomWindow();
+  void On3dvZoomin();
+  void On3dvZoomout();
+  void On3dvCopypicture();
+  void On3dvViewAxis();
+  void On3dvViewBeDirec();
+  void On3dvViewBoundary();
+  void On3dvViewEDirec();
+  void On3dvViewLighting();
+  void On3dvViewNDirec();
+  void On3dvViewPerspective();
+  void On3dvViewZDirec();
 };
 
 /////////////////////////////////////////////////////////////////////////////

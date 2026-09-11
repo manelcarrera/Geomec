@@ -1,15 +1,15 @@
 #include "headers.h"
 
-//own
-#include "Printer.h"
-#include "SettingsIni.h"
-#include "QUtil.h"
+// own
 #include "DianaInterface.h"
-//qt
-#include <QString> 
-#include <QProcess> 
+#include "Printer.h"
+#include "QUtil.h"
+#include "SettingsIni.h"
+// qt
+#include <QProcess>
+#include <QString>
 #include <QStringList>
-//std
+// std
 #include <chrono>
 
 /////////////////////////////////////////////////
@@ -19,35 +19,34 @@
 /////////////////////////////////////////////////
 
 //
-// Test: 
-// 
+// Test:
+//
 // 1) Is a process running
 // 2) Kill a process
 //
-void Class_02::start()
-{
+void Class_02::start() {
   CSettingsIni::instance()->init();
 
-  //Printer::multiprocess( true );
+  // Printer::multiprocess( true );
   std::string filename = "gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log";
-  Printer::instance()->url( QUtil::url( QUtil::eUsrDir::Goemec, filename ) );
-  Printer::instance()->info( "" );
-  Printer::instance()->info( " main_app_qt >>>>>>" );
-  Printer::instance()->info( "" );
+  Printer::instance()->url(QUtil::url(QUtil::eUsrDir::Goemec, filename));
+  Printer::instance()->info("");
+  Printer::instance()->info(" main_app_qt >>>>>>");
+  Printer::instance()->info("");
 
   QString result;
   //
   // FIXME: only for windows
   //
-  //const QString cmd = "cmd /c taskkill /IM diana_app_new.exe /F";
+  // const QString cmd = "cmd /c taskkill /IM diana_app_new.exe /F";
   const QString cmd = "cmd /c \"taskkill /IM /F \"diana_app_new.exe\"\"";
 
   //
   // FIXME: code needs to be adapted to last update
   //
-  //gm::di::launch( "diana_app_new.exe" );
+  // gm::di::launch( "diana_app_new.exe" );
 
-  std::this_thread::sleep_for(std::chrono::milliseconds( 5*1000 ));
+  std::this_thread::sleep_for(std::chrono::milliseconds(5 * 1000));
 
   //
   // 1)sending all together instead of bin + prams
@@ -64,7 +63,7 @@ void Class_02::start()
   //
   // %COMSPEC%
   // C:\WINDOWS\system32\cmd.exe
-  // it doesn't work even giving the full binary path 
+  // it doesn't work even giving the full binary path
   //
   // 'cmd' and 'cmd.exe' no one does the work
   //
@@ -76,10 +75,9 @@ void Class_02::start()
 
   Printer::instance()->info( "taskkill : res:%d : '%s'", res, result.toStdString().c_str() );*/
 
-  //std::string res_ = gm::di::exec( "cmd /c \"taskkill /IM /F diana_app_new.exe\"" ); 
-  /*std::string res_ = gm::di::exec( "cmd /c taskkill /IM /F diana_app_new.exe" ); 
+  // std::string res_ = gm::di::exec( "cmd /c \"taskkill /IM /F diana_app_new.exe\"" );
+  /*std::string res_ = gm::di::exec( "cmd /c taskkill /IM /F diana_app_new.exe" );
   Printer::instance()->info( "taskkill : '%s'", res_.c_str() );*/
-
 
   //
   // definetely this works!
@@ -88,16 +86,16 @@ void Class_02::start()
   // tasklist | find "diana_app_new.exe" -> quotation marks mandatory here
   //
 
-  Printer::instance()->info( "running: '%d'", gm::di::running("diana_app_new.exe") );
+  Printer::instance()->info("running: '%d'", gm::di::running("diana_app_new.exe"));
 
   //
   // FIXME
   //
-  //int res = gm::di::exe( "taskkill",	QStringList() << "/IM" << "/F" << "diana_app_new.exe", result );
+  // int res = gm::di::exe( "taskkill",	QStringList() << "/IM" << "/F" << "diana_app_new.exe", result );
 
   QProcess::execute("taskkill /im diana_app_new.exe /f");
 
-  Printer::instance()->info( "running: '%d'", gm::di::running("diana_app_new.exe") );
+  Printer::instance()->info("running: '%d'", gm::di::running("diana_app_new.exe"));
 
-  //return 0;
+  // return 0;
 }

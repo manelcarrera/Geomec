@@ -10,37 +10,35 @@
 /////////////////////////////////////////////////////////////////////////////
 // CModelGeologyPg dialog
 
-//##ModelId=3BC55D610257
+// ##ModelId=3BC55D610257
 class CModelBase;
 
-class CModelGeologyPg : public CPropertyPage
-{
+class CModelGeologyPg : public CPropertyPage {
   CModelBase &m_model;
-// Construction
+  // Construction
 public:
   CQuantity::UNIT Unit() const;
-  //##ModelId=3BC55D610259
+  // ##ModelId=3BC55D610259
   CModelGeologyPg(CModelBase &model);
-  //##ModelId=3BC55D61025A
+  // ##ModelId=3BC55D61025A
   ~CModelGeologyPg();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CModelGeologyPg)
   enum { IDD = IDD_ATTRI_MODEL_GEOLOGY };
-  CString	m_faults;
-  CString	m_formations;
+  CString m_faults;
+  CString m_formations;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generate virtual function overrides
   //{{AFX_VIRTUAL(CModelGeologyPg)
-  protected:
-  //##ModelId=3BC55D61025B
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  // ##ModelId=3BC55D61025B
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   // Generated message map functions
   //{{AFX_MSG(CModelGeologyPg)
@@ -48,7 +46,6 @@ protected:
   afx_msg void OnChangeGravity();
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
-
 };
 
 //{{AFX_INSERT_LOCATION}}

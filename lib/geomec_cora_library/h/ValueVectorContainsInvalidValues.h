@@ -5,15 +5,13 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
-class CValueVectorContainsInvalidValues : public std::runtime_error
-{
-  public:
-  CValueVectorContainsInvalidValues(const QString& valueType);
+class CValueVectorContainsInvalidValues : public std::runtime_error {
+public:
+  CValueVectorContainsInvalidValues(const QString &valueType);
 };
 
 } // namespace cora
 
-#endif  // _cora_ValueVectorContainsInvalidValues_h_
+#endif // _cora_ValueVectorContainsInvalidValues_h_

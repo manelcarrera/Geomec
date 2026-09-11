@@ -4,26 +4,25 @@
 #if !defined(__RICH_INPUT_SUMMARY_DLG__)
 #define __RICH_INPUT_SUMMARY_DLG__
 
-class CModelBase; 
+class CModelBase;
 class CMaterialServer;
 
 #include "DumpModel.h"
 
 // CRichhInputSummaryDlg dialog
 
-class CRichhInputSummaryDlg : public CDialog
-{
+class CRichhInputSummaryDlg : public CDialog {
   DECLARE_DYNAMIC(CRichhInputSummaryDlg)
 
 public:
-  CRichhInputSummaryDlg(const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
+  CRichhInputSummaryDlg(const CModelBase &model, CWnd *pParent = NULL); // standard constructor
   virtual ~CRichhInputSummaryDlg();
 
-// Dialog Data
+  // Dialog Data
   enum { IDD = IDD_RICH_INPUT_SUMMARY_DIALOG };
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual BOOL OnInitDialog();
   DECLARE_MESSAGE_MAP()
 private:
@@ -34,8 +33,8 @@ private:
   CRichEditCtrl m_ctrlSummary;
   // set of parameters we don't want to plot
   std::set<CString> m_stExcludedMatParameters;
-  std::vector<const CDepletionStage*> m_vcStages;
-  std::vector<const CFormationBase*> m_vcFormations;
+  std::vector<const CDepletionStage *> m_vcStages;
+  std::vector<const CFormationBase *> m_vcFormations;
   CDumpModel m_dumpModel;
 
   void AddText(const CString &text);

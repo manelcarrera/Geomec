@@ -15,8 +15,7 @@ class CProgressDlg_MFC;
 
 #include "ProgressBase.h"
 
-class CGeoProgress : public CProgressBase  
-{
+class CGeoProgress : public CProgressBase {
   CProgressDlg_MFC *m_pDlg;
   int m_nSteps;
   int m_nCurStep;
@@ -24,11 +23,12 @@ class CGeoProgress : public CProgressBase
   bool m_bDeleteDlg;
   bool m_bCancel;
   bool m_bBlockStatusMessage;
-  CWnd* m_parent;
+  CWnd *m_parent;
+
 public:
   // This constructor creates a progress dialog with the following title
-  CGeoProgress(CWnd* parent, const QString &sTitle, bool bCancel = true);
-  CGeoProgress(CWnd* parent, unsigned int uTitle, bool bCancel = true);
+  CGeoProgress(CWnd *parent, const QString &sTitle, bool bCancel = true);
+  CGeoProgress(CWnd *parent, unsigned int uTitle, bool bCancel = true);
   // This constructor is for a
   CGeoProgress(CProgressDlg_MFC &dlg, const QString &sTitle);
   CGeoProgress(CProgressDlg_MFC &dlg, unsigned int uTitle);
@@ -38,7 +38,7 @@ public:
 
   virtual void AddSteps(int nSteps);
   virtual void Step(int nSteps = 1);
-  virtual void StatusMessage(const QString& sMessage);
+  virtual void StatusMessage(const QString &sMessage);
   virtual void Enable(bool bEnable);
 
   void SetProgress(int nCurrent);

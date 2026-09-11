@@ -3,10 +3,8 @@
 
 class CNewWellPath;
 
-struct TResultExportConfiguration
-{
-  TResultExportConfiguration(bool enableAllSelections = true,
-  bool enableExport2LAS = false);
+struct TResultExportConfiguration {
+  TResultExportConfiguration(bool enableAllSelections = true, bool enableExport2LAS = false);
 
   bool enableSlipHorizonSelection;
   bool enableHorizonSelection;
@@ -18,7 +16,7 @@ struct TResultExportConfiguration
   bool enableElementSetSelection;
   bool enableNonMeshedSurfaceSelection;
   bool export2LAS;
-  CNewWellPath* selectedNewWellPath;
+  CNewWellPath *selectedNewWellPath;
 };
 
-#endif  // _ResultExportConfiguration_h_
+#endif // _ResultExportConfiguration_h_

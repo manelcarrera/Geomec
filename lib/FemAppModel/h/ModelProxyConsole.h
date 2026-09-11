@@ -5,10 +5,9 @@ class CFemAppModel;
 
 #include "ModelProxy.h"
 
-class CModelProxyConsole : public CModelProxy
-{
+class CModelProxyConsole : public CModelProxy {
 public:
-  CModelProxyConsole(CFemAppModel& model);
+  CModelProxyConsole(CFemAppModel &model);
 
   virtual ~CModelProxyConsole();
 
@@ -18,10 +17,10 @@ public:
   virtual void switchToParent();
 
 private:
-  CModelProxyConsole(const CModelProxyConsole& rhs);
-  CModelProxyConsole& operator = (const CModelProxyConsole& rhs);
+  CModelProxyConsole(const CModelProxyConsole &rhs);
+  CModelProxyConsole &operator=(const CModelProxyConsole &rhs);
 
-  CFemAppModel& m_model;
+  CFemAppModel &m_model;
 };
 
-#endif  // _ModelProxyConsole_h_
+#endif // _ModelProxyConsole_h_

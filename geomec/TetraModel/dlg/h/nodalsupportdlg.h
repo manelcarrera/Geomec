@@ -12,29 +12,27 @@
 
 #include "SupportDlgBase.h"
 
-class CNodalSupportDlg : public CSupportDlgBase
-{
-// Construction
+class CNodalSupportDlg : public CSupportDlgBase {
+  // Construction
 public:
-  CNodalSupportDlg(CDisplacementSupportNode::CNodalSupportDef &supdef, const CDisplacementSupportNode &node, CWnd* pParent = NULL);   // standard constructor
+  CNodalSupportDlg(CDisplacementSupportNode::CNodalSupportDef &supdef, const CDisplacementSupportNode &node,
+                   CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CNodalSupportDlg)
   enum { IDD = IDD_ATTRI_NODAL_SUPPORT };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CNodalSupportDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CNodalSupportDlg)
   afx_msg void OnSelchangeStage();

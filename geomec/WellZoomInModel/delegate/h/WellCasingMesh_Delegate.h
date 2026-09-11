@@ -5,22 +5,21 @@ class CWellCasingMesh;
 
 #include "IWellMesh_Delegate.h"
 
-class CWellCasingMesh_Delegate : public IWellMesh_Delegate
-{
+class CWellCasingMesh_Delegate : public IWellMesh_Delegate {
 public:
-  CWellCasingMesh_Delegate(CWellCasingMesh* wellCasingMesh);
+  CWellCasingMesh_Delegate(CWellCasingMesh *wellCasingMesh);
 
   virtual bool Attributes();
 
   virtual bool IsMesh() const;
 
 private:
-  CWellCasingMesh_Delegate(const CWellCasingMesh_Delegate& rhs);
-  CWellCasingMesh_Delegate& operator = (const CWellCasingMesh_Delegate& rhs);
+  CWellCasingMesh_Delegate(const CWellCasingMesh_Delegate &rhs);
+  CWellCasingMesh_Delegate &operator=(const CWellCasingMesh_Delegate &rhs);
 
-  CWellCasingMesh* m_wellCasingMesh;
+  CWellCasingMesh *m_wellCasingMesh;
 
   REGISTER_DELEGATE(CWellCasingMesh, CWellCasingMesh_Delegate);
 };
 
-#endif  // _WellCasingMesh_Delegate_h_
+#endif // _WellCasingMesh_Delegate_h_

@@ -12,32 +12,30 @@
 
 #include "ListCtrlBase.h"
 
-class CListViewBase : public CView
-{
+class CListViewBase : public CView {
   CListCtrlBase *m_pCtrl;
 
 protected:
-  CListViewBase();           // protected constructor used by dynamic creation
+  CListViewBase(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CListViewBase)
 
 public:
-  CListCtrlBase& GetListCtrl() const;
-  virtual CListCtrlBase* OnCreateCtrl();
+  CListCtrlBase &GetListCtrl() const;
+  virtual CListCtrlBase *OnCreateCtrl();
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CListViewBase)
-  protected:
-  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+protected:
+  virtual void OnDraw(CDC *pDC); // overridden to draw this view
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   virtual ~CListViewBase();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions

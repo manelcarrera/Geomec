@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 /* types-polylib.h
      COPYRIGHT
           Both this software and its documentation are
@@ -17,10 +17,10 @@
 #define _types_polylib_h_
 
 #ifdef GNUMP
-#include<gmp.h>
+#include <gmp.h>
 
 #include "GeometryExports.h"
-#endif 
+#endif
 
 /*********************** USER DEFINES ******************************/
 
@@ -29,9 +29,8 @@
 
 /******************* END OF USER DEFINES ***************************/
 
-
-#define PCHAR (FIRST_PARAMETER_NAME-1)
-#define MAXNOOFRAYS 200 
+#define PCHAR (FIRST_PARAMETER_NAME - 1)
+#define MAXNOOFRAYS 200
 
 #if defined(LINEAR_VALUE_IS_LONGLONG)
 #define P_VALUE_FMT "%4lld "
@@ -39,9 +38,9 @@
 #define P_VALUE_FMT "%4ld "
 #elif defined(LINEAR_VALUE_IS_CHARS)
 #define P_VALUE_FMT "%s "
-#elif defined(LINEAR_VALUE_IS_INT) 
+#elif defined(LINEAR_VALUE_IS_INT)
 #define P_VALUE_FMT "%4d "
-#else  /* Default: GNUMP */
+#else /* Default: GNUMP */
 #define P_VALUE_FMT "%4s"
 #endif
 
@@ -51,13 +50,19 @@
 
 /* MSB, TOP, and NEXT are defined over integer type, not on value type */
 /* Put a one in the most significant bit of an int (portable) */
-#define MSB ((unsigned)(((unsigned)1)<<(sizeof(int)*8-1)))
+#define MSB ((unsigned)(((unsigned)1) << (sizeof(int) * 8 - 1)))
 
 /* Largest representable positive number */
-#define TOP ((int)(MSB-1))
+#define TOP ((int)(MSB - 1))
 
 /* Right shift the one bit in b and increment j if the last bit in b is one */
-#define NEXT(j,b) { if (!((b)>>=1)) { (b)=MSB; (j)++; } }
+#define NEXT(j, b)                                                                                                     \
+  {                                                                                                                    \
+    if (!((b) >>= 1)) {                                                                                                \
+      (b) = MSB;                                                                                                       \
+      (j)++;                                                                                                           \
+    }                                                                                                                  \
+  }
 
 /* Status of last Polyhedron operation */
 extern int Pol_status;
@@ -73,7 +78,7 @@ typedef struct matrix {
   Value *p_Init;
 } Matrix;
 
-typedef struct polyhedron { 
+typedef struct polyhedron {
   unsigned Dimension, NbConstraints, NbRays, NbEq, NbBid;
   Value **Constraint;
   Value **Ray;
@@ -83,77 +88,76 @@ typedef struct polyhedron {
 
 typedef struct interval {
   Value MaxN, MaxD;
-  Value MinN, MinD; 
+  Value MinN, MinD;
   int MaxI, MinI;
 } Interval;
 
 /* Test whether P is an empty polyhedron */
-#define emptyQ(P) (P->NbRays==0)
+#define emptyQ(P) (P->NbRays == 0)
 
 /* Test whether P is a universe polyheron */
-#define universeQ(P) (P->Dimension==P->NbLines)
+#define universeQ(P) (P->Dimension == P->NbLines)
 
-typedef struct _Param_Vertex {  	
-  Matrix *Vertex; /* Each row is a coordinate of the vertex. The first  */
-            /* "m" values of each row are the coefficients of the */
-            /* parameters. The (m+1)th value is the constant, the */
-            /* The (m+2)th value is the common denominator.       */
-  Matrix *Domain; /* Constraints on parameters (in Polyhedral format)   */
-  struct _Param_Vertex *next;          /* Pointer to the next structure */
+typedef struct _Param_Vertex {
+  Matrix *Vertex;             /* Each row is a coordinate of the vertex. The first  */
+                              /* "m" values of each row are the coefficients of the */
+                              /* parameters. The (m+1)th value is the constant, the */
+                              /* The (m+2)th value is the common denominator.       */
+  Matrix *Domain;             /* Constraints on parameters (in Polyhedral format)   */
+  struct _Param_Vertex *next; /* Pointer to the next structure */
 } Param_Vertices;
 
 typedef struct _Param_Domain {
-  unsigned *F;         /* Bit array of faces */
-  Polyhedron *Domain;  /* Pointer to Domain (constraints on parameters) */
+  unsigned *F;                /* Bit array of faces */
+  Polyhedron *Domain;         /* Pointer to Domain (constraints on parameters) */
   struct _Param_Domain *next; /* Pointer to the next structure  */
 } Param_Domain;
 
 typedef struct _Param_Polyhedron {
-  int nbV;	    /* Number of parameterized vertices            */
-  Param_Vertices *V;  /* Pointer to the list of parameteric vertices */
-  Param_Domain *D;    /* Pointer to the list of validity domains     */
+  int nbV;           /* Number of parameterized vertices            */
+  Param_Vertices *V; /* Pointer to the list of parameteric vertices */
+  Param_Domain *D;   /* Pointer to the list of validity domains     */
 } Param_Polyhedron;
 
-#define FORALL_PVertex_in_ParamPolyhedron(_V, _D, _P)   \
-{     int _i, _ix;                                   \
-      unsigned _bx;                                  \
-      for( _i=0, _ix=0, _bx=MSB, _V=_P->V ;            \
-           _V && (_i<_P->nbV) ; _i++, _V=_V->next )      \
-      {       if (_D->F[_ix] & _bx)                   \
-              {
+#define FORALL_PVertex_in_ParamPolyhedron(_V, _D, _P)                                                                  \
+  {                                                                                                                    \
+    int _i, _ix;                                                                                                       \
+    unsigned _bx;                                                                                                      \
+    for (_i = 0, _ix = 0, _bx = MSB, _V = _P->V; _V && (_i < _P->nbV); _i++, _V = _V->next) {                          \
+      if (_D->F[_ix] & _bx) {
 
-#define END_FORALL_PVertex_in_ParamPolyhedron  \
-              }                                \
-              NEXT(_ix, _bx);                  \
-      }                                        \
-}
+#define END_FORALL_PVertex_in_ParamPolyhedron                                                                          \
+  }                                                                                                                    \
+  NEXT(_ix, _bx);                                                                                                      \
+  }                                                                                                                    \
+  }
 
 /* Data structures for pseudo-polynomial */
 
 typedef enum { polynomial, periodic, evector } enode_type;
 
 typedef struct _evalue {
-  Value d;              /* denominator */
+  Value d; /* denominator */
   union {
-  Value n;            /* numerator (if denominator != 0) */
-  struct _enode *p;	/* pointer   (if denominator == 0) */
+    Value n;          /* numerator (if denominator != 0) */
+    struct _enode *p; /* pointer   (if denominator == 0) */
   } x;
 } evalue;
 
 typedef struct _enode {
-  enode_type type;      /* polynomial or periodic or evector */
-  int size;             /* number of attached pointers */
-  int pos;	        /* parameter position */
-  evalue arr[1];        /* array of rational/pointer */
+  enode_type type; /* polynomial or periodic or evector */
+  int size;        /* number of attached pointers */
+  int pos;         /* parameter position */
+  evalue arr[1];   /* array of rational/pointer */
 } enode;
 
 typedef struct _enumeration {
-  
-  Polyhedron *ValidityDomain;    /* contraints on the parameters     */
-  evalue EP;                     /* dimension = combined space       */
-  struct _enumeration *next;     /* Ehrhart Polynomial, corresponding
-                to parameter values inside the
-                  domain ValidityDomain below      */
+
+  Polyhedron *ValidityDomain; /* contraints on the parameters     */
+  evalue EP;                  /* dimension = combined space       */
+  struct _enumeration *next;  /* Ehrhart Polynomial, corresponding
+             to parameter values inside the
+               domain ValidityDomain below      */
 } Enumeration;
 
 /*-----------------------------Example Usage------------------------------*/
@@ -176,8 +180,7 @@ typedef struct _enumeration {
 
 /* *********************** |Represnting Z-Polyhedron| ******************* */
 
-
-typedef enum {False = 0, True = 1} Bool;
+typedef enum { False = 0, True = 1 } Bool;
 typedef Matrix Lattice;
 typedef struct LatticeUnion {
   Lattice *M;
@@ -185,25 +188,13 @@ typedef struct LatticeUnion {
 } LatticeUnion;
 
 typedef struct ZPolyhedron {
-  Lattice *Lat ;
+  Lattice *Lat;
   Polyhedron *P;
   struct ZPolyhedron *next;
 } ZPolyhedron;
 
 #ifndef FOREVER
-#define FOREVER for(;;)
+#define FOREVER for (;;)
 #endif
 
 #endif /* _types_polylib_h_ */
-
-
-
-
-
-
-
-
-
-
-
-

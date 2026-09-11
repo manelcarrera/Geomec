@@ -5,10 +5,9 @@ class CGeomecDoc;
 
 #include "DianaSignals.h"
 
-class CGeomecDocDianaSignals : public CDianaSignals
-{
+class CGeomecDocDianaSignals : public CDianaSignals {
 public:
-  CGeomecDocDianaSignals(const QObject* sender, CGeomecDoc* geomecDoc);
+  CGeomecDocDianaSignals(const QObject *sender, CGeomecDoc *geomecDoc);
   ~CGeomecDocDianaSignals();
 
   virtual void onMessage(QString message);
@@ -19,10 +18,10 @@ public:
   virtual void onFinished();
 
 private:
-  CGeomecDocDianaSignals(const CGeomecDocDianaSignals& rhs);
-  CGeomecDocDianaSignals& operator = (const CGeomecDocDianaSignals& rhs);
+  CGeomecDocDianaSignals(const CGeomecDocDianaSignals &rhs);
+  CGeomecDocDianaSignals &operator=(const CGeomecDocDianaSignals &rhs);
 
-  CGeomecDoc* m_geomecDoc;
+  CGeomecDoc *m_geomecDoc;
 };
 
-#endif  // _GeomecDocDianaSignals_h_
+#endif // _GeomecDocDianaSignals_h_

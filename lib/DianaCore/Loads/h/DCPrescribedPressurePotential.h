@@ -5,17 +5,16 @@
 
 namespace dia {
 
-class CPrescribedPressurePotential : public IStructuralLoad
-{
+class CPrescribedPressurePotential : public IStructuralLoad {
 public:
-  CPrescribedPressurePotential(const geo::INode& node, CLoadCase& lcase, double size);
+  CPrescribedPressurePotential(const geo::INode &node, CLoadCase &lcase, double size);
 
   virtual bool WriteFilos() const;
 
 private:
-  const geo::INode& m_node;
+  const geo::INode &m_node;
 };
 
-}
+} // namespace dia
 
 #endif // _DCPRESCRIBEDPRESSUREPOTENTIAL_H_

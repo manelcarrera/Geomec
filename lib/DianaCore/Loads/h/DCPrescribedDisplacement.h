@@ -19,15 +19,15 @@ namespace dia {
 
 class CLoadManager;
 
-class CPrescribedDisplacement : public ISupportLoad  
-{
+class CPrescribedDisplacement : public ISupportLoad {
 public:
-  CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CTranslationSupport &support);
+  CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection,
+                          const geo::CTranslationSupport &support);
   virtual ~CPrescribedDisplacement();
 
   virtual bool WriteFilos() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IPRESCRIBEDDISPLACEMENT_H__44B58D29_CE95_41AD_9CD4_E6FA39CC8525__INCLUDED_)

@@ -6,37 +6,36 @@
 
 #include "Interprocess.h"
 
-//#include <mutex>
-//#include <condition_variable>
+// #include <mutex>
+// #include <condition_variable>
 
-class DianaBusClient : public ModGMLocalBusClient
-{
+class DianaBusClient : public ModGMLocalBusClient {
   Q_OBJECT
 
-  //std::condition_variable m_cond_var;
-  //std::mutex m_mutex;
+  // std::condition_variable m_cond_var;
+  // std::mutex m_mutex;
 
 public:
-  DianaBusClient(const QString& base, const QString& name, QObject *parent = nullptr);
+  DianaBusClient(const QString &base, const QString &name, QObject *parent = nullptr);
   virtual ~DianaBusClient();
 
-  void run_diana( const QString& path );
-  //void notify_diana_end();
+  void run_diana(const QString &path);
+  // void notify_diana_end();
 
   void send_keep_alive();
 
 public slots:
   void read_output();
-  
-//public:
+
+  // public:
 private:
-//public slots:
-  void send( const QString& to, BusClientCmd id );
+  // public slots:
+  void send(const QString &to, BusClientCmd id);
 
-//private slots:
+  // private slots:
 
-  void onReceivedMessage(const ModGMBusMessage& message);
-  
+  void onReceivedMessage(const ModGMBusMessage &message);
+
 private:
   QString data();
 
@@ -51,13 +50,11 @@ private:
   QString m_url;
 
 public:
-
-  void url( const QString& val ){ m_url = val; }
-  const QString& url(){ return m_url; }
-
+  void url(const QString &val) { m_url = val; }
+  const QString &url() { return m_url; }
 
 #ifdef kk
-//draft
+  // draft
 private:
   void get_shared_memory_01();
 

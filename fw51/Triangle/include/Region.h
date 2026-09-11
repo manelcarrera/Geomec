@@ -1,12 +1,12 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef _REGION_H_
 #define _REGION_H_
 
 class CTriangleSurface;
 class CTriangleElement;
 
-#include "ITriangle.h"
 #include "IElementSet.h"
+#include "ITriangle.h"
 
 #include <vector>
 
@@ -14,8 +14,7 @@ class CTriangleElement;
 
 class CTriangleSurface;
 
-class TRIANGLE_EXPORT CRegion : public geo::IElementSet
-{
+class TRIANGLE_EXPORT CRegion : public geo::IElementSet {
 public:
   // indices of segments in CTriangleSurface::TSegmentVec
   typedef std::vector<int> TSegments;

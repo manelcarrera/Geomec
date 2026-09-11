@@ -1,10 +1,8 @@
 #pragma once
 
-class CCustomCmdLineInfo : public CCommandLineInfo
-{
+class CCustomCmdLineInfo : public CCommandLineInfo {
 public:
-  struct Test
-  {
+  struct Test {
     bool enabled;
     std::string url;
     std::string token;
@@ -22,7 +20,7 @@ private:
 public:
   CCustomCmdLineInfo(void);
 
-  virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
+  virtual void ParseParam(const TCHAR *pszParam, BOOL bFlag, BOOL bLast);
 
   bool Version() const { return m_version; }
   bool Exit() const { return m_exit; }
@@ -30,5 +28,5 @@ public:
 
   CString OutputFile() const { return m_outputFile; }
 
-  Test test(){return m_test;}
+  Test test() { return m_test; }
 };

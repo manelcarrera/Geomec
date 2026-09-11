@@ -10,33 +10,30 @@
 /////////////////////////////////////////////////////////////////////////////
 // CInPlaceEdit window
 
-class CInPlaceEdit : public CEdit
-{
-// Construction
+class CInPlaceEdit : public CEdit {
+  // Construction
 public:
   CInPlaceEdit(int iItem, int iSubItem, CString sInitText);
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CInPlaceEdit)
-  public:
-  virtual BOOL PreTranslateMessage(MSG* pMsg);
+public:
+  virtual BOOL PreTranslateMessage(MSG *pMsg);
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 public:
   virtual ~CInPlaceEdit();
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(CInPlaceEdit)
-  afx_msg void OnKillFocus(CWnd* pNewWnd);
+  afx_msg void OnKillFocus(CWnd *pNewWnd);
   afx_msg void OnNcDestroy();
   afx_msg void OnChar(unsigned int nChar, unsigned int nRepCnt, unsigned int nFlags);
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -47,8 +44,7 @@ private:
   int m_iItem;
   int m_iSubItem;
   CString m_sInitText;
-  BOOL    m_bESC;	 	// To indicate whether ESC key was pressed
-
+  BOOL m_bESC; // To indicate whether ESC key was pressed
 };
 
 /////////////////////////////////////////////////////////////////////////////

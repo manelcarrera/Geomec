@@ -9,30 +9,28 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <afxtempl.h>
-#include "StressStrain.h"
 #include "LibraryMaterial.h"
+#include "StressStrain.h"
+#include <afxtempl.h>
 
-class CResultData  
-{
+class CResultData {
 public:
   CResultData();
   virtual ~CResultData();
-  CResultData( const CResultData &RD );
-  CResultData &operator=( const CResultData &RD );
+  CResultData(const CResultData &RD);
+  CResultData &operator=(const CResultData &RD);
 
-  BOOL ReadFromFile( CString strFileName, CLibraryMaterial *pMat );
+  BOOL ReadFromFile(CString strFileName, CLibraryMaterial *pMat);
   BOOL ReadFromFilos();
   CStressStrainArray const *GetStressStrainSteps() const;
-  int GetNrExperiments() const {return m_nExperiments;}
-  void adjustCalculatedData(int nSelected, const int* piSelected);
+  int GetNrExperiments() const { return m_nExperiments; }
+  void adjustCalculatedData(int nSelected, const int *piSelected);
 
-  bool GoSubSet( const int *aIndices, int nIndices );
+  bool GoSubSet(const int *aIndices, int nIndices);
 
 public:
-
 protected:
-  BOOL ReadExperiment( FILE *fp, int iExperiment );
+  BOOL ReadExperiment(FILE *fp, int iExperiment);
 
 protected:
   CString m_strLabel;

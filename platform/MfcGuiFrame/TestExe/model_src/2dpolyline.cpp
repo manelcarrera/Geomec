@@ -3,30 +3,21 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "2DPolyLine.h"
-#include "2DVertex.h"
 #include "2DDocument.h"
 #include "2DSegment.h"
+#include "2DVertex.h"
 
 //////////////////////////////////////////////////////////////////////
 // The polyline implementation
 //////////////////////////////////////////////////////////////////////
 
-C2DPolyLine::CPolyLine::CPolyLine(C2DPolyLine& polyline)
-: m_polyline(polyline)
-{
-}
+C2DPolyLine::CPolyLine::CPolyLine(C2DPolyLine &polyline) : m_polyline(polyline) {}
 
-C2DPolyLine::CPolyLine::~CPolyLine()
-{
-}
+C2DPolyLine::CPolyLine::~CPolyLine() {}
 
-geo::IPoint &C2DPolyLine::CPolyLine::PointAt(int nIndex)
-{
-  return Vertex(nIndex).Point();
-}
+geo::IPoint &C2DPolyLine::CPolyLine::PointAt(int nIndex) { return Vertex(nIndex).Point(); }
 
-void C2DPolyLine::CPolyLine::PushBack(C2DSegment& segment)
-{
+void C2DPolyLine::CPolyLine::PushBack(C2DSegment &segment) {
   assert(segment.isReferenced(m_polyline) == -1);
   m_vcSegment.push_back(&segment);
   m_polyline.insertReference(segment);
@@ -34,8 +25,7 @@ void C2DPolyLine::CPolyLine::PushBack(C2DSegment& segment)
   InvalidateCache();
 }
 
-void C2DPolyLine::CPolyLine::Insert(int nIndex, C2DSegment& segment)
-{
+void C2DPolyLine::CPolyLine::Insert(int nIndex, C2DSegment &segment) {
   assert(segment.isReferenced(m_polyline));
   assert(nIndex >= 0 && nIndex < m_vcSegment.size());
 
@@ -47,18 +37,15 @@ void C2DPolyLine::CPolyLine::Insert(int nIndex, C2DSegment& segment)
 
   InvalidateCache();
 
-//	m_polyline.geometryChanged();
+  //	m_polyline.geometryChanged();
 }
 
-void C2DPolyLine::CPolyLine::Remove(C2DSegment& segment)
-{
+void C2DPolyLine::CPolyLine::Remove(C2DSegment &segment) {
   assert(m_polyline.isReferenced(segment));
 
   int i;
-  for(i = 0; i < m_vcSegment.size(); i++)
-  {
-    if(m_vcSegment[i] == &segment)
-    {
+  for (i = 0; i < m_vcSegment.size(); i++) {
+    if (m_vcSegment[i] == &segment) {
       m_vcSegment.erase(m_vcSegment.begin() + i);
       m_polyline.removeReference(segment);
       return;
@@ -68,108 +55,89 @@ void C2DPolyLine::CPolyLine::Remove(C2DSegment& segment)
   assert(false); // not found
 }
 
-std::pair<int, bool> C2DPolyLine::CPolyLine::SegmentIndex(const C2DSegment& segment) const
-{
-  for(int i = 0; i < LineSize(); i++)
-  {
-    const C2DVertex& first = Vertex(i);
-    const C2DVertex& second = Vertex(i + 1);
-    if((&segment.FirstVertex() == &first) && (&segment.SecondVertex() == &second))
+std::pair<int, bool> C2DPolyLine::CPolyLine::SegmentIndex(const C2DSegment &segment) const {
+  for (int i = 0; i < LineSize(); i++) {
+    const C2DVertex &first = Vertex(i);
+    const C2DVertex &second = Vertex(i + 1);
+    if ((&segment.FirstVertex() == &first) && (&segment.SecondVertex() == &second))
       return std::pair<int, bool>(i, true);
-    if((&segment.FirstVertex() == &second) && (&segment.SecondVertex() == &first))
+    if ((&segment.FirstVertex() == &second) && (&segment.SecondVertex() == &first))
       return std::pair<int, bool>(i, false);
   }
 
   return std::pair<int, bool>(-1, false);
 }
 
-const geo::IPoint &C2DPolyLine::CPolyLine::Point(int nIndex) const
-{
-  return Vertex(nIndex).Point();
-}
+const geo::IPoint &C2DPolyLine::CPolyLine::Point(int nIndex) const { return Vertex(nIndex).Point(); }
 
-const C2DVertex& C2DPolyLine::CPolyLine::Vertex(int nIndex) const
-{
+const C2DVertex &C2DPolyLine::CPolyLine::Vertex(int nIndex) const {
   ASSERT(LineSize() > 0);
-  if((LineSize() == 1) && (nIndex == 0))
+  if ((LineSize() == 1) && (nIndex == 0))
     return Segment(0).FirstVertex();
 
-  if((LineSize() == 1) && (nIndex == 1))
+  if ((LineSize() == 1) && (nIndex == 1))
     return Segment(0).SecondVertex();
 
-  if(nIndex == 0)
-  {
-    if((&Segment(0).FirstVertex() == &Segment(1).FirstVertex()) || (&Segment(0).FirstVertex() == &Segment(1).SecondVertex()))
+  if (nIndex == 0) {
+    if ((&Segment(0).FirstVertex() == &Segment(1).FirstVertex()) ||
+        (&Segment(0).FirstVertex() == &Segment(1).SecondVertex()))
       return Segment(0).SecondVertex();
     return Segment(0).FirstVertex();
   }
 
-  if(nIndex == LineSize())
-  {
-    if((&Segment(LineSize() - 1).FirstVertex() == &Segment(LineSize() - 2).FirstVertex()) || 
-      (&Segment(LineSize() - 1).FirstVertex() == &Segment(LineSize() - 2).SecondVertex()))
+  if (nIndex == LineSize()) {
+    if ((&Segment(LineSize() - 1).FirstVertex() == &Segment(LineSize() - 2).FirstVertex()) ||
+        (&Segment(LineSize() - 1).FirstVertex() == &Segment(LineSize() - 2).SecondVertex()))
       return Segment(LineSize() - 1).SecondVertex();
     return Segment(LineSize() - 1).FirstVertex();
   }
 
-  if((&Segment(nIndex).FirstVertex() == &Segment(nIndex - 1).FirstVertex()) || 
-    (&Segment(nIndex).FirstVertex() == &Segment(nIndex - 1).SecondVertex()))
-      return Segment(nIndex).FirstVertex();
+  if ((&Segment(nIndex).FirstVertex() == &Segment(nIndex - 1).FirstVertex()) ||
+      (&Segment(nIndex).FirstVertex() == &Segment(nIndex - 1).SecondVertex()))
+    return Segment(nIndex).FirstVertex();
   return Segment(nIndex).SecondVertex();
 }
 
-C2DVertex& C2DPolyLine::CPolyLine::Vertex(int nIndex)
-{
+C2DVertex &C2DPolyLine::CPolyLine::Vertex(int nIndex) {
   assert(nIndex >= 0 && nIndex < PointSize());
-  if(nIndex == LineSize()) return Segment(nIndex - 1).SecondVertex();
+  if (nIndex == LineSize())
+    return Segment(nIndex - 1).SecondVertex();
 
   return Segment(nIndex).FirstVertex();
 }
 
-int C2DPolyLine::CPolyLine::PointSize() const
-{
-  if(m_vcSegment.empty()) return 0;
+int C2DPolyLine::CPolyLine::PointSize() const {
+  if (m_vcSegment.empty())
+    return 0;
   return m_vcSegment.size() + 1;
 }
 
-const geo::ILine &C2DPolyLine::CPolyLine::Line(int nIndex) const
-{
+const geo::ILine &C2DPolyLine::CPolyLine::Line(int nIndex) const {
   assert(nIndex >= 0 && nIndex < LineSize());
   return Segment(nIndex).Segment();
 }
 
-int C2DPolyLine::CPolyLine::LineSize() const
-{
-  return m_vcSegment.size();
-}
+int C2DPolyLine::CPolyLine::LineSize() const { return m_vcSegment.size(); }
 
-void C2DPolyLine::CPolyLine::Swap(int nIndex1, int nIndex2)
-{
-  assert(false);
-}
+void C2DPolyLine::CPolyLine::Swap(int nIndex1, int nIndex2) { assert(false); }
 
-void C2DPolyLine::CPolyLine::AssertValid() const
-{
-  for(int i = 0; i < LineSize(); i++)
-  {
+void C2DPolyLine::CPolyLine::AssertValid() const {
+  for (int i = 0; i < LineSize(); i++) {
     ASSERT(m_polyline.isReferenced(Segment(i)));
   }
 }
-  
-std::vector<int> C2DPolyLine::CPolyLine::Nodes(const geo::IElement &element) const
-{
+
+std::vector<int> C2DPolyLine::CPolyLine::Nodes(const geo::IElement &element) const {
   assert(false);
   return std::vector<int>();
 }
 
-const C2DSegment& C2DPolyLine::CPolyLine::Segment(int nIndex) const
-{
+const C2DSegment &C2DPolyLine::CPolyLine::Segment(int nIndex) const {
   assert(nIndex >= 0 && nIndex < LineSize());
   return *m_vcSegment[nIndex];
 }
 
-C2DSegment& C2DPolyLine::CPolyLine::Segment(int nIndex)
-{
+C2DSegment &C2DPolyLine::CPolyLine::Segment(int nIndex) {
   assert(nIndex >= 0 && nIndex < LineSize());
   return *m_vcSegment[nIndex];
 }
@@ -178,32 +146,24 @@ C2DSegment& C2DPolyLine::CPolyLine::Segment(int nIndex)
 // The point insert
 //////////////////////////////////////////////////////////////////////
 
+C2DPolyLine::CPointInsert::CPointInsert(C2DPolyLine &polyline, const geo::IPoint &point)
+    : m_polyline(polyline), m_point(point) {}
 
-C2DPolyLine::CPointInsert::CPointInsert(C2DPolyLine& polyline, const geo::IPoint& point)
-: m_polyline(polyline), m_point(point)
-{
-}
-
-bool C2DPolyLine::CPointInsert::CanInsert() const
-{
-  for(int i = 0; i < m_polyline.PolyLine().LineSize(); i++)
-  {
+bool C2DPolyLine::CPointInsert::CanInsert() const {
+  for (int i = 0; i < m_polyline.PolyLine().LineSize(); i++) {
     geo::CPoint ptProject = m_polyline.PolyLine().Line(i).Project(m_point);
-    if(m_polyline.PolyLine().Segment(i).CanSplit(ptProject))
+    if (m_polyline.PolyLine().Segment(i).CanSplit(ptProject))
       return true;
   }
-  
+
   return false;
 }
 
-void C2DPolyLine::CPointInsert::Insert()
-{
+void C2DPolyLine::CPointInsert::Insert() {
   ASSERT(CanInsert());
-  for(int i = 0; i < m_polyline.PolyLine().LineSize(); i++)
-  {
+  for (int i = 0; i < m_polyline.PolyLine().LineSize(); i++) {
     geo::CPoint ptProject = m_polyline.PolyLine().Line(i).Project(m_point);
-    if(m_polyline.PolyLine().Segment(i).CanSplit(ptProject))
-    {
+    if (m_polyline.PolyLine().Segment(i).CanSplit(ptProject)) {
       m_polyline.PolyLine().Segment(i).Split(ptProject);
       return;
     }
@@ -213,31 +173,17 @@ void C2DPolyLine::CPointInsert::Insert()
 //////////////////////////////////////////////////////////////////////
 // The polyline implementation
 //////////////////////////////////////////////////////////////////////
-C2DPolyLine::C2DPolyLine(IModelObject& parent)
-: IModelObject(parent)
-{
-}
+C2DPolyLine::C2DPolyLine(IModelObject &parent) : IModelObject(parent) {}
 
-C2DPolyLine::C2DPolyLine(const char* name, IModelObject& parent)
-: IModelObject(name, parent)
-{
+C2DPolyLine::C2DPolyLine(const char *name, IModelObject &parent) : IModelObject(name, parent) {
   m_pPolyLine = new CPolyLine(*this);
 }
 
-C2DPolyLine::~C2DPolyLine()
-{
-  delete m_pPolyLine;
-}
+C2DPolyLine::~C2DPolyLine() { delete m_pPolyLine; }
 
-const C2DPolyLine::CPolyLine& C2DPolyLine::PolyLine() const
-{
-  return *m_pPolyLine;
-}
-  
-C2DPolyLine::CPolyLine& C2DPolyLine::PolyLine()
-{
-  return *m_pPolyLine;
-}
+const C2DPolyLine::CPolyLine &C2DPolyLine::PolyLine() const { return *m_pPolyLine; }
+
+C2DPolyLine::CPolyLine &C2DPolyLine::PolyLine() { return *m_pPolyLine; }
 /*
 UINT C2DPolyLine::IconId() const
 {
@@ -249,27 +195,15 @@ UINT C2DPolyLine::TypeId() const
   return 0;
 }
 */
-const geo::IElementSet &C2DPolyLine::ElementSet() const
-{
-  return *m_pPolyLine;
-}
+const geo::IElementSet &C2DPolyLine::ElementSet() const { return *m_pPolyLine; }
 
-geo::IElementSet &C2DPolyLine::ElementSet()
-{
-  return *m_pPolyLine;
-}
+geo::IElementSet &C2DPolyLine::ElementSet() { return *m_pPolyLine; }
 
-int C2DPolyLine::geometrySize() const
-{
-  return 1;
-}
+int C2DPolyLine::geometrySize() const { return 1; }
 
-const geo::IObject& C2DPolyLine::geometry(int nIndex) const
-{
-  return *m_pPolyLine;
-}
+const geo::IObject &C2DPolyLine::geometry(int nIndex) const { return *m_pPolyLine; }
 
-/*		
+/*
 C2DPolyLine::DIMENSION C2DPolyLine::Dimension() const
 {
   return DIM_1D;
@@ -358,16 +292,16 @@ int C2DPolyLine::NodeIndex(int nIndex) const
 
   if(nIndex == EdgeSize())
   {
-    if((Edge(EdgeSize() - 1).FirstIndex() == Edge(EdgeSize() - 2).FirstIndex()) || 
+    if((Edge(EdgeSize() - 1).FirstIndex() == Edge(EdgeSize() - 2).FirstIndex()) ||
       (Edge(EdgeSize() - 1).FirstIndex() == Edge(EdgeSize() - 2).SecondIndex()))
       return Edge(EdgeSize() - 1).SecondIndex();
     return Edge(EdgeSize() - 1).FirstIndex();
   }
 
-  if((Edge(nIndex).FirstIndex() == Edge(nIndex - 1).FirstIndex()) || 
+  if((Edge(nIndex).FirstIndex() == Edge(nIndex - 1).FirstIndex()) ||
     (Edge(nIndex).FirstIndex() == Edge(nIndex - 1).SecondIndex()))
       return Edge(nIndex).FirstIndex();
-  return Edge(nIndex).SecondIndex();	
+  return Edge(nIndex).SecondIndex();
 }
 
 const geo::IPoint& C2DPolyLine::Node(int nIndex) const
@@ -375,7 +309,7 @@ const geo::IPoint& C2DPolyLine::Node(int nIndex) const
   const CModelBase& model = dynamic_cast<const CModelBase&>(Model());
   return model.Mesh().Mesh().Point(NodeIndex(nIndex));
 }
-  
+
 int C2DPolyLine::EdgeSize() const
 {
   const CModelBase& model = dynamic_cast<const CModelBase&>(Model());
@@ -508,4 +442,3 @@ void C2DPolyLine::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 //////////////////////////////////////////////////////////////////////
 // The CLine implementation
 //////////////////////////////////////////////////////////////////////
-

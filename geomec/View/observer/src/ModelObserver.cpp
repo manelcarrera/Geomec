@@ -2,17 +2,17 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "geomec.h"
 #include "ModelObserver.h"
 #include "GraphTreeView.h"
+#include "geomec.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 /*
 //////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ unsigned int CModelObserver::Icon() const
 }
 
 //##ModelId=3BC55D61022D
-void CModelObserver::Delete() 
+void CModelObserver::Delete()
 {
   assert(FALSE);
 }

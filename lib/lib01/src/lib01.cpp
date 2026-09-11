@@ -2,7 +2,4 @@
 
 #include <iostream>
 
-Class01::Class01()
-{
-  std::cout << "Hello world..." << std::endl;
-}
+Class01::Class01() { std::cout << "Hello world..." << std::endl; }

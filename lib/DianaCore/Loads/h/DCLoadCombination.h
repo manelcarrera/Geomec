@@ -16,8 +16,7 @@ namespace dia {
 class CLoadManager;
 class CLoadCase;
 
-class CLoadCombination  
-{
+class CLoadCombination {
   friend class CLoadManager;
 
   CLoadManager &m_Manager;
@@ -49,6 +48,6 @@ public:
   bool WriteFilos() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_DCLOADCOMBINATION_H__2DF4A594_FDD6_44A8_8047_280D61744AE1__INCLUDED_)

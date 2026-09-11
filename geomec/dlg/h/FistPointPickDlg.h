@@ -8,36 +8,29 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-#include <qobject.h> 
-#include "WellPoint.h"
-#include "WellSection.h"
-#include "NewWellSection.h"
-#include "WellSectionList.h"
-#include "WellPointList.h"
-#include "WellDefinitionPointList.h"
 #include "NewWellPath.h"
+#include "NewWellSection.h"
+#include "WellDefinitionPointList.h"
+#include "WellPoint.h"
 #include "WellPointDrawSpec.h"
-#include "WellSectionDrawSpec.h"
-#include "WellSceneInterMed.h"
+#include "WellPointList.h"
 #include "WellPointPickDlg.h"
+#include "WellSceneInterMed.h"
+#include "WellSection.h"
+#include "WellSectionDrawSpec.h"
+#include "WellSectionList.h"
+#include <qobject.h>
 
-class CFistPointPickDlg : public CWellPointPickDlg
-{
+class CFistPointPickDlg : public CWellPointPickDlg {
 public:
   // wjrx mantis 3564
   //
-  CFistPointPickDlg
-  ( std::list<CNewWellPoint> *pList
-  , CNewWellPath& wellpath
-  , std::list<std::list<INewWellSection *> > Sections
-  , CDoubleQuantity::UNIT unit
-  , CWnd* pParent = NULL
-  );
+  CFistPointPickDlg(std::list<CNewWellPoint> *pList, CNewWellPath &wellpath,
+                    std::list<std::list<INewWellSection *>> Sections, CDoubleQuantity::UNIT unit, CWnd *pParent = NULL);
 
   virtual ~CFistPointPickDlg();
 
-  virtual CNewWellPoint OnCreateWellPoint
-  ( CNewWellPathBase& wellpath , double tmd, bool &bDefined);
+  virtual CNewWellPoint OnCreateWellPoint(CNewWellPathBase &wellpath, double tmd, bool &bDefined);
   virtual void OnAddDefault(std::list<CNewWellPoint> &list);
   virtual CString OnOutOfBoundaryMessage();
 

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // IConus.cpp: implementation of the IConus class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -11,14 +11,8 @@
 
 namespace geo {
 
-IConus::IConus()
-{
+IConus::IConus() {}
 
-}
+IConus::~IConus() {}
 
-IConus::~IConus()
-{
-
-}
-
-}
+} // namespace geo

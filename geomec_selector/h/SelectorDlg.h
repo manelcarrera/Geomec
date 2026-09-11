@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QDialog>
 #include <QButtonGroup>
-#include <QGridLayout>
 #include <QCheckBox>
+#include <QDialog>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QPushButton>
 #include <QRadioButton>
-#include <QHBoxLayout>
 
 class QMenu;
 
@@ -20,8 +20,7 @@ class QRadioButton_Custom;
 //
 //////////////////////////////////////////////////////////////////////////
 
-class CSelectorDlg : public QDialog
-{
+class CSelectorDlg : public QDialog {
   Q_OBJECT
 
   QGridLayout m_grid_layout;
@@ -43,15 +42,15 @@ class CSelectorDlg : public QDialog
   QPushButton m_btn_logs_config;
   QPushButton m_btn_python;
 
-  std::vector< QString > m_versions_v;
-  std::vector< QString > m_paths_v;
+  std::vector<QString> m_versions_v;
+  std::vector<QString> m_paths_v;
 
   bool m_b_delete; // delete actions in dlg enable/disable: context menu + icon
 
 private:
-  bool delete__( int id );
+  bool delete__(int id);
   void update_style();
-  void on_open( const QString& url );
+  void on_open(const QString &url);
 
 public slots:
   void on_more();
@@ -70,20 +69,17 @@ public slots:
   void on_python();
 
 public:
-  CSelectorDlg( 
-    const std::pair< 
-      std::vector< QString >, 
-      std::vector< QString > >& versions_p );
+  CSelectorDlg(const std::pair<std::vector<QString>, std::vector<QString>> &versions_p);
 
   ~CSelectorDlg();
 
   bool check();
   int id();
 
-  bool delete_( QRadioButton_Custom* rb );
-  bool set_as_default( QRadioButton_Custom* rb );
+  bool delete_(QRadioButton_Custom *rb);
+  bool set_as_default(QRadioButton_Custom *rb);
 
-  bool delete_config_file( int id );
+  bool delete_config_file(int id);
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -92,22 +88,19 @@ public:
 //
 //////////////////////////////////////////////////////////////////////////
 
-class QRadioButton_Custom : public QRadioButton
-{
+class QRadioButton_Custom : public QRadioButton {
   Q_OBJECT
 
 private:
-  QMenu* m_menu;
+  QMenu *m_menu;
 
 private slots:
-  void on_custom_context_menu( const QPoint &point );
+  void on_custom_context_menu(const QPoint &point);
   void on_delete();
   void on_set_as_default();
 
 public:
-  QRadioButton_Custom( 
-    const QString& caption, 
-    QWidget* parent = nullptr );
+  QRadioButton_Custom(const QString &caption, QWidget *parent = nullptr);
   ~QRadioButton_Custom();
 };
 
@@ -117,39 +110,28 @@ public:
 //
 //////////////////////////////////////////////////////////////////////////
 
-class QPushButton_Custom : public QPushButton
-{
+class QPushButton_Custom : public QPushButton {
   Q_OBJECT
 
 public:
-  enum eType_
-  {
-    Version_Config_File,
-    Installation_Folder,
-    Remove_Version,
-    Version_Log_File
-  };
+  enum eType_ { Version_Config_File, Installation_Folder, Remove_Version, Version_Log_File };
 
 private:
-  QMenu* m_menu;
+  QMenu *m_menu;
   eType_ m_type;
   int m_id;
   bool m_has_context_menu;
 
 private slots:
-  void on_custom_context_menu( const QPoint &point );
+  void on_custom_context_menu(const QPoint &point);
   void on_delete(); // version config file
 
 public:
-  QPushButton_Custom( 
-    eType_ type_,
-    const int id, 
-    QWidget* parent = nullptr,
-    bool has_context_menu = false );
+  QPushButton_Custom(eType_ type_, const int id, QWidget *parent = nullptr, bool has_context_menu = false);
 
   ~QPushButton_Custom();
 
-  int id(){ return m_id; }
+  int id() { return m_id; }
 
-  void has_context_menu( bool val ){ m_has_context_menu = val; };
+  void has_context_menu(bool val) { m_has_context_menu = val; };
 };

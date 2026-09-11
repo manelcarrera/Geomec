@@ -1,35 +1,34 @@
 #pragma once
 
-#include "SafeQueue.h"
 #include "Events.h"
+#include "SafeQueue.h"
 
-namespace std{ class thread; }
+namespace std {
+class thread;
+}
 class Printer;
 
-struct IListenerDefinition{
+struct IListenerDefinition {
   CEvents::eEventsHandler eh_id;
   std::vector<eCmd> events_v;
 };
 
-class IListener
-{
+class IListener {
   CEvents::eEventsHandler m_eh_id;
 
 private:
   void run();
   Cmd pop();
-  virtual void handle(Cmd cmd)=0;
+  virtual void handle(Cmd cmd) = 0;
 
 protected:
-  std::thread* m_thread;		// join()
-  SafeQueue< Cmd > m_queue;	// clear()
-  Printer* m_printer;
+  std::thread *m_thread;  // join()
+  SafeQueue<Cmd> m_queue; // clear()
+  Printer *m_printer;
 
 public:
-  IListener(const IListenerDefinition& d);
-  IListener(
-    CEvents::eEventsHandler eh_id = CEvents::Undefined_EH,
-    std::vector<eCmd> events_v_={});
+  IListener(const IListenerDefinition &d);
+  IListener(CEvents::eEventsHandler eh_id = CEvents::Undefined_EH, std::vector<eCmd> events_v_ = {});
   virtual ~IListener();
   //
   void push(Cmd cmd);

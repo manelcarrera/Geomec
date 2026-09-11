@@ -11,16 +11,15 @@
 
 #include "GMDatabase.h"
 
-namespace gm { 
+namespace gm {
 
 // C3DDatabase adds version info to CDaoDatabase
-class C3DDatabase : public CGmDatabase  
-{
+class C3DDatabase : public CGmDatabase {
 public:
   C3DDatabase();
   virtual void OpenDB(const CString &strPathName, const BOOL bComplete);
 };
 
-}
+} // namespace gm
 
 #endif // !defined(AFX_GM3DATABASE_H__B52438FF_5D92_4949_A208_0E1B510D8E14__INCLUDED_)

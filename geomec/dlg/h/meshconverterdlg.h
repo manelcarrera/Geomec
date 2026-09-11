@@ -10,24 +10,22 @@ class QKeyEvent;
 
 class MeshConverterTreeView;
 
-class MeshConverterDlg : public QDialog
-{
+class MeshConverterDlg : public QDialog {
   Q_OBJECT
 
-  QLabel* lb1;
-  QPushButton* b1;
+  QLabel *lb1;
+  QPushButton *b1;
 
-  QVBoxLayout* lv;
-  QHBoxLayout* lh;
+  QVBoxLayout *lv;
+  QHBoxLayout *lh;
 
-  MeshConverterTreeView* m_tree;
+  MeshConverterTreeView *m_tree;
 
 public slots:
 
   void help();
 
 private:
-
   MeshConverterDlg();
   ~MeshConverterDlg();
 
@@ -35,6 +33,5 @@ private:
   void keyPressEvent(QKeyEvent *e);
 
 public:
-
-  static MeshConverterDlg* instance();
+  static MeshConverterDlg *instance();
 };

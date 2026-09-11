@@ -21,67 +21,52 @@
 #ifndef __G_VALUE_H__
 #define __G_VALUE_H__
 
-
-#include	<gobject/gtype.h>
+#include <gobject/gtype.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-
 /* --- type macros --- */
-#define	G_TYPE_IS_VALUE(type)		(g_type_value_table_peek (type) != NULL)
-#define	G_IS_VALUE(value)		(G_TYPE_CHECK_VALUE (value))
-#define	G_VALUE_HOLDS(value, g_type)	(G_TYPE_CHECK_VALUE_TYPE ((value), (g_type)))
-#define	G_VALUE_TYPE(value)		(((GValue*) (value))->g_type)
-#define	G_VALUE_TYPE_NAME(value)	(g_type_name (G_VALUE_TYPE (value)))
-
+#define G_TYPE_IS_VALUE(type) (g_type_value_table_peek(type) != NULL)
+#define G_IS_VALUE(value) (G_TYPE_CHECK_VALUE(value))
+#define G_VALUE_HOLDS(value, g_type) (G_TYPE_CHECK_VALUE_TYPE((value), (g_type)))
+#define G_VALUE_TYPE(value) (((GValue *)(value))->g_type)
+#define G_VALUE_TYPE_NAME(value) (g_type_name(G_VALUE_TYPE(value)))
 
 /* --- typedefs & structures --- */
-typedef void (*GValueExchange) (GValue	*value1,
-        GValue	*value2);
-struct _GValue
-{
+typedef void (*GValueExchange)(GValue *value1, GValue *value2);
+struct _GValue {
   /*< private >*/
-  GType		g_type;
+  GType g_type;
 
   /* public for GTypeValueTable methods */
   union {
-  gint	v_int;
-  guint	v_uint;
-  glong	v_long;
-  gulong	v_ulong;
-  gfloat	v_float;
-  gdouble	v_double;
-  gpointer	v_pointer;
+    gint v_int;
+    guint v_uint;
+    glong v_long;
+    gulong v_ulong;
+    gfloat v_float;
+    gdouble v_double;
+    gpointer v_pointer;
   } data[4];
 };
 
-
 /* --- prototypes --- */
-void            g_value_init	   	(GValue       *value,
-           GType         g_type);
-void            g_value_copy    	(const GValue *src_value,
-           GValue       *dest_value);
-gboolean	g_value_convert		(const GValue *src_value,
-           GValue       *dest_value);
-void            g_value_reset   	(GValue       *value);
-void            g_value_unset   	(GValue       *value);
-gboolean	g_value_fits_pointer	(const GValue *value);
-gpointer	g_value_get_as_pointer	(const GValue *value);
-void		g_value_set_instance	(GValue	      *value,
-           gpointer      instance);
-
+void g_value_init(GValue *value, GType g_type);
+void g_value_copy(const GValue *src_value, GValue *dest_value);
+gboolean g_value_convert(const GValue *src_value, GValue *dest_value);
+void g_value_reset(GValue *value);
+void g_value_unset(GValue *value);
+gboolean g_value_fits_pointer(const GValue *value);
+gpointer g_value_get_as_pointer(const GValue *value);
+void g_value_set_instance(GValue *value, gpointer instance);
 
 /* --- implementation details --- */
-gboolean g_values_exchange		(GValue       *value1,
-           GValue       *value2);
-gboolean g_value_types_exchangable	(GType         value_type1,
-           GType         value_type2);
-void     g_value_register_exchange_func	(GType         value_type1,
-           GType         value_type2,
-           GValueExchange func);
-#define G_VALUE_STATIC_TAG		(1 << 27)
+gboolean g_values_exchange(GValue *value1, GValue *value2);
+gboolean g_value_types_exchangable(GType value_type1, GType value_type2);
+void g_value_register_exchange_func(GType value_type1, GType value_type2, GValueExchange func);
+#define G_VALUE_STATIC_TAG (1 << 27)
 
 #ifdef __cplusplus
 }

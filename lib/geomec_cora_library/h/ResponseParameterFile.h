@@ -5,23 +5,21 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
-class CResponseParameterFile
-{
-  public:
-  CResponseParameterFile(const QString& fileName);
+class CResponseParameterFile {
+public:
+  CResponseParameterFile(const QString &fileName);
 
-  void addResponseParameter(const QString& responseParameter);
+  void addResponseParameter(const QString &responseParameter);
 
-  private:
-  CResponseParameterFile(const CResponseParameterFile& rhs);
-  CResponseParameterFile& operator = (CResponseParameterFile rhs);
+private:
+  CResponseParameterFile(const CResponseParameterFile &rhs);
+  CResponseParameterFile &operator=(CResponseParameterFile rhs);
 
   std::ofstream m_responseParameterFile;
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseParameterFile_h_
+#endif // _cora_ResponseParameterFile_h_

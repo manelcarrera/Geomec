@@ -10,19 +10,10 @@
 
 namespace dia {
 
-ITemperatureTable::ITemperatureTable(const IDianaRunner &runner)
-: IValueTable(runner)
-{
-}
+ITemperatureTable::ITemperatureTable(const IDianaRunner &runner) : IValueTable(runner) {}
 
-std::string ITemperatureTable::TableName() const
-{
-  return "TEMPER";
-}
+std::string ITemperatureTable::TableName() const { return "TEMPER"; }
 
-std::string ITemperatureTable::TimeTableName() const
-{
-  return "TTIMPT";
-}
+std::string ITemperatureTable::TimeTableName() const { return "TTIMPT"; }
 
 } // namespace dia

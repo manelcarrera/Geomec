@@ -4,25 +4,24 @@
 #include "stdafx.h"
 
 #include "..\DCasing\DCasing.h"
-#include <iostream>
 #include "CasSignalReciever.h"
+#include <iostream>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   CDCasing myObj;
-  CDCasingGeneralParameters & Parameters = myObj.GetGeneralParameters();
+  CDCasingGeneralParameters &Parameters = myObj.GetGeneralParameters();
 
-  //just a dummy reciever all strings are send to cout
+  // just a dummy reciever all strings are send to cout
   CCasingSignalReciever rc(&myObj);
 
-  //connect reciever to casing object
-  bool ret = myObj.connect(&myObj,SIGNAL(OnMessage(QString)),&rc,SLOT(OnMessage(QString)));
-  ret = myObj.connect(&myObj,SIGNAL(OnError(QString)),&rc,SLOT(OnError(QString)));
-  ret = myObj.connect(&myObj,SIGNAL(OnWarning(QString)),&rc,SLOT(OnWarning(QString)));
-  ret = myObj.connect(&myObj,SIGNAL(OnFinished()),&rc,SLOT(OnFinished()));
+  // connect reciever to casing object
+  bool ret = myObj.connect(&myObj, SIGNAL(OnMessage(QString)), &rc, SLOT(OnMessage(QString)));
+  ret = myObj.connect(&myObj, SIGNAL(OnError(QString)), &rc, SLOT(OnError(QString)));
+  ret = myObj.connect(&myObj, SIGNAL(OnWarning(QString)), &rc, SLOT(OnWarning(QString)));
+  ret = myObj.connect(&myObj, SIGNAL(OnFinished()), &rc, SLOT(OnFinished()));
 
-  //fill casing object with bogus data
-  
+  // fill casing object with bogus data
+
   Parameters.PipeLength().SetValue(2.7432);
   Parameters.OuterDiameter().SetValue(0.1778);
   Parameters.WallThickness().SetValue(0.013716);
@@ -50,37 +49,32 @@ int main(int argc, char* argv[])
   Parameters.MaximumWaveNumber(2);
   Parameters.MaxAxialHalfWaves(200);
 
-  //create casing points and fill with bogus data
-  for (long counter = 0; counter < 8;counter++)
-  {
+  // create casing points and fill with bogus data
+  for (long counter = 0; counter < 8; counter++) {
 
-    CDCasingPoint & Point  = *new CDCasingPoint(/*&myObj*/);
+    CDCasingPoint &Point = *new CDCasingPoint(/*&myObj*/);
     myObj.AddPoint(&Point);
-    
-    if (counter < 4)
-    {
+
+    if (counter < 4) {
       Point.ElasticSupportYoungsMod().SetValue(5000);
-      Point.ElasticSupportPoissonRatio().SetValue(.15) ;
-    }		
-    else
-    {
+      Point.ElasticSupportPoissonRatio().SetValue(.15);
+    } else {
       Point.ElasticSupportYoungsMod().SetValue(15000);
-      Point.ElasticSupportPoissonRatio().SetValue(.25) ;
+      Point.ElasticSupportPoissonRatio().SetValue(.25);
     }
-    
-    Point.InternalPressure().SetValue(15 + (.25*counter));
-    Point.ExternalPressure().SetValue(20 + (.25*counter));
+
+    Point.InternalPressure().SetValue(15 + (.25 * counter));
+    Point.ExternalPressure().SetValue(20 + (.25 * counter));
     Point.Epscom().SetValue(0.02);
   }
 
-  //set diana-path and other paths..
+  // set diana-path and other paths..
   myObj.SetDianaPath("V:\\");
   myObj.SetDianaSharePath("U:\\");
   myObj.SetWorkingDir("C:\\temp\\casing");
 
-  //start analysis and recieve signals
+  // start analysis and recieve signals
   myObj.StartAnalysis();
-  
+
   return 1;
 }
-

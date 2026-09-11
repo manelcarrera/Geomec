@@ -15,42 +15,38 @@ namespace geo {
 class CTetrahedron;
 
 #include "RefinementBox.h"
-typedef std::vector<  gocadmesh::RefinementBox > TBoxV_GoCad;
+typedef std::vector<gocadmesh::RefinementBox> TBoxV_GoCad;
 
-
-class TETMESH_EXPORT CTetMeshCM2 : public CTetMeshBase
-{
+class TETMESH_EXPORT CTetMeshCM2 : public CTetMeshBase {
 public:
   CTetMeshCM2();
   virtual ~CTetMeshCM2();
 
   // generate the mesh, fails if no correct input was given
-  virtual CTetMeshBase::TRet CreateMesh(const std::string &sDianaPath,
-                    const std::string &sDiaSharePath,
-                    const std::string &sDianaLibPath,
-                    const std::string &sDianaSLibPath,
-                    const std::string &sFgvExeName,
-                    CTetMeshProgress& progress /* = CTetMeshProgress()*/);
+  virtual CTetMeshBase::TRet CreateMesh(const std::string &sDianaPath, const std::string &sDiaSharePath,
+                                        const std::string &sDianaLibPath, const std::string &sDianaSLibPath,
+                                        const std::string &sFgvExeName,
+                                        CTetMeshProgress &progress /* = CTetMeshProgress()*/);
 
   typedef enum _Option {
-  NO_STRICT_MODE = 0, // no strict allows repairs
-  NO_CRASHING         // disable routines that crash in no strict
+    NO_STRICT_MODE = 0, // no strict allows repairs
+    NO_CRASHING         // disable routines that crash in no strict
   } TOption;
   virtual void Option(int option, bool flag);
   virtual bool Option(int option) const;
 
 public: // FIXME
   TBoxV_GoCad m_mesh_refinement_boxes_v;
-public:
-  void set_mesh_refinement_boxes( TBoxV_GoCad boxes_v ){ m_mesh_refinement_boxes_v = boxes_v; };
 
+public:
+  void set_mesh_refinement_boxes(TBoxV_GoCad boxes_v) { m_mesh_refinement_boxes_v = boxes_v; };
 
 private:
   TRet _status;
 
   static std::vector<size_t> tetOrder;
 
-  std::vector<CTetrahedron*> _tet_lookup;
+  std::vector<CTetrahedron *> _tet_lookup;
 
   void CreateMesherInput(gocadmesh::MesherInput &input) const;
   void RegisterNodes(const gocadmesh::MesherOutput &output);
@@ -60,7 +56,7 @@ private:
   void RegisterInterfaces(const gocadmesh::MesherOutput &output);
 
   void VerifyOutput(const gocadmesh::MesherOutput &output, const gocadmesh::MesherInput &input, bool verbose) const;
-  bool TriangleListHasDuplicates(const vector< vector<size_t> > &triangle_list, bool) const;
+  bool TriangleListHasDuplicates(const vector<vector<size_t>> &triangle_list, bool) const;
   const vector<size_t> GetTetFace(const vector<size_t> &tet, const size_t face) const;
 
   void PrintTriangle(const vector<size_t> &triangle) const;
@@ -71,7 +67,7 @@ private:
   bool m_bNoCrash;
 };
 
-}
+} // namespace geo
 
 #endif
 

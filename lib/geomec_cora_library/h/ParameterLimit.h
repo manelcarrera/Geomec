@@ -3,30 +3,27 @@
 
 #include "ParameterBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CParameterLimit : public CParameterBase
-{
-  public:
+class CParameterLimit : public CParameterBase {
+public:
   CParameterLimit();
   virtual ~CParameterLimit();
 
   virtual const QString lowerLimit() const;
   virtual const QString upperLimit() const;
 
-  protected:
+protected:
   static const double NAN_DOUBLE;
   static const QString NAN_STRING;
 
-  private:
-  CParameterLimit(const CParameterLimit& rhs);
-  CParameterLimit& operator = (const CParameterLimit& rhs);
+private:
+  CParameterLimit(const CParameterLimit &rhs);
+  CParameterLimit &operator=(const CParameterLimit &rhs);
 
-  static std::pair <geo::CValue, geo::CValue> getRange(CGraphNode* object,
-      unsigned int valueTypeID);
+  static std::pair<geo::CValue, geo::CValue> getRange(CGraphNode *object, unsigned int valueTypeID);
 };
 
 } // namespace cora
 
-#endif  // _cora_ParameterLimit_h_
+#endif // _cora_ParameterLimit_h_

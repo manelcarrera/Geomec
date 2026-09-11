@@ -1,8 +1,7 @@
 
 #include "TimeInterval.h"
 
-TTimeInterval calculateTimeInterval(const QDateTime& begin, const QDateTime& end)
-{
+TTimeInterval calculateTimeInterval(const QDateTime &begin, const QDateTime &end) {
   TTimeInterval timeInterval;
   QTime time(0, 0);
 

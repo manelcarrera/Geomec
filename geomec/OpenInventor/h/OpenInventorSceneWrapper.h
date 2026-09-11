@@ -2,23 +2,20 @@
 #define _OPENINVENTORSCENEWRAPPER_H_
 
 #include "ISceneWrapper.h"
+#include "MeshMode.h"
 #include "OpenGLSceneBase.h"
 #include "OpenInventorSceneNode.h"
 #include "ValueCompositeObserver.h"
-#include "MeshMode.h"
-
 
 class COpenInventorSceneNode;
 // class TValueComponentObserver;
 // class CValueCompositeObserver;
 
-
-class COpenInventorSceneWrapper : public ISceneWrapper
-{
+class COpenInventorSceneWrapper : public ISceneWrapper {
   geo::CVector dummy;
 
 public:
-  COpenInventorSceneWrapper(COpenInventorSceneNode& scene);
+  COpenInventorSceneWrapper(COpenInventorSceneNode &scene);
   ~COpenInventorSceneWrapper();
 
   virtual void Activate();
@@ -27,36 +24,36 @@ public:
   BOOL ViewComponent(TValueComponentObserver &observer);
   BOOL ViewComposite(CValueCompositeObserver &observer);
 
-  //virtual COpenGLSceneBase* Scene() { return &dummy2; }
-  //virtual CGraphNode* Node() { return &m_scene; }
-  virtual COpenInventorSceneNode* OpenInventorScene();
+  // virtual COpenGLSceneBase* Scene() { return &dummy2; }
+  // virtual CGraphNode* Node() { return &m_scene; }
+  virtual COpenInventorSceneNode *OpenInventorScene();
 
   virtual bool IsOpenInventorScene() const;
 
-  virtual bool ReParent(IOpenGLFrame* pParent);
-  virtual bool IsLinkedTo(const CGraphNode& node);
-  virtual void LinkTo(const CGraphNode& node);
-  virtual void UnLink(const CGraphNode& node);
-  virtual bool CanConnectItem(const CGraphNode& node);
-  virtual bool ConnectItem(const CGraphNode& node);
-  virtual bool CanConnectToMultipleItems(const CGraphNode& node);
+  virtual bool ReParent(IOpenGLFrame *pParent);
+  virtual bool IsLinkedTo(const CGraphNode &node);
+  virtual void LinkTo(const CGraphNode &node);
+  virtual void UnLink(const CGraphNode &node);
+  virtual bool CanConnectItem(const CGraphNode &node);
+  virtual bool ConnectItem(const CGraphNode &node);
+  virtual bool CanConnectToMultipleItems(const CGraphNode &node);
 
   virtual void SetNonDrawing();
   virtual void SetDrawing();
 
-  virtual int  SelectMode();
-  virtual void OnSelect(CGraphNode& node);
+  virtual int SelectMode();
+  virtual void OnSelect(CGraphNode &node);
 
   virtual void invalidate(const geo::IObject &list, bool bUpdate = true);
 
-  virtual CFemAppModel& Model();
-  virtual IValueComponentBase* ValueComponent() const;
+  virtual CFemAppModel &Model();
+  virtual IValueComponentBase *ValueComponent() const;
   virtual std::pair<geo::CValue, geo::CValue> MinMaxValue();
   virtual const double MinValue();
   virtual const double MaxValue();
   virtual void Clear();
 
-  virtual int  Dimension();
+  virtual int Dimension();
   virtual void ResetPan();
   virtual void ResetScale();
 
@@ -86,7 +83,7 @@ public:
   virtual void DisplayCoordinateAxis(bool bDisplay);
   virtual bool DisplayCoordinateAxis() const;
   virtual bool CanDisplayCoordinateAxis() const;
-  virtual void SelectMeshMode( MeshMode mode );
+  virtual void SelectMeshMode(MeshMode mode);
   virtual MeshMode MeshModeSelected() const;
   virtual bool CanSelectMeshMode() const;
   virtual bool DraggerTrackerSelected() const;
@@ -129,15 +126,15 @@ public:
   virtual void ModelScaleVector(const geo::CVector &newval);
   virtual const geo::CVector &ScaleVector() const;
   virtual void ScaleVector(const geo::CVector &newVal);
-  virtual void RotateLockVector(const geo::CVector& vec);
+  virtual void RotateLockVector(const geo::CVector &vec);
   virtual const geo::CVector &RotateLockVector() const;
-  virtual void LockRotationVector(const geo::IVector& vector);
-  virtual const geo::IVector& LockRotationVector() const;
+  virtual void LockRotationVector(const geo::IVector &vector);
+  virtual const geo::IVector &LockRotationVector() const;
   virtual bool CanLockRotationVector() const;
-  virtual void ViewTensorVector( TensorVectorMode mode );
+  virtual void ViewTensorVector(TensorVectorMode mode);
   virtual TensorVectorMode ViewTensorVector();
   virtual bool CanViewTensorVector();
-  virtual void RefreshVectorBaseScale(); 
+  virtual void RefreshVectorBaseScale();
   virtual bool CanRefreshVectorBaseScale();
   virtual void ViewEDirection();
   virtual void ViewNDirection();
@@ -164,7 +161,7 @@ public:
   virtual void SetVectorVisibleFraction(float factor);
 
 private:
-  COpenInventorSceneNode& m_scene;
+  COpenInventorSceneNode &m_scene;
 };
 
 #endif // _OPENINVENTORSCENEWRAPPER_H_

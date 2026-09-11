@@ -12,31 +12,29 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSelectWorksheetDlg dialog
 
-class CSelectWorksheetDlg : public CDialog
-{
-// Construction
+class CSelectWorksheetDlg : public CDialog {
+  // Construction
 public:
-  CSelectWorksheetDlg(CWnd* pParent = NULL);   // standard constructor
+  CSelectWorksheetDlg(CWnd *pParent = NULL); // standard constructor
   ~CSelectWorksheetDlg();
-  void SetStrings( const std::vector<CString>& vcStrings );
-  void GetSelectedIndices( int **piIndices, int *nIndices );
-  void SetTitle( CString strTitle ) {m_strTitle = strTitle;}
+  void SetStrings(const std::vector<CString> &vcStrings);
+  void GetSelectedIndices(int **piIndices, int *nIndices);
+  void SetTitle(CString strTitle) { m_strTitle = strTitle; }
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CSelectWorksheetDlg)
   enum { IDD = IDD_SELWORKSHEET };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CSelectWorksheetDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   std::vector<CString> m_vcStrings;
   int *m_piIndices;

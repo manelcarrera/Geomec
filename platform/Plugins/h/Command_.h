@@ -1,10 +1,10 @@
 #pragma once
 
-//#include "ICommand.h";
+// #include "ICommand.h";
 
 class Command_ //: public ICommand_
 {
 public:
-  Command_(){};
-  ~Command_(){};
+  Command_() {};
+  ~Command_() {};
 };

@@ -7,89 +7,71 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-CCompressibilityQuantity::CCompressibilityQuantity()
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
-
+CCompressibilityQuantity::CCompressibilityQuantity() : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
 }
 
-CCompressibilityQuantity::CCompressibilityQuantity(const double &value, const UNIT unit)
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
+CCompressibilityQuantity::CCompressibilityQuantity(const double &value, const UNIT unit) : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
   Value(value, unit);
 }
 
-CCompressibilityQuantity::CCompressibilityQuantity(const double& value,const double &min ,const double &max, const UNIT unit)
-:CDoubleQuantity()
-{
+CCompressibilityQuantity::CCompressibilityQuantity(const double &value, const double &min, const double &max,
+                                                   const UNIT unit)
+    : CDoubleQuantity() {
 
-  MaxValue(max,  unit);
-  MinValue(min,  unit);
+  MaxValue(max, unit);
+  MinValue(min, unit);
   Value(value, unit);
 }
 
-CCompressibilityQuantity::CCompressibilityQuantity(const CCompressibilityQuantity& rhs)
-: CDoubleQuantity(rhs)
-{
-}
+CCompressibilityQuantity::CCompressibilityQuantity(const CCompressibilityQuantity &rhs) : CDoubleQuantity(rhs) {}
 
-CCompressibilityQuantity::CCompressibilityQuantity(const double& value,
-                                             const double &min ,
-                                             const double &max,
-                                             bool bIncludeMin,
-                                             bool bIncludeMax,
-                                     const UNIT unit)
-:CDoubleQuantity()
-{
-  m_bIncludeMin=bIncludeMin;
-  m_bIncludeMax=bIncludeMax;
-  MaxValue(max,  unit);
-  MinValue(min,  unit);
+CCompressibilityQuantity::CCompressibilityQuantity(const double &value, const double &min, const double &max,
+                                                   bool bIncludeMin, bool bIncludeMax, const UNIT unit)
+    : CDoubleQuantity() {
+  m_bIncludeMin = bIncludeMin;
+  m_bIncludeMax = bIncludeMax;
+  MaxValue(max, unit);
+  MinValue(min, unit);
   Value(value, unit);
 }
 
-double CCompressibilityQuantity::Convert(const double &value, const UNIT out, const UNIT in) const
-{
+double CCompressibilityQuantity::Convert(const double &value, const UNIT out, const UNIT in) const {
 
-  if(in == out)
+  if (in == out)
     return value;
 
+  double tmp = value;
 
-  double tmp=value;
-
-  switch(in)
-  {
+  switch (in) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
     break;
   case FIELD_UNIT:
-    tmp=tmp / 6.8950e-3;
+    tmp = tmp / 6.8950e-3;
     break;
   case US_UNIT:
-    tmp=tmp / 6.8950e-3;
+    tmp = tmp / 6.8950e-3;
     break;
   default:
     assert(false);
     break;
   }
 
-
-  switch(out)
-  {
+  switch (out) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
     break;
   case FIELD_UNIT:
-    tmp=tmp * 6.8950e-3;
+    tmp = tmp * 6.8950e-3;
     break;
   case US_UNIT:
-    tmp=tmp * 6.8950e-3;
+    tmp = tmp * 6.8950e-3;
     break;
   default:
     assert(false);
@@ -99,15 +81,10 @@ double CCompressibilityQuantity::Convert(const double &value, const UNIT out, co
   return tmp;
 }
 
-std::string	CCompressibilityQuantity::QuantityName() const
-{
-  return "Compressibility";
-}
+std::string CCompressibilityQuantity::QuantityName() const { return "Compressibility"; }
 
-std::string CCompressibilityQuantity::UnitName(const UNIT unit) const 
-{
-  switch(unit)
-  {
+std::string CCompressibilityQuantity::UnitName(const UNIT unit) const {
+  switch (unit) {
   case SI_UNIT:
     return "1/MPa";
     break;

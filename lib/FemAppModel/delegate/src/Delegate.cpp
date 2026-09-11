@@ -10,10 +10,6 @@
  * factory. Use the REGISTER_DELEGATE macro for this.
  */
 
-CDelegate::~CDelegate()
-{
-}
+CDelegate::~CDelegate() {}
 
-CDelegate::CDelegate()
-{
-}
+CDelegate::CDelegate() {}

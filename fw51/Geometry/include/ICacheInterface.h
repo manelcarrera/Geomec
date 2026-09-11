@@ -1,8 +1,8 @@
 #if !defined(_I_CACHE_INTERFACE_H_)
 #define _I_CACHE_INTERFACE_H_
 
-#include "Point.h"
 #include "ElementPoint.h"
+#include "Point.h"
 #include <vector>
 
 namespace geo {
@@ -13,10 +13,10 @@ class CElementPoint;
 class IElementSet;
 class CElementCacheObject;
 
-class GEOMETRY_EXPORT ICacheInterface
-{
+class GEOMETRY_EXPORT ICacheInterface {
 protected:
   ICacheInterface() {}
+
 public:
   virtual ~ICacheInterface() {}
 
@@ -38,17 +38,16 @@ public:
   virtual bool ShapeMap(int nIndex, const IPoint &Point, std::vector<double> &Map) = 0;
   virtual void SetShapeMap(int nIndex, const IPoint &Point, std::vector<double> &Map) = 0;
 
-  virtual CElementCacheObject* ElementCacheObject(const IElementSet *elt_set, const IBody *body) = 0;
+  virtual CElementCacheObject *ElementCacheObject(const IElementSet *elt_set, const IBody *body) = 0;
   virtual void ElementCacheObject(const IElementSet *elt_set, int nIndex, CElementCacheObject &ElementCacheObject) = 0;
 
   virtual void Invalidate() = 0;
 
   virtual bool Cached(const IElementSet *elt_set) = 0;
 
-  //typedef std::vector<ElementCacheObject> TElementMapping;
-
+  // typedef std::vector<ElementCacheObject> TElementMapping;
 };
 
-}
+} // namespace geo
 
 #endif // _I_CACHE_INTERFACE_H_

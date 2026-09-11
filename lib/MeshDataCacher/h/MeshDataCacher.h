@@ -21,8 +21,7 @@ class CMeshDataCacherTestAccessor;
 class IStorageInterface;
 class CArchiveInterface;
 
-class CMeshDataCacher  
-{
+class CMeshDataCacher {
   friend class CMeshDataCacherTestAccessor;
   friend class CDataCell;
   friend class CStorageInterfaceDefault;
@@ -39,7 +38,6 @@ class CMeshDataCacher
 
   int m_maxEltNodes;
   int m_maxIfNodes;
-
 
 public:
   // cache size is in Mb (1024 * 1024 bytes), and is a real maximum, unless only one cell can fit, 512Mb by default
@@ -77,13 +75,11 @@ private:
   int NrCells(int cacheSizeMb);
 };
 
-
-class CMeshDataCacherTestAccessor
-{
-  CMeshDataCacher& m_MeshDataCacher;
+class CMeshDataCacherTestAccessor {
+  CMeshDataCacher &m_MeshDataCacher;
 
 public:
-  CMeshDataCacherTestAccessor(CMeshDataCacher& mdc);
+  CMeshDataCacherTestAccessor(CMeshDataCacher &mdc);
 
   void DisablePivot();
 
@@ -92,8 +88,6 @@ public:
 
   void SaveColumn(int nColumn, const char *fileName, int nElement = 0, int nSize = 0);
 };
-
-
 
 } // namespace mdc
 

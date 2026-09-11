@@ -29,24 +29,25 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueSurfaceCell_H
 #define cBagRescueSurfaceCell_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueSurfaceCell;
 
-class cBagRescueSurfaceCell
-{
+class cBagRescueSurfaceCell {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueSurfaceCell();
   ~cBagRescueSurfaceCell();
   void operator+=(RescueSurfaceCell *newObject);
   RESCUEBOOL operator-=(RescueSurfaceCell *existingObject);
   RescueSurfaceCell *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueSurfaceCell *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueSurfaceCell *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+
 private:
   void EmptySelf();
 
@@ -54,7 +55,3 @@ private:
 };
 
 #endif
-
-
-
-

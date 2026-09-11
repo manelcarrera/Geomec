@@ -20,35 +20,39 @@
 #include "config.h"
 
 #ifdef HAVE_FPU_CONTROL_H
-#  include <fpu_control.h>
-   static fpu_control_t fpu_round_double =
-     (_FPU_DEFAULT & ~ _FPU_EXTENDED)|_FPU_DOUBLE;
-   static fpu_control_t fpu_init;
-#  define FPU_ROUND_DOUBLE  { _FPU_GETCW(fpu_init);\
-                             _FPU_SETCW(fpu_round_double); }
-#  define FPU_RESTORE       {_FPU_SETCW(fpu_init);}
+#include <fpu_control.h>
+static fpu_control_t fpu_round_double = (_FPU_DEFAULT & ~_FPU_EXTENDED) | _FPU_DOUBLE;
+static fpu_control_t fpu_init;
+#define FPU_ROUND_DOUBLE                                                                                               \
+  {                                                                                                                    \
+    _FPU_GETCW(fpu_init);                                                                                              \
+    _FPU_SETCW(fpu_round_double);                                                                                      \
+  }
+#define FPU_RESTORE                                                                                                    \
+  {                                                                                                                    \
+    _FPU_SETCW(fpu_init);                                                                                              \
+  }
 #else /* not HAVE_FPU_CONTROL_H */
-#  ifdef __FreeBSD__
-#    include <floatingpoint.h>
-#    define FPU_ROUND_DOUBLE  (fpsetprec(FP_PD))
-#    define FPU_RESTORE       (fpsetprec(FP_PE))
-#  else /* not __FreeBSD__ */
-#    if 0
+#ifdef __FreeBSD__
+#include <floatingpoint.h>
+#define FPU_ROUND_DOUBLE (fpsetprec(FP_PD))
+#define FPU_RESTORE (fpsetprec(FP_PE))
+#else /* not __FreeBSD__ */
+#if 0
 //   we skip setting the precision flag, as it is not supported on WIN32 x64 (bug 81153)
-//#    ifdef WIN32 
-#      ifdef _MSC_VER
-#        include <float.h>
+//#    ifdef WIN32
+#ifdef _MSC_VER
+#include <float.h>
          static unsigned int fpu_init;
-#        define FPU_ROUND_DOUBLE (fpu_init = _controlfp (0, 0),\
-                                 _controlfp (_PC_53, MCW_PC))
-#        define FPU_RESTORE      (_controlfp (fpu_init, 0xfffff))
-#      else /* not _MSC_VER */
-#        error "You need the Microsoft C compiler for the Win32 version"
-#      endif /*  not _MSC_VER */
-#    else /* not WIN32 */
+#define FPU_ROUND_DOUBLE (fpu_init = _controlfp(0, 0), _controlfp(_PC_53, MCW_PC))
+#define FPU_RESTORE (_controlfp(fpu_init, 0xfffff))
+#else /* not _MSC_VER */
+#error "You need the Microsoft C compiler for the Win32 version"
+#endif /*  not _MSC_VER */
+#else  /* not WIN32 */
 /*#      warning "Unknown CPU: assuming default double precision rounding"*/
-#      define FPU_ROUND_DOUBLE
-#      define FPU_RESTORE
-#    endif /* not WIN32 */
-#  endif /* not __FreeBSD__ */
+#define FPU_ROUND_DOUBLE
+#define FPU_RESTORE
+#endif /* not WIN32 */
+#endif /* not __FreeBSD__ */
 #endif /* not HAVE_FPU_CONTROL_H */

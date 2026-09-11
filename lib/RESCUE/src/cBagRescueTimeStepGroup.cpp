@@ -25,52 +25,32 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueTimeStepGroup.h"
-#include "RescueTimeStepGroup.h"
 #include "RescueModel.h"
+#include "RescueTimeStepGroup.h"
+#include "myHeaders.h"
 
-cBagRescueTimeStepGroup::cBagRescueTimeStepGroup()
-{
-  tree = new RescueTree();
-}
+cBagRescueTimeStepGroup::cBagRescueTimeStepGroup() { tree = new RescueTree(); }
 
-cBagRescueTimeStepGroup::~cBagRescueTimeStepGroup()
-{
-  delete tree;
-}
+cBagRescueTimeStepGroup::~cBagRescueTimeStepGroup() { delete tree; }
 
-void cBagRescueTimeStepGroup::operator+=(RescueTimeStepGroup *newObject)
-{
-  tree->Add(newObject);
-}
+void cBagRescueTimeStepGroup::operator+=(RescueTimeStepGroup *newObject) { tree->Add(newObject); }
 
-RESCUEBOOL cBagRescueTimeStepGroup::operator-=(RescueTimeStepGroup * existingObject)
-{
+RESCUEBOOL cBagRescueTimeStepGroup::operator-=(RescueTimeStepGroup *existingObject) {
   return tree->Delete(existingObject);
 }
 
-RescueTimeStepGroup *cBagRescueTimeStepGroup::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueTimeStepGroup *) tree->NthObject(ordinal);
+RescueTimeStepGroup *cBagRescueTimeStepGroup::NthObject(RESCUEINT64 ordinal) {
+  return (RescueTimeStepGroup *)tree->NthObject(ordinal);
 }
 
-RESCUEINT32 cBagRescueTimeStepGroup::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueTimeStepGroup::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-

@@ -5,28 +5,27 @@ class CHexaModel;
 
 #include "3DGUI.h"
 
-class CHexaGUI : public C3DGUI
-{
+class CHexaGUI : public C3DGUI {
 public:
-  CHexaGUI(CFemAppGUI* parentGUI, CHexaModel* hexaModel);
+  CHexaGUI(CFemAppGUI *parentGUI, CHexaModel *hexaModel);
 
   bool CanConvertToTetra() const;
-  void ConvertToTetraModel(); 
+  void ConvertToTetraModel();
 
-  CGUIBase* ConvertToTetra();
+  CGUIBase *ConvertToTetra();
 
   virtual void OnCloseModel();
 
-  CHexaModel* model() const;
+  CHexaModel *model() const;
 
 protected:
   virtual bool LoadPre381Stream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
 
 private:
-  CHexaGUI(const CHexaGUI& rhs);
-  CHexaGUI& operator = (const CHexaGUI& rhs);
+  CHexaGUI(const CHexaGUI &rhs);
+  CHexaGUI &operator=(const CHexaGUI &rhs);
 
-  CHexaModel* m_hexaModel;
+  CHexaModel *m_hexaModel;
 };
 
-#endif  // _HexaGUI_h_
+#endif // _HexaGUI_h_

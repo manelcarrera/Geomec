@@ -15,8 +15,7 @@ namespace dia {
 
 class CLoadManager;
 
-class CFaceMoment : public IDirectedLoad  
-{
+class CFaceMoment : public IDirectedLoad {
   const geo::IFace &m_Face;
 
 public:
@@ -26,6 +25,6 @@ public:
   const geo::IFace &Face() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IFACEMOMENT_H__6FB24D7B_38D2_45BB_B9A2_A172707D0C6E__INCLUDED_)

@@ -1,18 +1,12 @@
 
 #include "SavePropertyTensor.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-CSavePropertyTensor::CSavePropertyTensor(const RGProperty& rgProperty,
-  const ITensorGroup::CComponentComposite::TENSOR_COMPONENT& tensorComponent)
-: CSavePropertyBase(rgProperty)
-, m_tensorComponent(tensorComponent)
-{
-}
+CSavePropertyTensor::CSavePropertyTensor(const RGProperty &rgProperty,
+                                         const ITensorGroup::CComponentComposite::TENSOR_COMPONENT &tensorComponent)
+    : CSavePropertyBase(rgProperty), m_tensorComponent(tensorComponent) {}
 
-CSavePropertyTensor::~CSavePropertyTensor()
-{
-}
+CSavePropertyTensor::~CSavePropertyTensor() {}
 
 } // namespace GeomecRGI

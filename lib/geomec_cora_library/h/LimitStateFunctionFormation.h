@@ -3,22 +3,19 @@
 
 #include "LimitStateFunctionBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CLimitStateFunctionFormation : public CLimitStateFunctionBase
-{
-  public:
-  CLimitStateFunctionFormation(CSummaryResultFile& summaryResultFile,
-      std::vector <QString>& function, CGetModelInfo& modelInfo,
-      const QString& versionNumber);
+class CLimitStateFunctionFormation : public CLimitStateFunctionBase {
+public:
+  CLimitStateFunctionFormation(CSummaryResultFile &summaryResultFile, std::vector<QString> &function,
+                               CGetModelInfo &modelInfo, const QString &versionNumber);
   virtual ~CLimitStateFunctionFormation();
 
-  private:
-  CLimitStateFunctionFormation(const CLimitStateFunctionFormation& rhs);
-  CLimitStateFunctionFormation& operator = (CLimitStateFunctionFormation rhs);
+private:
+  CLimitStateFunctionFormation(const CLimitStateFunctionFormation &rhs);
+  CLimitStateFunctionFormation &operator=(CLimitStateFunctionFormation rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_LimitStateFunctionFormation_h_
+#endif // _cora_LimitStateFunctionFormation_h_

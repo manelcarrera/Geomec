@@ -2,9 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "IDCLoad.h"
-#include "IDCDirectedLoad.h"
 #include "DCLineMoment.h"
+#include "IDCDirectedLoad.h"
+#include "IDCLoad.h"
 
 #include "DCLoadManager.h"
 #include "IDCDianaRunner.h"
@@ -21,25 +21,18 @@
 namespace dia {
 
 CLineMoment::CLineMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line)
-:	IDirectedLoad(loadcase, size, vecDirection), m_Line(line)
-{
-}
+    : IDirectedLoad(loadcase, size, vecDirection), m_Line(line) {}
 
-CLineMoment::~CLineMoment()
-{
-}
+CLineMoment::~CLineMoment() {}
 
-const geo::ILine &CLineMoment::Line() const
-{
-  return m_Line;
-}
+const geo::ILine &CLineMoment::Line() const { return m_Line; }
 
-bool CLineMoment::WriteFilos() const
-{
-  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+bool CLineMoment::WriteFilos() const {
+  ftn_int_t idxdir = (ftn_int_t)Manager().Runner().AddDirection(Direction());
 
   ftn_int_t idx = Inquire("ELEMEN", "DIM");
-  if(idx < 0) idx = 0;
+  if (idx < 0)
+    idx = 0;
   idx++;
 
   assert(!XistIndexed("ELEMEN/", &idx));
@@ -48,10 +41,10 @@ bool CLineMoment::WriteFilos() const
 
   ChangeIndexedDir("ELEMEN/", &idx);
 
-  ftn_int_t idxelm = (ftn_int_t) (Line().Index() + 1);
+  ftn_int_t idxelm = (ftn_int_t)(Line().Index() + 1);
   PutItemLength("ELEMEN", &idxelm, 1);
 
-  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  ftn_int_t idxcase = (ftn_int_t)(LoadCase().Index() + 1);
   PutItem("CASE", &idxcase);
 
   PutItem("DIRECT", &idxdir);

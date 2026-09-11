@@ -15,16 +15,19 @@
 ***********************************************************************/
 #include "myHeaders.h"
 
-template <class cType> class RCHf3DArray
-{
+template <class cType> class RCHf3DArray {
 public:
   RCHf3DArray(RESCUEINT64 maxI, RESCUEINT64 maxJ, RESCUEINT64 maxK, cType *values = 0);
   cType &Ndx(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
   cType Value(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
-  cType *Array() {return values;}
-  RESCUEINT64 ArrayLength64() {return maxI * maxJ * maxK;}
-  RESCUEINT32 ArrayLength() {return (RESCUEINT32) ArrayLength64();}
-  ~RCHf3DArray() {if (freeValues) delete [] values;}
+  cType *Array() { return values; }
+  RESCUEINT64 ArrayLength64() { return maxI * maxJ * maxK; }
+  RESCUEINT32 ArrayLength() { return (RESCUEINT32)ArrayLength64(); }
+  ~RCHf3DArray() {
+    if (freeValues)
+      delete[] values;
+  }
+
 private:
   RESCUEINT64 maxI;
   RESCUEINT64 maxJ;
@@ -33,40 +36,23 @@ private:
   RESCUEBOOL freeValues;
 };
 
-
-template <class cType> RCHf3DArray<cType>::RCHf3DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, RESCUEINT64 maxKin,
-                                                       cType *valuesIn)
-                                                      :maxI(maxIin)
-                                                      ,maxJ(maxJin)
-                                                      ,maxK(maxKin)
-                                                      ,values(valuesIn)
-{
-  if (values == 0)
-  {
-  values = new cType[maxI * maxJ * maxK];
-  freeValues = TRUE;
-  }
-  else
-  {
-  freeValues = FALSE;
+template <class cType>
+RCHf3DArray<cType>::RCHf3DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, RESCUEINT64 maxKin, cType *valuesIn)
+    : maxI(maxIin), maxJ(maxJin), maxK(maxKin), values(valuesIn) {
+  if (values == 0) {
+    values = new cType[maxI * maxJ * maxK];
+    freeValues = TRUE;
+  } else {
+    freeValues = FALSE;
   }
 }
 
-template <class cType> cType& RCHf3DArray<cType>::Ndx(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k)
-{
-  RESCUEINT64 ndx = (k * (maxJ * maxI))
-         + (j * maxI)
-         +  i;
+template <class cType> cType &RCHf3DArray<cType>::Ndx(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k) {
+  RESCUEINT64 ndx = (k * (maxJ * maxI)) + (j * maxI) + i;
   return values[ndx];
 }
 
-template <class cType> cType RCHf3DArray<cType>::Value(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k)
-{
-  RESCUEINT64 ndx = (k * (maxJ * maxI))
-         + (j * maxI)
-         +  i;
+template <class cType> cType RCHf3DArray<cType>::Value(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k) {
+  RESCUEINT64 ndx = (k * (maxJ * maxI)) + (j * maxI) + i;
   return values[ndx];
 }
-
-
-

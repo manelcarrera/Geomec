@@ -9,26 +9,24 @@ class OIDIMeshNodeManager;
 
 #include <map>
 
-class CrossSectionGroup : public SoGroup
-{
-  typedef std::map<const CCrossSection*, MeshCrossSection*> XSecMap;
+class CrossSectionGroup : public SoGroup {
+  typedef std::map<const CCrossSection *, MeshCrossSection *> XSecMap;
   XSecMap m_xsecMap;
 
-  OIDIMeshNodeManager* m_meshNodeMgr;
+  OIDIMeshNodeManager *m_meshNodeMgr;
 
-  MeshCrossSection* buildCrossSectionNode(CCrossSection& xsec) const;
+  MeshCrossSection *buildCrossSectionNode(CCrossSection &xsec) const;
 
 public:
+  explicit CrossSectionGroup(OIDIMeshNodeManager *mgr);
 
-  explicit CrossSectionGroup(OIDIMeshNodeManager* mgr);
+  void enableCrossSection(const CCrossSection *xsec);
 
-  void enableCrossSection(const CCrossSection* xsec);
+  void disableCrossSection(const CCrossSection *xsec);
 
-  void disableCrossSection(const CCrossSection* xsec);
+  void setActiveCrossSection(const CCrossSection *xsec);
 
-  void setActiveCrossSection(const CCrossSection* xsec);
-
-  MeshCrossSection* getCrossSectionNode(const CCrossSection* xsec) const;
+  MeshCrossSection *getCrossSectionNode(const CCrossSection *xsec) const;
 
   void SelectClipPlaneMode(bool enable);
 };

@@ -3,24 +3,20 @@
 
 #include "SavePropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CSavePropertyFluidPressure : public CSavePropertyBase
-{
-  public:
-  CSavePropertyFluidPressure(const RGProperty& rgProperty);
+class CSavePropertyFluidPressure : public CSavePropertyBase {
+public:
+  CSavePropertyFluidPressure(const RGProperty &rgProperty);
   virtual ~CSavePropertyFluidPressure();
 
-  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
-      const CRockMechProcessor& rmp);
+  virtual bool saveProperty(RGInterface &rgi, CModelBase &modelBase, const CRockMechProcessor &rmp);
 
-  private:
-  CSavePropertyFluidPressure(const CSavePropertyFluidPressure& rhs);
-  CSavePropertyFluidPressure& operator = (
-      const CSavePropertyFluidPressure& rhs);
+private:
+  CSavePropertyFluidPressure(const CSavePropertyFluidPressure &rhs);
+  CSavePropertyFluidPressure &operator=(const CSavePropertyFluidPressure &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _SavePropertyFluidPressure_h_
+#endif // _SavePropertyFluidPressure_h_

@@ -7,51 +7,48 @@
 // WellEditDlg.h : header file
 //
 
-#include "resource.h"
 #include "SpreadView.h"
+#include "resource.h"
 
-namespace well
-{
+namespace well {
 class CWellPathBase;
 class CWellPathBaseDocument;
-};
+}; // namespace well
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellEditDlg dialog
 
-
 class CWellEditView;
 class CWellEditFrame;
 
-class AFX_EXT_CLASS CWellEditDlg : public CDialog
-{
+class AFX_EXT_CLASS CWellEditDlg : public CDialog {
   friend class CWellEditFrame;
 
-// Construction
+  // Construction
 public:
   virtual ~CWellEditDlg();
-  CWellEditDlg(const well::CWellPathBase& wellpath , QU::UNIT us, CWnd* pParent = NULL);   // standard constructor
+  CWellEditDlg(const well::CWellPathBase &wellpath, QU::UNIT us, CWnd *pParent = NULL); // standard constructor
   virtual void OnOK();
   virtual void OnCancel();
-  void		 SetAzimuth(bool azimuth);
-  void		 SetType(DEF_TYPE type);
+  void SetAzimuth(bool azimuth);
+  void SetType(DEF_TYPE type);
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CWellEditDlg)
   enum { IDD = UT_IDD_DLG_WELL_EDIT };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-  well::CWellPathBase& WellPath() const;
+  well::CWellPathBase &WellPath() const;
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellEditDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   // Generated message map functions
   //{{AFX_MSG(CWellEditDlg)
@@ -59,28 +56,26 @@ protected:
   virtual BOOL OnInitDialog();
   afx_msg void OnSize(unsigned int nType, int cx, int cy);
   afx_msg void OnId3dvCopypicture();
-  afx_msg void OnUpdateId3dvCopypicture(CCmdUI* pCmdUI);
+  afx_msg void OnUpdateId3dvCopypicture(CCmdUI *pCmdUI);
   afx_msg void OnMenuApply();
   afx_msg void OnMenuClose();
   afx_msg void OnMenuOpen();
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 private:
-  CWellEditFrame* m_pFrameWnd;
+  CWellEditFrame *m_pFrameWnd;
   CSplitterWnd m_cSplitter;
 
   QU::UNIT m_Us;
-  mutable well::CWellPathBase* m_pWellPath;
-  well::CWellPathBaseDocument* m_doc;
+  mutable well::CWellPathBase *m_pWellPath;
+  well::CWellPathBaseDocument *m_doc;
 
   int m_Height;
 
-  CSpreadView* m_pSpreadView;
-  CWellEditView* m_pWellEditView;
-  CToolBar    m_3DViewToolBar;
-  CDialogBar    m_SpreadDlgbar;	
-
-
+  CSpreadView *m_pSpreadView;
+  CWellEditView *m_pWellEditView;
+  CToolBar m_3DViewToolBar;
+  CDialogBar m_SpreadDlgbar;
 };
 
 //{{AFX_INSERT_LOCATION}}

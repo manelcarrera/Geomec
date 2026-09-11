@@ -5,7 +5,7 @@
  * PURPOSE:
  *   This file defines datamanager specific items
  *
- * COPYRIGHT 2010 Shell International Exploration and Production 
+ * COPYRIGHT 2010 Shell International Exploration and Production
  * bv Rijswijk, The Netherlands.
  *
  * CONFIDENTIALITY:
@@ -34,17 +34,15 @@
 #include "resource.h"
 
 #ifdef _LICENSERESOURCEDLL
-  #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllexport)
+#define AFX_EXT_CLASS_LICENSERESOURCE __declspec(dllexport)
 #else
-  #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllimport)
-#endif 
+#define AFX_EXT_CLASS_LICENSERESOURCE __declspec(dllimport)
+#endif
 
 #ifdef _DEBUG
 #define LICENSERESOURCE_DLL_NAME "LicenseResourceD.dll"
 #else
 #define LICENSERESOURCE_DLL_NAME "LicenseResource.dll"
 #endif
-
-
 
 #endif

@@ -3,19 +3,18 @@
 
 #include "ISaveModel.h"
 
-class CSaveModel : public ISaveModel
-{
+class CSaveModel : public ISaveModel {
 public:
-  CSaveModel(ISaveModel* strategy);
+  CSaveModel(ISaveModel *strategy);
   virtual ~CSaveModel();
 
-  virtual bool saveModel(const QString& fileName, bool bSwitch);
+  virtual bool saveModel(const QString &fileName, bool bSwitch);
 
 private:
-  CSaveModel(const CSaveModel& rhs);
-  CSaveModel& operator = (const CSaveModel& rhs);
+  CSaveModel(const CSaveModel &rhs);
+  CSaveModel &operator=(const CSaveModel &rhs);
 
-  ISaveModel* m_strategy;
+  ISaveModel *m_strategy;
 };
 
-#endif  // _SaveModel_h_
+#endif // _SaveModel_h_

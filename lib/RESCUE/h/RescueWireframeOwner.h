@@ -11,21 +11,20 @@
 #ifndef RescueWireframeOwner_H
 #define RescueWireframeOwner_H
 
-#include "myHeaders.h"
 #include "RescueHistoryObject.h"
 #include "RescueWireframe.h"
+#include "myHeaders.h"
 class RescueModel;
 
-class RescueWireframeOwner:public RescueHistoryObject
-{
+class RescueWireframeOwner : public RescueHistoryObject {
 public:
-  virtual RescueModel *ParentModel()=0;
-  RescueWireframe *Wireframe();       // Will return zero if the wireframe is not loaded.
+  virtual RescueModel *ParentModel() = 0;
+  RescueWireframe *Wireframe(); // Will return zero if the wireframe is not loaded.
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
 protected:
-  RescueWireframeOwner(RescueContext *context):RescueHistoryObject(context),wireframe(0) {}
+  RescueWireframeOwner(RescueContext *context) : RescueHistoryObject(context), wireframe(0) {}
 
   RescueWireframe *wireframe;
 
@@ -33,4 +32,3 @@ protected:
 };
 
 #endif
-

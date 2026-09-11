@@ -15,14 +15,12 @@
 class RescueTreeNode;
 class RescueListNode;
 
-struct Leaf
-{
+struct Leaf {
   void *object;
   RescueListNode *listNode;
 };
 
-class RescueTree
-{
+class RescueTree {
 protected:
   RescueTreeNode *rootNode;
   RescueListNode *listHead;
@@ -34,20 +32,17 @@ protected:
   RescueTreeNode *traversal2Node;
   RESCUEINT64 traversal2Ndx;
   RESCUEINT64 traversal2Ordinal;
+
 public:
   RescueTree();
   ~RescueTree();
   void Add(void *newObject);
   RESCUEBOOL Delete(void *existingObject);
   void *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count(void) {return count;}
+  RESCUEINT64 Count(void) { return count; }
   void *TreeTraversal(RESCUEINT64 ordinal);
 
   friend class RescueListNode;
 };
 
 #endif
-
-
-
-

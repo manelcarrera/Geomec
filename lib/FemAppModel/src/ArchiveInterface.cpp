@@ -1,38 +1,16 @@
 #include "ArchiveInterface.h"
 
-CArchiveInterface::~CArchiveInterface()
-{
-}
+CArchiveInterface::~CArchiveInterface() {}
 
-bool CArchiveInterface::IsHDF5() const
-{
-  return false;
-}
+bool CArchiveInterface::IsHDF5() const { return false; }
 
-CHDF5File *CArchiveInterface::GetHDF5File() const
-{
-  return 0;
-}
+CHDF5File *CArchiveInterface::GetHDF5File() const { return 0; }
 
-bool CArchiveInterface::PushDataSet(const QString& /*dataSet*/, int /*hint*/)
-{
-  return true;
-}
-bool CArchiveInterface::PopDataSet()
-{
-  return true;
-}
+bool CArchiveInterface::PushDataSet(const QString & /*dataSet*/, int /*hint*/) { return true; }
+bool CArchiveInterface::PopDataSet() { return true; }
 
-CArchiveInterface& CArchiveInterface::CreateCompressedStream()
-{
-  return *this;
-}
+CArchiveInterface &CArchiveInterface::CreateCompressedStream() { return *this; }
 
-void CArchiveInterface::DestroyCompressedStream()
-{
-}
+void CArchiveInterface::DestroyCompressedStream() {}
 
-bool CArchiveInterface::IsCompressed() const
-{
-  return false;
-}
+bool CArchiveInterface::IsCompressed() const { return false; }

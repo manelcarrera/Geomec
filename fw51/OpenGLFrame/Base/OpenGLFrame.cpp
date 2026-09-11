@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // OpenGLFrame.cpp: implementation of the COpenGLFrame class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -8,12 +8,6 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-COpenGLFrame::COpenGLFrame()
-{
+COpenGLFrame::COpenGLFrame() {}
 
-}
-
-COpenGLFrame::~COpenGLFrame()
-{
-
-}
+COpenGLFrame::~COpenGLFrame() {}

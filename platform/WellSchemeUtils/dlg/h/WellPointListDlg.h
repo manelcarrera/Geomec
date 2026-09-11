@@ -9,38 +9,35 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellPointListDlg dialog
-//#include <qptrvector.h> 
-#include "resource.h"
+// #include <qptrvector.h>
 #include "WellPointListCtrl.h"
+#include "resource.h"
 
-class AFX_EXT_CLASS CWellPointListDlg : public CDialog
-{
-// Construction
+class AFX_EXT_CLASS CWellPointListDlg : public CDialog {
+  // Construction
 public:
-  CWellPointListDlg(well::CWellPathBase& wellpath,
-            CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT,
-            CWnd* pParent = NULL,
-            QVector<well::CWellSectionList*>* pSections=NULL);   // standard constructor
+  CWellPointListDlg(well::CWellPathBase &wellpath, CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT,
+                    CWnd *pParent = NULL,
+                    QVector<well::CWellSectionList *> *pSections = NULL); // standard constructor
 
-  virtual ~CWellPointListDlg(){}
-// Dialog Data
+  virtual ~CWellPointListDlg() {}
+  // Dialog Data
   //{{AFX_DATA(CWellPointListDlg)
   enum { IDD = UT_IDD_WELLLIST_DLG };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-  CWellPointListCtrl&  WellPointListCtrl() {return m_WellPointListCtrl;}
+  CWellPointListCtrl &WellPointListCtrl() { return m_WellPointListCtrl; }
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellPointListDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CWellPointListDlg)
   virtual BOOL OnInitDialog();
@@ -49,15 +46,13 @@ protected:
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
-  
-
 private:
-  well::CWellPathBase* m_pWellPath;
+  well::CWellPathBase *m_pWellPath;
   CWellPointListCtrl m_WellPointListCtrl;
-  well::CWellPointList* m_pList;
-  IndexPointMap* m_pIndexPoints;
+  well::CWellPointList *m_pList;
+  IndexPointMap *m_pIndexPoints;
   CDoubleQuantity::UNIT m_Unit;
-  QVector<well::CWellSectionList*> m_Sections;
+  QVector<well::CWellSectionList *> m_Sections;
 };
 
 //{{AFX_INSERT_LOCATION}}

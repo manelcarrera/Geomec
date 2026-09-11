@@ -9,31 +9,28 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CAttriEclipseFormationDlg dialog
-#include "EclipseFormation.h"
 #include "AttributesTemplate.h"
+#include "EclipseFormation.h"
 
-class CAttriEclipseFormationDlg : public CAttributesTemplate<CEclipseFormation>
-{
-// Construction
+class CAttriEclipseFormationDlg : public CAttributesTemplate<CEclipseFormation> {
+  // Construction
 public:
-  CAttriEclipseFormationDlg(CEclipseFormation& formation, CWnd* pParent = NULL);   // standard constructor
+  CAttriEclipseFormationDlg(CEclipseFormation &formation, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriEclipseFormationDlg)
   enum { IDD = IDD_ECL_FORMATION };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriEclipseFormationDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriEclipseFormationDlg)
   afx_msg void OnPaint();

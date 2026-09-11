@@ -14,12 +14,10 @@
 #include "boolSupport.h"
 #include <stdlib.h>
 
-
 class RescueEventDescr;
 class RescueContext;
 
-class cSetRescueEventDescr
-{
+class cSetRescueEventDescr {
 protected:
   RescueEventDescr **objects;
   RESCUEINT64 allocated;
@@ -36,9 +34,9 @@ public:
   RescueEventDescr *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueEventDescr *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueEventDescr *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueModel *model, RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
@@ -46,6 +44,3 @@ public:
 };
 
 #endif
-
-
-

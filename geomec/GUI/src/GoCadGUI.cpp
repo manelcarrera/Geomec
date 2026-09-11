@@ -1,20 +1,16 @@
 #include "stdafx.h"
 
+#include "GeomecDoc.h"
+#include "Global.h"
 #include "GoCadGUI.h"
 #include "GoCadModel.h"
 #include "HexaModel.h"
-#include "Global.h"
 #include "IProgressFactory.h"
-#include "GeomecDoc.h"
 
-CGoCadGUI::CGoCadGUI(CFemAppGUI* parentGUI, CGoCadModel* goCadModel)
-: CTetraGUI(parentGUI, goCadModel)
-, m_goCadModel(goCadModel)
-{
-}
+CGoCadGUI::CGoCadGUI(CFemAppGUI *parentGUI, CGoCadModel *goCadModel)
+    : CTetraGUI(parentGUI, goCadModel), m_goCadModel(goCadModel) {}
 
-void CGoCadGUI::Convert(const CHexaModel& model)
-{
+void CGoCadGUI::Convert(const CHexaModel &model) {
   assert(model.IsMesh());
 
   // Create new model unattached to the document, convert existing
@@ -22,7 +18,7 @@ void CGoCadGUI::Convert(const CHexaModel& model)
   // model to the document.
 
   NewModel(false);
-  std::auto_ptr <IProgressBase> prog(_g->prog()->create( eProgress::Geo, "Convert to tetramodel.."));
+  std::auto_ptr<IProgressBase> prog(_g->prog()->create(eProgress::Geo, "Convert to tetramodel.."));
   m_goCadModel->OnConvert(model, *prog);
 
   GetGeomecDoc()->OnAttachModel(*m_goCadModel, *this);
@@ -33,18 +29,11 @@ void CGoCadGUI::Convert(const CHexaModel& model)
 
   POSITION pos = GetGeomecDoc()->GetFirstViewPosition();
 
-  while (pos != NULL)
-  {
-  GetGeomecDoc()->GetNextView(pos)->OnInitialUpdate();
+  while (pos != NULL) {
+    GetGeomecDoc()->GetNextView(pos)->OnInitialUpdate();
   }
 }
 
-void CGoCadGUI::OnCloseModel()
-{
-  CTetraGUI::OnCloseModel();
-}
+void CGoCadGUI::OnCloseModel() { CTetraGUI::OnCloseModel(); }
 
-CGoCadModel* CGoCadGUI::model() const
-{
-  return m_goCadModel;
-}
+CGoCadModel *CGoCadGUI::model() const { return m_goCadModel; }

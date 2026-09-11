@@ -12,40 +12,38 @@ class CDianaXCtrl;
 /////////////////////////////////////////////////////////////////////////////
 // CProgressDlg dialog
 
-class CProgressDlg : public CDialog
-{
-// Construction
+class CProgressDlg : public CDialog {
+  // Construction
 public:
-  CProgressDlg(CWnd* pParent = NULL);   // standard constructor
+  CProgressDlg(CWnd *pParent = NULL); // standard constructor
   static CProgressDlg *m_pDlg;
   BOOL m_bStop;
   BOOL m_bStopIsOk;
-  BOOL m_bAutoCloseDialog; //only close if not succeded 
-  BOOL m_bAlwaysAutoCloseDialog; //alway close dialog
+  BOOL m_bAutoCloseDialog;       // only close if not succeded
+  BOOL m_bAlwaysAutoCloseDialog; // alway close dialog
 
-  void AddMessage( CString Message );
-  void AddWarning( CString Warning );
-  void DisplayError( CString Error );
+  void AddMessage(CString Message);
+  void AddWarning(CString Warning);
+  void DisplayError(CString Error);
   int CallBack();
   void Finish();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CProgressDlg)
   enum { IDD = IDD_DIANAX };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CProgressDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-  void DisplayLastItem( CListBox *ListBox );
+  void DisplayLastItem(CListBox *ListBox);
   CDianaXCtrl *GetControl();
 
   // Generated message map functions

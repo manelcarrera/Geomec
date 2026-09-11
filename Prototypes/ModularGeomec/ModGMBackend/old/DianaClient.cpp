@@ -3,21 +3,15 @@
 #include "DianaStartUp.h"
 #include "lbcp.h"
 
-DianaClient::DianaClient(const QString& base, const QString& name, QObject *parent)
-  : ModGMLocalBusClient(base, name, parent)
-  //, m_timer(nullptr)
-  , m_dropped(0)
-  , m_hb_id(0)
-{
-}
+DianaClient::DianaClient(const QString &base, const QString &name, QObject *parent)
+    : ModGMLocalBusClient(base, name, parent)
+      //, m_timer(nullptr)
+      ,
+      m_dropped(0), m_hb_id(0) {}
 
-DianaClient::~DianaClient()
-{
-  delete m_timer;
-}
+DianaClient::~DianaClient() { delete m_timer; }
 
-void DianaClient::diana_setup()
-{
+void DianaClient::diana_setup() {
   qDebug() << "Setup hb";
   m_hb_message.setFrom(m_name.toStdString().c_str());
   m_hb_message.setTo("Gui");
@@ -26,13 +20,14 @@ void DianaClient::diana_setup()
   connect(m_timer, &QTimer::timeout, this, &DianaClient::run_diana);
 
   // go as fast as possible; or set interval otherwise
-  m_timer->setSingleShot(true);// setInterval(1); // 10 + QRandomGenerator::global()->bounded(1000));
+  m_timer->setSingleShot(true); // setInterval(1); // 10 + QRandomGenerator::global()->bounded(1000));
   m_timer->setInterval(1);
   m_timer->start();
 }
 
 // this one counts and checks if messages are dropped
-// a previous version sent current time, and if there is throughput latency, the time in the Gui will be more and more behind
+// a previous version sent current time, and if there is throughput latency, the time in the Gui will be more and more
+// behind
 /*void DianaClient::heartbeat()
 {
   qDebug() << "Client heartbeat";
@@ -53,17 +48,15 @@ void DianaClient::diana_setup()
   }
 }*/
 
-
-void DianaClient::run_diana()
-{
+void DianaClient::run_diana() {
   qDebug() << "Client diana";
 
-  	QString Exe = "C:/Program Files/GEOMEC 5.7 - SVS/Diana/binseg/ap/gm42.exe";
+  QString Exe = "C:/Program Files/GEOMEC 5.7 - SVS/Diana/binseg/ap/gm42.exe";
   QString Path = "C:/Users/Manel.CarreraRuibal/AppData/Local/Temp/dra11072";
-  //Path = "E:/Temp/c/dra12836";
+  // Path = "E:/Temp/c/dra12836";
   QString Dat;
   QString Com;
-  QString Filos = "ff" + Path.right(6) + ".ff"; 
+  QString Filos = "ff" + Path.right(6) + ".ff";
   QString Base = "DIANA";
   bool DisplayDefMessages = false;
   QString UserLeader;
@@ -85,26 +78,11 @@ void DianaClient::run_diana()
 
   // Note: DianaEnv.cpp should be in Glue, but it depends on registry; we may want to refactor that altogether (later)
 
-  
-  int res = CDianaStartUp::GetInstance()->RunDiana(	 Exe,
-                       Path,
-                       Dat,
-                       Com,
-                       Filos,
-                       Base,
-                       DisplayDefMessages,
-                       UserLeader,
-                       UserTrailer );
+  int res = CDianaStartUp::GetInstance()->RunDiana(Exe, Path, Dat, Com, Filos, Base, DisplayDefMessages, UserLeader,
+                                                   UserTrailer);
 
-  res = CDianaStartUp::GetInstance()->RunDiana(	 Exe,
-                       Path,
-                       Dat,
-                       Com,
-                       Filos,
-                       Base,
-                       DisplayDefMessages,
-                       "UserLeader",
-                       "UserTrailer" );
+  res = CDianaStartUp::GetInstance()->RunDiana(Exe, Path, Dat, Com, Filos, Base, DisplayDefMessages, "UserLeader",
+                                               "UserTrailer");
 
   /*while (true)
   {
@@ -122,4 +100,3 @@ void DianaClient::run_diana()
   }
   }*/
 }
-

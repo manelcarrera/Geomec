@@ -2,20 +2,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // DsbTS wrapper class
 
-class DsbTS : public COleDispatchDriver
-{
+class DsbTS : public COleDispatchDriver {
 public:
-  DsbTS() {}		// Calls COleDispatchDriver default constructor
+  DsbTS() {} // Calls COleDispatchDriver default constructor
   DsbTS(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  DsbTS(const DsbTS& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  DsbTS(const DsbTS &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
   void OpenTemplate(LPCTSTR TemplateFileName);
-  void WriteLine(long linenr, LPDISPATCH* dsb);
+  void WriteLine(long linenr, LPDISPATCH *dsb);
   void SaveWorkBook(LPCTSTR filename);
   void ShowExcel(LPCTSTR filename);
   void CloseTemplate();

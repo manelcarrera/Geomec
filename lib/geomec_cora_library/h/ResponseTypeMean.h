@@ -3,24 +3,20 @@
 
 #include "ResponseTypeBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseTypeMean : public CResponseTypeBase
-{
-  public:
-  CResponseTypeMean(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CResponseTypeMean : public CResponseTypeBase {
+public:
+  CResponseTypeMean(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
   virtual ~CResponseTypeMean();
 
-  virtual double calculate(const TObject& object,
-      const TFailureMode& failureMode);
+  virtual double calculate(const TObject &object, const TFailureMode &failureMode);
 
-  private:
-  CResponseTypeMean(const CResponseTypeMean& rhs);
-  CResponseTypeMean& operator = (CResponseTypeMean rhs);
+private:
+  CResponseTypeMean(const CResponseTypeMean &rhs);
+  CResponseTypeMean &operator=(CResponseTypeMean rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseTypeMean_h_
+#endif // _cora_ResponseTypeMean_h_

@@ -12,32 +12,31 @@
 #include "stress.h"
 
 namespace geo {
-  class IElement;
+class IElement;
 }
 
+#include "GeomecModelVisitor.h"
 #include "LengthQuantity.h"
 #include "StorageNode.h"
-#include "GeomecModelVisitor.h"
 
-class CGlobalInitialStressNode : public CStorageNode
-{
+class CGlobalInitialStressNode : public CStorageNode {
   CStressGradient m_water_column_stress_gradient;
   CLengthQuantity m_water_surf_depth;
   bool m_bMeshIsValid;
 
   void InvalidateResults() const;
+
 public:
-  CGlobalInitialStressNode(CFemAppModel& model,
-               const double& dWaterSurfaceDepth,
-               const double& dWaterColumnStressGradient);
+  CGlobalInitialStressNode(CFemAppModel &model, const double &dWaterSurfaceDepth,
+                           const double &dWaterColumnStressGradient);
   CGlobalInitialStressNode(const CGlobalInitialStressNode &rhs);
-  CGlobalInitialStressNode(CFemAppModel&model);
+  CGlobalInitialStressNode(CFemAppModel &model);
   virtual ~CGlobalInitialStressNode();
 
   bool operator==(const CGlobalInitialStressNode &rhs) const;
-  CGlobalInitialStressNode& operator=(const CGlobalInitialStressNode& rhs);
+  CGlobalInitialStressNode &operator=(const CGlobalInitialStressNode &rhs);
 
-  double TotalVerticalStress(const double& z) const;
+  double TotalVerticalStress(const double &z) const;
 
   std::vector<double> TotalVerticalStress(const geo::IElement &element) const;
   double TotalVerticalStressAtNode(const geo::IElement &element, int iNodeNr) const;
@@ -53,14 +52,14 @@ public:
 
   // Save and load
   virtual long SavedItems() const;
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
-  // Stress Gradients and so	
-  const CStressGradient& WaterColumnStressGradient() const;
-  void WaterColumnStressGradient(const double& value, const CStressGradient::UNIT = CStressGradient::SI_UNIT) ;
-  const CLengthQuantity& WaterSurfaceDepth() const;
-  void WaterSurfaceDepth(const double& value, const CLengthQuantity::UNIT = CLengthQuantity::SI_UNIT) ;
+  // Stress Gradients and so
+  const CStressGradient &WaterColumnStressGradient() const;
+  void WaterColumnStressGradient(const double &value, const CStressGradient::UNIT = CStressGradient::SI_UNIT);
+  const CLengthQuantity &WaterSurfaceDepth() const;
+  void WaterSurfaceDepth(const double &value, const CLengthQuantity::UNIT = CLengthQuantity::SI_UNIT);
 
   ACCEPT_GEOMECMODELVISITORS(VisitGlobalInitialStressNode);
 };

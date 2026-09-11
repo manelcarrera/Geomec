@@ -1,18 +1,17 @@
 #ifndef _DocumentGUI_h_
 #define _DocumentGUI_h_
 
-class CDocumentGUI
-{
+class CDocumentGUI {
 public:
-  CDocumentGUI(CDocumentBase* documentBase);
+  CDocumentGUI(CDocumentBase *documentBase);
   virtual ~CDocumentGUI();
 
-  CDocumentBase* model() const;
+  CDocumentBase *model() const;
 
 private:
-  CDocumentGUI(const CDocumentGUI& rhs);
-  CDocumentGUI& operator = (const CDocumentGUI& rhs);
-  CDocumentBase* m_documentBase;
+  CDocumentGUI(const CDocumentGUI &rhs);
+  CDocumentGUI &operator=(const CDocumentGUI &rhs);
+  CDocumentBase *m_documentBase;
 };
 
-#endif  // _DocumentGUI_h_
+#endif // _DocumentGUI_h_

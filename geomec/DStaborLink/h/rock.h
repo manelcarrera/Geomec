@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CRock wrapper class
 
-class CRock : public COleDispatchDriver
-{
+class CRock : public COleDispatchDriver {
 public:
-  CRock() {}		// Calls COleDispatchDriver default constructor
+  CRock() {} // Calls COleDispatchDriver default constructor
   CRock(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CRock(const CRock& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CRock(const CRock &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   double GetYoung1();
   void SetYoung1(double);
@@ -72,7 +71,7 @@ public:
   double GetCriticalPlasticStrain();
   void SetCriticalPlasticStrain(double);
 
-// Operations
+  // Operations
 public:
 };
 

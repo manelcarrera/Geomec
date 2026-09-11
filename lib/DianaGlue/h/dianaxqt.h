@@ -1,14 +1,13 @@
 #pragma once
 
-#include <QString>
 #include <QDialog>
+#include <QString>
 
 #include "idianax.h"
 
-class CDianaXQt : public IDianaX, public QDialog
-{
+class CDianaXQt : public IDianaX, public QDialog {
 
-// Attributes
+  // Attributes
 public:
   virtual void SetShowDialog(bool);
   virtual void SetSuccessMessageString(QString);
@@ -34,7 +33,7 @@ public:
   virtual long GetNumberOfMessages();
   virtual long GetNumberOfAppSpcMessages();
 
-// Operations
+  // Operations
 public:
   virtual void AboutBox();
 

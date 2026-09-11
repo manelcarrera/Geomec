@@ -5,8 +5,7 @@
 
 #include <QtCore/QObject>
 
-class CSender : QObject
-{
+class CSender : QObject {
   Q_OBJECT
 
   QTcpSocket m_tcp_client;
@@ -15,26 +14,19 @@ class CSender : QObject
 
 public slots:
 
-  void handle_reply( qint64 );
-  void display_error( QAbstractSocket::SocketError error_id );
+  void handle_reply(qint64);
+  void display_error(QAbstractSocket::SocketError error_id);
   void host_found();
   void _connected();
 
 public:
-
-
   CSender();
   virtual ~CSender();
 
+  void connect(const QString &cmd);
+  // void send_cmd();
 
-  void connect( const QString& cmd );
-  //void send_cmd();
-
-
-
-  //void listen();
+  // void listen();
 };
 
-
-
-#endif //!defined(Sender_h)
+#endif //! defined(Sender_h)

@@ -7,25 +7,23 @@ class CModelBase;
 
 #include "GetSetInfo.h"
 
-namespace cora
-{
+namespace cora {
 
-class CGetElementSetInfo : public CGetSetInfo
-{
-  public:
-  CGetElementSetInfo(const CModelBase* modelBase);
+class CGetElementSetInfo : public CGetSetInfo {
+public:
+  CGetElementSetInfo(const CModelBase *modelBase);
 
-  std::ostream& operator () (std::ostream& os) const;
+  std::ostream &operator()(std::ostream &os) const;
 
-  private:
-  CGetElementSetInfo(const CGetElementSetInfo& rhs);
-  CGetElementSetInfo& operator = (CGetElementSetInfo rhs);
+private:
+  CGetElementSetInfo(const CGetElementSetInfo &rhs);
+  CGetElementSetInfo &operator=(CGetElementSetInfo rhs);
 
-  const CModelBase* m_modelBase;
+  const CModelBase *m_modelBase;
 };
 
 } // namespace cora
 
-std::ostream& operator << (std::ostream& os, const cora::CGetElementSetInfo& i);
+std::ostream &operator<<(std::ostream &os, const cora::CGetElementSetInfo &i);
 
-#endif  // _cora_GetElementSetInfo_h_
+#endif // _cora_GetElementSetInfo_h_

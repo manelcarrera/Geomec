@@ -10,33 +10,26 @@
 /////////////////////////////////////////////////////////////////////////////
 // SelSurfFrame frame
 
-class AFX_EXT_CLASS SelSurfFrame : public CFrameWnd
-{
+class AFX_EXT_CLASS SelSurfFrame : public CFrameWnd {
   DECLARE_DYNCREATE(SelSurfFrame)
 protected:
-  
-
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-  SelSurfFrame();         
+  SelSurfFrame();
   virtual ~SelSurfFrame();
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(SelSurfFrame)
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-  
-
   // Generated message map functions
   //{{AFX_MSG(SelSurfFrame)
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

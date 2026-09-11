@@ -12,36 +12,34 @@
 class IPointSet;
 class CValueType;
 
-class CComponentConvertDlg : public CDialog
-{
-// Construction
-  const CValueType& m_value_type;
-  IPointSet& m_target;
+class CComponentConvertDlg : public CDialog {
+  // Construction
+  const CValueType &m_value_type;
+  IPointSet &m_target;
   CString DlgText() const;
+
 public:
-  CComponentConvertDlg(const CValueType& value_type, IPointSet& target, CWnd* pParent = NULL);   // standard constructor
+  CComponentConvertDlg(const CValueType &value_type, IPointSet &target, CWnd *pParent = NULL); // standard constructor
   geo::CValueMapper::TWeightingType Type() const;
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CComponentConvertDlg)
   enum { IDD = IDD_COMPONENT_CONVERT };
-  int		m_nType;
+  int m_nType;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CComponentConvertDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CComponentConvertDlg)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

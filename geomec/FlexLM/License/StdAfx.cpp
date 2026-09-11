@@ -33,10 +33,9 @@
 #include "stdafx.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
-

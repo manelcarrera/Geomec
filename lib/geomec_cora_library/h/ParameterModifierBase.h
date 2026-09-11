@@ -5,40 +5,37 @@
 
 #include "safeQSharedPointer.h"
 
-namespace geo
-{
+namespace geo {
 
 class CValue;
 
 } // namespace geo
 
-namespace cora
-{
+namespace cora {
 
-class CParameterModifierBase
-{
-  public:
-  typedef std::vector <geo::CValue> TValueVec;
+class CParameterModifierBase {
+public:
+  typedef std::vector<geo::CValue> TValueVec;
 
   CParameterModifierBase();
   virtual ~CParameterModifierBase() = 0;
 
-  virtual geo::CValue modify(const geo::CValue& value) const = 0;
-  TValueVec modify(TValueVec& valueVec);
+  virtual geo::CValue modify(const geo::CValue &value) const = 0;
+  TValueVec modify(TValueVec &valueVec);
 
-  protected:
-  static double assignSingleValue(std::vector <double>& value);
+protected:
+  static double assignSingleValue(std::vector<double> &value);
 
-  static double assignFirstValue(std::vector <double>& value);
-  static double assignSecondValue(std::vector <double>& value);
+  static double assignFirstValue(std::vector<double> &value);
+  static double assignSecondValue(std::vector<double> &value);
 
-  private:
-  CParameterModifierBase(const CParameterModifierBase& rhs);
-  CParameterModifierBase& operator = (const CParameterModifierBase& rhs);
+private:
+  CParameterModifierBase(const CParameterModifierBase &rhs);
+  CParameterModifierBase &operator=(const CParameterModifierBase &rhs);
 };
 
-typedef QSharedPointer <CParameterModifierBase> TParameterModifierBase;
+typedef QSharedPointer<CParameterModifierBase> TParameterModifierBase;
 
 } // namespace cora
 
-#endif  // _cora_ParameterModifierBase_h_
+#endif // _cora_ParameterModifierBase_h_

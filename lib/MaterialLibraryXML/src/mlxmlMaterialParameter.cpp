@@ -3,8 +3,8 @@
 #include "mlMatParam.h"
 #include "mlxmlFunctions.h"
 
-#include <QtXml/QDomElement>
 #include <QtCore/QObject>
+#include <QtXml/QDomElement>
 #include <cassert>
 
 namespace mlxml {
@@ -18,17 +18,12 @@ namespace mlxml {
  * \brief Constructor
  * \param matparam The material parameter to save or load
  */
-CMaterialParameterXML::CMaterialParameterXML(ml::CMatParam& matparam)
-: m_matparam(matparam)
-{
-}
+CMaterialParameterXML::CMaterialParameterXML(ml::CMatParam &matparam) : m_matparam(matparam) {}
 
 /*!
  * \brief Destructor
  */
-CMaterialParameterXML::~CMaterialParameterXML()
-{
-}
+CMaterialParameterXML::~CMaterialParameterXML() {}
 
 /*!
  * \brief Get the material parameter
@@ -36,18 +31,14 @@ CMaterialParameterXML::~CMaterialParameterXML()
  * This method can be overridden to supply another object for the
  * Save and Load methods.
  */
-ml::CMatParam& CMaterialParameterXML::MaterialParameter()
-{
-  return m_matparam;
-}
+ml::CMatParam &CMaterialParameterXML::MaterialParameter() { return m_matparam; }
 
 /*!
  * \brief Load the material parameter
  * \param domElement The 'MaterialParameter' element to load the data from
  * \throw mlxml::CException on failure
  */
-void CMaterialParameterXML::Load(QDomElement& domElement)
-{
+void CMaterialParameterXML::Load(QDomElement &domElement) {
   assert(AttributeStringValue(domElement, "Name") == m_matparam.Name());
   m_matparam.LoadValue(AttributeDoubleValue(domElement, "Value"));
 }
@@ -57,8 +48,7 @@ void CMaterialParameterXML::Load(QDomElement& domElement)
  * \param domElement The 'MaterialParameter' element to save the data to
  * \throw mlxml::CException on failure
  */
-void CMaterialParameterXML::Save(QDomElement& domElement)
-{
+void CMaterialParameterXML::Save(QDomElement &domElement) {
   domElement.setAttribute("Name", MaterialParameter().Name());
   domElement.setAttribute("Value", MaterialParameter().Value());
 }

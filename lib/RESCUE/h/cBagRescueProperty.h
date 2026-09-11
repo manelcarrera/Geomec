@@ -29,14 +29,14 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueProperty_H
 #define cBagRescueProperty_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueProperty;
 
-class cBagRescueProperty
-{
+class cBagRescueProperty {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueProperty();
   ~cBagRescueProperty();
@@ -44,14 +44,10 @@ public:
   RESCUEBOOL operator-=(RescueProperty *existingObject);
   RescueProperty *NthObject(RESCUEINT64 ordinal);
   RescueProperty *PropertyNamed(RESCUECHAR *propertyName);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueProperty *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueProperty *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

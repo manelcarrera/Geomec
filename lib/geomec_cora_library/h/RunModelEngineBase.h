@@ -3,8 +3,7 @@
 
 #include "safeQSharedPointer.h"
 
-namespace cora
-{
+namespace cora {
 
 class CRunModelData;
 
@@ -16,29 +15,27 @@ class CRetrieveDianaFileNamesConsole;
 
 #include "AnalysisType.h"
 
-namespace cora
-{
+namespace cora {
 
-class CRunModelEngineBase
-{
-  public:
+class CRunModelEngineBase {
+public:
   CRunModelEngineBase(CAnalysisType::TAnalysisType analysisType);
   virtual ~CRunModelEngineBase() = 0;
 
-  virtual bool run(CRunModelData& runModelData, CDianaExecuter& dianaExecuter,
-      const QString& modelName, CSaveModelConsole& saveModelConsole,
-      CRetrieveDianaFileNamesConsole& retrieveDianaFileNamesConsole) const = 0;
+  virtual bool run(CRunModelData &runModelData, CDianaExecuter &dianaExecuter, const QString &modelName,
+                   CSaveModelConsole &saveModelConsole,
+                   CRetrieveDianaFileNamesConsole &retrieveDianaFileNamesConsole) const = 0;
 
-  protected:
+protected:
   CAnalysisType::TAnalysisType m_analysisType;
 
-  private:
-  CRunModelEngineBase(const CRunModelEngineBase& rhs);
-  CRunModelEngineBase& operator = (const CRunModelEngineBase& rhs);
+private:
+  CRunModelEngineBase(const CRunModelEngineBase &rhs);
+  CRunModelEngineBase &operator=(const CRunModelEngineBase &rhs);
 };
 
-typedef QSharedPointer <CRunModelEngineBase> TRunModelEngineBase;
+typedef QSharedPointer<CRunModelEngineBase> TRunModelEngineBase;
 
 } // namespace cora
 
-#endif  // _cora_RunModelEngineBase_h_
+#endif // _cora_RunModelEngineBase_h_

@@ -5,16 +5,14 @@
 
 #include <vector>
 
-class DecimatingCellFilterI : public MiCellFilterI
-{
+class DecimatingCellFilterI : public MiCellFilterI {
   std::vector<size_t> m_permutation;
 
-  float  m_fraction;
+  float m_fraction;
   size_t m_maxVisibleIndex;
   size_t m_timestamp;
 
 public:
-
   DecimatingCellFilterI();
 
   void init(size_t cellCount);

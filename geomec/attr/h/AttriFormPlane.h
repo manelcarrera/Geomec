@@ -7,35 +7,32 @@
 // AttriFormPlane.h : header file
 //
 
-#include "FormationPlane.h"
 #include "AttributesTemplate.h"
+#include "FormationPlane.h"
 #include "resource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CAttriFormPlane dialog
 
-class CAttriFormPlane : public  CAttributesTemplate<CFormationPlane>
-{
+class CAttriFormPlane : public CAttributesTemplate<CFormationPlane> {
 public:
-  CAttriFormPlane(CFormationPlane &plane, CWnd* pParent = NULL);   // standard constructor
+  CAttriFormPlane(CFormationPlane &plane, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriFormPlane)
   enum { IDD = IDD_ATTRI_FORMPLANE_DLG };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriFormPlane)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriFormPlane)
   afx_msg void OnColor();

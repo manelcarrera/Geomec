@@ -3,14 +3,13 @@
 
 #include "AttributeTempl.h"
 
-class CAttriValueType : public CAttributesTemplate<CValueType>
-{
+class CAttriValueType : public CAttributesTemplate<CValueType> {
 public:
-  CAttriValueType(CValueType& source, CWnd* pParent = 0);
+  CAttriValueType(CValueType &source, CWnd *pParent = 0);
 
 protected:
   virtual BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual void OnOK();
 };
 

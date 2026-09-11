@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ObjectDispatcher.h: interface for the CObjectDispatcher class.
 //
 
@@ -14,8 +14,7 @@
 
 namespace geo {
 
-class GEOMETRY_EXPORT  CObjectDispatcher  
-{
+class GEOMETRY_EXPORT CObjectDispatcher {
 public:
   CObjectDispatcher();
   virtual ~CObjectDispatcher();

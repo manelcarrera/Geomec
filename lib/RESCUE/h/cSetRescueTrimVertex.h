@@ -35,8 +35,7 @@ Software Product or documentation licensed under this agreement.
 class RescueTrimVertex;
 class RescueContext;
 
-class cSetRescueTrimVertex
-{
+class cSetRescueTrimVertex {
 protected:
   RescueTrimVertex **objects;
   RESCUEINT64 allocated;
@@ -53,18 +52,19 @@ public:
   RescueTrimVertex *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueTrimVertex *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueTrimVertex *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
 
- RescueTrimVertex *TrimVertexLocatedBy(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
+  RescueTrimVertex *TrimVertexLocatedBy(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
+
 private:
   void Relinquish(RescueTrimVertex *existingObject);
-  void GiveUpObjects() {count = 0;}
+  void GiveUpObjects() { count = 0; }
 
   friend class RescueTrimVertex;
   friend class RescueModel;
@@ -73,6 +73,3 @@ private:
 };
 
 #endif
-
-
-

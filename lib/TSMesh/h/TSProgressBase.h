@@ -1,8 +1,7 @@
 #ifndef _TSPROGRESSBASE_H_
 #define _TSPROGRESSBASE_H_
 
-class ITSProgressBase  
-{
+class ITSProgressBase {
 public:
   ITSProgressBase() {}
   virtual ~ITSProgressBase() {}

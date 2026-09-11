@@ -13,29 +13,26 @@
 #include "AttributesTemplate.h"
 #include "GeoSurface.h"
 
-class CAttriSurfaceDlg : public CAttributesTemplate<CSurfaceBase>
-{
+class CAttriSurfaceDlg : public CAttributesTemplate<CSurfaceBase> {
 
-// Construction
+  // Construction
 public:
-  CAttriSurfaceDlg(CSurfaceBase& surface, CWnd* pParent = NULL);   // standard constructor
+  CAttriSurfaceDlg(CSurfaceBase &surface, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriSurfaceDlg)
   enum { IDD = IDD_ATRI_SURFACE };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriSurfaceDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriSurfaceDlg)
   virtual BOOL OnInitDialog();

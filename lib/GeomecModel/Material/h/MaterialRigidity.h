@@ -13,23 +13,23 @@
 #include "MaterialModelRigidity.h"
 #include "Materials.h"
 
-class CMaterialRigidity : public IMaterialRock
-{
+class CMaterialRigidity : public IMaterialRock {
 public:
-  CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial &libmat);
   virtual ~CMaterialRigidity();
 
-  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const;
   virtual int MaterialModel() const;
   virtual long MaterialModelFilter() const { return MLFO_RIGIDITY; }
 
   // the creator for this material model
-  static ml::CMaterial::CCreator* GetLibraryMaterialCreator() { return new CMaterialRigidityCreator; }
+  static ml::CMaterial::CCreator *GetLibraryMaterialCreator() { return new CMaterialRigidityCreator; }
 
   // Interface for dia::IElementProperty
-  virtual int WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-  virtual bool WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const;
-  virtual void WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride = 1) const;
+  virtual int WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const;
+  virtual bool WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i, char *name) const;
+  virtual void WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, double *values,
+                                     int stride = 1) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitMaterialRigidity);
 };

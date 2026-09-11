@@ -2,19 +2,16 @@
 #include "MaterialUpscaledAnisotropy.h"
 #include "ValueTypes.h"
 
-#include "lbfl.h"
-#include "Material.h"
 #include "GeomecDianaRunner.h"
+#include "Material.h"
+#include "lbfl.h"
 
-CMaterialUpscaledAnisotropy::CMaterialUpscaledAnisotropy(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: IMaterialRock(entry, libmat)
-{
-}
+CMaterialUpscaledAnisotropy::CMaterialUpscaledAnisotropy(CMaterialEntry &entry, CLibraryMaterial &libmat)
+    : IMaterialRock(entry, libmat) {}
 
-bool CMaterialUpscaledAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
-  if(!WriteTransverseIsotropicValues(ffmat, diarunner))
-  return false;
+bool CMaterialUpscaledAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
+  if (!WriteTransverseIsotropicValues(ffmat, diarunner))
+    return false;
 
   double betal = ffmat.ParameterValue(IDT_VALUETYPE_THERM_LIN_EXP_LAT);
   double betat = ffmat.ParameterValue(IDT_VALUETYPE_THERM_LIN_EXP_NORM);
@@ -26,10 +23,8 @@ bool CMaterialUpscaledAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRun
   return IMaterialRock::Write(ffmat, diarunner);
 }
 
-
 // Interface for dia::IElementProperty
-int CMaterialUpscaledAnisotropy::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialUpscaledAnisotropy::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = WriteFilosTransverseIsotropicParamSize(ffmat, diarunner);
 
   size += 3; // THERMX(3)
@@ -38,28 +33,26 @@ int CMaterialUpscaledAnisotropy::WriteFilosParamSize(const CFFMaterial &ffmat, d
   return size;
 }
 
-bool CMaterialUpscaledAnisotropy::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
+bool CMaterialUpscaledAnisotropy::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                                      char *name) const {
   int transIsoSize = WriteFilosTransverseIsotropicParamSize(ffmat, diarunner);
-  if (i < transIsoSize)
-  {
-  return WriteFilosTransverseIsotropicParamName(ffmat, diarunner, i, name);
+  if (i < transIsoSize) {
+    return WriteFilosTransverseIsotropicParamName(ffmat, diarunner, i, name);
   }
   i -= transIsoSize;
 
-  if (i < 3)
-  {
-  QString thermx = QString("THERMX(%1)").arg(i + 1);
-  strncpy(name, thermx.toStdString().c_str(), 10);
-  return true;
+  if (i < 3) {
+    QString thermx = QString("THERMX(%1)").arg(i + 1);
+    strncpy(name, thermx.toStdString().c_str(), 10);
+    return true;
   }
   i -= 3;
 
   return IMaterialRock::WriteFilosParamName(ffmat, diarunner, i, name);
 }
 
-void CMaterialUpscaledAnisotropy::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialUpscaledAnisotropy::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner,
+                                                        double *values, int stride) const {
   WriteFilosTransverseIsotropicParamValues(ffmat, diarunner, values, stride);
 
   double betal = ffmat.ParameterValue(IDT_VALUETYPE_THERM_LIN_EXP_LAT);

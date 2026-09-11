@@ -3,14 +3,11 @@
 
 #include "City.h"
 
+namespace mdc {
 
-namespace mdc
-{
-
-
-struct CChecksum
-{
-  unsigned int size; // size and type allow us to later change this, at which point Checksum must always have room for the largest type, and keep supporting older checksums
+struct CChecksum {
+  unsigned int size; // size and type allow us to later change this, at which point Checksum must always have room for
+                     // the largest type, and keep supporting older checksums
   unsigned int type;
   uint128 seed;
   uint128 hash;
@@ -24,8 +21,6 @@ struct CChecksum
   void reset();
 };
 
-
-}
-
+} // namespace mdc
 
 #endif

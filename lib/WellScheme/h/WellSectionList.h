@@ -9,13 +9,13 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-//#include <qptrvector.h> 
+// #include <qptrvector.h>
+#include "IWellSection.h"
 #include "WellSchemeInclude.h"
 #include "WellSectionListBase.h"
-#include "IWellSection.h"
 
 //*******************************************************************
-//              
+//
 //  FILE:       WellSectionList.h
 //  AUTHOR:     htg
 //  PROJECT:    WellScheme
@@ -30,30 +30,27 @@ namespace well {
 
 class CWellPathBase;
 
-//##ModelId=3F7AA15602CA
-class CWellSectionList : public  CWellSectionListBase
-{
+// ##ModelId=3F7AA15602CA
+class CWellSectionList : public CWellSectionListBase {
 
   Q_OBJECT;
 
 public:
-
-  CWellSectionList(const CWellPathBase& WellPath,  bool bAutoDelete=true);
+  CWellSectionList(const CWellPathBase &WellPath, bool bAutoDelete = true);
   virtual ~CWellSectionList();
-  CWellSectionList& operator=(const CWellSectionList& rhs);
-  CWellSectionList(const CWellSectionList& rhs);
-    
-  virtual int AddSection(IWellSection* section);
+  CWellSectionList &operator=(const CWellSectionList &rhs);
+  CWellSectionList(const CWellSectionList &rhs);
 
-  IWellSection*	First() const;
-  IWellSection*	Last() const;
+  virtual int AddSection(IWellSection *section);
+
+  IWellSection *First() const;
+  IWellSection *Last() const;
 
 public slots:
   void RemoveSection(int index);
   void RemoveAllSections();
-
 };
 
-}
+} // namespace well
 
 #endif // !defined(AFX_WELLSECTIONLIST_H__0F6C4504_1FA7_4D1C_BEB4_173A5B9B3277__INCLUDED_)

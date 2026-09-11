@@ -1,15 +1,9 @@
 #include "ParameterSurface.h"
 
-namespace cora
-{
+namespace cora {
 
-CParameterSurface::CParameterSurface()
-: CParameterLimit()
-{
-}
+CParameterSurface::CParameterSurface() : CParameterLimit() {}
 
-CParameterSurface::~CParameterSurface()
-{
-}
+CParameterSurface::~CParameterSurface() {}
 
 } // namespace cora

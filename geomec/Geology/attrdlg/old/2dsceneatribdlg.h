@@ -12,29 +12,26 @@
 
 class COpenGLSceneBase;
 
-class C2DSceneAtribDlg : public CDialog
-{
-// Construction
+class C2DSceneAtribDlg : public CDialog {
+  // Construction
 public:
-  C2DSceneAtribDlg(COpenGLSceneBase &scene, CWnd* pParent = NULL);   // standard constructor
+  C2DSceneAtribDlg(COpenGLSceneBase &scene, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(C2DSceneAtribDlg)
   enum { IDD = IDD_2DSCENE_PROPS };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(C2DSceneAtribDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
-  COpenGLSceneBase* m_pScene;
+  COpenGLSceneBase *m_pScene;
   COLORREF m_Color;
   void FillFrame(const UINT uFrameId, const int nFillColor, CPaintDC &dc);
   // Generated message map functions

@@ -18,17 +18,16 @@
 namespace rpn {
 class CRpnStack;
 
-class CRpnDlgBase : public CDialog
-{
+class CRpnDlgBase : public CDialog {
 public:
   // Class to insert value proxy in the list box
-  class CValueProxyListObject : public IListObject
-  {
-    rpn::CRpnOperand::IValueProxy& m_proxy;
-    CRpnDlgBase& m_dlg;
+  class CValueProxyListObject : public IListObject {
+    rpn::CRpnOperand::IValueProxy &m_proxy;
+    CRpnDlgBase &m_dlg;
+
   public:
-    CValueProxyListObject(CRpnDlgBase& dlg, CRpnOperand::IValueProxy& proxy);
-  CValueProxyListObject(CRpnDlgBase& dlg, CRpnOperand::IValueProxy& proxy, int nListIndex);
+    CValueProxyListObject(CRpnDlgBase &dlg, CRpnOperand::IValueProxy &proxy);
+    CValueProxyListObject(CRpnDlgBase &dlg, CRpnOperand::IValueProxy &proxy, int nListIndex);
     virtual QString Text() const;
     virtual unsigned int Icon() const;
     virtual void OnDoubleClick();
@@ -39,36 +38,38 @@ public:
     bool HasProperties() const;
     virtual void AppendContextMenu(CContextMenuInvoker &invoker);
     virtual BOOL operator<(const ICtrlObjectBase &object) const;
-    rpn::CRpnOperand::IValueProxy& Proxy() { return m_proxy; }
+    rpn::CRpnOperand::IValueProxy &Proxy() { return m_proxy; }
   };
 
 protected:
   virtual void OnInitComponentBox();
   virtual void UpdateSwapButton() = 0;
-  void OnConvertUnit(CButton& button);
+  void OnConvertUnit(CButton &button);
   virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
   void InsertUnitConverter(CRpnUnitConverter::TConversion conversion);
+
 private:
   CRpnStack *m_pStack;
-  std::vector<std::pair<unsigned int, QString> > m_vcUnitConverters;
+  std::vector<std::pair<unsigned int, QString>> m_vcUnitConverters;
+
 protected:
-  CListCtrlBase	m_lcOperand;
-  CListCtrl		m_lcStack;
+  CListCtrlBase m_lcOperand;
+  CListCtrl m_lcStack;
   HICON m_hIcon;
+
 public:
-  CRpnDlgBase(const CRpnStack& stack, unsigned int uDlgId, CWnd* pParent = NULL);	// standard constructor	
+  CRpnDlgBase(const CRpnStack &stack, unsigned int uDlgId, CWnd *pParent = NULL); // standard constructor
   virtual ~CRpnDlgBase();
-  CRpnStack& RpnStack();
-  const CRpnStack& RpnStack() const;
-  CListCtrl& ListCtrl();
+  CRpnStack &RpnStack();
+  const CRpnStack &RpnStack() const;
+  CListCtrl &ListCtrl();
   virtual void OnOK();
   void Swap();
   bool CanSwap() const;
   void UpdateStackDisplay();
-    BOOL ValidRpnStack() const;
-// Implementation
+  BOOL ValidRpnStack() const;
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CRpnDlg)
   virtual BOOL OnInitDialog();
@@ -92,7 +93,7 @@ protected:
   afx_msg void OnBtClearAll();
   afx_msg void OnBtPI();
   afx_msg void OnBtSub();
-    afx_msg void OnBtSubOrSign();
+  afx_msg void OnBtSubOrSign();
   afx_msg void OnBtMult();
   afx_msg void OnBtDiv();
   afx_msg void OnBtSin();
@@ -115,7 +116,7 @@ protected:
   afx_msg void OnBtPow();
   afx_msg void OnBtOr();
   afx_msg void OnBtAnd();
-  afx_msg void OnKeyDown( unsigned int nChar, unsigned int nRepCnt, unsigned int nFlags );
+  afx_msg void OnKeyDown(unsigned int nChar, unsigned int nRepCnt, unsigned int nFlags);
   afx_msg void OnBtNotEqual();
   afx_msg void OnBtSmallerEqual();
   afx_msg void OnBtGreaterEqual();
@@ -131,7 +132,7 @@ protected:
   DECLARE_MESSAGE_MAP()
 };
 
-}
+} // namespace rpn
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

@@ -13,16 +13,15 @@
 #include "ISubListObject.h"
 #include "ListCtrlBase.h"
 
-class CHexaMeshDepthDlg : public CDialog
-{
-  class CFormationListObject : public IListObject
-  {
-    CHexaFormation& m_formation;
+class CHexaMeshDepthDlg : public CDialog {
+  class CFormationListObject : public IListObject {
+    CHexaFormation &m_formation;
+
   public:
     // Construction
-    CFormationListObject(CListCtrl& ctrl, CHexaFormation& formation);
-    const CHexaFormation& Formation() const;
-    CHexaFormation& Formation();
+    CFormationListObject(CListCtrl &ctrl, CHexaFormation &formation);
+    const CHexaFormation &Formation() const;
+    CHexaFormation &Formation();
     // Functions
     virtual QString Text() const;
     virtual unsigned int Icon() const;
@@ -31,41 +30,39 @@ class CHexaMeshDepthDlg : public CDialog
     BOOL Modified() const;
     virtual BOOL operator<(const ICtrlObjectBase &object) const;
   };
-  
-  class CMeshDepthObject : public ISubListObject
-  {
+
+  class CMeshDepthObject : public ISubListObject {
     int m_nElement;
+
   public:
     CMeshDepthObject(CFormationListObject &list_object);
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
     int Elements() const;
-    BOOL IsInteger(const CString& sString) const;
+    BOOL IsInteger(const CString &sString) const;
   };
-  CFemAppModel& m_model;
-// Construction
+  CFemAppModel &m_model;
+  // Construction
 public:
-  CHexaMeshDepthDlg(CFemAppModel& model, CWnd* pParent = NULL);   // standard constructor
+  CHexaMeshDepthDlg(CFemAppModel &model, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CHexaMeshDepthDlg)
   enum { IDD = IDD_ATTRI_MESH_DEPTH };
-  CListCtrlBase	m_lcFormation;
+  CListCtrlBase m_lcFormation;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CHexaMeshDepthDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual void OnOK();
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CHexaMeshDepthDlg)
   virtual BOOL OnInitDialog();

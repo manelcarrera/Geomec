@@ -10,30 +10,27 @@
 /////////////////////////////////////////////////////////////////////////////
 // CRadActTagDlg dialog
 
-class AFX_EXT_CLASS CRadActTagDlg : public CDialog
-{
+class AFX_EXT_CLASS CRadActTagDlg : public CDialog {
   const well::CWellLog *m_pWellLog;
-// Construction
+  // Construction
 public:
-  CRadActTagDlg(const well::CWellLog *pWellLog, CWnd* pParent = NULL);   // standard constructor
+  CRadActTagDlg(const well::CWellLog *pWellLog, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CRadActTagDlg)
   enum { IDD = UT_IDD_RADACT_DLG };
-  CListCtrl	m_RadActListCtrl;
+  CListCtrl m_RadActListCtrl;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CRadActTagDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CRadActTagDlg)
   virtual BOOL OnInitDialog();

@@ -4,19 +4,14 @@
 
 #include "WindowsPlatform.h"
 
-CWindowsPlatform::CWindowsPlatform()
-: IPlatform()
-{
-}
+CWindowsPlatform::CWindowsPlatform() : IPlatform() {}
 
-void CWindowsPlatform::init()
-{
+void CWindowsPlatform::init() {
   assert(m_singleton == 0);
   m_singleton = new CWindowsPlatform();
 }
 
-long CWindowsPlatform::processMemorySize() const
-{
+long CWindowsPlatform::processMemorySize() const {
   long memorySize = 0;
   HANDLE process = GetCurrentProcess();
   PROCESS_MEMORY_COUNTERS processMemoryCounters;
@@ -24,16 +19,11 @@ long CWindowsPlatform::processMemorySize() const
   memset(&processMemoryCounters, 0, sizeof(PROCESS_MEMORY_COUNTERS));
   processMemoryCounters.cb = sizeof(PROCESS_MEMORY_COUNTERS);
 
-  if (GetProcessMemoryInfo(process, &processMemoryCounters,
-  processMemoryCounters.cb))
-  {
-  memorySize = processMemoryCounters.WorkingSetSize;
+  if (GetProcessMemoryInfo(process, &processMemoryCounters, processMemoryCounters.cb)) {
+    memorySize = processMemoryCounters.WorkingSetSize;
   }
 
   return memorySize;
 }
 
-void CWindowsPlatform::trace(const QString& message) const
-{
-  TRACE(message.toStdString().c_str());
-}
+void CWindowsPlatform::trace(const QString &message) const { TRACE(message.toStdString().c_str()); }

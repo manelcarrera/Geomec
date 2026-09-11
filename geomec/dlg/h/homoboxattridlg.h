@@ -7,46 +7,42 @@
 // scalinboxattridlg.h : header file
 //
 
-#include "HomogenizationBox.h"
 #include "AttributeTempl.h"
+#include "HomogenizationBox.h"
 
-
-
-class CHomoBoxAttriDlg : public CAttributesTemplate<CHomogenizationBox>
-{
+class CHomoBoxAttriDlg : public CAttributesTemplate<CHomogenizationBox> {
   IQuantityDouble::UNIT m_unit;
-  //CString m_Name;
-// Construction
+  // CString m_Name;
+  // Construction
 public:
-  CHomoBoxAttriDlg(const CFemAppModel &model, CHomogenizationBox &homo_box, CWnd* pParent = NULL);   // standard constructor
+  CHomoBoxAttriDlg(const CFemAppModel &model, CHomogenizationBox &homo_box,
+                   CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CHomoBoxAttriDlg)
   enum { IDD = IDD_ATTRI_HOMOGENIZATION };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CHomoBoxAttriDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
   virtual BOOL OnInitDialog();
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CHomoBoxAttriDlg)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
 private:
-  void configureDivisionCombo(CComboBox& combo, int division);
+  void configureDivisionCombo(CComboBox &combo, int division);
 };
 
 //{{AFX_INSERT_LOCATION}}

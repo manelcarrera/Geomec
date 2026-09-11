@@ -13,39 +13,37 @@
 #include "OpenGLView.h"
 
 class CModelObjectScene;
-class COpenGLTestView : public COpenGLView
-{
-  CModelObjectScene* m_pScene;
+class COpenGLTestView : public COpenGLView {
+  CModelObjectScene *m_pScene;
+
 protected:
-  COpenGLTestView();           // protected constructor used by dynamic creation
+  COpenGLTestView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(COpenGLTestView)
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(COpenGLTestView)
-  public:
+public:
   virtual void OnInitialUpdate();
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~COpenGLTestView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(COpenGLTestView)
   afx_msg void OnInsertPolyline();
-  afx_msg void OnUpdateInsertPolyline(CCmdUI* pCmdUI);
+  afx_msg void OnUpdateInsertPolyline(CCmdUI *pCmdUI);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

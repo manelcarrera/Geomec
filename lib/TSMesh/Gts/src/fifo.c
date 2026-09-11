@@ -20,8 +20,8 @@
 #include "gts.h"
 
 struct _GtsFifo {
-  GList * head;
-  GList * tail;
+  GList *head;
+  GList *tail;
 };
 
 /**
@@ -29,9 +29,8 @@ struct _GtsFifo {
  *
  * Returns: a new #GtsFifo.
  */
-GtsFifo * gts_fifo_new ()
-{
-  GtsFifo * fifo = g_malloc (sizeof (GtsFifo));
+GtsFifo *gts_fifo_new() {
+  GtsFifo *fifo = g_malloc(sizeof(GtsFifo));
 
   fifo->head = fifo->tail = NULL;
   return fifo;
@@ -44,20 +43,19 @@ GtsFifo * gts_fifo_new ()
  *
  * Writes the content of @fifo in @fp.
  */
-void gts_fifo_write (GtsFifo * fifo, FILE * fp)
-{
-  GList * i;
+void gts_fifo_write(GtsFifo *fifo, FILE *fp) {
+  GList *i;
 
-  g_return_if_fail (fifo != NULL);
-  g_return_if_fail (fp != NULL);
+  g_return_if_fail(fifo != NULL);
+  g_return_if_fail(fp != NULL);
 
-  fprintf (fp, "[");
+  fprintf(fp, "[");
   i = fifo->head;
   while (i) {
-  fprintf (fp, "%p ", i->data);
-  i = i->next;
+    fprintf(fp, "%p ", i->data);
+    i = i->next;
   }
-  fprintf (fp, "]");
+  fprintf(fp, "]");
 }
 
 /**
@@ -67,13 +65,12 @@ void gts_fifo_write (GtsFifo * fifo, FILE * fp)
  *
  * Push @data into @fifo.
  */
-void gts_fifo_push (GtsFifo * fifo, gpointer data)
-{
-  g_return_if_fail (fifo != NULL);
+void gts_fifo_push(GtsFifo *fifo, gpointer data) {
+  g_return_if_fail(fifo != NULL);
 
-  fifo->head = g_list_prepend (fifo->head, data);
+  fifo->head = g_list_prepend(fifo->head, data);
   if (fifo->tail == NULL)
-  fifo->tail = fifo->head;
+    fifo->tail = fifo->head;
 }
 
 /**
@@ -84,19 +81,18 @@ void gts_fifo_push (GtsFifo * fifo, gpointer data)
  *
  * Returns: the first element in @fifo or %NULL if @fifo is empty.
  */
-gpointer gts_fifo_pop (GtsFifo * fifo)
-{
+gpointer gts_fifo_pop(GtsFifo *fifo) {
   gpointer data;
-  GList * tail;
+  GList *tail;
 
-  g_return_val_if_fail (fifo != NULL, NULL);
+  g_return_val_if_fail(fifo != NULL, NULL);
 
   if (fifo->tail == NULL)
-  return NULL;
+    return NULL;
   tail = fifo->tail->prev;
   data = fifo->tail->data;
-  fifo->head = g_list_remove_link (fifo->head, fifo->tail);
-  g_list_free_1 (fifo->tail);
+  fifo->head = g_list_remove_link(fifo->head, fifo->tail);
+  g_list_free_1(fifo->tail);
   fifo->tail = tail;
   return data;
 }
@@ -107,12 +103,11 @@ gpointer gts_fifo_pop (GtsFifo * fifo)
  *
  * Returns: the first element in @fifo or %NULL if @fifo is empty.
  */
-gpointer gts_fifo_top (GtsFifo * fifo)
-{
-  g_return_val_if_fail (fifo != NULL, NULL);
+gpointer gts_fifo_top(GtsFifo *fifo) {
+  g_return_val_if_fail(fifo != NULL, NULL);
 
   if (fifo->tail == NULL)
-  return NULL;
+    return NULL;
   return fifo->tail->data;
 }
 
@@ -122,11 +117,10 @@ gpointer gts_fifo_top (GtsFifo * fifo)
  *
  * Returns: the number of elements in @fifo.
  */
-guint gts_fifo_size (GtsFifo * fifo)
-{
-  g_return_val_if_fail (fifo != NULL, 0);
+guint gts_fifo_size(GtsFifo *fifo) {
+  g_return_val_if_fail(fifo != NULL, 0);
 
-  return g_list_length (fifo->head);
+  return g_list_length(fifo->head);
 }
 
 /**
@@ -135,22 +129,20 @@ guint gts_fifo_size (GtsFifo * fifo)
  *
  * Frees all the memory allocated for @fifo.
  */
-void gts_fifo_destroy (GtsFifo * fifo)
-{
-  g_return_if_fail (fifo != NULL);
-  g_list_free (fifo->head);
-  g_free (fifo);
+void gts_fifo_destroy(GtsFifo *fifo) {
+  g_return_if_fail(fifo != NULL);
+  g_list_free(fifo->head);
+  g_free(fifo);
 }
 
 /**
  * gts_fifo_is_empty:
  * @fifo: a #GtsFifo.
- * 
+ *
  * Returns: %TRUE if @fifo is empty, %FALSE otherwise.
  */
-gboolean gts_fifo_is_empty (GtsFifo * fifo)
-{
-  g_return_val_if_fail (fifo != NULL, TRUE);
+gboolean gts_fifo_is_empty(GtsFifo *fifo) {
+  g_return_val_if_fail(fifo != NULL, TRUE);
 
   return (fifo->head == NULL);
 }
@@ -163,16 +155,15 @@ gboolean gts_fifo_is_empty (GtsFifo * fifo)
  *
  * Calls @func in order for each item in @fifo, passing @data.
  */
-void gts_fifo_foreach (GtsFifo * fifo, GtsFunc func, gpointer data)
-{
-  GList * i;
+void gts_fifo_foreach(GtsFifo *fifo, GtsFunc func, gpointer data) {
+  GList *i;
 
-  g_return_if_fail (fifo != NULL);
-  g_return_if_fail (func != NULL);
+  g_return_if_fail(fifo != NULL);
+  g_return_if_fail(func != NULL);
 
   i = fifo->tail;
   while (i) {
-  (* func) (i->data, data);
-  i = i->prev;
+    (*func)(i->data, data);
+    i = i->prev;
   }
 }

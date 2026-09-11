@@ -20,18 +20,17 @@
 #define __GLIB_GOBJECT_H__
 
 /* topmost include file for GObject header files */
-#include	<gobject/gboxed.h>
-#include	<gobject/gbsearcharray.h>
-#include	<gobject/genums.h>
-#include	<gobject/gobject.h>
-#include	<gobject/gparam.h>
-#include	<gobject/gparamspecs.h>
-#include	<gobject/gsignal.h>
-#include	<gobject/gtype.h>
-#include	<gobject/gtypemodule.h>
-#include	<gobject/gtypeplugin.h>
-#include	<gobject/gvalue.h>
-#include	<gobject/gvaluetypes.h>
-
+#include <gobject/gboxed.h>
+#include <gobject/gbsearcharray.h>
+#include <gobject/genums.h>
+#include <gobject/gobject.h>
+#include <gobject/gparam.h>
+#include <gobject/gparamspecs.h>
+#include <gobject/gsignal.h>
+#include <gobject/gtype.h>
+#include <gobject/gtypemodule.h>
+#include <gobject/gtypeplugin.h>
+#include <gobject/gvalue.h>
+#include <gobject/gvaluetypes.h>
 
 #endif /* __GLIB_GOBJECT_H__ */

@@ -7,75 +7,71 @@
 // DoubleEdit.h : header file
 //
 
-
-#define WM_VALIDATE_DOUBLE_EDIT (WM_USER+0x16)
+#define WM_VALIDATE_DOUBLE_EDIT (WM_USER + 0x16)
 
 /////////////////////////////////////////////////////////////////////////////
 // CDoubleEdit window
 
-//##ModelId=3C0DC15D034B
-class CDoubleEdit : public CEdit
-{
-// Construction
+// ##ModelId=3C0DC15D034B
+class CDoubleEdit : public CEdit {
+  // Construction
 public:
-  //##ModelId=3C0DC15D035C
-  CDoubleEdit( );
-  //##ModelId=3C0DC15D039A
+  // ##ModelId=3C0DC15D035C
+  CDoubleEdit();
+  // ##ModelId=3C0DC15D039A
   static BOOL IsNumericValue(CString str);
-  //##ModelId=3C60D579038B
-  static CString Format(double dblVal,bool IntegerInput = false);
-// Attributes
+  // ##ModelId=3C60D579038B
+  static CString Format(double dblVal, bool IntegerInput = false);
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CDoubleEdit)
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 public:
-  //##ModelId=3C2044040000
+  // ##ModelId=3C2044040000
   CString GetString();
-  //##ModelId=3C0DC15D036B
+  // ##ModelId=3C0DC15D036B
   void MakeEmpty();
-  //##ModelId=3C0DC15D036C
-  void ShowValue(const double& NewValue);
-  //##ModelId=3C0DC15D036E
+  // ##ModelId=3C0DC15D036C
+  void ShowValue(const double &NewValue);
+  // ##ModelId=3C0DC15D036E
   BOOL IsEmpty();
-  //##ModelId=3C0DC15D036F
+  // ##ModelId=3C0DC15D036F
   double GetValue();
-  //##ModelId=3C0DC15D037A
+  // ##ModelId=3C0DC15D037A
   virtual ~CDoubleEdit();
 
   void UseAsIntegerInput();
-  //mantis 2537 wjrx
-  void setAllowNegativeNumbers( bool val) {m_bAllowNegativeNumbers= val;}
+  // mantis 2537 wjrx
+  void setAllowNegativeNumbers(bool val) { m_bAllowNegativeNumbers = val; }
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(CDoubleEdit)
-  //##ModelId=3C0DC15D038A
+  // ##ModelId=3C0DC15D038A
   afx_msg void OnChar(unsigned int nChar, unsigned int nRepCnt, unsigned int nFlags);
-  //##ModelId=3C0DC15D038F
+  // ##ModelId=3C0DC15D038F
   afx_msg void OnKeyUp(unsigned int nChar, unsigned int nRepCnt, unsigned int nFlags);
-  //afx_msg void OnKillFocus( CWnd* pNewWnd );
+  // afx_msg void OnKillFocus( CWnd* pNewWnd );
 
-  //##ModelId=3C8D9E1D0292
+  // ##ModelId=3C8D9E1D0292
   afx_msg void OnKillfocus();
   //}}AFX_MSG
 
   DECLARE_MESSAGE_MAP()
 private:
-  //##ModelId=3C8D9E1D02A2
+  // ##ModelId=3C8D9E1D02A2
   void DoValidation();
-  
-  //##ModelId=3C60D57903D9
+
+  // ##ModelId=3C60D57903D9
   void SetModifiedFlag();
   bool m_UseAsIntegerInput;
-  bool m_bAllowNegativeNumbers; //mantis 2537 wjrx
+  bool m_bAllowNegativeNumbers; // mantis 2537 wjrx
 };
 
 /////////////////////////////////////////////////////////////////////////////

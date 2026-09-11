@@ -8,30 +8,25 @@
   Rod Hanks,  Feb, 2006
 
 *********************************************************************/
-#include "RescueModel.h"
-#include "cSetRescueDataContainer.h"
 #include "RescueDataContainer.h"
+#include "RescueModel.h"
 #include "cNameValuePair.h"
+#include "cSetRescueDataContainer.h"
 
 RescueDataContainer::RescueDataContainer(RescueModel *modelIn, RescueGrid *customGrid)
-                                              :RescueHistoryObject(modelIn->Context())
-                                              ,model(modelIn)
-{
+    : RescueHistoryObject(modelIn->Context()), model(modelIn) {
   propertyGrid = customGrid;
   namedData = new cNameValuePair();
   properties = new cSetRescueProperty();
   propertyGroups = new cSetRescuePropertyGroup();
-
 }
 
-void RescueDataContainer::Dispose()
-{
+void RescueDataContainer::Dispose() {
   properties->Dispose();
   delete this;
 }
 
-RescueDataContainer::~RescueDataContainer()
-{
+RescueDataContainer::~RescueDataContainer() {
   delete propertyGrid;
   delete namedData;
   delete properties;
@@ -39,9 +34,7 @@ RescueDataContainer::~RescueDataContainer()
 }
 
 RescueDataContainer::RescueDataContainer(RescueModel *modelIn, FILE *archiveFile)
-                                              :RescueHistoryObject(modelIn->Context())
-                                              ,model(modelIn)
-{
+    : RescueHistoryObject(modelIn->Context()), model(modelIn) {
   isA = R_RescueDataContainer;
   propertyGrid = new RescueGrid(model->Context(), archiveFile);
   namedData = new cNameValuePair(model->Context(), archiveFile);
@@ -51,31 +44,22 @@ RescueDataContainer::RescueDataContainer(RescueModel *modelIn, FILE *archiveFile
   propertyGroups->UnArchive(model->Context(), archiveFile);
 }
 
-void RescueDataContainer::Archive(FILE *archiveFile)
-{
+void RescueDataContainer::Archive(FILE *archiveFile) {
   propertyGrid->Archive(model->Context(), archiveFile);
   namedData->Archive(model->Context(), archiveFile);
   properties->Archive(model->Context(), archiveFile);
   propertyGroups->Archive(model->Context(), archiveFile);
 }
 
-void RescueDataContainer::Relink(RescueObject *parent)
-{
-  model = (RescueModel *) parent;
+void RescueDataContainer::Relink(RescueObject *parent) {
+  model = (RescueModel *)parent;
   propertyGrid->Relink(model);
   properties->Relink(this);
   propertyGroups->Relink(this);
 }
 
-RESCUEBOOL RescueDataContainer::AnyFileTruncated()
-{
-  return properties->AnyFileTruncated();
-}
+RESCUEBOOL RescueDataContainer::AnyFileTruncated() { return properties->AnyFileTruncated(); }
 
-void RescueDataContainer::FindUniquePropertyNames(cSetString *container)
-{
+void RescueDataContainer::FindUniquePropertyNames(cSetString *container) {
   properties->FindUniquePropertyNames(container);
 }
-
-
-

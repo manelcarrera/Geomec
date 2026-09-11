@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // LineInterface.h: interface for the CLineInterface class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -45,35 +45,33 @@ class IFace;
 class IMesh;
 
 // simple 1st order line interface element
-class GEOMETRY_EXPORT  CLineInterface : public IInterfaceElement
-{
+class GEOMETRY_EXPORT CLineInterface : public IInterfaceElement {
   const IFace &m_front;
   const IFace &m_back;
   int m_nodes[4];
-  IMesh& m_mesh;
+  IMesh &m_mesh;
   int m_nIndex;
-  const ILine& getLine(int n0, int n1, const geo::IFace& face) const;
+  const ILine &getLine(int n0, int n1, const geo::IFace &face) const;
+
 public:
-  CLineInterface(IMesh &mesh,
-                 int n1, int n2, const geo::IFace &front,
-                 int n3, int n4, const geo::IFace &back);
+  CLineInterface(IMesh &mesh, int n1, int n2, const geo::IFace &front, int n3, int n4, const geo::IFace &back);
   virtual ~CLineInterface();
 
-// IElement interface
+  // IElement interface
   virtual int PointIndex(int nIndex) const;
   virtual size_t NrOfNodes() const;
-  virtual const INode& Node(int nIndex) const;
-  virtual void Node(int nIndex, const IPoint& point);
-  virtual const IElementSet* IndexingElementSet() const;
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &point);
+  virtual const IElementSet *IndexingElementSet() const;
   virtual int Index() const;
 
-  virtual const IElement& Front() const;
-  const ILine& FrontLine() const;
-  const IFace& FrontFace() const;
-  
-  virtual const IElement& Back() const;
-  const ILine& BackLine() const;
-  const IFace& BackFace() const;
+  virtual const IElement &Front() const;
+  const ILine &FrontLine() const;
+  const IFace &FrontFace() const;
+
+  virtual const IElement &Back() const;
+  const ILine &BackLine() const;
+  const IFace &BackFace() const;
 
   int FaceNode(int nIndex) const;
 
@@ -84,7 +82,7 @@ public:
   virtual void AssertValid() const;
 
   using IInterfaceElement::InterpolateValue;
-  virtual CValue InterpolateValue(const IPoint& point, const std::vector<CValue>& values) const;
+  virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
   virtual bool Contains(const IPoint &point, bool bIncludeEdge) const;
 };
 

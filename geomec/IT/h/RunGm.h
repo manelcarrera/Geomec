@@ -7,12 +7,11 @@ class CDianaExecuter;
 class CSaveModelConsole;
 class CRetrieveDianaFileNamesConsole;
 
-class CRunGm
-{
+class CRunGm {
 
   bool m_bHasRun;
-  CGeomecDoc* m_doc;
-  CModelBase* m_model;
+  CGeomecDoc *m_doc;
+  CModelBase *m_model;
 
   QString m_temp_path;
   QString m_app_version;
@@ -21,10 +20,10 @@ class CRunGm
   QString m_model_path;
   QString m_model_name;
 
-  CDianaRunController* m_pDianaRunController;
-  CDianaExecuter* m_pDianaExecuter;
-  CSaveModelConsole* m_pSaveModel;
-  CRetrieveDianaFileNamesConsole* m_pRetrieveDianaFileNames;
+  CDianaRunController *m_pDianaRunController;
+  CDianaExecuter *m_pDianaExecuter;
+  CSaveModelConsole *m_pSaveModel;
+  CRetrieveDianaFileNamesConsole *m_pRetrieveDianaFileNames;
 
 private:
   CRunGm();
@@ -33,12 +32,9 @@ private:
   void setup_diana_run_env();
 
 public:
-
   static CRunGm *instance();
 
   bool step();
 
   void init();
-
 };
-

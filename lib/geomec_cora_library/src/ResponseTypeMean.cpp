@@ -1,36 +1,25 @@
 #include "ResponseTypeMean.h"
-#include "Utilities4ValueVector.h"
 #include "Result.h"
+#include "Utilities4ValueVector.h"
 
-namespace cora
-{
+namespace cora {
 
-CResponseTypeMean::CResponseTypeMean(CSummaryResultFile& summaryResultFile,
-  const std::vector <QString>& function)
-: CResponseTypeBase(summaryResultFile, function)
-{
-}
+CResponseTypeMean::CResponseTypeMean(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function)
+    : CResponseTypeBase(summaryResultFile, function) {}
 
-CResponseTypeMean::~CResponseTypeMean()
-{
-}
+CResponseTypeMean::~CResponseTypeMean() {}
 
-double CResponseTypeMean::calculate(const TObject& object,
-  const TFailureMode& failureMode)
-{
-  const geo::IElement* element = object->getFirstElement();
+double CResponseTypeMean::calculate(const TObject &object, const TFailureMode &failureMode) {
+  const geo::IElement *element = object->getFirstElement();
   double weightedMean = UNDEFINED_OR_INVALID_RESPONSE_TYPE;
 
-  if (element != 0)
-  {
-  double totalSize = calculateTotalSize(object, element);
+  if (element != 0) {
+    double totalSize = calculateTotalSize(object, element);
 
-  weightedMean = 0;
+    weightedMean = 0;
 
-  while (element != 0)
-  {
-      const IValueDomainScalar::TValueVec valueVec =
-    failureMode->getResultComponent()->ValueElement(*element);
+    while (element != 0) {
+      const IValueDomainScalar::TValueVec valueVec = failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
@@ -38,7 +27,7 @@ double CResponseTypeMean::calculate(const TObject& object,
 
       weightedMean += mean * (element->Size() / totalSize);
       element = object->getNextElement();
-  }
+    }
   }
 
   return weightedMean;

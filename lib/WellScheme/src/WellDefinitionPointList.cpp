@@ -1,11 +1,11 @@
 // WellDefinitionPointList.cpp: implementation of the CWellDefinitionPointList class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <cmath>
-#include "WellPoint.h"
-#include "wellpathbase.h"
-#include "WellPointList.h"
 #include "WellDefinitionPointList.h"
+#include "WellPoint.h"
+#include "WellPointList.h"
+#include "wellpathbase.h"
+#include <cmath>
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -13,79 +13,60 @@
 
 namespace well {
 
-//##ModelId=3F7AA15701DC
-CWellDefinitionPointList::CWellDefinitionPointList(CWellPathBase & WellPath)
-:CWellPointList(WellPath,true)
-{
+// ##ModelId=3F7AA15701DC
+CWellDefinitionPointList::CWellDefinitionPointList(CWellPathBase &WellPath) : CWellPointList(WellPath, true) {
   m_Description = "Definition points";
 }
 
-//##ModelId=3F7AA15701DE
-CWellDefinitionPointList::~CWellDefinitionPointList()
-{
+// ##ModelId=3F7AA15701DE
+CWellDefinitionPointList::~CWellDefinitionPointList() {}
 
-}
-
-
-
-long CWellDefinitionPointList::RemoveRedundantPoints()
-{
-  CWellPointList points_to_remove(WellPath(),false);
+long CWellDefinitionPointList::RemoveRedundantPoints() {
+  CWellPointList points_to_remove(WellPath(), false);
 
   Iterator it = begin();
 
-  CWellPoint* p1 = 0;
-  CWellPoint* p2 = 0;
-  CWellPoint* p3 = 0;
+  CWellPoint *p1 = 0;
+  CWellPoint *p2 = 0;
+  CWellPoint *p3 = 0;
 
-  if(it != end())
-  p1 = *it++;
-  if(it != end())
-  p2 = *it++;
-  if(it != end())
-  p3 = *it;
+  if (it != end())
+    p1 = *it++;
+  if (it != end())
+    p2 = *it++;
+  if (it != end())
+    p3 = *it;
 
-  const double eps = 0.1; //EPS;
-  while(p1 && p2 && p3)
-  {
-    double eas,nor,tvd,azi,inc;
-    
-    CWellPathBase::GetBetweenPosition(	*p1,
-                    *p3,
-                    p2->TMD().Value(),
-                    eas,
-                    nor,
-                    tvd,
-                    azi,
-                    inc);
+  const double eps = 0.1; // EPS;
+  while (p1 && p2 && p3) {
+    double eas, nor, tvd, azi, inc;
 
-    if(	fabs(eas - p2->Easting().Value()) < eps &&
-      fabs(nor - p2->Northing().Value()) < eps &&
-      fabs(tvd - p2->TVD().Value()) < eps )
+    CWellPathBase::GetBetweenPosition(*p1, *p3, p2->TMD().Value(), eas, nor, tvd, azi, inc);
+
+    if (fabs(eas - p2->Easting().Value()) < eps && fabs(nor - p2->Northing().Value()) < eps &&
+        fabs(tvd - p2->TVD().Value()) < eps)
 
     {
       points_to_remove.AddPoint(p2);
       p2 = p3;
       ++it;
-      if(it != end())
-    p3 = *(it);
+      if (it != end())
+        p3 = *(it);
       else
-    p3 = 0;
-    }
-    else
-    {
+        p3 = 0;
+    } else {
       p1 = p3;
       ++it;
-      if(it != end())
-    p2 = *(it);
+      if (it != end())
+        p2 = *(it);
       else
-    p2 = 0;
+        p2 = 0;
 
-    ++it;
-      if(it != end())
-    p3 = *(it);
+      ++it;
+      if (it != end())
+        p3 = *(it);
       else
-    p3 = 0;
+        p3 = 0;
     }
   }
 
@@ -93,7 +74,7 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
   return points_to_remove.NrOfPoints();
 }
 
-//long CWellDefinitionPointList::RemoveRedundantPoints()
+// long CWellDefinitionPointList::RemoveRedundantPoints()
 //{
 //	CWellPointList points_to_remove(WellPath(),false);
 //	CWellPointList all_points_to_remove(WellPath(),false);
@@ -110,7 +91,7 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
 //
 //		point_added=false;
 //		double eas,nor,tvd,azi,inc;
-//		
+//
 //		CWellPathBase::GetBetweenPosition(	*p1,
 //										*p3,
 //										p2->TMD().Value(),
@@ -129,7 +110,7 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
 //			points_to_remove.AddPoint(p2);
 //			Iterator it2 = points_to_remove.GetIterator();
 //			CWellPoint* p_check = it2;
-//			
+//
 //			while(p_check != p2)
 //			{
 //
@@ -147,7 +128,7 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
 //					fabs(tvd - p_check->TVD().Value()) < eps)
 //				{
 //
-//					
+//
 //				}
 //				else
 //				{
@@ -159,7 +140,7 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
 //			}
 //
 //		}
-//		
+//
 //		if(point_added)
 //		{
 //			p2 = p3;
@@ -174,11 +155,11 @@ long CWellDefinitionPointList::RemoveRedundantPoints()
 //			points_to_remove.RemoveAllPoints();
 //		}
 //
-//	
+//
 //	}
 //
 //	RemoveDuplicatePoints(all_points_to_remove);
 //	return all_points_to_remove.NrOfPoints();
-//}
+// }
 
-}
+} // namespace well

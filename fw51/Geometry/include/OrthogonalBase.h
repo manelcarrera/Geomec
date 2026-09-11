@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // OrthogonalBase.h: interface for the COrthogonalBase class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -17,8 +17,7 @@
 namespace geo {
 class CVector;
 class IVector;
-class GEOMETRY_EXPORT  COrthogonalBase  
-{
+class GEOMETRY_EXPORT COrthogonalBase {
   mutable std::vector<CVector *> m_vcDirections;
 
 public:
@@ -57,6 +56,6 @@ public:
   void AlignWith(const IVector &vector) const;
 };
 
-}
+} // namespace geo
 
 #endif // !defined(AFX_ORTHOGONALBASE_H__307E7292_DED0_4C6D_AD5C_45AD3E2909D8__INCLUDED_)

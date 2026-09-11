@@ -3,8 +3,8 @@
 
 #include "IMaterialServerTempl.h"
 #include "MaterialServerParent.h"
-#include "WellCasingSteelMaterial.h"
 #include "WellCasingMesh.h"
+#include "WellCasingSteelMaterial.h"
 
 class CWellCasingModel;
 
@@ -13,50 +13,49 @@ typedef CMaterialServerParent<COpenGLNode, CWellCasingMaterialServer> TWellCasin
 
 class CWellCasingSteelMaterial;
 
-class CWellCasingMaterialServer : public IMaterialServerTempl<CWellCasingSteelMaterial, TWellCasingMaterialServerParent>
-{
+class CWellCasingMaterialServer
+    : public IMaterialServerTempl<CWellCasingSteelMaterial, TWellCasingMaterialServerParent> {
   typedef IMaterialServerTempl<CWellCasingSteelMaterial, TWellCasingMaterialServerParent> TBase;
 
 public:
-  CWellCasingMaterialServer(TWellCasingMaterialServerParent& parent, const CDepletionStage& stage);
-  const CFFMaterial& Material(const geo::IElement& element) const;
+  CWellCasingMaterialServer(TWellCasingMaterialServerParent &parent, const CDepletionStage &stage);
+  const CFFMaterial &Material(const geo::IElement &element) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellCasingMaterialServer);
 
 protected:
-  virtual CWellCasingSteelMaterial* FindIndexInEntry(int nIndex) const;
+  virtual CWellCasingSteelMaterial *FindIndexInEntry(int nIndex) const;
 };
 
-class CWellCasingSteel : public TWellCasingMaterialServerParent
-{
+class CWellCasingSteel : public TWellCasingMaterialServerParent {
   typedef TWellCasingMaterialServerParent TBase;
 
 public:
-  CWellCasingSteel(const QString& strName, CWellCasingModel& model);
-  CWellCasingSteel(CWellCasingModel& model);
+  CWellCasingSteel(const QString &strName, CWellCasingModel &model);
+  CWellCasingSteel(CWellCasingModel &model);
 
-  bool operator==(const CWellCasingSteel& rhs) const;
-  CWellCasingSteel& operator=(const CWellCasingSteel& rhs);
+  bool operator==(const CWellCasingSteel &rhs) const;
+  CWellCasingSteel &operator=(const CWellCasingSteel &rhs);
 
   virtual unsigned int IconId() const;
   virtual unsigned int TypeId() const;
   virtual QString TypeName() const;
-  virtual bool Less(const CGraphNode& node) const;
+  virtual bool Less(const CGraphNode &node) const;
 
-  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
 
   virtual bool Empty() const;
   virtual long SavedItems() const;
 
   virtual int DisplayListSize() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
   virtual TColor Color() const;
   void Color(TColor nColor);
 
   void OnShowElements();
   void OnShowMidpoints();
 
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellCasingSteel);
 

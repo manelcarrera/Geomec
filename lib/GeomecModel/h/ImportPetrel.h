@@ -10,22 +10,12 @@ class IProgressBase;
 
 #include "SingleQuantity.h"
 
-class CImportPetrel
-{
+class CImportPetrel {
 public:
-  CImportPetrel
-  ( const QString &strFileName
-  , CNewWellPathInput *wellpathInput
-  , IProgressBase &dlg
-  , const CQuantity::UNIT& defaultLateralUnit
-  , const CQuantity::UNIT& defaultDepthUnit
-  );
-  CImportPetrel
-  ( const QString &strFileName
-  , IProgressBase &dlg
-  , const CQuantity::UNIT& defaultLateralUnit
-  , const CQuantity::UNIT& defaultDepthUnit
-  );
+  CImportPetrel(const QString &strFileName, CNewWellPathInput *wellpathInput, IProgressBase &dlg,
+                const CQuantity::UNIT &defaultLateralUnit, const CQuantity::UNIT &defaultDepthUnit);
+  CImportPetrel(const QString &strFileName, IProgressBase &dlg, const CQuantity::UNIT &defaultLateralUnit,
+                const CQuantity::UNIT &defaultDepthUnit);
   ~CImportPetrel();
   bool Import();
   const QString &Message() const;
@@ -34,7 +24,7 @@ public:
   t_unit getLateralUnit() const;
   t_unit getDepthUnit() const;
 
-  static bool hasPetrelHeader(char* const buffer);
+  static bool hasPetrelHeader(char *const buffer);
 
 private:
   bool ReadIdentifier();
@@ -43,18 +33,14 @@ private:
   bool CheckColumnNames();
   bool FindColumnNumbers();
   bool CheckColumnNumbers();
-  bool CheckCoordUnit( const QString &s_unit, const t_unit unit);
-  bool CheckDepthUnit( const QString &s_unit, const t_unit unit);
-  bool _CheckUnit
-  ( const QString &s_unit
-  , const CImportPetrel::t_unit unit
-  , const QString &s_regex
-  );
+  bool CheckCoordUnit(const QString &s_unit, const t_unit unit);
+  bool CheckDepthUnit(const QString &s_unit, const t_unit unit);
+  bool _CheckUnit(const QString &s_unit, const CImportPetrel::t_unit unit, const QString &s_regex);
   void SetProgressSteps();
   void ProgressStep();
 
   static const size_t m_bufferSize;
-  char * const m_cBuffer;
+  char *const m_cBuffer;
   size_t m_lineCounter;
   const QString &m_strFileName;
   CNewWellPathInput *m_wellpathInput;

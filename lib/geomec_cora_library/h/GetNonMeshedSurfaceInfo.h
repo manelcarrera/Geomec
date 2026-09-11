@@ -3,36 +3,33 @@
 
 #include "Object.h"
 
-namespace cora
-{
+namespace cora {
 
-class CGetNonMeshedSurfaceInfo
-{
-  public:
-  static CGetNonMeshedSurfaceInfo& instance(CModelBase* modelBase);
+class CGetNonMeshedSurfaceInfo {
+public:
+  static CGetNonMeshedSurfaceInfo &instance(CModelBase *modelBase);
 
   const TObjects getObjects() const;
 
-  std::ostream& operator () (std::ostream& os) const;
+  std::ostream &operator()(std::ostream &os) const;
 
-  private:
-  CGetNonMeshedSurfaceInfo(CModelBase* modelBase);
+private:
+  CGetNonMeshedSurfaceInfo(CModelBase *modelBase);
   ~CGetNonMeshedSurfaceInfo();
 
-  CGetNonMeshedSurfaceInfo(const CGetNonMeshedSurfaceInfo& rhs);
-  CGetNonMeshedSurfaceInfo& operator = (CGetNonMeshedSurfaceInfo rhs);
+  CGetNonMeshedSurfaceInfo(const CGetNonMeshedSurfaceInfo &rhs);
+  CGetNonMeshedSurfaceInfo &operator=(CGetNonMeshedSurfaceInfo rhs);
 
-  static TObjects getObjects(CModelBase* modelBase);
+  static TObjects getObjects(CModelBase *modelBase);
   static void cleanup();
 
-  static CGetNonMeshedSurfaceInfo* m_getNonMeshedSurfaceInfo;
-  CModelBase* m_modelBase;
+  static CGetNonMeshedSurfaceInfo *m_getNonMeshedSurfaceInfo;
+  CModelBase *m_modelBase;
   TObjects m_objects;
 };
 
 } // namespace cora
 
-std::ostream& operator << (std::ostream& os,
-  const cora::CGetNonMeshedSurfaceInfo& i);
+std::ostream &operator<<(std::ostream &os, const cora::CGetNonMeshedSurfaceInfo &i);
 
-#endif  // _cora_GetNonMeshedSurfaceInfo_h_
+#endif // _cora_GetNonMeshedSurfaceInfo_h_

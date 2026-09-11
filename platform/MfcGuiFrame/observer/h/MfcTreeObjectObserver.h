@@ -18,12 +18,12 @@ class IModelObject;
 class CContextMenuInvoker;
 class ITreeObject;
 
-class CMfcTreeObjectObserver : public CModelObjectObserver
-{
-  
+class CMfcTreeObjectObserver : public CModelObjectObserver {
+
   friend class CTreeObject;
+
 protected:
-  CTreeObject* m_pTreeObject;
+  CTreeObject *m_pTreeObject;
 
   virtual unsigned int onIconId() const = 0;
   virtual unsigned int onStateIconId() const;
@@ -36,15 +36,16 @@ protected:
 
   typedef QRgb TColor;
   virtual TColor color();
-  virtual	bool bold();
+  virtual bool bold();
   virtual bool enable();
 
   virtual bool canDestroy() const;
   virtual void destroy();
+
 public:
-  CMfcTreeObjectObserver(IModelObject& observed_object, CTreeCtrl &ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
-  CMfcTreeObjectObserver(IModelObject& observed_object, ITreeObject &parent, HTREEITEM m_hInsertAfter);
-  CMfcTreeObjectObserver(IModelObject& observed_object, CMfcTreeObjectObserver& observer);
+  CMfcTreeObjectObserver(IModelObject &observed_object, CTreeCtrl &ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
+  CMfcTreeObjectObserver(IModelObject &observed_object, ITreeObject &parent, HTREEITEM m_hInsertAfter);
+  CMfcTreeObjectObserver(IModelObject &observed_object, CMfcTreeObjectObserver &observer);
   virtual ~CMfcTreeObjectObserver();
 
   HTREEITEM Handle() const;
@@ -56,8 +57,8 @@ public:
   virtual void unSelect();
   virtual bool isSelected();
 
-  const CTreeObject& TreeObject() const {return *m_pTreeObject;}
-  CTreeObject& TreeObject() {return *m_pTreeObject;}
+  const CTreeObject &TreeObject() const { return *m_pTreeObject; }
+  CTreeObject &TreeObject() { return *m_pTreeObject; }
 
   void updateTreeObject();
 };

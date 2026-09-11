@@ -5,8 +5,7 @@
 
 #include "safeQSharedPointer.h"
 
-namespace geo
-{
+namespace geo {
 
 class IElement;
 
@@ -14,27 +13,25 @@ class IElement;
 
 #include "SingleQuantity.h"
 
-namespace cora
-{
+namespace cora {
 
-class IValueTypeWrapper
-{
-  public:
+class IValueTypeWrapper {
+public:
   IValueTypeWrapper();
   virtual ~IValueTypeWrapper() = 0;
 
   virtual bool hasDistributedValueType() const = 0;
-  virtual const std::vector <double> getDistributedValueType(
-      const geo::IElement& element, const CQuantity::UNIT unit) const = 0;
-  virtual const CDoubleQuantity& getDistributedValueTypeQuantity() const = 0;
-  
-  private:
-  IValueTypeWrapper(const IValueTypeWrapper& rhs);
-  IValueTypeWrapper& operator = (const IValueTypeWrapper& rhs);
+  virtual const std::vector<double> getDistributedValueType(const geo::IElement &element,
+                                                            const CQuantity::UNIT unit) const = 0;
+  virtual const CDoubleQuantity &getDistributedValueTypeQuantity() const = 0;
+
+private:
+  IValueTypeWrapper(const IValueTypeWrapper &rhs);
+  IValueTypeWrapper &operator=(const IValueTypeWrapper &rhs);
 };
 
-typedef QSharedPointer <IValueTypeWrapper> TValueTypeWrapper;
+typedef QSharedPointer<IValueTypeWrapper> TValueTypeWrapper;
 
 } // namespace cora
 
-#endif  // _cora_IValueTypeWrapper_h_
+#endif // _cora_IValueTypeWrapper_h_

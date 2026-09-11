@@ -4,27 +4,23 @@
 #include "AnalysisType.h"
 #include "RunModelEngineBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CRunModelEngine
-{
-  public:
+class CRunModelEngine {
+public:
   CRunModelEngine(CAnalysisType::TAnalysisType analysisType);
 
-  bool run(CRunModelData& runModelData, const QString& modelName,
-      const QString& applicationVersion) const;
+  bool run(CRunModelData &runModelData, const QString &modelName, const QString &applicationVersion) const;
 
-  private:
-  CRunModelEngine(const CRunModelEngine& rhs);
-  CRunModelEngine& operator = (CRunModelEngine rhs);
+private:
+  CRunModelEngine(const CRunModelEngine &rhs);
+  CRunModelEngine &operator=(CRunModelEngine rhs);
 
-  static TRunModelEngineBase selectEngine(
-      CAnalysisType::TAnalysisType analysisType);
+  static TRunModelEngineBase selectEngine(CAnalysisType::TAnalysisType analysisType);
 
   TRunModelEngineBase m_runModelEngineBase;
 };
 
 } // namespace cora
 
-#endif  // _cora_RunModelEngine_h_
+#endif // _cora_RunModelEngine_h_

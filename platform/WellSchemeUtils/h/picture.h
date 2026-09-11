@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CPicture wrapper class
 
-class CPicture : public COleDispatchDriver
-{
+class CPicture : public COleDispatchDriver {
 public:
-  CPicture() {}		// Calls COleDispatchDriver default constructor
+  CPicture() {} // Calls COleDispatchDriver default constructor
   CPicture(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CPicture(const CPicture& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CPicture(const CPicture &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   long GetHandle();
   long GetHPal();
@@ -28,7 +27,7 @@ public:
   long GetWidth();
   long GetHeight();
 
-// Operations
+  // Operations
 public:
   // method 'Render' not emitted because of invalid return type or parameter type
 };

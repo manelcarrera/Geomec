@@ -9,16 +9,16 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "mfTensor.h"
 #include "IDCStructuralLoad.h"
+#include "mfTensor.h"
 
 namespace dia {
 
-class CInitialStressLoad : public IStructuralLoad  
-{
+class CInitialStressLoad : public IStructuralLoad {
   const geo::IElement &m_element;
   std::vector<CTensor> *m_pvcTensors;
   std::vector<geo::CVector> *m_pvcVectors;
+
 public:
   // same value in all nodes (tensor)
   CInitialStressLoad(CLoadCase &loadcase, const ITensor &values, const geo::IElement &element);
@@ -39,6 +39,6 @@ public:
   const geo::IElement &Element() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_DCINITIALSTRESSLOAD_H__C7D0E563_5549_49F9_B944_932AE646E3CA__INCLUDED_)

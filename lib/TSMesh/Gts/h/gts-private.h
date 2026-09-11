@@ -23,16 +23,16 @@
 #define USE_ROBUST_PREDICATES
 
 /* Debugging flags */
-  
+
 /* #define DEBUG_FUNCTIONS */
 #ifdef DEBUG_FUNCTIONS
 /* #define DEBUG_LEAKS */
 #define DEBUG_IDENTITY
-guint id (gpointer p);
-void id_insert (gpointer p);
-void id_remove (gpointer p);
-void gts_write_triangle (GtsTriangle * t, GtsPoint * o, FILE * fptr);
-void gts_write_segment (GtsSegment * s, GtsPoint * o, FILE * fptr);
+guint id(gpointer p);
+void id_insert(gpointer p);
+void id_remove(gpointer p);
+void gts_write_triangle(GtsTriangle *t, GtsPoint *o, FILE *fptr);
+void gts_write_segment(GtsSegment *s, GtsPoint *o, FILE *fptr);
 #endif /* DEBUG_FUNCTIONS */
 
 #endif /* __GTS_PRIVATE_H__ */

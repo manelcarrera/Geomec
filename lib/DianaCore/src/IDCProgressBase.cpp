@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 #ifdef _MSC_VER
-#pragma warning ( disable : 4786 )
-#endif  // _MSC_VER
+#pragma warning(disable : 4786)
+#endif // _MSC_VER
 #include "IDCProgressBase.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -12,14 +12,8 @@
 
 namespace dia {
 
-IProgressBase::IProgressBase()
-{
+IProgressBase::IProgressBase() {}
 
-}
-
-IProgressBase::~IProgressBase()
-{
-
-}
+IProgressBase::~IProgressBase() {}
 
 } // namespace dia

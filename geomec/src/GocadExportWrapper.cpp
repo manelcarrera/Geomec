@@ -1,28 +1,24 @@
 // GocadExportWrapper.cpp: implementation of the CGocadExportWrapper class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfx.h"
 #include "Geomec.h"
+#include "StdAfx.h"
 
-#include "GocadExportWrapper.h"
 #include "ExportGocadDlg.h"
-#include "TetraModel.h"
 #include "GlobalMessage.h"
+#include "GocadExportWrapper.h"
+#include "TetraModel.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CGocadExportWrapper::CGocadExportWrapper()
-{
-}
+CGocadExportWrapper::CGocadExportWrapper() {}
 
-void CGocadExportWrapper::Export(CModelBase& model, const CResultGroup* pResultGroup)
-{
-  if(!dynamic_cast<const CTetraModel*>(&model))
-  {
-  _m()->msg("Gocad export is currently only possible for tetrahedron models");
-  return;
+void CGocadExportWrapper::Export(CModelBase &model, const CResultGroup *pResultGroup) {
+  if (!dynamic_cast<const CTetraModel *>(&model)) {
+    _m()->msg("Gocad export is currently only possible for tetrahedron models");
+    return;
   }
 
   CGocadExport ge(model);

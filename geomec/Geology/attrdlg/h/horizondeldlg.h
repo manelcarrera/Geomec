@@ -12,34 +12,30 @@
 
 #include "HexaFormation.h"
 
-class CHorizonDelDlg : public CDialog
-{
+class CHorizonDelDlg : public CDialog {
   CHexaFormation *m_pLower, *m_pUpper;
-// Construction
+  // Construction
 public:
-  CHorizonDelDlg(CHexaFormation *pLower, CHexaFormation *pUpper, CWnd* pParent = NULL);   // standard constructor
-  const CHexaFormation& Selection() const;	
-// Dialog Data
+  CHorizonDelDlg(CHexaFormation *pLower, CHexaFormation *pUpper, CWnd *pParent = NULL); // standard constructor
+  const CHexaFormation &Selection() const;
+  // Dialog Data
   //{{AFX_DATA(CHorizonDelDlg)
   enum { IDD = IDD_DELHORIZONDLG };
-  int		m_nUpper;
+  int m_nUpper;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CHorizonDelDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-  //}}AFX_VIRTUAL
-  
-
-// Implementation
 protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
+  //}}AFX_VIRTUAL
 
+  // Implementation
+protected:
   // Generated message map functions
   //{{AFX_MSG(CHorizonDelDlg)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

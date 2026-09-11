@@ -3,15 +3,12 @@
 
 #include "GeomecDianaRunner.h"
 
-class CGeomecHeatFlowDianaRunner : public CGeomecDianaRunnerBase
-{
+class CGeomecHeatFlowDianaRunner : public CGeomecDianaRunnerBase {
 public:
-  CGeomecHeatFlowDianaRunner(CMeshBase &meshbase,
-                             CModelBase &model,
-                             CDianaRunController& controller);
+  CGeomecHeatFlowDianaRunner(CMeshBase &meshbase, CModelBase &model, CDianaRunController &controller);
 
 protected:
-  typedef std::map<const CDepletionStage*, dia::CBoundaCase*> TStageMap;
+  typedef std::map<const CDepletionStage *, dia::CBoundaCase *> TStageMap;
 
   virtual bool AllowLinearCalc() const;
   virtual bool OnApplyLoads(dia::CLoadManager &manager);
@@ -19,7 +16,7 @@ protected:
   virtual bool OnWriteSupports();
   virtual bool OnWriteTyings();
   virtual dia::ITemperatureTable *OnCreateTemperatureTable() const { return 0; }
-  virtual dia::IConcentrationTable* OnCreateConcentrationTable() const { return 0; }
+  virtual dia::IConcentrationTable *OnCreateConcentrationTable() const { return 0; }
 
   virtual int LoadsProgressSize() const;
   virtual int CommandsProgressSize() const;
@@ -28,17 +25,16 @@ protected:
 
   // for retrieval of interface materials (only if element is an interface, otherwise 0) from derived classes
   virtual const dia::IMaterial *InterfaceMaterial(const geo::IElement &element) const;
-  virtual void WriteModelSpecificLoads(const TStageMap& mpStages);
+  virtual void WriteModelSpecificLoads(const TStageMap &mpStages);
 
 private:
   void FetchFixedPotentialNodes() const;
   void ProcessStages(dia::CLoadManager &manager, TStageMap &mpStages);
-  void CreateNodalTemperatures(
-    const TStageMap& mpStages,
-    CModelBase::TNodeElementsMap& mpNodeElements,
-    CModelBase::TNodeElementsMap* pmpNodeElementsExclude);
-  geo::CValue GetAverageTemperatureInNode(int iNode, const std::set<int>& stElements, const CDepletionStage& stage) const;
-  void CreateTimeBoundaTables(const TStageMap& mpStages);
+  void CreateNodalTemperatures(const TStageMap &mpStages, CModelBase::TNodeElementsMap &mpNodeElements,
+                               CModelBase::TNodeElementsMap *pmpNodeElementsExclude);
+  geo::CValue GetAverageTemperatureInNode(int iNode, const std::set<int> &stElements,
+                                          const CDepletionStage &stage) const;
+  void CreateTimeBoundaTables(const TStageMap &mpStages);
 
 private:
   mutable CModelBase::TNodeElementsMap m_mpBoundaryNodes;

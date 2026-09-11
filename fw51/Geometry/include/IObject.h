@@ -9,24 +9,24 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "dimple.h"
 #include "DispatchVisitorBase.h"
+#include "dimple.h"
 
 #include "GeometryExports.h"
 
 #ifndef VERIFY
 #ifdef NDEBUG
-#define VERIFY(a)				\
-{								\
-  ((a) != 0);		\
-}
+#define VERIFY(a)                                                                                                      \
+  {                                                                                                                    \
+    ((a) != 0);                                                                                                        \
+  }
 #else // !NDEBUG
-#define VERIFY(a)				\
-{								\
-  bool chk = ((a) != 0);		\
-  assert(chk);				\
-}
-#endif  // NDEBUG
+#define VERIFY(a)                                                                                                      \
+  {                                                                                                                    \
+    bool chk = ((a) != 0);                                                                                             \
+    assert(chk);                                                                                                       \
+  }
+#endif // NDEBUG
 #endif
 
 namespace geo {
@@ -41,7 +41,6 @@ namespace geo {
 #define EPS 1e-4
 #define DBL_UNDEFINED -99999999.999
 
-
 class IVector;
 class IMatrix;
 class ILine;
@@ -50,79 +49,76 @@ class CPoint;
 class IPlane;
 
 // Copyright (c) 2011 TNO DIANA BV                              Confidential
-// Description : The abstract base class "IObject" is the ancestor of all 
-//			 	 geometrycal objects and provides a set of standard function 
+// Description : The abstract base class "IObject" is the ancestor of all
+//			 	 geometrycal objects and provides a set of standard function
 //			 	 which aply to all objects
 // Status      : Finished (100%)
-// Last review : 27-03-2002 
-class GEOMETRY_EXPORT  IObject  
-{
+// Last review : 27-03-2002
+class GEOMETRY_EXPORT IObject {
 protected:
-  IObject(){}
+  IObject() {}
+
 public:
   // needed for polymorphic destruction of IObject derived classes
   // do not remove
-  virtual ~IObject(){}
+  virtual ~IObject() {}
 
-  //Rotates the object arround the origin 
-  //along a vector with a specified angle
-  //##ModelId=3BC2A45E0081
+  // Rotates the object arround the origin
+  // along a vector with a specified angle
+  // ##ModelId=3BC2A45E0081
   virtual void RotateLine(const ILine &line, const double &dAngleDeg);
   virtual void Rotate(const IVector &vec, const double &dAngleDeg) = 0;
-  
 
-  //The move function translates the object along the 
-  //vector.
-  //##ModelId=3BC2A45E0085
+  // The move function translates the object along the
+  // vector.
+  // ##ModelId=3BC2A45E0085
   virtual void Move(const IVector &vec) = 0;
 
-  //##ModelId=3BC2A45E0088
+  // ##ModelId=3BC2A45E0088
   virtual void Transform(const IMatrix &matrix) = 0;
 
-  //##ModelId=3BC2A45E0091
+  // ##ModelId=3BC2A45E0091
   virtual void AssertValid() const = 0;
 
-  //##ModelId=3BC2A45E0093
+  // ##ModelId=3BC2A45E0093
   virtual bool Empty() const = 0;
 
-  //Returns the minimun value of the bounding box. If 
-  //the object is undefined (Empty() == true) the function 
-  //returns an undefined (Empty() == true) vertex.
-  //##ModelId=3BC2A45E0095
+  // Returns the minimun value of the bounding box. If
+  // the object is undefined (Empty() == true) the function
+  // returns an undefined (Empty() == true) vertex.
+  // ##ModelId=3BC2A45E0095
   virtual CPoint Min() const = 0;
 
-  //Return the maximum value of the bouding box. If the 
-  //object is undefined (Empty() == true) the function returns 
-  //an undefined (Empty() == true) vertex.
-  //##ModelId=3BC2A45E0097
+  // Return the maximum value of the bouding box. If the
+  // object is undefined (Empty() == true) the function returns
+  // an undefined (Empty() == true) vertex.
+  // ##ModelId=3BC2A45E0097
   virtual CPoint Max() const = 0;
 
   // checks whether the bounding boxes intersect
   // will return bIncludeEdges if the boxes only "touch"
   virtual bool BoundingBoxIntersect(const geo::IObject &rhs, bool bIncludeEdges = true) const;
 
-
-
-  //check if boxes are exclusive outside each other
-  //touching returns false (htg)
+  // check if boxes are exclusive outside each other
+  // touching returns false (htg)
   bool BoundingBoxOutside(const geo::IObject &rhs) const;
 
-  //check if rhs is strictly inside this box
-  //touching returns false (htg)
+  // check if rhs is strictly inside this box
+  // touching returns false (htg)
   bool BBRhsInside(const geo::IObject &rhs) const;
 
-  //check if point is exlusive in this box
-  //boundary return false (htg)
+  // check if point is exlusive in this box
+  // boundary return false (htg)
   bool PointInsideBoundingBox(const geo::IPoint &point) const;
 
-  //check if point is exlusive outside this box
-  //boundary return false (htg)
+  // check if point is exlusive outside this box
+  // boundary return false (htg)
   bool PointOutsideBoundingBox(const geo::IPoint &point) const;
 
-  //check if point is exlusive on the boundary of this box
+  // check if point is exlusive on the boundary of this box
   bool PointOnBoundaryOfBoundingBox(const geo::IPoint &point) const;
 
-  virtual void Mirror(const geo::IPlane& plane);
+  virtual void Mirror(const geo::IPlane &plane);
 
   virtual bool Visit(IVisitor &visitor) { return visitor.HandleObject(*this); }
 
@@ -131,12 +127,12 @@ public:
   virtual bool IsBody() const;
 
   static ftn_double_t compareTolerance();
-  static ftn_double_t setCompareTolerance( ftn_double_t tolerance );
+  static ftn_double_t setCompareTolerance(ftn_double_t tolerance);
 
 private:
   static ftn_double_t m_compareTolerance;
 };
 
-}
+} // namespace geo
 
 #endif // !defined(AFX_IOBJECT_H__1414E04D_D50F_4AFE_AE3F_83A3CDACFB46__INCLUDED_)

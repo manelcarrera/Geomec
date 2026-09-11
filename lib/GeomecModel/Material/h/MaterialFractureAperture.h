@@ -5,16 +5,15 @@
 #include "MaterialModelFractureAperture.h"
 #include "Materials.h"
 
-class CMaterialFractureAperture : public CMaterialFractureApertureBase
-{
+class CMaterialFractureAperture : public CMaterialFractureApertureBase {
 public:
-  CMaterialFractureAperture(CMaterialEntry& entry, CLibraryMaterial& libmat);
+  CMaterialFractureAperture(CMaterialEntry &entry, CLibraryMaterial &libmat);
 
   virtual int MaterialModel() const { return MM_FRACTURE_APERTURE; }
   virtual long MaterialModelFilter() const { return MLFO_FRACTURE_APERTURE; }
 
   // the creator for this material model
-  static ml::CMaterial::CCreator* GetLibraryMaterialCreator() { return new CMaterialFractureApertureCreator; }
+  static ml::CMaterial::CCreator *GetLibraryMaterialCreator() { return new CMaterialFractureApertureCreator; }
 
   ACCEPT_GEOMECMODELVISITORS(VisitMaterialFractureAperture);
 };

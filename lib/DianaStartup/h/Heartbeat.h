@@ -1,12 +1,11 @@
 #pragma once
 
-//own
+// own
 #include "IListener.h"
-//boost
+// boost
 #include <boost/date_time/posix_time/posix_time.hpp> //hb
 
-using namespace boost::posix_time; //ptime
-
+using namespace boost::posix_time; // ptime
 
 /////////////////////////////////////////////////////////////////
 //
@@ -14,8 +13,7 @@ using namespace boost::posix_time; //ptime
 //
 /////////////////////////////////////////////////////////////////
 
-class HB : public IListener
-{
+class HB : public IListener {
   ptime m_time_sent;
   ptime m_time_rec;
 
@@ -25,25 +23,22 @@ class HB : public IListener
 
   int m_hb_timeout;
 
-  std::thread* m_th; // heartbeat
+  std::thread *m_th; // heartbeat
 
   CEvents::eEventsHandler m_notify_to;
 
-
 protected:
-  void handle(Cmd cmd);//=0
+  void handle(Cmd cmd); //=0
 
 public:
-  HB(	CEvents::eEventsHandler eh = CEvents::HB_EH, 
-    CEvents::eEventsHandler notify_to = CEvents::Undefined_EH );
+  HB(CEvents::eEventsHandler eh = CEvents::HB_EH, CEvents::eEventsHandler notify_to = CEvents::Undefined_EH);
   ~HB();
 
   //
   // '0' disables timeout mechanism, for test purpose
   //
-  void hb_timeout( int val ) { m_hb_timeout = val; };
-  int hb_timeout(){ return m_hb_timeout; };
+  void hb_timeout(int val) { m_hb_timeout = val; };
+  int hb_timeout() { return m_hb_timeout; };
 
   void hb();
 };
-

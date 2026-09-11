@@ -3,26 +3,24 @@
 
 class IMaterialBase;
 
-#include "StorageNode.h"
 #include "GeomecModelVisitor.h"
+#include "StorageNode.h"
 class CMaterialKey;
 class CFFMaterial;
 
-namespace geo
-{
+namespace geo {
 class IElementSet;
 }
 
-class IMaterialServerBase : public CStorageNode
-{
+class IMaterialServerBase : public CStorageNode {
 public:
-  IMaterialServerBase(const QString& strName, CFemAppModel& model);
+  IMaterialServerBase(const QString &strName, CFemAppModel &model);
   virtual ~IMaterialServerBase();
 
   virtual bool ReadOnly() const = 0;
-  virtual const IMaterialBase* Material() const = 0;
+  virtual const IMaterialBase *Material() const = 0;
 
-  virtual void AddToCache(CMaterialKey& /*key*/, CFFMaterial * /*material*/) const {}
+  virtual void AddToCache(CMaterialKey & /*key*/, CFFMaterial * /*material*/) const {}
 
   virtual bool PrepareMapping(const geo::IElementSet *) const = 0;
 

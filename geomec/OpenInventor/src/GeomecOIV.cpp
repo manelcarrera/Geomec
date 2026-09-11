@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #include "GeomecOIV.h"
+#include "stdafx.h"
 
 // View/TensorViz
 #include "MoMeshTensor.h"
@@ -8,14 +8,13 @@
 #include "MoTensorSetElement.h"
 
 #include "CrossSectionManipulator.h"
-#include "GeomecPolygonScreenDrawer.h"
 #include "FormationCrossSection.h"
+#include "GeomecPolygonScreenDrawer.h"
 #include "MeshCrossSection.h"
 #include "SoSwitchBool.h"
 
-void GeomecOIV::init()
-{
-  //Init custom OIV classes
+void GeomecOIV::init() {
+  // Init custom OIV classes
   MoMeshTensor::initClass();
   MoMeshTensorVector::initClass();
   MoTensorSet::initClass();
@@ -28,8 +27,7 @@ void GeomecOIV::init()
   SoSwitchBool::initClass();
 }
 
-void GeomecOIV::finish()
-{
+void GeomecOIV::finish() {
   MoMeshTensor::exitClass();
   MoMeshTensorVector::exitClass();
   MoTensorSet::exitClass();

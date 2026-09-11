@@ -1,15 +1,14 @@
 #ifndef _ATTRIFAULTPRESSUREDLG_H_
 
-#include "FaultPressure.h"
 #include "AttributeTempl.h"
+#include "FaultPressure.h"
 
-class CAttriFaultPressureDlg : public CAttributesTemplate<CFaultPressure>
-{
+class CAttriFaultPressureDlg : public CAttributesTemplate<CFaultPressure> {
 public:
-  CAttriFaultPressureDlg(CFaultPressure& faultpressure, CWnd* pParent = 0);
+  CAttriFaultPressureDlg(CFaultPressure &faultpressure, CWnd *pParent = 0);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   BOOL OnInitDialog();
 
 protected:

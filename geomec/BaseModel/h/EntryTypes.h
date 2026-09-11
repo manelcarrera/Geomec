@@ -9,7 +9,4 @@
 
 // Primitive Geometry GraphEntry
 
-
-
-
 #endif // !defined(__SUPPORTED_MODEL_ENTRY_TYPE_)

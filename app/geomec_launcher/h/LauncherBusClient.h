@@ -4,31 +4,27 @@
 
 #include "Interprocess_OLD.h" // cmd id
 
+class ProcessManager; // FIXME
 
-class ProcessManager; //FIXME
-
-class LauncherBusClient : public ModGMLocalBusClient
-{
+class LauncherBusClient : public ModGMLocalBusClient {
   Q_OBJECT
 
 public:
-  LauncherBusClient(const QString& base, const QString& name, QObject *parent = nullptr);
+  LauncherBusClient(const QString &base, const QString &name, QObject *parent = nullptr);
   virtual ~LauncherBusClient();
 
 private:
-//public slots:
-  void send( const QString& to, BusClientCmd id );
+  // public slots:
+  void send(const QString &to, BusClientCmd id);
 
-//private slots:
+  // private slots:
 
-  void onReceivedMessage(const ModGMBusMessage& message);
-  
+  void onReceivedMessage(const ModGMBusMessage &message);
 
 private:
   ModGMBusMessage m_msg;
   QSharedMemory m_shm;
 
 public:
-  ProcessManager* m_pm;
-  
+  ProcessManager *m_pm;
 };

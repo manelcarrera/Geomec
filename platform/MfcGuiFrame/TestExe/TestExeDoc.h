@@ -10,45 +10,42 @@
 #endif // _MSC_VER > 1000
 
 class C2DDocument;
-class CTestExeDoc : public CDocument
-{
-  C2DDocument* m_pModel;
+class CTestExeDoc : public CDocument {
+  C2DDocument *m_pModel;
+
 protected: // create from serialization only
   CTestExeDoc();
   DECLARE_DYNCREATE(CTestExeDoc)
 
-    C2DDocument* Model() { return m_pModel; }
+  C2DDocument *Model() { return m_pModel; }
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTestExeDoc)
-  public:
+public:
   virtual BOOL OnNewDocument();
-  virtual void Serialize(CArchive& ar);
+  virtual void Serialize(CArchive &ar);
   virtual void DeleteContents();
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 public:
   virtual ~CTestExeDoc();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
 protected:
-
-// Generated message map functions
+  // Generated message map functions
 protected:
   //{{AFX_MSG(CTestExeDoc)
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
+  // NOTE - the ClassWizard will add and remove member functions here.
+  //    DO NOT EDIT what you see in these blocks of generated code !
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

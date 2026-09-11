@@ -8,35 +8,23 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CCurvatureQuantity::CCurvatureQuantity()
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
+CCurvatureQuantity::CCurvatureQuantity() : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
 }
 
-CCurvatureQuantity::CCurvatureQuantity(const double value, const UNIT unit)
-: CDoubleQuantity()
-{ 
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
+CCurvatureQuantity::CCurvatureQuantity(const double value, const UNIT unit) : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
   Value(value, unit);
 }
 
-CCurvatureQuantity::~CCurvatureQuantity()
-{
+CCurvatureQuantity::~CCurvatureQuantity() {}
 
-}
+std::string CCurvatureQuantity::QuantityName() const { return "Curvature"; }
 
-std::string CCurvatureQuantity::QuantityName() const
-{
-  return "Curvature"; 
-}
-
-std::string CCurvatureQuantity::UnitName(const UNIT unit /*=SI_UNIT*/) const
-{
-  switch(unit)
-  {
+std::string CCurvatureQuantity::UnitName(const UNIT unit /*=SI_UNIT*/) const {
+  switch (unit) {
   case SI_UNIT:
     return "rad/m";
   case FIELD_UNIT:
@@ -52,16 +40,13 @@ std::string CCurvatureQuantity::UnitName(const UNIT unit /*=SI_UNIT*/) const
   return "";
 }
 
-double CCurvatureQuantity::Convert(const double &value,const UNIT out,const UNIT in) const
-{
-  if(in == out)
+double CCurvatureQuantity::Convert(const double &value, const UNIT out, const UNIT in) const {
+  if (in == out)
     return value;
-
 
   double tmp = value;
 
-  switch(in)
-  {
+  switch (in) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
@@ -77,9 +62,7 @@ double CCurvatureQuantity::Convert(const double &value,const UNIT out,const UNIT
     break;
   }
 
-
-  switch(out)
-  {
+  switch (out) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
@@ -95,6 +78,5 @@ double CCurvatureQuantity::Convert(const double &value,const UNIT out,const UNIT
     break;
   }
 
-  return tmp; 
+  return tmp;
 }
-

@@ -5,10 +5,9 @@ class CDCasing;
 
 #include "DianaSignals.h"
 
-class CDCasingDianaSignals : public CDianaSignals
-{
+class CDCasingDianaSignals : public CDianaSignals {
 public:
-  CDCasingDianaSignals(const QObject* sender, CDCasing* dCasing);
+  CDCasingDianaSignals(const QObject *sender, CDCasing *dCasing);
   ~CDCasingDianaSignals();
 
   virtual void onMessage(QString message);
@@ -19,10 +18,10 @@ public:
   virtual void onFinished();
 
 private:
-  CDCasingDianaSignals(const CDCasingDianaSignals& rhs);
-  CDCasingDianaSignals& operator = (const CDCasingDianaSignals& rhs);
+  CDCasingDianaSignals(const CDCasingDianaSignals &rhs);
+  CDCasingDianaSignals &operator=(const CDCasingDianaSignals &rhs);
 
-  CDCasing* m_dCasing;
+  CDCasing *m_dCasing;
 };
 
-#endif  // _DCasingDianaSignals_h_
+#endif // _DCasingDianaSignals_h_

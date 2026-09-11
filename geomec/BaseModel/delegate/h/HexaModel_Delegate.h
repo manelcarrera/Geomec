@@ -5,16 +5,15 @@
 
 class CHexaModel;
 
-class CHexaModel_Delegate : public C3DModel_Delegate
-{
+class CHexaModel_Delegate : public C3DModel_Delegate {
 public:
-  CHexaModel_Delegate(CHexaModel* aHexaModel);
+  CHexaModel_Delegate(CHexaModel *aHexaModel);
 
 private:
-  CHexaModel_Delegate(const CHexaModel_Delegate& rhs);
-  CHexaModel_Delegate& operator = (const CHexaModel_Delegate& rhs);
+  CHexaModel_Delegate(const CHexaModel_Delegate &rhs);
+  CHexaModel_Delegate &operator=(const CHexaModel_Delegate &rhs);
 
-  CHexaModel* m_HexaModel;
+  CHexaModel *m_HexaModel;
 
   REGISTER_DELEGATE(CHexaModel, CHexaModel_Delegate);
 };

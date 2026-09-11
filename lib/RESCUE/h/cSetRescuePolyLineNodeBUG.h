@@ -36,8 +36,7 @@ class RescuePolyLineNodeBUG;
 class RescueContext;
 class RescueOrientationLedger;
 
-class cSetRescuePolyLineNodeBUG
-{
+class cSetRescuePolyLineNodeBUG {
 protected:
   RescuePolyLineNodeBUG **objects;
   RESCUEINT64 allocated;
@@ -54,13 +53,14 @@ public:
   RescuePolyLineNodeBUG *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescuePolyLineNodeBUG *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescuePolyLineNodeBUG *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
+
 private:
   void InsertAt(RESCUEINT64 ndx, RescuePolyLineNodeBUG *newObject);
   void SetOrientation(RescueOrientationLedger *ledger);
@@ -70,6 +70,3 @@ private:
 };
 
 #endif
-
-
-

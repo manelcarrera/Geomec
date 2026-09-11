@@ -13,13 +13,13 @@ class CFemAppDoc;
 class COpenGLSceneBase;
 
 typedef CGraphPtr<COpenGLSceneBase> TScenePtr;
-class CScenePtr : public TScenePtr
-{
-  CFemAppDoc& m_doc;
+class CScenePtr : public TScenePtr {
+  CFemAppDoc &m_doc;
+
 public:
-  CScenePtr(CFemAppDoc& doc);
+  CScenePtr(CFemAppDoc &doc);
   virtual void OnNewNeighbour(const CGraphNode &node);
-  virtual void OnNeighbourDeleted(const CGraphNode& node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
   virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
   CScenePtr &operator=(COpenGLSceneBase *pScene);
 };

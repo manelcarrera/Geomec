@@ -14,14 +14,14 @@
 
 class ICtrlObject;
 class CContextMenuInvoker;
-typedef std::vector<ICtrlObject*> TCtrlObjectVec;
+typedef std::vector<ICtrlObject *> TCtrlObjectVec;
 
-class ICtrlObject : public ICtrlObjectBase  
-{
+class ICtrlObject : public ICtrlObjectBase {
 protected:
   // Contruction
   ICtrlObject();
   virtual ~ICtrlObject();
+
 public:
   // Icon interface ...
   virtual unsigned int SelectedIcon() const;
@@ -30,9 +30,9 @@ public:
 
   // Drag and drop
   virtual BOOL OnBeginDrag();
-  virtual	DROPEFFECT CanDrop(TCtrlObjectVec &vcDragged, BOOL bMove) const;
+  virtual DROPEFFECT CanDrop(TCtrlObjectVec &vcDragged, BOOL bMove) const;
   virtual void Drop(TCtrlObjectVec &vcDragged, BOOL bMove);
-  virtual void OnDragLeave(TCtrlObjectVec& vcDragged) const;
+  virtual void OnDragLeave(TCtrlObjectVec &vcDragged) const;
 
   // Delete actions
   virtual void Delete();
@@ -41,14 +41,13 @@ public:
   virtual void Modify();
   virtual BOOL CanModify() const;
 
-
   // Selection
   virtual BOOL OnSelect();
   virtual BOOL IsSelected() const = 0;
 
   // Double click and context menu
   virtual void OnDoubleClick();
-  virtual void AppendToMenu(CMenu& menu);
+  virtual void AppendToMenu(CMenu &menu);
   virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
   // State ...
@@ -57,7 +56,5 @@ public:
   // Update label and text
   virtual void Update() = 0;
 };
-
-
 
 #endif // !defined(AFX_ICTRLOBJECT_H__EBD66F89_F63B_11D5_B8F5_F2227CA4A730__INCLUDED_)

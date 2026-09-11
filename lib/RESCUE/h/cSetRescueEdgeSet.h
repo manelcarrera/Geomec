@@ -32,12 +32,10 @@ Software Product or documentation licensed under this agreement.
 #include "boolSupport.h"
 #include <stdlib.h>
 
-
 class RescueEdgeSet;
 class RescueContext;
 
-class cSetRescueEdgeSet
-{
+class cSetRescueEdgeSet {
 protected:
   RescueEdgeSet **objects;
   RESCUEINT64 allocated;
@@ -54,20 +52,18 @@ public:
   RescueEdgeSet *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueEdgeSet *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueEdgeSet *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
+
 private:
-  void GiveUpObjects() {count = 0;}
+  void GiveUpObjects() { count = 0; }
 
   friend class RescueMacroVolume;
 };
 
 #endif
-
-
-

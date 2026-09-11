@@ -5,8 +5,7 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
 class CRunModelData;
 class CSummaryResultFile;
@@ -16,34 +15,31 @@ class CSelectedLSFs;
 
 #include "AnalysisType.h"
 
-namespace cora
-{
+namespace cora {
 
-class CRunModel
-{
-  public:
-  CRunModel(CRunModelData& runModelData, const QString& applicationVersion);
+class CRunModel {
+public:
+  CRunModel(CRunModelData &runModelData, const QString &applicationVersion);
 
-  bool operator () ();
+  bool operator()();
 
-  private:
-  CRunModel(const CRunModel& rhs);
-  CRunModel& operator = (CRunModel rhs);
+private:
+  CRunModel(const CRunModel &rhs);
+  CRunModel &operator=(CRunModel rhs);
 
   void validateVersionNumber();
 
-  typedef std::set <CAnalysisType::TAnalysisType> TAnalysisTypes;
+  typedef std::set<CAnalysisType::TAnalysisType> TAnalysisTypes;
 
   void processModelData();
 
-  static TAnalysisTypes selectAnalysisTypes(
-      CSummaryResultFile& summaryResultFile, const CSelectedLSFs& selectedLSFs);
+  static TAnalysisTypes selectAnalysisTypes(CSummaryResultFile &summaryResultFile, const CSelectedLSFs &selectedLSFs);
 
-  CRunModelData& m_runModelData;
+  CRunModelData &m_runModelData;
   const QString m_applicationVersion;
   TAnalysisTypes m_analysisTypes;
 };
 
 } // namespace cora
 
-#endif  // _cora_RunModel_h_
+#endif // _cora_RunModel_h_

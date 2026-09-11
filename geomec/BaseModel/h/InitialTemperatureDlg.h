@@ -12,10 +12,9 @@
 #include "AttriGlobalFormationLoadDlg.h"
 #include "GlobalTemperature.h"
 
-class CInitialTemperatureDlg : public CAttriGlobalFormationLoadDlg<CGlobalTemperature>
-{
+class CInitialTemperatureDlg : public CAttriGlobalFormationLoadDlg<CGlobalTemperature> {
 public:
-  CInitialTemperatureDlg(CGlobalTemperature& temp, CWnd* pParent = 0);
+  CInitialTemperatureDlg(CGlobalTemperature &temp, CWnd *pParent = 0);
 
 protected:
   DECLARE_MESSAGE_MAP()

@@ -11,10 +11,9 @@
 // CNonlinParams dialog
 class CModelBase;
 class CDepletionStage;
-class CNonlinParams : public CDialog
-{
+class CNonlinParams : public CDialog {
   CModelBase &m_model;
-  typedef std::pair<CDepletionStage*, CDepletionStage*> TDepletionStagePair;
+  typedef std::pair<CDepletionStage *, CDepletionStage *> TDepletionStagePair;
   typedef std::vector<TDepletionStagePair> TDepletionStageVec;
   TDepletionStageVec m_vcDepletionStage;
 
@@ -22,31 +21,29 @@ class CNonlinParams : public CDialog
 
   void UpdateStageControls();
 
-// Construction
+  // Construction
 public:
-  CNonlinParams(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  CNonlinParams(CModelBase &model, CWnd *pParent = NULL); // standard constructor
   virtual ~CNonlinParams();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CNonlinParams)
   enum { IDD = IDD_NONLIN_PARAMS };
-  CComboBox	m_cbDepletionStage;
-  BOOL	m_bApplyAll;
-  BOOL	m_bLargeDeform;
-  BOOL  m_bAllowLinearCalc;
+  CComboBox m_cbDepletionStage;
+  BOOL m_bApplyAll;
+  BOOL m_bLargeDeform;
+  BOOL m_bAllowLinearCalc;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CNonlinParams)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CNonlinParams)
   virtual BOOL OnInitDialog();

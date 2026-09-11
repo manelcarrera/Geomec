@@ -10,13 +10,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // CCutSurfaceFrame frame
 
-#include "QuantityInclude.h"
 #include "CutSurfaceDlg.h"
 #include "NamedSurfaceMap.h"
+#include "QuantityInclude.h"
 
-
-namespace geo
-{
+namespace geo {
 class CBox;
 };
 
@@ -28,38 +26,31 @@ class CTreeView;
 class CTriaIntersecBox;
 class CCutsurfaceTreeView;
 
-
-class CCutSurfaceFrame : public CFrameWnd
-{
+class CCutSurfaceFrame : public CFrameWnd {
   friend class CCutSurfaceDlg;
 
   DECLARE_DYNCREATE(CCutSurfaceFrame)
 protected:
+public:
+  CCutSurfaceFrame();
 
 public:
-  CCutSurfaceFrame();        
+  void UpdateScene();
+  void Init(CCutsurfaceTreeView *listview, COpenGLView *view, CCutSurfaceDlg *dlg, CDoubleQuantity::UNIT unit);
 
-public:
-  void  UpdateScene();
-  void Init(
-        CCutsurfaceTreeView*		listview,
-        COpenGLView*	view,
-        CCutSurfaceDlg* dlg,
-        CDoubleQuantity::UNIT unit);
+  // called from EditForm..
+  void OnBBChanged(const geo::CBox *pBox);
+  void OnCutSurface(const geo::CBox *pBox, int nodesX, int nodesY, int nodesZ, bool bShowMinMaxPoints,
+                    const CString &basename = "base_");
+  void OnNodesNrChanged(const geo::CBox *pBox, int nodesX, int nodesY, int nodesZ);
 
-
-  //called from EditForm..
-  void OnBBChanged(const geo::CBox* pBox);
-  void OnCutSurface(const geo::CBox* pBox, int nodesX, int nodesY, int nodesZ, bool bShowMinMaxPoints, const CString& basename="base_");
-  void OnNodesNrChanged(const geo::CBox* pBox,int nodesX,int nodesY,int nodesZ);
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CCutSurfaceFrame)
-  //virtual BOOL OnNotify( WPARAM wParam, LPARAM lParam, LRESULT* pResult );
+  // virtual BOOL OnNotify( WPARAM wParam, LPARAM lParam, LRESULT* pResult );
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CCutSurfaceFrame();
 
@@ -67,51 +58,46 @@ protected:
   //{{AFX_MSG(CCutSurfaceFrame)
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
-  
 
-
-  COpenGLScene*  CurrentScene();
-  void		  On3dvLockDepth();
-  void		  OnUpdate3DViewButtons(CCmdUI* pCmdUI);
-  void		  On3dvLockEast();
-  void		  On3dvLockNorth();
-  void		  On3dvLockReset();
-  void		  On3dvZoomReset();
-  void		  On3dvZoomWindow();
-  void		  On3dvZoomin();
-  void		  On3dvZoomout();
-  void		  On3dvCopypicture();
-  void		  On3dvViewAxis();
-  void		  On3dvViewBeDirec();
-  void		  On3dvViewBoundary();
-  void		  On3dvViewEDirec();
-  void		  On3dvViewLighting();
-  void		  On3dvViewNDirec();
-  void		  On3dvViewPerspective();
-  void		  On3dvViewZDirec();
-
-
-
+  COpenGLScene *CurrentScene();
+  void On3dvLockDepth();
+  void OnUpdate3DViewButtons(CCmdUI *pCmdUI);
+  void On3dvLockEast();
+  void On3dvLockNorth();
+  void On3dvLockReset();
+  void On3dvZoomReset();
+  void On3dvZoomWindow();
+  void On3dvZoomin();
+  void On3dvZoomout();
+  void On3dvCopypicture();
+  void On3dvViewAxis();
+  void On3dvViewBeDirec();
+  void On3dvViewBoundary();
+  void On3dvViewEDirec();
+  void On3dvViewLighting();
+  void On3dvViewNDirec();
+  void On3dvViewPerspective();
+  void On3dvViewZDirec();
 
 private:
   void UpdateTree();
-  void  BuildBox(const geo::CBox* pBox);
-  std::map<CString,CGeoObjectHandlerBase*> m_handlermap;
-  void BuildNodes(const geo::CBox* pBox,int nodesX,int nodesY,int nodesZ);
+  void BuildBox(const geo::CBox *pBox);
+  std::map<CString, CGeoObjectHandlerBase *> m_handlermap;
+  void BuildNodes(const geo::CBox *pBox, int nodesX, int nodesY, int nodesZ);
 
-  CGeoObjectHandlerBase* GetHandler(const char* name);
-  CGeoObjectHandlerBase* CreateHandler(const char* name,bool autodelete);
-  void RemoveHandlerFromScene(CGeoObjectHandlerBase* handler);
-  void ShowHandlerInScene(CGeoObjectHandlerBase* handler);
+  CGeoObjectHandlerBase *GetHandler(const char *name);
+  CGeoObjectHandlerBase *CreateHandler(const char *name, bool autodelete);
+  void RemoveHandlerFromScene(CGeoObjectHandlerBase *handler);
+  void ShowHandlerInScene(CGeoObjectHandlerBase *handler);
 
-  void  GetSideSurfaceMap(TNamedSurfMap& surfmap );
-  void  GetCutSurfaceMap(TNamedSurfMap& surfmap);
+  void GetSideSurfaceMap(TNamedSurfMap &surfmap);
+  void GetCutSurfaceMap(TNamedSurfMap &surfmap);
 
-  void GetSurfaceMap(const char* name, TNamedSurfMap& surfmap);
+  void GetSurfaceMap(const char *name, TNamedSurfMap &surfmap);
 
-  CCutsurfaceTreeView* m_pTreeView;	
-  COpenGLView* m_pView;
-  CCutSurfaceDlg* m_pDlg;
+  CCutsurfaceTreeView *m_pTreeView;
+  COpenGLView *m_pView;
+  CCutSurfaceDlg *m_pDlg;
   CDoubleQuantity::UNIT m_unit;
   bool m_bShowMinMaxPoints;
 };

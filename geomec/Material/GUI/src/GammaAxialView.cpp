@@ -1,15 +1,15 @@
 // GammaView.cpp : implementation file
 //
 
-#include "stdafx.h"
 #include "GammaAxialView.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -17,26 +17,13 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNCREATE(CGammaAxialView, CView)
 
-CGammaAxialView::CGammaAxialView()
-{
-}
+CGammaAxialView::CGammaAxialView() {}
 
-CGammaAxialView::~CGammaAxialView()
-{
-}
+CGammaAxialView::~CGammaAxialView() {}
 
-//wjrx mantis 3167
-double CGammaAxialView::GetStressOrStrain( CStressStrain const &StressStrain ) const
-{
-  return GetStrain(StressStrain);
-}
+// wjrx mantis 3167
+double CGammaAxialView::GetStressOrStrain(CStressStrain const &StressStrain) const { return GetStrain(StressStrain); }
 
-double CGammaAxialView::GetStrain( CStressStrain const &StressStrain ) const
-{
-  return StressStrain.m_dAxialStrain;
-}
+double CGammaAxialView::GetStrain(CStressStrain const &StressStrain) const { return StressStrain.m_dAxialStrain; }
 
-double CGammaAxialView::GetStress( CStressStrain const &StressStrain ) const
-{
-  return StressStrain.m_dAxialStress;
-}
+double CGammaAxialView::GetStress(CStressStrain const &StressStrain) const { return StressStrain.m_dAxialStress; }

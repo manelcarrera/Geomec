@@ -3,8 +3,7 @@
 
 class CModelBase;
 
-namespace cora
-{
+namespace cora {
 
 class CFailureTypeParameterBase;
 
@@ -12,25 +11,20 @@ class CFailureTypeParameterBase;
 
 #include "ICreateElementValueSet.h"
 
-namespace cora
-{
+namespace cora {
 
-class CMapInterfaceElement2ElementValues : public ICreateElementValueSet
-{
-  public:
+class CMapInterfaceElement2ElementValues : public ICreateElementValueSet {
+public:
   CMapInterfaceElement2ElementValues();
   virtual ~CMapInterfaceElement2ElementValues();
 
-  virtual void createElementValueSet(CModelBase* modelBase,
-      const CFailureTypeParameterBase* failureTypeParameterBase);
+  virtual void createElementValueSet(CModelBase *modelBase, const CFailureTypeParameterBase *failureTypeParameterBase);
 
-  private:
-  CMapInterfaceElement2ElementValues(
-      const CMapInterfaceElement2ElementValues& rhs);
-  CMapInterfaceElement2ElementValues& operator = (
-      const CMapInterfaceElement2ElementValues& rhs);
+private:
+  CMapInterfaceElement2ElementValues(const CMapInterfaceElement2ElementValues &rhs);
+  CMapInterfaceElement2ElementValues &operator=(const CMapInterfaceElement2ElementValues &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_MapInterfaceElement2ElementValues_h_
+#endif // _cora_MapInterfaceElement2ElementValues_h_

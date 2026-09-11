@@ -1,23 +1,20 @@
 
 #include "DCPrescribedPressurePotential.h"
+#include "INode.h"
 #include "lbcx.h"
 #include "lbfl.h"
-#include "INode.h"
 
 namespace dia {
 
-CPrescribedPressurePotential::CPrescribedPressurePotential(const geo::INode& node, CLoadCase& lcase, double size)
-: IStructuralLoad(lcase, size),
-  m_node(node)
-{
-}
+CPrescribedPressurePotential::CPrescribedPressurePotential(const geo::INode &node, CLoadCase &lcase, double size)
+    : IStructuralLoad(lcase, size), m_node(node) {}
 
-bool CPrescribedPressurePotential::WriteFilos() const
-{
+bool CPrescribedPressurePotential::WriteFilos() const {
   assert(ValueSize() == 1);
 
   ftn_int_t idx = Inquire("DEFORM", "DIM");
-  if(idx < 0) idx = 0;
+  if (idx < 0)
+    idx = 0;
   ++idx;
 
   assert(!XistIndexed("DEFORM/", &idx));

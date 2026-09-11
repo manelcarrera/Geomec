@@ -11,17 +11,18 @@
 
 class CGVTSettings;
 
-class CGVTInputWriter
-{
+class CGVTInputWriter {
   const CGVTSettings &m_GVTSettings;
   FILE *m_fp;
   QString m_strError;
+
 public:
   CGVTInputWriter(const CGVTSettings &settings);
   ~CGVTInputWriter(void);
 
   bool WriteInput(const QString &sPath);
   const QString &Error() const { return m_strError; }
+
 private:
   bool WriteOutputSection();
   bool WriteMessageFileSection();

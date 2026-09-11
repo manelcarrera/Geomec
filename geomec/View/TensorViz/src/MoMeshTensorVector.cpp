@@ -1,23 +1,16 @@
-#include "stdafx.h"
 #include "MoMeshTensorVector.h"
+#include "stdafx.h"
 
 #include <Inventor/engines/SoCalculator.h>
 #include <MeshVizXLM/mapping/nodes/MoMeshVector.h>
 
 SO_NODE_SOURCE(MoMeshTensorVector);
 
-void MoMeshTensorVector::initClass()
-{
-  SO_NODE_INIT_CLASS(MoMeshTensorVector, SoGroup, "Group");
-}
+void MoMeshTensorVector::initClass() { SO_NODE_INIT_CLASS(MoMeshTensorVector, SoGroup, "Group"); }
 
-void MoMeshTensorVector::exitClass()
-{
-  SO__NODE_EXIT_CLASS(MoMeshTensorVector);
-}
+void MoMeshTensorVector::exitClass() { SO__NODE_EXIT_CLASS(MoMeshTensorVector); }
 
-MoMeshTensorVector::MoMeshTensorVector()
-{
+MoMeshTensorVector::MoMeshTensorVector() {
   SO_NODE_CONSTRUCTOR(MoMeshTensorVector);
 
   SO_NODE_ADD_FIELD(scaleFactor, (1.0f));
@@ -44,6 +37,4 @@ MoMeshTensorVector::MoMeshTensorVector()
   m_reverseVector->vectorSetId.connectFrom(&vectorSetId);
 }
 
-MoMeshTensorVector::~MoMeshTensorVector()
-{
-}
+MoMeshTensorVector::~MoMeshTensorVector() {}

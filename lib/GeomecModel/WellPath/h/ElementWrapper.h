@@ -3,32 +3,29 @@
 
 #include <QSharedPointer>
 
-namespace geo
-{
+namespace geo {
 
 class IElement;
 
 } // namespace geo
 
-namespace WellPath
-{
+namespace WellPath {
 
-class CElementWrapper
-{
-  public:
-  CElementWrapper(const geo::IElement& element);
+class CElementWrapper {
+public:
+  CElementWrapper(const geo::IElement &element);
 
-  const geo::IElement& element() const;
+  const geo::IElement &element() const;
 
-  private:
-  CElementWrapper(const CElementWrapper& rhs);
-  CElementWrapper& operator = (CElementWrapper rhs);
+private:
+  CElementWrapper(const CElementWrapper &rhs);
+  CElementWrapper &operator=(CElementWrapper rhs);
 
-  const geo::IElement& m_element;
+  const geo::IElement &m_element;
 };
 
-typedef QSharedPointer <CElementWrapper> TElementWrapper;
+typedef QSharedPointer<CElementWrapper> TElementWrapper;
 
 } // namespace WellPath
 
-#endif  // _ElementWrapper_h_
+#endif // _ElementWrapper_h_

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ModelObjectScene.h: interface for the CModelObjectScene class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -16,17 +16,16 @@
 
 class CLegendFrame;
 class COpenGLObjectObserver;
-class GUIFRAME_EXPORT CModelObjectScene : public COpenGLScene
-{
-  std::vector<COpenGLObjectObserver*> m_observers;
+class GUIFRAME_EXPORT CModelObjectScene : public COpenGLScene {
+  std::vector<COpenGLObjectObserver *> m_observers;
   // Prototype of function, which execute the handler of opengl node
-  typedef std::vector<const geo::IObject*> TObjectVec;
+  typedef std::vector<const geo::IObject *> TObjectVec;
 
-  TObjectVec filterSelection(const COpenGLObjectObserver& observer, const TObjectVec& vcSelection) const;
+  TObjectVec filterSelection(const COpenGLObjectObserver &observer, const TObjectVec &vcSelection) const;
   bool m_fill;
- 	bool m_curvedDraw;
+  bool m_curvedDraw;
   friend class COpenGLObjectObserver;
-  mutable CLegendFrame* m_legend;
+  mutable CLegendFrame *m_legend;
 
 public:
   // Construction
@@ -34,23 +33,23 @@ public:
   virtual ~CModelObjectScene();
 
   // Handlers for the objects
-  virtual bool MousePress(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseRelease(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseDblClk(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseMove(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point);
+  virtual bool MousePress(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseRelease(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseDblClk(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseMove(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint &point);
 
   // Fill
-  void setFill( bool fill );
+  void setFill(bool fill);
   bool fill() const;
 
- //Curved draw
-  void setCurvedDraw( bool curvedDraw);
-  bool curvedDraw() const ;
+  // Curved draw
+  void setCurvedDraw(bool curvedDraw);
+  bool curvedDraw() const;
 
-  virtual std::vector<TColor> onColor(const COpenGLObjectObserver& node, const geo::IObject &object) const;
+  virtual std::vector<TColor> onColor(const COpenGLObjectObserver &node, const geo::IObject &object) const;
 
-  CLegendFrame& legend();
-  const CLegendFrame& legend() const;
+  CLegendFrame &legend();
+  const CLegendFrame &legend() const;
 };
 
 #endif // !defined(AFX_MODELOBJECTSCENE_H__191D8F32_BE7A_4AEF_95D0_F8B67920686F__INCLUDED_)

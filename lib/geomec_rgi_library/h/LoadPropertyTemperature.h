@@ -3,21 +3,19 @@
 
 #include "LoadPropertyTemperatureBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CLoadPropertyTemperature : public CLoadPropertyTemperatureBase
-{
-  public:
-  CLoadPropertyTemperature(const RGProperty& rgProperty, RGInterface& rgi,
-      CModelBase& modelBase, CRockMechProcessor& rmp);
+class CLoadPropertyTemperature : public CLoadPropertyTemperatureBase {
+public:
+  CLoadPropertyTemperature(const RGProperty &rgProperty, RGInterface &rgi, CModelBase &modelBase,
+                           CRockMechProcessor &rmp);
   virtual ~CLoadPropertyTemperature();
 
-  private:
-  CLoadPropertyTemperature(const CLoadPropertyTemperature& rhs);
-  CLoadPropertyTemperature& operator = (const CLoadPropertyTemperature& rhs);
+private:
+  CLoadPropertyTemperature(const CLoadPropertyTemperature &rhs);
+  CLoadPropertyTemperature &operator=(const CLoadPropertyTemperature &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _LoadPropertyTemperature_h_
+#endif // _LoadPropertyTemperature_h_

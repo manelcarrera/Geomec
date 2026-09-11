@@ -13,38 +13,29 @@ class CValueType_Delegate;
 class IValueSet_Delegate;
 class CValueComponent;
 
-#include "IValueSet.h"
-#include "ValueType.h"
-#include "IPointSet.h"
-#include "treectrlbase.h"
 #include "IListObject.h"
+#include "IPointSet.h"
+#include "IValueSet.h"
 #include "ListCtrlBase.h"
+#include "ValueType.h"
+#include "treectrlbase.h"
 
-template<class T>
-class CTreeCtrlTemp : public CTreeCtrlBase
-{
-  T& m_dlg;
+template <class T> class CTreeCtrlTemp : public CTreeCtrlBase {
+  T &m_dlg;
+
 public:
-  CTreeCtrlTemp(T& dlg);
-  virtual CWnd& GetContextWnd() const;
+  CTreeCtrlTemp(T &dlg);
+  virtual CWnd &GetContextWnd() const;
 };
 
-template<class T>
-class CListCtrlTemp : public CListCtrlBase
-{
-  T& m_dlg;
-public:
-  CListCtrlTemp(T & dlg);
-  virtual CWnd& GetContextWnd() const;
-  virtual DROPEFFECT OnDragOver(TCtrlObjectVec vcDragged,
-                  COleDataObject* pDataObject, 
-                  DWORD dwKeyState, 
-                  CPoint point);
-  virtual BOOL OnDrop(TCtrlObjectVec vcDragged, 
-            COleDataObject* pDataObject,
-            DROPEFFECT dropEffect, 
-            CPoint point);
+template <class T> class CListCtrlTemp : public CListCtrlBase {
+  T &m_dlg;
 
+public:
+  CListCtrlTemp(T &dlg);
+  virtual CWnd &GetContextWnd() const;
+  virtual DROPEFFECT OnDragOver(TCtrlObjectVec vcDragged, COleDataObject *pDataObject, DWORD dwKeyState, CPoint point);
+  virtual BOOL OnDrop(TCtrlObjectVec vcDragged, COleDataObject *pDataObject, DROPEFFECT dropEffect, CPoint point);
 };
 
 class CComponentTreeObject;
@@ -54,29 +45,29 @@ class CComponentTreeObject;
 // the function AppendContextMenu does not ask for a delegate. However one
 // could verify that this function is never used!
 
-class CValueTypeTreeObject : public ITreeObject
-{
-  CTreeCtrl& m_tree;
-  CListCtrl& m_list;
-  CValueType& m_value_type;
-  CValueType_Delegate* valueType_Delegate;
+class CValueTypeTreeObject : public ITreeObject {
+  CTreeCtrl &m_tree;
+  CListCtrl &m_list;
+  CValueType &m_value_type;
+  CValueType_Delegate *valueType_Delegate;
+
 public:
-  // Construction 
-  CValueTypeTreeObject(CListCtrl& list, CTreeCtrl& tree, CValueType& value_type);
+  // Construction
+  CValueTypeTreeObject(CListCtrl &list, CTreeCtrl &tree, CValueType &value_type);
   ~CValueTypeTreeObject();
 
   // Access to quantity
-  CValueType& ValueType();
-  const CValueType& ValueType() const;
+  CValueType &ValueType();
+  const CValueType &ValueType() const;
 
   // Function to indentify coordinate value type of pointset
   bool IsCoordinate() const;
 
   // Control Access
-  const CTreeCtrl& TreeCtrl() const;
-  CTreeCtrl& TreeCtrl();
-  const CListCtrl& ListCtrl() const;
-  CListCtrl& ListCtrl();	
+  const CTreeCtrl &TreeCtrl() const;
+  CTreeCtrl &TreeCtrl();
+  const CListCtrl &ListCtrl() const;
+  CListCtrl &ListCtrl();
 
   // Operations ...
   virtual QString Text() const;
@@ -89,108 +80,90 @@ public:
   virtual BOOL OnBeginDrag();
   virtual void AppendContextMenu(CContextMenuInvoker &invoker);
   void AssertValid();
-  CComponentTreeObject* Validate();
+  CComponentTreeObject *Validate();
 };
 
-  // TODO AppendContextMenu
-  // CComponentTreeObject is not derived from CGraphNode, hence
-  // the function AppendContextMenu does not ask for a delegate. However one
-  // could verify that this function is never used!
+// TODO AppendContextMenu
+// CComponentTreeObject is not derived from CGraphNode, hence
+// the function AppendContextMenu does not ask for a delegate. However one
+// could verify that this function is never used!
 
-  class CComponentTreeObject : public ITreeObject
-  {
-    int m_nIndex;
-  IValueSet_Delegate* m_valueSet_Delegate;
-  public:
-    // Construction ...
-    CComponentTreeObject(CValueTypeTreeObject &root, int nIndex);
+class CComponentTreeObject : public ITreeObject {
+  int m_nIndex;
+  IValueSet_Delegate *m_valueSet_Delegate;
+
+public:
+  // Construction ...
+  CComponentTreeObject(CValueTypeTreeObject &root, int nIndex);
   ~CComponentTreeObject();
 
-    // Access to TreeObject
-    const CValueTypeTreeObject& ValueTypeTreeObject() const;
-    CValueTypeTreeObject& ValueTypeTreeObject();
+  // Access to TreeObject
+  const CValueTypeTreeObject &ValueTypeTreeObject() const;
+  CValueTypeTreeObject &ValueTypeTreeObject();
 
-    // Operations
-    virtual QString Text() const;
-    virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString &sText);
-    virtual unsigned int Icon() const;
-    CValueComponent& Component();
-    const CValueComponent& Component() const;
-    virtual BOOL OnBeginDrag();
-    virtual DROPEFFECT CanDrop(TCtrlObjectVec &vcDragged, BOOL bMove) const;
-    virtual void Drop(TCtrlObjectVec &vcDragged, BOOL bMove);
-    virtual BOOL CanDelete() const;
-    virtual bool CanRemove() const { return (CanDelete() != FALSE); }
-    virtual void Delete();
-    virtual void AppendContextMenu(CContextMenuInvoker &invoker);
-    bool IsInRange(const IValueSet& value_set) const;
-    int Index() const;
-    void AssertValid();
-  };
+  // Operations
+  virtual QString Text() const;
+  virtual BOOL CanEditText() const;
+  virtual BOOL EditText(const QString &sText);
+  virtual unsigned int Icon() const;
+  CValueComponent &Component();
+  const CValueComponent &Component() const;
+  virtual BOOL OnBeginDrag();
+  virtual DROPEFFECT CanDrop(TCtrlObjectVec &vcDragged, BOOL bMove) const;
+  virtual void Drop(TCtrlObjectVec &vcDragged, BOOL bMove);
+  virtual BOOL CanDelete() const;
+  virtual bool CanRemove() const { return (CanDelete() != FALSE); }
+  virtual void Delete();
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+  bool IsInRange(const IValueSet &value_set) const;
+  int Index() const;
+  void AssertValid();
+};
 
+// TODO AppendContextMenu
+// CValueSetListObject is not derived from CGraphNode, hence
+// the function AppendContextMenu does not ask for a delegate. However one
+// could verify that this function is never used!
 
-  // TODO AppendContextMenu
-  // CValueSetListObject is not derived from CGraphNode, hence
-  // the function AppendContextMenu does not ask for a delegate. However one
-  // could verify that this function is never used!
+class CValueSetListObject : public IListObject {
+  CString m_sName;
+  IValueSet &m_value_set;
+  IValueSet_Delegate *m_valueSet_Delegate;
 
-  class CValueSetListObject : public IListObject
-  {
-    CString m_sName;
-    IValueSet &m_value_set;
-  IValueSet_Delegate* m_valueSet_Delegate;
-  public:
-    CValueSetListObject(CListCtrl& ctrl, IValueSet& set);
+public:
+  CValueSetListObject(CListCtrl &ctrl, IValueSet &set);
   ~CValueSetListObject();
-    virtual QString Text() const;
-    virtual unsigned int Icon() const;
-    virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString &sText);
-    virtual BOOL CanDelete() const;
-    virtual bool CanRemove() const { return (CanDelete() != FALSE); }
-    virtual void Delete();
-    virtual IValueSet& ValueSet() const;
-    virtual void AppendContextMenu(CContextMenuInvoker &invoker);
-    void AssertValid();
-  }; 
+  virtual QString Text() const;
+  virtual unsigned int Icon() const;
+  virtual BOOL CanEditText() const;
+  virtual BOOL EditText(const QString &sText);
+  virtual BOOL CanDelete() const;
+  virtual bool CanRemove() const { return (CanDelete() != FALSE); }
+  virtual void Delete();
+  virtual IValueSet &ValueSet() const;
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+  void AssertValid();
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 /// Implementation of CTreeCtrlTemp<T>
 ///////////////////////////////////////////////////////////////////////////////////////////
-template<class T>
-CTreeCtrlTemp<T>::CTreeCtrlTemp(T& dlg)
-: m_dlg(dlg)
-{
-}
+template <class T> CTreeCtrlTemp<T>::CTreeCtrlTemp(T &dlg) : m_dlg(dlg) {}
 
-template<class T>
-CWnd& CTreeCtrlTemp<T>::GetContextWnd() const
-{
-  return (CWnd&)(m_dlg);
-}
+template <class T> CWnd &CTreeCtrlTemp<T>::GetContextWnd() const { return (CWnd &)(m_dlg); }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 /// Implementation of CListCtrlTemp<T>
 ///////////////////////////////////////////////////////////////////////////////////////////
-template<class T>
-CListCtrlTemp<T>::CListCtrlTemp(T& dlg)
-: m_dlg(dlg)
-{
-}
+template <class T> CListCtrlTemp<T>::CListCtrlTemp(T &dlg) : m_dlg(dlg) {}
 
-template<class T>
-DROPEFFECT CListCtrlTemp<T>::OnDragOver(TCtrlObjectVec vcDragged,
-                    COleDataObject* pDataObject, 
-                    DWORD dwKeyState, 
-                    CPoint point)
-{
-  if(vcDragged.size() == 1)
-  {
-    CComponentTreeObject *pComponentObj = dynamic_cast<CComponentTreeObject*>(vcDragged[0]);
-    if(pComponentObj)
-    {
-      if(pComponentObj->Component().Defined())
+template <class T>
+DROPEFFECT CListCtrlTemp<T>::OnDragOver(TCtrlObjectVec vcDragged, COleDataObject *pDataObject, DWORD dwKeyState,
+                                        CPoint point) {
+  if (vcDragged.size() == 1) {
+    CComponentTreeObject *pComponentObj = dynamic_cast<CComponentTreeObject *>(vcDragged[0]);
+    if (pComponentObj) {
+      if (pComponentObj->Component().Defined())
         return DROPEFFECT_MOVE;
     }
   }
@@ -198,19 +171,13 @@ DROPEFFECT CListCtrlTemp<T>::OnDragOver(TCtrlObjectVec vcDragged,
   return CListCtrlBase::OnDragOver(vcDragged, pDataObject, dwKeyState, point);
 }
 
-template<class T>
-BOOL CListCtrlTemp<T>::OnDrop(TCtrlObjectVec vcDragged, 
-                COleDataObject* pDataObject,
-                DROPEFFECT dropEffect, 
-                CPoint point)
-{
-  if(vcDragged.size() == 1)
-  {
-    CComponentTreeObject *pComponentObj = dynamic_cast<CComponentTreeObject*>(vcDragged[0]);
-    if(pComponentObj)
-    {
-      if(pComponentObj->Component().Defined())
-      {
+template <class T>
+BOOL CListCtrlTemp<T>::OnDrop(TCtrlObjectVec vcDragged, COleDataObject *pDataObject, DROPEFFECT dropEffect,
+                              CPoint point) {
+  if (vcDragged.size() == 1) {
+    CComponentTreeObject *pComponentObj = dynamic_cast<CComponentTreeObject *>(vcDragged[0]);
+    if (pComponentObj) {
+      if (pComponentObj->Component().Defined()) {
         pComponentObj->Delete();
         return TRUE;
       }
@@ -220,10 +187,6 @@ BOOL CListCtrlTemp<T>::OnDrop(TCtrlObjectVec vcDragged,
   return CListCtrlBase::OnDrop(vcDragged, pDataObject, dropEffect, point);
 }
 
-template<class T>
-CWnd& CListCtrlTemp<T>::GetContextWnd() const
-{
-  return (CWnd&)(m_dlg);
-}
+template <class T> CWnd &CListCtrlTemp<T>::GetContextWnd() const { return (CWnd &)(m_dlg); }
 
 #endif // !defined(AFX_ATTRIPOINTSETUTIL_H__878F8A8F_BB03_4C15_BA95_501061BC4DFF__INCLUDED_)

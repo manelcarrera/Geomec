@@ -17,8 +17,7 @@ namespace dia {
 
 class CLoadManager;
 
-class CPointLoad : public IDirectedLoad  
-{
+class CPointLoad : public IDirectedLoad {
   const geo::INode &m_Node;
 
 public:
@@ -29,6 +28,6 @@ public:
   const geo::INode &Node() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IPOINTLOAD_H__581A489C_888C_4563_AA9E_03A9D1864AB9__INCLUDED_)

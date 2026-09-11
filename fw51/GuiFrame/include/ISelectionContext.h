@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __I_SELECTION_CONTEXT_H
 #define __I_SELECTION_CONTEXT_H
 
@@ -6,15 +6,14 @@
 
 #include "GuiFrameExports.h"
 
-class GUIFRAME_EXPORT ISelectionContext : public QObject
-{
+class GUIFRAME_EXPORT ISelectionContext : public QObject {
   Q_OBJECT
 
 signals:
   void selectionChanged();
 
 public:
-  ISelectionContext( QObject* owner );
+  ISelectionContext(QObject *owner);
   virtual ~ISelectionContext();
 
   virtual void deleteSelection();

@@ -11,8 +11,7 @@
 
 class CProgressDlg_MFC;
 
-class CDianaProgress : public dia::IProgressBase  
-{
+class CDianaProgress : public dia::IProgressBase {
   int m_nSteps;
   CProgressDlg_MFC *m_pDlg;
   int m_nStep;

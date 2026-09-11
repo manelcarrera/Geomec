@@ -1,15 +1,13 @@
 
 #include "GetSideName.h"
 
-std::string GetSideName(SIDE_ID SideID)
-{
+std::string GetSideName(SIDE_ID SideID) {
 
-  switch(SideID)
-  {
+  switch (SideID) {
   case SIDE_ID_BOTTOM:
-     return "Bottom";
+    return "Bottom";
   case SIDE_ID_TOP:
-     return "Top";	
+    return "Top";
   case SIDE_ID_LEFT:
     return "Left";
   case SIDE_ID_RIGHT:

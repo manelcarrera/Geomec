@@ -18,17 +18,18 @@ class CTetraFormation;
 class CTetraModel;
 class CTetraHorizonBase;
 
-#include "TetraFormation_Delegate.h"
-#include "StateBranch_Delegate.h"
 #include "OpenGLNodeObserver_Delegate.h"
+#include "StateBranch_Delegate.h"
+#include "TetraFormation_Delegate.h"
 #include "UndefinedIconProvider.h"
 
-typedef COpenGLNodeObserver_Delegate<CTetraFormation, CTetraFormation_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TTetraFormationObserver;
+typedef COpenGLNodeObserver_Delegate<CTetraFormation, CTetraFormation_Delegate, CDummyNode, CDummyObserver, FALSE,
+                                     FIXED_ITEM>
+    TTetraFormationObserver;
 
-class CTetraFormationObserver : public TTetraFormationObserver
-{
+class CTetraFormationObserver : public TTetraFormationObserver {
 public:
-  CTetraFormationObserver(CTetraFormation& formation, CTreeNode& parent, const BOOL rename, const REMOVE_TYPE remove);
+  CTetraFormationObserver(CTetraFormation &formation, CTreeNode &parent, const BOOL rename, const REMOVE_TYPE remove);
 
   virtual unsigned int StateIcon() const;
   virtual void ToggleState();
@@ -38,15 +39,17 @@ private:
   BOOL AllSameState() const;
 };
 
-class CTetraFormationEntryObserver : public CStateBranch_Delegate<CTetraFormationEntry, CTetraFormationEntry_Delegate, CTetraFormation, CTetraFormationObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM>
-{
+class CTetraFormationEntryObserver
+    : public CStateBranch_Delegate<CTetraFormationEntry, CTetraFormationEntry_Delegate, CTetraFormation,
+                                   CTetraFormationObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM> {
 protected:
   virtual CString FormationElementSetTitle() const;
   virtual unsigned int FormationElementSetIcon() const;
 
 public:
-  CTetraFormationEntryObserver(CTetraFormationEntry& entry, CTreeCtrl &ctrl, HTREEITEM hParent = TVI_ROOT, HTREEITEM hInsertAfter = TVI_LAST);
-  virtual CTreeNode* InsertChild(CTetraFormation& t);
+  CTetraFormationEntryObserver(CTetraFormationEntry &entry, CTreeCtrl &ctrl, HTREEITEM hParent = TVI_ROOT,
+                               HTREEITEM hInsertAfter = TVI_LAST);
+  virtual CTreeNode *InsertChild(CTetraFormation &t);
 };
 
 #endif // !defined(AFX_TETRAFORMATIONOBSERVER_H__69F7E3BC_4363_4e03_A895_E96E73E19221__INCLUDED_)

@@ -13,13 +13,13 @@
 
 #include "GM3CheckedValue.h"
 
-namespace gm { 
+namespace gm {
 
-class CTimestep  
-{
+class CTimestep {
 public:
   enum eIterationScheme { CONSTANT = 0, LINEAR, REGULAR, MODIFIED };
   enum eConvergenceType { FORCE = 0, DISPLACEMENT, ENERGY };
+
 protected:
   eIterationScheme m_iteration_scheme;
   eConvergenceType m_convergence_type;
@@ -28,13 +28,14 @@ protected:
   int m_nMaxIterStep;
   TCheckedInt m_nYear;
   QString m_strName;
+
 public:
   CTimestep();
-  CTimestep(const QString& strName);
-  CTimestep(const QString& strName, const int nYear);
+  CTimestep(const QString &strName);
+  CTimestep(const QString &strName, const int nYear);
 
-  const QString& Name() const;
-  const TCheckedInt& Year() const;
+  const QString &Name() const;
+  const TCheckedInt &Year() const;
   eIterationScheme IterationScheme() const;
   eConvergenceType ConvergenceType() const;
   double ConvergenceNormValue() const;
@@ -42,6 +43,6 @@ public:
   int MaxIterationSteps() const;
 };
 
-}
+} // namespace gm
 
 #endif // !defined(AFX_GMTIMESTEP_H__FD48DECB_667D_4EF9_8E00_D09D3DD77E62__INCLUDED_)

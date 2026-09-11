@@ -25,51 +25,30 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueGeometry.h"
 #include "RescueGeometry.h"
 #include "RescueModel.h"
+#include "myHeaders.h"
 
-cBagRescueGeometry::cBagRescueGeometry()
-{
-  tree = new RescueTree();
+cBagRescueGeometry::cBagRescueGeometry() { tree = new RescueTree(); }
+
+cBagRescueGeometry::~cBagRescueGeometry() { delete tree; }
+
+void cBagRescueGeometry::operator+=(RescueGeometry *newObject) { tree->Add(newObject); }
+
+RESCUEBOOL cBagRescueGeometry::operator-=(RescueGeometry *existingObject) { return tree->Delete(existingObject); }
+
+RescueGeometry *cBagRescueGeometry::NthObject(RESCUEINT64 ordinal) {
+  return (RescueGeometry *)tree->NthObject(ordinal);
 }
 
-cBagRescueGeometry::~cBagRescueGeometry()
-{
-  delete tree;
-}
-
-void cBagRescueGeometry::operator+=(RescueGeometry *newObject)
-{
-  tree->Add(newObject);
-}
-
-RESCUEBOOL cBagRescueGeometry::operator-=(RescueGeometry * existingObject)
-{
-  return tree->Delete(existingObject);
-}
-
-RescueGeometry *cBagRescueGeometry::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueGeometry *) tree->NthObject(ordinal);
-}
-
-RESCUEINT32 cBagRescueGeometry::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueGeometry::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-

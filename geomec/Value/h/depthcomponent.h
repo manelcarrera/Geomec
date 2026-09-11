@@ -12,8 +12,6 @@
 #include "ValueType.h"
 
 // NOTE : Icon of this value type is never displayed ...
-typedef  CValueTypeTemp<IDS_VALUETYPE_DEPTH, 0> TDepthType;
-
-
+typedef CValueTypeTemp<IDS_VALUETYPE_DEPTH, 0> TDepthType;
 
 #endif // !defined(AFX_DEPTHCOMPONENT_H__93D895C1_43D8_4653_B763_EA5F2B278905__INCLUDED_)

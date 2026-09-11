@@ -6,17 +6,16 @@
 
 class CWellFormation;
 
-class CWellFormationVolume : public CFormationVolume
-{
+class CWellFormationVolume : public CFormationVolume {
 public:
-  CWellFormationVolume(CWellFormation& formation, geo::CBodyGroup& group);
+  CWellFormationVolume(CWellFormation &formation, geo::CBodyGroup &group);
 
-  // Identifier 
+  // Identifier
   virtual TGraphNodeSet Identifier() const;
 
   // Display lists (for skin mode)
   virtual int DisplayListSize() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellFormationVolume);
 };

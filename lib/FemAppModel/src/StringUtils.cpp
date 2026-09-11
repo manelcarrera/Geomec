@@ -3,33 +3,25 @@
 
 #include "StringUtils.h"
 
-int findOneOf(const QString& target, const QString& characterSet)
-{
+int findOneOf(const QString &target, const QString &characterSet) {
   QString newCharacterSet;
 
-  for (QString::const_iterator begin = characterSet.begin(), end = characterSet.end();
-  begin != end;)
-  {
-  if (*begin == '|')
-  {
+  for (QString::const_iterator begin = characterSet.begin(), end = characterSet.end(); begin != end;) {
+    if (*begin == '|') {
       newCharacterSet += "\\|";
-  }
-  else
-  {
+    } else {
       newCharacterSet += *begin;
-  }
+    }
 
-  ++begin;
+    ++begin;
 
-  if (begin != end)
-  {
+    if (begin != end) {
       newCharacterSet += '|';
-  }
+    }
   }
 
-  if (newCharacterSet.isEmpty())
-  {
-  return -1;
+  if (newCharacterSet.isEmpty()) {
+    return -1;
   }
 
   QRegExp regularExpression(newCharacterSet);
@@ -37,25 +29,21 @@ int findOneOf(const QString& target, const QString& characterSet)
   return target.indexOf(regularExpression);
 }
 
-QString spanExcluding(const QString& target, const QString& characterSet)
-{
+QString spanExcluding(const QString &target, const QString &characterSet) {
   int length = findOneOf(target, characterSet);
 
-  if (length == -1)
-  {
-  length = target.length();
+  if (length == -1) {
+    length = target.length();
   }
 
   return target.left(length);
 }
 
-QString trimRight(const QString& target)
-{
+QString trimRight(const QString &target) {
   int length = target.length();
 
-  while ((length > 0) && (target[length - 1].isSpace()))
-  {
-  --length;
+  while ((length > 0) && (target[length - 1].isSpace())) {
+    --length;
   }
 
   return target.left(length);

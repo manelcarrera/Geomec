@@ -10,34 +10,33 @@
 /////////////////////////////////////////////////////////////////////////////
 // CWellPathFileUnitDlg dialog
 
-class CWellPathFileUnitDlg : public CDialog
-{
-// Construction
-  int		m_Unit;
-public:
-  CWellPathFileUnitDlg(CWnd* pParent = NULL);   // standard constructor
+class CWellPathFileUnitDlg : public CDialog {
+  // Construction
+  int m_Unit;
 
-// Dialog Data
+public:
+  CWellPathFileUnitDlg(CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CWellPathFileUnitDlg)
   enum { IDD = IDD_WELLFILE_UNIT };
 
   //}}AFX_DATA
-  
+
   CQuantity::UNIT Unit();
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellPathFileUnitDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CWellPathFileUnitDlg)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

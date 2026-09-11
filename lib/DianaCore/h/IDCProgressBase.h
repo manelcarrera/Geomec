@@ -13,8 +13,7 @@
 
 namespace dia {
 
-class IProgressBase  
-{
+class IProgressBase {
 public:
   IProgressBase();
   virtual ~IProgressBase();
@@ -25,6 +24,6 @@ public:
   virtual void Text(const std::string &strText) = 0;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IPROGRESSBASE_H__D47F1390_321E_4B46_8514_5E5695CEDF2F__INCLUDED_)

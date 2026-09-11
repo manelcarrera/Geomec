@@ -1,45 +1,36 @@
 // WellLogDlg.cpp : implementation file
 //
 
+#include "WellLogDlg.h"
 #include "stdafx.h"
 #include "wellschemeutils.h"
-#include "WellLogDlg.h"
-
-
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellLogDlg dialog
 BEGIN_MESSAGE_MAP(CWellLogDlg, CDialog)
-  //{{AFX_MSG_MAP(CWellLogDlg)
-    // NOTE: the ClassWizard will add message map macros here
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CWellLogDlg)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
-CWellLogDlg::CWellLogDlg(const well::CWellLog *pLog, CWnd* pParent /*=NULL*/)
-  : CDialog(CWellLogDlg::IDD, pParent), m_pWellLog(pLog)
-{
+CWellLogDlg::CWellLogDlg(const well::CWellLog *pLog, CWnd *pParent /*=NULL*/)
+    : CDialog(CWellLogDlg::IDD, pParent), m_pWellLog(pLog) {
   //{{AFX_DATA_INIT(CWellLogDlg)
   m_SndCut = _T("");
   m_AvgComp = _T("");
   //}}AFX_DATA_INIT
-
-  
-  
 }
 
+void CWellLogDlg::DoDataExchange(CDataExchange *pDX) {
 
-void CWellLogDlg::DoDataExchange(CDataExchange* pDX)
-{
-  
   CDialog::DoDataExchange(pDX);
 
   //{{AFX_DATA_MAP(CWellLogDlg)
@@ -47,21 +38,16 @@ void CWellLogDlg::DoDataExchange(CDataExchange* pDX)
   DDX_Text(pDX, IDC_STATIC_SNDCUT, m_SndCut);
   DDX_Text(pDX, IDC_STATIC_TOTAVGCOMP, m_AvgComp);
   //}}AFX_DATA_MAP
-
-
-  
 }
 
-BOOL CWellLogDlg::OnInitDialog()
-{
+BOOL CWellLogDlg::OnInitDialog() {
   CDialog::OnInitDialog();
 
-  
   m_SndCut.Format("%f", m_pWellLog->SandCutOff());
   m_AvgComp.Format("%f", m_pWellLog->TotalAverageCompressibility());
   UpdateData(FALSE);
 
-  int iColom = 0; 
+  int iColom = 0;
   CRect rect;
   m_WellLogCtrl.GetClientRect(&rect);
   double width = rect.right / 8;
@@ -74,15 +60,13 @@ BOOL CWellLogDlg::OnInitDialog()
   m_WellLogCtrl.InsertColumn(iColom++, _T("Shalyness"), LVCFMT_LEFT, width);
   m_WellLogCtrl.InsertColumn(iColom++, _T("Modulation"), LVCFMT_LEFT, width);
   m_WellLogCtrl.InsertColumn(iColom++, _T("Sand"), LVCFMT_LEFT, width);
-  
-  
+
   int nIndex;
   CString strValue;
   int i = 0;
   int j;
 
-  for(j = 0; j < m_pWellLog->LogPointSize(); j++)
-  {
+  for (j = 0; j < m_pWellLog->LogPointSize(); j++) {
     iColom = 0;
     nIndex = m_WellLogCtrl.InsertItem(i++, "");
     strValue.Format("%f", m_pWellLog->Depth(well::CWellLog::ORIGINAL_TMD, j));
@@ -103,16 +87,16 @@ BOOL CWellLogDlg::OnInitDialog()
     strValue.Format("%f", m_pWellLog->getShalyness(j));
     m_WellLogCtrl.SetItemText(nIndex, iColom++, strValue);
 
-    if(m_pWellLog->RTagSize() > 0)
+    if (m_pWellLog->RTagSize() > 0)
       strValue.Format("%f", m_pWellLog->Modulation(j));
     else
       strValue.Format("N.A.");
     m_WellLogCtrl.SetItemText(nIndex, iColom++, strValue);
 
     double depth = m_pWellLog->Depth(well::CWellLog::STRETCHED_TMD, j);
-    if(m_pWellLog->SandLayerSize() == 0)
+    if (m_pWellLog->SandLayerSize() == 0)
       strValue.Format("No"); // no sand at all...
-    else if(m_pWellLog->NearestSandLayer(depth).second)
+    else if (m_pWellLog->NearestSandLayer(depth).second)
       strValue.Format("Yes");
     else
       strValue.Format("No");
@@ -121,7 +105,6 @@ BOOL CWellLogDlg::OnInitDialog()
 
   return TRUE;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellLogDlg message handlers

@@ -9,8 +9,7 @@ class IElementSet;
 
 class CCacheInterface;
 
-class CCacheManager
-{
+class CCacheManager {
   typedef std::map<const geo::IElementSet *, CCacheInterface *> TInterfaces;
   TInterfaces m_interfaces;
 
@@ -27,5 +26,4 @@ protected:
   virtual void InvalidateMappings(const geo::IElementSet *elt_set);
 };
 
-
-#endif  // _C_CACHE_MANAGER_H_
+#endif // _C_CACHE_MANAGER_H_

@@ -3,11 +3,10 @@
 
 #include "MaterialCreator.h"
 
-class CMaterialFractureAperture2CreatorDEPRECATED : public CMaterialCreator
-{
+class CMaterialFractureAperture2CreatorDEPRECATED : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -15,11 +14,10 @@ protected:
   virtual bool CanCalibratePlastic() const { return true; }
 };
 
-class CMaterialFractureAperture2CreatorV2 : public CMaterialCreator
-{
+class CMaterialFractureAperture2CreatorV2 : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -28,6 +26,5 @@ protected:
 };
 
 typedef CMaterialFractureAperture2CreatorV2 CMaterialFractureAperture2Creator;
-
 
 #endif // _MATERIALMODELFRACTUREAPERTURE2_H_

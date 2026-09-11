@@ -13,8 +13,7 @@
 #include "boolSupport.h"
 class RescueObject;
 
-class RescueIdTreeNode
-{
+class RescueIdTreeNode {
 protected:
   RESCUEINT64 objectCount;
   RESCUEINT64 objectAllocated;
@@ -28,12 +27,13 @@ protected:
 
 public:
   ~RescueIdTreeNode();
+
 private:
   RescueObject *Find(RESCUEINT64 identifier);
   RescueIdTreeNode(RescueIdTreeNode *parentNodeIn = 0, RESCUEINT64 numberToAllocate = 20);
   void Add(RescueObject *newObject, RESCUEINT64 numberToFill, RESCUEINT64 memo = 0);
-  RescueIdTreeNode(RescueIdTreeNode *parentNodeIn, RescueObject **objectList, 
-                 RESCUEINT64 allocateCount, RESCUEINT64 objectCount);
+  RescueIdTreeNode(RescueIdTreeNode *parentNodeIn, RescueObject **objectList, RESCUEINT64 allocateCount,
+                   RESCUEINT64 objectCount);
   RESCUEBOOL Find(RescueObject *objectToFind, RESCUEINT64 &ndx);
   void ChildSplit(RescueIdTreeNode *newChild, RescueObject *firstKey, RESCUEINT64 memo);
   RESCUEBOOL LayOffToLeft(RescueObject *object, RESCUEINT64 numberToFill, RESCUEINT64 memo);
@@ -44,5 +44,3 @@ private:
   friend class RescueIdTree;
 };
 #endif
-
-

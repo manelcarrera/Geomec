@@ -10,56 +10,51 @@
 #include "util_.h" //get_last_line
 
 #include <QBuffer>
-//#include <QImage>
+// #include <QImage>
 
+#include <QApplication>
 #include <QDir>
 #include <QProcess>
-#include <QApplication>
-
 
 #include <iostream>
-//#include <fstream>
+// #include <fstream>
 #include <cctype>
 #include <string>
 
 #include <thread>
 
-namespace
-{
+namespace {
 
 // FIXME:
-//static const QString DIANA_BIN_HC = "C:/Program Files/GEOMEC 5.7 - SVS/Diana";
+// static const QString DIANA_BIN_HC = "C:/Program Files/GEOMEC 5.7 - SVS/Diana";
 
 static const QString END_1 = "/DIANA/DC/END";
 static const QString END_2 = "STOP";
 
 static const QString GM42_BIN = "..\\binseg\\ap\\gm42.exe";
 
-void print_env()
-{
-  //diana
-  char* DIAPATH = DiGetenv("DIAPATH");
-  char* DIASHARE = DiGetenv("DIASHARE");
-  char* DIALIB = DiGetenv("DIALIB");
-  char* FFDIR = DiGetenv("FFDIR");
-  char* STP0 = DiGetenv("STP0");
-  //model
-  char* FF = DiGetenv("FF");
-
+void print_env() {
+  // diana
+  char *DIAPATH = DiGetenv("DIAPATH");
+  char *DIASHARE = DiGetenv("DIASHARE");
+  char *DIALIB = DiGetenv("DIALIB");
+  char *FFDIR = DiGetenv("FFDIR");
+  char *STP0 = DiGetenv("STP0");
+  // model
+  char *FF = DiGetenv("FF");
 
   Printer::instance()->debug("[Diana]BC [PRINT]");
-  //diana
-  Printer::instance()->debug("DIAPATH: %s", DIAPATH );
-  Printer::instance()->debug("DIASHARE: %s", DIASHARE );
-  Printer::instance()->debug("DIALIB: %s", DIALIB );
-  Printer::instance()->debug("FFDIR: %s", FFDIR );
-  Printer::instance()->debug("STP0: %s", STP0 );
-  //model
-  Printer::instance()->debug("FF: %s", FF );
+  // diana
+  Printer::instance()->debug("DIAPATH: %s", DIAPATH);
+  Printer::instance()->debug("DIASHARE: %s", DIASHARE);
+  Printer::instance()->debug("DIALIB: %s", DIALIB);
+  Printer::instance()->debug("FFDIR: %s", FFDIR);
+  Printer::instance()->debug("STP0: %s", STP0);
+  // model
+  Printer::instance()->debug("FF: %s", FF);
 }
 
-void set_diana_env()
-{
+void set_diana_env() {
   // quick copy from GeomecModel/src/DianaEnv.cpp
   // DIASLIB is responsible for errors about non-existing element types
   // DIALIB was not set in call from command line, so maybe not needed
@@ -69,15 +64,15 @@ void set_diana_env()
 
   QString DiaPath_ = qApp->applicationDirPath() + "/Diana";
 
-  //Printer::instance()->debug(" [Diana]BC : set_diana_env : DiaPath_:%s", DiaPath_.toStdString().c_str() );
+  // Printer::instance()->debug(" [Diana]BC : set_diana_env : DiaPath_:%s", DiaPath_.toStdString().c_str() );
 
-  //QString DiaPath_ = DIANA_BIN_HC;
+  // QString DiaPath_ = DIANA_BIN_HC;
   QString DiaShare_ = DiaPath_ + "/share";
   QString DiaLib_ = DiaPath_ + "/lib";
   QString DiaSLib_ = DiaShare_ + "/lib";
 
-  QString FFDIR	= DiaPath_ + "/bin";
-  QString STP0	= DiaPath_ + "/binseg/ap/mc41.exe";
+  QString FFDIR = DiaPath_ + "/bin";
+  QString STP0 = DiaPath_ + "/binseg/ap/mc41.exe";
 
   int res;
   res = vDiSetenv("%s=%s", "DIAPATH", DiaPath_.toStdString().c_str());
@@ -85,11 +80,10 @@ void set_diana_env()
   res = vDiSetenv("%s=%s", "DIALIB", DiaLib_.toStdString().c_str());
   res = vDiSetenv("%s=%s", "DIASLIB", DiaSLib_.toStdString().c_str());
 
-  res = vDiSetenv("%s=%s", "FFDIR",           FFDIR.toStdString().c_str() );
+  res = vDiSetenv("%s=%s", "FFDIR", FFDIR.toStdString().c_str());
 
-  //res = vDiSetenv("%s=%s", "FFDIR",           ".");
-  res = vDiSetenv("%s=%s", "STP0", STP0.toStdString().c_str() );
-
+  // res = vDiSetenv("%s=%s", "FFDIR",           ".");
+  res = vDiSetenv("%s=%s", "STP0", STP0.toStdString().c_str());
 
   // print
   /*Printer::instance()->debug("[Diana]BC [SET]");
@@ -101,141 +95,126 @@ void set_diana_env()
   Printer::instance()->debug("STP0: %s", STP0.toStdString().c_str() );*/
 }
 
-void set_model_env( const QString& path )
-{
+void set_model_env(const QString &path) {
   int pos = path.lastIndexOf(QChar('/'));
 
-  QString TEMP	= path.left( pos ); // Ej.: C:\Users\MANEL~1.CAR\AppData\Local\Temp\dra07288
+  QString TEMP = path.left(pos); // Ej.: C:\Users\MANEL~1.CAR\AppData\Local\Temp\dra07288
 
-  QString id = path.right( 5 );
+  QString id = path.right(5);
 
-  QString FF		= QString::asprintf( "%s\\ffa%s.ff", TEMP.toStdString().c_str(), id.toStdString().c_str() );
+  QString FF = QString::asprintf("%s\\ffa%s.ff", TEMP.toStdString().c_str(), id.toStdString().c_str());
 
-  int res = vDiSetenv("%s=%s", "FF",  FF.toStdString().c_str() );
+  int res = vDiSetenv("%s=%s", "FF", FF.toStdString().c_str());
 
-  Printer::instance()->debug("FF:%s", FF.toStdString().c_str() );
+  Printer::instance()->debug("FF:%s", FF.toStdString().c_str());
 }
 
 } // namespace
 
-
-DianaBusClient::DianaBusClient(const QString& base, const QString& name, QObject *parent)
-  : ModGMLocalBusClient(base, name, parent), m_diana_running( false )
-{
-  Printer::instance()->info( " [Diana]BC > Constructor" );
+DianaBusClient::DianaBusClient(const QString &base, const QString &name, QObject *parent)
+    : ModGMLocalBusClient(base, name, parent), m_diana_running(false) {
+  Printer::instance()->info(" [Diana]BC > Constructor");
 
   connect(this, &DianaBusClient::receivedMessage, this, &DianaBusClient::onReceivedMessage);
 
-  connect( &m_process, SIGNAL( readyReadStandardOutput() ), this, SLOT( read_output() ) );
-  connect( &m_process, SIGNAL( readyReadStandardError() ), this, SLOT( read_output() ) );
+  connect(&m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(read_output()));
+  connect(&m_process, SIGNAL(readyReadStandardError()), this, SLOT(read_output()));
 }
 
-DianaBusClient::~DianaBusClient(){}
+DianaBusClient::~DianaBusClient() {}
 
 // protect m_msg with a mutex
-void DianaBusClient::send_keep_alive()
-{
-  while( m_diana_running )
-  {
-    //Printer::instance()->info( " [Diana]BC > send_keep_alive" );
-    send( GEOMEC_ID, BusClientCmd::DianaHeartbeat );
-    std::this_thread::sleep_for( std::chrono::seconds( 2 ) );
+void DianaBusClient::send_keep_alive() {
+  while (m_diana_running) {
+    // Printer::instance()->info( " [Diana]BC > send_keep_alive" );
+    send(GEOMEC_ID, BusClientCmd::DianaHeartbeat);
+    std::this_thread::sleep_for(std::chrono::seconds(2));
   }
-  //Printer::instance()->info( " [Diana]BC > send_keep_alive > END" );
+  // Printer::instance()->info( " [Diana]BC > send_keep_alive > END" );
 }
 
 // must be non-blocking
-void DianaBusClient::onReceivedMessage(const ModGMBusMessage& message)
-{
+void DianaBusClient::onReceivedMessage(const ModGMBusMessage &message) {
   static int x = 0;
   QString from = message.from();
   int id = message.payloadAsInt();
 
+  Printer::instance()->info(" [Diana]BC > on_rec ['%s'->'%s','%s'] <-", from.toStdString().c_str(),
+                            m_name.toStdString().c_str(), g_bus_client_cmd_s[id].c_str());
 
-  Printer::instance()->info( 
-    " [Diana]BC > on_rec ['%s'->'%s','%s'] <-", 
-    from.toStdString().c_str(), 
-    m_name.toStdString().c_str(),
-    g_bus_client_cmd_s[ id ].c_str() );
+  switch (id) {
+  case BusClientCmd::RunDiana_Req: {
+    // TODO: all this in a sdeparated thead
+    m_url = data(); // for testing purposed: print the content of given in the received memmory chunck
+    set_diana_env();
+    set_model_env(m_url);
+    // print_env();
+    // std::thread t0( notify_diana_end );
 
-  switch( id )
-  {
-    case BusClientCmd::RunDiana_Req:
-    {
-      // TODO: all this in a sdeparated thead
-      m_url = data(); // for testing purposed: print the content of given in the received memmory chunck
-      set_diana_env();
-      set_model_env( m_url );
-      //print_env();
-      //std::thread t0( notify_diana_end );
+    m_diana_running = true;
+    std::thread t0([=] { send_keep_alive(); });
+    t0.detach(); // this is dangerous
 
-      m_diana_running = true;
-      std::thread t0( [=] { send_keep_alive(); } );
-      t0.detach(); //this is dangerous
+    std::thread t1_([=] { run_diana(m_url); });
+    t1_.detach();
 
-      std::thread t1_( [=] { run_diana( m_url ); } );
-      t1_.detach();
-
-      break;
-    }
-    default:
-      break;
+    break;
   }
-  //Printer::instance()->info( " [Diana]BC > onReceivedMessage > END" );
+  default:
+    break;
+  }
+  // Printer::instance()->info( " [Diana]BC > onReceivedMessage > END" );
 }
 
-QString DianaBusClient::data()
-{
+QString DianaBusClient::data() {
   Printer::instance()->info(" [Diana]BC > get_shared_memory");
 
-  m_shm.setKey( SHARED_MEMORY_RUN_DIANA_KEY );
+  m_shm.setKey(SHARED_MEMORY_RUN_DIANA_KEY);
 
-  if( !m_shm.attach() ) 
-  {
+  if (!m_shm.attach()) {
     Printer::instance()->info(" [Diana]BC > get_shared_memory > !m_shm.attach() !!!! ]");
-    return QString(); //FIXME: Treat the error
+    return QString(); // FIXME: Treat the error
   }
 
   m_shm.lock();
 
-  QString data = QString( (char*)m_shm.constData() );
+  QString data = QString((char *)m_shm.constData());
 
   int size = m_shm.size();
 
   m_shm.unlock();
   m_shm.detach();
 
-  //qDebug() << qPrintable( QString::asprintf(" [Diana]BC > get_shared_memory [size:%d]", size ) );
-  Printer::instance()->info(" [Diana]BC > get_shared_memory [size:%d, path:%s]", size, m_url.toStdString().c_str() );
+  // qDebug() << qPrintable( QString::asprintf(" [Diana]BC > get_shared_memory [size:%d]", size ) );
+  Printer::instance()->info(" [Diana]BC > get_shared_memory [size:%d, path:%s]", size, m_url.toStdString().c_str());
 
   return data;
 }
 
-void DianaBusClient::read_output()
-{
-  Printer::instance()->info(" [Diana]BC : process : read_output" );
-  Printer::instance()->info(" [Diana]BC : process : read_output : std error : '%s'", m_process.readAllStandardError().toStdString().c_str() );
-  Printer::instance()->info(" [Diana]BC : process : read_output : std out : '%s'", m_process.readAllStandardOutput().toStdString().c_str() );
+void DianaBusClient::read_output() {
+  Printer::instance()->info(" [Diana]BC : process : read_output");
+  Printer::instance()->info(" [Diana]BC : process : read_output : std error : '%s'",
+                            m_process.readAllStandardError().toStdString().c_str());
+  Printer::instance()->info(" [Diana]BC : process : read_output : std out : '%s'",
+                            m_process.readAllStandardOutput().toStdString().c_str());
 }
 
-
 // path example: path:C:\Users\MANEL~1.CAR\AppData\Local\Temp\dra25952
-void DianaBusClient::run_diana( const QString& path )
-{
-  //Printer::instance()->info( " [Diana]BC > run_diana" );
+void DianaBusClient::run_diana(const QString &path) {
+  // Printer::instance()->info( " [Diana]BC > run_diana" );
 
   // 2. Model ENVVARS
   // 3. System call
 
-  const char* FFDIR_ = DiGetenv( "FFDIR" );
-  //Printer::instance()->info(" [Diana]BC : run_diana : current_dir : FFDIR_:%s", FFDIR_ );
+  const char *FFDIR_ = DiGetenv("FFDIR");
+  // Printer::instance()->info(" [Diana]BC : run_diana : current_dir : FFDIR_:%s", FFDIR_ );
 
-  QDir::setCurrent( FFDIR_ );
-  //Manel.CarreraRuibal -> doesn't work
-  Printer::instance()->debug(" [Diana]BC : run_diana : set CURRENT DIR: %s", FFDIR_ );
+  QDir::setCurrent(FFDIR_);
+  // Manel.CarreraRuibal -> doesn't work
+  Printer::instance()->debug(" [Diana]BC : run_diana : set CURRENT DIR: %s", FFDIR_);
 
-  QString TEMP	= path.left( path.lastIndexOf(QChar('/')) ); // Ej.: C:\Users\MANEL~1.CAR\AppData\Local\Temp\dra07288
-  //QString logfile = TEMP + "\\a.txt";
+  QString TEMP = path.left(path.lastIndexOf(QChar('/'))); // Ej.: C:\Users\MANEL~1.CAR\AppData\Local\Temp\dra07288
+  // QString logfile = TEMP + "\\a.txt";
   QString logfile = TEMP + ".txt";
 
   int num_tries = 0;
@@ -244,15 +223,13 @@ void DianaBusClient::run_diana( const QString& path )
 
   QString cmd = GM42_BIN + " > " + logfile + " 2>&1";
 
+  while (!is_ok && num_tries < max_tries) {
+    Printer::instance()->info(" [Diana]BC : run_diana : system : cmd:'%s'", cmd.toStdString().c_str());
 
-  while( !is_ok && num_tries < max_tries )
-  {
-    Printer::instance()->info(" [Diana]BC : run_diana : system : cmd:'%s'", cmd.toStdString().c_str() );
-    
     // sometimes it works and sometimes not
 
     // console visible
-    //system( cmd.toStdString().c_str() );
+    // system( cmd.toStdString().c_str() );
 
     // console hidden
     std::string cmd_p = "cmd /c " + cmd.toStdString();
@@ -262,12 +239,12 @@ void DianaBusClient::run_diana( const QString& path )
     // 'execute' is blicking
     // 'start' also works but process needs to be global or if local a wait needs to be set after start
 
-    process.start( QString::fromStdString( cmd_p ) );
-    //process.execute( QString::fromStdString( cmd_p ) );
-    //int res = m_process.execute( QString::fromStdString( cmd_p ) );
+    process.start(QString::fromStdString(cmd_p));
+    // process.execute( QString::fromStdString( cmd_p ) );
+    // int res = m_process.execute( QString::fromStdString( cmd_p ) );
 
     // This also works fine
-    bool res = process.waitForFinished( -1 ); // -1: no timeout, 30s. by default
+    bool res = process.waitForFinished(-1); // -1: no timeout, 30s. by default
 
     /*
     // this doesn't work with execute, but it does with 'start'
@@ -283,38 +260,37 @@ void DianaBusClient::run_diana( const QString& path )
       if (!process.waitForFinished())
         Printer::instance()->info(" [Diana]BC : run_diana : process : error finishing" );
 
-      QByteArray result = process.readAll(); // nothing read, maybe bacause all goes to a file -> no, it retrieves nothing even not dumping results to a file
-      Printer::instance()->info(" [Diana]BC : run_diana : process : read:'%s'", result.toStdString().c_str() );
+      QByteArray result = process.readAll(); // nothing read, maybe bacause all goes to a file -> no, it retrieves
+    nothing even not dumping results to a file Printer::instance()->info(" [Diana]BC : run_diana : process : read:'%s'",
+    result.toStdString().c_str() );
     }*/
-
 
     // analyze result
     std::string last_line;
-    util::get_last_line( logfile.toStdString(), last_line );
-    QString qs = QString::fromStdString( last_line ).simplified();
+    util::get_last_line(logfile.toStdString(), last_line);
+    QString qs = QString::fromStdString(last_line).simplified();
     QStringList list = qs.split(" ");
-    QString result = list.at( 0 );
+    QString result = list.at(0);
 
-    is_ok = list[ 0 ] == END_1 && 
-        list[ list.size()-1 ] == END_2;
+    is_ok = list[0] == END_1 && list[list.size() - 1] == END_2;
 
-    Printer::instance()->info(" [Diana]BC : run_diana : result:%d (num_tries:%d)", is_ok, num_tries );
+    Printer::instance()->info(" [Diana]BC : run_diana : result:%d (num_tries:%d)", is_ok, num_tries);
 
-    if( !is_ok )
-    {
-      Printer::instance()->info(" [Diana]BC : run_diana : result: LINE_0   :%s", list[ 0 ].toStdString().c_str() );
-      Printer::instance()->info(" [Diana]BC : run_diana : result: LINE_LAST:%s", list[ list.size()-1 ].toStdString().c_str() );
+    if (!is_ok) {
+      Printer::instance()->info(" [Diana]BC : run_diana : result: LINE_0   :%s", list[0].toStdString().c_str());
+      Printer::instance()->info(" [Diana]BC : run_diana : result: LINE_LAST:%s",
+                                list[list.size() - 1].toStdString().c_str());
     }
 
     num_tries++;
   }
 
-  send( GEOMEC_ID, BusClientCmd::RunDiana_Done ); // end if diana run
+  send(GEOMEC_ID, BusClientCmd::RunDiana_Done); // end if diana run
 
   m_diana_running = false;
 
-  //m_cond_var.notify_one();
-  //send_response_to_geomec();
+  // m_cond_var.notify_one();
+  // send_response_to_geomec();
 }
 
 /*void DianaBusClient::notify_diana_end()
@@ -323,36 +299,30 @@ void DianaBusClient::run_diana( const QString& path )
   m_cond_var.wait( l );
 }*/
 
-void DianaBusClient::send( const QString& to, BusClientCmd id )
-{
-  Printer::instance()->info( 
-    "[Diana]BC > send ['%s'->'%s','%s'] ->", 
-    m_name.toStdString().c_str(),
-    to.toStdString().c_str(), 
-    g_bus_client_cmd_s[ id ].c_str() );
+void DianaBusClient::send(const QString &to, BusClientCmd id) {
+  Printer::instance()->info("[Diana]BC > send ['%s'->'%s','%s'] ->", m_name.toStdString().c_str(),
+                            to.toStdString().c_str(), g_bus_client_cmd_s[id].c_str());
 
   m_msg.setFrom(m_name.toStdString().c_str());
-  m_msg.setTo( to.toStdString().c_str() );
-  m_msg.setPayload( id ); // Any number...
+  m_msg.setTo(to.toStdString().c_str());
+  m_msg.setPayload(id); // Any number...
 
-  m_shm_socket.write( m_msg );
+  m_shm_socket.write(m_msg);
 }
 
-
-///////////////////////////////////////////////// Playing aroung passing data in a named-shared-memory /////////////////////////////////////////////////////////  
+///////////////////////////////////////////////// Playing aroung passing data in a named-shared-memory
+////////////////////////////////////////////////////////////
 
 #ifdef kk
 
-void DianaBusClient::get_shared_memory_01()
-{
+void DianaBusClient::get_shared_memory_01() {
   Printer::instance()->info(" [Diana]BC > get_shared_memory");
 
   qDebug() << " [Diana]BC > get_shared_memory";
 
-  m_shm.setKey( SHARED_MEMORY_RUN_DIANA_KEY );
+  m_shm.setKey(SHARED_MEMORY_RUN_DIANA_KEY);
 
-  if( !m_shm.attach() ) 
-  {
+  if (!m_shm.attach()) {
     qDebug() << " [Diana]BC > get_shared_memory > !m_shm.attach() !!!! ]";
     Printer::instance()->info(" [Diana]BC > get_shared_memory > !m_shm.attach() !!!! ]");
     return;
@@ -375,44 +345,42 @@ void DianaBusClient::get_shared_memory_01()
 
   m_shm.lock();
 
-  //const int SIZE = 10*1000*1000;
-  const int SIZE = 10*1000;
-  char* cp  = (char*)m_shm.constData();
-  char c = cp[ SIZE-2 ];
-  //int size_2 = sizeof( cp );
+  // const int SIZE = 10*1000*1000;
+  const int SIZE = 10 * 1000;
+  char *cp = (char *)m_shm.constData();
+  char c = cp[SIZE - 2];
+  // int size_2 = sizeof( cp );
   int size = m_shm.size();
 
   m_shm.unlock();
   m_shm.detach();
 
+  // qDebug() << " [Diana]BC > loadFromMemory [size:" << size << "]";
 
-  //qDebug() << " [Diana]BC > loadFromMemory [size:" << size << "]";
-  
   qDebug() << " [Diana]BC > loadFromMemory [char received]";
   qDebug() << " [Diana]BC > loadFromMemory [c:" << c << "]";
 
-  //qDebug() << " [Diana]BC > loadFromMemory [size:" << size << "]";
-  qDebug() << qPrintable( QString::asprintf(" [Diana]BC > loadFromMemory [size:%d]", size ) );
+  // qDebug() << " [Diana]BC > loadFromMemory [size:" << size << "]";
+  qDebug() << qPrintable(QString::asprintf(" [Diana]BC > loadFromMemory [size:%d]", size));
 
-  //qDebug() << " [Diana]BC > loadFromMemory [size_2:" << size_2 << "]";
+  // qDebug() << " [Diana]BC > loadFromMemory [size_2:" << size_2 << "]";
 
-  Printer::instance()->info(" [Diana]BC > loadFromMemory [size:%d]", size );
+  Printer::instance()->info(" [Diana]BC > loadFromMemory [size:%d]", size);
 }
 
-
-
-//////////////////////////////////////////////////////// Some tests and trials //////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////// Some tests and trials
+/////////////////////////////////////////////////////////////////
 
 /*void DianaBusClient::run_diana()
 {
   qDebug() << "Client diana";
 
-  	QString Exe = "C:/Program Files/GEOMEC 5.7 - SVS/Diana/binseg/ap/gm42.exe";
+    QString Exe = "C:/Program Files/GEOMEC 5.7 - SVS/Diana/binseg/ap/gm42.exe";
   QString Path = "C:/Users/Manel.CarreraRuibal/AppData/Local/Temp/dra11072";
   //Path = "E:/Temp/c/dra12836";
   QString Dat;
   QString Com;
-  QString Filos = "ff" + Path.right(6) + ".ff"; 
+  QString Filos = "ff" + Path.right(6) + ".ff";
   QString Base = "DIANA";
   bool DisplayDefMessages = false;
   QString UserLeader;
@@ -444,7 +412,7 @@ void DianaBusClient::get_shared_memory_01()
   res = vDiSetenv("%s=%s", "STP0", STP0.toStdString().c_str() );
 
 
-  
+
 
   QDir::setCurrent( FFDIR );
   system("..\\binseg\\ap\\gm42.exe");
@@ -455,20 +423,17 @@ void DianaBusClient::get_shared_memory_01()
   //process.start("..\\binseg\\ap\\gm42.exe", QStringList() << "gui");
   //process.start("..\\binseg\\ap\\gm42.exe");
   //process.startDetached("..\\binseg\\ap\\gm42.exe");
-  //if( process.waitForStarted() ) 
+  //if( process.waitForStarted() )
   //{
   //	int a=0;
     // Now your app is running.
   //}
 }*/
 
-void DianaBusClient::run_diana_03()
-{
-
+void DianaBusClient::run_diana_03() {
 
   // Note: DianaEnv.cpp should be in Glue, but it depends on registry; we may want to refactor that altogether (later)
 
-  
   /*int res1 = CDianaStartUp::GetInstance()->RunDiana(	 Exe,
                        Path,
                        Dat,
@@ -478,11 +443,6 @@ void DianaBusClient::run_diana_03()
                        DisplayDefMessages,
                        UserLeader,
                        UserTrailer );*/
-
-
-
-
-
 
   /*res = CDianaStartUp::GetInstance()->RunDiana(	 Exe,
                        Path,
@@ -511,9 +471,7 @@ void DianaBusClient::run_diana_03()
   }*/
 }
 
-
-void DianaBusClient::run_diana_02()
-{
+void DianaBusClient::run_diana_02() {
   /*CExecuteDianaDialogQt dlg;
   CDianaXWrapper* dianaXWrapper = new CDianaXWrapper( &dlg );
 
@@ -563,8 +521,8 @@ void DianaBusClient::run_diana_02()
   //if (bSilent)
   {
     dianaXWrapper->SetShowDefaultMessages(false);
-    short res = dianaXWrapper->ExecuteDiana(strStp0.toStdString().c_str(), WorkingDir().c_str(), "", "", FilosFileName().c_str(), "DIANA");
-    bCalcResult = GetCalculationResult();
+    short res = dianaXWrapper->ExecuteDiana(strStp0.toStdString().c_str(), WorkingDir().c_str(), "", "",
+  FilosFileName().c_str(), "DIANA"); bCalcResult = GetCalculationResult();
   }*/
 }
 

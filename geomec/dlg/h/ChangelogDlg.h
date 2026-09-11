@@ -1,24 +1,23 @@
 #pragma once
 
 #include <QObject>
-#include <qdialog>
 #include <QTextBrowser>
+#include <qdialog>
 
 #include <QVBoxLayout>
 
-#include <QFile>
-#include <QDir>
-#include <QTextStream>
-#include <QComboBox>
 #include <QCheckBox>
+#include <QComboBox>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
 
-class ChangelogDlg : public QDialog
-{
+class ChangelogDlg : public QDialog {
   Q_OBJECT
 
   static const std::string CHANGELOG_DIR;
 
-  std::vector< std::string > m_changelog_v;
+  std::vector<std::string> m_changelog_v;
 
   QTextBrowser browser;
   QComboBox combo;
@@ -31,10 +30,10 @@ public:
   static const std::string CSS_FILE;
 
 public slots:
-  void change_idx( int idx );
+  void change_idx(int idx);
 
 private:
-  void doc( std::string file_ );
+  void doc(std::string file_);
   void reject();
 
 public:

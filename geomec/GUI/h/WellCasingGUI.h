@@ -5,25 +5,24 @@ class CWellCasingModel;
 
 #include "IWellGUI.h"
 
-class CWellCasingGUI : public IWellGUI
-{
+class CWellCasingGUI : public IWellGUI {
 public:
-  CWellCasingGUI(CFemAppGUI* parentGUI, CWellCasingModel* wellCasingModel);
+  CWellCasingGUI(CFemAppGUI *parentGUI, CWellCasingModel *wellCasingModel);
 
   virtual void SwitchTo();
 
   virtual void OnCloseModel();
 
-  CWellCasingModel* model() const;
+  CWellCasingModel *model() const;
 
 protected:
   virtual bool LoadPre381Stream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
 
 private:
-  CWellCasingGUI(const CWellCasingGUI& rhs);
-  CWellCasingGUI& operator = (const CWellCasingGUI& rhs);
+  CWellCasingGUI(const CWellCasingGUI &rhs);
+  CWellCasingGUI &operator=(const CWellCasingGUI &rhs);
 
-  CWellCasingModel* m_wellCasingModel;
+  CWellCasingModel *m_wellCasingModel;
 };
 
-#endif  // _WellCasingGUI_h_
+#endif // _WellCasingGUI_h_

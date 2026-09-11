@@ -31,8 +31,7 @@ Software Product or documentation licensed under this agreement.
 
 #include "boolSupport.h"
 
-class cBagInt
-{
+class cBagInt {
 protected:
   RESCUEINT64 *objects;
   RESCUEINT64 allocated;
@@ -44,13 +43,9 @@ public:
   void operator+=(RESCUEINT64 newObject);
   RESCUEBOOL operator-=(RESCUEINT64 existingObject);
   RESCUEINT64 NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return count;}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) count;}
+  RESCUEINT64 Count64(void) { return count; }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)count; }
   RESCUEBOOL Contains(RESCUEINT64 example);
 };
 
 #endif
-
-
-
-

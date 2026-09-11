@@ -7,19 +7,13 @@
   Rod Hanks,  June 2002
 
 *********************************************************************/
-#include "RescueModel.h"
 #include "RescueLogicalOrderEntry.h"
+#include "RescueModel.h"
 
-RESCUEBOOL RescueLogicalOrderEntry::IsOfType(_RescueObjectType thisType)
-{
-  if (thisType == R_RescueLogicalOrderEntry)
-  {
-  return TRUE;
-  }
-  else
-  {
-  return RescueHistoryObject::IsOfType(thisType);
+RESCUEBOOL RescueLogicalOrderEntry::IsOfType(_RescueObjectType thisType) {
+  if (thisType == R_RescueLogicalOrderEntry) {
+    return TRUE;
+  } else {
+    return RescueHistoryObject::IsOfType(thisType);
   }
 }
-
-

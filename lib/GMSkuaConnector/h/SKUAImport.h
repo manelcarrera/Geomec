@@ -4,22 +4,18 @@
 
 #include <cstdio>
 
-
-namespace gm_skua
-{
+namespace gm_skua {
 
 class IProgressHandler;
 struct SKUAParseData;
 
-namespace internal
-{
+namespace internal {
 class SKUAParser;
 }
 
-class INTERFACE_GMSKUACONNECTOR SKUAImport
-{
+class INTERFACE_GMSKUACONNECTOR SKUAImport {
 public:
-  SKUAImport(FILE *fp, IProgressHandler& progress);
+  SKUAImport(FILE *fp, IProgressHandler &progress);
   ~SKUAImport();
 
   int LineNr() const;
@@ -36,5 +32,4 @@ private:
   internal::SKUAParser *m_parser;
 };
 
-}
-
+} // namespace gm_skua

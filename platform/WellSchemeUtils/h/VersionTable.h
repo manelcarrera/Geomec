@@ -15,23 +15,23 @@
 
 #include "StreamVersion.h"
 
-class AFX_EXT_CLASS  CVersionTable : public CDSTable  
-{
+class AFX_EXT_CLASS CVersionTable : public CDSTable {
 private:
-  CString m_VersionName;	
+  CString m_VersionName;
+
 public:
   CString VersionName() const;
-  void VersionName(const CString& name);
+  void VersionName(const CString &name);
 
-  CVersionTable(CDaoDatabase& Database);
-  CVersionTable(CDaoDatabase& Database,const CString& version_name);
+  CVersionTable(CDaoDatabase &Database);
+  CVersionTable(CDaoDatabase &Database, const CString &version_name);
 
-  CStreamVersion LoadVersionInfo() ;
-  void SaveVersionInfo(CStreamVersion& versionInfo);
+  CStreamVersion LoadVersionInfo();
+  void SaveVersionInfo(CStreamVersion &versionInfo);
 
   virtual ~CVersionTable();
 
-  //CDSTable interface
+  // CDSTable interface
   virtual void Open();
   virtual void Create();
   virtual CString TableName() const;

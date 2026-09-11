@@ -14,10 +14,8 @@
 
 #include "GeometryExports.h"
 
-
-namespace geo{
-class GEOMETRY_EXPORT  CBlockMesh : public CMesh
-{
+namespace geo {
+class GEOMETRY_EXPORT CBlockMesh : public CMesh {
   std::map<int, int> m_mpMeshPoints; // map from my indices to indices created when registering the points
 
   double m_dXbase;
@@ -33,27 +31,23 @@ class GEOMETRY_EXPORT  CBlockMesh : public CMesh
   int m_base_node; // node with minimum coordinates
 
   // vectors with indices to points making up the side surfaces of the mesh (boundary)
-  std::vector<int> m_vcLeftFace;	// minimum X value
-  std::vector<int> m_vcRightFace; // maximum X value
-  std::vector<int> m_vcFrontFace;	// minimum Y value
-  std::vector<int> m_vcBackFace;	// maximum Y value
-  std::vector<int> m_vcBottomFace;// minimum Z value
-  std::vector<int> m_vcTopFace;	// maximum Z value
+  std::vector<int> m_vcLeftFace;   // minimum X value
+  std::vector<int> m_vcRightFace;  // maximum X value
+  std::vector<int> m_vcFrontFace;  // minimum Y value
+  std::vector<int> m_vcBackFace;   // maximum Y value
+  std::vector<int> m_vcBottomFace; // minimum Z value
+  std::vector<int> m_vcTopFace;    // maximum Z value
 
   void BuildMesh();
+
 public:
   CBlockMesh();
   virtual ~CBlockMesh();
 
-  void SetMesh(const IPoint &minpoint,
-         const double &length, 
-         const double &width, 
-         const double &height, 
-         int length_division,
-         int width_division,
-         int height_division);
+  void SetMesh(const IPoint &minpoint, const double &length, const double &width, const double &height,
+               int length_division, int width_division, int height_division);
 
-  CBlockMesh& operator = (const CBlockMesh &rhs);
+  CBlockMesh &operator=(const CBlockMesh &rhs);
 
   double XBase() const { return m_dXbase; }
   double YBase() const { return m_dYbase; }
@@ -80,5 +74,5 @@ public:
 
   bool operator==(const CBlockMesh &rhs) const;
 };
-}
+} // namespace geo
 #endif // !defined(AFX_BLOCKMESH_H__55AC00EE_BA3B_4D20_9643_8BFB3C1AFF1F__INCLUDED_)

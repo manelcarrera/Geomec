@@ -2,55 +2,36 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "2DPolyLine.h"
 #include "2DSegment.h"
-#include "2DVertex.h"
 #include "2DDocument.h"
+#include "2DPolyLine.h"
+#include "2DVertex.h"
 
 /////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-C2DSegment::C2DSegment(IModelObject& parent)
-: IModelObject(parent), m_segment(*this), m_prVertices(0, 0)
-{
-}
+C2DSegment::C2DSegment(IModelObject &parent) : IModelObject(parent), m_segment(*this), m_prVertices(0, 0) {}
 
-C2DSegment::C2DSegment(IModelObject& parent, C2DVertex &first, C2DVertex &second)
-: IModelObject(parent), m_segment(*this), m_prVertices(&first, &second)
-{
+C2DSegment::C2DSegment(IModelObject &parent, C2DVertex &first, C2DVertex &second)
+    : IModelObject(parent), m_segment(*this), m_prVertices(&first, &second) {
   insertReference(first);
   insertReference(second);
   first.insertReference(*this);
   second.insertReference(*this);
 }
 
-C2DSegment::~C2DSegment()
-{
-}
+C2DSegment::~C2DSegment() {}
 
-const C2DVertex &C2DSegment::FirstVertex() const
-{
-  return *m_prVertices.first;
-}
+const C2DVertex &C2DSegment::FirstVertex() const { return *m_prVertices.first; }
 
-C2DVertex &C2DSegment::FirstVertex()
-{
-  return *m_prVertices.first;
-}
+C2DVertex &C2DSegment::FirstVertex() { return *m_prVertices.first; }
 
-const C2DVertex &C2DSegment::SecondVertex() const
-{
-  return *m_prVertices.second;
-}
+const C2DVertex &C2DSegment::SecondVertex() const { return *m_prVertices.second; }
 
-C2DVertex &C2DSegment::SecondVertex()
-{
-  return *m_prVertices.second;
-}
+C2DVertex &C2DSegment::SecondVertex() { return *m_prVertices.second; }
 
-C2DSegment::FirstVertex(C2DVertex& vertex)
-{
+C2DSegment::FirstVertex(C2DVertex &vertex) {
   removeReference(FirstVertex());
   FirstVertex().removeReference(*this);
   insertReference(vertex);
@@ -58,8 +39,7 @@ C2DSegment::FirstVertex(C2DVertex& vertex)
   geometryChanged();
 }
 
-C2DSegment::SecondVertex(C2DVertex& vertex)
-{
+C2DSegment::SecondVertex(C2DVertex &vertex) {
   removeReference(SecondVertex());
   SecondVertex().removeReference(*this);
   insertReference(vertex);
@@ -67,26 +47,21 @@ C2DSegment::SecondVertex(C2DVertex& vertex)
   geometryChanged();
 }
 
-const C2DVertex &C2DSegment::OtherVertex(const C2DVertex &vertex) const
-{
-  if(&FirstVertex() == &vertex)
+const C2DVertex &C2DSegment::OtherVertex(const C2DVertex &vertex) const {
+  if (&FirstVertex() == &vertex)
     return SecondVertex();
   ASSERT(&SecondVertex() == &vertex);
   return FirstVertex();
 }
 
-C2DVertex &C2DSegment::OtherVertex(const C2DVertex &vertex)
-{
-  if(&FirstVertex() == &vertex)
+C2DVertex &C2DSegment::OtherVertex(const C2DVertex &vertex) {
+  if (&FirstVertex() == &vertex)
     return SecondVertex();
   ASSERT(&SecondVertex() == &vertex);
   return FirstVertex();
 }
 
-const geo::ISegment &C2DSegment::Segment() const
-{
-  return m_segment;
-}
+const geo::ISegment &C2DSegment::Segment() const { return m_segment; }
 /*
 UINT C2DSegment::IconId() const
 {
@@ -102,7 +77,7 @@ void C2DSegment::OnNewNeighbour(const CGraphNode &node)
   const C2DPolyLine* pPolyLine = dynamic_cast<const C2DPolyLine*>(&node);
   if(pPolyLine)
     m_vc2DPolyLines.push_back((C2DPolyLine*)(&node));
-  
+
   CGraphNode::OnNewNeighbour(node);
 }
 
@@ -142,7 +117,7 @@ long C2DSegment::SavedItems() const
 void C2DSegment::LoadStream(TSTREAM& stream, CVersion& version, TPROGRESS& progress)
 {
   CStorageNode::LoadStream(stream, version, progress);
-  
+
   // Load first vertex
   int nIndex;
   stream >> nIndex;
@@ -165,7 +140,7 @@ void C2DSegment::LoadStream(TSTREAM& stream, CVersion& version, TPROGRESS& progr
     stream >> m_vcEdge[i];
     progress.Step();
   }
-    
+
   ASSERT(Model().GraphEntry(MD_2D_SEGMENT));
   LinkTo(*Model().GraphEntry(MD_2D_SEGMENT));
 }
@@ -189,20 +164,11 @@ void C2DSegment::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   }
 }
 */
-int C2DSegment::PolyLineSize() const
-{
-  return m_vc2DPolyLines.size();
-}
+int C2DSegment::PolyLineSize() const { return m_vc2DPolyLines.size(); }
 
-const C2DPolyLine& C2DSegment::PolyLine(int nIndex) const
-{
-  return *m_vc2DPolyLines[nIndex];
-}
+const C2DPolyLine &C2DSegment::PolyLine(int nIndex) const { return *m_vc2DPolyLines[nIndex]; }
 
-C2DPolyLine& C2DSegment::PolyLine(int nIndex)
-{
-  return *m_vc2DPolyLines[nIndex];
-}
+C2DPolyLine &C2DSegment::PolyLine(int nIndex) { return *m_vc2DPolyLines[nIndex]; }
 /*
 int C2DSegment::EdgeSize() const
 {
@@ -228,120 +194,79 @@ void C2DSegment::AddEdge(int nIndex)
   m_vcEdge.push_back(nIndex);
 }
 */
-bool C2DSegment::CanSplit(const geo::IPoint& point) const
-{
-  return m_segment.Contains(point, true);
-}
+bool C2DSegment::CanSplit(const geo::IPoint &point) const { return m_segment.Contains(point, true); }
 
-void C2DSegment::Split(const geo::IPoint& point)
-{
+void C2DSegment::Split(const geo::IPoint &point) {
   ASSERT(CanSplit(point));
 
   // Get the position of the current edge in polylines
-  std::vector<std::pair<int, bool> > vcIndex;
-  for(int i = 0; i < PolyLineSize(); i++)
+  std::vector<std::pair<int, bool>> vcIndex;
+  for (int i = 0; i < PolyLineSize(); i++)
     vcIndex.push_back(PolyLine(i).PolyLine().SegmentIndex(*this));
   ASSERT(vcIndex.size() == PolyLineSize());
 
   // We introduce a new point and segment
-  C2DDocument& doc = dynamic_cast<C2DDocument&>(document());
+  C2DDocument &doc = dynamic_cast<C2DDocument &>(document());
   C2DVertex *pVertex = new C2DVertex(point, doc.Vertices());
   C2DSegment *pSegment = new C2DSegment(doc.Segments(), *pVertex, SecondVertex());
   SecondVertex(*pVertex);
 
   // Introduce the new segment in the containing polylines
-  for(i = 0; i < PolyLineSize(); i++)
-  {
-    if(vcIndex[i].second)
+  for (i = 0; i < PolyLineSize(); i++) {
+    if (vcIndex[i].second)
       PolyLine(i).PolyLine().Insert(i + 1, *pSegment);
     else
       PolyLine(i).PolyLine().Insert(i, *pSegment);
   }
 }
 
-void C2DSegment::InsertSegment(C2DPolyLine& poly_line, C2DSegment& old_segment, C2DSegment& new_segment)
-{
+void C2DSegment::InsertSegment(C2DPolyLine &poly_line, C2DSegment &old_segment, C2DSegment &new_segment) {
   // Find index of old segment
   int nIndex = -1;
-  for(int i = 0; i < poly_line.PolyLine().LineSize(); i++)
-  {
-    if(&poly_line.PolyLine().Segment(i) == &old_segment)
+  for (int i = 0; i < poly_line.PolyLine().LineSize(); i++) {
+    if (&poly_line.PolyLine().Segment(i) == &old_segment)
       nIndex = i;
   }
   ASSERT(nIndex != -1);
 
   // Insert before or after
   bool bInsertBefore = true;
-  if(nIndex > 0)
-  {
-    
-
+  if (nIndex > 0) {
   }
-
-
 }
 
 //// CSegment
-C2DSegment::CSegment::CSegment(const C2DSegment &segment)
-: m_segment(segment)
-{
-}
+C2DSegment::CSegment::CSegment(const C2DSegment &segment) : m_segment(segment) {}
 
-C2DSegment::CSegment::~CSegment()
-{
-}
+C2DSegment::CSegment::~CSegment() {}
 
-C2DSegment::CSegment &C2DSegment::CSegment::operator=(const CSegment &rhs)
-{
+C2DSegment::CSegment &C2DSegment::CSegment::operator=(const CSegment &rhs) {
   assert(&m_segment == &rhs.m_segment);
 
   return *this;
 }
 
-const C2DSegment& C2DSegment::CSegment::Segment() const
-{
-  return m_segment;
-}
+const C2DSegment &C2DSegment::CSegment::Segment() const { return m_segment; }
 
-const geo::ISegmentPoint &C2DSegment::CSegment::FirstSegmentPoint() const
-{
-  return Segment().FirstVertex().Point();
-}
+const geo::ISegmentPoint &C2DSegment::CSegment::FirstSegmentPoint() const { return Segment().FirstVertex().Point(); }
 
-const geo::ISegmentPoint &C2DSegment::CSegment::SecondSegmentPoint() const
-{
-  return Segment().SecondVertex().Point();
-}
+const geo::ISegmentPoint &C2DSegment::CSegment::SecondSegmentPoint() const { return Segment().SecondVertex().Point(); }
 
-void C2DSegment::CSegment::First(const geo::IPoint& point)
-{
-  assert(false);
-}
+void C2DSegment::CSegment::First(const geo::IPoint &point) { assert(false); }
 
-void C2DSegment::CSegment::Second(const geo::IPoint& point)
-{
-  assert(false);
-}
+void C2DSegment::CSegment::Second(const geo::IPoint &point) { assert(false); }
 
 // Segment entry
-C2DSegmentContainer::C2DSegmentContainer(C2DDocument& document)
-: CModelContainer<C2DSegment>("", document)
-{
-}
+C2DSegmentContainer::C2DSegmentContainer(C2DDocument &document) : CModelContainer<C2DSegment>("", document) {}
 
-std::vector<C2DSegmentContainer::TIntersection> C2DSegmentContainer::Intersection(geo::ILine& line) const
-{
+std::vector<C2DSegmentContainer::TIntersection> C2DSegmentContainer::Intersection(geo::ILine &line) const {
   std::vector<TIntersection> vcRet;
-  for(int i = 0; i < size(); i++)
-  {
+  for (int i = 0; i < size(); i++) {
     geo::CPoint point = at(i).Segment().Intersection(line);
-    if(!point.Empty())
-    {
-      if(line.Contains(point) && at(i).Segment().Contains(point))
+    if (!point.Empty()) {
+      if (line.Contains(point) && at(i).Segment().Contains(point))
         vcRet.push_back(TIntersection(&at(i), point));
     }
   }
-  return vcRet;	
+  return vcRet;
 }
-
-

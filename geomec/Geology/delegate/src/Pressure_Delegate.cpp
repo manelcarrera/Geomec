@@ -1,26 +1,20 @@
 #include "stdafx.h"
 
-#include "Pressure_Delegate.h"
-#include "Pressure.h"
 #include "AttriPressureDlg.h"
+#include "Pressure.h"
+#include "Pressure_Delegate.h"
 
-CPressure_Delegate::CPressure_Delegate(CPressure* pressure)
-: TPressureBase_Delegate(pressure)
-, m_pressure(pressure)
-{
-}
+CPressure_Delegate::CPressure_Delegate(CPressure *pressure) : TPressureBase_Delegate(pressure), m_pressure(pressure) {}
 
-bool CPressure_Delegate::Attributes()
-{
+bool CPressure_Delegate::Attributes() {
   m_pressure->AssertValid();
 
   CAttriPressureDlg dlg(*m_pressure);
 
-  if (dlg.DoModal() == IDOK)
-  {
-  m_pressure->AssertValid();
+  if (dlg.DoModal() == IDOK) {
+    m_pressure->AssertValid();
 
-  return true;
+    return true;
   }
 
   return false;

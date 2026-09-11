@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // Connect.cpp: implementation of the IElementConnect class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -7,8 +7,4 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-IElementConnect::IElementConnect()
-{
-
-}
-
+IElementConnect::IElementConnect() {}

@@ -7,11 +7,8 @@
 class CFFMaterial;
 class IMaterialServerBase;
 
-
-class CMaterialKey
-{
+class CMaterialKey {
 public:
-
   typedef std::map<unsigned int, double> TValueMap;
 
   CMaterialKey();
@@ -19,24 +16,21 @@ public:
 
   void SetMap(TValueMap *values);
 
-  bool operator<(const CMaterialKey& rhs) const;
+  bool operator<(const CMaterialKey &rhs) const;
 
 private:
-
   TValueMap *m_pValueMap;
-  TValueMap  m_internalValueMap;
+  TValueMap m_internalValueMap;
 };
 
-class CMaterialMappingCache
-{
+class CMaterialMappingCache {
 
   CMaterialMappingCache();
   ~CMaterialMappingCache();
-  CMaterialMappingCache(const CMaterialMappingCache&);
-  CMaterialMappingCache& operator=(const CMaterialMappingCache&);
+  CMaterialMappingCache(const CMaterialMappingCache &);
+  CMaterialMappingCache &operator=(const CMaterialMappingCache &);
 
 public:
-
   typedef std::map<CMaterialKey, CFFMaterial *> TMaterialMap;
 
   static CMaterialMappingCache *instance();
@@ -53,20 +47,15 @@ public:
   void Add(const IMaterialServerBase *server, CMaterialKey key, CFFMaterial *mat);
 
 private:
-
-  struct ServerKeyMaterial
-  {
-  const IMaterialServerBase *server;
-  CMaterialKey         key;
-  CFFMaterial         *material;
+  struct ServerKeyMaterial {
+    const IMaterialServerBase *server;
+    CMaterialKey key;
+    CFFMaterial *material;
   };
 
   bool m_bUseCache;
   bool m_bNoCaching;
   tbb::concurrent_vector<ServerKeyMaterial> m_vcCache;
-
 };
-
-
 
 #endif

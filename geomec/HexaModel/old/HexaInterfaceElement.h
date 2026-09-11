@@ -6,20 +6,21 @@
 #endif // _MSC_VER > 1000
 
 class CHexaInterfaceElement;
-class CHexaInterfaceElementSet : public geo::IElementSet
-{
-  typedef std::map<geo::IPoint*, int> TPointMap;
+class CHexaInterfaceElementSet : public geo::IElementSet {
+  typedef std::map<geo::IPoint *, int> TPointMap;
   TPointMap m_mpPoint;
-  std::vector<CHexaInterfaceElement*> m_vcElement;
-  std::vector<geo::IPoint*> m_vcPoint;
+  std::vector<CHexaInterfaceElement *> m_vcElement;
+  std::vector<geo::IPoint *> m_vcPoint;
+
 protected:
   virtual geo::IPoint &PointAt(int nIndex);
+
 public:
   CHexaInterfaceElementSet();
 
-  int RegisterElement(CHexaInterfaceElement& element);
+  int RegisterElement(CHexaInterfaceElement &element);
 
-  int RegisterPoint(geo::IPoint& point);
+  int RegisterPoint(geo::IPoint &point);
 
   void Clear();
 
@@ -27,51 +28,40 @@ public:
   virtual int PointSize() const;
 
   virtual const geo::IElement &Element(int nIndex) const;
-  virtual int ElementSize() const ;
+  virtual int ElementSize() const;
   virtual std::vector<int> ElementsAt(const geo::IPoint &point) const;
 
   // get the node indices connected to the given element
   virtual std::vector<int> Nodes(const geo::IElement &element) const;
   virtual void AssertValid() const;
-
 };
 
-class CHexaInterfaceElement : public geo::IBody
-{
-  CHexaInterfaceElementSet& m_element_set;
-  mutable std::vector<geo::IBodyFace*> m_vcFaces;
+class CHexaInterfaceElement : public geo::IBody {
+  CHexaInterfaceElementSet &m_element_set;
+  mutable std::vector<geo::IBodyFace *> m_vcFaces;
   int m_points[8];
   const geo::CHexahedron *m_pUpperBody;
   const geo::CHexahedron *m_pLowerBody;
   int m_nIndex;
+
 public:
   // Construction
-  CHexaInterfaceElement(CHexaInterfaceElementSet& element_set,
-              const std::vector<geo::IPoint*>& points,
-              const geo::CHexahedron &upperBody, 
-              const geo::CHexahedron &lowerBody);
+  CHexaInterfaceElement(CHexaInterfaceElementSet &element_set, const std::vector<geo::IPoint *> &points,
+                        const geo::CHexahedron &upperBody, const geo::CHexahedron &lowerBody);
 
-  CHexaInterfaceElement(CHexaInterfaceElementSet& element_set,
-              geo::IPoint &p0, 
-              geo::IPoint &p1, 
-              geo::IPoint &p2, 
-              geo::IPoint &p3,
-              geo::IPoint &p4, 
-              geo::IPoint &p5, 
-              geo::IPoint &p6, 
-              geo::IPoint &p7,
-              const geo::CHexahedron &upperBody,
-              const geo::CHexahedron &lowerBody);
+  CHexaInterfaceElement(CHexaInterfaceElementSet &element_set, geo::IPoint &p0, geo::IPoint &p1, geo::IPoint &p2,
+                        geo::IPoint &p3, geo::IPoint &p4, geo::IPoint &p5, geo::IPoint &p6, geo::IPoint &p7,
+                        const geo::CHexahedron &upperBody, const geo::CHexahedron &lowerBody);
 
   virtual ~CHexaInterfaceElement();
 
   // Indexing system
-  virtual const geo::IElementSet* IndexingElementSet() const;
+  virtual const geo::IElementSet *IndexingElementSet() const;
   virtual int Index() const;
   virtual int PointIndex(int nIndex) const;
 
-  CHexaInterfaceElement& operator=(const CHexaInterfaceElement& rhs);
-  bool operator==(const CHexaInterfaceElement& rhs);
+  CHexaInterfaceElement &operator=(const CHexaInterfaceElement &rhs);
+  bool operator==(const CHexaInterfaceElement &rhs);
 
   virtual const geo::IPoint &Point(const int nIndex) const;
   virtual void Point(const int nIndex, const geo::IPoint &pt);

@@ -25,250 +25,184 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
-#include "RescueModel.h"
 #include "cSetRescuePolyLineStub.h"
+#include "RescueModel.h"
 #include "RescuePolyLineStub.h"
 
-cSetRescuePolyLineStub::cSetRescuePolyLineStub()
-{
+cSetRescuePolyLineStub::cSetRescuePolyLineStub() {
   allocated = 10;
   count = 0;
-  objects = (RescuePolyLineStub **) malloc(sizeof(RescuePolyLineStub *) * (size_t) allocated);
+  objects = (RescuePolyLineStub **)malloc(sizeof(RescuePolyLineStub *) * (size_t)allocated);
 }
 
-cSetRescuePolyLineStub::~cSetRescuePolyLineStub()
-{
+cSetRescuePolyLineStub::~cSetRescuePolyLineStub() {
   RESCUEINT64 loop;
 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   free(objects);
 }
 
-void cSetRescuePolyLineStub::Archive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescuePolyLineStub::Archive(RescueContext *context, FILE *archiveFile) {
   myfprintf(context, archiveFile, count);
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Archive(context, archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Archive(context, archiveFile);
   }
 }
 
-void cSetRescuePolyLineStub::Relink(RescueObject *parent)
-{
+void cSetRescuePolyLineStub::Relink(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Relink(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Relink(parent);
   }
 }
 
-void cSetRescuePolyLineStub::UnArchive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescuePolyLineStub::UnArchive(RescueContext *context, FILE *archiveFile) {
   RESCUEINT64 newCount;
 
   EmptySelf();
 
   myfscanf(context, archiveFile, &newCount);
   RESCUEINT64 loop;
-  for (loop = 0; loop < newCount; loop++)
-  {
-  RescuePolyLineStub *newObject = new RescuePolyLineStub(context, archiveFile);
-  (*this) += newObject;
+  for (loop = 0; loop < newCount; loop++) {
+    RescuePolyLineStub *newObject = new RescuePolyLineStub(context, archiveFile);
+    (*this) += newObject;
   }
 }
 
-void cSetRescuePolyLineStub::EmptySelf(void)
-{
+void cSetRescuePolyLineStub::EmptySelf(void) {
   RESCUEINT64 loop;
- 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   count = 0;
 }
 
-void cSetRescuePolyLineStub::operator+=(RescuePolyLineStub *newObject)
-{
-  if (allocated == count)
-  {
-  allocated += 10;
-  objects = (RescuePolyLineStub **) realloc(objects, sizeof(RescuePolyLineStub *) * (size_t) allocated);
+void cSetRescuePolyLineStub::operator+=(RescuePolyLineStub *newObject) {
+  if (allocated == count) {
+    allocated += 10;
+    objects = (RescuePolyLineStub **)realloc(objects, sizeof(RescuePolyLineStub *) * (size_t)allocated);
   }
   objects[count++] = newObject;
 }
 
-void cSetRescuePolyLineStub::Relinquish(RescuePolyLineStub *existingObject)
-{
+void cSetRescuePolyLineStub::Relinquish(RescuePolyLineStub *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
 }
 
-RESCUEBOOL cSetRescuePolyLineStub::operator-=(RescuePolyLineStub *existingObject)
-{
+RESCUEBOOL cSetRescuePolyLineStub::operator-=(RescuePolyLineStub *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
   return found;
 }
 
-RescuePolyLineStub *cSetRescuePolyLineStub::ObjectNamed(const RESCUECHAR *mayBeName)
-{
+RescuePolyLineStub *cSetRescuePolyLineStub::ObjectNamed(const RESCUECHAR *mayBeName) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsNamed(mayBeName))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsNamed(mayBeName)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RescuePolyLineStub *cSetRescuePolyLineStub::ObjectIdentifiedBy(RESCUEINT64 identifier)
-{
+RescuePolyLineStub *cSetRescuePolyLineStub::ObjectIdentifiedBy(RESCUEINT64 identifier) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsIdentifiedBy(identifier))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsIdentifiedBy(identifier)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RESCUEBOOL cSetRescuePolyLineStub::operator-=(RESCUEINT64 ndx)
-{
-  if (ndx >= 0 && ndx < count)
-  {
-  RESCUEINT64 loop;
+RESCUEBOOL cSetRescuePolyLineStub::operator-=(RESCUEINT64 ndx) {
+  if (ndx >= 0 && ndx < count) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
-  return TRUE;
-  }
-  else
-  {
-  return FALSE;
+    }
+    return TRUE;
+  } else {
+    return FALSE;
   }
 }
 
-RescuePolyLineStub *cSetRescuePolyLineStub::NthObject(RESCUEINT64 ordinal)
-{
-  if (ordinal < 0 || ordinal >= count)
-  {
-  return 0;
-  }
-  else
-  {
-  return objects[ordinal];
+RescuePolyLineStub *cSetRescuePolyLineStub::NthObject(RESCUEINT64 ordinal) {
+  if (ordinal < 0 || ordinal >= count) {
+    return 0;
+  } else {
+    return objects[ordinal];
   }
 }
 
-RESCUEINT64 cSetRescuePolyLineStub::Count64(void)
-{
-  return count;
-}
+RESCUEINT64 cSetRescuePolyLineStub::Count64(void) { return count; }
 
-RESCUEINT32 cSetRescuePolyLineStub::Count(void)
-{
-  return (RESCUEINT32) count;
-}
+RESCUEINT32 cSetRescuePolyLineStub::Count(void) { return (RESCUEINT32)count; }
 
-RESCUEINT32 cSetRescuePolyLineStub::Count(RESCUEBOOL throwIfTrue)
-{
-  if (count > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cSetRescuePolyLineStub::Count(RESCUEBOOL throwIfTrue) {
+  if (count > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) count;
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)count;
   }
 }
-
-
-

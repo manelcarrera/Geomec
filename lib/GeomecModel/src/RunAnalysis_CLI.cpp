@@ -1,27 +1,20 @@
 #include "RunAnalysis_CLI.h"
 //
-#include "Printer.h"
+#include "DianaExecuter.h"
 #include "DianaStartUp.h"
 #include "Global.h"
-#include "DianaExecuter.h"
+#include "Printer.h"
 
-namespace
-{
-  static const IListenerDefinition RunDianaCli_ListenerDefinition{ 
-    CEvents::NonGuiApp_EH, { 
-      //
-      RunSuccess, 
-      RunEnd, 
-      ChecksError, 
-      RunError, 
-      DianaMsg, 
-      QuitDiana_Done } };
+namespace {
+static const IListenerDefinition RunDianaCli_ListenerDefinition{
+    CEvents::NonGuiApp_EH,
+    {//
+     RunSuccess, RunEnd, ChecksError, RunError, DianaMsg, QuitDiana_Done}};
 
-  static const char* scenarios_cp[]={ "DianaRunController", "DianaXWrapper", "DianaStartUp"};
-}
+static const char *scenarios_cp[] = {"DianaRunController", "DianaXWrapper", "DianaStartUp"};
+} // namespace
 
-void CRunAnalysis_CLI::init()
-{
+void CRunAnalysis_CLI::init() {
   m_res = false;
   //
   m_quit = false;
@@ -51,81 +44,62 @@ void CRunAnalysis_CLI::init()
 //
 // emits no event
 //
-CRunAnalysis_CLI::CRunAnalysis_CLI(
-  CDianaRunController* drc,
-  CDianaRunController::eRunStep step)
-  :	IRunAnalysis(RunDianaCli_ListenerDefinition),
-    m_wait(CEvents::NonGuiApp_EH),
-    m_scenario(DianaRunController)
-{
+CRunAnalysis_CLI::CRunAnalysis_CLI(CDianaRunController *drc, CDianaRunController::eRunStep step)
+    : IRunAnalysis(RunDianaCli_ListenerDefinition), m_wait(CEvents::NonGuiApp_EH), m_scenario(DianaRunController) {
   init();
 
   m_drc = drc;
-  m_step = step; 
+  m_step = step;
 
-  m_drc->run(step); //non-blocking
+  m_drc->run(step); // non-blocking
 }
 
 //
 // Special case for ModelOperations.StartDiana
 //
 CRunAnalysis_CLI::CRunAnalysis_CLI()
-  :	IRunAnalysis(RunDianaCli_ListenerDefinition),
-    m_wait(CEvents::NonGuiApp_EH),
-    m_scenario(DianaStartUp)
-{
+    : IRunAnalysis(RunDianaCli_ListenerDefinition), m_wait(CEvents::NonGuiApp_EH), m_scenario(DianaStartUp) {
   init();
 
-  CDianaStartUp* dsu = CDianaStartUp::instance();
-  dsu->RunDiana(); //non-blocking
+  CDianaStartUp *dsu = CDianaStartUp::instance();
+  dsu->RunDiana(); // non-blocking
 }
 
 //
 // Special case, only used in MatParamDlg
 //
-CRunAnalysis_CLI::CRunAnalysis_CLI(IDianaXWrapper* dx)
-  :	IRunAnalysis(RunDianaCli_ListenerDefinition),
-    m_wait(CEvents::NonGuiApp_EH),
-    m_scenario(DianaXWrapper)
-{
+CRunAnalysis_CLI::CRunAnalysis_CLI(IDianaXWrapper *dx)
+    : IRunAnalysis(RunDianaCli_ListenerDefinition), m_wait(CEvents::NonGuiApp_EH), m_scenario(DianaXWrapper) {
   init();
   m_dxw = dx;
-  m_dxw->ExecuteDiana(); //non-blocking
+  m_dxw->ExecuteDiana(); // non-blocking
 }
 
-CRunAnalysis_CLI::~CRunAnalysis_CLI()
-{
-}
+CRunAnalysis_CLI::~CRunAnalysis_CLI() {}
 
-void CRunAnalysis_CLI::wait()
-{
-  m_wait.wait();
-}
+void CRunAnalysis_CLI::wait() { m_wait.wait(); }
 
 //
 // by now it does nothing
 //
-void CRunAnalysis_CLI::on_diana_msg(Cmd cmd)
-{
-  void* data_ = cmd.second;
-  std::string msg = *reinterpret_cast< std::string* >(data_);
+void CRunAnalysis_CLI::on_diana_msg(Cmd cmd) {
+  void *data_ = cmd.second;
+  std::string msg = *reinterpret_cast<std::string *>(data_);
   delete data_;
 
   //
-  // FIXME: 
+  // FIXME:
   //
-  //	never should be empty, 
+  //	never should be empty,
   //	at least first char with he msg typr should be present
   //
   int len = msg.length();
-  if (len)
-  {
-    if (len>1)
+  if (len) {
+    if (len > 1)
       m_printer->debug("diana msg: %c : %s", msg.front(), msg.substr(1).c_str());
     else
       m_printer->debug("diana msg: %c", msg.front());
-  }
-  else
+  } else
     m_printer->error("diana msg");
 
   //
@@ -183,138 +157,133 @@ void CRunAnalysis_CLI::on_diana_msg(Cmd cmd)
   }*/
 }
 
-std::string CRunAnalysis_CLI::error_msg(Cmd cmd)
-{
-  void* data_ = cmd.second;
-  CEvents::ErrorData data = *reinterpret_cast< CEvents::ErrorData* >(data_);
+std::string CRunAnalysis_CLI::error_msg(Cmd cmd) {
+  void *data_ = cmd.second;
+  CEvents::ErrorData data = *reinterpret_cast<CEvents::ErrorData *>(data_);
   delete data_;
 
-  CEvents::eEventsHandler sender =  data.sender;
+  CEvents::eEventsHandler sender = data.sender;
 
   std::string msg;
-  switch(sender)
-  {
-    case CEvents::Controller_EH:
-    {
-      CDianaRunController::eRunRes error_id = (CDianaRunController::eRunRes)data.error_id;
-      switch (error_id)
-      {
+  switch (sender) {
+  case CEvents::Controller_EH: {
+    CDianaRunController::eRunRes error_id = (CDianaRunController::eRunRes)data.error_id;
+    switch (error_id) {
 
-        //case CDianaRunController::Success:
-        case CDianaRunController::RunError_: 
-        case CDianaRunController::EndDepletionError:
-        case CDianaRunController::Cancelled:
-        case CDianaRunController::StartCheckError:
-        case CDianaRunController::GuardCheckError:
-        case CDianaRunController::RunFirstError:
-        case CDianaRunController::RunNextError:
-        case CDianaRunController::UndefinedError:
-        case CDianaRunController::EndStageError:
-        default: msg = "Unknown error"; break;
-      }
-      break;
-    }
-    case CEvents::DI_EH:
-    {
-      eDsaError error_id = (eDsaError)data.error_id; // defined in Inetrprocess.h
-      switch (error_id)
-      {
-        case UnableToLaunchDiana:		msg = "Unable to launch 'diana_app'"; break;
-        case HeartBeatError:			msg = "Heartbeat error"; break;
-        case EndDepletionCheckError:	msg = "End depletion check error"; break;
-        default:						msg = "Unknown error"; break;
-      }
-      break;
-    }
+    // case CDianaRunController::Success:
+    case CDianaRunController::RunError_:
+    case CDianaRunController::EndDepletionError:
+    case CDianaRunController::Cancelled:
+    case CDianaRunController::StartCheckError:
+    case CDianaRunController::GuardCheckError:
+    case CDianaRunController::RunFirstError:
+    case CDianaRunController::RunNextError:
+    case CDianaRunController::UndefinedError:
+    case CDianaRunController::EndStageError:
     default:
+      msg = "Unknown error";
       break;
+    }
+    break;
+  }
+  case CEvents::DI_EH: {
+    eDsaError error_id = (eDsaError)data.error_id; // defined in Inetrprocess.h
+    switch (error_id) {
+    case UnableToLaunchDiana:
+      msg = "Unable to launch 'diana_app'";
+      break;
+    case HeartBeatError:
+      msg = "Heartbeat error";
+      break;
+    case EndDepletionCheckError:
+      msg = "End depletion check error";
+      break;
+    default:
+      msg = "Unknown error";
+      break;
+    }
+    break;
+  }
+  default:
+    break;
   }
   return msg;
 }
 
-void CRunAnalysis_CLI::handle(Cmd cmd)
-{
-  static CDianaStartUp* dsu = CDianaStartUp::instance();
+void CRunAnalysis_CLI::handle(Cmd cmd) {
+  static CDianaStartUp *dsu = CDianaStartUp::instance();
 
-  switch (cmd.first)
+  switch (cmd.first) {
+  case RunSuccess: // = end iteration
   {
-    case RunSuccess: // = end iteration
-    {
-      if(m_scenario!=DianaRunController)
-      {
-        //
-        // controller is the one that emits RunEnd, but here there is no controller
-        //
-        push_(RunEnd); // when run diana completely finished
-      }
-      break;
-    }
-    case RunEnd: // = end analysis
-    {
-      m_res = true;
+    if (m_scenario != DianaRunController) {
       //
-      dsu->delete_di(); // neatly quits all diana interface threads 
+      // controller is the one that emits RunEnd, but here there is no controller
       //
-      m_wait.signal(); // -> DON'T REMOVE !!!  -> needed to quit from wait
-      break;
+      push_(RunEnd); // when run diana completely finished
     }
+    break;
+  }
+  case RunEnd: // = end analysis
+  {
+    m_res = true;
     //
-    // Error caused by:
-    //	- Preliminar checks
-    //	- Progress bar exception
+    dsu->delete_di(); // neatly quits all diana interface threads
     //
-    case eCmd::ChecksError:
-    {
-      std::string* msg = reinterpret_cast< std::string* >((void*)cmd.second);
-      delete msg;
-      //
-      push_(Quit_RA);
-      //
-      m_wait.signal(); // Maybe needed in any of the cases
-      break;
-    }
-    case eCmd::Quit_RA:
-    {
-      if (_g->dsa())
-        dsu->delete_di();
-      break;
-    }
+    m_wait.signal(); // -> DON'T REMOVE !!!  -> needed to quit from wait
+    break;
+  }
+  //
+  // Error caused by:
+  //	- Preliminar checks
+  //	- Progress bar exception
+  //
+  case eCmd::ChecksError: {
+    std::string *msg = reinterpret_cast<std::string *>((void *)cmd.second);
+    delete msg;
     //
-    // it does: 
-    //	- delete runner
-    //	- clean FFDIR with FF
-    //	- m_pStartStage = 0
-    //	- m_pEndStage = 0
+    push_(Quit_RA);
     //
-    // by now this case happens when diana_app_new.exe of previous execution didsn't end and for any reason can't be killed
-    // but is intended to use by any reason... reason why is specified in the param
-    case eCmd::RunError:
-    {
-      std::string msg = error_msg(cmd);
-      //
-      push_(Quit_RA);
-      //
-      m_wait.signal();
-      break;
-    }
+    m_wait.signal(); // Maybe needed in any of the cases
+    break;
+  }
+  case eCmd::Quit_RA: {
+    if (_g->dsa())
+      dsu->delete_di();
+    break;
+  }
+  //
+  // it does:
+  //	- delete runner
+  //	- clean FFDIR with FF
+  //	- m_pStartStage = 0
+  //	- m_pEndStage = 0
+  //
+  // by now this case happens when diana_app_new.exe of previous execution didsn't end and for any reason can't be
+  // killed but is intended to use by any reason... reason why is specified in the param
+  case eCmd::RunError: {
+    std::string msg = error_msg(cmd);
     //
-    // when diana finishes execution forcely
+    push_(Quit_RA);
     //
-    case eCmd::QuitDiana_Done:
-    {
-      quit(true);
-      m_wait.signal();
-      break; 
-    }
-    case eCmd::DianaMsg:		
-    {
-      on_diana_msg(cmd); // by now it does nothing
-      break;
-    }
-    default:				
-    {
-      m_printer->error("unknown evt"); 
-      break;
-    }
+    m_wait.signal();
+    break;
+  }
+  //
+  // when diana finishes execution forcely
+  //
+  case eCmd::QuitDiana_Done: {
+    quit(true);
+    m_wait.signal();
+    break;
+  }
+  case eCmd::DianaMsg: {
+    on_diana_msg(cmd); // by now it does nothing
+    break;
+  }
+  default: {
+    m_printer->error("unknown evt");
+    break;
+  }
   }
 }

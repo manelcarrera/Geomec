@@ -14,13 +14,10 @@
 
 #include "OpenGLFrameExports.h"
 
-
 class CLabelPoint;
 class ISymbol;
 
-
-class OPENGLFRAME_EXPORT CDrawVisitorBase : public geo::CDispatchVisitorBase
-{
+class OPENGLFRAME_EXPORT CDrawVisitorBase : public geo::CDispatchVisitorBase {
 protected:
   CDrawVisitorBase();
 
@@ -30,8 +27,5 @@ public:
   virtual bool HandleLabelPoint(const CLabelPoint &LabelPoint);
   virtual bool HandleSymbol(const ISymbol &Symbol);
 };
-
-
-
 
 #endif // !defined(AFX_DRAWVISITOR_H__INCLUDED_)

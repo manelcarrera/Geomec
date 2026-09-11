@@ -17,15 +17,15 @@ namespace dia {
 
 class CLoadManager;
 
-class CPrescribedRotation : public ISupportLoad  
-{
+class CPrescribedRotation : public ISupportLoad {
 public:
-  CPrescribedRotation(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CRotationSupport &support);
+  CPrescribedRotation(CLoadCase &loadcase, double size, const geo::IVector &vecDirection,
+                      const geo::CRotationSupport &support);
   virtual ~CPrescribedRotation();
 
   virtual bool WriteFilos() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IPRESCRIBEDROTATION_H__2F64BEED_986E_47D0_BB72_0439780FB40B__INCLUDED_)

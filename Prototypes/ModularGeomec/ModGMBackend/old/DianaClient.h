@@ -2,26 +2,23 @@
 
 #include "ModGMBus.h"
 
-//#include <qobject>
+// #include <qobject>
 
 // Client connector
 // It contains a heartbeat function that sends packages every so often to simulate work
-class DianaClient : public ModGMLocalBusClient
-{
+class DianaClient : public ModGMLocalBusClient {
   Q_OBJECT
 
 public:
-  DianaClient(const QString& base, const QString& name, QObject *parent = nullptr);
+  DianaClient(const QString &base, const QString &name, QObject *parent = nullptr);
   virtual ~DianaClient();
 
- 
 public slots:
   void diana_setup();
 
 private slots:
-  //void heartbeat();
+  // void heartbeat();
   void run_diana();
-  
 
 private:
   QTimer *m_timer;

@@ -13,8 +13,7 @@
 #include "myHeaders.h"
 class RescueContext;
 
-class RescueBuffer
-{
+class RescueBuffer {
 private:
   RESCUEINT64 allocated;
   RESCUEINT64 count;
@@ -22,8 +21,9 @@ private:
   RESCUEUCHAR *buffer;
   RESCUEUCHAR *cursor;
   RescueContext *context;
-  
+
   void EnsureCapacity(RESCUEINT64 needed);
+
 public:
   RescueBuffer(RescueContext *context, FILE *archiveFile);
   RescueBuffer(RescueContext *context, RESCUEINT64 allocationHint);
@@ -60,5 +60,3 @@ public:
 };
 
 #endif
-
-

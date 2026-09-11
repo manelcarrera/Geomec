@@ -5,23 +5,20 @@
 //
 // for further developments resposne can be of any type
 //
-class CQuestionThreadWrapper : public IListener
-{
+class CQuestionThreadWrapper : public IListener {
 public:
-  enum eType{ GlobalMessage, DatFileDlg, MesherDlg };
+  enum eType { GlobalMessage, DatFileDlg, MesherDlg };
 
-  static const char* m_question_cp[];
-  
+  static const char *m_question_cp[];
+
   // query
-  struct Data
-  {
+  struct Data {
     eType id;
-    void* data;
+    void *data;
   };
 
   // response
-  struct DataRes
-  {
+  struct DataRes {
     int res;
     std::string res_s;
   };
@@ -34,13 +31,14 @@ private:
   Data m_data;
 
 public:
-  //response
+  // response
   int response() { return m_response.res; }
   std::string response_s() { return m_response.res_s; }
-  //query
+  // query
   Data data() { return m_data; }
+
 public:
-  CQuestionThreadWrapper(eType type_,void* data=nullptr);
+  CQuestionThreadWrapper(eType type_, void *data = nullptr);
   ~CQuestionThreadWrapper();
 
   void join();

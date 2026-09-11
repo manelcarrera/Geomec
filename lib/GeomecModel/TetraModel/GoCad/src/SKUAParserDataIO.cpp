@@ -3,15 +3,12 @@
 #include "SKUAParseData.h"
 #include "StreamVersion.h"
 
+namespace gm_skua {
 
-namespace gm_skua
-{
+namespace internal {
 
-namespace internal
-{
-
-void LoadStreamString(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, gm_skua::SKUAParseData::String& string_data)
-{
+void LoadStreamString(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                      gm_skua::SKUAParseData::String &string_data) {
   stream >> string_data.id;
 
   char *data = string_data.data;
@@ -19,13 +16,13 @@ void LoadStreamString(CStorageNode::TSTREAM& stream, CStreamVersion& version, CS
   int i = 0;
 
   do {
-  stream >> c;
-  data[i++] = c;
+    stream >> c;
+    data[i++] = c;
   } while (c && i < MAX_IDENTIFIER_SIZE);
 }
 
-void SaveStreamString(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const gm_skua::SKUAParseData::String& string_data)
-{
+void SaveStreamString(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                      const gm_skua::SKUAParseData::String &string_data) {
   stream << string_data.id;
 
   const char *data = string_data.data;
@@ -33,115 +30,105 @@ void SaveStreamString(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& pr
   int i = 0;
 
   do {
-  c = data[i++];
-  stream << c;
+    c = data[i++];
+    stream << c;
   } while (c && i < MAX_IDENTIFIER_SIZE);
 }
 
-void LoadStreamStringVector(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, std::vector<gm_skua::SKUAParseData::String>& string_vector_data)
-{
+void LoadStreamStringVector(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                            std::vector<gm_skua::SKUAParseData::String> &string_vector_data) {
   int size;
   stream >> size;
 
-  if (size > 0)
-  {
-  string_vector_data.resize(size);
+  if (size > 0) {
+    string_vector_data.resize(size);
 
-  for (int i = 0; i < size; ++i)
-  {
+    for (int i = 0; i < size; ++i) {
       LoadStreamString(stream, version, progress, string_vector_data[i]);
-      
+
       progress.Step();
-  }
+    }
   }
 }
 
-void SaveStreamStringVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const std::vector<gm_skua::SKUAParseData::String>& string_vector_data)
-{
+void SaveStreamStringVector(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                            const std::vector<gm_skua::SKUAParseData::String> &string_vector_data) {
   int size = (int)string_vector_data.size();
   stream << size;
 
-  for (int i = 0; i < size; ++i)
-  {
-  SaveStreamString(stream, progress, string_vector_data[i]);
+  for (int i = 0; i < size; ++i) {
+    SaveStreamString(stream, progress, string_vector_data[i]);
 
-  progress.Step();
+    progress.Step();
   }
 }
 
-template<class T>
-void LoadStreamVector(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, std::vector<T>& vector_data)
-{
+template <class T>
+void LoadStreamVector(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                      std::vector<T> &vector_data) {
   int size;
   stream >> size;
 
-  if (size > 0)
-  {
-  vector_data.resize(size);
+  if (size > 0) {
+    vector_data.resize(size);
 
-  char *data = (char *)vector_data.data();
+    char *data = (char *)vector_data.data();
 
-  for (int i = 0; i < size; ++i)
-  {
+    for (int i = 0; i < size; ++i) {
       for (int j = 0; j < sizeof(T); ++j)
-    stream >> *data++;
+        stream >> *data++;
 
       progress.Step();
-  }
+    }
   }
 }
 
-template<class T>
-void SaveStreamVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const std::vector<T>& vector_data)
-{
+template <class T>
+void SaveStreamVector(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                      const std::vector<T> &vector_data) {
   int size = (int)vector_data.size();
   stream << size;
 
-  if (size > 0)
-  {
-  char *data = (char *)vector_data.data();
+  if (size > 0) {
+    char *data = (char *)vector_data.data();
 
-  for (int i = 0; i < size; ++i)
-  {
+    for (int i = 0; i < size; ++i) {
       for (int j = 0; j < sizeof(T); ++j)
-    stream << *data++;
+        stream << *data++;
 
       progress.Step();
-  }
+    }
   }
 }
 
-template<class T>
-void LoadStreamVectorVector(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, std::vector<T>& vector_vector_data)
-{
+template <class T>
+void LoadStreamVectorVector(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                            std::vector<T> &vector_vector_data) {
   int size;
   stream >> size;
 
-  if (size > 0)
-  {
-  vector_vector_data.resize(size);
+  if (size > 0) {
+    vector_vector_data.resize(size);
 
-  for (int i = 0; i < size; ++i)
-  {
+    for (int i = 0; i < size; ++i) {
       LoadStreamVector(stream, version, progress, vector_vector_data[i]);
-  }
+    }
   }
 }
 
-template<class T>
-void SaveStreamVectorVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const std::vector<T>& vector_vector_data)
-{
+template <class T>
+void SaveStreamVectorVector(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                            const std::vector<T> &vector_vector_data) {
   int size = (int)vector_vector_data.size();
   stream << size;
 
-  for (int i = 0; i < size; ++i)
-  {
-  SaveStreamVector(stream, progress, vector_vector_data[i]);
+  for (int i = 0; i < size; ++i) {
+    SaveStreamVector(stream, progress, vector_vector_data[i]);
   }
 }
 
-void LoadStreamPropertyData(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, gm_skua::SKUAParseData::PropertyData& property_data)
-{
+void LoadStreamPropertyData(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                            gm_skua::SKUAParseData::PropertyData &property_data) {
   int capacity;
   stream >> capacity;
 
@@ -159,8 +146,8 @@ void LoadStreamPropertyData(CStorageNode::TSTREAM& stream, CStreamVersion& versi
   LoadStreamVectorVector(stream, version, progress, property_data.values);
 }
 
-void SaveStreamPropertyData(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const gm_skua::SKUAParseData::PropertyData& property_data)
-{
+void SaveStreamPropertyData(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                            const gm_skua::SKUAParseData::PropertyData &property_data) {
   int capacity = (int)property_data.capacity;
   stream << capacity;
 
@@ -174,11 +161,10 @@ void SaveStreamPropertyData(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRE
   SaveStreamVectorVector(stream, progress, property_data.values);
 }
 
-}
+} // namespace internal
 
-
-void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress, struct gm_skua::SKUAParseData& data)
-{
+void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress,
+                struct gm_skua::SKUAParseData &data) {
   int skua_type;
   stream >> skua_type;
 
@@ -187,7 +173,7 @@ void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorage
   internal::LoadStreamString(stream, version, progress, data.name);
 
   for (int i = 0; i < 3; ++i)
-  stream >> data.coord_unit[i];
+    stream >> data.coord_unit[i];
 
   stream >> data.volume;
 
@@ -215,14 +201,14 @@ void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorage
   internal::LoadStreamVectorVector(stream, version, progress, data.surfaces_plus);
 }
 
-void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress, const struct gm_skua::SKUAParseData& data)
-{
+void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress,
+                const struct gm_skua::SKUAParseData &data) {
   stream << (int)data.skua_type;
 
   internal::SaveStreamString(stream, progress, data.name);
 
   for (int i = 0; i < 3; ++i)
-  stream << data.coord_unit[i];
+    stream << data.coord_unit[i];
 
   stream << data.volume;
 
@@ -250,6 +236,4 @@ void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress
   internal::SaveStreamVectorVector(stream, progress, data.surfaces_plus);
 }
 
-
-}
-
+} // namespace gm_skua

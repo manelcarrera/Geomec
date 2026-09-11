@@ -1,5 +1,4 @@
-class Class01
-{
+class Class01 {
 public:
   Class01();
 };

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #if !defined(AFX_MECHANICALTENSOR_H__INCLUDED_)
 #define AFX_MECHANICALTENSOR_H__INCLUDED_
 
@@ -6,12 +6,11 @@
 
 #include "TensorExports.h"
 
-class TENSOR_EXPORT CMechanicalTensor : public CTensor
-{
+class TENSOR_EXPORT CMechanicalTensor : public CTensor {
 public:
   CMechanicalTensor();
-  CMechanicalTensor(const double &xx, const double &yy, const double &zz,
-            const double &xy, const double &yz, const double &xz);
+  CMechanicalTensor(const double &xx, const double &yy, const double &zz, const double &xy, const double &yz,
+                    const double &xz);
   CMechanicalTensor(const ITensor &rhs);
   virtual ~CMechanicalTensor();
 
@@ -41,8 +40,6 @@ public:
   double AzimuthMaxHorizontal() const;
   double MaxHorValue() const;
   double MinHorValue() const;
-
-
 };
 
 #endif // !defined(AFX_MECHANICALTENSOR_H__INCLUDED_)

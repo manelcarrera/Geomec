@@ -9,24 +9,23 @@ class CTemperature;
 
 #include "FormationLoad_Delegate.h"
 
-typedef CFormationLoad_Delegate <TTemperature, CTemperatureGradientComponent,
-  CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>
-  TTemperatureBase_Delegate;
+typedef CFormationLoad_Delegate<TTemperature, CTemperatureGradientComponent, CTemperatureRepeaterComponent,
+                                CTemperatureGWCDummyComponent>
+    TTemperatureBase_Delegate;
 
-class CTemperature_Delegate : public TTemperatureBase_Delegate
-{
+class CTemperature_Delegate : public TTemperatureBase_Delegate {
 public:
-  CTemperature_Delegate(CTemperature* temperature);
+  CTemperature_Delegate(CTemperature *temperature);
 
   virtual bool Attributes();
 
 private:
-  CTemperature_Delegate(const CTemperature_Delegate& rhs);
-  CTemperature_Delegate& operator = (const CTemperature_Delegate& rhs);
+  CTemperature_Delegate(const CTemperature_Delegate &rhs);
+  CTemperature_Delegate &operator=(const CTemperature_Delegate &rhs);
 
-  CTemperature* m_temperature;
+  CTemperature *m_temperature;
 
   REGISTER_DELEGATE(CTemperature, CTemperature_Delegate);
 };
 
-#endif  // _Temperature_Delegate_h_
+#endif // _Temperature_Delegate_h_

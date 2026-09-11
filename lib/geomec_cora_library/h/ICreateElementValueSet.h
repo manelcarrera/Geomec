@@ -5,32 +5,29 @@
 
 class CModelBase;
 
-namespace cora
-{
+namespace cora {
 
 class CFailureTypeParameterBase;
 
 } // namespace cora
 
-namespace cora
-{
+namespace cora {
 
-class ICreateElementValueSet
-{
-  public:
+class ICreateElementValueSet {
+public:
   ICreateElementValueSet();
   virtual ~ICreateElementValueSet() = 0;
 
-  virtual void createElementValueSet(CModelBase* modelBase,
-      const CFailureTypeParameterBase* failureTypeParameterBase) = 0;
+  virtual void createElementValueSet(CModelBase *modelBase,
+                                     const CFailureTypeParameterBase *failureTypeParameterBase) = 0;
 
-  private:
-  ICreateElementValueSet(const ICreateElementValueSet& rhs);
-  ICreateElementValueSet& operator = (const ICreateElementValueSet& rhs);
+private:
+  ICreateElementValueSet(const ICreateElementValueSet &rhs);
+  ICreateElementValueSet &operator=(const ICreateElementValueSet &rhs);
 };
 
-typedef QSharedPointer <ICreateElementValueSet> TCreateElementValueSetBase;
+typedef QSharedPointer<ICreateElementValueSet> TCreateElementValueSetBase;
 
 } // namespace cora
 
-#endif  // _cora_ICreateElementValueSet_h_
+#endif // _cora_ICreateElementValueSet_h_

@@ -5,17 +5,16 @@ class IMaterialServerBase;
 class CFFMaterial;
 
 namespace dia {
-  class IDianaRunner;
+class IDianaRunner;
 }
 
-#include "StorageNode.h"
 #include "GeomecModelVisitor.h"
+#include "StorageNode.h"
 
-class IMaterialBase: public CStorageNode
-{
+class IMaterialBase : public CStorageNode {
 public:
-  IMaterialBase(const QString& sName, CFemAppModel& model);
-  IMaterialBase(const IMaterialBase& rhs);
+  IMaterialBase(const QString &sName, CFemAppModel &model);
+  IMaterialBase(const IMaterialBase &rhs);
   virtual ~IMaterialBase();
 
   virtual void OnNewNeighbour(const CGraphNode &node);
@@ -30,21 +29,22 @@ public:
   // is the given id a valid parameter?
   virtual bool IsParameter(unsigned int ValueTypeID) const = 0;
 
-  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const = 0;
 
-  virtual bool Less(const CGraphNode& node) const;
+  virtual bool Less(const CGraphNode &node) const;
 
   // Interface for dia::IElementProperty
   virtual int Type() const = 0;
-  virtual int WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
-  virtual bool WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const = 0;
-  virtual void WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride = 1) const = 0;
+  virtual int WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const = 0;
+  virtual bool WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i, char *name) const = 0;
+  virtual void WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, double *values,
+                                     int stride = 1) const = 0;
 
   ACCEPT_GEOMECMODELVISITORS(VisitIMaterialBase);
 
 protected:
-  typedef std::set<const IMaterialServerBase*> TServerSet;
-  const TServerSet& Servers() const;
+  typedef std::set<const IMaterialServerBase *> TServerSet;
+  const TServerSet &Servers() const;
 
 private:
   TServerSet m_stServers;

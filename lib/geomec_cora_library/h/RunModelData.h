@@ -1,46 +1,44 @@
 #ifndef _cora_RunModelData_h_
 #define _cora_RunModelData_h_
 
+#include "GetModelInfo.h"
 #include "ModelData.h"
 #include "ParameterFile.h"
+#include "ResponseParameterFile.h"
 #include "SelectedLSFs.h"
 #include "SummaryResultFile.h"
-#include "GetModelInfo.h"
-#include "ResponseParameterFile.h"
 
-namespace cora
-{
+namespace cora {
 
-class CRunModelData
-{
-  public:
+class CRunModelData {
+public:
   static const QString MINIMUM_OUTPUT;
 
-  CRunModelData(int argc, char* argv[]);
+  CRunModelData(int argc, char *argv[]);
   ~CRunModelData();
 
-  CModelData& modelData();
-  const CModelData& modelData() const;
+  CModelData &modelData();
+  const CModelData &modelData() const;
 
-  const QString& versionNumber() const;
+  const QString &versionNumber() const;
 
-  CSummaryResultFile& summaryResultFile();
-  const CSummaryResultFile& summaryResultFile() const;
+  CSummaryResultFile &summaryResultFile();
+  const CSummaryResultFile &summaryResultFile() const;
 
-  CGetModelInfo& getModelInfo();
-  const CGetModelInfo& getModelInfo() const;
+  CGetModelInfo &getModelInfo();
+  const CGetModelInfo &getModelInfo() const;
 
-  const CParameterFile& parameterFile() const;
-  const CSelectedLSFs& selectedLSFs() const;
+  const CParameterFile &parameterFile() const;
+  const CSelectedLSFs &selectedLSFs() const;
 
-  CResponseParameterFile& responseParameterFile();
-  const CResponseParameterFile& responseParameterFile() const;
+  CResponseParameterFile &responseParameterFile();
+  const CResponseParameterFile &responseParameterFile() const;
 
   bool minimumOutput() const;
 
-  private:
-  CRunModelData(const CRunModelData& rhs);
-  CRunModelData& operator = (const CRunModelData& rhs);
+private:
+  CRunModelData(const CRunModelData &rhs);
+  CRunModelData &operator=(const CRunModelData &rhs);
 
   CModelData m_modelData;
   const QString m_versionNumber;
@@ -54,4 +52,4 @@ class CRunModelData
 
 } // namespace cora
 
-#endif  // _cora_RunModelData_h_
+#endif // _cora_RunModelData_h_

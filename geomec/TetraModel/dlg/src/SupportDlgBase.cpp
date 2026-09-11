@@ -2,21 +2,21 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
 #include "geomec.h"
+#include "stdafx.h"
 
-#include "ModelBase.h"
-#include "DepletionStage.h"
-#include "SupportDlgBase.h"
 #include "3DSupportNode.h"
+#include "DepletionStage.h"
 #include "GlobalMessage.h"
+#include "ModelBase.h"
+#include "SupportDlgBase.h"
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
@@ -24,74 +24,62 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CSupportDlgBase::CSupportDlgBase(const C3DSupportNode &node, unsigned int nID, CWnd *pParent /*= NULL*/)
-:	CDialog(nID, pParent),
-  m_Node(node),
-  m_nDeplStage(0),
-  m_bApplyToAll(FALSE)
-{
+    : CDialog(nID, pParent), m_Node(node), m_nDeplStage(0), m_bApplyToAll(FALSE) {}
 
-}
+CSupportDlgBase::~CSupportDlgBase() {}
 
-CSupportDlgBase::~CSupportDlgBase()
-{
-
-}
-
-void CSupportDlgBase::DoDataExchange(CDataExchange* pDX)
-{
+void CSupportDlgBase::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
 
   DDX_Check(pDX, IDC_APPLYTOALL, m_bApplyToAll);
 }
 
-void CSupportDlgBase::FillDepletionStageCombo(CComboBox *pCombo)
-{
+void CSupportDlgBase::FillDepletionStageCombo(CComboBox *pCombo) {
   pCombo->ResetContent();
   const CDepletionStage *pStage = &Model().InitialDepletionStage();
   assert(pStage != 0);
   assert(!pStage->Last());
   pStage = &pStage->Next();
   int nIndex = 0;
-  while(pStage)
-  {
+  while (pStage) {
     m_vcDepletionStages.push_back(pStage);
     pCombo->AddString(pStage->Name().toStdString().c_str());
 
-    if(!pStage->Last()) pStage = &pStage->Next();
-    else pStage = 0;
+    if (!pStage->Last())
+      pStage = &pStage->Next();
+    else
+      pStage = 0;
     nIndex++;
   }
 
   pCombo->SetCurSel(m_nDeplStage);
 }
 
-void CSupportDlgBase::FillDepletionStageVector()
-{
+void CSupportDlgBase::FillDepletionStageVector() {
   const CDepletionStage *pStage = &Model().InitialDepletionStage();
   assert(pStage != 0);
   assert(!pStage->Last());
 
   pStage = &pStage->Next();
 
-  while(pStage)
-  {
+  while (pStage) {
     m_vcDepletionStages.push_back(pStage);
 
-    if(!pStage->Last()) pStage = &pStage->Next();
-    else pStage = 0;
+    if (!pStage->Last())
+      pStage = &pStage->Next();
+    else
+      pStage = 0;
   }
 }
 
-enum IQuantityDouble::UNIT CSupportDlgBase::Unit()
-{
+enum IQuantityDouble::UNIT CSupportDlgBase::Unit() {
   const CFemAppDoc *pDoc = GetGeomecDoc();
   assert(pDoc != 0);
 
   return pDoc->UnitNode().Unit();
 }
 
-BOOL CSupportDlgBase::OnInitDialog() 
-{
+BOOL CSupportDlgBase::OnInitDialog() {
   FillDepletionStageVector();
 
   CDialog::OnInitDialog();
@@ -101,23 +89,20 @@ BOOL CSupportDlgBase::OnInitDialog()
   FillUnitLabels();
 
   UpdateControls();
-  
+
   UpdateData(FALSE);
 
   return TRUE;
 }
 
-const CModelBase &CSupportDlgBase::Model()
-{
-  const CModelBase *pModel = dynamic_cast<const CModelBase *> (&m_Node.Model());
+const CModelBase &CSupportDlgBase::Model() {
+  const CModelBase *pModel = dynamic_cast<const CModelBase *>(&m_Node.Model());
   assert(pModel != 0);
   return *pModel;
 }
 
-void CSupportDlgBase::OnRadioButton()
-{
-  if(!UpdateData(TRUE))
-  {
+void CSupportDlgBase::OnRadioButton() {
+  if (!UpdateData(TRUE)) {
     SetRadioButton();
     return;
   }
@@ -127,10 +112,8 @@ void CSupportDlgBase::OnRadioButton()
   UpdateData(FALSE);
 }
 
-void CSupportDlgBase::OnSelchangeStage(CComboBox *pCombo) 
-{
-  if(!UpdateData(TRUE))
-  {
+void CSupportDlgBase::OnSelchangeStage(CComboBox *pCombo) {
+  if (!UpdateData(TRUE)) {
     pCombo->SetCurSel(m_nDeplStage);
     return;
   }
@@ -140,13 +123,12 @@ void CSupportDlgBase::OnSelchangeStage(CComboBox *pCombo)
   UpdateData(FALSE);
 }
 
-void CSupportDlgBase::OnOK(unsigned int nPromptId)
-{
+void CSupportDlgBase::OnOK(unsigned int nPromptId) {
   UpdateData(TRUE);
-  if(ApplyToAll())
-  {
-    if(_m()->msg(nPromptId, MB_YESNO) == IDNO) return;
+  if (ApplyToAll()) {
+    if (_m()->msg(nPromptId, MB_YESNO) == IDNO)
+      return;
   }
-  
+
   CDialog::OnOK();
 }

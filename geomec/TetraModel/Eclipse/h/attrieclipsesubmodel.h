@@ -13,71 +13,71 @@ class CEclipseModel;
 
 #include "treectrlbase.h"
 
-class CAttriEclipseSubModel : public CDialog
-{
+class CAttriEclipseSubModel : public CDialog {
 public:
   // The classes for tree visualisation
-  class CReservoirTreeObject : public ITreeObject
-  {
+  class CReservoirTreeObject : public ITreeObject {
   public:
-    class CHorizonTreeObject : public ITreeObject
-    {
+    class CHorizonTreeObject : public ITreeObject {
       int m_nIndex;
+
     public:
-      CHorizonTreeObject(CReservoirTreeObject& parent, int nHorizonIndex);
+      CHorizonTreeObject(CReservoirTreeObject &parent, int nHorizonIndex);
       virtual unsigned int StateIcon() const;
       virtual void ToggleState();
       virtual unsigned int Icon() const;
       virtual QString Text() const;
       virtual BOOL operator<(const ICtrlObjectBase &object) const;
-      CAttriEclipseSubModel& Dlg();
-      const CAttriEclipseSubModel& Dlg() const;
+      CAttriEclipseSubModel &Dlg();
+      const CAttriEclipseSubModel &Dlg() const;
     };
+
   private:
-    CAttriEclipseSubModel& m_dlg;
+    CAttriEclipseSubModel &m_dlg;
     int m_nIndex;
+
   public:
-    CReservoirTreeObject(CAttriEclipseSubModel& dlg, int nReservoirIndex);
-    CAttriEclipseSubModel& Dlg();
-    const CAttriEclipseSubModel& Dlg() const;
+    CReservoirTreeObject(CAttriEclipseSubModel &dlg, int nReservoirIndex);
+    CAttriEclipseSubModel &Dlg();
+    const CAttriEclipseSubModel &Dlg() const;
     int Index() const;
     virtual unsigned int Icon() const;
     virtual QString Text() const;
     virtual BOOL operator<(const ICtrlObjectBase &object) const;
   };
+
 private:
-// Construction
-  CEclipseModel& m_model;
+  // Construction
+  CEclipseModel &m_model;
   std::vector<BOOL> m_vcHorizon;
   int SelectCount() const;
   void Validate();
+
 public:
   // Tree class
-  CAttriEclipseSubModel(CEclipseModel& model, CWnd* pParent = NULL);   // standard constructor
+  CAttriEclipseSubModel(CEclipseModel &model, CWnd *pParent = NULL); // standard constructor
   // Tree item go here
   BOOL HorizonEnable(int nHorizonIndex) const;
   void HorizonEnable(int nHorizonIndex, BOOL bHorizonEnable);
   // Model access
-  CEclipseModel& Model();
-  const CEclipseModel& Model() const;
+  CEclipseModel &Model();
+  const CEclipseModel &Model() const;
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriEclipseSubModel)
   enum { IDD = IDD_ATTRI_ECLIPSE_SUB_MODEL };
-  CTreeCtrlBase	m_tcHorizon;
+  CTreeCtrlBase m_tcHorizon;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriEclipseSubModel)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriEclipseSubModel)
   virtual BOOL OnInitDialog();

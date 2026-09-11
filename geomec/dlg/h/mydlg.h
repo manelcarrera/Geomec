@@ -9,32 +9,29 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QCheckBox;
 
-class MyDlg : public QDialog
-{
+class MyDlg : public QDialog {
   Q_OBJECT
 
-  QLabel* lb1;
-  QPushButton* b2;
-  QPushButton* b3;
+  QLabel *lb1;
+  QPushButton *b2;
+  QPushButton *b3;
 
-  QCheckBox* cb;
+  QCheckBox *cb;
 
-
-  QVBoxLayout* lv;
-  QHBoxLayout* lh;
+  QVBoxLayout *lv;
+  QHBoxLayout *lh;
 
 public slots:
 
   void yes();
   void no();
-  void cb_( int state );
+  void cb_(int state);
 
 public:
-
   MyDlg();
   ~MyDlg();
 
-  void keyPressEvent( QKeyEvent* e );
+  void keyPressEvent(QKeyEvent *e);
 };
 
 #endif // MYDLG_H

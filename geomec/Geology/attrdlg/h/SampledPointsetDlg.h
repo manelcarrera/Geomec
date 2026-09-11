@@ -9,24 +9,18 @@ class CPointSet;
 
 // CSampledPointSetDlg dialog
 
-class CSampledPointSetDlg : public CDialog
-{
+class CSampledPointSetDlg : public CDialog {
   DECLARE_DYNAMIC(CSampledPointSetDlg)
 
 public:
-  CSampledPointSetDlg
-  (const CPointSet &pointSet
-  , const CUnitNode::TUnitType unit
-  , CWnd* pParent = NULL
-  ); 
+  CSampledPointSetDlg(const CPointSet &pointSet, const CUnitNode::TUnitType unit, CWnd *pParent = NULL);
   virtual ~CSampledPointSetDlg();
   double getSizeNorth() const;
   double getSizeEast() const;
   double getSizeDepth() const;
   CString getName() const;
 
-
-// Dialog Data
+  // Dialog Data
   enum { IDD = IDD_SAMPLEDPOINTSET };
 
 private:
@@ -41,14 +35,14 @@ private:
 
 protected:
   BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //{{AFX_MSG(CSampledPointSetDlg)
   afx_msg void OnNValueChange();
   afx_msg void OnEValueChange();
   afx_msg void OnDValueChange();
   afx_msg void OnNameChange();
   //}}AFX_MSG
-  
+
   DECLARE_MESSAGE_MAP()
 };
 #endif // SAMPLEDPOINTSETDLG_H

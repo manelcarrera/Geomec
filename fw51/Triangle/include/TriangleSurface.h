@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // TriangleMesh.h: interface for the CTriangleMesh class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -21,8 +21,7 @@ class CTriangleEdge;
 
 struct triangulateio;
 
-class TRIANGLE_EXPORT CTriangleSurface : public geo::ISurface
-{
+class TRIANGLE_EXPORT CTriangleSurface : public geo::ISurface {
   // allow insertion of extra points on boundary
   // default = true
   bool m_bAllowSteinerPointsOnBoundary;
@@ -42,13 +41,13 @@ class TRIANGLE_EXPORT CTriangleSurface : public geo::ISurface
   void ClearTriangleMesh();
 
   // Node interface
-  mutable std::vector<CTriangleNode*> m_vcNode;
+  mutable std::vector<CTriangleNode *> m_vcNode;
 
   // Edge interface
-  mutable std::vector<CTriangleEdge*> m_vcEdge;
+  mutable std::vector<CTriangleEdge *> m_vcEdge;
 
   // Element interface
-  mutable std::vector<CTriangleElement*> m_vcElement;
+  mutable std::vector<CTriangleElement *> m_vcElement;
 
   // regions container
   std::vector<CRegion *> m_vcRegions;
@@ -82,19 +81,19 @@ public:
   // Construction
   CTriangleSurface();
   CTriangleSurface(const geo::ISurface &rhs);
-  CTriangleSurface(const std::vector<geo::CPoint> &vcPoint, const std::vector<std::vector<int> > &vcTriangle);
-  CTriangleSurface(const std::vector<const geo::IPoint *> &vcPoint, const std::vector<std::vector<int> > &vcTriangle);
-  
+  CTriangleSurface(const std::vector<geo::CPoint> &vcPoint, const std::vector<std::vector<int>> &vcTriangle);
+  CTriangleSurface(const std::vector<const geo::IPoint *> &vcPoint, const std::vector<std::vector<int>> &vcTriangle);
+
   // Destruction
   virtual ~CTriangleSurface();
 
   // Set surface (call clear first)
   void SetSurface(const geo::ISurface &rhs);
-  void SetSurface(const std::vector<geo::CPoint> &vcPoint, const std::vector<std::vector<int> > &vcTriangle);
-  void SetSurface(const std::vector<const geo::IPoint *> &vcPoint, const std::vector<std::vector<int> > &vcTriangle);
+  void SetSurface(const std::vector<geo::CPoint> &vcPoint, const std::vector<std::vector<int>> &vcTriangle);
+  void SetSurface(const std::vector<const geo::IPoint *> &vcPoint, const std::vector<std::vector<int>> &vcTriangle);
 
   // point vector types
-  typedef std::vector<geo::IPoint*> TPointPtrVec;
+  typedef std::vector<geo::IPoint *> TPointPtrVec;
   typedef std::vector<geo::CPoint> TPointVec;
 
   // segments
@@ -112,7 +111,7 @@ public:
   typedef std::pair<int, int> TEdgePoint;   // Two point indices of the edge
   typedef std::pair<TEdgePoint, int> TEdge; // Point indices and the corresponding segment index
   typedef std::vector<TEdge> TEdgeVec;
-  void Edges(const TEdgeVec& vcEdge);
+  void Edges(const TEdgeVec &vcEdge);
 
   // request a new region
   // immediately setting the segments and the maximum area
@@ -138,8 +137,8 @@ public:
   // clear the mesh
   virtual void Clear();
 
-  virtual const geo::CPtrArray <geo::IFace> FacesAt(const geo::IPoint &p) const;
-  virtual const geo::CPtrArray <geo::IFace> FacesAtNode(const geo::IPoint &p) const;
+  virtual const geo::CPtrArray<geo::IFace> FacesAt(const geo::IPoint &p) const;
+  virtual const geo::CPtrArray<geo::IFace> FacesAtNode(const geo::IPoint &p) const;
 
   // face (triangle) access
   virtual int FaceSize() const;
@@ -148,7 +147,7 @@ public:
 
   // edge access
   int EdgeSize() const;
-  const CTriangleEdge& Edge(int nIndex) const;
+  const CTriangleEdge &Edge(int nIndex) const;
   using geo::ISurface::Edge;
 
   // segment access

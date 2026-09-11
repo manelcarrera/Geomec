@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef _TETSURFACE_H_
 #define _TETSURFACE_H_
 
@@ -17,26 +17,26 @@ class CSurfaceDesc;
   define the mesh by surfaces.
 */
 
-class TETMESH_EXPORT CTetSurface : public CBodyGroup::CSideSurface
-{
+class TETMESH_EXPORT CTetSurface : public CBodyGroup::CSideSurface {
   mutable std::vector<int> m_vcPointIndex;
   void FillFaceVec() const;
   void FillPointIndexVec() const;
-  CSurfaceDesc& m_descriptor;
+  CSurfaceDesc &m_descriptor;
+
 public:
-  CTetSurface(CSurfaceDesc& desc, CBodyGroup& body_group);
+  CTetSurface(CSurfaceDesc &desc, CBodyGroup &body_group);
   virtual ~CTetSurface();
 
   virtual int PointSize() const;
-  virtual const IPoint& Point(int nIndex) const;
+  virtual const IPoint &Point(int nIndex) const;
 
-  const CSurfaceDesc& SurfaceDesc() const { return m_descriptor; }
+  const CSurfaceDesc &SurfaceDesc() const { return m_descriptor; }
 
-  virtual const CPtrArray <IFace> FacesAtNode(const IPoint &p) const;
+  virtual const CPtrArray<IFace> FacesAtNode(const IPoint &p) const;
   virtual const IFace &Face(int nIndex) const;
   virtual int FaceSize() const;
 
-  void CreateSurface(const std::vector<int>& vcNode);
+  void CreateSurface(const std::vector<int> &vcNode);
 
   int NrOfNodeIndices() const;
   int NodeIndex(int nIndex) const;
@@ -44,6 +44,6 @@ public:
   virtual bool isTiedSurface() const { return false; }
 };
 
-}
+} // namespace geo
 
 #endif

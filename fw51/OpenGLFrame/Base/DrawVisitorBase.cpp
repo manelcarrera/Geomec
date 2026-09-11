@@ -7,23 +7,10 @@
 #include "ISymbol.h"
 #include "LabelPoint.h"
 
+CDrawVisitorBase::CDrawVisitorBase() {}
 
-CDrawVisitorBase::CDrawVisitorBase()
-{
-}
+CDrawVisitorBase::~CDrawVisitorBase() {}
 
-CDrawVisitorBase::~CDrawVisitorBase()
-{
-}
+bool CDrawVisitorBase::HandleLabelPoint(const CLabelPoint &LabelPoint) { return HandlePoint(LabelPoint); }
 
-
-bool CDrawVisitorBase::HandleLabelPoint(const CLabelPoint &LabelPoint)
-{
-  return HandlePoint(LabelPoint);
-}
-
-bool CDrawVisitorBase::HandleSymbol(const ISymbol &Symbol)
-{
-  return HandleObject(Symbol);
-}
-
+bool CDrawVisitorBase::HandleSymbol(const ISymbol &Symbol) { return HandleObject(Symbol); }

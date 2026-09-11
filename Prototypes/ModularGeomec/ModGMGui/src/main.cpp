@@ -1,13 +1,10 @@
 #include "ModGMGui.h"
-#include <QtWidgets/QApplication>
 #include <QtCore/QTimer>
+#include <QtWidgets/QApplication>
 
 #include "ModGMBus.h"
 
-
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
   ModGMGui w;
 
@@ -15,13 +12,11 @@ int main(int argc, char *argv[])
 
   QString name("Gui");
 
-  for (int i = 1; i < argc; ++i)
-  {
-      QStringList l = QString(argv[i]).split('=');
-      if (l.size() == 2 && l[0] == "name")
-    name = l[1];
+  for (int i = 1; i < argc; ++i) {
+    QStringList l = QString(argv[i]).split('=');
+    if (l.size() == 2 && l[0] == "name")
+      name = l[1];
   }
-
 
   // client
 
@@ -37,7 +32,6 @@ int main(int argc, char *argv[])
   QObject::connect(&client, &ModGMLocalBusClient::receivedMessage, &w, &ModGMGui::receivedMessage);
   QObject::connect(&client, &ModGMLocalBusClient::shmError, &w, &ModGMGui::onReceivedError);
   QObject::connect(&w, &ModGMGui::handleMessage, &client, &ModGMLocalBusClient::handleMessage);
-
 
   // call setup slot, show window and start event loop
   QTimer::singleShot(0, &client, SLOT(setup()));

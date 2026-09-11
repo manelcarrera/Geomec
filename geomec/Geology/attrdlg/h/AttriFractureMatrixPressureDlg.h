@@ -5,19 +5,18 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "FractureMatrixPressure.h"
 #include "AttriFormationLoadDlg.h"
+#include "FractureMatrixPressure.h"
 
-class CAttriFractureMatrixPressureDlg : public CAttriFormationLoadDlg<CFractureMatrixPressure>
-{
+class CAttriFractureMatrixPressureDlg : public CAttriFormationLoadDlg<CFractureMatrixPressure> {
 protected:
   virtual void UpdateControls();
 
 public:
-  CAttriFractureMatrixPressureDlg(CFractureMatrixPressure& prs, CWnd* pParent = NULL);   // standard constructor
+  CAttriFractureMatrixPressureDlg(CFractureMatrixPressure &prs, CWnd *pParent = NULL); // standard constructor
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual void OnOK();
   virtual CString UndefinedLabel() const;
   virtual CString previousUndefinedLabel() const;

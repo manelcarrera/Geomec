@@ -1,22 +1,22 @@
 #ifndef _VersionNumbers_h_
 #define _VersionNumbers_h_
 
-#define VERSION_MAJOR     4
-#define VERSION_MINOR     1
-#define VERSION_REVISION  78
+#define VERSION_MAJOR 4
+#define VERSION_MINOR 1
+#define VERSION_REVISION 78
 
-#define VERSION_MAJOR_3    3
-#define VERSION_MINOR_3    7
+#define VERSION_MAJOR_3 3
+#define VERSION_MINOR_3 7
 #define VERSION_REVISION_3 29
 
-#define MAGIC             "Geomec3 Model"
+#define MAGIC "Geomec3 Model"
 
 // Defines for Save and Load
 
-#define HEXA_MODEL        1
-#define GOCAD_MODEL       2
-#define ECLIPSE_MODEL     3
-#define G2D_MODEL         4
+#define HEXA_MODEL 1
+#define GOCAD_MODEL 2
+#define ECLIPSE_MODEL 3
+#define G2D_MODEL 4
 
 ////////////////////////////////////////////////////////////////////////////////
 // Database version Info
@@ -35,7 +35,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Date		: 10-01-2003
-// Comment	: Revision. An extra unit tag is saved in the pointset and a unit 
+// Comment	: Revision. An extra unit tag is saved in the pointset and a unit
 //			  tag is removed from the valueset.
 // MAJOR	: 3
 // MINOR	: 0
@@ -64,7 +64,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 06-03-2003
 // Comment	: Development revision. The mesher is replaced in the Tetrahedron
-//			  model and has other saving functionality. The formations are 
+//			  model and has other saving functionality. The formations are
 //			  saving their volumes now in the tetra model.
 // MAJOR	: 3
 // MINOR	: 0
@@ -110,7 +110,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 29-04-2003
-// Comment	: Development revision. Results of interface and contact elements 
+// Comment	: Development revision. Results of interface and contact elements
 //			  are saved now in the database
 // MAJOR	: 3
 // MINOR	: 0
@@ -119,7 +119,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 05-05-2003
-// Comment	: Development revision. The order of the source surfaces in the 
+// Comment	: Development revision. The order of the source surfaces in the
 //			  tetra mesh can be random now.
 // MAJOR	: 3
 // MINOR	: 0
@@ -589,9 +589,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 29-03-2005
-// Comment	: Due to the interface elements in the tetramodel, the tetramesh 
+// Comment	: Due to the interface elements in the tetramodel, the tetramesh
 //            is saved and loaded differently. Also the indices to the outside
-//			  nodes of the interface elements as well as the indices to the 
+//			  nodes of the interface elements as well as the indices to the
 //			  interface elements are saved/loaded in the tetraboundary
 // MAJOR	: 3
 // MINOR	: 0
@@ -600,7 +600,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 06-04-2005
-// Comment	: Depletion stages in the tetraboundary are saved. 
+// Comment	: Depletion stages in the tetraboundary are saved.
 // MAJOR	: 3
 // MINOR	: 0
 // REVISION	: 69
@@ -664,7 +664,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 02-06-2006
-// Comment	: Initial pressure bit is now saved 
+// Comment	: Initial pressure bit is now saved
 // MAJOR	: 3
 // MINOR	: 0
 // REVISION	: 77
@@ -900,7 +900,6 @@
 // MINOR	: 0
 // REVISION	: 106
 ////////////////////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Date		: 16-04-2009
@@ -1374,7 +1373,6 @@
 // REVISION	: 2
 ////////////////////////////////////////////////////////////////////////////////
 
-
 //// *** TRUNK development ***
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1784,7 +1782,7 @@
 // Date	: 16-08-2016
 // Comment  : Switched to HDF5 as default Geomec model (.gm5)
 //            HDF5 is a container for the normal .gm4 model.
-//            
+//
 //            The StreamVersion remains 4.1.X! When introducing new functionality,
 //            please only update the revision.
 //
@@ -1793,7 +1791,7 @@
 //            yet.)
 //
 // We're still on:
-// MAJOR  : 4           
+// MAJOR  : 4
 // MINOR  : 1
 // REVISION : 48
 ////////////////////////////////////////////////////////////////////////////////
@@ -2044,4 +2042,4 @@
 // REVISION : 78
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif  // _VersionNumbers_h_
+#endif // _VersionNumbers_h_

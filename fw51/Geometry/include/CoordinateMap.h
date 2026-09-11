@@ -1,10 +1,10 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef _COORDINATEMAP_H_
 #define _COORDINATEMAP_H_
 
 #include "Octree.h"
-#include <utility>
 #include <functional>
+#include <utility>
 
 #include "GeometryExports.h"
 
@@ -19,8 +19,7 @@ when using tolerace in the sorting algorithm).
 
 */
 template <class COORD, class VALUE, class EPSILON = CEpsilon>
-class CCoordinateMap : public COctree<COORD, std::pair<COORD, VALUE>, EPSILON>
-{
+class CCoordinateMap : public COctree<COORD, std::pair<COORD, VALUE>, EPSILON> {
 public:
   typedef std::pair<COORD, VALUE> value_type;
   typedef COORD key_type;
@@ -31,27 +30,18 @@ public:
   typedef typename _Mybase::size_type size_type;
 
 public:
-  CCoordinateMap()
-  {
-  }
+  CCoordinateMap() {}
 
-  CCoordinateMap(const CCoordinateMap& rhs)
-  : _Mybase(rhs)
-  {
-  }
+  CCoordinateMap(const CCoordinateMap &rhs) : _Mybase(rhs) {}
 
-  virtual const key_type& key(const value_type& val) const
-  {
-  return val.first;
-  }
+  virtual const key_type &key(const value_type &val) const { return val.first; }
 
-  mapped_type& operator[](const key_type& key)
-  {
-  iterator it = this->find(key);
-  if(it == COctree <COORD, std::pair <COORD, VALUE>, EPSILON> ::end())
+  mapped_type &operator[](const key_type &key) {
+    iterator it = this->find(key);
+    if (it == COctree<COORD, std::pair<COORD, VALUE>, EPSILON>::end())
       it = this->insert(value_type(key, mapped_type())).first;
 
-  return it->second;
+    return it->second;
   }
 };
 

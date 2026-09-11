@@ -1,56 +1,53 @@
 #include "MaterialAnisotropicCamClay.h"
-#include "ValueTypes.h"
 #include "ModelBase.h"
+#include "ValueTypes.h"
 
 #include "lbfl.h"
 
-#include "Material.h"
-#include "IObject.h"
-#include "Matrix.h"
 #include "GeomecDianaRunner.h"
+#include "IObject.h"
+#include "Material.h"
+#include "Matrix.h"
 
-CMaterialAnisotropicCamClay::CMaterialAnisotropicCamClay(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: IMaterialRock(entry, libmat)
-{
-}
+CMaterialAnisotropicCamClay::CMaterialAnisotropicCamClay(CMaterialEntry &entry, CLibraryMaterial &libmat)
+    : IMaterialRock(entry, libmat) {}
 
-bool CMaterialAnisotropicCamClay::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+bool CMaterialAnisotropicCamClay::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   ftn_double_t ddum;
 
-  ddum = (ftn_double_t) ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
+  ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
   PutItem("POROSI", &ddum);
 
   PutCharItem("YIELD", "CLAY");
 
   double dIniFriction = ffmat.ParameterValue(IDT_VALUETYPE_INITFRICTION) * PI / 180;
-  double dHardening   = ffmat.ParameterValue(IDT_VALUETYPE_HARDENING);
-  double dCohesion    = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-  double dGamma       = ffmat.ParameterValue(IDT_VALUETYPE_TENSILE_STRETCH);
+  double dHardening = ffmat.ParameterValue(IDT_VALUETYPE_HARDENING);
+  double dCohesion = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  double dGamma = ffmat.ParameterValue(IDT_VALUETYPE_TENSILE_STRETCH);
 
-  ftn_double_t lambda = (ftn_double_t) (dHardening);
+  ftn_double_t lambda = (ftn_double_t)(dHardening);
   PutItem("LAMBDA", &lambda);
 
-  ftn_double_t pshift = (ftn_double_t) (dCohesion / tan(dIniFriction));
+  ftn_double_t pshift = (ftn_double_t)(dCohesion / tan(dIniFriction));
   PutItem("PSHIFT", &pshift);
 
-  ftn_double_t ccshfa = (ftn_double_t) dGamma;
+  ftn_double_t ccshfa = (ftn_double_t)dGamma;
   PutItem("CCSHFA", &ccshfa);
 
-  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_PRECONSOLIDATION) * 1e6);
+  ddum = (ftn_double_t)(ffmat.ParameterValue(IDT_VALUETYPE_PRECONSOLIDATION) * 1e6);
   PutItemLength("PRECON", &ddum, 1);
 
-  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_CAPSHAPE));
+  ddum = (ftn_double_t)(ffmat.ParameterValue(IDT_VALUETYPE_CAPSHAPE));
   PutItemLength("CAP", &ddum, 1);
 
-  ddum = (ftn_double_t) (dIniFriction);
+  ddum = (ftn_double_t)(dIniFriction);
   PutItemLength("PHI", &ddum, 1);
 
-  ddum = (ftn_double_t) (dCohesion);
+  ddum = (ftn_double_t)(dCohesion);
   PutItemLength("COHESI", &ddum, 1);
 
-  if(!WriteTransverseIsotropicValues(ffmat, diarunner))
-  return false;
+  if (!WriteTransverseIsotropicValues(ffmat, diarunner))
+    return false;
 
   double betal = ffmat.ParameterValue(IDT_VALUETYPE_THERM_LIN_EXP_LAT);
   double betat = ffmat.ParameterValue(IDT_VALUETYPE_THERM_LIN_EXP_NORM);
@@ -63,8 +60,7 @@ bool CMaterialAnisotropicCamClay::Write(const CFFMaterial &ffmat, dia::IDianaRun
 }
 
 // Interface for dia::IElementProperty
-int CMaterialAnisotropicCamClay::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialAnisotropicCamClay::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = 8; // POROSI/LAMBDA/PSHIFT/CCSHFA/PRECON/CAP/PHI/COHESI
 
   size += WriteFilosTransverseIsotropicParamSize(ffmat, diarunner);
@@ -75,63 +71,59 @@ int CMaterialAnisotropicCamClay::WriteFilosParamSize(const CFFMaterial &ffmat, d
   return size;
 }
 
-bool CMaterialAnisotropicCamClay::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
-  if (i < 8)
-  {
-  switch (i)
-  {
-  case 0:
+bool CMaterialAnisotropicCamClay::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                                      char *name) const {
+  if (i < 8) {
+    switch (i) {
+    case 0:
       strncpy(name, "POROSI", 10);
       break;
-  case 1:
+    case 1:
       strncpy(name, "LAMBDA", 10);
       break;
-  case 2:
+    case 2:
       strncpy(name, "PSHIFT", 10);
       break;
-  case 3:
+    case 3:
       strncpy(name, "CCSHFA", 10);
       break;
-  case 4:
+    case 4:
       strncpy(name, "PRECON", 10);
       break;
-  case 5:
+    case 5:
       strncpy(name, "CAP", 10);
       break;
-  case 6:
+    case 6:
       strncpy(name, "PHI", 10);
       break;
-  case 7:
+    case 7:
       strncpy(name, "COHESI", 10);
       break;
-  default:
+    default:
       assert(false);
-  }
-  return true;
+    }
+    return true;
   }
   i -= 8;
 
   int transIsoSize = WriteFilosTransverseIsotropicParamSize(ffmat, diarunner);
-  if (i < transIsoSize)
-  {
-  return WriteFilosTransverseIsotropicParamName(ffmat, diarunner, i, name);
+  if (i < transIsoSize) {
+    return WriteFilosTransverseIsotropicParamName(ffmat, diarunner, i, name);
   }
   i -= transIsoSize;
 
-  if (i < 3)
-  {
-  QString thermx = QString("THERMX(%1)").arg(i + 1);
-  strncpy(name, thermx.toStdString().c_str(), 10);
-  return true;
+  if (i < 3) {
+    QString thermx = QString("THERMX(%1)").arg(i + 1);
+    strncpy(name, thermx.toStdString().c_str(), 10);
+    return true;
   }
   i -= 3;
 
   return IMaterialRock::WriteFilosParamName(ffmat, diarunner, i, name);
 }
 
-void CMaterialAnisotropicCamClay::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialAnisotropicCamClay::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner,
+                                                        double *values, int stride) const {
   *values = ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
   values += stride;
 
@@ -178,7 +170,4 @@ void CMaterialAnisotropicCamClay::WriteFilosParamValues(const CFFMaterial &ffmat
   IMaterialRock::WriteFilosParamValues(ffmat, diarunner, values, stride);
 }
 
-bool CMaterialAnisotropicCamClay::WriteDefaultPorosity() const
-{
-  return false;
-}
+bool CMaterialAnisotropicCamClay::WriteDefaultPorosity() const { return false; }

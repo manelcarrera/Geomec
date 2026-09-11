@@ -20,15 +20,14 @@ class OIDIMeshNodeManager;
 
 struct MeshNodeSettings;
 
-class OIDIMeshNode : public SoGroup
-{
+class OIDIMeshNode : public SoGroup {
 public:
-  OIDIMeshNode(const OIDIMesh * meshData, OIDIMeshNodeManager * meshNodeManager);
-  void computeIsovalues( std::vector<float> &isovalues, double min, double max );
-  const OIDIMesh * getMesh();
-  OIDIMeshNodeManager * getMeshNodeManager();
+  OIDIMeshNode(const OIDIMesh *meshData, OIDIMeshNodeManager *meshNodeManager);
+  void computeIsovalues(std::vector<float> &isovalues, double min, double max);
+  const OIDIMesh *getMesh();
+  OIDIMeshNodeManager *getMeshNodeManager();
 
-  MoMeshAnnotatedIsoline * CreateIsoline();
+  MoMeshAnnotatedIsoline *CreateIsoline();
 
   // Set the id of the scalar property set used to color the mesh
   void setColorScalarSetId(int id);
@@ -56,10 +55,10 @@ public:
   void setBeachballScalarSetIds(int primaryId, int secondaryid);
 
   virtual void setIsoScalarSetId(int id);
-  int getIsoScalarSetId ();
+  int getIsoScalarSetId();
   virtual void updateIsoScalarSet() = 0;
 
-  void setGeologyColor( float red, float green, float blue );
+  void setGeologyColor(float red, float green, float blue);
   virtual void updateGeologyColors() = 0;
 
   MbVec3d getMax();
@@ -69,10 +68,10 @@ public:
 
   size_t getNumCells();
 
-  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);  
+  virtual void UpdateDisplaySettings(const MeshNodeSettings &meshNodeSettings, bool showColor);
   virtual void setIsoValues(int isocount, double min, double max) = 0;
   virtual void setIsoGap(double gap) = 0;
-  bool showIsoLines(const MeshNodeSettings & meshNodeSettings);
+  bool showIsoLines(const MeshNodeSettings &meshNodeSettings);
 
   bool showIsoLines();
 
@@ -88,9 +87,8 @@ public:
 
   bool isVisible() const;
   virtual void pick(SoPickAction *action);
-  virtual bool highlight() {return false;}
-  virtual bool dehighlight() {return false;}
-
+  virtual bool highlight() { return false; }
+  virtual bool dehighlight() { return false; }
 
 protected:
   void buildMeshNode();
@@ -98,31 +96,30 @@ protected:
   void buildVectorsNode();
   void buildTensorsNode();
 
-  int  m_colorScalarSetId;
-  int  m_valueColorScalarSetId;
-  int  m_isoScalarSetId;
-  int  m_tensorSetId;
+  int m_colorScalarSetId;
+  int m_valueColorScalarSetId;
+  int m_isoScalarSetId;
+  int m_tensorSetId;
 
   SbColor m_geologyColor;
 
 private:
-  OIDIMeshNodeManager * m_meshNodeManager;
+  OIDIMeshNodeManager *m_meshNodeManager;
 
-  const OIDIMesh *  m_mesh;
+  const OIDIMesh *m_mesh;
 
   // Vector property
-  SoSwitch*     m_vectorsSwitch;
-  SoSwitch*     m_cellFilterSwitch;
-  MoCellFilter* m_cellFilter;
-  DecimatingCellFilterI* m_decimatingCellFilter;
-  MoMeshVector* m_vectors;
-  MoMeshTensorVector* m_tensorVectors;
+  SoSwitch *m_vectorsSwitch;
+  SoSwitch *m_cellFilterSwitch;
+  MoCellFilter *m_cellFilter;
+  DecimatingCellFilterI *m_decimatingCellFilter;
+  MoMeshVector *m_vectors;
+  MoMeshTensorVector *m_tensorVectors;
 
-  SoSwitch * m_tensorSwitch; // used for tensor vectors
+  SoSwitch *m_tensorSwitch; // used for tensor vectors
 
-  SoSwitch*     m_beachballSwitch;
-  MoMeshTensor* m_beachballs;
-  
+  SoSwitch *m_beachballSwitch;
+  MoMeshTensor *m_beachballs;
 
   bool m_visibility;
 };

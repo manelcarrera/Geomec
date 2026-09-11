@@ -5,10 +5,9 @@
 
 class IWellModel;
 
-class IWellModelDianaRunner : public CGeomecCompactionDianaRunner
-{
+class IWellModelDianaRunner : public CGeomecCompactionDianaRunner {
 public:
-  IWellModelDianaRunner(IWellModel& model, CDianaRunController& controller);
+  IWellModelDianaRunner(IWellModel &model, CDianaRunController &controller);
   virtual ~IWellModelDianaRunner();
 
   virtual bool CreateTopLoad(const CHorizonBase &top, dia::CLoadCase &lcase);

@@ -1,14 +1,9 @@
 #include "ICreateElementValueSet.h"
 
-namespace cora
-{
+namespace cora {
 
-ICreateElementValueSet::ICreateElementValueSet()
-{
-}
+ICreateElementValueSet::ICreateElementValueSet() {}
 
-ICreateElementValueSet::~ICreateElementValueSet()
-{
-}
+ICreateElementValueSet::~ICreateElementValueSet() {}
 
 } // namespace cora

@@ -10,34 +10,32 @@
 ////////////////////////////////////////////////////////////////////////////
 // CDianaXPropPage : See DianaXPpg.cpp.cpp for implementation.
 
-class CDianaXPropPage : public COlePropertyPage
-{
+class CDianaXPropPage : public COlePropertyPage {
   DECLARE_DYNCREATE(CDianaXPropPage)
   DECLARE_OLECREATE_EX(CDianaXPropPage)
 
-// Constructor
+  // Constructor
 public:
   CDianaXPropPage();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CDianaXPropPage)
   enum { IDD = IDD_PROPPAGE_DIANAX };
-    // NOTE - ClassWizard will add data members here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
+  // NOTE - ClassWizard will add data members here.
+  //    DO NOT EDIT what you see in these blocks of generated code !
   //}}AFX_DATA
 
-// Implementation
+  // Implementation
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
 
-// Message maps
+  // Message maps
 protected:
   //{{AFX_MSG(CDianaXPropPage)
-    // NOTE - ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
+  // NOTE - ClassWizard will add and remove member functions here.
+  //    DO NOT EDIT what you see in these blocks of generated code !
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
-
 };
 
 //{{AFX_INSERT_LOCATION}}

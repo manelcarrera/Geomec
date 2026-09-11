@@ -5,10 +5,9 @@ class CMatParamDlg;
 
 #include "DianaSignals.h"
 
-class CMatParamDlgDianaSignals : public CDianaSignals
-{
+class CMatParamDlgDianaSignals : public CDianaSignals {
 public:
-  CMatParamDlgDianaSignals(const QObject* sender, CMatParamDlg* matParamDlg);
+  CMatParamDlgDianaSignals(const QObject *sender, CMatParamDlg *matParamDlg);
   ~CMatParamDlgDianaSignals();
 
   virtual void onMessage(QString message);
@@ -19,10 +18,10 @@ public:
   virtual void onFinished();
 
 private:
-  CMatParamDlgDianaSignals(const CMatParamDlgDianaSignals& rhs);
-  CMatParamDlgDianaSignals& operator = (const CMatParamDlgDianaSignals& rhs);
+  CMatParamDlgDianaSignals(const CMatParamDlgDianaSignals &rhs);
+  CMatParamDlgDianaSignals &operator=(const CMatParamDlgDianaSignals &rhs);
 
-  CMatParamDlg* m_matParamDlg;
+  CMatParamDlg *m_matParamDlg;
 };
 
-#endif  // _MatParamDlgDianaSignals_h_
+#endif // _MatParamDlgDianaSignals_h_

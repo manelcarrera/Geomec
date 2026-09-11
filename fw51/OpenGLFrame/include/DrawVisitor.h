@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // DrawVisitor.h: interface for the CDrawVisitor class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -14,15 +14,14 @@
 
 #include "OpenGLFrameExports.h"
 
-
 class COpenGLDraw;
 class IDrawDef;
 
-class OPENGLFRAME_EXPORT CDrawVisitor : public CDrawVisitorBase
-{
+class OPENGLFRAME_EXPORT CDrawVisitor : public CDrawVisitorBase {
   COpenGLDraw &m_draw;
   const IDrawDef &m_drawdef;
   bool m_bDrawSteps;
+
 public:
   CDrawVisitor(COpenGLDraw &draw, const IDrawDef &drawdef, bool bDrawSteps);
   virtual ~CDrawVisitor();
@@ -49,7 +48,7 @@ public:
   virtual bool HandleElementSet(const geo::IElementSet &ElementSet);
   virtual bool HandlePointElement(const geo::IPointElement &PointElement);
   virtual bool HandleSymbol(const ISymbol &Symbol);
-  //Handle a interface between two IElement
+  // Handle a interface between two IElement
   virtual bool HandleInterface(const geo::IInterfaceElement &interfaceElement);
 };
 

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __MODEL_OPERATION_STACK_H
 #define __MODEL_OPERATION_STACK_H
 
@@ -12,14 +12,13 @@ class CDocumentBase;
 class CModelOperation;
 class CUndoOperation;
 
-class MODELFRAME_EXPORT  CModelOperationStack : public QObject
-{
+class MODELFRAME_EXPORT CModelOperationStack : public QObject {
   Q_OBJECT
 
   friend class CModelOperation;
 
 public:
-  CModelOperationStack( CDocumentBase& document );
+  CModelOperationStack(CDocumentBase &document);
   virtual ~CModelOperationStack();
 
   bool canUndo() const;
@@ -34,7 +33,7 @@ public:
   QStringList redoNames();
 
 signals:
-  void cleanChanged( bool clean );
+  void cleanChanged(bool clean);
   void changed();
   void operationStarted();
   void operationFinished();
@@ -43,26 +42,26 @@ public slots:
   void undo();
   void redo();
   void setClean();
-  void setEnabled( bool on );
+  void setEnabled(bool on);
   void clear();
 
 private:
-  void beginOperation( CModelOperation& operation );
-  void endOperation( CModelOperation& operation );
+  void beginOperation(CModelOperation &operation);
+  void endOperation(CModelOperation &operation);
 
-  void push( CModelOperation& operation );
-  void push( CUndoOperation* undo );
+  void push(CModelOperation &operation);
+  void push(CUndoOperation *undo);
 
-  CDocumentBase& m_document;
+  CDocumentBase &m_document;
 
-  typedef QStack<CUndoOperation*> TOperationStack;
+  typedef QStack<CUndoOperation *> TOperationStack;
   TOperationStack m_undoStack;
   TOperationStack m_redoStack;
 
   bool m_hasCleanState;
-  int  m_cleanState;
+  int m_cleanState;
 
-  CModelOperation* m_pending;
+  CModelOperation *m_pending;
 
   bool m_enabled;
 
@@ -70,19 +69,18 @@ private:
   TStackState m_state;
 };
 
-class MODELFRAME_EXPORT CDisableOperationStack
-{
+class MODELFRAME_EXPORT CDisableOperationStack {
 public:
-  CDisableOperationStack( CDocumentBase* document );
+  CDisableOperationStack(CDocumentBase *document);
   ~CDisableOperationStack();
 
 private: // not copyable
-  CDisableOperationStack( const CDisableOperationStack& );
-  CDisableOperationStack& operator=( const CDisableOperationStack );
+  CDisableOperationStack(const CDisableOperationStack &);
+  CDisableOperationStack &operator=(const CDisableOperationStack);
 
 private:
-  bool           m_previousState;
-  CDocumentBase* m_document;
+  bool m_previousState;
+  CDocumentBase *m_document;
 };
 
 #endif // __MODEL_OPERATION_STACK_H

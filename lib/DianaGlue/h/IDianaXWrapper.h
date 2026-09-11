@@ -2,16 +2,14 @@
 
 class QString;
 
-namespace dia
-{
-  class IDianaRunner;
+namespace dia {
+class IDianaRunner;
 }
 
-class IDianaXWrapper
-{
+class IDianaXWrapper {
 public:
   IDianaXWrapper() {};
-  virtual ~IDianaXWrapper(){};
+  virtual ~IDianaXWrapper() {};
 
   virtual void SetDisplayStopMessage(bool) = 0;
   virtual void SetShowDefaultMessages(bool) = 0;

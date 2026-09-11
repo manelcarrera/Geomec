@@ -1,11 +1,11 @@
 #if !defined(ELEMENT_CACHE_OBJECT_H_)
 #define ELEMENT_CACHE_OBJECT_H_
 
-#include <vector>
-#include "IElement.h"
 #include "IBody.h"
+#include "IElement.h"
 #include "IPoint.h"
 #include "Matrix.h"
+#include <vector>
 
 namespace geo {
 
@@ -13,9 +13,7 @@ class IBody;
 class IPoint;
 class CMatrix;
 
-
-class GEOMETRY_EXPORT CElementCacheObject
-{
+class GEOMETRY_EXPORT CElementCacheObject {
   bool m_valid;
   TWeightingType m_type;
   std::vector<const IBody *> m_bodies;
@@ -58,8 +56,6 @@ public:
   void Clear();
 };
 
-}
-
-
+} // namespace geo
 
 #endif

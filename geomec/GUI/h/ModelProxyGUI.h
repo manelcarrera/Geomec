@@ -6,10 +6,9 @@ class CFemAppDoc;
 
 #include "ModelProxy.h"
 
-class CModelProxyGUI : public CModelProxy
-{
+class CModelProxyGUI : public CModelProxy {
 public:
-  CModelProxyGUI(CFemAppDoc& document, CFemAppModel& model, CFemAppGUI& gui);
+  CModelProxyGUI(CFemAppDoc &document, CFemAppModel &model, CFemAppGUI &gui);
 
   virtual ~CModelProxyGUI();
 
@@ -19,12 +18,12 @@ public:
   virtual void switchToParent();
 
 private:
-  CModelProxyGUI(const CModelProxyGUI& rhs);
-  CModelProxyGUI& operator = (const CModelProxyGUI& rhs);
+  CModelProxyGUI(const CModelProxyGUI &rhs);
+  CModelProxyGUI &operator=(const CModelProxyGUI &rhs);
 
-  CFemAppDoc& m_document;
-  CFemAppModel& m_model;
-  CFemAppGUI& m_gui;
+  CFemAppDoc &m_document;
+  CFemAppModel &m_model;
+  CFemAppGUI &m_gui;
 };
 
-#endif  // _ModelProxyGUI_h_
+#endif // _ModelProxyGUI_h_

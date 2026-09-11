@@ -1,13 +1,13 @@
 /*****************************************************************************
- 
+
     myHeaders.h
- 
+
    Unlike some previous versions, beginning with v37.4 you should
    only have to change this if your compiler uses a different name
    for these data types.
 
     Rod Hanks       February 2007
- 
+
 *****************************************************************************/
 #ifndef RESCUE_H
 #define RESCUE_H
@@ -112,6 +112,3 @@ void myfscanf(RescueContext *context, FILE *archiveFile, RESCUEUINT64 *);
 void myfscanf(RescueContext *context, FILE *archiveFile, RESCUEUINT64 *, RESCUEINT64 count);
 
 #endif
-
-
-

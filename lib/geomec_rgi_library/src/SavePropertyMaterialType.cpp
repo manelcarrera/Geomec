@@ -3,23 +3,16 @@
 #include "GeomecMaterialModel2RGI.h"
 #include "RGInterface.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-CSavePropertyMaterialType::CSavePropertyMaterialType(const RGProperty& rgProperty)
-: CSavePropertyBase(rgProperty)
-{
-}
+CSavePropertyMaterialType::CSavePropertyMaterialType(const RGProperty &rgProperty) : CSavePropertyBase(rgProperty) {}
 
-CSavePropertyMaterialType::~CSavePropertyMaterialType()
-{
-}
+CSavePropertyMaterialType::~CSavePropertyMaterialType() {}
 
-bool CSavePropertyMaterialType::saveProperty(RGInterface& rgi,
-  CModelBase& modelBase, const CRockMechProcessor& /*rmp*/)
-{
+bool CSavePropertyMaterialType::saveProperty(RGInterface &rgi, CModelBase &modelBase,
+                                             const CRockMechProcessor & /*rmp*/) {
   CGeomecMaterialModel2RGI geomecMaterialModel2RGI(rgi, modelBase);
-  std::vector <int> values = geomecMaterialModel2RGI.getMaterialTypes();
+  std::vector<int> values = geomecMaterialModel2RGI.getMaterialTypes();
 
   rgi.saveProperty(m_RGProperty, values);
 

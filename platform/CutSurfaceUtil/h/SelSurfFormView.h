@@ -10,56 +10,47 @@
 /////////////////////////////////////////////////////////////////////////////
 // SelSurfFormView form view
 
-
-
-
+#include "HScrollListBox.h"
 #include "NamedSurfaceMap.h"
 #include "SelSurfDlg.h"
-#include "HScrollListBox.h"
-
-
 
 class SelSurfGLView;
 class CGeoObjectHandlerBase;
 class CDisplayPair;
 
-
-class AFX_EXT_CLASS SelSurfFormView : public CFormView
-{
+class AFX_EXT_CLASS SelSurfFormView : public CFormView {
   friend class SelSurfDlg;
 
 protected:
-  SelSurfFormView();           // protected constructor used by dynamic creation
+  SelSurfFormView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(SelSurfFormView)
 
-// Form Data
+  // Form Data
 public:
   //{{AFX_DATA(SelSurfFormView)
-  //enum { IDD = IDD_FORMVIEW_SELECT_SURF };
-  CHScrollListBox	m_ListTo;
-  CHScrollListBox	m_ListFrom;
+  // enum { IDD = IDD_FORMVIEW_SELECT_SURF };
+  CHScrollListBox m_ListTo;
+  CHScrollListBox m_ListFrom;
   //}}AFX_DATA
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-  void Init(SelSurfDlg* dlg , SelSurfGLView* From,SelSurfGLView* To);
-// Overrides
+  void Init(SelSurfDlg *dlg, SelSurfGLView *From, SelSurfGLView *To);
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(SelSurfFormView)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~SelSurfFormView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
@@ -76,22 +67,20 @@ protected:
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 private:
-  void DoFromTo(SelSurfGLView* ViewFrom, CListBox* FromList,SelSurfGLView* ViewTo,CListBox* ToList,bool all);
-  void SwitchPairInView(CDisplayPair* pair ,SelSurfGLView* ViewFrom,SelSurfGLView* ViewTo);
-  void HandleSelect(SelSurfGLView* View,CListBox* List);
+  void DoFromTo(SelSurfGLView *ViewFrom, CListBox *FromList, SelSurfGLView *ViewTo, CListBox *ToList, bool all);
+  void SwitchPairInView(CDisplayPair *pair, SelSurfGLView *ViewFrom, SelSurfGLView *ViewTo);
+  void HandleSelect(SelSurfGLView *View, CListBox *List);
   void UpdateSelectionInViews();
 
-  void GetMap(CListBox* List,CNamedSurfaces&);
+  void GetMap(CListBox *List, CNamedSurfaces &);
 
-  SelSurfGLView* m_ViewFrom;
-  SelSurfGLView* m_ViewTo;
-  SelSurfDlg* m_dlg;
-  CGeoObjectHandlerBase* m_geo_handler;
+  SelSurfGLView *m_ViewFrom;
+  SelSurfGLView *m_ViewTo;
+  SelSurfDlg *m_dlg;
+  CGeoObjectHandlerBase *m_geo_handler;
 
-
-  void GetSelecetedSurfaces(CNamedSurfaces& surfaces);
-  void GetUnSelecetedSurfaces(CNamedSurfaces& surfaces);
-
+  void GetSelecetedSurfaces(CNamedSurfaces &surfaces);
+  void GetUnSelecetedSurfaces(CNamedSurfaces &surfaces);
 };
 
 /////////////////////////////////////////////////////////////////////////////

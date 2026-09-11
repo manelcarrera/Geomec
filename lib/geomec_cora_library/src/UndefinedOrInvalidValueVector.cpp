@@ -1,19 +1,14 @@
 #include "UndefinedOrInvalidValueVector.h"
 
-namespace cora
-{
+namespace cora {
 
-namespace
-{
+namespace {
 
 const QString INVALID_VALUE_VECTOR = "%1 contains an invalid value";
 
 } // anonymous namespace
 
-CUndefinedOrInvalidValueVector::CUndefinedOrInvalidValueVector(
-  const QString& prefix)
-: std::runtime_error(QString(INVALID_VALUE_VECTOR).arg(prefix).toStdString())
-{
-}
+CUndefinedOrInvalidValueVector::CUndefinedOrInvalidValueVector(const QString &prefix)
+    : std::runtime_error(QString(INVALID_VALUE_VECTOR).arg(prefix).toStdString()) {}
 
 } // namespace cora

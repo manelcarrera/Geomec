@@ -13,25 +13,22 @@
 
 #include "myHeaders.h"
 
-class RescueSplitPoint
-{
+class RescueSplitPoint {
 private:
   RescueSplitPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
   void SetCornerNode(RESCUEINT64 corner, RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
- void Values(RESCUEINT64 corner, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+  void Values(RESCUEINT64 corner, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+
 public:
-  ~RescueSplitPoint() {delete addresses;}
+  ~RescueSplitPoint() { delete addresses; }
+
 private:
   void Archive(RescueContext *context, FILE *archiveFile, RESCUEBOOL compress);
   RescueSplitPoint(RescueContext *context, FILE *archiveFile, RESCUEBOOL compress);
 
-  RESCUEFLOAT *addresses;  // 4 * 3.
+  RESCUEFLOAT *addresses; // 4 * 3.
 
   friend class RescueTripletArray;
 };
 
 #endif
-
-
-
-

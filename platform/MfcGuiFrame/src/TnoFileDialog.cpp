@@ -1,16 +1,16 @@
-#include "stdafx.h"
 #include "TnoFileDialog.h"
+#include "stdafx.h"
 
 #ifndef _INC_CDERR
-#include <cderr.h>     // for FNERR_BUFFERTOSMALL
-#endif // _INC_CDERR
+#include <cderr.h> // for FNERR_BUFFERTOSMALL
+#endif             // _INC_CDERR
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -30,11 +30,9 @@ IMPLEMENT_DYNAMIC(CTnoFileDialog, CFileDialog)
 //
 /////////////////////////////////////////////////////////////////////////////
 
-
-CTnoFileDialog::CTnoFileDialog(BOOL bOpenFileDialog, LPCTSTR lpszDefExt, LPCTSTR lpszFileName,
-                               DWORD dwFlags, LPCTSTR lpszFilter, CWnd* pParentWnd) :
-CFileDialog(bOpenFileDialog, lpszDefExt, lpszFileName, dwFlags, lpszFilter, pParentWnd, 0, false)
-{
+CTnoFileDialog::CTnoFileDialog(BOOL bOpenFileDialog, LPCTSTR lpszDefExt, LPCTSTR lpszFileName, DWORD dwFlags,
+                               LPCTSTR lpszFilter, CWnd *pParentWnd)
+    : CFileDialog(bOpenFileDialog, lpszDefExt, lpszFileName, dwFlags, lpszFilter, pParentWnd, 0, false) {
   Files = NULL;
   Folder = NULL;
   bParsed = FALSE;
@@ -52,11 +50,8 @@ CFileDialog(bOpenFileDialog, lpszDefExt, lpszFileName, dwFlags, lpszFilter, pPar
 //
 /////////////////////////////////////////////////////////////////////////////
 
-
-CTnoFileDialog::~CTnoFileDialog()
-{
-  if (Files)
-  {
+CTnoFileDialog::~CTnoFileDialog() {
+  if (Files) {
     delete[] Files;
     delete[] Folder;
   }
@@ -83,12 +78,11 @@ END_MESSAGE_MAP()
 
 #if _MSC_VER >= 1400 // VS2005
 INT_PTR CTnoFileDialog::DoModal()
-#else                // VS60
+#else // VS60
 int CTnoFileDialog::DoModal()
 #endif
 {
-  if (Files)
-  {
+  if (Files) {
     delete[] Files;
     Files = NULL;
     delete[] Folder;
@@ -97,10 +91,9 @@ int CTnoFileDialog::DoModal()
 
   INT_PTR ret = CFileDialog::DoModal();
 
-  if (ret == IDCANCEL)
-  {
+  if (ret == IDCANCEL) {
     DWORD err = CommDlgExtendedError();
-    if (err == FNERR_BUFFERTOOSMALL/*0x3003*/ && Files)
+    if (err == FNERR_BUFFERTOOSMALL /*0x3003*/ && Files)
       ret = IDOK;
   }
   return ret;
@@ -122,12 +115,11 @@ int CTnoFileDialog::DoModal()
 //
 /////////////////////////////////////////////////////////////////////////////
 
-CString CTnoFileDialog::GetNextPathName(POSITION &pos) const
-{
+CString CTnoFileDialog::GetNextPathName(POSITION &pos) const {
   if (!Files)
     return CFileDialog::GetNextPathName(pos);
 
-  assert(pos);    
+  assert(pos);
   TCHAR *ptr = (TCHAR *)pos;
 
   CString ret = Folder;
@@ -157,30 +149,27 @@ CString CTnoFileDialog::GetNextPathName(POSITION &pos) const
 //
 /////////////////////////////////////////////////////////////////////////////
 
-POSITION CTnoFileDialog::GetStartPosition()
-{
+POSITION CTnoFileDialog::GetStartPosition() {
   if (!Files)
     return CFileDialog::GetStartPosition();
 
-  if (!bParsed)
-  {
+  if (!bParsed) {
     CString temp = Files;
     temp.Replace(_T("\" \""), _T("\""));
-    temp.Delete(0, 1);                      // remove leading quote mark
-    temp.Delete(temp.GetLength() - 1, 1);   // remove trailing space
-  
+    temp.Delete(0, 1);                    // remove leading quote mark
+    temp.Delete(temp.GetLength() - 1, 1); // remove trailing space
+
     _tcscpy(Files, temp);
-  
+
     TCHAR *ptr = Files;
-    while (*ptr)
-    {
+    while (*ptr) {
       if ('\"' == *ptr)
         *ptr = '\0';
       ++ptr;
     }
     bParsed = TRUE;
   }
-  
+
   return (POSITION)Files;
 }
 
@@ -202,10 +191,9 @@ POSITION CTnoFileDialog::GetStartPosition()
 //
 /////////////////////////////////////////////////////////////////////////////
 
-void CTnoFileDialog::OnFileNameChange()
-{
+void CTnoFileDialog::OnFileNameChange() {
   TCHAR dummy_buffer;
-  
+
   // Get the required size for the 'files' buffer
   unsigned int nfiles = CommDlg_OpenSave_GetSpec(GetParent()->m_hWnd, &dummy_buffer, 1);
 
@@ -213,8 +201,7 @@ void CTnoFileDialog::OnFileNameChange()
   unsigned int nfolder = CommDlg_OpenSave_GetFolderPath(GetParent()->m_hWnd, &dummy_buffer, 1);
 
   // Check if lpstrFile and nMaxFile are large enough
-  if (nfiles + nfolder > m_ofn.nMaxFile)
-  {
+  if (nfiles + nfolder > m_ofn.nMaxFile) {
     bParsed = FALSE;
     if (Files)
       delete[] Files;
@@ -225,9 +212,7 @@ void CTnoFileDialog::OnFileNameChange()
       delete[] Folder;
     Folder = new TCHAR[nfolder + 1];
     CommDlg_OpenSave_GetFolderPath(GetParent()->m_hWnd, Folder, nfolder);
-  }
-  else if (Files)
-  {
+  } else if (Files) {
     delete[] Files;
     Files = NULL;
     delete[] Folder;

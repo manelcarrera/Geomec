@@ -3,33 +3,25 @@
 
 #include "InterfaceBase.h"
 
+namespace gm_shell {
 
-namespace gm_shell
-{
-
-
-class CInterfacePy : public CInterfaceBase
-{
+class CInterfacePy : public CInterfaceBase {
 public:
-  typedef enum
-  {
-  PY_SCRIPT = IInterfaceBase::FOR_ME + 1,
+  typedef enum {
+    PY_SCRIPT = IInterfaceBase::FOR_ME + 1,
   } TPyCommand;
 
   virtual const char *ShortDescription() const;
 
-  virtual bool AcceptParameters(CArgumentParser& argParser, bool bForced = false);
+  virtual bool AcceptParameters(CArgumentParser &argParser, bool bForced = false);
 
   virtual void PrintUsage() const;
-  
+
   virtual void Startup();
 
   virtual void HandleLastCommand();
-
 };
 
-
-}
-
+} // namespace gm_shell
 
 #endif

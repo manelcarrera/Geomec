@@ -6,12 +6,10 @@
 
 #include <stddef.h>
 
-namespace cora
-{
+namespace cora {
 
-class CFilterValueTypes
-{
-  public:
+class CFilterValueTypes {
+public:
   CFilterValueTypes(int materialModel);
 
   bool isValueTypeAllowed(size_t valueType) const;
@@ -19,16 +17,16 @@ class CFilterValueTypes
 
   bool isValueTypeLinear(size_t valueType) const;
 
-  private:
-  CFilterValueTypes(const CFilterValueTypes& rhs);
-  CFilterValueTypes& operator = (CFilterValueTypes rhs);
+private:
+  CFilterValueTypes(const CFilterValueTypes &rhs);
+  CFilterValueTypes &operator=(CFilterValueTypes rhs);
 
-  typedef std::map <size_t, bool> TFilterMap;
-  typedef std::set <size_t> TFilterSet;
+  typedef std::map<size_t, bool> TFilterMap;
+  typedef std::set<size_t> TFilterSet;
 
   static TFilterSet fillExcludedValueTypes(int materialModel);
   static TFilterSet fillAllLinearValueTypes();
-  static void addLinearModelValueTypes(TFilterSet& allLinearValueTypes);
+  static void addLinearModelValueTypes(TFilterSet &allLinearValueTypes);
 
   TFilterSet m_excludedValueTypes;
   TFilterSet m_allLinearValueTypes;
@@ -37,4 +35,4 @@ class CFilterValueTypes
 
 } // namespace cora
 
-#endif  // _cora_FilterValueTypes_h_
+#endif // _cora_FilterValueTypes_h_

@@ -10,79 +10,72 @@ class CWellPathBase;
 class CWellPoint;
 class CNewWellSection;
 
-class INewWellSection
-{
+class INewWellSection {
 protected:
-  INewWellSection(const CNewWellPathBase& WellPath);
+  INewWellSection(const CNewWellPathBase &WellPath);
 
 public:
   virtual ~INewWellSection();
-  
-  //ISection Interface
-  virtual const CNewWellPoint& Top() const=0;
-  virtual const CNewWellPoint& Bottom() const=0;
-  virtual std::string GetDescription() const=0;
 
-  const CNewWellPathBase& WellPath() const {return *m_pNewWellPath;}
-  CNewWellPathBase& WellPath()
-  {return *const_cast<CNewWellPathBase*>(m_pNewWellPath);}
-  
-  bool Contains(const CNewWellPoint& point,bool bIncludeEdge=true) const;
-  bool Contains(const double& tmd,bool bIncludeEdge=true) const;
+  // ISection Interface
+  virtual const CNewWellPoint &Top() const = 0;
+  virtual const CNewWellPoint &Bottom() const = 0;
+  virtual std::string GetDescription() const = 0;
 
-  //virtual bool Defined() const;
+  const CNewWellPathBase &WellPath() const { return *m_pNewWellPath; }
+  CNewWellPathBase &WellPath() { return *const_cast<CNewWellPathBase *>(m_pNewWellPath); }
 
-  //operators
-  //bool operator==(const IWellSection &rhs) const;
-  //bool operator!=(const IWellSection &rhs) const;
+  bool Contains(const CNewWellPoint &point, bool bIncludeEdge = true) const;
+  bool Contains(const double &tmd, bool bIncludeEdge = true) const;
 
-  //bool operator <(const IWellSection &rhs) const;
-  //bool operator >(const IWellSection &rhs) const;
+  // virtual bool Defined() const;
 
-  //return a list with points witch are inside this section
-  //Autodelete of new list is false
-  //CWellPointList FilterContainingPoints(const CWellPointList& list,bool bIncludeEdge =true) const;
+  // operators
+  // bool operator==(const IWellSection &rhs) const;
+  // bool operator!=(const IWellSection &rhs) const;
 
-  //return a list with points witch are not inside this section
-  //Autodelete of new list is false
-  //CWellPointList FilterNonContainingPoints(const CWellPointList& list,bool bIncludeEdge =true)const;
+  // bool operator <(const IWellSection &rhs) const;
+  // bool operator >(const IWellSection &rhs) const;
 
-  //double DeltaTVD() const;
-  //double DeltaTMD() const;
+  // return a list with points witch are inside this section
+  // Autodelete of new list is false
+  // CWellPointList FilterContainingPoints(const CWellPointList& list,bool bIncludeEdge =true) const;
 
-  //divide the section in a number of intervals, the distance is the distance from the top and bottom,
-  //add the points to the point list (NrOfIntervals >= 1 and distance >=0)
-  //void AddIntervalPoints(CWellPointList& lst, int NrOfIntervals,const double& distance, const IWellPointFactory* pFactory=0) const;
+  // return a list with points witch are not inside this section
+  // Autodelete of new list is false
+  // CWellPointList FilterNonContainingPoints(const CWellPointList& list,bool bIncludeEdge =true)const;
 
-  //returns the max min of the bounding box (approx. algorithm)
-  //void GetBoundingBox(geo::IPoint& max,geo::IPoint& min) const;
+  // double DeltaTVD() const;
+  // double DeltaTMD() const;
 
-  //gets the max/min TVD
-  //void GetMaxMinTVD(double& maxTVD,double& minTVD) const;
+  // divide the section in a number of intervals, the distance is the distance from the top and bottom,
+  // add the points to the point list (NrOfIntervals >= 1 and distance >=0)
+  // void AddIntervalPoints(CWellPointList& lst, int NrOfIntervals,const double& distance, const IWellPointFactory*
+  // pFactory=0) const;
+
+  // returns the max min of the bounding box (approx. algorithm)
+  // void GetBoundingBox(geo::IPoint& max,geo::IPoint& min) const;
+
+  // gets the max/min TVD
+  // void GetMaxMinTVD(double& maxTVD,double& minTVD) const;
 
 protected:
-  const CNewWellPathBase* m_pNewWellPath;
+  const CNewWellPathBase *m_pNewWellPath;
 };
 
-class CNewWellSection : public INewWellSection
-{
+class CNewWellSection : public INewWellSection {
 public:
-  CNewWellSection
-  ( CNewWellPathBase& pWellPath 
-  , const double &topTMD
-  , const double &bottomTMD
-  );
+  CNewWellSection(CNewWellPathBase &pWellPath, const double &topTMD, const double &bottomTMD);
 
   virtual ~CNewWellSection();
 
-  void SetDescription(const std::string& description);
-  
-  
-  //IWellSection interface
-  virtual const CNewWellPoint & Top() const;
-  virtual const CNewWellPoint & Bottom() const;
+  void SetDescription(const std::string &description);
+
+  // IWellSection interface
+  virtual const CNewWellPoint &Top() const;
+  virtual const CNewWellPoint &Bottom() const;
   virtual std::string GetDescription() const;
-  //virtual const CNewWellPathBase &WellPath() const; 
+  // virtual const CNewWellPathBase &WellPath() const;
 
 private:
   CNewWellPoint m_Top;

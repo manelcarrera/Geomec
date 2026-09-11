@@ -10,10 +10,10 @@
 #endif // _MSC_VER > 1000
 
 #include "IScalingBox.h"
+#include "doubleedit.h"
+#include "openglnodeobserver.h"
 #include "pointset.h"
 #include "valuecompositeobserver.h"
-#include "openglnodeobserver.h"
-#include "doubleedit.h"
 
 class CModelBase;
 class CTetraModel;
@@ -27,22 +27,18 @@ class IResult;
 class IResultComponent;
 class CDepletionStage;
 
-#include "StateBranch_Delegate.h"
 #include "OpenGLNodeObserver_Delegate.h"
+#include "StateBranch_Delegate.h"
 
-class CZoomInCreator
-{
-  CHomogenizationBox* m_box;
-  void ExtractResults(CElementSet& element_set, const CAnalysisType& antype);
-  void ExtractResults(CElementSet& element_set, const CDepletionStage& stage, const CAnalysisType& antype);
-  typedef std::pair<const IResultComponent*, CElementValueSet*> TResultPair;
+class CZoomInCreator {
+  CHomogenizationBox *m_box;
+  void ExtractResults(CElementSet &element_set, const CAnalysisType &antype);
+  void ExtractResults(CElementSet &element_set, const CDepletionStage &stage, const CAnalysisType &antype);
+  typedef std::pair<const IResultComponent *, CElementValueSet *> TResultPair;
   typedef std::vector<TResultPair> TResultMap;
-  void MapResults(const QString& sResultName,
-          const IResult& source, 
-          CValueType& target, 
-          TResultMap &result_map,
-          const CDepletionStage& stage, 
-          const CAnalysisType& antype);
+  void MapResults(const QString &sResultName, const IResult &source, CValueType &target, TResultMap &result_map,
+                  const CDepletionStage &stage, const CAnalysisType &antype);
+
 public:
   CZoomInCreator(CHomogenizationBox &box);
   void Create();

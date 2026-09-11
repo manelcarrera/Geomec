@@ -9,14 +9,13 @@ class CLoadManager;
 
 // instances of this class must be created on the heap (with new)
 // ownership is transferred to the provided loadmanager
-class CInitialNodalPotential
-{
+class CInitialNodalPotential {
 public:
   typedef std::map<int, double> TNodalPotentialMap; // maps from global node index to potential value
 
 public:
-  CInitialNodalPotential(CLoadManager& loadmanager);
-  CInitialNodalPotential(CLoadManager& loadmanager, const TNodalPotentialMap& mpNodalValues);
+  CInitialNodalPotential(CLoadManager &loadmanager);
+  CInitialNodalPotential(CLoadManager &loadmanager, const TNodalPotentialMap &mpNodalValues);
 
   void Insert(int nNode, double dPotential);
   void Remove(int nNode);
@@ -30,6 +29,6 @@ private:
   TNodalPotentialMap m_mpNodalValues;
 };
 
-}
+} // namespace dia
 
 #endif // _DCINITIALNODALPOTENTIAL_H_

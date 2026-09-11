@@ -1,14 +1,12 @@
 #pragma once
 
-#include <QtWidgets/QMainWindow>
-#include <QtCore/QHash>
 #include "ui_ModGMGui.h"
+#include <QtCore/QHash>
+#include <QtWidgets/QMainWindow>
 
 #include "ModGMBus.h"
 
-
-class ModGMGui : public QMainWindow
-{
+class ModGMGui : public QMainWindow {
   Q_OBJECT
 
 public:
@@ -17,14 +15,14 @@ public:
 signals:
   void finished();
 
-  void receivedMessage(const ModGMBusMessage&);
-  void handleMessage(const ModGMBusMessage&);
+  void receivedMessage(const ModGMBusMessage &);
+  void handleMessage(const ModGMBusMessage &);
 
 public slots:
-  void onReceivedError(const QString& error);
+  void onReceivedError(const QString &error);
 
 private slots:
-  void onReceivedMessage(const ModGMBusMessage& message);
+  void onReceivedMessage(const ModGMBusMessage &message);
   void onClicked();
 
 protected:

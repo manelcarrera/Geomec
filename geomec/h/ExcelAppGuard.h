@@ -3,22 +3,20 @@
 
 #include "excel8.h"
 
-class CExcelAppGuard
-{
+class CExcelAppGuard {
 public:
-  class CNoExcelException
-  {
+  class CNoExcelException {
   public:
-  CNoExcelException() {}
+    CNoExcelException() {}
   };
 
   CExcelAppGuard();
   ~CExcelAppGuard();
 
-  _Application& excelApp();
+  _Application &excelApp();
 
 private:
   _Application m_ExcelApp;
 };
 
-#endif  // _ExcelAppGuard_h_
+#endif // _ExcelAppGuard_h_

@@ -3,79 +3,61 @@
 
 #include "stdafx.h"
 #ifdef _MSC_VER
-#pragma warning ( disable : 4786 )
-#endif  // _MSC_VER
-#include <cmath>
-#include "geomec.h"
+#pragma warning(disable : 4786)
+#endif // _MSC_VER
+#include "BoundaryBase.h"
+#include "FieldFactor.h"
+#include "Modelbase.h"
+#include "TetraModel.h"
 #include "attrihexahorizon.h"
 #include "baseentrytypes.h"
-#include "BoundaryBase.h"
-#include "Modelbase.h"
-#include "FieldFactor.h"
-#include "TetraModel.h"
+#include "geomec.h"
+#include <cmath>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
-#ifdef _MSC_VER#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;#endif  // _MSC_VER
+#ifdef _MSC_VER
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
 #endif
 
-CAttri3DHorizonDlg::CSurfaceListObject::CSurfaceListObject(CListCtrl &ctrl, CSurfaceBase& surface, BOOL bSelected)
-: IListObject(ctrl, -1, bSelected), m_pSurface(&surface)
-{
+CAttri3DHorizonDlg::CSurfaceListObject::CSurfaceListObject(CListCtrl &ctrl, CSurfaceBase &surface, BOOL bSelected)
+    : IListObject(ctrl, -1, bSelected), m_pSurface(&surface) {
   ASSERT(surface.IsCopy());
   ctrl.SetItemData(ctrl.GetItemCount() - 1, (DWORD)this);
 }
 
-CAttri3DHorizonDlg::CSurfaceListObject::~CSurfaceListObject()
-{
-}
+CAttri3DHorizonDlg::CSurfaceListObject::~CSurfaceListObject() {}
 
-CString CAttri3DHorizonDlg::CSurfaceListObject::Text() const
-{
-  return m_pSurface->Name();
-}
+CString CAttri3DHorizonDlg::CSurfaceListObject::Text() const { return m_pSurface->Name(); }
 
-UINT CAttri3DHorizonDlg::CSurfaceListObject::Icon() const
-{
-  return m_pSurface->IconId();
-}
+UINT CAttri3DHorizonDlg::CSurfaceListObject::Icon() const { return m_pSurface->IconId(); }
 
-const CSurfaceBase& CAttri3DHorizonDlg::CSurfaceListObject::Surface() const
-{
-  return *m_pSurface;
-}
+const CSurfaceBase &CAttri3DHorizonDlg::CSurfaceListObject::Surface() const { return *m_pSurface; }
 
-CSurfaceBase& CAttri3DHorizonDlg::CSurfaceListObject::Surface()
-{ 
-  return *m_pSurface;
-}
+CSurfaceBase &CAttri3DHorizonDlg::CSurfaceListObject::Surface() { return *m_pSurface; }
 
 /////////////////////////////////////////////////////////////////////////////
 // CAttri3DHorizonDlg dialog
 
-
-//##ModelId=3BC55D6501BD
-CAttri3DHorizonDlg::CAttri3DHorizonDlg(C3DHorizon &horizon, CWnd* pParent /*=NULL*/)
-: CAttriHorizon<C3DHorizon>(CAttri3DHorizonDlg::IDD, horizon, true, pParent), m_bInitialUpdate(TRUE)
-{
+// ##ModelId=3BC55D6501BD
+CAttri3DHorizonDlg::CAttri3DHorizonDlg(C3DHorizon &horizon, CWnd *pParent /*=NULL*/)
+    : CAttriHorizon<C3DHorizon>(CAttri3DHorizonDlg::IDD, horizon, true, pParent), m_bInitialUpdate(TRUE) {
   //{{AFX_DATA_INIT(CAttri3DHorizonDlg)
   //}}AFX_DATA_INIT
 }
 
-
-//##ModelId=3BC55D6501D0
-void CAttri3DHorizonDlg::DoDataExchange(CDataExchange* pDX)
-{
+// ##ModelId=3BC55D6501D0
+void CAttri3DHorizonDlg::DoDataExchange(CDataExchange *pDX) {
   // Variables ....
   CString strName, strUnit;
   double dDepth, dBottom, dTop;
   int nSelect, nDivisionNorthing, nDivisionEasting;
   BOOL bSlip;
-  bool bBranch = (static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch();
+  bool bBranch = (static_cast<const CModelBase &>(Copy().Model())).BranchState().IsBranch();
 
-  if(!pDX->m_bSaveAndValidate)
-  {
+  if (!pDX->m_bSaveAndValidate) {
     strName = Copy().Name();
 
     GetDlgItem(IDC_RD_CONST_DEPTH)->EnableWindow(!bBranch);
@@ -85,43 +67,38 @@ void CAttri3DHorizonDlg::DoDataExchange(CDataExchange* pDX)
     GetDlgItem(IDC_ED_DIVISION_EASTING)->EnableWindow(Copy().ConstantDepth() && !bBranch);
     GetDlgItem(IDC_LB_SURFACE)->EnableWindow(!Copy().ConstantDepth());
 
-    ((CEdit*)GetDlgItem(IDC_ED_DIVISION_NORTHING))->SetReadOnly(dynamic_cast<CTetraModel*>(&Copy().Model()) == 0 && !bBranch);
-    ((CEdit*)GetDlgItem(IDC_ED_DIVISION_EASTING))->SetReadOnly(dynamic_cast<CTetraModel*>(&Copy().Model()) == 0 && !bBranch);
+    ((CEdit *)GetDlgItem(IDC_ED_DIVISION_NORTHING))
+        ->SetReadOnly(dynamic_cast<CTetraModel *>(&Copy().Model()) == 0 && !bBranch);
+    ((CEdit *)GetDlgItem(IDC_ED_DIVISION_EASTING))
+        ->SetReadOnly(dynamic_cast<CTetraModel *>(&Copy().Model()) == 0 && !bBranch);
     // Bottom and top
     CLengthQuantity qnDepth;
 
-    if(Copy().ConstantDepth())
-    {
+    if (Copy().ConstantDepth()) {
       dBottom = Copy().Depth().Value(UnitNode().Unit());
       dTop = dBottom;
-    }
-    else
-    {
+    } else {
       ASSERT(Copy().SurfaceSize() == 1);
       dBottom = Copy().Surface(0).Surface().Max().Z();
       dTop = Copy().Surface(0).Surface().Min().Z();
-      if(UnitNode().Unit() == CQuantity::FIELD_UNIT)
-      {
+      if (UnitNode().Unit() == CQuantity::FIELD_UNIT) {
         dBottom *= FF_FACTOR_LENGTH;
         dTop *= FF_FACTOR_LENGTH;
       }
     }
-  //	dBottom = qnDepth.Convert(Copy().DisplayList(0).Max().Z(), UnitNode().Unit(), CQuantity::SI_UNIT);
-  //	dTop = qnDepth.Convert(Copy().DisplayList(0).Min().Z(), UnitNode().Unit(), CQuantity::SI_UNIT);
+    //	dBottom = qnDepth.Convert(Copy().DisplayList(0).Max().Z(), UnitNode().Unit(), CQuantity::SI_UNIT);
+    //	dTop = qnDepth.Convert(Copy().DisplayList(0).Min().Z(), UnitNode().Unit(), CQuantity::SI_UNIT);
     strUnit = CString(qnDepth.UnitName(UnitNode().Unit()).c_str());
     bSlip = Copy().Slip();
-    
-    if(Copy().ConstantDepth())
-    {
-      dDepth  = Copy().Depth().Value(UnitNode().Unit());
+
+    if (Copy().ConstantDepth()) {
+      dDepth = Copy().Depth().Value(UnitNode().Unit());
       strUnit = CString(Copy().Depth().UnitName(UnitNode().Unit()).c_str());
       nDivisionNorthing = Copy().DivisionNorthing();
       nDivisionEasting = Copy().DivisionEasting();
 
       nSelect = 0;
-    }
-    else
-    {
+    } else {
       dDepth = 0;
       nSelect = 1;
     }
@@ -138,137 +115,114 @@ void CAttri3DHorizonDlg::DoDataExchange(CDataExchange* pDX)
   DDX_Text(pDX, IDC_ST_BOTTOM, dBottom);
   DDX_Text(pDX, IDC_ST_TOP, dTop);
 
-  if(Copy().ConstantDepth())
-  {
+  if (Copy().ConstantDepth()) {
     DDX_Text(pDX, IDC_ED_DEPTH, dDepth);
     DDX_Text(pDX, IDC_ED_DIVISION_NORTHING, nDivisionNorthing);
     DDX_Text(pDX, IDC_ED_DIVISION_EASTING, nDivisionEasting);
   }
 
   DDX_Radio(pDX, IDC_RD_CONST_DEPTH, nSelect);
-  if(pDX->m_bSaveAndValidate)
-  {
-    if(!Copy().ConstantDepth())
-    {
-      if(m_lbSurface.GetSelectedCount() < 1)
-      {
+  if (pDX->m_bSaveAndValidate) {
+    if (!Copy().ConstantDepth()) {
+      if (m_lbSurface.GetSelectedCount() < 1) {
         AfxMessageBox("You have to select at least one surface");
         pDX->Fail();
       }
 
       ASSERT(m_lbSurface.GetItemCount() > 0);
-      for(int i = 0; i < m_lbSurface.GetItemCount(); i++)
-      {
-        CSurfaceListObject *pListObject = (CSurfaceListObject*)m_lbSurface.GetItemData(i);
+      for (int i = 0; i < m_lbSurface.GetItemCount(); i++) {
+        CSurfaceListObject *pListObject = (CSurfaceListObject *)m_lbSurface.GetItemData(i);
         ASSERT(pListObject);
-        
-        if(Copy().IsLinkedTo(pListObject->Surface()) && !pListObject->IsSelected())
+
+        if (Copy().IsLinkedTo(pListObject->Surface()) && !pListObject->IsSelected())
           Copy().UnLink(pListObject->Surface());
 
-        if(!Copy().IsLinkedTo(pListObject->Surface()) && pListObject->IsSelected())
+        if (!Copy().IsLinkedTo(pListObject->Surface()) && pListObject->IsSelected())
           Copy().LinkTo(pListObject->Surface());
       }
 
-
-    }
-    else
-    {
-      if(!Copy().IsDepthValid(dDepth, UnitNode().Unit()))
-      {
+    } else {
+      if (!Copy().IsDepthValid(dDepth, UnitNode().Unit())) {
         AfxMessageBox("Constant depth value is not valid in the model");
         pDX->Fail();
       }
       Copy().Depth(dDepth, UnitNode().Unit());
       Copy().Division(nDivisionNorthing, nDivisionEasting);
     }
-
   }
-
-
 }
 
-
 BEGIN_MESSAGE_MAP(CAttri3DHorizonDlg, CDialog)
-  //{{AFX_MSG_MAP(CAttri3DHorizonDlg)
-  ON_BN_CLICKED(IDC_RD_CONST_DEPTH, OnConstantDepth)
-  ON_BN_CLICKED(IDC_RD_SURFACE, OnSurface)
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CAttri3DHorizonDlg)
+ON_BN_CLICKED(IDC_RD_CONST_DEPTH, OnConstantDepth)
+ON_BN_CLICKED(IDC_RD_SURFACE, OnSurface)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CAttri3DHorizonDlg message handlers
 
-//##ModelId=3BC55D6501DB
+// ##ModelId=3BC55D6501DB
 
-
-BOOL CAttri3DHorizonDlg::OnInitDialog() 
-{
+BOOL CAttri3DHorizonDlg::OnInitDialog() {
   CAttriHorizon<C3DHorizon>::OnInitDialog();
-  
+
   m_lbSurface.InsertColumn(0, _T("Name"), LVCFMT_LEFT, -1, 0);
   OnUpdateLb();
-  m_lbSurface.SetColumnWidth(0, LVSCW_AUTOSIZE );
-  
-  return TRUE;  // return TRUE unless you set the focus to a control
-                // EXCEPTION: OCX Property Pages should return FALSE
+  m_lbSurface.SetColumnWidth(0, LVSCW_AUTOSIZE);
+
+  return TRUE; // return TRUE unless you set the focus to a control
+               // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CAttri3DHorizonDlg::OnUpdateLb()
-{
+void CAttri3DHorizonDlg::OnUpdateLb() {
   ASSERT(Copy().Model().GraphEntry(MD_BASE_SURFACE));
 
-  CSurfaceEntry *pEntry = (CSurfaceEntry*)(Copy().Model().GraphEntry(MD_BASE_SURFACE));
+  CSurfaceEntry *pEntry = (CSurfaceEntry *)(Copy().Model().GraphEntry(MD_BASE_SURFACE));
 
   CSurfaceEntry::TNodeSet stNode = pEntry->EntryNodes();
 
   m_lbSurface.DeleteAllItems();
 
-  for(CSurfaceEntry::TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++)
-  {
+  for (CSurfaceEntry::TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++) {
     ASSERT((*it)->IsCopied());
 
-    if(Copy().CanConnectItem((*it)->Copy()) || Copy().IsLinkedTo((*it)->Copy()))
-    {
-      CSurfaceListObject *pObject = new CSurfaceListObject(m_lbSurface, (CSurfaceBase&)((*it)->Copy()), FALSE);
-      if(Copy().IsLinkedTo((*it)->Copy()))
+    if (Copy().CanConnectItem((*it)->Copy()) || Copy().IsLinkedTo((*it)->Copy())) {
+      CSurfaceListObject *pObject = new CSurfaceListObject(m_lbSurface, (CSurfaceBase &)((*it)->Copy()), FALSE);
+      if (Copy().IsLinkedTo((*it)->Copy()))
         m_lbSurface.SetItemState(pObject->Index(), LVIS_SELECTED, LVIS_SELECTED);
     }
   }
-  
-  GetDlgItem(IDC_RD_SURFACE)->EnableWindow(m_lbSurface.GetItemCount() > 0 && !(static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch());
+
+  GetDlgItem(IDC_RD_SURFACE)
+      ->EnableWindow(m_lbSurface.GetItemCount() > 0 &&
+                     !(static_cast<const CModelBase &>(Copy().Model())).BranchState().IsBranch());
 }
 
-void CAttri3DHorizonDlg::OnConstantDepth() 
-{
+void CAttri3DHorizonDlg::OnConstantDepth() {
 
-  if(!Copy().ConstantDepth())
-  {
+  if (!Copy().ConstantDepth()) {
     // Get boundary ...
-    CBoundaryBase* pBoundary = &((CModelBase&)Copy().Model()).Boundary();
+    CBoundaryBase *pBoundary = &((CModelBase &)Copy().Model()).Boundary();
 
-    double dMax = pBoundary->Max().Z(); 
+    double dMax = pBoundary->Max().Z();
     double dMin = pBoundary->Min().Z();
 
-    Copy().Depth((dMax + dMin)/2);
+    Copy().Depth((dMax + dMin) / 2);
   }
 
   UpdateData(FALSE);
 }
 
-void CAttri3DHorizonDlg::OnSurface() 
-{
+void CAttri3DHorizonDlg::OnSurface() {
   ASSERT(m_lbSurface.GetItemCount() > 0);
-  
+
   // Link default to the first surface ...
-  if(Copy().ConstantDepth())
-  {
-    CSurfaceListObject *pSurfaceObject = (CSurfaceListObject*)(m_lbSurface.GetItemData(0));
+  if (Copy().ConstantDepth()) {
+    CSurfaceListObject *pSurfaceObject = (CSurfaceListObject *)(m_lbSurface.GetItemData(0));
     ASSERT(pSurfaceObject->Surface().IsCopy());
     Copy().LinkTo(pSurfaceObject->Surface());
   }
 
   UpdateData(FALSE);
 }
-
-
-    

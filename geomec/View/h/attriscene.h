@@ -13,46 +13,40 @@
 #include "OpenGLSceneBase.h"
 #include "resource.h"
 
-
-
-//##ModelId=3BC55D6500B1
-class CAttriScene : public CAttributesTemplate<COpenInventorSceneNode>
-{
+// ##ModelId=3BC55D6500B1
+class CAttriScene : public CAttributesTemplate<COpenInventorSceneNode> {
   CComboBox m_combo_deformation; // It must be a member, it can't be a local var in 'DoDataExchange()' as the rest
 
-// Construction
+  // Construction
 public:
-  //##ModelId=3BE7AEC80297
-  CAttriScene(COpenInventorSceneNode &scene, CWnd* pParent = NULL);   // standard constructor
+  // ##ModelId=3BE7AEC80297
+  CAttriScene(COpenInventorSceneNode &scene, CWnd *pParent = NULL); // standard constructor
 
-  
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriScene)
   enum { IDD = IDD_ATTRI_SCENE };
-  //##ModelId=3BE7AEC802A7
-  // BOOL	bApplyToAllView;
-  //}}AFX_DATA
+  // ##ModelId=3BE7AEC802A7
+  //  BOOL	bApplyToAllView;
+  // }}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriScene)
-  protected:
-  //##ModelId=3BC55D6500D6
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  // ##ModelId=3BC55D6500D6
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriScene)
-  //##ModelId=3BC55D6500E0
+  // ##ModelId=3BC55D6500E0
   afx_msg void OnPaint();
-  //##ModelId=3BE7AEC80322
+  // ##ModelId=3BE7AEC80322
   afx_msg void OnClickAxisColor();
   afx_msg void OnClickTextColor();
-  //##ModelId=3BE7AEC80324
+  // ##ModelId=3BE7AEC80324
   afx_msg void OnClickBackGroundColor();
   afx_msg void OnClickBackGroundColor2();
   //}}AFX_MSG

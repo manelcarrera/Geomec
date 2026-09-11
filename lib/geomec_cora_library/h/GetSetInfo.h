@@ -3,21 +3,19 @@
 
 class IPointSet;
 
-namespace cora
-{
+namespace cora {
 
-class CGetSetInfo
-{
-  public:
+class CGetSetInfo {
+public:
   CGetSetInfo();
 
-  bool isElementSet(const IPointSet& pointSet) const;
+  bool isElementSet(const IPointSet &pointSet) const;
 
-  private:
-  CGetSetInfo(const CGetSetInfo& rhs);
-  CGetSetInfo& operator = (CGetSetInfo rhs);
+private:
+  CGetSetInfo(const CGetSetInfo &rhs);
+  CGetSetInfo &operator=(CGetSetInfo rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_GetSetInfo_h_
+#endif // _cora_GetSetInfo_h_

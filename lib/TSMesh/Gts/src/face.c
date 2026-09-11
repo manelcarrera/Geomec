@@ -21,61 +21,50 @@
 
 gboolean gts_allow_floating_faces = FALSE;
 
-static void face_destroy (GtsObject * object)
-{
-  GtsFace * face = GTS_FACE (object);
-  GSList * i;
+static void face_destroy(GtsObject *object) {
+  GtsFace *face = GTS_FACE(object);
+  GSList *i;
 
   i = face->surfaces;
   while (i) {
-  GSList * next = i->next;
-  gts_surface_remove_face (i->data, face);
-  i = next;
+    GSList *next = i->next;
+    gts_surface_remove_face(i->data, face);
+    i = next;
   }
-  g_assert (face->surfaces == NULL);
+  g_assert(face->surfaces == NULL);
 
-  (* GTS_OBJECT_CLASS (gts_face_class ())->parent_class->destroy) (object);
+  (*GTS_OBJECT_CLASS(gts_face_class())->parent_class->destroy)(object);
 }
 
-static void face_clone (GtsObject * clone, GtsObject * object)
-{
-  (* GTS_OBJECT_CLASS (gts_face_class ())->parent_class->clone) (clone, 
-                 object);
-  GTS_FACE (clone)->surfaces = NULL;
+static void face_clone(GtsObject *clone, GtsObject *object) {
+  (*GTS_OBJECT_CLASS(gts_face_class())->parent_class->clone)(clone, object);
+  GTS_FACE(clone)->surfaces = NULL;
 }
 
-static void face_class_init (GtsObjectClass * klass)
-{
+static void face_class_init(GtsObjectClass *klass) {
   klass->clone = face_clone;
   klass->destroy = face_destroy;
 }
 
-static void face_init (GtsFace * face)
-{
-  face->surfaces = NULL;
-}
+static void face_init(GtsFace *face) { face->surfaces = NULL; }
 
 /**
  * gts_face_class:
  *
  * Returns: the #GtsFaceClass.
  */
-GtsFaceClass * gts_face_class (void)
-{
-  static GtsFaceClass * klass = NULL;
+GtsFaceClass *gts_face_class(void) {
+  static GtsFaceClass *klass = NULL;
 
   if (klass == NULL) {
-  GtsObjectClassInfo face_info = {
-      "GtsFace",
-      sizeof (GtsFace),
-      sizeof (GtsFaceClass),
-      (GtsObjectClassInitFunc) face_class_init,
-      (GtsObjectInitFunc) face_init,
-      (GtsArgSetFunc) NULL,
-      (GtsArgGetFunc) NULL
-  };
-  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_triangle_class ()), 
-          &face_info);
+    GtsObjectClassInfo face_info = {"GtsFace",
+                                    sizeof(GtsFace),
+                                    sizeof(GtsFaceClass),
+                                    (GtsObjectClassInitFunc)face_class_init,
+                                    (GtsObjectInitFunc)face_init,
+                                    (GtsArgSetFunc)NULL,
+                                    (GtsArgGetFunc)NULL};
+    klass = gts_object_class_new(GTS_OBJECT_CLASS(gts_triangle_class()), &face_info);
   }
 
   return klass;
@@ -90,13 +79,11 @@ GtsFaceClass * gts_face_class (void)
  *
  * Returns: a new #GtsFace using @e1, @e2 and @e3 as edges.
  */
-GtsFace * gts_face_new (GtsFaceClass * klass,
-      GtsEdge * e1, GtsEdge * e2, GtsEdge * e3)
-{
-  GtsFace * f;
+GtsFace *gts_face_new(GtsFaceClass *klass, GtsEdge *e1, GtsEdge *e2, GtsEdge *e3) {
+  GtsFace *f;
 
-  f = GTS_FACE (gts_object_new (GTS_OBJECT_CLASS (klass)));
-  gts_triangle_set (GTS_TRIANGLE (f), e1, e2, e3);
+  f = GTS_FACE(gts_object_new(GTS_OBJECT_CLASS(klass)));
+  gts_triangle_set(GTS_TRIANGLE(f), e1, e2, e3);
 
   return f;
 }
@@ -108,17 +95,16 @@ GtsFace * gts_face_new (GtsFaceClass * klass,
  *
  * Returns: %TRUE if @f belongs to @s, %FALSE otherwise.
  */
-gboolean gts_face_has_parent_surface (GtsFace * f, GtsSurface * s)
-{
-  GSList * i;
+gboolean gts_face_has_parent_surface(GtsFace *f, GtsSurface *s) {
+  GSList *i;
 
-  g_return_val_if_fail (f != NULL, FALSE);
+  g_return_val_if_fail(f != NULL, FALSE);
 
   i = f->surfaces;
   while (i) {
-  if (i->data == s)
+    if (i->data == s)
       return TRUE;
-  i = i->next;
+    i = i->next;
   }
   return FALSE;
 }
@@ -130,31 +116,29 @@ gboolean gts_face_has_parent_surface (GtsFace * f, GtsSurface * s)
  *
  * Builds a list of unique faces which belong to @s and have
  * one of their edges in @edges.
- * 
+ *
  * Returns: the list of faces.
  */
-GSList * gts_faces_from_edges (GSList * edges, GtsSurface * s)
-{
-  GHashTable * hash;
-  GSList * faces = NULL, * i;
+GSList *gts_faces_from_edges(GSList *edges, GtsSurface *s) {
+  GHashTable *hash;
+  GSList *faces = NULL, *i;
 
-  hash = g_hash_table_new (NULL, NULL);
+  hash = g_hash_table_new(NULL, NULL);
   i = edges;
   while (i) {
-  GSList * j = GTS_EDGE (i->data)->triangles;
-  while (j) {
-      GtsTriangle * t = j->data;
-      if (GTS_IS_FACE (t) &&
-    (!s || gts_face_has_parent_surface (GTS_FACE (t), s)) && 
-    g_hash_table_lookup (hash, t) == NULL) {
-  faces = g_slist_prepend (faces, t);
-  g_hash_table_insert (hash, t, i);
+    GSList *j = GTS_EDGE(i->data)->triangles;
+    while (j) {
+      GtsTriangle *t = j->data;
+      if (GTS_IS_FACE(t) && (!s || gts_face_has_parent_surface(GTS_FACE(t), s)) &&
+          g_hash_table_lookup(hash, t) == NULL) {
+        faces = g_slist_prepend(faces, t);
+        g_hash_table_insert(hash, t, i);
       }
       j = j->next;
+    }
+    i = i->next;
   }
-  i = i->next;
-  }
-  g_hash_table_destroy (hash);
+  g_hash_table_destroy(hash);
 
   return faces;
 }
@@ -166,28 +150,25 @@ GSList * gts_faces_from_edges (GSList * edges, GtsSurface * s)
  *
  * Returns: the number of faces neighbors of @f and belonging to @s.
  */
-guint gts_face_neighbor_number (GtsFace * f, GtsSurface * s)
-{
-  GSList * i;
+guint gts_face_neighbor_number(GtsFace *f, GtsSurface *s) {
+  GSList *i;
   guint nn = 0;
-  GtsEdge * e[4], ** e1 = e;
-  
-  g_return_val_if_fail (f != NULL, 0);
-  
-  e[0] = GTS_TRIANGLE (f)->e1; 
-  e[1] = GTS_TRIANGLE (f)->e2; 
-  e[2] = GTS_TRIANGLE (f)->e3; 
+  GtsEdge *e[4], **e1 = e;
+
+  g_return_val_if_fail(f != NULL, 0);
+
+  e[0] = GTS_TRIANGLE(f)->e1;
+  e[1] = GTS_TRIANGLE(f)->e2;
+  e[2] = GTS_TRIANGLE(f)->e3;
   e[3] = NULL;
   while (*e1) {
-  i = (*e1++)->triangles;
-  while (i) {
-      GtsTriangle * t = i->data;
-      if (GTS_FACE (t) != f && 
-    GTS_IS_FACE (t) && 
-    (!s || gts_face_has_parent_surface (GTS_FACE (t), s)))
-  nn++;
+    i = (*e1++)->triangles;
+    while (i) {
+      GtsTriangle *t = i->data;
+      if (GTS_FACE(t) != f && GTS_IS_FACE(t) && (!s || gts_face_has_parent_surface(GTS_FACE(t), s)))
+        nn++;
       i = i->next;
-  }
+    }
   }
 
   return nn;
@@ -200,27 +181,24 @@ guint gts_face_neighbor_number (GtsFace * f, GtsSurface * s)
  *
  * Returns: a list of unique #GtsFace neighbors of @f and belonging to @s.
  */
-GSList * gts_face_neighbors (GtsFace * f, GtsSurface * s)
-{
-  GSList * i, * list = NULL;
-  GtsEdge * e[4], ** e1 = e;
-  
-  g_return_val_if_fail (f != NULL, NULL);
+GSList *gts_face_neighbors(GtsFace *f, GtsSurface *s) {
+  GSList *i, *list = NULL;
+  GtsEdge *e[4], **e1 = e;
 
-  e[0] = GTS_TRIANGLE (f)->e1; 
-  e[1] = GTS_TRIANGLE (f)->e2; 
-  e[2] = GTS_TRIANGLE (f)->e3; 
+  g_return_val_if_fail(f != NULL, NULL);
+
+  e[0] = GTS_TRIANGLE(f)->e1;
+  e[1] = GTS_TRIANGLE(f)->e2;
+  e[2] = GTS_TRIANGLE(f)->e3;
   e[3] = NULL;
   while (*e1) {
-  i = (*e1++)->triangles;
-  while (i) {
-      GtsTriangle * t = i->data;
-      if (GTS_FACE (t) != f && 
-    GTS_IS_FACE (t) && 
-    (!s || gts_face_has_parent_surface (GTS_FACE (t), s)))
-  list = g_slist_prepend (list, t);
+    i = (*e1++)->triangles;
+    while (i) {
+      GtsTriangle *t = i->data;
+      if (GTS_FACE(t) != f && GTS_IS_FACE(t) && (!s || gts_face_has_parent_surface(GTS_FACE(t), s)))
+        list = g_slist_prepend(list, t);
       i = i->next;
-  }
+    }
   }
 
   return list;
@@ -235,31 +213,24 @@ GSList * gts_face_neighbors (GtsFace * f, GtsSurface * s)
  *
  * Calls @func for each neighbor of @f belonging to @s (if not %NULL).
  */
-void gts_face_foreach_neighbor (GtsFace * f, 
-        GtsSurface * s, 
-        GtsFunc func,
-        gpointer data)
-{
-  GSList * i;
-  GtsEdge * e[4], ** e1 = e;
-  
-  g_return_if_fail (f != NULL);
-  g_return_if_fail (func != NULL);
+void gts_face_foreach_neighbor(GtsFace *f, GtsSurface *s, GtsFunc func, gpointer data) {
+  GSList *i;
+  GtsEdge *e[4], **e1 = e;
 
-  e[0] = GTS_TRIANGLE (f)->e1;
-  e[1] = GTS_TRIANGLE (f)->e2; 
-  e[2] = GTS_TRIANGLE (f)->e3; 
+  g_return_if_fail(f != NULL);
+  g_return_if_fail(func != NULL);
+
+  e[0] = GTS_TRIANGLE(f)->e1;
+  e[1] = GTS_TRIANGLE(f)->e2;
+  e[2] = GTS_TRIANGLE(f)->e3;
   e[3] = NULL;
   while (*e1) {
-  i = (*e1++)->triangles;
-  while (i) {
-      GtsTriangle * t = i->data;
-      if (GTS_FACE (t) != f && 
-    GTS_IS_FACE (t) && 
-    (!s || gts_face_has_parent_surface (GTS_FACE (t), s)))
-  (* func) (t, data);
+    i = (*e1++)->triangles;
+    while (i) {
+      GtsTriangle *t = i->data;
+      if (GTS_FACE(t) != f && GTS_IS_FACE(t) && (!s || gts_face_has_parent_surface(GTS_FACE(t), s)))
+        (*func)(t, data);
       i = i->next;
-  }
+    }
   }
 }
-

@@ -11,23 +11,17 @@
 
 #include "SingleQuantity.h"
 
-class CGigaSinglePressureQuantity : public CDoubleQuantity
-{
+class CGigaSinglePressureQuantity : public CDoubleQuantity {
 public:
-  CGigaSinglePressureQuantity( const CGigaSinglePressureQuantity & rhs);
+  CGigaSinglePressureQuantity(const CGigaSinglePressureQuantity &rhs);
   CGigaSinglePressureQuantity();
 
-  CGigaSinglePressureQuantity(const double &value , const UNIT unit = SI_UNIT);
+  CGigaSinglePressureQuantity(const double &value, const UNIT unit = SI_UNIT);
 
-  CGigaSinglePressureQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CGigaSinglePressureQuantity(const double &value, const double &min, const double &max, const UNIT unit = SI_UNIT);
 
-  CGigaSinglePressureQuantity(    const double& value,
-            const double &min ,
-            const double &max,
-            bool bIncludeMin=true,
-            bool bIncludeMax=true,
-            const UNIT unit= SI_UNIT);
-
+  CGigaSinglePressureQuantity(const double &value, const double &min, const double &max, bool bIncludeMin = true,
+                              bool bIncludeMax = true, const UNIT unit = SI_UNIT);
 
   double Convert(const double &value, const UNIT out, const UNIT in) const;
   virtual std::string QuantityName() const;

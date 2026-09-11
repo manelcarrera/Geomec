@@ -8,34 +8,26 @@
 class CPointSet;
 
 // use this class if you want to be able to generate a grid of points in two dimensions
-class CGridDefinition
-{
+class CGridDefinition {
   double m_TrackSpacing;   // space in between points in width direction
   double m_BinSpacing;     // space in between points in length direction
   double m_Azimuth;        // angle anywhere from -360 to 360
   double m_CornerNorthing; // northing of corner
   double m_CornerEasting;  // easting of corner
-  int m_NumBin;            // number of bins (X/Northing dir/length)    Note: PointsNorthing/Easting used to return the wrong values; as far as I can tell, this has been a bug from the beginning
-  int m_NumTrack;          // number of tracks (Y/Easting dir/width)
-  int m_DeltaBin;          // the number of 'bins' to skip for each point, can be negative
-  int m_DeltaTrack;        // the number of 'tracks' to skip for each point, can be negative
-  int m_FirstBin;          // the index of the first bin (0-based)
-  int m_FirstTrack;        // the index of the first track (0-based)
+  int m_NumBin;     // number of bins (X/Northing dir/length)    Note: PointsNorthing/Easting used to return the wrong
+                    // values; as far as I can tell, this has been a bug from the beginning
+  int m_NumTrack;   // number of tracks (Y/Easting dir/width)
+  int m_DeltaBin;   // the number of 'bins' to skip for each point, can be negative
+  int m_DeltaTrack; // the number of 'tracks' to skip for each point, can be negative
+  int m_FirstBin;   // the index of the first bin (0-based)
+  int m_FirstTrack; // the index of the first track (0-based)
 
-public: 
+public:
   CGridDefinition();
-  CGridDefinition(const double &trackspacing,
-                  const double &binspacing,
-                  const double &azimuth,
-                  const double &cornernorthing,
-                  const double &cornereasting,
-                  int numbin,
-                  int numtrack,
-                  int deltabin,
-                  int deltatrack,
-                  int firstbin,
-                  int firsttrack);
-//  CGridDefinition(const CGridDefinition &rhs);
+  CGridDefinition(const double &trackspacing, const double &binspacing, const double &azimuth,
+                  const double &cornernorthing, const double &cornereasting, int numbin, int numtrack, int deltabin,
+                  int deltatrack, int firstbin, int firsttrack);
+  //  CGridDefinition(const CGridDefinition &rhs);
 
   bool GridIsValid() const;
 
@@ -88,6 +80,6 @@ public:
   int PointsEasting() const;
   int PointsNorthing() const;
 
-  bool FindBinTrack(double Northing, double Easting, int& nBin, int& nTrack);
+  bool FindBinTrack(double Northing, double Easting, int &nBin, int &nTrack);
 };
 #endif

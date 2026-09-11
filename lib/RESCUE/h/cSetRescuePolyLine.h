@@ -36,8 +36,7 @@ class RescuePolyLine;
 class RescueTrimVertex;
 class RescueContext;
 
-class cSetRescuePolyLine
-{
+class cSetRescuePolyLine {
 protected:
   RescuePolyLine **objects;
   RESCUEINT64 allocated;
@@ -54,18 +53,19 @@ public:
   RescuePolyLine *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescuePolyLine *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescuePolyLine *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
 
   RescuePolyLine *PolyLineBetween(RescueTrimVertex *end1, RescueTrimVertex *end2);
+
 private:
   void Relinquish(RescuePolyLine *exisingObject);
-  void GiveUpObjects() {count = 0;}
+  void GiveUpObjects() { count = 0; }
 
   friend class RescuePolyLine;
   friend class RescueModel;
@@ -74,6 +74,3 @@ private:
 };
 
 #endif
-
-
-

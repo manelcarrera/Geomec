@@ -58,22 +58,18 @@ The filter used is based on the group: Models = zlib, Results = LZ4.
 
 */
 
-
 #include <QIODevice>
 #include <stack>
 
-namespace H5
-{
+namespace H5 {
 class H5File;
 class DataSpace;
 class DataSet;
 class DSetCreatPropList;
 class DataType;
-}
+} // namespace H5
 
-
-class CHDF5File : public QIODevice
-{
+class CHDF5File : public QIODevice {
   Q_OBJECT
 public:
   CHDF5File(QIODevice *file, QObject *parent = 0);
@@ -93,75 +89,73 @@ public:
   virtual bool open(OpenMode mode);
   virtual void close();
 
-  bool openStream(const QString& name, size_t chunkSize = 0x10000);
+  bool openStream(const QString &name, size_t chunkSize = 0x10000);
   void closeStream();
 
-  // we need to override pos, because the base gives us the position in the file, but we want the position in the stream, which could have blocks all over the place
-  // WARNING: comments in Qt suggest that this interface will change in Qt5
+  // we need to override pos, because the base gives us the position in the file, but we want the position in the
+  // stream, which could have blocks all over the place WARNING: comments in Qt suggest that this interface will change
+  // in Qt5
   virtual qint64 pos() const;
   virtual bool seek(qint64 pos);
 
   typedef enum { DEFAULT = 0, TINY, SMALL } THint;
 
-  bool PushDataSet(const QString& name, int hint = DEFAULT);
+  bool PushDataSet(const QString &name, int hint = DEFAULT);
   bool PopDataSet();
 
-  bool DataSetExists(const QString& name) const;
+  bool DataSetExists(const QString &name) const;
 
 protected:
   virtual qint64 readData(char *data, qint64 maxSize);
   virtual qint64 writeData(const char *data, qint64 maxSize);
 
 private:
-
-  class CHDF5Stream
-  {
+  class CHDF5Stream {
   public:
-  CHDF5Stream(H5::H5File *file, const QString& name, size_t chunkSize);
-  ~CHDF5Stream();
+    CHDF5Stream(H5::H5File *file, const QString &name, size_t chunkSize);
+    ~CHDF5Stream();
 
-  bool open(unsigned int mode);
-  void close();
+    bool open(unsigned int mode);
+    void close();
 
-  qint64 pos() const;
-  bool seek(qint64 pos);
+    qint64 pos() const;
+    bool seek(qint64 pos);
 
-  qint64 bytesRead() const;
-  void bytesRead(qint64 addBytes);
+    qint64 bytesRead() const;
+    void bytesRead(qint64 addBytes);
 
-  qint64 readData(char *data, qint64 maxSize);
-  qint64 writeData(const char *data, qint64 maxSize);
+    qint64 readData(char *data, qint64 maxSize);
+    qint64 writeData(const char *data, qint64 maxSize);
 
   private:
-  H5::H5File    *m_file;
-  unsigned int   m_mode;
-  const QString  m_name;
-  const size_t   m_chunkSize;
+    H5::H5File *m_file;
+    unsigned int m_mode;
+    const QString m_name;
+    const size_t m_chunkSize;
 
-  size_t         m_index;
-  unsigned char *m_buffer;
-  size_t         m_processed;
+    size_t m_index;
+    unsigned char *m_buffer;
+    size_t m_processed;
 
-  qint64         m_read;
+    qint64 m_read;
 
-  H5::DataSpace *m_dataBuffer;
-  H5::DataSpace *m_dataSpace;
-  H5::DataSet   *m_dataSet;
+    H5::DataSpace *m_dataBuffer;
+    H5::DataSpace *m_dataSpace;
+    H5::DataSet *m_dataSet;
 
-  H5::DSetCreatPropList *m_prop;
-  H5::DataType  *m_type;
+    H5::DSetCreatPropList *m_prop;
+    H5::DataType *m_type;
 
-  bool m_flush;
+    bool m_flush;
 
-  bool readBuffer(bool bForce = false);
-  bool writeBuffer(bool bForce = false);
+    bool readBuffer(bool bForce = false);
+    bool writeBuffer(bool bForce = false);
   };
 
-  QIODevice  *m_file;
+  QIODevice *m_file;
   H5::H5File *m_h5file;
 
   unsigned int m_mode;
-
 
   typedef std::stack<CHDF5Stream *> TStreamStack;
   CHDF5Stream *m_stream;
@@ -169,6 +163,5 @@ private:
 
   Q_DISABLE_COPY(CHDF5File)
 };
-
 
 #endif

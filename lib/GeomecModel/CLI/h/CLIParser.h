@@ -6,20 +6,19 @@
 class QString;
 class CGraphNode;
 
-class CCLIParser
-{
+class CCLIParser {
 public:
   CCLIParser();
 
-  bool parse(CGraphNode& root, const QString& cmd);
+  bool parse(CGraphNode &root, const QString &cmd);
 
 private:
   typedef std::list<QString> TStringList;
-  TStringList split(const QString& cmd);
-  bool recursiveParse(CGraphNode& root, TStringList& lst, TStringList::iterator it);
+  TStringList split(const QString &cmd);
+  bool recursiveParse(CGraphNode &root, TStringList &lst, TStringList::iterator it);
 
 private:
-  CGraphNode* m_selectedNode;
+  CGraphNode *m_selectedNode;
 };
 
 #endif // _CLIPARSER_H_

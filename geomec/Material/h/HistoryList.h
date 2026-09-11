@@ -5,13 +5,11 @@
 
 // HISTORYITEM must support copy construction
 
-template <class HISTORYITEM>
-class CHistoryList
-{
+template <class HISTORYITEM> class CHistoryList {
 public:
   CHistoryList();
 
-  void Append(const HISTORYITEM& item);
+  void Append(const HISTORYITEM &item);
 
   bool CanGoBack() const;
   void GoBack();
@@ -20,7 +18,7 @@ public:
   void GoForward();
 
   bool IsEmpty() const;
-  const HISTORYITEM& Current() const;
+  const HISTORYITEM &Current() const;
 
   void Clear();
 
@@ -34,24 +32,16 @@ private:
   iterator m_current;
 };
 
-template <class HISTORYITEM>
-CHistoryList<HISTORYITEM>::CHistoryList()
-: m_current(m_lstItems.end())
-{
-}
+template <class HISTORYITEM> CHistoryList<HISTORYITEM>::CHistoryList() : m_current(m_lstItems.end()) {}
 
-template <class HISTORYITEM>
-void CHistoryList<HISTORYITEM>::Append(const HISTORYITEM& item)
-{
-  if(m_current != m_lstItems.end())
-  {
-  iterator next = m_current;
-  ++next;
-  if(next != m_lstItems.end())
-  {
+template <class HISTORYITEM> void CHistoryList<HISTORYITEM>::Append(const HISTORYITEM &item) {
+  if (m_current != m_lstItems.end()) {
+    iterator next = m_current;
+    ++next;
+    if (next != m_lstItems.end()) {
       // remove tail
       m_lstItems.erase(next, m_lstItems.end());
-  }
+    }
   }
 
   m_lstItems.push_back(item);
@@ -59,54 +49,38 @@ void CHistoryList<HISTORYITEM>::Append(const HISTORYITEM& item)
   --m_current;
 }
 
-template <class HISTORYITEM>
-bool CHistoryList<HISTORYITEM>::CanGoBack() const
-{
+template <class HISTORYITEM> bool CHistoryList<HISTORYITEM>::CanGoBack() const {
   return m_current != m_lstItems.begin();
 }
 
-template <class HISTORYITEM>
-void CHistoryList<HISTORYITEM>::GoBack()
-{
+template <class HISTORYITEM> void CHistoryList<HISTORYITEM>::GoBack() {
   assert(CanGoBack());
   --m_current;
 }
 
-template <class HISTORYITEM>
-bool CHistoryList<HISTORYITEM>::CanGoForward() const
-{
-  if(m_current == m_lstItems.end())
-  return false;
+template <class HISTORYITEM> bool CHistoryList<HISTORYITEM>::CanGoForward() const {
+  if (m_current == m_lstItems.end())
+    return false;
 
   iterator next = m_current;
   ++next;
   return next != m_lstItems.end();
 }
 
-template <class HISTORYITEM>
-void CHistoryList<HISTORYITEM>::GoForward()
-{
+template <class HISTORYITEM> void CHistoryList<HISTORYITEM>::GoForward() {
   assert(CanGoForward());
   ++m_current;
 }
 
-template <class HISTORYITEM>
-bool CHistoryList<HISTORYITEM>::IsEmpty() const
-{
-  return m_lstItems.empty();
-}
+template <class HISTORYITEM> bool CHistoryList<HISTORYITEM>::IsEmpty() const { return m_lstItems.empty(); }
 
-template <class HISTORYITEM>
-const HISTORYITEM& CHistoryList<HISTORYITEM>::Current() const
-{
+template <class HISTORYITEM> const HISTORYITEM &CHistoryList<HISTORYITEM>::Current() const {
   assert(!IsEmpty());
   assert(m_current != m_lstItems.end());
   return *m_current;
 }
 
-template <class HISTORYITEM>
-void CHistoryList<HISTORYITEM>::Clear()
-{
+template <class HISTORYITEM> void CHistoryList<HISTORYITEM>::Clear() {
   m_lstItems.clear();
   m_current = m_lstItems.end();
 }

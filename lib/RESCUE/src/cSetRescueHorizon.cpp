@@ -25,279 +25,207 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
-#include "RescueModel.h"
 #include "cSetRescueHorizon.h"
 #include "RescueHorizon.h"
+#include "RescueModel.h"
 
-cSetRescueHorizon::cSetRescueHorizon()
-{
+cSetRescueHorizon::cSetRescueHorizon() {
   allocated = 10;
   count = 0;
-  objects = (RescueHorizon **) malloc(sizeof(RescueHorizon *) * (size_t) allocated);
+  objects = (RescueHorizon **)malloc(sizeof(RescueHorizon *) * (size_t)allocated);
 }
 
-cSetRescueHorizon::~cSetRescueHorizon()
-{
+cSetRescueHorizon::~cSetRescueHorizon() {
   RESCUEINT64 loop;
 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   free(objects);
 }
 
-void cSetRescueHorizon::DropWireframeMemory()
-{
+void cSetRescueHorizon::DropWireframeMemory() {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->DropWireframeMemory();
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->DropWireframeMemory();
   }
 }
 
-void cSetRescueHorizon::UnArchiveWireframeData(RescueModel *model, FILE *archiveFile)
-{
+void cSetRescueHorizon::UnArchiveWireframeData(RescueModel *model, FILE *archiveFile) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->UnArchiveWireframeData(model, archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->UnArchiveWireframeData(model, archiveFile);
   }
 }
 
-void cSetRescueHorizon::RelinkWireframeData(RescueObject *parent)
-{
+void cSetRescueHorizon::RelinkWireframeData(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->RelinkWireframeData(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->RelinkWireframeData(parent);
   }
 }
 
-void cSetRescueHorizon::ArchiveWireframeData(FILE *archiveFile)
-{
+void cSetRescueHorizon::ArchiveWireframeData(FILE *archiveFile) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->ArchiveWireframeData(archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->ArchiveWireframeData(archiveFile);
   }
 }
 
-RESCUEBOOL cSetRescueHorizon::AnyFileTruncated()
-{
+RESCUEBOOL cSetRescueHorizon::AnyFileTruncated() {
   RESCUEBOOL myReturn = FALSE;
   RESCUEINT64 loop;
-  for (loop = 0; loop < count && myReturn == FALSE; loop++)
-  {
-  myReturn = objects[loop]->AnyFileTruncated();
+  for (loop = 0; loop < count && myReturn == FALSE; loop++) {
+    myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
 
-void cSetRescueHorizon::Archive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueHorizon::Archive(RescueContext *context, FILE *archiveFile) {
   myfprintf(context, archiveFile, count);
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Archive(archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Archive(archiveFile);
   }
 }
 
-void cSetRescueHorizon::Relink(RescueObject *parent)
-{
+void cSetRescueHorizon::Relink(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Relink(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Relink(parent);
   }
 }
 
-void cSetRescueHorizon::UnArchive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueHorizon::UnArchive(RescueContext *context, FILE *archiveFile) {
   RESCUEINT64 newCount;
 
   EmptySelf();
 
   myfscanf(context, archiveFile, &newCount);
   RESCUEINT64 loop;
-  for (loop = 0; loop < newCount; loop++)
-  {
-  RescueHorizon *newObject = new RescueHorizon(context, archiveFile);
-  (*this) += newObject;
+  for (loop = 0; loop < newCount; loop++) {
+    RescueHorizon *newObject = new RescueHorizon(context, archiveFile);
+    (*this) += newObject;
   }
 }
 
-void cSetRescueHorizon::EmptySelf(void)
-{
+void cSetRescueHorizon::EmptySelf(void) {
   RESCUEINT64 loop;
- 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   count = 0;
 }
 
-void cSetRescueHorizon::operator+=(RescueHorizon *newObject)
-{
-  if (allocated == count)
-  {
-  allocated += 10;
-  objects = (RescueHorizon **) realloc(objects, sizeof(RescueHorizon *) * (size_t) allocated);
+void cSetRescueHorizon::operator+=(RescueHorizon *newObject) {
+  if (allocated == count) {
+    allocated += 10;
+    objects = (RescueHorizon **)realloc(objects, sizeof(RescueHorizon *) * (size_t)allocated);
   }
   objects[count++] = newObject;
 }
 
-RESCUEBOOL cSetRescueHorizon::operator-=(RescueHorizon *existingObject)
-{
+RESCUEBOOL cSetRescueHorizon::operator-=(RescueHorizon *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
   return found;
 }
 
-RescueHorizon *cSetRescueHorizon::ObjectNamed(const RESCUECHAR *mayBeName)
-{
+RescueHorizon *cSetRescueHorizon::ObjectNamed(const RESCUECHAR *mayBeName) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsNamed(mayBeName))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsNamed(mayBeName)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RescueHorizon *cSetRescueHorizon::ObjectIdentifiedBy(RESCUEINT64 identifier)
-{
+RescueHorizon *cSetRescueHorizon::ObjectIdentifiedBy(RESCUEINT64 identifier) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsIdentifiedBy(identifier))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsIdentifiedBy(identifier)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RESCUEBOOL cSetRescueHorizon::operator-=(RESCUEINT64 ndx)
-{
-  if (ndx >= 0 && ndx < count)
-  {
-  RESCUEINT64 loop;
+RESCUEBOOL cSetRescueHorizon::operator-=(RESCUEINT64 ndx) {
+  if (ndx >= 0 && ndx < count) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
-  return TRUE;
-  }
-  else
-  {
-  return FALSE;
+    }
+    return TRUE;
+  } else {
+    return FALSE;
   }
 }
 
-RescueHorizon *cSetRescueHorizon::NthObject(RESCUEINT64 ordinal)
-{
-  if (ordinal < 0 || ordinal >= count)
-  {
-  return 0;
-  }
-  else
-  {
-  return objects[ordinal];
+RescueHorizon *cSetRescueHorizon::NthObject(RESCUEINT64 ordinal) {
+  if (ordinal < 0 || ordinal >= count) {
+    return 0;
+  } else {
+    return objects[ordinal];
   }
 }
 
-RESCUEINT64 cSetRescueHorizon::Count64(void)
-{
-  return count;
-}
+RESCUEINT64 cSetRescueHorizon::Count64(void) { return count; }
 
-RESCUEINT32 cSetRescueHorizon::Count(void)
-{
-  return (RESCUEINT32) count;
-}
+RESCUEINT32 cSetRescueHorizon::Count(void) { return (RESCUEINT32)count; }
 
-void cSetRescueHorizon::FindUniquePropertyNames(cSetString *container)
-{
+void cSetRescueHorizon::FindUniquePropertyNames(cSetString *container) {
   int loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->FindUniquePropertyNames(container);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->FindUniquePropertyNames(container);
   }
 }
 
-RESCUEINT32 cSetRescueHorizon::Count(RESCUEBOOL throwIfTrue)
-{
-  if (count > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cSetRescueHorizon::Count(RESCUEBOOL throwIfTrue) {
+  if (count > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) count;
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)count;
   }
 }
-
-
-
-

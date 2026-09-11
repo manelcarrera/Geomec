@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // PolyLineGroup.h: interface for the CPolyLineGroup class.
 //
 
@@ -12,12 +12,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class GEOMETRY_EXPORT  CPolyLineGroup  
-{
+class GEOMETRY_EXPORT CPolyLineGroup {
 public:
   CPolyLineGroup();
   virtual ~CPolyLineGroup();
-
 };
 
 #endif // !defined(AFX_POLYLINEGROUP_H__ACB45514_F9A0_477E_A4DD_B4D4DFBD00CE__INCLUDED_)

@@ -3,8 +3,7 @@
 
 #include "ProgressBase.h"
 
-class IDualProgressBase : public CProgressBase
-{
+class IDualProgressBase : public CProgressBase {
 public:
   IDualProgressBase();
   virtual ~IDualProgressBase();
@@ -13,13 +12,13 @@ public:
 
   virtual void AddSteps(int steps);
   virtual void Step(int steps = 1);
-  virtual void StatusMessage(const QString& message);
+  virtual void StatusMessage(const QString &message);
 
-  virtual void NextJob(const QString& secondaryTitle);
+  virtual void NextJob(const QString &secondaryTitle);
 
 private:
-  IDualProgressBase(const IDualProgressBase& rhs);
-  IDualProgressBase& operator = (const IDualProgressBase& rhs);
+  IDualProgressBase(const IDualProgressBase &rhs);
+  IDualProgressBase &operator=(const IDualProgressBase &rhs);
 };
 
-#endif  // _IDualProgressBase_h_
+#endif // _IDualProgressBase_h_

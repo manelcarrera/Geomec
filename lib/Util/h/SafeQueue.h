@@ -1,28 +1,19 @@
 #ifndef SAFE_QUEUE
 #define SAFE_QUEUE
 
-#include <queue>
-#include <mutex>
 #include <condition_variable>
+#include <mutex>
+#include <queue>
 
 // A threadsafe-queue.
-template <class T>
-class SafeQueue
-{
+template <class T> class SafeQueue {
 public:
+  SafeQueue(void) : q(), m(), c() {}
 
-  SafeQueue(void)
-  : q()
-  , m()
-  , c()
-  {}
-
-  ~SafeQueue(void)
-  {}
+  ~SafeQueue(void) {}
 
   // Add an element to the queue.
-  void enqueue(T t)
-  {
+  void enqueue(T t) {
     std::lock_guard<std::mutex> lock(m);
     q.push(t);
     c.notify_one();
@@ -30,11 +21,9 @@ public:
 
   // Get the "front"-element.
   // If the queue is empty, wait till a element is avaiable.
-  T dequeue(void)
-  {
+  T dequeue(void) {
     std::unique_lock<std::mutex> lock(m);
-    while(q.empty())
-    {
+    while (q.empty()) {
       // release lock as long as the wait and reaquire it afterwards.
       c.wait(lock);
     }
@@ -43,17 +32,15 @@ public:
     return val;
   }
 
-  int size()
-  {
+  int size() {
     std::unique_lock<std::mutex> lock(m);
     return (int)q.size();
   }
 
-  void clear()
-  {
+  void clear() {
     std::unique_lock<std::mutex> lock(m);
     std::queue<T> empty;
-    std::swap( q, empty );
+    std::swap(q, empty);
   }
 
 private:

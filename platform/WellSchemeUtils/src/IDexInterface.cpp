@@ -2,9 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+#include "IDexInterface.h"
 #include "stdafx.h"
 #include "wellschemeutils.h"
-#include "IDexInterface.h"
 
 #ifdef USE_DEX
 /*
@@ -16,48 +16,40 @@
   #pragma comment(linker, "/DELAYLOAD:dex.dll")
 #endif
 */
-#include "dexui.h"
 #include "dexiface.h"
+#include "dexui.h"
 
 #endif // USE_DEX
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-IDexInterface::IDexInterface()
-{
+IDexInterface::IDexInterface() {}
 
-}
+IDexInterface::~IDexInterface() {}
 
-IDexInterface::~IDexInterface()
-{
-
-}
-
-
-BOOL IDexInterface::InitDEXForImport(QString path_name, QString &strError)
-{
+BOOL IDexInterface::InitDEXForImport(QString path_name, QString &strError) {
 #ifdef USE_DEX
 
   char *error_msg;
   BOOL bState = TRUE;
   bState = DexAttach(&error_msg);
-  
-  CFileStatus status;
-  if(bState)
-    bState = (CFile::GetStatus(path_name.toAscii().constData(), status) && DexOpen(path_name.toAscii().constData(), &error_msg, FALSE));
 
-  if(!bState)
-  {
+  CFileStatus status;
+  if (bState)
+    bState = (CFile::GetStatus(path_name.toAscii().constData(), status) &&
+              DexOpen(path_name.toAscii().constData(), &error_msg, FALSE));
+
+  if (!bState) {
     strError = error_msg; // deep copy
     DexDetach();
     return bState;
@@ -72,12 +64,10 @@ BOOL IDexInterface::InitDEXForImport(QString path_name, QString &strError)
 #endif // USE_DEX
 }
 
-BOOL IDexInterface::CloseDEX(QString &strError)
-{
+BOOL IDexInterface::CloseDEX(QString &strError) {
 #ifdef USE_DEX
 
-  if(!DexDetach())
-  {
+  if (!DexDetach()) {
     strError = "Unable to detach DEX.";
     return FALSE;
   }
@@ -91,48 +81,41 @@ BOOL IDexInterface::CloseDEX(QString &strError)
 #endif // USE_DEX
 }
 
-void IDexInterface::ExportValue(const char *table, const char *field, const char *value) const
-{
+void IDexInterface::ExportValue(const char *table, const char *field, const char *value) const {
 #ifdef USE_DEX
-  VERIFY(DexPutValue(table, field, value)); 
+  VERIFY(DexPutValue(table, field, value));
 #endif
 }
 
-void IDexInterface::ExportValue(const char *table, const char *field, int value) const
-{
+void IDexInterface::ExportValue(const char *table, const char *field, int value) const {
 #ifdef USE_DEX
-  VERIFY(DexPutValue(table, field, ConvertNumberToString(value).toAscii().constData())); 
+  VERIFY(DexPutValue(table, field, ConvertNumberToString(value).toAscii().constData()));
 #endif
 }
 
-void IDexInterface::ExportValue(const char *table, const char *field, const double &value) const 
-{
+void IDexInterface::ExportValue(const char *table, const char *field, const double &value) const {
 #ifdef USE_DEX
-  VERIFY(DexPutValue(table, field, ConvertNumberToString(value).toAscii().constData())); 
+  VERIFY(DexPutValue(table, field, ConvertNumberToString(value).toAscii().constData()));
 #endif
 }
 
-void IDexInterface::ExportValue(const char *table, const char *field, const QDate &value) const
-{
+void IDexInterface::ExportValue(const char *table, const char *field, const QDate &value) const {
 #ifdef USE_DEX
-  VERIFY(DexPutValue(table, field, ConvertDateToString(value))); 
+  VERIFY(DexPutValue(table, field, ConvertDateToString(value)));
 #endif
 }
 
-QString IDexInterface::ConvertNumberToString(int value) const
-{
+QString IDexInterface::ConvertNumberToString(int value) const {
   QString str = QString("%1").arg(value, 0, 10);
   return str;
 }
 
-QString IDexInterface::ConvertNumberToString(const double &value) const
-{
-  QString str = QString("%1").arg(value, 0, 'G'); 
+QString IDexInterface::ConvertNumberToString(const double &value) const {
+  QString str = QString("%1").arg(value, 0, 'G');
   return str;
 }
 
-const char* IDexInterface::ConvertDateToString(const QDate &value) const
-{
+const char *IDexInterface::ConvertDateToString(const QDate &value) const {
 #ifdef USE_DEX
 
   char *date;
@@ -147,35 +130,31 @@ const char* IDexInterface::ConvertDateToString(const QDate &value) const
 #endif // USE_DEX
 }
 
-bool IDexInterface::DexAvailable()
-{
+bool IDexInterface::DexAvailable() {
 #ifdef USE_DEX
   char *error;
   char *dex_path;
   dex_path = DiGetenv("DEX_PATH");
-  if(!dex_path)
+  if (!dex_path)
     return false;
-  
+
   CFileFind finder;
-  
+
   char *dex_dll = strdup(dex_path);
   strcat(dex_dll, "\\dex.dll");
-  if(!finder.FindFile(dex_dll))
+  if (!finder.FindFile(dex_dll))
     return false;
 
   dex_dll = strdup(dex_path);
   strcat(dex_dll, "\\dexui.dll");
-  if(!finder.FindFile(dex_dll))
+  if (!finder.FindFile(dex_dll))
     return false;
-  
-  try
-  {
+
+  try {
     DexAttach(&error);
     DexDetach();
-  }
-  catch(...)
-  {
-    return false;	
+  } catch (...) {
+    return false;
   }
 
   return true;

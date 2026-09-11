@@ -3,24 +3,20 @@
 
 #include "ResponseTypeBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseTypefn : public CResponseTypeBase
-{
-  public:
-  CResponseTypefn(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CResponseTypefn : public CResponseTypeBase {
+public:
+  CResponseTypefn(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
   virtual ~CResponseTypefn();
 
-  virtual double calculate(const TObject& object,
-      const TFailureMode& failureMode);
+  virtual double calculate(const TObject &object, const TFailureMode &failureMode);
 
-  private:
-  CResponseTypefn(const CResponseTypefn& rhs);
-  CResponseTypefn& operator = (CResponseTypefn rhs);
+private:
+  CResponseTypefn(const CResponseTypefn &rhs);
+  CResponseTypefn &operator=(CResponseTypefn rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseTypefn_h_
+#endif // _cora_ResponseTypefn_h_

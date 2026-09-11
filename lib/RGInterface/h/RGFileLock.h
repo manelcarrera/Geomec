@@ -17,35 +17,31 @@ class RGFileLockImpl;
 ///////////////////////////////////////////////////////////////////////////////
 /// Sync the two parties that use the RGInterface communication file.
 ///////////////////////////////////////////////////////////////////////////////
-class INTERFACE_RGINTERFACE RGFileLock : public RGLock
-{
+class INTERFACE_RGINTERFACE RGFileLock : public RGLock {
 public:
+  /// @brief Constructor of the sync mechanism.
+  /// @param role provide the mode the sync is running.
+  /// @param modelName provide the location of the sync file.
+  RGFileLock(RGSync::ProcessRole role, const std::string &modelName);
 
-   /// @brief Constructor of the sync mechanism.
-   /// @param role provide the mode the sync is running.
-   /// @param modelName provide the location of the sync file.
-   RGFileLock( RGSync::ProcessRole role, const std::string& modelName );
+  virtual ~RGFileLock();
 
-   virtual ~RGFileLock();
+  /// @brief Initialize the sync mechanism.
+  virtual void init();
 
-   /// @brief Initialize the sync mechanism. 
-   virtual void init();
+  /// @brief Lock the file.
+  virtual void lock();
 
-   /// @brief Lock the file.
-   virtual void lock();
+  /// @brief release all the resources so the other process can continue.
+  virtual void release();
 
-   /// @brief release all the resources so the other process can continue.
-   virtual void release();
-
-   /// @brief wait for the other process to finish.
-   /// @param timeout number of seconds the method will wait.
-   /// @return true if lock is given free. false if the timeout has expired.
-   virtual bool waitFor(int timeout);
+  /// @brief wait for the other process to finish.
+  /// @param timeout number of seconds the method will wait.
+  /// @return true if lock is given free. false if the timeout has expired.
+  virtual bool waitFor(int timeout);
 
 private:
-   
-   RGFileLockImpl* m_impl;
+  RGFileLockImpl *m_impl;
 };
 
 #endif // RG_FILELOCK_H_
-

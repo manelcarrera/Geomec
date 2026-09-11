@@ -13,8 +13,7 @@
 
 namespace dia {
 
-class CWeightLoad : public IDirectedLoad  
-{
+class CWeightLoad : public IDirectedLoad {
 public:
   // size is gravity acceleration g
   CWeightLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection);
@@ -23,6 +22,6 @@ public:
   virtual bool WriteFilos() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IDCWEIGHTLOAD_H__BC83A16C_ED1D_4A7B_AFBB_A605247E41DA__INCLUDED_)

@@ -1,16 +1,16 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ITetrahedron.cpp: implementation of the ITetrahedron class.
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "dimple.h"
-#include <cmath>
-#include "Vector.h"
+#include "ITetrahedron.h"
+#include "BodyLine.h"
+#include "BodyTriangle.h"
 #include "Matrix.h"
 #include "Plane.h"
-#include "ITetrahedron.h"
-#include "BodyTriangle.h"
-#include "BodyLine.h"
+#include "Vector.h"
+#include "dimple.h"
+#include <cmath>
 
 #include "lbel.h"
 
@@ -22,36 +22,20 @@ namespace {
 
 tbb::spin_rw_mutex myGlobalITetrahedronMutex[16];
 
-}
+} // namespace
 
+static const int quad_point_indices[] = {0, 2, 4, 9};
 
-static const int quad_point_indices[] =
-{
-  0,
-  2,
-  4,
-  9
-};
-
-static const int cubic_point_indices[] =
-{
-  0,
-  3,
-  6,
-  15
-};
+static const int cubic_point_indices[] = {0, 3, 6, 15};
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 namespace geo {
 
-void ITetrahedron::BuildIntegrationPoints(IElement::TIntPtVec& vec,
-                                          int                  numint)
-{
+void ITetrahedron::BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint) {
   int i;
-  for(i = 0; i < numint; i++)
-  {
+  for (i = 0; i < numint; i++) {
     // the volume hammer coordinates returned include the fourth
     // (dependent) coordinate 1 - xi - eta - zeta
     double coord[4];
@@ -66,60 +50,52 @@ void ITetrahedron::BuildIntegrationPoints(IElement::TIntPtVec& vec,
   }
 }
 
-const IElement::TIntPtVec& ITetrahedron::IntegrationPoints( int order )
-{
+const IElement::TIntPtVec &ITetrahedron::IntegrationPoints(int order) {
   // integration point location and weights
   static TIntPtVec s_LinearIntegrationPoints;
   static TIntPtVec s_QuadIntegrationPoints;
   static TIntPtVec s_CubicIntegrationPoints;
 
-  switch( order ) {
+  switch (order) {
   case 1:
-  if ( s_LinearIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_LinearIntegrationPoints, 1 );
+    if (s_LinearIntegrationPoints.empty())
+      BuildIntegrationPoints(s_LinearIntegrationPoints, 1);
     return s_LinearIntegrationPoints;
     break;
   case 2:
-  if ( s_QuadIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_QuadIntegrationPoints, 4 );
+    if (s_QuadIntegrationPoints.empty())
+      BuildIntegrationPoints(s_QuadIntegrationPoints, 4);
     return s_QuadIntegrationPoints;
     break;
   case 3:
-  if ( s_CubicIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_CubicIntegrationPoints, 5 );
+    if (s_CubicIntegrationPoints.empty())
+      BuildIntegrationPoints(s_CubicIntegrationPoints, 5);
     return s_CubicIntegrationPoints;
     break;
   }
 
   assert(false);
-  TIntPtVec* pBogus = 0;
+  TIntPtVec *pBogus = 0;
   return *pBogus;
 }
 
-const IElement::TIntPtVec& ITetrahedron::IntegrationPoints() const
-{
-  return IntegrationPoints( Order() );
-}
+const IElement::TIntPtVec &ITetrahedron::IntegrationPoints() const { return IntegrationPoints(Order()); }
 
-void ITetrahedron::PrepareMapping()
-{
+void ITetrahedron::PrepareMapping() {
   for (int i = 1; i < 4; ++i)
-  IntegrationPoints(i);
+    IntegrationPoints(i);
 }
 
-ITetrahedron::ITetrahedron()
-{
-}
+ITetrahedron::ITetrahedron() {}
 
-ITetrahedron::~ITetrahedron()
-{
+ITetrahedron::~ITetrahedron() {
   int i;
-  for(i = 0; i < m_vcFaces.size(); i++)
-    if(m_vcFaces[i]) delete m_vcFaces[i];                                                 
+  for (i = 0; i < m_vcFaces.size(); i++)
+    if (m_vcFaces[i])
+      delete m_vcFaces[i];
 }
 
-double ITetrahedron::SignedVolume() const
-{
+double ITetrahedron::SignedVolume() const {
   assert(Order() == 1); // won't be exact otherwise
   geo::CVector v1(Point(1) - Point(0));
   geo::CVector v2(Point(2) - Point(1));
@@ -127,15 +103,13 @@ double ITetrahedron::SignedVolume() const
   return (v1.DotProduct(v2.CrossProduct(v3))) / 6;
 }
 
-int ITetrahedron::NrOfPoints() const
-{
+int ITetrahedron::NrOfPoints() const {
   return NrOfNodes();
-//	return 4;
+  //	return 4;
 }
 
-const IPoint &ITetrahedron::Point(int nIndex) const
-{
-  return Node( nIndex );
+const IPoint &ITetrahedron::Point(int nIndex) const {
+  return Node(nIndex);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch(Order())
@@ -154,9 +128,8 @@ const IPoint &ITetrahedron::Point(int nIndex) const
 #endif
 }
 
-void ITetrahedron::Point(int nIndex, const IPoint &pt)
-{
-  Node( nIndex, pt );
+void ITetrahedron::Point(int nIndex, const IPoint &pt) {
+  Node(nIndex, pt);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch(Order())
@@ -176,43 +149,38 @@ void ITetrahedron::Point(int nIndex, const IPoint &pt)
 #endif
 }
 
-int ITetrahedron::NrOfFaces() const
-{
-  return 4;
-}
+int ITetrahedron::NrOfFaces() const { return 4; }
 
-const IFace& ITetrahedron::Face(int nIndex) const
-{
+const IFace &ITetrahedron::Face(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfFaces());
 
   {
-  int index = (intptr_t)this >> 6 & 0xf;
+    int index = (intptr_t)this >> 6 & 0xf;
 
-  tbb::spin_rw_mutex::scoped_lock lock(myGlobalITetrahedronMutex[index], false);
+    tbb::spin_rw_mutex::scoped_lock lock(myGlobalITetrahedronMutex[index], false);
 
-  if (m_vcFaces.empty())
-  {
+    if (m_vcFaces.empty()) {
       lock.upgrade_to_writer();
 
-      if (m_vcFaces.empty()) m_vcFaces.resize(4, 0);
-      if (!m_vcFaces[nIndex]) m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<ITetrahedron*>(this), nIndex);
-  }
-  else if (!m_vcFaces[nIndex])
-  {
+      if (m_vcFaces.empty())
+        m_vcFaces.resize(4, 0);
+      if (!m_vcFaces[nIndex])
+        m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<ITetrahedron *>(this), nIndex);
+    } else if (!m_vcFaces[nIndex]) {
       lock.upgrade_to_writer();
 
-      if (!m_vcFaces[nIndex]) m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<ITetrahedron*>(this), nIndex);
-  }
+      if (!m_vcFaces[nIndex])
+        m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<ITetrahedron *>(this), nIndex);
+    }
   }
 
   return *m_vcFaces[nIndex];
 }
 
-void ITetrahedron::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
-{
-  assert( FaceNodeIdxs.size() == 0 );  // Init once ...
+void ITetrahedron::InitFaceNodeIndices(std::vector<TFaceNodeVec> &FaceNodeIdxs) {
+  assert(FaceNodeIdxs.size() == 0); // Init once ...
 
-  FaceNodeIdxs.resize(3, TFaceNodeVec(4) );
+  FaceNodeIdxs.resize(3, TFaceNodeVec(4));
 
   // Initialise for First Order elements
   // Face 0
@@ -317,58 +285,43 @@ void ITetrahedron::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs 
   FaceNodeIdxs[2][3][8] = 1;
 }
 
-const ITetrahedron::TIndexVec& ITetrahedron::FacePointIndices(int nIndex) const
-{
-  return FaceNodeIndices( 1, nIndex );
-}
+const ITetrahedron::TIndexVec &ITetrahedron::FacePointIndices(int nIndex) const { return FaceNodeIndices(1, nIndex); }
 
-int ITetrahedron::NrOfLines() const
-{
-  return 6;
-}
+int ITetrahedron::NrOfLines() const { return 6; }
 
-const ILine &ITetrahedron::Line(int nIndex) const
-{
+const ILine &ITetrahedron::Line(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfLines());
 
   {
-  int index = (intptr_t)this >> 6 & 0xf;
+    int index = (intptr_t)this >> 6 & 0xf;
 
-  tbb::spin_rw_mutex::scoped_lock lock(myGlobalITetrahedronMutex[index], false);
+    tbb::spin_rw_mutex::scoped_lock lock(myGlobalITetrahedronMutex[index], false);
 
-  if (m_vcLines.empty())
-  {
+    if (m_vcLines.empty()) {
       lock.upgrade_to_writer();
 
-      if (m_vcLines.empty()) m_vcLines.resize(NrOfLines(), 0);
+      if (m_vcLines.empty())
+        m_vcLines.resize(NrOfLines(), 0);
 
       if (!m_vcLines[nIndex])
-    m_vcLines[nIndex] = new CBodyLine(*const_cast<ITetrahedron*>(this), nIndex);
-  }
-  else if (!m_vcLines[nIndex])
-  {
+        m_vcLines[nIndex] = new CBodyLine(*const_cast<ITetrahedron *>(this), nIndex);
+    } else if (!m_vcLines[nIndex]) {
       lock.upgrade_to_writer();
 
       if (!m_vcLines[nIndex])
-    m_vcLines[nIndex] = new CBodyLine(*const_cast<ITetrahedron*>(this), nIndex);
-  }
+        m_vcLines[nIndex] = new CBodyLine(*const_cast<ITetrahedron *>(this), nIndex);
+    }
   }
 
   return *m_vcLines[nIndex];
 }
 
+const ITetrahedron::TIndexVec &ITetrahedron::LinePointIndices(int nIndex) const { return LineNodeIndices(1, nIndex); }
 
+void ITetrahedron::InitLineNodeIndices(std::vector<TLineNodeVec> &LineNodeIdxs) {
+  assert(LineNodeIdxs.size() == 0); // Init once ...
 
-const ITetrahedron::TIndexVec& ITetrahedron::LinePointIndices(int nIndex) const
-{
-  return LineNodeIndices( 1, nIndex );
-}
-
-void ITetrahedron::InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs )
-{
-  assert( LineNodeIdxs.size() == 0 );  // Init once ...
-
-  LineNodeIdxs.resize(3, TLineNodeVec(6) );
+  LineNodeIdxs.resize(3, TLineNodeVec(6));
 
   // Initialise for First Order elements
   // Line 0
@@ -467,40 +420,35 @@ void ITetrahedron::InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs 
   LineNodeIdxs[2][5][3] = 15;
 }
 
-const ITetrahedron::TIndexVec& ITetrahedron::LineNodeIndices( int order,
-                                                              int nIndex )
-{
+const ITetrahedron::TIndexVec &ITetrahedron::LineNodeIndices(int order, int nIndex) {
   static std::vector<TLineNodeVec> s_LineNodeIndices;
 
-  assert( nIndex >= 0 && nIndex < 6 );
-  if( s_LineNodeIndices.size() == 0 ) InitLineNodeIndices( s_LineNodeIndices );
+  assert(nIndex >= 0 && nIndex < 6);
+  if (s_LineNodeIndices.size() == 0)
+    InitLineNodeIndices(s_LineNodeIndices);
 
-  return s_LineNodeIndices[order-1][nIndex];
+  return s_LineNodeIndices[order - 1][nIndex];
 }
 
-const ITetrahedron::TIndexVec& ITetrahedron::LineNodeIndices( int nIndex ) const
-{
-  return LineNodeIndices( Order(), nIndex );
+const ITetrahedron::TIndexVec &ITetrahedron::LineNodeIndices(int nIndex) const {
+  return LineNodeIndices(Order(), nIndex);
 }
 
-const ITetrahedron::TIndexVec& ITetrahedron::FaceNodeIndices( int order,
-                                                              int nIndex )
-{
+const ITetrahedron::TIndexVec &ITetrahedron::FaceNodeIndices(int order, int nIndex) {
   static std::vector<TFaceNodeVec> s_FaceNodeIndices;
 
-  assert(nIndex >= 0 && nIndex < 4 );
-  if( s_FaceNodeIndices.size() == 0 ) InitFaceNodeIndices( s_FaceNodeIndices );
+  assert(nIndex >= 0 && nIndex < 4);
+  if (s_FaceNodeIndices.size() == 0)
+    InitFaceNodeIndices(s_FaceNodeIndices);
 
-  return s_FaceNodeIndices[order-1][nIndex];
+  return s_FaceNodeIndices[order - 1][nIndex];
 }
 
-const ITetrahedron::TIndexVec& ITetrahedron::FaceNodeIndices(int nIndex) const
-{
-  return FaceNodeIndices( Order(), nIndex );
+const ITetrahedron::TIndexVec &ITetrahedron::FaceNodeIndices(int nIndex) const {
+  return FaceNodeIndices(Order(), nIndex);
 }
 
-IElement::TDoubleVec ITetrahedron::ShapeFunction(const IElement::TDoubleVec& isocoords) const
-{
+IElement::TDoubleVec ITetrahedron::ShapeFunction(const IElement::TDoubleVec &isocoords) const {
   assert(isocoords.size() == 3); // xi, eta and zeta coordinate
 
   double *values = new double[NrOfNodes()];
@@ -511,8 +459,7 @@ IElement::TDoubleVec ITetrahedron::ShapeFunction(const IElement::TDoubleVec& iso
   coords[2] = isocoords[2];
   coords[3] = 1 - isocoords[0] - isocoords[1] - isocoords[2];
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     TetraHedronShape(coords, values);
     break;
@@ -529,7 +476,8 @@ IElement::TDoubleVec ITetrahedron::ShapeFunction(const IElement::TDoubleVec& iso
   IElement::TDoubleVec vcRet(NrOfNodes());
 
   int i;
-  for(i = 0; i < NrOfNodes(); i++) vcRet[i] = values[i];
+  for (i = 0; i < NrOfNodes(); i++)
+    vcRet[i] = values[i];
 
   delete[] values;
   delete[] coords;
@@ -537,33 +485,29 @@ IElement::TDoubleVec ITetrahedron::ShapeFunction(const IElement::TDoubleVec& iso
   return vcRet;
 }
 
-bool ITetrahedron::CheckOrientation(const IPoint &p0, const IPoint &p1, const IPoint &p2, const IPoint &p3)
-{
+bool ITetrahedron::CheckOrientation(const IPoint &p0, const IPoint &p1, const IPoint &p2, const IPoint &p3) {
   CPlane plane(p1, p2, p3);
   double dist = plane.SignedDistance(p0);
-  
+
   assert(fabs(dist) > EPS);
 
-  if(plane.SignedDistance(p0) > 0)
+  if (plane.SignedDistance(p0) > 0)
     return false; // points are supplied in a wrong order, swap p2 and p3 around
   else
     return true; // order of points is correct
-
 }
 
-double ITetrahedron::InfluenceVolume(int /*nNode*/) const
-{
+double ITetrahedron::InfluenceVolume(int /*nNode*/) const {
   // This function returns the influencing volume for the node
   // at the moment 1/4 of the volume is returned, but this is too simple
   return (1.0 / 4.0) * Volume();
 }
 
-CMatrix ITetrahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const
-{
+CMatrix ITetrahedron::ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const {
   assert(isocoords.size() == 3);
 
   int i;
-  for(i = 0; i < isocoords.size(); i++)
+  for (i = 0; i < isocoords.size(); i++)
     assert(isocoords[i] >= 0.0 && isocoords[i] <= 1.0);
 
   // 3 rows, NrOfNodes() columns
@@ -585,9 +529,8 @@ CMatrix ITetrahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords
 
   assert(volcoord[3] >= 0.0);
 
-  switch(Order())
-  {
-  case 1: 
+  switch (Order()) {
+  case 1:
     DerivedTetraHedronShape(p);
     break;
   case 2:
@@ -603,10 +546,8 @@ CMatrix ITetrahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords
   double *v = p;
 
   int j;
-  for(j = 0; j < NrOfNodes(); j++)
-  {
-    for(i = 0; i < 3; i++)
-    {
+  for (j = 0; j < NrOfNodes(); j++) {
+    for (i = 0; i < 3; i++) {
       ret.Value(i, j, *(v++));
     }
   }
@@ -615,12 +556,10 @@ CMatrix ITetrahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords
   return ret;
 }
 
-std::vector<IElement::TDoubleVec> ITetrahedron::IsoCoordinates() const
-{
+std::vector<IElement::TDoubleVec> ITetrahedron::IsoCoordinates() const {
   std::vector<IElement::TDoubleVec> ret;
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     // node 1
     ret.push_back(MakeVec(1, 0, 0));
@@ -633,59 +572,59 @@ std::vector<IElement::TDoubleVec> ITetrahedron::IsoCoordinates() const
     break;
   case 2:
     // node 1
-    ret.push_back(MakeVec(1,   0,   0  ));
+    ret.push_back(MakeVec(1, 0, 0));
     // node 2
-    ret.push_back(MakeVec(0.5, 0.5, 0  ));
+    ret.push_back(MakeVec(0.5, 0.5, 0));
     // node 3
-    ret.push_back(MakeVec(0,   1,   0  ));
+    ret.push_back(MakeVec(0, 1, 0));
     // node 4
-    ret.push_back(MakeVec(0,   0.5, 0.5));
+    ret.push_back(MakeVec(0, 0.5, 0.5));
     // node 5
-    ret.push_back(MakeVec(0,   0,   1  ));
+    ret.push_back(MakeVec(0, 0, 1));
     // node 6
-    ret.push_back(MakeVec(0.5, 0,   0.5));
+    ret.push_back(MakeVec(0.5, 0, 0.5));
     // node 7
-    ret.push_back(MakeVec(0.5, 0,   0  ));
+    ret.push_back(MakeVec(0.5, 0, 0));
     // node 8
-    ret.push_back(MakeVec(0,   0.5, 0  ));
+    ret.push_back(MakeVec(0, 0.5, 0));
     // node 9
-    ret.push_back(MakeVec(0,   0,   0.5));
+    ret.push_back(MakeVec(0, 0, 0.5));
     // node 10
-    ret.push_back(MakeVec(0,   0,   0  ));
+    ret.push_back(MakeVec(0, 0, 0));
     break;
   case 3:
     // node 1
-    ret.push_back(MakeVec(1,	0,	0   ));
+    ret.push_back(MakeVec(1, 0, 0));
     // node 2
-    ret.push_back(MakeVec(2./3, 1./3, 0   ));
+    ret.push_back(MakeVec(2. / 3, 1. / 3, 0));
     // node 3
-    ret.push_back(MakeVec(1./3, 2./3, 0   ));
+    ret.push_back(MakeVec(1. / 3, 2. / 3, 0));
     // node 4
-    ret.push_back(MakeVec(0,	1,	0   ));
+    ret.push_back(MakeVec(0, 1, 0));
     // node 5
-    ret.push_back(MakeVec(0,	2./3, 1./3));
+    ret.push_back(MakeVec(0, 2. / 3, 1. / 3));
     // node 6
-    ret.push_back(MakeVec(0,	1./3, 2./3));
+    ret.push_back(MakeVec(0, 1. / 3, 2. / 3));
     // node 7
-    ret.push_back(MakeVec(0,	0,	1   ));
+    ret.push_back(MakeVec(0, 0, 1));
     // node 8
-    ret.push_back(MakeVec(1./3, 0,	2./3));
+    ret.push_back(MakeVec(1. / 3, 0, 2. / 3));
     // node 9
-    ret.push_back(MakeVec(2./3, 0,	1./3));
+    ret.push_back(MakeVec(2. / 3, 0, 1. / 3));
     // node 10
-    ret.push_back(MakeVec(2./3, 0,	0   ));
+    ret.push_back(MakeVec(2. / 3, 0, 0));
     // node 11
-    ret.push_back(MakeVec(0,	2./3, 0   ));
+    ret.push_back(MakeVec(0, 2. / 3, 0));
     // node 12
-    ret.push_back(MakeVec(0,	0,	2./3));
+    ret.push_back(MakeVec(0, 0, 2. / 3));
     // node 13
-    ret.push_back(MakeVec(1./3, 0,	0   ));
+    ret.push_back(MakeVec(1. / 3, 0, 0));
     // node 14
-    ret.push_back(MakeVec(0,	1./3, 0   ));
+    ret.push_back(MakeVec(0, 1. / 3, 0));
     // node 15
-    ret.push_back(MakeVec(0,	0,	1./3));
+    ret.push_back(MakeVec(0, 0, 1. / 3));
     // node 16
-    ret.push_back(MakeVec(0,	0,	0   ));
+    ret.push_back(MakeVec(0, 0, 0));
     break;
   default:
     assert(false);
@@ -694,13 +633,9 @@ std::vector<IElement::TDoubleVec> ITetrahedron::IsoCoordinates() const
   return ret;
 }
 
-double ITetrahedron::Size() const
-{
-  return -IBody::Size();
-}
+double ITetrahedron::Size() const { return -IBody::Size(); }
 
-IElement::TDoubleVec ITetrahedron::WorldToIso1stOrder(const IPoint& point) const
-{
+IElement::TDoubleVec ITetrahedron::WorldToIso1stOrder(const IPoint &point) const {
   // fast implementation for 1st order tetrahedrons
   assert(Order() == 1);
   assert(NrOfPoints() == 4);
@@ -731,30 +666,25 @@ IElement::TDoubleVec ITetrahedron::WorldToIso1stOrder(const IPoint& point) const
   vcRet[0] = ret.Value(0, 0);
   vcRet[1] = ret.Value(1, 0);
   vcRet[2] = ret.Value(2, 0);
-  
+
   return vcRet;
 }
 
-IElement::TDoubleVec ITetrahedron::WorldToIso(const IPoint& point) const
-{
-  if(Order() == 1) return WorldToIso1stOrder(point);
+IElement::TDoubleVec ITetrahedron::WorldToIso(const IPoint &point) const {
+  if (Order() == 1)
+    return WorldToIso1stOrder(point);
 
   return IBody::WorldToIso(point);
 }
 
-int ITetrahedron::IntegrationPointSize() const
-{
-  return (int)IntegrationPoints().size();
-}
+int ITetrahedron::IntegrationPointSize() const { return (int)IntegrationPoints().size(); }
 
-const IElement::TDoubleVec& ITetrahedron::IntegrationPointCoords(int nIndex) const
-{
+const IElement::TDoubleVec &ITetrahedron::IntegrationPointCoords(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].first;
 }
 
-const double& ITetrahedron::IntegrationPointWeight(int nIndex) const
-{
+const double &ITetrahedron::IntegrationPointWeight(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].second;
 }

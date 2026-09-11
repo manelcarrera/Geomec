@@ -4,47 +4,29 @@
 
 #include "2DDocument.h"
 #include "2DSegment.h"
-#include "version.h"
 #include "RingFactory.h"
+#include "version.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-C2DDocument::C2DDocument()
-: m_pBodies(0),
-  m_pPolyLines(0),
-  m_pSegments(0),
-  m_pVertices(0)
-{
+C2DDocument::C2DDocument() : m_pBodies(0), m_pPolyLines(0), m_pSegments(0), m_pVertices(0) {}
 
-}
+C2DDocument::~C2DDocument() {}
 
-C2DDocument::~C2DDocument()
-{
+QString C2DDocument::documentType() const { return QString("LineDocument"); }
 
-}
+CVersion C2DDocument::documentVersion() const { return CVersion(0, 0, 0); }
 
-QString C2DDocument::documentType() const
-{
-  return QString("LineDocument");
-}
-
-CVersion C2DDocument::documentVersion() const
-{
-  return CVersion(0, 0, 0);
-}
-
-void C2DDocument::createContainers()
-{
+void C2DDocument::createContainers() {
   m_pVertices = new C2DVertexContainer("Vertices", *this);
   m_pSegments = new C2DSegmentContainer(*this);
   m_pPolyLines = new T2DPolyLineContainer("PolyLines", *this);
   m_pBodies = new T2DBodyContainer("bodies", *this);
 }
 
-void C2DDocument::createDefaults()
-{
+void C2DDocument::createDefaults() {
   C2DVertex *p1 = new C2DVertex(0, 0, Vertices());
   C2DVertex *p2 = new C2DVertex(100, 0, Vertices());
   C2DVertex *p3 = new C2DVertex(100, 100, Vertices());
@@ -67,50 +49,43 @@ void C2DDocument::createDefaults()
   C2DPolyLine *plC = new C2DPolyLine("Line3", PolyLines());
   plC->PolyLine().PushBack(*s5);
 
-
   updateBodies();
 }
 
-void C2DDocument::updateBodies()
-{
+void C2DDocument::updateBodies() {
   // Add segments to factory
   geo::CRingFactory factory;
   int i;
-  for(i = 0; i < Segments().size(); i++)
+  for (i = 0; i < Segments().size(); i++)
     factory.AddSegment(Segments().at(i).Segment());
 
   // Calculate rings
   factory.CreateRings();
 
   // Get the entry set
-  std::set<C2DBody*> stBody;
-  for(i = 0; i < Bodies().size(); i++)
+  std::set<C2DBody *> stBody;
+  for (i = 0; i < Bodies().size(); i++)
     stBody.insert(&Bodies().at(i));
-  
-  typedef std::vector<const C2DVertex*> TVertexVec;
-  for(int nRing = 0; nRing < factory.RingSize(); nRing++)
-  {
-    const geo::CRingFactory::TRing& ring = factory.Ring(nRing);
+
+  typedef std::vector<const C2DVertex *> TVertexVec;
+  for (int nRing = 0; nRing < factory.RingSize(); nRing++) {
+    const geo::CRingFactory::TRing &ring = factory.Ring(nRing);
     TVertexVec vcVertex(ring.size());
-    for(int nVertex = 0; nVertex < ring.size(); nVertex++)
-    {
-      const C2DVertex::CSegmentPoint* pVertex = dynamic_cast<const C2DVertex::CSegmentPoint*>(ring[nVertex]);
+    for (int nVertex = 0; nVertex < ring.size(); nVertex++) {
+      const C2DVertex::CSegmentPoint *pVertex = dynamic_cast<const C2DVertex::CSegmentPoint *>(ring[nVertex]);
       ASSERT(pVertex);
       vcVertex[nVertex] = &pVertex->Vertex();
     }
 
-    std::set<IModelObject*> identifier = Identifier(vcVertex);
+    std::set<IModelObject *> identifier = Identifier(vcVertex);
 
     // Find the moste suitable compartment
     C2DBody *pBody = 0;
-    if(stBody.size() > 0)
-    {	
+    if (stBody.size() > 0) {
       int nMin = INT_MAX;
       // Do the perfect matches first
-      for(std::set<C2DBody*>::iterator it = stBody.begin(); it != stBody.end(); it++)
-      {
-        if((*it)->Resemblance(identifier) < nMin)
-        {
+      for (std::set<C2DBody *>::iterator it = stBody.begin(); it != stBody.end(); it++) {
+        if ((*it)->Resemblance(identifier) < nMin) {
           nMin = (*it)->Resemblance(identifier);
           pBody = *it;
         }
@@ -118,58 +93,46 @@ void C2DDocument::updateBodies()
 
       ASSERT(pBody);
       stBody.erase(pBody);
-    }
-    else
-    {
+    } else {
       int nMin = INT_MAX;
       // Do the perfect matches first
-      for(i = 0; i < Bodies().size(); i++)
-      {
-        if(Bodies().at(i).Resemblance(identifier) < nMin)
-        {
+      for (i = 0; i < Bodies().size(); i++) {
+        if (Bodies().at(i).Resemblance(identifier) < nMin) {
           nMin = Bodies().at(i).Resemblance(identifier);
           pBody = &Bodies().at(i);
         }
       }
       ASSERT(pBody);
-      pBody = new C2DBody(Bodies()); 
+      pBody = new C2DBody(Bodies());
     }
-    
+
     // Compartment created or found lets init
     pBody->SetPolygon(vcVertex);
     pBody->Indentifier(identifier);
   }
 
   // All compartments are assigned. Delete the left overs
-  for(std::set<C2DBody*>::iterator itc = stBody.begin(); itc != stBody.end(); itc++)
-  {
+  for (std::set<C2DBody *>::iterator itc = stBody.begin(); itc != stBody.end(); itc++) {
     delete *itc;
   }
-
 }
 
-
-std::set<IModelObject*> C2DDocument::Identifier(const std::vector<const C2DVertex*>& vcVertex) const
-{
-  std::set<IModelObject*> stNode;
-  for(int i = 0; i < (vcVertex.size() - 1); i++)
-  {
+std::set<IModelObject *> C2DDocument::Identifier(const std::vector<const C2DVertex *> &vcVertex) const {
+  std::set<IModelObject *> stNode;
+  for (int i = 0; i < (vcVertex.size() - 1); i++) {
     const C2DSegment *pSegment = 0;
-    const C2DVertex& first = *vcVertex[i];
-    const C2DVertex& second = *vcVertex[i + 1];
-    for(int i = 0; i < first.SegmentSize(); i++)
-    {
-      for(int j = 0; j < second.SegmentSize(); j++)
-      {
-        if(&first.Segment(i) == &second.Segment(j))
+    const C2DVertex &first = *vcVertex[i];
+    const C2DVertex &second = *vcVertex[i + 1];
+    for (int i = 0; i < first.SegmentSize(); i++) {
+      for (int j = 0; j < second.SegmentSize(); j++) {
+        if (&first.Segment(i) == &second.Segment(j))
           pSegment = &first.Segment(i);
       }
     }
 
     ASSERT(pSegment);
-    for(int j = 0; j < pSegment->PolyLineSize(); j++)
-    {
-      stNode.insert((IModelObject*)&pSegment->PolyLine(j));
+    for (int j = 0; j < pSegment->PolyLineSize(); j++) {
+      stNode.insert((IModelObject *)&pSegment->PolyLine(j));
     }
   }
 

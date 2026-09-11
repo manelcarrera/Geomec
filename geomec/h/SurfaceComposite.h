@@ -11,21 +11,20 @@
 
 #include "ColorNode.h"
 
-//The surface composite is the base class for horizons and 
-//faults, because they all have surfaces. This class is 
-//responsible for managing the surfaces. The class also takes 
-//care of the drag and drop of the surfaces.
+// The surface composite is the base class for horizons and
+// faults, because they all have surfaces. This class is
+// responsible for managing the surfaces. The class also takes
+// care of the drag and drop of the surfaces.
 class CSurface;
-//##ModelId=3D633E5002AB
-class CSurfaceComposite : public CColorNode
-{
+// ##ModelId=3D633E5002AB
+class CSurfaceComposite : public CColorNode {
 public:
-  //##ModelId=3D633E5002CB
+  // ##ModelId=3D633E5002CB
   virtual ~CSurfaceComposite();
 
-  //##ModelId=3D635C820231
-  typedef std::vector<CSurface*> TSurfaceVec;
-  //##ModelId=3D635C820175
+  // ##ModelId=3D635C820231
+  typedef std::vector<CSurface *> TSurfaceVec;
+  // ##ModelId=3D635C820175
   TSurfaceVec Surfaces() const;
 };
 

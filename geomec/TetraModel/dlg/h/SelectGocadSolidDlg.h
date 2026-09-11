@@ -16,26 +16,20 @@ class CListCtrlBase;
 class CGocadSolidListCtrl;
 
 #ifdef SKUA_NEW
-namespace gm_skua
-{
+namespace gm_skua {
 struct SKUAParseData;
 }
 #else
-#include "GocadImport.h"
 #include "GocadData.h"
+#include "GocadImport.h"
 #endif
 
-class CSelectGocadSolidDlg : public CDialog  
-{
+class CSelectGocadSolidDlg : public CDialog {
 public:
 #ifdef SKUA_NEW
-  CSelectGocadSolidDlg(
-  const std::vector<const gm_skua::SKUAParseData *>& solids,
-    CWnd* pParent = 0);
+  CSelectGocadSolidDlg(const std::vector<const gm_skua::SKUAParseData *> &solids, CWnd *pParent = 0);
 #else
-  CSelectGocadSolidDlg(
-  const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-  CWnd* pParent = 0);
+  CSelectGocadSolidDlg(const std::vector<QSharedPointer<CGocadData::CTSolid>> &solids, CWnd *pParent = 0);
 #endif
   virtual ~CSelectGocadSolidDlg();
 
@@ -46,41 +40,39 @@ public:
   void OnDoubleClick(int nIndex);
 
 protected:
-  void DoDataExchange(CDataExchange* pDX);
+  void DoDataExchange(CDataExchange *pDX);
   virtual BOOL OnInitDialog();
 
 private:
-  class CGocadSolidListObject : public IListObject
-  {
+  class CGocadSolidListObject : public IListObject {
   public:
-  CGocadSolidListObject(CListCtrlBase& ctrl, const CString& sName, int nVolumes, int nTetras);
+    CGocadSolidListObject(CListCtrlBase &ctrl, const CString &sName, int nVolumes, int nTetras);
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
     virtual unsigned int Icon() const;
-  virtual void OnDoubleClick();
+    virtual void OnDoubleClick();
 
   private:
-  CString m_sName;
+    CString m_sName;
   };
 
-  class CIntSubListObject : public ISubListObject
-  {
+  class CIntSubListObject : public ISubListObject {
   public:
-  CIntSubListObject(CGocadSolidListObject& parent, int nColumn, int nValue);
+    CIntSubListObject(CGocadSolidListObject &parent, int nColumn, int nValue);
     virtual QString Text() const;
     virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
+    virtual BOOL EditText(const QString &strText);
 
   private:
-  int m_nValue;
+    int m_nValue;
   };
 
-  CListCtrlBase* m_plcList;
+  CListCtrlBase *m_plcList;
 #ifdef SKUA_NEW
-  const std::vector<const gm_skua::SKUAParseData *>& m_solids;
+  const std::vector<const gm_skua::SKUAParseData *> &m_solids;
 #else
-  const std::vector <QSharedPointer <CGocadData::CTSolid> >& m_solids;
+  const std::vector<QSharedPointer<CGocadData::CTSolid>> &m_solids;
 #endif
   std::vector<int> m_vcSelected;
 };

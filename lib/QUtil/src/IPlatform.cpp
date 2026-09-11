@@ -3,12 +3,9 @@
 
 #include "IPlatform.h"
 
-IPlatform::~IPlatform()
-{
-}
+IPlatform::~IPlatform() {}
 
-IPlatform* IPlatform::instance()
-{
+IPlatform *IPlatform::instance() {
   assert(m_singleton != 0);
 
   return m_singleton;
@@ -16,8 +13,6 @@ IPlatform* IPlatform::instance()
 
 // protected
 
-IPlatform::IPlatform()
-{
-}
+IPlatform::IPlatform() {}
 
-IPlatform* IPlatform::m_singleton = 0;
+IPlatform *IPlatform::m_singleton = 0;

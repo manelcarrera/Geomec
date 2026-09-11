@@ -4,13 +4,12 @@
 #include "AttributesTemplate.h"
 #include "WellCasingRTCI.h"
 
-class CAttriWellCasingRTCI : public CAttributesTemplate<CWellCasingRTCI>
-{
+class CAttriWellCasingRTCI : public CAttributesTemplate<CWellCasingRTCI> {
 public:
-  CAttriWellCasingRTCI(CWellCasingRTCI& rtci, CWnd* pParent = 0);
+  CAttriWellCasingRTCI(CWellCasingRTCI &rtci, CWnd *pParent = 0);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 };
 
 #endif // _ATTRIWELLCASINGRTCI_H_

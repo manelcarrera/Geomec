@@ -11,34 +11,31 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Abstraction of the lock actions.
 ///////////////////////////////////////////////////////////////////////////////
-class RGFileLockImpl 
-{
+class RGFileLockImpl {
 public:
+  /// @brief Factory method.
+  static RGFileLockImpl *createSyncLock(const std::string &name);
 
-   /// @brief Factory method.
-   static RGFileLockImpl* createSyncLock( const std::string& name );
+  /// @brief destructor.
+  virtual ~RGFileLockImpl() {}
 
-   /// @brief destructor.
-   virtual ~RGFileLockImpl() {}
+  /// @brief Create the lock.
+  virtual void create() = 0;
 
-   /// @brief Create the lock.  
-   virtual void create() = 0;
+  /// @brief Does the lock exists?
+  /// @return true if the lock exists.
+  virtual bool exists() = 0;
 
-   /// @brief Does the lock exists?
-   /// @return true if the lock exists.
-   virtual bool exists() = 0;
+  /// @brief Remove the lock.
+  virtual void remove() = 0;
 
-   /// @brief Remove the lock.
-   virtual void remove() = 0;
-
-   /// @brief Wait until resource is free.
-   virtual void wait() = 0;
+  /// @brief Wait until resource is free.
+  virtual void wait() = 0;
 
 protected:
+  RGFileLockImpl(const std::string &name);
 
-   RGFileLockImpl( const std::string& name );
-
-   std::string m_name;
+  std::string m_name;
 };
 
 #endif

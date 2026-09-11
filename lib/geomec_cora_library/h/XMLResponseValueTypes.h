@@ -5,19 +5,17 @@
 
 #include "XMLResponseValueType.h"
 
-namespace cora
-{
+namespace cora {
 
-class CXMLResponseValueTypes
-{
-  public:
+class CXMLResponseValueTypes {
+public:
   CXMLResponseValueTypes();
 
-  std::ostream& operator () (std::ostream& stream) const;
+  std::ostream &operator()(std::ostream &stream) const;
 
-  private:
-  CXMLResponseValueTypes(const CXMLResponseValueTypes& rhs);
-  CXMLResponseValueTypes& operator = (CXMLResponseValueTypes rhs);
+private:
+  CXMLResponseValueTypes(const CXMLResponseValueTypes &rhs);
+  CXMLResponseValueTypes &operator=(CXMLResponseValueTypes rhs);
 
   static TXMLResponseValueTypes createResponseValueTypes();
 
@@ -28,7 +26,6 @@ class CXMLResponseValueTypes
 
 // global
 
-std::ostream& operator << (std::ostream& stream,
-  const cora::CXMLResponseValueTypes& rhs);
+std::ostream &operator<<(std::ostream &stream, const cora::CXMLResponseValueTypes &rhs);
 
-#endif  // _cora_XMLResponseValueTypes_h_
+#endif // _cora_XMLResponseValueTypes_h_

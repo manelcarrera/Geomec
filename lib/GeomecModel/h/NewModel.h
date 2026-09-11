@@ -4,15 +4,14 @@
 class CFemAppModel;
 class CFemAppGUI;
 
-class CNewModel
-{
+class CNewModel {
 public:
   CNewModel();
 
   virtual ~CNewModel();
 
-  void setModel(CFemAppModel* femAppModel);
-  void setModel(CFemAppGUI* femAppGUI);
+  void setModel(CFemAppModel *femAppModel);
+  void setModel(CFemAppGUI *femAppGUI);
 
   bool newModel(bool attachToDocument);
 
@@ -24,13 +23,13 @@ private:
   void setNewModelFunction(TNewModelFunc func);
 
 private:
-  CNewModel(const CNewModel& rhs);
-  CNewModel& operator = (const CNewModel& rhs);
+  CNewModel(const CNewModel &rhs);
+  CNewModel &operator=(const CNewModel &rhs);
 
-  CFemAppModel* m_modelConsole;
-  CFemAppGUI* m_modelGUI;
+  CFemAppModel *m_modelConsole;
+  CFemAppGUI *m_modelGUI;
 
   TNewModelFunc m_newModelFunc;
 };
 
-#endif  // _NewModel_h_
+#endif // _NewModel_h_

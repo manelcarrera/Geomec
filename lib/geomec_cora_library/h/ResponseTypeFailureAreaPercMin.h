@@ -3,25 +3,20 @@
 
 #include "ResponseTypeBaseWithValue.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseTypeFailureAreaPercMin : public CResponseTypeBaseWithValue
-{
-  public:
-  CResponseTypeFailureAreaPercMin(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CResponseTypeFailureAreaPercMin : public CResponseTypeBaseWithValue {
+public:
+  CResponseTypeFailureAreaPercMin(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
   virtual ~CResponseTypeFailureAreaPercMin();
 
-  virtual double calculate(const TObject& object,
-      const TFailureMode& failureMode);
+  virtual double calculate(const TObject &object, const TFailureMode &failureMode);
 
-  private:
-  CResponseTypeFailureAreaPercMin(const CResponseTypeFailureAreaPercMin& rhs);
-  CResponseTypeFailureAreaPercMin& operator = (
-      CResponseTypeFailureAreaPercMin rhs);
+private:
+  CResponseTypeFailureAreaPercMin(const CResponseTypeFailureAreaPercMin &rhs);
+  CResponseTypeFailureAreaPercMin &operator=(CResponseTypeFailureAreaPercMin rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseTypeFailureAreaPercMin_h_
+#endif // _cora_ResponseTypeFailureAreaPercMin_h_

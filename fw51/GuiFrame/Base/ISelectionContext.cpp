@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "ISelectionContext.h"
 #include <cassert>
 
@@ -11,30 +11,15 @@
 /*!
   Constructs a selection context for the owner object.
 */
-ISelectionContext::ISelectionContext( QObject* owner )
-: QObject( owner )
-{
-  setObjectName( "ISelectionContext" );
-}
+ISelectionContext::ISelectionContext(QObject *owner) : QObject(owner) { setObjectName("ISelectionContext"); }
 
 /*!
   Destroys the object and releases any allocated resources.
 */
-ISelectionContext::~ISelectionContext()
-{
-}
+ISelectionContext::~ISelectionContext() {}
 
-void ISelectionContext::deleteSelection()
-{
-  assert( false );
-}
+void ISelectionContext::deleteSelection() { assert(false); }
 
-bool ISelectionContext::canDeleteSelection() const
-{
-  return false;
-}
+bool ISelectionContext::canDeleteSelection() const { return false; }
 
-void ISelectionContext::setDirty()
-{
-  emit selectionChanged();
-}
+void ISelectionContext::setDirty() { emit selectionChanged(); }

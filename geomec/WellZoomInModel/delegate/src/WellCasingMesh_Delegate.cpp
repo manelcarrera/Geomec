@@ -1,38 +1,29 @@
 #include "stdafx.h"
 
-#include "WellCasingMesh_Delegate.h"
-#include "WellCasingMesh.h"
 #include "AttriWellCasingMeshDlg.h"
+#include "WellCasingMesh.h"
+#include "WellCasingMesh_Delegate.h"
 
-CWellCasingMesh_Delegate::CWellCasingMesh_Delegate(
-  CWellCasingMesh* wellCasingMesh)
-: IWellMesh_Delegate(wellCasingMesh)
-, m_wellCasingMesh(wellCasingMesh)
-{
-}
+CWellCasingMesh_Delegate::CWellCasingMesh_Delegate(CWellCasingMesh *wellCasingMesh)
+    : IWellMesh_Delegate(wellCasingMesh), m_wellCasingMesh(wellCasingMesh) {}
 
-bool CWellCasingMesh_Delegate::Attributes()
-{
+bool CWellCasingMesh_Delegate::Attributes() {
   m_wellCasingMesh->setInvalidateAfterDlg(false);
 
   CAttriWellCasingMeshDlg dlg(*m_wellCasingMesh);
   bool bRet;
 
   {
-  COperation oper(m_wellCasingMesh->Model());
+    COperation oper(m_wellCasingMesh->Model());
 
-  bRet = (dlg.DoModal() == IDOK);
+    bRet = (dlg.DoModal() == IDOK);
 
-  if (m_wellCasingMesh->getInvalidateAfterDlg())
-  {
+    if (m_wellCasingMesh->getInvalidateAfterDlg()) {
       m_wellCasingMesh->InvalidateMesh();
-  }
+    }
   }
 
   return bRet;
 }
 
-bool CWellCasingMesh_Delegate::IsMesh() const
-{
-  return m_wellCasingMesh->IsMesh();
-}
+bool CWellCasingMesh_Delegate::IsMesh() const { return m_wellCasingMesh->IsMesh(); }

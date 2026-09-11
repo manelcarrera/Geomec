@@ -13,29 +13,26 @@
 #include "AnalysisPoint.h"
 #include "AttributesTemplate.h"
 
-class CAttriAnalysisPoint : public CGeomecAttriTemp<CAnalysisPoint>
-{
-// Construction
+class CAttriAnalysisPoint : public CGeomecAttriTemp<CAnalysisPoint> {
+  // Construction
 public:
-  CAttriAnalysisPoint(CAnalysisPoint& point, CWnd* pParent = NULL);   // standard constructor
+  CAttriAnalysisPoint(CAnalysisPoint &point, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriAnalysisPoint)
   enum { IDD = IDD_ATTRI_ANALYSIS_POINT };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriAnalysisPoint)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriAnalysisPoint)
   afx_msg void OnColor();

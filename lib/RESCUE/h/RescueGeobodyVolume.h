@@ -10,49 +10,47 @@
 #ifndef RescueGeobodyVolume_H
 #define RescueGeobodyVolume_H
 
-#include "myHeaders.h"
-#include "RescueHistoryObject.h"
-#include "cBagInt.h"
 #include "RescueCoordinateSystem.h"
 #include "RescueGeobodySurface.h"
-#include "cSetRescueGeobodySurface.h"
+#include "RescueHistoryObject.h"
+#include "cBagInt.h"
 #include "cSetRescueEdgeSetStub.h"
+#include "cSetRescueGeobodySurface.h"
+#include "myHeaders.h"
 class RescueEdgeSetStub;
 
-class RescueGeobodyVolume:public RescueHistoryObject
-{
+class RescueGeobodyVolume : public RescueHistoryObject {
 public:
   void AddGeobodySurface(RescueSurface *existingSurface, RescueGeobodySurface::Role role);
-                  // The surface should already be owned by some other object in the
-                  // model (for example, it could be a RescueSection or a RescueReferenceSurface
-                  // owned by RescueModel.  This adds top, bottom, side, and interior surfaces.
+  // The surface should already be owned by some other object in the
+  // model (for example, it could be a RescueSection or a RescueReferenceSurface
+  // owned by RescueModel.  This adds top, bottom, side, and interior surfaces.
   void DropGeobodySurface(RescueSurface *existingSurface);
-  void DropGeobodySurface(RescueGeobodySurface *existingSurface) {(*surfaces) -= existingSurface;}
-                  // These deletes our relationship to the surface, but not the surface itself.
-                  // You MUST do this prior to dropping the surface itself, or you end up with
-                  // an invalid pointer to the surface.
-  RESCUEINT64 SurfaceCount64() {return surfaces->Count64();}
-  RESCUEINT32 SurfaceCount() {return surfaces->Count();}
-  RescueGeobodySurface *NthGeobodySurface(RESCUEINT64 zeroBasedOrdinal)
-            {return surfaces->NthObject(zeroBasedOrdinal);}
-  RescueGeobodySurface *GeobodySurfaceIdentifiedBy(RESCUEINT64 id)
-            {return surfaces->ObjectIdentifiedBy(id);}
-  RescueGeobodyPart *ParentPart() {return parentPart;}
+  void DropGeobodySurface(RescueGeobodySurface *existingSurface) { (*surfaces) -= existingSurface; }
+  // These deletes our relationship to the surface, but not the surface itself.
+  // You MUST do this prior to dropping the surface itself, or you end up with
+  // an invalid pointer to the surface.
+  RESCUEINT64 SurfaceCount64() { return surfaces->Count64(); }
+  RESCUEINT32 SurfaceCount() { return surfaces->Count(); }
+  RescueGeobodySurface *NthGeobodySurface(RESCUEINT64 zeroBasedOrdinal) {
+    return surfaces->NthObject(zeroBasedOrdinal);
+  }
+  RescueGeobodySurface *GeobodySurfaceIdentifiedBy(RESCUEINT64 id) { return surfaces->ObjectIdentifiedBy(id); }
+  RescueGeobodyPart *ParentPart() { return parentPart; }
 
   void AddKLayerEdge(RescueEdgeSet *existingEdgeSet);
   RESCUEBOOL DeleteKLayerEdge(RescueEdgeSet *existingEdgeSet);
-  RESCUEBOOL DeleteKLayerEdge(RescueEdgeSetStub *existingEdgeSet)
-      {return ((*kLayerEdges) -= existingEdgeSet);}
-  RescueEdgeSetStub *NthKLayerEdge(RESCUEINT64 zeroBasedOrdinal)
-      {return kLayerEdges->NthObject(zeroBasedOrdinal);}
-  RESCUEINT64 KLayerEdgeCount64() {return kLayerEdges->Count64();}
-  RESCUEINT32 KLayerEdgeCount() {return kLayerEdges->Count();}
+  RESCUEBOOL DeleteKLayerEdge(RescueEdgeSetStub *existingEdgeSet) { return ((*kLayerEdges) -= existingEdgeSet); }
+  RescueEdgeSetStub *NthKLayerEdge(RESCUEINT64 zeroBasedOrdinal) { return kLayerEdges->NthObject(zeroBasedOrdinal); }
+  RESCUEINT64 KLayerEdgeCount64() { return kLayerEdges->Count64(); }
+  RESCUEINT32 KLayerEdgeCount() { return kLayerEdges->Count(); }
 
   virtual ~RescueGeobodyVolume();
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
   void FindUniquePropertyNames(cSetString *container);
+
 private:
   RescueGeobodyVolume(RescueGeobodyPart *parentPart);
   RescueGeobodyVolume(RescueContext *context, FILE *archiveFile);
@@ -68,7 +66,7 @@ private:
   RescueGeobodyPart *parentPart;
   cSetRescueGeobodySurface *surfaces;
   /*
-  boundary surfaces which are marked as SIDE are arranged as nearly as possible 
+  boundary surfaces which are marked as SIDE are arranged as nearly as possible
   counter-clockwise around the volume they enclose.
 
   Note that section surfaces are ordinarily described with counter-clockwise
@@ -77,8 +75,8 @@ private:
   can only be correctly described in relation to one of them.  Of course, the
   problem is worse for interior sections, since there is not even a convention
   for how they are constructed.
-  
-  Therefore, software must examine the trim loops to determine which way round 
+
+  Therefore, software must examine the trim loops to determine which way round
   the description of the surface is built with respect to any particular boundary.
 
   If this is insufficient, we could include a "normal" point with respect to
@@ -103,9 +101,3 @@ private:
 };
 
 #endif
-
-
-
-
-
-

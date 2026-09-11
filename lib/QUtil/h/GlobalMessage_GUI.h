@@ -6,28 +6,19 @@
 
 #include "IGlobalMessage.h" // MB_OK
 
-class GlobalMessage_GUI : public IGlobalMessage
-{
+class GlobalMessage_GUI : public IGlobalMessage {
 public:
-
-  struct GMData
-  {
+  struct GMData {
     const std::string message;
     unsigned int style;
     unsigned int contextID;
   };
 
-  GlobalMessage_GUI(){ m_type = GUI; };
+  GlobalMessage_GUI() { m_type = GUI; };
 
-  virtual int msg(	
-    const char* message, 
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  virtual int msg(const char *message, unsigned int style = MB_OK, unsigned int contextID = 0);
 
-  virtual int msg(	
-    unsigned int message, 
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  virtual int msg(unsigned int message, unsigned int style = MB_OK, unsigned int contextID = 0);
 
-  void status( const QString& message );
+  void status(const QString &message);
 };

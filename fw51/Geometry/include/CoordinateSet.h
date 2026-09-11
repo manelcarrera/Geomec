@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef _COORDINATESET_H_
 #define _COORDINATESET_H_
 
@@ -17,9 +17,7 @@ usage of the std::set with a non-strict weak ordering less operator (which is th
 when using tolerace in the sorting algorithm).
 
 */
-template <class COORD, class EPSILON = CEpsilon>
-class CCoordinateSet : public COctree<COORD, COORD, EPSILON>
-{
+template <class COORD, class EPSILON = CEpsilon> class CCoordinateSet : public COctree<COORD, COORD, EPSILON> {
 public:
   typedef COORD value_type;
   typedef COORD key_type;
@@ -29,19 +27,11 @@ public:
   typedef typename _Mybase::size_type size_type;
 
 public:
-  CCoordinateSet()
-  {
-  }
+  CCoordinateSet() {}
 
-  CCoordinateSet(const CCoordinateSet& rhs)
-  : _Mybase(rhs)
-  {
-  }
+  CCoordinateSet(const CCoordinateSet &rhs) : _Mybase(rhs) {}
 
-  virtual const key_type& key(const value_type& val) const
-  {
-  return val;
-  }
+  virtual const key_type &key(const value_type &val) const { return val; }
 };
 
 } // namespace geo

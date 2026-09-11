@@ -6,18 +6,16 @@ class CFaultParametersNode;
 
 #include "SingleQuantity.h"
 
-
 #include <QString>
 
-class CFaultFracture
-{
-  public:
-  CFaultFracture(CHorizonBase* horizonBase, CDoubleQuantity::UNIT unit);
-  CFaultFracture(const CFaultFracture& rhs);
+class CFaultFracture {
+public:
+  CFaultFracture(CHorizonBase *horizonBase, CDoubleQuantity::UNIT unit);
+  CFaultFracture(const CFaultFracture &rhs);
 
-  CFaultFracture& operator=(CFaultFracture& rhs);
+  CFaultFracture &operator=(CFaultFracture &rhs);
 
-  const QString& name() const;
+  const QString &name() const;
 
   bool HasHorizon(const CHorizonBase *horizonBase) const;
 
@@ -40,10 +38,9 @@ class CFaultFracture
   void FinalizeBehaviour();
   void FinalizeInitD0();
 
-  private:
-
-  CHorizonBase* m_horizonBase;
-  int    m_slipType;
+private:
+  CHorizonBase *m_horizonBase;
+  int m_slipType;
 
   CFaultParametersNode *m_faultParametersNode;
 
@@ -56,4 +53,4 @@ class CFaultFracture
   CDoubleQuantity::UNIT m_unit;
 };
 
-#endif  // _FaultFracture_h_
+#endif // _FaultFracture_h_

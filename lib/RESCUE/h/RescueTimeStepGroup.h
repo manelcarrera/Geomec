@@ -11,59 +11,59 @@
 #ifndef RescueTimeStepGroup_H
 #define RescueTimeStepGroup_H
 
-#include "myHeaders.h"
+#include "RCHString.h"
 #include "RescueHistoryObject.h"
 #include "RescueProperty.h"
-#include "RCHString.h"
+#include "myHeaders.h"
 class RescuePropertyGroup;
-#include "cBagRescueProperty.h"
 #include "cBagRescueGeometry.h"
+#include "cBagRescueProperty.h"
 class cBagInt;
 
-class RescueTimeStepGroup:public RescueHistoryObject
-{
+class RescueTimeStepGroup : public RescueHistoryObject {
 public:
-  RescueTimeStepGroup(const RESCUECHAR *timeStepNameIn,
-                      RescuePropertyGroup *groupIn);
+  RescueTimeStepGroup(const RESCUECHAR *timeStepNameIn, RescuePropertyGroup *groupIn);
   virtual ~RescueTimeStepGroup();
-  RCHString *TimeStepName() {return timeStepName;}
-                              // Do NOT delete the returned object.
-  void SetTimeStepName(RESCUECHAR *newTimeStepName) {*timeStepName = newTimeStepName;}
-  RescuePropertyGroup *ParentGroup() {return group;}
+  RCHString *TimeStepName() { return timeStepName; }
+  // Do NOT delete the returned object.
+  void SetTimeStepName(RESCUECHAR *newTimeStepName) { *timeStepName = newTimeStepName; }
+  RescuePropertyGroup *ParentGroup() { return group; }
 
   RESCUEINT64 RescuePropertyCount64();
-  RESCUEINT32 RescuePropertyCount() {return (RESCUEINT32) RescuePropertyCount64();}
+  RESCUEINT32 RescuePropertyCount() { return (RESCUEINT32)RescuePropertyCount64(); }
   void AddProperty(RescueProperty *toAdd);
   RescueProperty *NthRescueProperty(RESCUEINT64 zeroBasedOrdinal);
-                  // Do NOT delete the object returned.
+  // Do NOT delete the object returned.
   RescueProperty *PropertyNamed(RESCUECHAR *nameToFind);
   RescueProperty *GetProperty(RescueGeometry *geom, RESCUECHAR *propertyName);
-                  // Do NOT delete the object returned.
-                  // Returns 0 if the object does not exist.
+  // Do NOT delete the object returned.
+  // Returns 0 if the object does not exist.
   RESCUEBOOL RemoveRescueProperty(RescueProperty *unitToDrop);
-                  // This removes the property from the
-                  // time step group.  It is still available
-                  // thru the RescueBlockUnit or any other
-                  // groupings of which it is still a member.
+  // This removes the property from the
+  // time step group.  It is still available
+  // thru the RescueBlockUnit or any other
+  // groupings of which it is still a member.
   RESCUEINT64 RescueGeometryCount64();
-  RESCUEINT32 RescueGeometryCount() {return (RESCUEINT32) RescueGeometryCount64();}
+  RESCUEINT32 RescueGeometryCount() { return (RESCUEINT32)RescueGeometryCount64(); }
   void AddGeometry(RescueGeometry *toAdd); // Add it to the timestep
-                                           // LGRs added to RescueTimeStepGroups need a unique 
+                                           // LGRs added to RescueTimeStepGroups need a unique
                                            // non-zero reference id
   RescueGeometry *NthRescueGeometry(RESCUEINT64 zeroBasedOrdinal);
-                  // Do NOT delete the object returned.
+  // Do NOT delete the object returned.
   RESCUEBOOL RemoveRescueGeometry(RescueGeometry *unitToDrop);
-                  // This removes the geometry from the
-                  // time step group.  It is still available
-                  // thru the RescueBlockUnit or any other
-                  // groupings of which it is still a member.
-  RESCUEBOOL TestLock() {return isLocked;}// By convention when you lock a property or group
-  void SetLock();                   // you should create a RescueHistory object with a
-  void ResetLock()                  // parsable description containing 'write-lock'
-        {isLocked = FALSE;} // See Property Locking
+  // This removes the geometry from the
+  // time step group.  It is still available
+  // thru the RescueBlockUnit or any other
+  // groupings of which it is still a member.
+  RESCUEBOOL TestLock() { return isLocked; } // By convention when you lock a property or group
+  void SetLock();                            // you should create a RescueHistory object with a
+  void ResetLock()                           // parsable description containing 'write-lock'
+  {
+    isLocked = FALSE;
+  } // See Property Locking
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
 private:
   virtual void Archive(FILE *archiveFile);
   RescueTimeStepGroup(RescueContext *context, FILE *archiveFile);
@@ -84,7 +84,3 @@ private:
 };
 
 #endif
-
-
-
-

@@ -3,25 +3,22 @@
 
 #include "SharedBodyTriangle.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CCalculateBoundingSurfaces
-{
-  public:
-  CCalculateBoundingSurfaces(geo::IElementSet& elementSet);
+class CCalculateBoundingSurfaces {
+public:
+  CCalculateBoundingSurfaces(geo::IElementSet &elementSet);
 
-  const TSharedBodyTriangleMap& getSharedBodyTriangleMap() const;
+  const TSharedBodyTriangleMap &getSharedBodyTriangleMap() const;
 
-  protected:
+protected:
   TSharedBodyTriangleMap m_SharedBodyTriangleMap;
 
-  private:
-  CCalculateBoundingSurfaces(const CCalculateBoundingSurfaces& rhs);
-  CCalculateBoundingSurfaces& operator = (
-      const CCalculateBoundingSurfaces& rhs);
+private:
+  CCalculateBoundingSurfaces(const CCalculateBoundingSurfaces &rhs);
+  CCalculateBoundingSurfaces &operator=(const CCalculateBoundingSurfaces &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _CalculateBoundingSurfaces_h_
+#endif // _CalculateBoundingSurfaces_h_

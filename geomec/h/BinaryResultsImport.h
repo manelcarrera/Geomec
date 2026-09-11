@@ -5,24 +5,23 @@ class CResultImportFormat;
 
 class QFile;
 
-class CBinaryResultsImport
-{
+class CBinaryResultsImport {
 public:
-  CBinaryResultsImport(CModelBase& model);
+  CBinaryResultsImport(CModelBase &model);
   ~CBinaryResultsImport();
 
-  bool Open(const CString& strPath, IProgressBase& progress);
+  bool Open(const CString &strPath, IProgressBase &progress);
   void Close();
 
   QString ErrorMessage() const;
 
 private:
-  void SetProgress(IProgressBase& progress, std::ifstream& s);
-  QString GetLine(std::ifstream& s) const;
+  void SetProgress(IProgressBase &progress, std::ifstream &s);
+  QString GetLine(std::ifstream &s) const;
 
 private:
-  CModelBase& m_model;
-  CResultImportFormat* m_pFormat;
+  CModelBase &m_model;
+  CResultImportFormat *m_pFormat;
   std::ifstream::pos_type m_endpos;
   int m_nProgress;
   QString m_strErrorMessage;

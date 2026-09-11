@@ -10,21 +10,16 @@
 #ifndef RescueLogicalOrderEntry_H
 #define RescueLogicalOrderEntry_H
 
-#include "myHeaders.h"
 #include "RescueHistoryObject.h"
+#include "myHeaders.h"
 
-class RescueLogicalOrderEntry:public RescueHistoryObject
-{
+class RescueLogicalOrderEntry : public RescueHistoryObject {
 public:
-  RescueLogicalOrderEntry(RescueContext *context):RescueHistoryObject(context) {};
+  RescueLogicalOrderEntry(RescueContext *context) : RescueHistoryObject(context) {};
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
   friend class RescueLogicalOrder;
 };
 
 #endif
-
-
-
-

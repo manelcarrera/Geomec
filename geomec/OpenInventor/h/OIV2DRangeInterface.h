@@ -3,9 +3,7 @@
 
 class OIV2DGraph;
 
-
-class OIV2DRangeInterface
-{
+class OIV2DRangeInterface {
 public:
   typedef enum { AXIS_LEFT = 0, AXIS_TOP, AXIS_BOTTOM, _AXIS_TOTAL } TAxis;
 
@@ -17,7 +15,7 @@ public:
 
   virtual bool HaveAxis(TAxis axis) const = 0;
 
-  virtual void GetRangeMinMax(TAxis axis, float& min, float& max) const = 0;
+  virtual void GetRangeMinMax(TAxis axis, float &min, float &max) const = 0;
   virtual bool RangeLargeEnough(TAxis axis, float min, float max) const = 0;
   virtual void SetMinMax(TAxis axis, float min, float max) = 0;
 
@@ -34,7 +32,5 @@ public:
 
   virtual void UpdateGraph() = 0;
 };
-
-
 
 #endif

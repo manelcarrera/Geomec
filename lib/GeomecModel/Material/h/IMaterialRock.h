@@ -11,18 +11,19 @@
 
 #include "IMaterial.h"
 
-class IMaterialRock : public IMaterial
-{
+class IMaterialRock : public IMaterial {
 public:
-  IMaterialRock(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  IMaterialRock(CMaterialEntry &entry, CLibraryMaterial &libmat);
   virtual unsigned int IconId() const;
 
-  bool WriteTransverseIsotropicValues(const CFFMaterial& ffmat, dia::IDianaRunner& diarunner) const;
+  bool WriteTransverseIsotropicValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const;
 
   // Interface for dia::IElementProperty -- implementation present
-  int WriteFilosTransverseIsotropicParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-  bool WriteFilosTransverseIsotropicParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const;
-  void WriteFilosTransverseIsotropicParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *&values, int stride = 1) const;
+  int WriteFilosTransverseIsotropicParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const;
+  bool WriteFilosTransverseIsotropicParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                              char *name) const;
+  void WriteFilosTransverseIsotropicParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, double *&values,
+                                                int stride = 1) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitIMaterialRock);
 };

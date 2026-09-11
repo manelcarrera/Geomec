@@ -3,13 +3,12 @@
 
 class CWellCasingCementInterface;
 
-class CAttriWellCasingCementInterface : public CDialog
-{
+class CAttriWellCasingCementInterface : public CDialog {
 public:
-  CAttriWellCasingCementInterface(CWellCasingCementInterface& source, CWnd* pParent = 0);
+  CAttriWellCasingCementInterface(CWellCasingCementInterface &source, CWnd *pParent = 0);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual void OnOK();
 
   afx_msg void OnStColor();
@@ -24,7 +23,7 @@ private:
   void FillFrame(const unsigned int uFrameId, TColor color, CPaintDC &dc);
 
 private:
-  CWellCasingCementInterface& m_source;
+  CWellCasingCementInterface &m_source;
   TColor m_color;
   int m_sliptype;
   CString m_strName;

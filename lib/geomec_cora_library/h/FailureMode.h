@@ -9,39 +9,36 @@ class IResultComponent;
 
 #include "Object.h"
 
-namespace cora
-{
+namespace cora {
 
-class CFailureMode
-{
-  public:
-  CFailureMode(const QString& resultExportLabel,
-      const IResultComponent* resultComponent);
+class CFailureMode {
+public:
+  CFailureMode(const QString &resultExportLabel, const IResultComponent *resultComponent);
 
-  const QString& getResultExportLabel() const;
-  const IResultComponent* getResultComponent() const;
+  const QString &getResultExportLabel() const;
+  const IResultComponent *getResultComponent() const;
 
-  void setObject(const TObject& object);
-  void setFailureModeLabel(const QString& failureModeLabel);
+  void setObject(const TObject &object);
+  void setFailureModeLabel(const QString &failureModeLabel);
 
-  const TObject& getObject() const;
-  const QString& getFailureModeLabel() const;
+  const TObject &getObject() const;
+  const QString &getFailureModeLabel() const;
 
   int getFailureModeType() const;
 
-  private:
-  CFailureMode(const CFailureMode& rhs);
-  CFailureMode& operator = (CFailureMode rhs);
+private:
+  CFailureMode(const CFailureMode &rhs);
+  CFailureMode &operator=(CFailureMode rhs);
 
   const QString m_resultExportLabel;
-  const IResultComponent* m_resultComponent;
+  const IResultComponent *m_resultComponent;
   TObject m_object;
   QString m_failureModeLabel;
 };
 
-typedef QSharedPointer <CFailureMode> TFailureMode;
-typedef std::vector <TFailureMode> TFailureModes;
+typedef QSharedPointer<CFailureMode> TFailureMode;
+typedef std::vector<TFailureMode> TFailureModes;
 
 } // namespace cora
 
-#endif  // _cora_FailureMode_h_
+#endif // _cora_FailureMode_h_

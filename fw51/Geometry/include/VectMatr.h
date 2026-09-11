@@ -26,19 +26,15 @@
 #ifndef VECTOR_MATRIX_H
 #define VECTOR_MATRIX_H
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef int		BOOL;
+typedef int BOOL;
 
 #ifndef __cplusplus
 #ifndef FALSE
-enum {
-  FALSE = 0,
-  TRUE  = 1
-};
+enum { FALSE = 0, TRUE = 1 };
 #endif
 #endif /* __cplusplus */
 
@@ -50,14 +46,12 @@ double min(double x, double y);
 double max(double x, double y);
 #endif
 
-
-typedef double vertex[3];  /* doubleing point representation of
-                             coordinates */
+typedef double vertex[3]; /* doubleing point representation of
+                            coordinates */
 typedef vertex Vector;
 
-#define VertexEqu(a,b) (memcmp((a),(b),sizeof(Vector))==0)
-#define VertexCpy(a,b) memcpy((a),(b),sizeof(Vector))
-
+#define VertexEqu(a, b) (memcmp((a), (b), sizeof(Vector)) == 0)
+#define VertexCpy(a, b) memcpy((a), (b), sizeof(Vector))
 
 extern Vector vect_zero;
 
@@ -65,13 +59,13 @@ extern Vector vect_zero;
 /*            F l o a t   V e c t o r   S t u f f                    */
 /*********************************************************************/
 
-int    vect_equal ( Vector v1, Vector v2 );
-void   vect_copy ( Vector des, Vector sou );
-void   vect_init ( Vector v, double x, double y, double z);
-void   vect_sub( Vector res, Vector v2, Vector v3 );
+int vect_equal(Vector v1, Vector v2);
+void vect_copy(Vector des, Vector sou);
+void vect_init(Vector v, double x, double y, double z);
+void vect_sub(Vector res, Vector v2, Vector v3);
 
-void   vect_min( Vector res, Vector v2, Vector v3 );
-void   vect_max( Vector res, Vector v2, Vector v3 );
+void vect_min(Vector res, Vector v2, Vector v3);
+void vect_max(Vector res, Vector v2, Vector v3);
 
 #define TNY 1e-15
 
@@ -86,9 +80,9 @@ double vect_len2(Vector v1);
 int vect_inters2(Vector A, Vector B, Vector C, Vector D, Vector S1, Vector S2);
 
 /****************************************************************************
-* Calcs the intersection point of AB and BC. Returns if they hit each other 
-* and the position of the hit(s) (S1 (and S2))
-*****************************************************************************/
+ * Calcs the intersection point of AB and BC. Returns if they hit each other
+ * and the position of the hit(s) (S1 (and S2))
+ *****************************************************************************/
 
 #ifdef __cplusplus
 }

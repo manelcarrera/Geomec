@@ -3,8 +3,7 @@
 
 #include "IDrawDef.h"
 
-class CZeroDrawDef : public IDrawDef
-{
+class CZeroDrawDef : public IDrawDef {
 public:
   typedef QRgb TColor;
 
@@ -26,8 +25,8 @@ public:
   virtual bool CurvedDraw() const;
 
 private:
-  CZeroDrawDef(const CZeroDrawDef& rhs);
-  CZeroDrawDef& operator = (const CZeroDrawDef& rhs);
+  CZeroDrawDef(const CZeroDrawDef &rhs);
+  CZeroDrawDef &operator=(const CZeroDrawDef &rhs);
 };
 
-#endif  // _ZeroDrawDef_h_
+#endif // _ZeroDrawDef_h_

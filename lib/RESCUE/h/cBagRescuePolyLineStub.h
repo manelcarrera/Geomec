@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescuePolyLineStub_H
 #define cBagRescuePolyLineStub_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescuePolyLineStub;
 
-class cBagRescuePolyLineStub
-{
+class cBagRescuePolyLineStub {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescuePolyLineStub();
   ~cBagRescuePolyLineStub();
   void operator+=(RescuePolyLineStub *newObject);
   RESCUEBOOL operator-=(RescuePolyLineStub *existingObject);
   RescuePolyLineStub *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescuePolyLineStub *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescuePolyLineStub *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

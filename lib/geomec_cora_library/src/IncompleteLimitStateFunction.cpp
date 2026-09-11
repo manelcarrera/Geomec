@@ -1,12 +1,7 @@
 #include "IncompleteLimitStateFunction.h"
 
-namespace cora
-{
+namespace cora {
 
-CIncompleteLimitStateFunction::CIncompleteLimitStateFunction(
-  const std::string& what)
-: std::runtime_error(what)
-{
-}
+CIncompleteLimitStateFunction::CIncompleteLimitStateFunction(const std::string &what) : std::runtime_error(what) {}
 
 } // namespace cora

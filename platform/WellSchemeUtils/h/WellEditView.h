@@ -9,60 +9,52 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellEditView view
-#include "stdafx.h"
 #include "openglview.h"
+#include "stdafx.h"
 #include "wellpathbase.h"
 
 class COpenGLScene;
 class CWellEditDlg;
 class CWellSceneInterMed;
 
-class AFX_EXT_CLASS QCWellEditView : public COpenGLView , public QObject
-{
+class AFX_EXT_CLASS QCWellEditView : public COpenGLView, public QObject {};
 
-};
-
-class AFX_EXT_CLASS CWellEditView : public QCWellEditView
-{
+class AFX_EXT_CLASS CWellEditView : public QCWellEditView {
   Q_OBJECT;
 private slots:
   void geometryChanged();
 
-
-
 private:
-friend class CWellEditDlg;
+  friend class CWellEditDlg;
 
-  COpenGLScene* m_pScene;
-  well::CWellPathBase* m_pWellpath;
-  CWellSceneInterMed* m_pWellSceneInterMed;
+  COpenGLScene *m_pScene;
+  well::CWellPathBase *m_pWellpath;
+  CWellSceneInterMed *m_pWellSceneInterMed;
   QU::UNIT m_Us;
-  
 
 protected:
-  CWellEditView();           // protected constructor used by dynamic creation
+  CWellEditView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CWellEditView)
 
-// Attributes
+  // Attributes
 public:
-  void Init(well::CWellPathBase& wellpath , QU::UNIT us);
-  void	UpdateWellView();
+  void Init(well::CWellPathBase &wellpath, QU::UNIT us);
+  void UpdateWellView();
 
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellEditView)
-  protected:
+protected:
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CWellEditView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
@@ -70,7 +62,7 @@ protected:
   //{{AFX_MSG(CWellEditView)
   afx_msg void OnSize(unsigned int nType, int cx, int cy);
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

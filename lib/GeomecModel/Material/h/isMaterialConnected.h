@@ -11,6 +11,6 @@ class IMaterialBase;
  *  source- and header-file.
  */
 
-bool isMaterialConnected(CModelBase* modelBase, IMaterialBase* material);
+bool isMaterialConnected(CModelBase *modelBase, IMaterialBase *material);
 
-#endif  // _isMaterialConnected_h_
+#endif // _isMaterialConnected_h_

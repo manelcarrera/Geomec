@@ -11,8 +11,7 @@
 
 class C3DSupportNode;
 class CModelBase;
-class CSupportDlgBase : public CDialog  
-{
+class CSupportDlgBase : public CDialog {
 public:
   CSupportDlgBase(const C3DSupportNode &node, unsigned int nID, CWnd *pParent = NULL);
   virtual ~CSupportDlgBase();
@@ -22,7 +21,7 @@ public:
 protected:
   void OnSelchangeStage(CComboBox *pCombo);
   BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   void FillDepletionStageCombo(CComboBox *pCombo);
   const CModelBase &Model();
   enum IQuantityDouble::UNIT Unit();
@@ -30,7 +29,7 @@ protected:
   virtual void OnOK(unsigned int nPromptId);
   const C3DSupportNode &Node() { return m_Node; }
 
-  std::vector<const CDepletionStage*> m_vcDepletionStages;
+  std::vector<const CDepletionStage *> m_vcDepletionStages;
   int m_nDeplStage;
 
   virtual void FillDepletionStageCombo() = 0;

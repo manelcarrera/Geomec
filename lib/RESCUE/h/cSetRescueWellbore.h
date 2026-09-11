@@ -35,8 +35,7 @@ Software Product or documentation licensed under this agreement.
 class RescueWellbore;
 class RescueContext;
 
-class cSetRescueWellbore
-{
+class cSetRescueWellbore {
 protected:
   RescueWellbore **objects;
   RESCUEINT64 allocated;
@@ -53,9 +52,9 @@ public:
   RescueWellbore *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueWellbore *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueWellbore *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
@@ -64,6 +63,3 @@ public:
 };
 
 #endif
-
-
-

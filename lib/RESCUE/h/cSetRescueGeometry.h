@@ -32,12 +32,10 @@ Software Product or documentation licensed under this agreement.
 #include "boolSupport.h"
 #include <stdlib.h>
 
-
 class RescueGeometry;
 class RescueContext;
 
-class cSetRescueGeometry
-{
+class cSetRescueGeometry {
 protected:
   RescueGeometry **objects;
   RESCUEINT64 allocated;
@@ -54,9 +52,9 @@ public:
   RescueGeometry *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT32 Count(void);
   RESCUEINT64 Count64(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueGeometry *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueGeometry *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
@@ -67,6 +65,3 @@ public:
 };
 
 #endif
-
-
-

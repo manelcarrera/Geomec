@@ -9,15 +9,14 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-//##ModelId=3BA8A1C8017C
-class CIncompleteException //: public CException  
+// ##ModelId=3BA8A1C8017C
+class CIncompleteException //: public CException
 {
 public:
-  //##ModelId=3BA8A1C8018A
+  // ##ModelId=3BA8A1C8018A
   CIncompleteException();
-  //##ModelId=3BA8A1C8018B
+  // ##ModelId=3BA8A1C8018B
   virtual ~CIncompleteException();
-
 };
 
 #endif // !defined(AFX_INCOMPLETEEXCEPTION_H__3A296D8A_214D_48A5_BDD1_7AC08C5828DA__INCLUDED_)

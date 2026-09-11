@@ -5,11 +5,10 @@
 
 namespace mlxml {
 
-class CException
-{
+class CException {
 public:
-  CException(const QString& strError);
-  const QString& error() const;
+  CException(const QString &strError);
+  const QString &error() const;
 
 private:
   QString m_strError;

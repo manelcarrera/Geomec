@@ -21,53 +21,46 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_COMPLETION_H__
 #define __G_COMPLETION_H__
 
 #include <glist.h>
-#include <stddef.h>		/* For size_t */
+#include <stddef.h> /* For size_t */
 #ifdef G_OS_UNIX
 #include <unistd.h>
 #endif
 
 G_BEGIN_DECLS
 
-typedef struct _GCompletion     GCompletion;
+typedef struct _GCompletion GCompletion;
 
-typedef gchar*          (*GCompletionFunc)      (gpointer);
+typedef gchar *(*GCompletionFunc)(gpointer);
 
 /* GCompletion
  */
 
 typedef int (*GCompletionStrncmpFunc)(const char *s1, const char *s2, size_t n);
 
-struct _GCompletion
-{
-  GList* items;
+struct _GCompletion {
+  GList *items;
   GCompletionFunc func;
- 
-  gchar* prefix;
-  GList* cache;
+
+  gchar *prefix;
+  GList *cache;
   GCompletionStrncmpFunc strncmp_func;
 };
 
-GCompletion* g_completion_new          (GCompletionFunc func);
-void         g_completion_add_items    (GCompletion*    cmp,
-                    GList*          items);
-void         g_completion_remove_items (GCompletion*    cmp,
-                    GList*          items);
-void         g_completion_clear_items  (GCompletion*    cmp);
-GList*       g_completion_complete     (GCompletion*    cmp,
-                    gchar*          prefix,
-                    gchar**         new_prefix);
-void         g_completion_set_compare (GCompletion *cmp,
-               GCompletionStrncmpFunc strncmp_func);
-void         g_completion_free         (GCompletion*    cmp);
+GCompletion *g_completion_new(GCompletionFunc func);
+void g_completion_add_items(GCompletion *cmp, GList *items);
+void g_completion_remove_items(GCompletion *cmp, GList *items);
+void g_completion_clear_items(GCompletion *cmp);
+GList *g_completion_complete(GCompletion *cmp, gchar *prefix, gchar **new_prefix);
+void g_completion_set_compare(GCompletion *cmp, GCompletionStrncmpFunc strncmp_func);
+void g_completion_free(GCompletion *cmp);
 
 G_END_DECLS
 
 #endif /* __G_COMPLETION_H__ */
-

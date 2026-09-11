@@ -1,17 +1,15 @@
 #pragma once
 
-//class CExecuteDianaDialog;
+// class CExecuteDianaDialog;
 class IExecuteDianaDialog;
 
 #include "DianaSignals.h"
 
-class CExecuteDianaSignals : public CDianaSignals
-{
-  IExecuteDianaDialog* m_exe_diana_dlg;
+class CExecuteDianaSignals : public CDianaSignals {
+  IExecuteDianaDialog *m_exe_diana_dlg;
 
 public:
-  CExecuteDianaSignals(	const QObject* sender,
-            IExecuteDianaDialog* exe_diana_dlg );
+  CExecuteDianaSignals(const QObject *sender, IExecuteDianaDialog *exe_diana_dlg);
 
   ~CExecuteDianaSignals();
 

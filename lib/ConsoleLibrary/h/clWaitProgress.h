@@ -3,15 +3,14 @@
 
 #include "ProgressBase.h"
 
-class CWaitProgress : public CProgressBase
-{
+class CWaitProgress : public CProgressBase {
 public:
   CWaitProgress();
   virtual ~CWaitProgress();
 
 private:
-  CWaitProgress(const CWaitProgress& rhs);
-  CWaitProgress& operator = (const CWaitProgress& rhs);
+  CWaitProgress(const CWaitProgress &rhs);
+  CWaitProgress &operator=(const CWaitProgress &rhs);
 };
 
-#endif  // _WaitProgress_h_
+#endif // _WaitProgress_h_

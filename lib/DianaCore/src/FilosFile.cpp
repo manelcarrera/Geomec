@@ -1,70 +1,67 @@
 #include "FilosFile.h"
 
-//own
+// own
 #include "Printer.h"
-//diana
+// diana
 #include "lbfl.h"
 
+namespace {
+Printer *printer = Printer::instance(Printer::RunR);
+}
 
-namespace{ Printer* printer = Printer::instance(Printer::RunR); }
+namespace dia {
 
-namespace dia{
+namespace ff {
 
-namespace ff{
-
-  void close()
+void close() {
+  // if(fcisop_() != 0)
   {
-    //if(fcisop_() != 0)
-    {
-      printer->debug("ff <<");
-      closfc_();
-    }
+    printer->debug("ff <<");
+    closfc_();
   }
+}
 
-  void open(const char* fname, int mode)
-  {
-    printer->debug("ff >>");
-    if(fcisop_())
-      printer->error("ff already open");
-    OpenFilos(fname, mode);
-  }
+void open(const char *fname, int mode) {
+  printer->debug("ff >>");
+  if (fcisop_())
+    printer->error("ff already open");
+  OpenFilos(fname, mode);
+}
 
-} //namespace ff
+} // namespace ff
 
-namespace util{
+namespace util {
 
-  //
-  // FIXME: this method shouldn't be needed, just use qt one
-  //
-  #define PATHLEN 1024
-  char *GetCurrentDir()
-  {
-    char *cwd;
-    char *ret;
-    int dirsize = PATHLEN;
-    cwd = (char *) DiMalloc(dirsize * sizeof (char), "IDianaRunner::CreateSubdir");
+//
+// FIXME: this method shouldn't be needed, just use qt one
+//
+#define PATHLEN 1024
+char *GetCurrentDir() {
+  char *cwd;
+  char *ret;
+  int dirsize = PATHLEN;
+  cwd = (char *)DiMalloc(dirsize * sizeof(char), "IDianaRunner::CreateSubdir");
+
+#ifdef WIN32
+  ret = _getcwd(cwd, dirsize);
+#else
+  ret = getcwd(cwd, dirsize);
+#endif
+
+  while (!ret && errno == ERANGE) {
+    dirsize *= 2;
+    cwd = (char *)DiRealloc(cwd, 0, dirsize * sizeof(char), "IDianaRunner::CreateSubdir");
 
 #ifdef WIN32
     ret = _getcwd(cwd, dirsize);
 #else
     ret = getcwd(cwd, dirsize);
 #endif
-
-    while(!ret && errno == ERANGE)
-    {
-      dirsize *= 2;
-      cwd = (char *) DiRealloc(cwd, 0, dirsize * sizeof (char), "IDianaRunner::CreateSubdir");
-
-#ifdef WIN32
-      ret = _getcwd(cwd, dirsize);
-#else
-      ret = getcwd(cwd, dirsize);
-#endif
-    }
-
-    return ret;
   }
-} //util
+
+  return ret;
+}
+} // namespace util
 
 ///////////////////////////////////////////////////////////////////////////
 //
@@ -74,62 +71,57 @@ namespace util{
 //
 ///////////////////////////////////////////////////////////////////////////
 
-
 //
 // the original one
 //
-CFilosFile::CFilosFile(std::string &strFileName, bool bInitFilos)
-{
+CFilosFile::CFilosFile(std::string &strFileName, bool bInitFilos) {
   printer->debug("ff_obj: new >>");
 
-  //remember FF symbols
+  // remember FF symbols
 
   // This also crashes: 'memchr'
 
-  //int char_read_length = 256;
+  // int char_read_length = 256;
 
-  //bool is_it_a_string = memchr( DiGetenv("FF"), 0, char_read_length );
-  //if( is_it_a_string )
-  char* cp = DiGetenv("FF");
+  // bool is_it_a_string = memchr( DiGetenv("FF"), 0, char_read_length );
+  // if( is_it_a_string )
+  char *cp = DiGetenv("FF");
   m_old_FF = cp ? cp : std::string();
-  //else
+  // else
   //	printer->debug("FF: ERROR");
 
-  //is_it_a_string = memchr( DiGetenv("FFDIR"), 0, char_read_length );
-  //if( is_it_a_string )
+  // is_it_a_string = memchr( DiGetenv("FFDIR"), 0, char_read_length );
+  // if( is_it_a_string )
   cp = DiGetenv("FFDIR");
   m_old_FFDIR = cp ? cp : std::string();
-  //else
+  // else
   //	printer->debug("FFDIR: ERROR");
 
-  char* cwd = util::GetCurrentDir();
+  char *cwd = util::GetCurrentDir();
 
-  char* ffdir_env = vDiStrsave("FFDIR=", cwd, NULL);
+  char *ffdir_env = vDiStrsave("FFDIR=", cwd, NULL);
   vDiSetenv(ffdir_env);
 
-  char* fname;
-  if (strFileName.empty())
-  {
+  char *fname;
+  if (strFileName.empty()) {
     fname = DiStrsave("ffXXXXXX");
     mktemp(fname);
     fname = vDiStrsave(fname, ".ff", 0);
-  }
-  else
+  } else
     fname = DiStrsave(strFileName.c_str());
 
-  //printer->info("--FF--: %s", fname);
+  // printer->info("--FF--: %s", fname);
 
   char *env = vDiStrsave("FF=", fname, NULL);
   vDiSetenv(env);
 
-  if (bInitFilos)
-  {
+  if (bInitFilos) {
     ftn_int_t FilosDefs[20];
     gtfdef_(FilosDefs);
     InitFilosFile(fname, FilosDefs, 0);
   }
 
-  //OpenFilos(fname, O_RDWR);
+  // OpenFilos(fname, O_RDWR);
   ff::open(fname, O_RDWR);
 
   strFileName = fname;
@@ -137,14 +129,12 @@ CFilosFile::CFilosFile(std::string &strFileName, bool bInitFilos)
   DiFree(env, "IDianaRunner::CFilosFile::CFilosFile");
   DiFree(fname, "IDianaRunner::CFilosFile::CFilosFile");
   DiFree(ffdir_env, "IDianaRunner::CFilosFile::CFilosFile");
-
 }
-CFilosFile::~CFilosFile()
-{
+CFilosFile::~CFilosFile() {
   printer->debug("ff_obj: delete <<");
 
   if (fcisop_() != 0)
     ff::close();
 }
 
-} //namespace dia
+} // namespace dia

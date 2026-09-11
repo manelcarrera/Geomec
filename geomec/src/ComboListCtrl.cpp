@@ -2,79 +2,71 @@
   Author						: Aravindan Premkumar
   Unregistered Copyright 2003	: Aravindan Premkumar
   All Rights Reserved
-  
-  This piece of code does not have any registered copyright and is free to be 
+
+  This piece of code does not have any registered copyright and is free to be
   used as necessary. The user is free to modify as per the requirements. As a
-  fellow developer, all that I expect and request for is to be given the 
-  credit for intially developing this reusable code by not removing my name as 
+  fellow developer, all that I expect and request for is to be given the
+  credit for intially developing this reusable code by not removing my name as
   the author.
 *******************************************************************************/
 
-#include "stdafx.h"
 #include "ComboListCtrl.h"
-#include "InPlaceCombo.h"
 #include "ISubListObject.h"
+#include "InPlaceCombo.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
-//#defines
-#define FIRST_COLUMN				0
-#define MIN_COLUMN_WIDTH			10
-#define MAX_DROP_DOWN_ITEM_COUNT	10
+// #defines
+#define FIRST_COLUMN 0
+#define MIN_COLUMN_WIDTH 10
+#define MAX_DROP_DOWN_ITEM_COUNT 10
 
 /////////////////////////////////////////////////////////////////////////////
 // CComboListCtrl
 
-CComboListCtrl::CComboListCtrl()
-{
+CComboListCtrl::CComboListCtrl() {
   m_ComboSupportColumnsList.RemoveAll();
-  m_dwDropDownCtrlStyle = WS_BORDER | WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_AUTOVSCROLL | 
-              CBS_DROPDOWNLIST | CBS_DISABLENOSCROLL;
+  m_dwDropDownCtrlStyle =
+      WS_BORDER | WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_AUTOVSCROLL | CBS_DROPDOWNLIST | CBS_DISABLENOSCROLL;
 }
 
-CComboListCtrl::~CComboListCtrl()
-{
-  CInPlaceCombo::DeleteInstance();
-}
-
+CComboListCtrl::~CComboListCtrl() { CInPlaceCombo::DeleteInstance(); }
 
 BEGIN_MESSAGE_MAP(CComboListCtrl, CListCtrlBase)
-  //{{AFX_MSG_MAP(CComboListCtrl)
-  ON_WM_HSCROLL()
-  ON_WM_VSCROLL()
-  ON_WM_LBUTTONDOWN()
+//{{AFX_MSG_MAP(CComboListCtrl)
+ON_WM_HSCROLL()
+ON_WM_VSCROLL()
+ON_WM_LBUTTONDOWN()
 //	ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndLabelEdit)
 //	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
-  //}}AFX_MSG_MAP
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CComboListCtrl message handlers
 
-CInPlaceCombo* CComboListCtrl::ShowInPlaceList(int iRowIndex, int iColumnIndex, CStringList& rComboItemsList, 
-                         CString strCurSelecetion /*= ""*/, int iSel /*= -1*/)
-{
+CInPlaceCombo *CComboListCtrl::ShowInPlaceList(int iRowIndex, int iColumnIndex, CStringList &rComboItemsList,
+                                               CString strCurSelecetion /*= ""*/, int iSel /*= -1*/) {
   // The returned obPointer should not be saved
-  
+
   // Make sure that the item is visible
-  if (!EnsureVisible(iRowIndex, TRUE))
-  {
+  if (!EnsureVisible(iRowIndex, TRUE)) {
     return NULL;
   }
 
-  // Make sure that iColumnIndex is valid 
-  CHeaderCtrl* pHeader = static_cast<CHeaderCtrl*> (GetDlgItem(FIRST_COLUMN));
+  // Make sure that iColumnIndex is valid
+  CHeaderCtrl *pHeader = static_cast<CHeaderCtrl *>(GetDlgItem(FIRST_COLUMN));
 
   int iColumnCount = pHeader->GetItemCount();
 
-  if (iColumnIndex >= iColumnCount || GetColumnWidth(iColumnIndex) < MIN_COLUMN_WIDTH) 
-  {
+  if (iColumnIndex >= iColumnCount || GetColumnWidth(iColumnIndex) < MIN_COLUMN_WIDTH) {
     return NULL;
   }
 
@@ -82,48 +74,42 @@ CInPlaceCombo* CComboListCtrl::ShowInPlaceList(int iRowIndex, int iColumnIndex, 
   CRect obCellRect(0, 0, 0, 0);
   CalculateCellRect(iColumnIndex, iRowIndex, obCellRect);
 
-  int iHeight = obCellRect.Height();  
+  int iHeight = obCellRect.Height();
   int iCount = rComboItemsList.GetCount();
 
-  iCount = (iCount < MAX_DROP_DOWN_ITEM_COUNT) ? 
-    iCount + MAX_DROP_DOWN_ITEM_COUNT : (MAX_DROP_DOWN_ITEM_COUNT + 1); 
+  iCount = (iCount < MAX_DROP_DOWN_ITEM_COUNT) ? iCount + MAX_DROP_DOWN_ITEM_COUNT : (MAX_DROP_DOWN_ITEM_COUNT + 1);
 
-  obCellRect.bottom += iHeight * iCount; 
+  obCellRect.bottom += iHeight * iCount;
 
   // Create the in place combobox
-  CInPlaceCombo* pInPlaceCombo = CInPlaceCombo::GetInstance();
-  pInPlaceCombo->ShowComboCtrl(m_dwDropDownCtrlStyle, obCellRect, this, 0, iRowIndex, iColumnIndex, &rComboItemsList, 
-                 strCurSelecetion, iSel);
-  
+  CInPlaceCombo *pInPlaceCombo = CInPlaceCombo::GetInstance();
+  pInPlaceCombo->ShowComboCtrl(m_dwDropDownCtrlStyle, obCellRect, this, 0, iRowIndex, iColumnIndex, &rComboItemsList,
+                               strCurSelecetion, iSel);
+
   return pInPlaceCombo;
 }
 
-void CComboListCtrl::OnHScroll(unsigned int iSBCode, unsigned int iPos, CScrollBar* pScrollBar) 
-{
+void CComboListCtrl::OnHScroll(unsigned int iSBCode, unsigned int iPos, CScrollBar *pScrollBar) {
   // TODO: Add your message handler code here and/or call default
 
-  if (GetFocus() != this)
-  {
+  if (GetFocus() != this) {
     SetFocus();
   }
 
   CListCtrlBase::OnHScroll(iSBCode, iPos, pScrollBar);
 }
 
-void CComboListCtrl::OnVScroll(unsigned int iSBCode, unsigned int iPos, CScrollBar* pScrollBar) 
-{
+void CComboListCtrl::OnVScroll(unsigned int iSBCode, unsigned int iPos, CScrollBar *pScrollBar) {
   // TODO: Add your message handler code here and/or call default
 
-  if (GetFocus() != this)
-  {
+  if (GetFocus() != this) {
     SetFocus();
   }
 
   CListCtrlBase::OnVScroll(iSBCode, iPos, pScrollBar);
 }
 
-void CComboListCtrl::OnLButtonDown(unsigned int iFlags, CPoint obPoint) 
-{
+void CComboListCtrl::OnLButtonDown(unsigned int iFlags, CPoint obPoint) {
   // TODO: Add your message handler code here and/or call default
 
   int iColumnIndex = -1;
@@ -132,8 +118,8 @@ void CComboListCtrl::OnLButtonDown(unsigned int iFlags, CPoint obPoint)
   // Get the current column and row
   unsigned int uFlags = 0;
   std::pair<int, int> prCell = HitTestEx(obPoint, uFlags);
-  if(prCell == std::pair<int, int>(-1, -1))
-//	if (!HitTestEx(obPoint, &iRowIndex, &iColumnIndex))
+  if (prCell == std::pair<int, int>(-1, -1))
+  //	if (!HitTestEx(obPoint, &iRowIndex, &iColumnIndex))
   {
     return;
   }
@@ -142,12 +128,11 @@ void CComboListCtrl::OnLButtonDown(unsigned int iFlags, CPoint obPoint)
   iColumnIndex = prCell.second;
 
   CListCtrlBase::OnLButtonDown(iFlags, obPoint);
-  
+
   // If column is not read only then
   // If the SHIFT or CTRL key is down call the base class
   // Check the high bit of GetKeyState to determine whether SHIFT or CTRL key is down
-  if ((GetKeyState(VK_SHIFT) & 0x80) || (GetKeyState(VK_CONTROL) & 0x80))
-  {
+  if ((GetKeyState(VK_SHIFT) & 0x80) || (GetKeyState(VK_CONTROL) & 0x80)) {
     return;
   }
 
@@ -155,53 +140,45 @@ void CComboListCtrl::OnLButtonDown(unsigned int iFlags, CPoint obPoint)
   CString strCurSelection = GetItemText(iRowIndex, iColumnIndex);
 
   BOOL bCanEdit = FALSE;
-  IListObject* pListObject = GetObject(iRowIndex);
-  if(pListObject)
-  {
-    if(iColumnIndex == 0)
-    {
+  IListObject *pListObject = GetObject(iRowIndex);
+  if (pListObject) {
+    if (iColumnIndex == 0) {
       bCanEdit = pListObject->CanEditText();
-    }
-    else
-    {
-    //	ISubListObject* pSubListObject = pListObject->SubObject(iColumnIndex - 1);
-      ISubListObject* pSubListObject = pListObject->SubObject(iColumnIndex);
-      if(pSubListObject)
+    } else {
+      //	ISubListObject* pSubListObject = pListObject->SubObject(iColumnIndex - 1);
+      ISubListObject *pSubListObject = pListObject->SubObject(iColumnIndex);
+      if (pSubListObject)
         bCanEdit = pSubListObject->CanEditText();
     }
   }
-    
-  if (-1 != iRowIndex && bCanEdit)
-  {
+
+  if (-1 != iRowIndex && bCanEdit) {
     unsigned int flag = LVIS_FOCUSED;
-    
-    if ((GetItemState(iRowIndex, flag ) & flag) == flag)
-    {
+
+    if ((GetItemState(iRowIndex, flag) & flag) == flag) {
       // Add check for LVS_EDITLABELS
-      if (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS)
-      {
+      if (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS) {
         // If combo box is supported
         // Create and show the in place combo box
-        if (IsCombo(iColumnIndex))
-        {
-//					CStringList obComboItemsList;
-                    
-//					GetParent()->SendMessage(WM_SET_ITEMS, (WPARAM)iColumnIndex, (LPARAM)&obComboItemsList);  
+        if (IsCombo(iColumnIndex)) {
+          //					CStringList obComboItemsList;
+
+          //					GetParent()->SendMessage(WM_SET_ITEMS, (WPARAM)iColumnIndex, (LPARAM)&obComboItemsList);
 
           CStringList lstComboItems;
           OnGetComboItems(iRowIndex, iColumnIndex, lstComboItems);
-          CInPlaceCombo* pInPlaceComboBox = ShowInPlaceList(iRowIndex, iColumnIndex, lstComboItems, strCurSelection);
-          assert(pInPlaceComboBox); 
-          
+          CInPlaceCombo *pInPlaceComboBox = ShowInPlaceList(iRowIndex, iColumnIndex, lstComboItems, strCurSelection);
+          assert(pInPlaceComboBox);
+
           // Set the selection to previous selection
           pInPlaceComboBox->SelectString(-1, strCurSelection);
         }
         // If combo box is not read only
         // Create and show the in place edit control
-//				else if (!IsReadOnly(iColumnIndex))
-//				{
-//					CInPlaceEdit* pInPlaceEdit = ShowInPlaceEdit(iRowIndex, iColumnIndex, strCurSelection);
-//				}
+        //				else if (!IsReadOnly(iColumnIndex))
+        //				{
+        //					CInPlaceEdit* pInPlaceEdit = ShowInPlaceEdit(iRowIndex, iColumnIndex, strCurSelection);
+        //				}
       }
     }
   }
@@ -237,14 +214,14 @@ bool CComboListCtrl::HitTestEx(CPoint &obPoint, int* pRowIndex, int* pColumnInde
   // Get bounding rect of item and check whether obPoint falls in it.
   CRect obCellRect;
   GetItemRect(*pRowIndex, &obCellRect, LVIR_BOUNDS);
-  
+
   if (obCellRect.PtInRect(obPoint))
   {
     // Now find the column
     for (*pColumnIndex = 0; *pColumnIndex < iColumnCount; (*pColumnIndex)++)
     {
       int iColWidth = GetColumnWidth(*pColumnIndex);
-      
+
       if (obPoint.x >= obCellRect.left && obPoint.x <= (obCellRect.left + iColWidth))
       {
         return true;
@@ -256,71 +233,64 @@ bool CComboListCtrl::HitTestEx(CPoint &obPoint, int* pRowIndex, int* pColumnInde
 }
 */
 
-void CComboListCtrl::SetComboColumns(int iColumnIndex, bool bSet /*= true*/)
-{
+void CComboListCtrl::SetComboColumns(int iColumnIndex, bool bSet /*= true*/) {
   // If the Column Index is not present && Set flag is false
-  // Then do nothing 
+  // Then do nothing
   // If the Column Index is present && Set flag is true
   // Then do nothing
   POSITION Pos = m_ComboSupportColumnsList.Find(iColumnIndex);
 
   // If the Column Index is not present && Set flag is true
   // Then Add to list
-  if ((NULL == Pos) && bSet) 
-  {
-    m_ComboSupportColumnsList.AddTail(iColumnIndex); 
+  if ((NULL == Pos) && bSet) {
+    m_ComboSupportColumnsList.AddTail(iColumnIndex);
   }
 
   // If the Column Index is present && Set flag is false
   // Then Remove from list
-  if ((NULL != Pos) && !bSet) 
-  {
-    m_ComboSupportColumnsList.RemoveAt(Pos); 
+  if ((NULL != Pos) && !bSet) {
+    m_ComboSupportColumnsList.RemoveAt(Pos);
   }
 }
 
-bool CComboListCtrl::IsCombo(int iColumnIndex)
-{
-  if (m_ComboSupportColumnsList.Find(iColumnIndex))
-  {
+bool CComboListCtrl::IsCombo(int iColumnIndex) {
+  if (m_ComboSupportColumnsList.Find(iColumnIndex)) {
     return true;
   }
 
   return false;
 }
 
-void CComboListCtrl::CalculateCellRect(int iColumnIndex, int iRowIndex, CRect& robCellRect)
-{
+void CComboListCtrl::CalculateCellRect(int iColumnIndex, int iRowIndex, CRect &robCellRect) {
   GetItemRect(iRowIndex, &robCellRect, LVIR_BOUNDS);
-  
+
   CRect rcClient;
   GetClientRect(&rcClient);
 
-  if (robCellRect.right > rcClient.right) 
-  {
+  if (robCellRect.right > rcClient.right) {
     robCellRect.right = rcClient.right;
   }
 
-  ScrollToView(iColumnIndex, robCellRect); 
+  ScrollToView(iColumnIndex, robCellRect);
 }
 
 /*
-void CComboListCtrl::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult) 
+void CComboListCtrl::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
   LV_DISPINFO* pDispInfo = (LV_DISPINFO*)pNMHDR;
   // TODO: Add your control notification handler code here
-  
+
   // Update the item text with the new text
 //	SetItemText(pDispInfo->item.iItem, pDispInfo->item.iSubItem, pDispInfo->item.pszText);
   CListCtrlBase::OnEndLabelEdit(pNMHDR, pResult);
 
-//	GetParent()->SendMessage(WM_VALIDATE, GetDlgCtrlID(), (LPARAM)pDispInfo); 
-  
+//	GetParent()->SendMessage(WM_VALIDATE, GetDlgCtrlID(), (LPARAM)pDispInfo);
+
 //	*pResult = 0;
 }
 */
 
-//void CComboListCtrl::EnableHScroll(bool bEnable /*= true*/)
+// void CComboListCtrl::EnableHScroll(bool bEnable /*= true*/)
 //{
 //	if (bEnable)
 //	{
@@ -329,10 +299,10 @@ void CComboListCtrl::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 //	else
 //	{
 //		m_dwDropDownCtrlStyle &= ~WS_HSCROLL;
-//	}	
-//}
+//	}
+// }
 
-//void CComboListCtrl::EnableVScroll(bool bEnable /*= true*/)
+// void CComboListCtrl::EnableVScroll(bool bEnable /*= true*/)
 //{
 //	if (bEnable)
 //	{
@@ -342,10 +312,9 @@ void CComboListCtrl::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 //	{
 //		m_dwDropDownCtrlStyle &= ~WS_VSCROLL;
 //	}
-//}
+// }
 
-void CComboListCtrl::ScrollToView(int iColumnIndex, /*int iOffSet, */CRect& robCellRect)
-{
+void CComboListCtrl::ScrollToView(int iColumnIndex, /*int iOffSet, */ CRect &robCellRect) {
   // Now scroll if we need to expose the column
   CRect rcClient;
   GetClientRect(&rcClient);
@@ -354,8 +323,7 @@ void CComboListCtrl::ScrollToView(int iColumnIndex, /*int iOffSet, */CRect& robC
 
   // Get the column iOffset
   int iOffSet = 0;
-  for (int iIndex_ = 0; iIndex_ < iColumnIndex; iIndex_++)
-  {
+  for (int iIndex_ = 0; iIndex_ < iColumnIndex; iIndex_++) {
     iOffSet += GetColumnWidth(iIndex_);
   }
 
@@ -366,26 +334,22 @@ void CComboListCtrl::ScrollToView(int iColumnIndex, /*int iOffSet, */CRect& robC
 
   CSize obScrollSize(0, 0);
 
-  if (((iOffSet + robCellRect.left) < rcClient.left) || 
-    ((iOffSet + robCellRect.left) > rcClient.right))
-  {
+  if (((iOffSet + robCellRect.left) < rcClient.left) || ((iOffSet + robCellRect.left) > rcClient.right)) {
     obScrollSize.cx = iOffSet + robCellRect.left;
-  }
-  else if ((iOffSet + robCellRect.left + iColumnWidth) > rcClient.right)
-  {
+  } else if ((iOffSet + robCellRect.left + iColumnWidth) > rcClient.right) {
     obScrollSize.cx = iOffSet + robCellRect.left + iColumnWidth - rcClient.right;
   }
 
   Scroll(obScrollSize);
   robCellRect.left -= obScrollSize.cx;
-  
+
   // Set the width to the column width
   robCellRect.left += iOffSet;
   robCellRect.right = robCellRect.left + iColumnWidth;
 }
 
 /*
-void CComboListCtrl::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult) 
+void CComboListCtrl::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
   LV_DISPINFO* pDispInfo = (LV_DISPINFO*)pNMHDR;
   // TODO: Add your control notification handler code here

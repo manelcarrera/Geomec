@@ -4,13 +4,11 @@
 #include "Curve.h"
 #include "OIV2DWellPathGraph.h"
 
-class WellPathCurveBase : public Curve
-{
+class WellPathCurveBase : public Curve {
   OIV2DWellPathGraph::DepthAxis m_depthAxis;
 
 public:
-
-  WellPathCurveBase(const IValueComponentBase* valueComponent, CUnitNode::TUnitType unit, int colorIndex);
+  WellPathCurveBase(const IValueComponentBase *valueComponent, CUnitNode::TUnitType unit, int colorIndex);
 
   OIV2DWellPathGraph::DepthAxis getDepthAxis() const;
 
@@ -19,4 +17,4 @@ public:
   virtual QString getWellPathName() const = 0;
 };
 
-#endif  // _WellPathCurveBase_h_
+#endif // _WellPathCurveBase_h_

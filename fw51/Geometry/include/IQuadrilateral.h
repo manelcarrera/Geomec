@@ -1,19 +1,18 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 
 #ifndef IQUADRILATERAL_H
 #define IQUADRILATERAL_H
 
-#include "IFace.h"
 #include "DispatchVisitorBase.h"
+#include "IFace.h"
 
 #include "GeometryExports.h"
 
 namespace geo {
 
-class GEOMETRY_EXPORT  IQuadrilateral : public IFace
-{
+class GEOMETRY_EXPORT IQuadrilateral : public IFace {
 
-public: 
+public:
   IQuadrilateral();
   ~IQuadrilateral();
 
@@ -24,18 +23,18 @@ public:
   enum eLineName { ETA1 = 0, KSI2 = 1, ETA2 = 2, KSI1 = 3 };
 
   virtual int NrOfLines() const { return 4; }
-  
-  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec& isocoords) const;
 
-  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const;
+  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec &isocoords) const;
+
+  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const;
   virtual std::vector<IElement::TDoubleVec> IsoCoordinates() const;
 
-  double GetDepthAt(const double& x, const double& y) const;
+  double GetDepthAt(const double &x, const double &y) const;
 
   // integration points
   virtual int IntegrationPointSize() const;
-  virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
-  virtual const double& IntegrationPointWeight(int nIndex) const;
+  virtual const TDoubleVec &IntegrationPointCoords(int nIndex) const;
+  virtual const double &IntegrationPointWeight(int nIndex) const;
 
   static void PrepareMapping();
 
@@ -47,10 +46,9 @@ public:
   virtual bool Visit(IVisitor &visitor) { return visitor.HandleQuadrilateral(*this); }
 
 private:
-  static void BuildIntegrationPoints( IElement::TIntPtVec& vec, int numint );
-  static const TIntPtVec& IntegrationPoints( int order );
-  const TIntPtVec& IntegrationPoints() const;
-
+  static void BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint);
+  static const TIntPtVec &IntegrationPoints(int order);
+  const TIntPtVec &IntegrationPoints() const;
 };
 
 } // namespace geo

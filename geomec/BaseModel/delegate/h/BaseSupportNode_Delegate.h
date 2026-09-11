@@ -6,33 +6,30 @@ class CSupportDepletion;
 
 #include "OpenGLNode_Delegate.h"
 
-class CSupportDepletion_Delegate : public CStorageNode_Delegate
-{
+class CSupportDepletion_Delegate : public CStorageNode_Delegate {
 public:
-  CSupportDepletion_Delegate(CSupportDepletion* supportDepletion);
+  CSupportDepletion_Delegate(CSupportDepletion *supportDepletion);
 
 private:
-  CSupportDepletion_Delegate(const CSupportDepletion_Delegate& rhs);
-  CSupportDepletion_Delegate& operator = (
-  const CSupportDepletion_Delegate& rhs);
+  CSupportDepletion_Delegate(const CSupportDepletion_Delegate &rhs);
+  CSupportDepletion_Delegate &operator=(const CSupportDepletion_Delegate &rhs);
 
-  CSupportDepletion* m_supportDepletion;
+  CSupportDepletion *m_supportDepletion;
 
   REGISTER_DELEGATE(CSupportDepletion, CSupportDepletion_Delegate);
 };
 
-class CBaseSupportNode_Delegate : public COpenGLNode_Delegate
-{
+class CBaseSupportNode_Delegate : public COpenGLNode_Delegate {
 public:
-  CBaseSupportNode_Delegate(CBaseSupportNode* baseSupportNode);
+  CBaseSupportNode_Delegate(CBaseSupportNode *baseSupportNode);
 
 private:
-  CBaseSupportNode_Delegate(const CBaseSupportNode_Delegate& rhs);
-  CBaseSupportNode_Delegate& operator = (const CBaseSupportNode_Delegate& rhs);
+  CBaseSupportNode_Delegate(const CBaseSupportNode_Delegate &rhs);
+  CBaseSupportNode_Delegate &operator=(const CBaseSupportNode_Delegate &rhs);
 
-  CBaseSupportNode* m_baseSupportNode;
+  CBaseSupportNode *m_baseSupportNode;
 
   REGISTER_DELEGATE(CBaseSupportNode, CBaseSupportNode_Delegate);
 };
 
-#endif  // _BaseSupportNode_Delegate_h_
+#endif // _BaseSupportNode_Delegate_h_

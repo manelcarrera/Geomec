@@ -16,24 +16,23 @@
 #include "point.h"
 
 class IProgressBase;
-namespace gm 
-{
+namespace gm {
 class C3DDatabase;
-class C3DCrossSection  
-{
+class C3DCrossSection {
   std::pair<geo::CPoint, geo::CPoint> m_point;
   QString m_strName;
+
 public:
   C3DCrossSection();
   virtual ~C3DCrossSection();
 
   void ReadCrossSection(C3DDatabase &db, const long lCrossSectionKey, IProgressBase &callback);
 
-  const QString& Name() const;
-  const geo::IPoint& First() const;
-  const geo::IPoint& Second() const;
+  const QString &Name() const;
+  const geo::IPoint &First() const;
+  const geo::IPoint &Second() const;
 };
 
-}
+} // namespace gm
 
 #endif // !defined(AFX_CROSSSECTION_H__37164AAD_3AE3_4280_B079_DDA905417FDA__INCLUDED_)

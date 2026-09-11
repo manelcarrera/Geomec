@@ -10,39 +10,36 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSurfaceMergeDefDlg dialog
 
-class CSurfaceMergeDefDlg : public CDialog
-{
+class CSurfaceMergeDefDlg : public CDialog {
 public:
-  enum MERGE_TYPE { UNDEFINED = 0, FACES, POINTS};
+  enum MERGE_TYPE { UNDEFINED = 0, FACES, POINTS };
 
 private:
   MERGE_TYPE &m_type;
-public:
-// Construction
-  CSurfaceMergeDefDlg(MERGE_TYPE &type, CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
+public:
+  // Construction
+  CSurfaceMergeDefDlg(MERGE_TYPE &type, CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CSurfaceMergeDefDlg)
   enum { IDD = IDD_MERGE_SURFACES_DLG };
-  int		m_checked;
+  int m_checked;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CSurfaceMergeDefDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CSurfaceMergeDefDlg)
   afx_msg void OnConnectRadio();
   afx_msg void OnRemeshRadio();
-
 
   virtual void OnCancel();
   virtual BOOL OnInitDialog();

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // TriangleMeshNode.h: interface for the CTriangleMeshNode class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -13,14 +13,13 @@
 #include "IPoint.h"
 
 class CTriangleSurface;
-class CTriangleNode : public geo::IPoint  
-{
+class CTriangleNode : public geo::IPoint {
   int m_nIndex;
-  CTriangleSurface& m_surface;
+  CTriangleSurface &m_surface;
   double *m_pCoord; // coordinate position in surface
 
 public:
-  CTriangleNode(CTriangleSurface& surface, int nIndex, double *coord);
+  CTriangleNode(CTriangleSurface &surface, int nIndex, double *coord);
   virtual ~CTriangleNode();
 
   // Coordinate access
@@ -31,7 +30,7 @@ public:
   // Coordinate modification
   virtual void X(const double &dX);
   virtual void Y(const double &dY);
-  virtual void Z(const double &dZ);	
+  virtual void Z(const double &dZ);
 
   virtual void AssertValid() const;
   virtual bool Empty() const;

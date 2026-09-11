@@ -7,21 +7,19 @@ class CModelData;
 
 #include "XMLComponent.h"
 
-namespace cora
-{
+namespace cora {
 
-class CXMLComponents
-{
-  public:
-  CXMLComponents(CModelData& modelData);
+class CXMLComponents {
+public:
+  CXMLComponents(CModelData &modelData);
 
-  std::ostream& operator () (std::ostream& stream) const;
+  std::ostream &operator()(std::ostream &stream) const;
 
-  private:
-  CXMLComponents(const CXMLComponents& rhs);
-  CXMLComponents& operator = (CXMLComponents rhs);
+private:
+  CXMLComponents(const CXMLComponents &rhs);
+  CXMLComponents &operator=(CXMLComponents rhs);
 
-  static TXMLComponents createComponents(CModelData& modelData);
+  static TXMLComponents createComponents(CModelData &modelData);
 
   TXMLComponents m_components;
 };
@@ -30,7 +28,6 @@ class CXMLComponents
 
 // global
 
-std::ostream& operator << (std::ostream& stream,
-  const cora::CXMLComponents& rhs);
+std::ostream &operator<<(std::ostream &stream, const cora::CXMLComponents &rhs);
 
-#endif  // _cora_XMLComponents_h_
+#endif // _cora_XMLComponents_h_

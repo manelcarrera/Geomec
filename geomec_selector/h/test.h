@@ -7,7 +7,7 @@ void TEST_02();
 
 // tests when QProcess was not executing the binary
 // CONCLUSION: start( process_name not process_full_path )
-int TEST_03( int argc, char *argv[] );
+int TEST_03(int argc, char *argv[]);
 
 void TEST_04();
 

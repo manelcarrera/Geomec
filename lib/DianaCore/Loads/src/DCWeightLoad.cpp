@@ -1,11 +1,11 @@
 // DCWeightLoad.cpp: implementation of the WeightLoad class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "IDCLoad.h"
-#include "IDCDirectedLoad.h"
 #include "DCWeightLoad.h"
 #include "DCLoadManager.h"
 #include "IDCDianaRunner.h"
+#include "IDCDirectedLoad.h"
+#include "IDCLoad.h"
 
 #include "lbcx.h"
 #include "lbfl.h"
@@ -18,17 +18,12 @@ namespace dia {
 
 // size is gravity acceleration g
 CWeightLoad::CWeightLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection)
-:	IDirectedLoad(loadcase, size, vecDirection)
-{
-}
+    : IDirectedLoad(loadcase, size, vecDirection) {}
 
-CWeightLoad::~CWeightLoad()
-{
-}
+CWeightLoad::~CWeightLoad() {}
 
-bool CWeightLoad::WriteFilos() const
-{
-  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+bool CWeightLoad::WriteFilos() const {
+  ftn_int_t idxdir = (ftn_int_t)Manager().Runner().AddDirection(Direction());
 
   PushDir();
 
@@ -38,7 +33,7 @@ bool CWeightLoad::WriteFilos() const
   // set model parameters
   ChangeDir("/MODEL");
 
-  assert( ValueSize() == 1 );
+  assert(ValueSize() == 1);
   PutItem("GRAVAC", Values());
   PutItem("GRAVDI", &idxdir);
 

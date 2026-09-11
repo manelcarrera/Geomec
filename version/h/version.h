@@ -28,10 +28,8 @@
 
 #define GM_BUILD_STRING 20105.1
 
-
 // empty for Trunk
 #define GM_BUILD_BRANCH_INFO ""
-
 
 #if BUILD_LICENSE_OPTION == -1
 #define GM_BUILD_LICENSE_INFO "no license "
@@ -39,13 +37,11 @@
 #define GM_BUILD_LICENSE_INFO ""
 #endif
 
-
 #ifndef WIN32
 #define GM_BUILD_PLATFORM "linux "
 #else
 #define GM_BUILD_PLATFORM ""
 #endif
-
 
 #ifdef GM_BUILD_TYPE_CI
 #ifdef GM_BUILD_QUALIFIER

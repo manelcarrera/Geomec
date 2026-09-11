@@ -3,32 +3,27 @@
 
 #include "ResponseTypeBaseValidate.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseTypeBaseWithValue : public CResponseTypeBaseValidate
-{
-  public:
-  CResponseTypeBaseWithValue(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CResponseTypeBaseWithValue : public CResponseTypeBaseValidate {
+public:
+  CResponseTypeBaseWithValue(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
 
   virtual const QString getResponseType() const;
 
-  protected:
+protected:
   double m_value;
   bool m_tooHigh;
   bool m_tooLow;
 
-  private:
-  CResponseTypeBaseWithValue(const CResponseTypeBaseWithValue& rhs);
-  CResponseTypeBaseWithValue& operator = (
-      const CResponseTypeBaseWithValue& rhs);
+private:
+  CResponseTypeBaseWithValue(const CResponseTypeBaseWithValue &rhs);
+  CResponseTypeBaseWithValue &operator=(const CResponseTypeBaseWithValue &rhs);
 
-  static bool extractInternalFailsWhen(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function, const QString& internalFailsWhen);
-
+  static bool extractInternalFailsWhen(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function,
+                                       const QString &internalFailsWhen);
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseTypeBaseWithValue_h_
+#endif // _cora_ResponseTypeBaseWithValue_h_

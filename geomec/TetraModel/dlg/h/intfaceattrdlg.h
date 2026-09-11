@@ -6,18 +6,17 @@
 #endif // _MSC_VER > 1000
 // intfaceattrdlg.h : header file
 //
+#include "NoneQuantity.h"
+#include "SingleQuantity.h"
 #include "doubleedit.h"
 #include "stressgradientquantity.h"
-#include "SingleQuantity.h"
-#include "NoneQuantity.h"
 /////////////////////////////////////////////////////////////////////////////
 // CIntFaceAttrDlg dialog
 class CBoundaryInterfaceDef;
 
 #include "resource.h"
 
-class CIntFaceAttrDlg : public CDialog
-{
+class CIntFaceAttrDlg : public CDialog {
   CBoundaryInterfaceDef &m_def;
   CDoubleQuantity::UNIT m_unit;
   CStressGradientQuantity m_KradTop;
@@ -31,38 +30,36 @@ class CIntFaceAttrDlg : public CDialog
 
   bool IsBranch() const;
 
-// Construction
+  // Construction
 public:
-  CIntFaceAttrDlg(CBoundaryInterfaceDef &def, CDoubleQuantity::UNIT unit, CWnd* pParent = NULL);   // standard constructor
+  CIntFaceAttrDlg(CBoundaryInterfaceDef &def, CDoubleQuantity::UNIT unit, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CIntFaceAttrDlg)
   enum { IDD = IDD_DIALOG_INTFACE_ATTR };
   CButton m_RadioLambda;
-  CButton	m_RadioShear;
+  CButton m_RadioShear;
   CButton m_RadioKs;
   CDoubleEdit m_EdLambda;
-  CDoubleEdit	m_EdShear;
-  CDoubleEdit	m_EdKradTop;
-  CDoubleEdit	m_EdKradBottom;
-  CDoubleEdit	m_EdKradSides;
-  CDoubleEdit	m_EdKtanTop;
-  CDoubleEdit	m_EdKtanBottom;
-  CDoubleEdit	m_EdKtanSides;
-  int		m_nRadio;
+  CDoubleEdit m_EdShear;
+  CDoubleEdit m_EdKradTop;
+  CDoubleEdit m_EdKradBottom;
+  CDoubleEdit m_EdKradSides;
+  CDoubleEdit m_EdKtanTop;
+  CDoubleEdit m_EdKtanBottom;
+  CDoubleEdit m_EdKtanSides;
+  int m_nRadio;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CIntFaceAttrDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CIntFaceAttrDlg)
   virtual BOOL OnInitDialog();

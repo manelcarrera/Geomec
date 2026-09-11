@@ -5,20 +5,19 @@ class IWellModel;
 
 #include "GUIBase.h"
 
-class IWellGUI : public CGUIBase
-{
+class IWellGUI : public CGUIBase {
 public:
-  IWellGUI(CFemAppGUI* parentGUI, IWellModel* wellModel);
+  IWellGUI(CFemAppGUI *parentGUI, IWellModel *wellModel);
 
   virtual void OnCloseModel();
 
-  IWellModel* model() const;
+  IWellModel *model() const;
 
 private:
-  IWellGUI(const IWellGUI& rhs);
-  IWellGUI& operator = (const IWellGUI& rhs);
+  IWellGUI(const IWellGUI &rhs);
+  IWellGUI &operator=(const IWellGUI &rhs);
 
-  IWellModel* m_wellModel;
+  IWellModel *m_wellModel;
 };
 
-#endif  // _IWellGUI_h_
+#endif // _IWellGUI_h_

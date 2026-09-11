@@ -3,24 +3,20 @@
 
 #include "SavePropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CSavePropertyBodyIndex : public CSavePropertyBase
-{
-  public:
-  CSavePropertyBodyIndex(const RGProperty& rgProperty);
+class CSavePropertyBodyIndex : public CSavePropertyBase {
+public:
+  CSavePropertyBodyIndex(const RGProperty &rgProperty);
   virtual ~CSavePropertyBodyIndex();
 
-  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
-      const CRockMechProcessor& rmp);
+  virtual bool saveProperty(RGInterface &rgi, CModelBase &modelBase, const CRockMechProcessor &rmp);
 
-  private:
-  CSavePropertyBodyIndex(const CSavePropertyBodyIndex& rhs);
-  CSavePropertyBodyIndex& operator = (
-      const CSavePropertyBodyIndex& rhs);
+private:
+  CSavePropertyBodyIndex(const CSavePropertyBodyIndex &rhs);
+  CSavePropertyBodyIndex &operator=(const CSavePropertyBodyIndex &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _SavePropertyBodyIndex_h_
+#endif // _SavePropertyBodyIndex_h_

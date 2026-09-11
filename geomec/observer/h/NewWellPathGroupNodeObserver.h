@@ -4,4 +4,3 @@
 #include "NewWellPathObserver.h"
 
 typedef CGroupNodeObserver<CNewWellPath, CNewWellPathObserver> TNewWellPathGroupNodeObserver;
-

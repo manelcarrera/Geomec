@@ -5,22 +5,17 @@ class CMaterialUpscaledAnisotropy;
 
 #include "IMaterialRock_Delegate.h"
 
-class CMaterialUpscaledAnisotropy_Delegate : public IMaterialRock_Delegate
-{
+class CMaterialUpscaledAnisotropy_Delegate : public IMaterialRock_Delegate {
 public:
-  CMaterialUpscaledAnisotropy_Delegate(
-  CMaterialUpscaledAnisotropy* materialUpscaledAnisotropy);
+  CMaterialUpscaledAnisotropy_Delegate(CMaterialUpscaledAnisotropy *materialUpscaledAnisotropy);
 
 private:
-  CMaterialUpscaledAnisotropy_Delegate(
-  const CMaterialUpscaledAnisotropy_Delegate& rhs);
-  CMaterialUpscaledAnisotropy_Delegate& operator = (
-  const CMaterialUpscaledAnisotropy_Delegate& rhs);
+  CMaterialUpscaledAnisotropy_Delegate(const CMaterialUpscaledAnisotropy_Delegate &rhs);
+  CMaterialUpscaledAnisotropy_Delegate &operator=(const CMaterialUpscaledAnisotropy_Delegate &rhs);
 
-  CMaterialUpscaledAnisotropy* m_materialUpscaledAnisotropy;
+  CMaterialUpscaledAnisotropy *m_materialUpscaledAnisotropy;
 
-  REGISTER_DELEGATE(CMaterialUpscaledAnisotropy,
-  CMaterialUpscaledAnisotropy_Delegate);
+  REGISTER_DELEGATE(CMaterialUpscaledAnisotropy, CMaterialUpscaledAnisotropy_Delegate);
 };
 
-#endif  // _MaterialUpscaledAnisotropy_Delegate_h_
+#endif // _MaterialUpscaledAnisotropy_Delegate_h_

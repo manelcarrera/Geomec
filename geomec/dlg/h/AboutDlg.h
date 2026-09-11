@@ -2,13 +2,12 @@
 
 #include <QDialog>
 
-#include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QPushButton>
 #include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 
-class QAboutDlg : public QDialog
-{
+class QAboutDlg : public QDialog {
   Q_OBJECT
 
   QVBoxLayout m_v_layout;
@@ -32,7 +31,7 @@ class QAboutDlg : public QDialog
   QLabel m_lb_version;
   QLabel m_lb_dir;
 
-  QPushButton m_btn_new; // img
+  QPushButton m_btn_new;  // img
   QPushButton m_btn_new2; // text
 
   QPushButton m_btn_menu_pdf;
@@ -40,14 +39,13 @@ class QAboutDlg : public QDialog
 
   QPushButton m_btn_logo;
 
-  enum eText
-  {
+  enum eText {
     Version,
     Working_Dir,
     Gm_Default_Version,
     App_Last_Model_Version,
     Config_File,
-    //diana
+    // diana
     Diapath_Current,
     Diapath_Env,
     Diapath_Config_File,
@@ -59,8 +57,7 @@ class QAboutDlg : public QDialog
 private:
   void add_pdfs();
   void add_texts();
-  QString text( eText type_ );
-
+  QString text(eText type_);
 
 public slots:
   void on_changelog();
@@ -71,9 +68,9 @@ public slots:
   void on_more_2();
   void on_less_2();
 
-  void on_open_pdf( int i );
+  void on_open_pdf(int i);
 
 public:
-  QAboutDlg( QDialog* parent = nullptr );
+  QAboutDlg(QDialog *parent = nullptr);
   ~QAboutDlg();
 };

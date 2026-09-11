@@ -9,61 +9,55 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <afxtempl.h>
 #include "StressStrain.h"
+#include <afxtempl.h>
 class _Worksheet;
 class Range;
 
-class CExperimentData  
-{
+class CExperimentData {
 public:
-  typedef enum { ELASTIC, PLASTIC} FitType;
+  typedef enum { ELASTIC, PLASTIC } FitType;
 
   CExperimentData();
-  CExperimentData( const CExperimentData &ED );
+  CExperimentData(const CExperimentData &ED);
   virtual ~CExperimentData();
-  CExperimentData& operator=( const CExperimentData &ED );
-  BOOL ReadFromFile( _Worksheet &ws, CString strLabel, CWnd *pParentWnd );
-  const CString& GetFileName() const {return m_strFileName;}
-  const CString& GetLabel() const {return m_strLabel;}
-  const double &getLowerLimitFraction() const 
-  { return m_eFitType == ELASTIC ? m_dLowerLimitFractionElastic : m_dLowerLimitFractionPlastic ; }
-  const double &getUpperLimitFraction() const 
-  { return m_eFitType == ELASTIC ? m_dUpperLimitFractionElastic : m_dUpperLimitFractionPlastic ; }
-
-  const double &getAxialStrainOffset() const
-  {
-  return getAxialStrainOffset(getLowerLimitFraction());
+  CExperimentData &operator=(const CExperimentData &ED);
+  BOOL ReadFromFile(_Worksheet &ws, CString strLabel, CWnd *pParentWnd);
+  const CString &GetFileName() const { return m_strFileName; }
+  const CString &GetLabel() const { return m_strLabel; }
+  const double &getLowerLimitFraction() const {
+    return m_eFitType == ELASTIC ? m_dLowerLimitFractionElastic : m_dLowerLimitFractionPlastic;
+  }
+  const double &getUpperLimitFraction() const {
+    return m_eFitType == ELASTIC ? m_dUpperLimitFractionElastic : m_dUpperLimitFractionPlastic;
   }
 
-  const double &getAxialStrainOffset(double lowerLimitFraction) const
-  {
-  int unsigned index= (int )(lowerLimitFraction*(m_vcStressStrainStep.size()));
-  return m_vcStressStrainStep[index].m_dAxialStrain;
+  const double &getAxialStrainOffset() const { return getAxialStrainOffset(getLowerLimitFraction()); }
+
+  const double &getAxialStrainOffset(double lowerLimitFraction) const {
+    int unsigned index = (int)(lowerLimitFraction * (m_vcStressStrainStep.size()));
+    return m_vcStressStrainStep[index].m_dAxialStrain;
   }
 
-  const double &getRadialStrainOffset() const
-  {
-  int unsigned index= (int )(getLowerLimitFraction()*(m_vcStressStrainStep.size()));
-  return m_vcStressStrainStep[index].m_dRadialStrain;
+  const double &getRadialStrainOffset() const {
+    int unsigned index = (int)(getLowerLimitFraction() * (m_vcStressStrainStep.size()));
+    return m_vcStressStrainStep[index].m_dRadialStrain;
   }
 
-  void setLowerLimitFraction(const double &v)
-  {
+  void setLowerLimitFraction(const double &v) {
     if (m_eFitType == ELASTIC)
-      m_dLowerLimitFractionElastic= v;
+      m_dLowerLimitFractionElastic = v;
     else
-    m_dLowerLimitFractionPlastic= v;
+      m_dLowerLimitFractionPlastic = v;
   }
-  void setUpperLimitFraction(const double &v)
-  {
+  void setUpperLimitFraction(const double &v) {
     if (m_eFitType == ELASTIC)
-      m_dUpperLimitFractionElastic= v;
+      m_dUpperLimitFractionElastic = v;
     else
-    m_dUpperLimitFractionPlastic= v;
+      m_dUpperLimitFractionPlastic = v;
   }
 
-  const CStressStrainArray& GetStressStrainSteps() const;
+  const CStressStrainArray &GetStressStrainSteps() const;
   double WeightFactor() const;
 
   void Selected(bool bSelected);
@@ -71,19 +65,17 @@ public:
 
   void SetFitType(FitType eFitType);
 
-  typedef enum { Time, AxialStress, RadialStress, AxialStrain, RadialStrain,
-  PorePressure } ExperimentDataType;
+  typedef enum { Time, AxialStress, RadialStress, AxialStrain, RadialStrain, PorePressure } ExperimentDataType;
 
-  static const CString& getColumnHeader(
-  const ExperimentDataType& experimentDataType);
+  static const CString &getColumnHeader(const ExperimentDataType &experimentDataType);
 
 private:
-  BOOL GetParameterFromString( const char *str, double &Param );
-  BOOL GetUnitString( Range &cells, int iRow, int iCol, CString &strUnit );
-  BOOL IsUnit( CString strCheck, CString strUnit );
-  BOOL GetStressUnitFactor( CString strUnit, int iCol, double &dUnitFac );
-  int GetValueFromCell( Range &cells, int iCol, int iRow, double &dValue );
-  BOOL IsCellEmpty( Range &cells, int iCol, int iRow );
+  BOOL GetParameterFromString(const char *str, double &Param);
+  BOOL GetUnitString(Range &cells, int iRow, int iCol, CString &strUnit);
+  BOOL IsUnit(CString strCheck, CString strUnit);
+  BOOL GetStressUnitFactor(CString strUnit, int iCol, double &dUnitFac);
+  int GetValueFromCell(Range &cells, int iCol, int iRow, double &dValue);
+  BOOL IsCellEmpty(Range &cells, int iCol, int iRow);
 
 private:
   double m_dWeightFactor;

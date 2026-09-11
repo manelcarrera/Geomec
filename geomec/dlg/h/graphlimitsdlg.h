@@ -15,15 +15,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // CGraphLimitsDlg dialog
 
-class CGraphLimitsDlg : public CDialog
-{
+class CGraphLimitsDlg : public CDialog {
   // Construction
-  OIV2DRangeInterface& m_rangeInterface;
+  OIV2DRangeInterface &m_rangeInterface;
 
   int m_iAutoLeft, m_iAutoTop, m_iAutoBottom; // bool; wjrx mantis 2559, tfs 90989
 
 public:
-  CGraphLimitsDlg(OIV2DRangeInterface& rangeInterface, CWnd* pParent = NULL);   // standard constructor
+  CGraphLimitsDlg(OIV2DRangeInterface &rangeInterface, CWnd *pParent = NULL); // standard constructor
   void FindExtremesLeft();
   void FindExtremesTop();
   void FindExtremesBottom();
@@ -36,18 +35,16 @@ public:
   enum { IDD = IDD_GRAPHLIMITS };
   //}}AFX_DATA
 
-
   // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CGraphLimitsDlg)
 protected:
   BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
   // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CGraphLimitsDlg)
   void OnChkAutoLeft();
@@ -60,7 +57,5 @@ protected:
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };
-
-
 
 #endif // !defined(AFX_WELLPATHGRAPHLIMITSDLG_H__60572A82_773D_4649_9B1D_A45B1A2D9230__INCLUDED_

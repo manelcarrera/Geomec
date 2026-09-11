@@ -2,26 +2,20 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include <cmath>
 #include "RpnTernaryOperation.h"
 #include "rpnstack.h"
+#include <cmath>
 
-namespace rpn{ 
+namespace rpn {
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CRpnTernaryOperation::CRpnTernaryOperation()
-: m_pOperandA(0), m_pOperandB(0), m_pOperandC(0)
-{
+CRpnTernaryOperation::CRpnTernaryOperation() : m_pOperandA(0), m_pOperandB(0), m_pOperandC(0) {}
 
-}
-
-CRpnTernaryOperation::CRpnTernaryOperation(CRpnStack& stack, RPN_OPERATION operation)
-: m_operation(operation)
-{
+CRpnTernaryOperation::CRpnTernaryOperation(CRpnStack &stack, RPN_OPERATION operation) : m_operation(operation) {
   assert(stack.StackSize() > 2);
-  
+
   m_pOperandC = &stack.Pop();
   m_pOperandB = &stack.Pop();
   m_pOperandA = &stack.Pop();
@@ -29,21 +23,19 @@ CRpnTernaryOperation::CRpnTernaryOperation(CRpnStack& stack, RPN_OPERATION opera
   stack.Push(*this);
 }
 
-CRpnTernaryOperation::~CRpnTernaryOperation()
-{
+CRpnTernaryOperation::~CRpnTernaryOperation() {
   delete m_pOperandA;
   delete m_pOperandB;
   delete m_pOperandC;
 }
 
-CRpnTernaryOperation::TValue CRpnTernaryOperation::Operation(const TValue &value_a, const TValue &value_b, const TValue &value_c) const
-{
+CRpnTernaryOperation::TValue CRpnTernaryOperation::Operation(const TValue &value_a, const TValue &value_b,
+                                                             const TValue &value_c) const {
   assert(m_operation == OP_IF);
   // We only can do the if clause
-  if(value_a.Valid())
-  {
+  if (value_a.Valid()) {
     // When zero 0 return the value of operand C, otherwise use operand B
-    if(fabs(value_a.Value()) < EPS)
+    if (fabs(value_a.Value()) < EPS)
       return value_c;
     return value_b;
   }
@@ -52,13 +44,11 @@ CRpnTernaryOperation::TValue CRpnTernaryOperation::Operation(const TValue &value
   return TValue();
 }
 
-CRpnTernaryOperation::TValue CRpnTernaryOperation::Value(const geo::IPoint &pt, UNIT unit) const
-{
+CRpnTernaryOperation::TValue CRpnTernaryOperation::Value(const geo::IPoint &pt, UNIT unit) const {
   return Operation(m_pOperandA->Value(pt, unit), m_pOperandB->Value(pt, unit), m_pOperandC->Value(pt, unit));
 }
 
-CRpnTernaryOperation::TValueVec CRpnTernaryOperation::Value(const geo::IElement &el, UNIT unit) const
-{
+CRpnTernaryOperation::TValueVec CRpnTernaryOperation::Value(const geo::IElement &el, UNIT unit) const {
   // Fetch a, b, c and size ret
   TValueVec A = m_pOperandA->Value(el, unit);
   TValueVec B = m_pOperandB->Value(el, unit);
@@ -69,19 +59,16 @@ CRpnTernaryOperation::TValueVec CRpnTernaryOperation::Value(const geo::IElement 
   assert(C.size() == ret.size());
 
   // Do the formula for all points
-  for(size_t i = 0; i < ret.size(); i++)
-  {
+  for (size_t i = 0; i < ret.size(); i++) {
     ret[i] = Operation(A[i], B[i], C[i]);
   }
 
   return ret;
 }
 
-
-QString CRpnTernaryOperation::Formula() const
-{
+QString CRpnTernaryOperation::Formula() const {
   QString sRet;
-  sRet +="if(";
+  sRet += "if(";
   sRet += m_pOperandA->Formula();
   sRet += ") then(";
   sRet += m_pOperandB->Formula();
@@ -91,8 +78,7 @@ QString CRpnTernaryOperation::Formula() const
   return sRet;
 }
 
-void CRpnTernaryOperation::Clear(CRpnStack &stack)
-{
+void CRpnTernaryOperation::Clear(CRpnStack &stack) {
   assert(&stack.Top() == this);
   stack.Pop();
   stack.Push(*m_pOperandA);
@@ -104,13 +90,9 @@ void CRpnTernaryOperation::Clear(CRpnStack &stack)
   delete this;
 }
 
-CRpnTernaryOperation::eObjectType CRpnTernaryOperation::ObjectType() const
-{
-  return OT_TERNARY;
-}
+CRpnTernaryOperation::eObjectType CRpnTernaryOperation::ObjectType() const { return OT_TERNARY; }
 
-CRpnObject* CRpnTernaryOperation::Clone(CRpnStack& NewStack) const
-{
+CRpnObject *CRpnTernaryOperation::Clone(CRpnStack &NewStack) const {
   CRpnTernaryOperation *pClone = new CRpnTernaryOperation();
   pClone->m_operation = m_operation;
   pClone->m_pOperandA = m_pOperandA->Clone(NewStack);
@@ -121,8 +103,7 @@ CRpnObject* CRpnTernaryOperation::Clone(CRpnStack& NewStack) const
 }
 
 // Save functions
-void CRpnTernaryOperation::SaveStream(std::stringstream& stream)
-{
+void CRpnTernaryOperation::SaveStream(std::stringstream &stream) {
   // Save base first
   CRpnObject::SaveStream(stream);
 
@@ -136,17 +117,13 @@ void CRpnTernaryOperation::SaveStream(std::stringstream& stream)
   stream << nOperand << " ";
 }
 
-bool CRpnTernaryOperation::Recursive(TParentSet stParent) const
-{
-  if(!stParent.insert(this).second)
+bool CRpnTernaryOperation::Recursive(TParentSet stParent) const {
+  if (!stParent.insert(this).second)
     return true;
-  return m_pOperandA->Recursive(stParent) ||
-       m_pOperandB->Recursive(stParent) ||
-       m_pOperandC->Recursive(stParent);
+  return m_pOperandA->Recursive(stParent) || m_pOperandB->Recursive(stParent) || m_pOperandC->Recursive(stParent);
 }
 
-void CRpnTernaryOperation::CollectUsedObjects(TObjectSet& stObjects) const
-{
+void CRpnTernaryOperation::CollectUsedObjects(TObjectSet &stObjects) const {
   stObjects.insert(m_pOperandA);
   m_pOperandA->CollectUsedObjects(stObjects);
   stObjects.insert(m_pOperandB);
@@ -155,8 +132,7 @@ void CRpnTernaryOperation::CollectUsedObjects(TObjectSet& stObjects) const
   m_pOperandC->CollectUsedObjects(stObjects);
 }
 
-void CRpnTernaryOperation::LoadStream(std::stringstream& stream, CStreamVersion& version, CRpnStack& stack)
-{
+void CRpnTernaryOperation::LoadStream(std::stringstream &stream, CStreamVersion &version, CRpnStack &stack) {
   // Load base first
   CRpnObject::LoadStream(stream, version, stack);
 
@@ -171,18 +147,15 @@ void CRpnTernaryOperation::LoadStream(std::stringstream& stream, CStreamVersion&
   m_operation = (RPN_OPERATION)nOperand;
 }
 
-bool CRpnTernaryOperation::exists() const
-{
-  assert(m_pOperandA->exists() && m_pOperandB->exists() &&
-  m_pOperandC->exists());
+bool CRpnTernaryOperation::exists() const {
+  assert(m_pOperandA->exists() && m_pOperandB->exists() && m_pOperandC->exists());
 
-  return (m_pOperandA->exists() && m_pOperandB->exists() &&
-  m_pOperandC->exists());
+  return (m_pOperandA->exists() && m_pOperandB->exists() && m_pOperandC->exists());
 }
 
-CRpnObject* CRpnTernaryOperation::GetExpandedRpnObject(CRpnStack& targetstack, std::list<std::string>& lstMessages) const
-{
-  CRpnTernaryOperation* pCopy = new CRpnTernaryOperation();
+CRpnObject *CRpnTernaryOperation::GetExpandedRpnObject(CRpnStack &targetstack,
+                                                       std::list<std::string> &lstMessages) const {
+  CRpnTernaryOperation *pCopy = new CRpnTernaryOperation();
   pCopy->m_operation = m_operation;
 
   pCopy->m_pOperandA = m_pOperandA->GetExpandedRpnObject(targetstack, lstMessages);
@@ -192,4 +165,4 @@ CRpnObject* CRpnTernaryOperation::GetExpandedRpnObject(CRpnStack& targetstack, s
   return pCopy;
 }
 
-}
+} // namespace rpn

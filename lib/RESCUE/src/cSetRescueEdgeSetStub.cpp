@@ -25,224 +25,163 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
-#include "RescueModel.h"
 #include "cSetRescueEdgeSetStub.h"
 #include "RescueEdgeSetStub.h"
+#include "RescueModel.h"
 
-cSetRescueEdgeSetStub::cSetRescueEdgeSetStub()
-{
+cSetRescueEdgeSetStub::cSetRescueEdgeSetStub() {
   allocated = 10;
   count = 0;
-  objects = (RescueEdgeSetStub **) malloc(sizeof(RescueEdgeSetStub *) * (size_t) allocated);
+  objects = (RescueEdgeSetStub **)malloc(sizeof(RescueEdgeSetStub *) * (size_t)allocated);
 }
 
-cSetRescueEdgeSetStub::~cSetRescueEdgeSetStub()
-{
+cSetRescueEdgeSetStub::~cSetRescueEdgeSetStub() {
   RESCUEINT64 loop;
 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   free(objects);
 }
 
-void cSetRescueEdgeSetStub::Archive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueEdgeSetStub::Archive(RescueContext *context, FILE *archiveFile) {
   myfprintf(context, archiveFile, count);
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Archive(context, archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Archive(context, archiveFile);
   }
 }
 
-void cSetRescueEdgeSetStub::Relink(RescueObject *parent)
-{
+void cSetRescueEdgeSetStub::Relink(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Relink(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Relink(parent);
   }
 }
 
-void cSetRescueEdgeSetStub::UnArchive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueEdgeSetStub::UnArchive(RescueContext *context, FILE *archiveFile) {
   RESCUEINT64 newCount;
 
   EmptySelf();
 
   myfscanf(context, archiveFile, &newCount);
   RESCUEINT64 loop;
-  for (loop = 0; loop < newCount; loop++)
-  {
-  RescueEdgeSetStub *newObject = new RescueEdgeSetStub(context, archiveFile);
-  (*this) += newObject;
+  for (loop = 0; loop < newCount; loop++) {
+    RescueEdgeSetStub *newObject = new RescueEdgeSetStub(context, archiveFile);
+    (*this) += newObject;
   }
 }
 
-void cSetRescueEdgeSetStub::EmptySelf(void)
-{
+void cSetRescueEdgeSetStub::EmptySelf(void) {
   RESCUEINT64 loop;
- 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   count = 0;
 }
 
-void cSetRescueEdgeSetStub::operator+=(RescueEdgeSetStub *newObject)
-{
-  if (allocated == count)
-  {
-  allocated += 10;
-  objects = (RescueEdgeSetStub **) realloc(objects, sizeof(RescueEdgeSetStub *) * (size_t) allocated);
+void cSetRescueEdgeSetStub::operator+=(RescueEdgeSetStub *newObject) {
+  if (allocated == count) {
+    allocated += 10;
+    objects = (RescueEdgeSetStub **)realloc(objects, sizeof(RescueEdgeSetStub *) * (size_t)allocated);
   }
   objects[count++] = newObject;
 }
 
-RESCUEBOOL cSetRescueEdgeSetStub::operator-=(RescueEdgeSetStub *existingObject)
-{
+RESCUEBOOL cSetRescueEdgeSetStub::operator-=(RescueEdgeSetStub *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
   return found;
 }
 
-RescueEdgeSetStub *cSetRescueEdgeSetStub::ObjectNamed(const RESCUECHAR *mayBeName)
-{
+RescueEdgeSetStub *cSetRescueEdgeSetStub::ObjectNamed(const RESCUECHAR *mayBeName) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsNamed(mayBeName))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsNamed(mayBeName)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RescueEdgeSetStub *cSetRescueEdgeSetStub::ObjectIdentifiedBy(RESCUEINT64 identifier)
-{
+RescueEdgeSetStub *cSetRescueEdgeSetStub::ObjectIdentifiedBy(RESCUEINT64 identifier) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsIdentifiedBy(identifier))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsIdentifiedBy(identifier)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RESCUEBOOL cSetRescueEdgeSetStub::operator-=(RESCUEINT64 ndx)
-{
-  if (ndx >= 0 && ndx < count)
-  {
-  RESCUEINT64 loop;
+RESCUEBOOL cSetRescueEdgeSetStub::operator-=(RESCUEINT64 ndx) {
+  if (ndx >= 0 && ndx < count) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
-  return TRUE;
-  }
-  else
-  {
-  return FALSE;
+    }
+    return TRUE;
+  } else {
+    return FALSE;
   }
 }
 
-RescueEdgeSetStub *cSetRescueEdgeSetStub::NthObject(RESCUEINT64 ordinal)
-{
-  if (ordinal < 0 || ordinal >= count)
-  {
-  return 0;
-  }
-  else
-  {
-  return objects[ordinal];
+RescueEdgeSetStub *cSetRescueEdgeSetStub::NthObject(RESCUEINT64 ordinal) {
+  if (ordinal < 0 || ordinal >= count) {
+    return 0;
+  } else {
+    return objects[ordinal];
   }
 }
 
-RESCUEINT64 cSetRescueEdgeSetStub::Count64(void)
-{
-  return count;
-}
+RESCUEINT64 cSetRescueEdgeSetStub::Count64(void) { return count; }
 
-RESCUEINT32 cSetRescueEdgeSetStub::Count(void)
-{
-  return (RESCUEINT32) count;
-}
+RESCUEINT32 cSetRescueEdgeSetStub::Count(void) { return (RESCUEINT32)count; }
 
-RESCUEINT32 cSetRescueEdgeSetStub::Count(RESCUEBOOL throwIfTrue)
-{
-  if (count > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cSetRescueEdgeSetStub::Count(RESCUEBOOL throwIfTrue) {
+  if (count > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) count;
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)count;
   }
 }
-
-
-
-
-

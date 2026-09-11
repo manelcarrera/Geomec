@@ -1,12 +1,12 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ISupport.cpp: implementation of the ISupport class.
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "dimple.h"
-#include "IMesh.h"
 #include "ISupport.h"
+#include "IMesh.h"
 #include "INode.h"
+#include "dimple.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -15,89 +15,44 @@
 namespace geo {
 
 // ISupport class
-ISupport::ISupport(IMesh& mesh, int nLimitedNode, const IVector &direction)
-:	m_mesh(mesh), m_nNode(nLimitedNode)
-{
+ISupport::ISupport(IMesh &mesh, int nLimitedNode, const IVector &direction) : m_mesh(mesh), m_nNode(nLimitedNode) {
   m_Base.AddVector(direction);
 }
 
-ISupport::~ISupport()
-{
-}
+ISupport::~ISupport() {}
 
-const IMesh &ISupport::Mesh() const
-{
-  return m_mesh;
-}
+const IMesh &ISupport::Mesh() const { return m_mesh; }
 
-const INode &ISupport::Node() const
-{
-  return Mesh().Node(NodeIndex());
-}
+const INode &ISupport::Node() const { return Mesh().Node(NodeIndex()); }
 
-int ISupport::NodeIndex() const
-{
-  return m_nNode;
-}
+int ISupport::NodeIndex() const { return m_nNode; }
 
-bool ISupport::AddDirection(const IVector &dir)
-{
-  return m_Base.AddVector(dir);
-}
+bool ISupport::AddDirection(const IVector &dir) { return m_Base.AddVector(dir); }
 
-size_t ISupport::DirectionSize() const
-{
-  return m_Base.Size();
-}
+size_t ISupport::DirectionSize() const { return m_Base.Size(); }
 
-const IVector &ISupport::Direction(size_t nIndex) const
-{
-  return m_Base.Direction(nIndex);
-}
+const IVector &ISupport::Direction(size_t nIndex) const { return m_Base.Direction(nIndex); }
 
-CVector ISupport::Projection(const IVector &dir) const
-{
-  return m_Base.Projection(dir);
-}
+CVector ISupport::Projection(const IVector &dir) const { return m_Base.Projection(dir); }
 
-bool ISupport::IsSupportedDirection(const IVector &dir) const
-{
-  return m_Base.Dependent(dir);
-}
+bool ISupport::IsSupportedDirection(const IVector &dir) const { return m_Base.Dependent(dir); }
 
-void ISupport::AlignWith(const IVector &dir) const
-{
-  m_Base.AlignWith(dir);
-}
+void ISupport::AlignWith(const IVector &dir) const { m_Base.AlignWith(dir); }
 
 // CTranslationSupport class
-CTranslationSupport::CTranslationSupport(IMesh& mesh, int nLimitedNode, const IVector &direction)
-:	ISupport(mesh, nLimitedNode, direction)
-{
-}
+CTranslationSupport::CTranslationSupport(IMesh &mesh, int nLimitedNode, const IVector &direction)
+    : ISupport(mesh, nLimitedNode, direction) {}
 
-CTranslationSupport::~CTranslationSupport()
-{
-}
+CTranslationSupport::~CTranslationSupport() {}
 
-std::string CTranslationSupport::Type() const
-{
-  return std::string("TR");
-}
+std::string CTranslationSupport::Type() const { return std::string("TR"); }
 
 // CRotationSupport class
-CRotationSupport::CRotationSupport(IMesh& mesh, int nLimitedNode, const IVector &direction)
-:	ISupport(mesh, nLimitedNode, direction)
-{
-}
+CRotationSupport::CRotationSupport(IMesh &mesh, int nLimitedNode, const IVector &direction)
+    : ISupport(mesh, nLimitedNode, direction) {}
 
-CRotationSupport::~CRotationSupport()
-{
-}
+CRotationSupport::~CRotationSupport() {}
 
-std::string CRotationSupport::Type() const
-{
-  return std::string("RO");
-}
+std::string CRotationSupport::Type() const { return std::string("RO"); }
 
 } // namespace geo

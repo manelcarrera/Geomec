@@ -38,7 +38,6 @@
 **
 ****************************************************************************/
 
-
 // Declaration of the QMfcApp classes
 
 #ifndef QMFCAPP_H
@@ -52,34 +51,32 @@ class CWinApp;
 #endif
 
 #if defined(Q_OS_WIN)
-#  if !defined(QT_QTWINMIGRATE_EXPORT) && !defined(QT_QTWINMIGRATE_IMPORT)
-#    define QT_QTWINMIGRATE_EXPORT
-#  elif defined(QT_QTWINMIGRATE_IMPORT)
-#    if defined(QT_QTWINMIGRATE_EXPORT)
-#      undef QT_QTWINMIGRATE_EXPORT
-#    endif
-#    define QT_QTWINMIGRATE_EXPORT __declspec(dllimport)
-#  elif defined(QT_QTWINMIGRATE_EXPORT)
-#    undef QT_QTWINMIGRATE_EXPORT
-#    define QT_QTWINMIGRATE_EXPORT __declspec(dllexport)
-#  endif
+#if !defined(QT_QTWINMIGRATE_EXPORT) && !defined(QT_QTWINMIGRATE_IMPORT)
+#define QT_QTWINMIGRATE_EXPORT
+#elif defined(QT_QTWINMIGRATE_IMPORT)
+#if defined(QT_QTWINMIGRATE_EXPORT)
+#undef QT_QTWINMIGRATE_EXPORT
+#endif
+#define QT_QTWINMIGRATE_EXPORT __declspec(dllimport)
+#elif defined(QT_QTWINMIGRATE_EXPORT)
+#undef QT_QTWINMIGRATE_EXPORT
+#define QT_QTWINMIGRATE_EXPORT __declspec(dllexport)
+#endif
 #else
-#  define QT_QTWINMIGRATE_EXPORT
+#define QT_QTWINMIGRATE_EXPORT
 #endif
 
 #if QT_VERSION >= 0x050000
 #include <QAbstractNativeEventFilter>
 
-class QT_QTWINMIGRATE_EXPORT QMfcAppEventFilter : public QAbstractNativeEventFilter
-{
+class QT_QTWINMIGRATE_EXPORT QMfcAppEventFilter : public QAbstractNativeEventFilter {
 public:
   QMfcAppEventFilter();
   bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 };
 #endif
 
-class QT_QTWINMIGRATE_EXPORT QMfcApp : public QApplication
-{
+class QT_QTWINMIGRATE_EXPORT QMfcApp : public QApplication {
 public:
   static bool pluginInstance(Qt::HANDLE plugin = 0);
 
@@ -98,7 +95,7 @@ public:
 
 private:
 #ifdef QTWINMIGRATE_WITHMFC
-  static char ** mfc_argv;
+  static char **mfc_argv;
   static int mfc_argc;
   static CWinApp *mfc_app;
 #endif

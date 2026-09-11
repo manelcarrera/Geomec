@@ -17,11 +17,15 @@ class CAnalysisPointEntry_Delegate;
 
 class CModelBase;
 
-#include "OpenGLNodeObserver_Delegate.h"
 #include "AnalysisPoint_Delegate.h"
+#include "OpenGLNodeObserver_Delegate.h"
 #include "UndefinedIconProvider.h"
 
-typedef COpenGLNodeObserver_Delegate<CAnalysisPoint, CAnalysisPoint_Delegate, CDummyNode, CDummyObserver, FALSE, DELETE_ITEM> TAnalysisPointObserver;
-typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CAnalysisPoint, TAnalysisPointObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM> TAnalysisPointEntryObserver;
+typedef COpenGLNodeObserver_Delegate<CAnalysisPoint, CAnalysisPoint_Delegate, CDummyNode, CDummyObserver, FALSE,
+                                     DELETE_ITEM>
+    TAnalysisPointObserver;
+typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CAnalysisPoint, TAnalysisPointObserver,
+                              CUndefinedIconProvider, TRUE, DELETE_ITEM>
+    TAnalysisPointEntryObserver;
 
 #endif // !defined(AFX_ANALYSISPOINTOBSERVER_H__E9134DBC_7384_4776_AD54_DD1AE0A08123__INCLUDED_)

@@ -5,13 +5,12 @@ class CFaultParametersNode;
 
 #include "AttributeTempl.h"
 
-class CAttriFaultParameters : public CAttributesTemplate<CFaultParametersNode>
-{
+class CAttriFaultParameters : public CAttributesTemplate<CFaultParametersNode> {
 public:
-  CAttriFaultParameters(CFaultParametersNode& node, CWnd* pParent = 0);
+  CAttriFaultParameters(CFaultParametersNode &node, CWnd *pParent = 0);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   BOOL OnInitDialog();
 
   afx_msg void OnCohesionExtrapolated();

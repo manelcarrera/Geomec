@@ -5,53 +5,46 @@
 #include "MaterialRigidity.h"
 #include "ValueTypes.h"
 
-#include "lbfl.h"
-#include "Material.h"
 #include "IObject.h"
+#include "Material.h"
+#include "lbfl.h"
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CMaterialRigidity::CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: IMaterialRock(entry, libmat)
-{
+CMaterialRigidity::CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial &libmat) : IMaterialRock(entry, libmat) {}
 
-}
+CMaterialRigidity::~CMaterialRigidity() {}
 
-CMaterialRigidity::~CMaterialRigidity()
-{
-
-}
-
-bool CMaterialRigidity::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
-  // ATTENTION!! Don't call the Write function in the base class, we do NOT want to write the 
+bool CMaterialRigidity::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
+  // ATTENTION!! Don't call the Write function in the base class, we do NOT want to write the
   // Young's modulus and the Poisson ratio
 
   ftn_double_t ddum;
 
-  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
+  ddum = (ftn_double_t)(ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
   PutItemLength("COHESI", &ddum, 1);
 
-  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
+  ddum = (ftn_double_t)(ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
   PutItemLength("PHI", &ddum, 1);
 
-  ddum = (ftn_double_t) ffmat.ParameterValue(IDT_VALUETYPE_RHOB);
+  ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_RHOB);
   PutItem("DENSIT", &ddum);
 
   ftn_double_t rigidity[21];
 
   rigidity[0] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM1) * 1e6;
-  rigidity[1] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM2) * 1e6;;
+  rigidity[1] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM2) * 1e6;
+  ;
   rigidity[2] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM3) * 1e6;
   rigidity[3] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM4) * 1e6;
   rigidity[4] = ffmat.ParameterValue(IDT_VALUETYPE_RIGI_PARAM5) * 1e6;
@@ -74,7 +67,7 @@ bool CMaterialRigidity::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diaru
 
   PutItemLength("RIGIDI", rigidity, 21);
 
-  ddum = (ftn_double_t) ffmat.ParameterValue(IDT_VALUETYPE_THERMAL_EXPANSION);
+  ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_THERMAL_EXPANSION);
   ddum /= 3.0; // go from volumetric to linear thermal expansion coefficient
   PutItemLength("THERMX", &ddum, 1);
 
@@ -83,64 +76,54 @@ bool CMaterialRigidity::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diaru
   return IMaterial::WriteK0(ffmat, diarunner);
 }
 
-int CMaterialRigidity::MaterialModel() const
-{
-  return MM_RIGIDITY;
-}
-
+int CMaterialRigidity::MaterialModel() const { return MM_RIGIDITY; }
 
 // Interface for dia::IElementProperty
-int CMaterialRigidity::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialRigidity::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = 25; // COHESI/PHI/DENSIT/RIGIDI(21)/THERMX
 
   size += IMaterialRock::WriteFilosK0ParamSize(ffmat, diarunner); // Only K0, not base class
   return size;
 }
 
-bool CMaterialRigidity::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
-  if (i == 0)
-  {
-  strncpy(name, "COHESI", 10);
-  return true;
+bool CMaterialRigidity::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                            char *name) const {
+  if (i == 0) {
+    strncpy(name, "COHESI", 10);
+    return true;
   }
   --i;
 
-  if (i == 0)
-  {
-  strncpy(name, "PHI", 10);
-  return true;
+  if (i == 0) {
+    strncpy(name, "PHI", 10);
+    return true;
   }
   --i;
 
-  if (i == 0)
-  {
-  strncpy(name, "DENSIT", 10);
-  return true;
+  if (i == 0) {
+    strncpy(name, "DENSIT", 10);
+    return true;
   }
   --i;
 
-  if (i < 21)
-  {
-  QString rigidi = QString("RIGIDI(%1)").arg(i + 1);
-  strncpy(name, rigidi.toStdString().c_str(), 10);
-  return true;
+  if (i < 21) {
+    QString rigidi = QString("RIGIDI(%1)").arg(i + 1);
+    strncpy(name, rigidi.toStdString().c_str(), 10);
+    return true;
   }
   i -= 21;
 
-  if (i == 0)
-  {
-  strncpy(name, "THERMX", 10);
-  return true;
+  if (i == 0) {
+    strncpy(name, "THERMX", 10);
+    return true;
   }
   --i;
 
   return IMaterialRock::WriteFilosK0ParamName(ffmat, diarunner, i, name); // Only K0, not base class
 }
 
-void CMaterialRigidity::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialRigidity::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, double *values,
+                                              int stride) const {
   *values = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6; // COHESI
   values += stride;
 

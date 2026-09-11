@@ -3,23 +3,21 @@
 
 #include "LoadPropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-  class CLoadPropertyIsReservoir : public CLoadPropertyBase
-  {
-  public:
-    CLoadPropertyIsReservoir(const RGProperty& rgProperty, RGInterface& rgi,
-      CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyIsReservoir();
+class CLoadPropertyIsReservoir : public CLoadPropertyBase {
+public:
+  CLoadPropertyIsReservoir(const RGProperty &rgProperty, RGInterface &rgi, CModelBase &modelBase,
+                           CRockMechProcessor &rmp);
+  virtual ~CLoadPropertyIsReservoir();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
-  private:
-    CLoadPropertyIsReservoir(const CLoadPropertyIsReservoir& rhs);
-    CLoadPropertyIsReservoir& operator = (const CLoadPropertyIsReservoir& rhs);
-  };
+private:
+  CLoadPropertyIsReservoir(const CLoadPropertyIsReservoir &rhs);
+  CLoadPropertyIsReservoir &operator=(const CLoadPropertyIsReservoir &rhs);
+};
 
 } // namespace GeomecRGI
 
-#endif  // _LoadPropertyIsReservoir_h_
+#endif // _LoadPropertyIsReservoir_h_

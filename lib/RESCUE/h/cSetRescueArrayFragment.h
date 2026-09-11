@@ -16,8 +16,7 @@
 
 class RescueArrayFragment;
 
-class cSetRescueArrayFragment
-{
+class cSetRescueArrayFragment {
 protected:
   RescueArrayFragment **objects;
   RESCUEINT64 allocated;
@@ -32,14 +31,10 @@ public:
   RescueArrayFragment *NthObject(RESCUEINT64 ordinal);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueArrayFragment *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueArrayFragment *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
 };
 
 #endif
-
-
-
-

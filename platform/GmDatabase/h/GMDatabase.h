@@ -9,24 +9,22 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-namespace gm
-{
+namespace gm {
 
 #ifdef _WIN64 // no DAO support for 64 bits windows
 
 // dummy
-class CDaoDatabase
-{
+class CDaoDatabase {
 public:
   CDaoDatabase();
 };
 #endif
 
-class CGmDatabase : public CDaoDatabase
-{
+class CGmDatabase : public CDaoDatabase {
 protected:
   double m_dVersion;
   BOOL m_bComplete;
+
 public:
   CGmDatabase();
 
@@ -36,11 +34,11 @@ public:
   // TRUE		A complete database is required. If not throw a CIncompleteException
   // FALSE	Incomplete databases are accepted.
   BOOL Complete() const;
-  const double& Version() const;
-  BOOL FieldExist(const CString& sTable, const CString& sField);
-  long TableSize(const CString& sTableName);
+  const double &Version() const;
+  BOOL FieldExist(const CString &sTable, const CString &sField);
+  long TableSize(const CString &sTableName);
 };
 
-}
+} // namespace gm
 
 #endif // !defined(AFX_3DDATABASE_H__AE1ADDB1_5E5E_456B_BEA0_8CAA49CF0A14__INCLUDED_)

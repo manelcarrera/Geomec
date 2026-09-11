@@ -1,14 +1,14 @@
 #ifndef _EXPORTSELECTION_H_
 #define _EXPORTSELECTION_H_
 
-#include "OpenGLNodeSelection.h"
-#include "HorizonBase.h"
 #include "ElementSet.h"
-#include "FormationPlane.h"
-#include "WellCasingRTCI.h"
-#include "PointSet.h"
-#include "NewWellPath.h"
 #include "FormationBase.h"
+#include "FormationPlane.h"
+#include "HorizonBase.h"
+#include "NewWellPath.h"
+#include "OpenGLNodeSelection.h"
+#include "PointSet.h"
+#include "WellCasingRTCI.h"
 
 class CHorizonBase;
 class IElementSet;
@@ -28,22 +28,19 @@ typedef CTypedSelection<CPointSet> TPointSetSelection;
 typedef CTypedSelection<IElementSet> TElementSetSelection;
 typedef CTypedSelection<CNonMeshedSurface> TNonMeshedSurfaceSelection;
 
-class CSlipHorizonSelectionFilter : public THorizonBaseSelection::CFilter<CHorizonBase>
-{
+class CSlipHorizonSelectionFilter : public THorizonBaseSelection::CFilter<CHorizonBase> {
 public:
-  virtual bool operator()(const CHorizonBase& hor) const;
+  virtual bool operator()(const CHorizonBase &hor) const;
 };
 
-class CHorizonSelectionFilter : public THorizonBaseSelection::CFilter<CHorizonBase>
-{
+class CHorizonSelectionFilter : public THorizonBaseSelection::CFilter<CHorizonBase> {
 public:
-  virtual bool operator()(const CHorizonBase& hor) const;
+  virtual bool operator()(const CHorizonBase &hor) const;
 };
 
-class CElementSetSelectionFilter : public TElementSetSelection::CFilter<IElementSet>
-{
+class CElementSetSelectionFilter : public TElementSetSelection::CFilter<IElementSet> {
 public:
-  virtual bool operator()(const IElementSet& elset) const;
+  virtual bool operator()(const IElementSet &elset) const;
 };
 
 #endif // _EXPORTSELECTION_H_

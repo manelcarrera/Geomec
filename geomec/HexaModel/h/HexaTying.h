@@ -9,11 +9,11 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class CHexaTying  
-{
+class CHexaTying {
 public:
   CHexaTying();
-  CHexaTying(geo::CPoint &slave, geo::CPoint &master1, double dWeightFactor1, geo::CPoint &master2, double dWeightFactor2);
+  CHexaTying(geo::CPoint &slave, geo::CPoint &master1, double dWeightFactor1, geo::CPoint &master2,
+             double dWeightFactor2);
   CHexaTying(const CHexaTying &tying);
   virtual ~CHexaTying();
 

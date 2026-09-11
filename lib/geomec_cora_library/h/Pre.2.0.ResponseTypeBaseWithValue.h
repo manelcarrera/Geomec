@@ -3,24 +3,20 @@
 
 #include "ResponseTypeBaseValidate.h"
 
-namespace cora
-{
+namespace cora {
 
-class CPre20ResponseTypeBaseWithValue : public CResponseTypeBaseValidate
-{
-  public:
-  CPre20ResponseTypeBaseWithValue(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CPre20ResponseTypeBaseWithValue : public CResponseTypeBaseValidate {
+public:
+  CPre20ResponseTypeBaseWithValue(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
 
-  protected:
+protected:
   double m_value;
 
-  private:
-  CPre20ResponseTypeBaseWithValue(const CPre20ResponseTypeBaseWithValue& rhs);
-  CPre20ResponseTypeBaseWithValue& operator = (
-      const CPre20ResponseTypeBaseWithValue& rhs);
+private:
+  CPre20ResponseTypeBaseWithValue(const CPre20ResponseTypeBaseWithValue &rhs);
+  CPre20ResponseTypeBaseWithValue &operator=(const CPre20ResponseTypeBaseWithValue &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_Pre20ResponseTypeBaseWithValue_h_
+#endif // _cora_Pre20ResponseTypeBaseWithValue_h_

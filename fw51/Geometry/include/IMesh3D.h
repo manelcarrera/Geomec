@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // IMesh3D.h: interface for the IMesh3D class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -14,12 +14,11 @@
 
 #include "GeometryExports.h"
 
-namespace geo { 
+namespace geo {
 class IBody;
-class GEOMETRY_EXPORT  CMesh3D  : public CMesh
-{
+class GEOMETRY_EXPORT CMesh3D : public CMesh {
 public:
-  typedef std::vector<const IBody*> TBodyVec;
+  typedef std::vector<const IBody *> TBodyVec;
 
   // Construction / Destruction
   CMesh3D();
@@ -27,5 +26,5 @@ public:
 
   virtual TBodyVec PointInMesh(const IPoint &point) const;
 };
-}
+} // namespace geo
 #endif // !defined(AFX_IMESH3D_H__49599AF9_8E17_4C8F_A617_7D3526C8D526__INCLUDED_)

@@ -9,34 +9,33 @@
 
 class COpenGLNode;
 class COpenGLSceneBase;
-class CFemAppOpenGLView : public COpenGLView
-{
+class CFemAppOpenGLView : public COpenGLView {
   mutable bool m_bStep;
 
 protected:
-  CFemAppOpenGLView();           // protected constructor used by dynamic creation
+  CFemAppOpenGLView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CFemAppOpenGLView)
   virtual ~CFemAppOpenGLView();
 
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 public:
-    BOOL CopyBitmapToFile(const CString &sPathname);
+  BOOL CopyBitmapToFile(const CString &sPathname);
   void CopyClipboard();
-  virtual void OnStartDraw(int nSteps) const; 
-  virtual void OnDrawStep() const; 
-  virtual void OnEndDraw() const; 
-// Overrides
+  virtual void OnStartDraw(int nSteps) const;
+  virtual void OnDrawStep() const;
+  virtual void OnEndDraw() const;
+  // Overrides
   virtual void CurrentScene(COpenGLSceneBase *pCurrentScene);
   virtual COpenGLSceneBase *CurrentScene();
 
   virtual COpenGLView *LegendView() { return 0; }
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CModelView)
-  protected:
-  virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
+protected:
+  virtual void OnUpdate(CView *pSender, LPARAM lHint, CObject *pHint);
   //}}AFX_VIRTUAL
 
   // Generated message map functions
@@ -44,11 +43,11 @@ protected:
   //{{AFX_MSG(CModelView)
   afx_msg void OnDestroy();
   afx_msg void OnEditDelete();
-  afx_msg void OnUpdateEditDelete(CCmdUI* pCmdUI);
+  afx_msg void OnUpdateEditDelete(CCmdUI *pCmdUI);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 private:
-    BOOL CopyBitmap(const CString &sPathname= "");
+  BOOL CopyBitmap(const CString &sPathname = "");
 };
 
 /////////////////////////////////////////////////////////////////////////////

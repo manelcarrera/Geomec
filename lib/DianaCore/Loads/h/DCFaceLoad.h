@@ -15,8 +15,7 @@ namespace dia {
 
 class CLoadManager;
 
-class CFaceLoad : public IDirectedLoad  
-{
+class CFaceLoad : public IDirectedLoad {
   const geo::IFace &m_Face;
 
 public:
@@ -26,6 +25,6 @@ public:
   const geo::IFace &Face() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IFACELOAD_H__1913B429_2A63_4FD1_A988_DFAC4AB7EB22__INCLUDED_)

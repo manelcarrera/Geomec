@@ -10,64 +10,55 @@
 #ifndef RescueMacroVolume_H
 #define RescueMacroVolume_H
 
-#include "myHeaders.h"
-#include "RescueHistoryObject.h"
+#include "RescueBlock.h"
+#include "RescueBlockUnit.h"
 #include "RescueBlockUnitSide.h"
-#include "cSetRescueBlockUnitSide.h"
+#include "RescueCoordinateSystem.h"
+#include "RescueHistoryObject.h"
 #include "cBagInt.h"
 #include "cBagRescueSection.h"
+#include "cSetRescueBlockUnitSide.h"
 #include "cSetRescueEdgeSet.h"
 #include "cSetRescueEdgeSetStub.h"
-#include "RescueCoordinateSystem.h"
-#include "RescueBlockUnit.h"
-#include "RescueBlock.h"
+#include "myHeaders.h"
 
 class RescueSection;
 
-class RescueMacroVolume:public RescueHistoryObject
-{
+class RescueMacroVolume : public RescueHistoryObject {
 public:
-  RescueBlockUnit *ParentBlockUnit() {return parentBU;}
-  RescueModel *ParentModel() {return parentBU->Block()->ParentModel();}
+  RescueBlockUnit *ParentBlockUnit() { return parentBU; }
+  RescueModel *ParentModel() { return parentBU->Block()->ParentModel(); }
   void AddBlockUnitSide(RescueBlockUnitSide *existingSide);
-  void DropBlockUnitSide(RescueBlockUnitSide *existingSide)
-            {(*blockUnitSides) -= existingSide;}
-  RescueBlockUnitSide *NthBlockUnitSide(RESCUEINT64 zeroBasedOrdinal)
-            {return blockUnitSides->NthObject(zeroBasedOrdinal);}
-  RescueBlockUnitSide *BlockUnitSideIdentifiedBy(RESCUEINT64 id)
-                      {return blockUnitSides->ObjectIdentifiedBy(id);}
-  void AddInteriorSection(RescueSection *existingSection)
-            {(*interiorSections) += existingSection;}
-  void DropInteriorSection(RescueSection *existingSection)
-            {(*interiorSections) -= existingSection;}
-  RescueSection *NthInteriorSection(RESCUEINT64 zeroBasedOrdinal) 
-            {return interiorSections->NthObject(zeroBasedOrdinal);}
-                  // RescueMacroVolume does not "own" RescueSections,
-                  // so it does not create or delete them, merely
-                  // catalogs relationships to them. However, it does
-                  // own block unit sides (but not the sections which
-                  // they refer to).
+  void DropBlockUnitSide(RescueBlockUnitSide *existingSide) { (*blockUnitSides) -= existingSide; }
+  RescueBlockUnitSide *NthBlockUnitSide(RESCUEINT64 zeroBasedOrdinal) {
+    return blockUnitSides->NthObject(zeroBasedOrdinal);
+  }
+  RescueBlockUnitSide *BlockUnitSideIdentifiedBy(RESCUEINT64 id) { return blockUnitSides->ObjectIdentifiedBy(id); }
+  void AddInteriorSection(RescueSection *existingSection) { (*interiorSections) += existingSection; }
+  void DropInteriorSection(RescueSection *existingSection) { (*interiorSections) -= existingSection; }
+  RescueSection *NthInteriorSection(RESCUEINT64 zeroBasedOrdinal) {
+    return interiorSections->NthObject(zeroBasedOrdinal);
+  }
+  // RescueMacroVolume does not "own" RescueSections,
+  // so it does not create or delete them, merely
+  // catalogs relationships to them. However, it does
+  // own block unit sides (but not the sections which
+  // they refer to).
 
   void AddKLayerEdge(RescueEdgeSet *existingEdgeSet);
   RESCUEBOOL DeleteKLayerEdge(RescueEdgeSet *existingEdgeSet);
-  RESCUEBOOL DeleteKLayerEdge(RescueEdgeSetStub *existingEdgeSet)
-      {return ((*kLayerEdges) -= existingEdgeSet);}
-  RescueEdgeSetStub *NthKLayerEdge(RESCUEINT64 zeroBasedOrdinal)
-      {return kLayerEdges->NthObject(zeroBasedOrdinal);}
+  RESCUEBOOL DeleteKLayerEdge(RescueEdgeSetStub *existingEdgeSet) { return ((*kLayerEdges) -= existingEdgeSet); }
+  RescueEdgeSetStub *NthKLayerEdge(RESCUEINT64 zeroBasedOrdinal) { return kLayerEdges->NthObject(zeroBasedOrdinal); }
 
   void AddILayerEdge(RescueEdgeSet *existingEdgeSet);
   RESCUEBOOL DeleteILayerEdge(RescueEdgeSet *existingEdgeSet);
-  RESCUEBOOL DeleteILayerEdge(RescueEdgeSetStub *existingEdgeSet)
-      {return ((*iLayerEdges) -= existingEdgeSet);}
-  RescueEdgeSetStub *NthILayerEdge(RESCUEINT64 zeroBasedOrdinal)
-      {return iLayerEdges->NthObject(zeroBasedOrdinal);}
+  RESCUEBOOL DeleteILayerEdge(RescueEdgeSetStub *existingEdgeSet) { return ((*iLayerEdges) -= existingEdgeSet); }
+  RescueEdgeSetStub *NthILayerEdge(RESCUEINT64 zeroBasedOrdinal) { return iLayerEdges->NthObject(zeroBasedOrdinal); }
 
   void AddJLayerEdge(RescueEdgeSet *existingEdgeSet);
   RESCUEBOOL DeleteJLayerEdge(RescueEdgeSet *existingEdgeSet);
-  RESCUEBOOL DeleteJLayerEdge(RescueEdgeSetStub *existingEdgeSet)
-      {return ((*jLayerEdges) -= existingEdgeSet);}
-  RescueEdgeSetStub *NthJLayerEdge(RESCUEINT64 zeroBasedOrdinal)
-      {return jLayerEdges->NthObject(zeroBasedOrdinal);}
+  RESCUEBOOL DeleteJLayerEdge(RescueEdgeSetStub *existingEdgeSet) { return ((*jLayerEdges) -= existingEdgeSet); }
+  RescueEdgeSetStub *NthJLayerEdge(RESCUEINT64 zeroBasedOrdinal) { return jLayerEdges->NthObject(zeroBasedOrdinal); }
 
   void SetTopEdge(RescueEdgeSet *topEdge);
   void SetBottomEdge(RescueEdgeSet *bottomEdge);
@@ -80,19 +71,19 @@ public:
   Do not delete RescueEdgeSets.  If you don't want one anymore, simply replace it everyplace
   it is used with a new one.  It will delete itself.
   */
-  RescueEdgeSetStub *TopEdgesObj() {return topEdges;}        // These may return 0.
-  RescueEdgeSetStub *BottomEdgesObj() {return bottomEdges;}  //
-  RescueEdgeSet *TopEdges();                                 // The RescueEdgeSet forms will load
-  RescueEdgeSet *BottomEdges();                              // the wireframe object automatically.
+  RescueEdgeSetStub *TopEdgesObj() { return topEdges; }       // These may return 0.
+  RescueEdgeSetStub *BottomEdgesObj() { return bottomEdges; } //
+  RescueEdgeSet *TopEdges();                                  // The RescueEdgeSet forms will load
+  RescueEdgeSet *BottomEdges();                               // the wireframe object automatically.
 
-  RESCUEINT64  CountOfSides64() { return  blockUnitSides->Count64(); }
-  RESCUEINT32  CountOfSides() { return  blockUnitSides->Count(); }
-  RESCUEINT32  CountOfSides(RESCUEBOOL throwIfTooBig);
+  RESCUEINT64 CountOfSides64() { return blockUnitSides->Count64(); }
+  RESCUEINT32 CountOfSides() { return blockUnitSides->Count(); }
+  RESCUEINT32 CountOfSides(RESCUEBOOL throwIfTooBig);
 
   virtual ~RescueMacroVolume();
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
 private:
   RescueMacroVolume(RescueBlockUnit *parentBuIn);
   RescueMacroVolume(RescueContext *context, FILE *archiveFile);
@@ -119,8 +110,8 @@ private:
   can only be correctly described in relation to one of them.  Of course, the
   problem is worse for interior sections, since there is not even a convention
   for how they are constructed.
-  
-  Therefore, software must examine the trim loops to determine which way round 
+
+  Therefore, software must examine the trim loops to determine which way round
   the description of the surface is built with respect to any particular boundary.
 
   If this is insufficient, we could include a "normal" point with respect to
@@ -144,26 +135,20 @@ private:
 */
   cSetRescueEdgeSetStub *iLayerEdges;
   cSetRescueEdgeSetStub *jLayerEdges;
-/*
-  Defining trim edge sets on each layer in each dimension is new with v32.  It is always
-  optional.  If done it gives a very good description of the boundaries of the volume.
-*/
+  /*
+    Defining trim edge sets on each layer in each dimension is new with v32.  It is always
+    optional.  If done it gives a very good description of the boundaries of the volume.
+  */
   cBagInt *interiorSectionIDs;
   cSetRescueEdgeSet *oldEdgeSets;
   RescueEdgeSet *oldTopEdge;
   RescueEdgeSet *oldBottomEdge;
-/*
-  Temporary relinking stuff.
-*/
+  /*
+    Temporary relinking stuff.
+  */
   friend class cSetRescueMacroVolume;
   friend class RescueBlockUnit;
   friend class RescueGeometry;
 };
 
 #endif
-
-
-
-
-
-

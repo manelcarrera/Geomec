@@ -3,15 +3,12 @@
 
 #include "GeomecMixtureDianaRunner.h"
 
-class CGeomecContainmentMixtureDianaRunner : public CGeomecMixtureDianaRunner
-{
+class CGeomecContainmentMixtureDianaRunner : public CGeomecMixtureDianaRunner {
 public:
-  CGeomecContainmentMixtureDianaRunner(CMeshBase& meshbase,
-                                       CModelBase& model,
-                                       CDianaRunController& controller);
+  CGeomecContainmentMixtureDianaRunner(CMeshBase &meshbase, CModelBase &model, CDianaRunController &controller);
   virtual ~CGeomecContainmentMixtureDianaRunner();
 
-  virtual const dia::IMaterial& Material(const geo::IElement &element) const;
+  virtual const dia::IMaterial &Material(const geo::IElement &element) const;
 };
 
 #endif // _GEOMECCONTAINMENTMIXTUREDIANARUNNER_H_

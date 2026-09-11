@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CInSitu wrapper class
 
-class CInSitu : public COleDispatchDriver
-{
+class CInSitu : public COleDispatchDriver {
 public:
-  CInSitu() {}		// Calls COleDispatchDriver default constructor
+  CInSitu() {} // Calls COleDispatchDriver default constructor
   CInSitu(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CInSitu(const CInSitu& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CInSitu(const CInSitu &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   double GetPore();
   void SetPore(double);
@@ -54,9 +53,10 @@ public:
   double GetGeneralPorePressure();
   void SetGeneralPorePressure(double);
 
-// Operations
+  // Operations
 public:
-  BOOL GetPrincipalStress(BOOL blnOrder, double* MaxStress, VARIANT* MaxStressDirection, double* MidStress, VARIANT* MidStressDirection, double* MinStress, VARIANT* MinStressDirection);
+  BOOL GetPrincipalStress(BOOL blnOrder, double *MaxStress, VARIANT *MaxStressDirection, double *MidStress,
+                          VARIANT *MidStressDirection, double *MinStress, VARIANT *MinStressDirection);
   BOOL TransferGeneral();
   BOOL TransferVertical();
 };

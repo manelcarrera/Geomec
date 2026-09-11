@@ -12,18 +12,16 @@
 #include "3DSupportNode.h"
 
 namespace geo {
-  class ISurface;
+class ISurface;
 }
 
 class CModelBase;
 
-class CPressureSupportNode : public C3DSupportNode  
-{
+class CPressureSupportNode : public C3DSupportNode {
   friend class CFaceSupportDlg;
 
 public:
-  class CSurfaceDef
-  {
+  class CSurfaceDef {
     friend class CPressureSupportNode;
     CSurfaceDef(); // only for loading purposes
   public:
@@ -31,33 +29,21 @@ public:
     bool operator<(const CSurfaceDef &rhs) const;
     bool operator==(const CSurfaceDef &rhs) const;
 
-    void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-    void SaveStream(TSTREAM& stream, TPROGRESS& progress) const;
+    void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+    void SaveStream(TSTREAM &stream, TPROGRESS &progress) const;
 
   private:
     geo::CPoint m_ptMin;
     geo::CPoint m_ptMax;
   };
 
-  typedef enum
-  {
-    SL_SIDE = 0,
-    SL_TOP,
-    SL_BOTTOM
-  } TSurfaceLocation;
+  typedef enum { SL_SIDE = 0, SL_TOP, SL_BOTTOM } TSurfaceLocation;
 
-  class CFaceSupportDef
-  {
+  class CFaceSupportDef {
   public:
-    class CSupportDef
-    {
+    class CSupportDef {
     public:
-      typedef enum _PressureType
-      {
-        PT_UNLOADED = 0,
-        PT_LOCAL,
-        PT_GLOBAL
-      } TPressureType;
+      typedef enum _PressureType { PT_UNLOADED = 0, PT_LOCAL, PT_GLOBAL } TPressureType;
 
       CSupportDef();
       ~CSupportDef();
@@ -69,16 +55,15 @@ public:
       const geo::IVector &LocalVector() const;
       geo::IVector &LocalVector();
 
-      void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-      void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+      void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+      void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
     private:
       TPressureType m_nPressureType;
       geo::CVector m_vecLocal;
     };
 
-    typedef enum _SupportType
-    {
+    typedef enum _SupportType {
       ST_NORMAL = 0,
       ST_FULL,
       ST_STRESS,
@@ -87,8 +72,8 @@ public:
       ST_VERTICAL
     } TSupportType;
 
-    CFaceSupportDef(CMeshBase& mesh);
-    CFaceSupportDef(TSurfaceLocation SurfaceLocation, CMeshBase& mesh);
+    CFaceSupportDef(CMeshBase &mesh);
+    CFaceSupportDef(TSurfaceLocation SurfaceLocation, CMeshBase &mesh);
     CFaceSupportDef(const CFaceSupportDef &rhs);
     CFaceSupportDef &operator=(const CFaceSupportDef &rhs);
     bool operator==(const CFaceSupportDef &rhs) const;
@@ -99,86 +84,83 @@ public:
     TSurfaceLocation SurfaceLocation() const;
     void SurfaceLocation(TSurfaceLocation SurfaceLocation);
 
-//		bool PreScribedDisplacement() const;
-//		void PreScribedDisplacement(bool bEnable);
+    //		bool PreScribedDisplacement() const;
+    //		void PreScribedDisplacement(bool bEnable);
 
     const CSupportDef &SupportDef(const CDepletionStage &stage) const;
     CSupportDef &SupportDef(const CDepletionStage &stage);
     void Update(const CDepletionStage &Initial);
 
-    void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress, const CModelBase &model);
-    void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+    void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress, const CModelBase &model);
+    void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
   private:
-    typedef std::map<const CDepletionStage*, CSupportDef> TSupportMap;
+    typedef std::map<const CDepletionStage *, CSupportDef> TSupportMap;
     TSupportMap m_SupportMap;
     TSupportType m_nSupportType;
-//		bool m_bPreScribedDisplacement;
+    //		bool m_bPreScribedDisplacement;
     TSurfaceLocation m_SurfaceLocation;
-  CMeshBase& m_mesh;
+    CMeshBase &m_mesh;
   };
 
   CPressureSupportNode(CInterfaceBoundary &boundary);
   CPressureSupportNode(const CPressureSupportNode &rhs);
   virtual ~CPressureSupportNode();
   virtual bool Less(const CGraphNode &node) const;
-  
+
   virtual unsigned int IconId() const;
 
-// Save and load stream
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Save and load stream
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
   virtual bool Empty() const;
   virtual long SavedItems() const;
 
   virtual int DisplayListSize() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
 
   virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
   void OnMeshModified();
 
-  virtual COpenGLNode::CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
+  virtual COpenGLNode::CDrawDef *OnCreateDrawDef(const geo::IObject &object) const;
 
   virtual bool UsingGlobalTensor(const CDepletionStage &Stage) const;
   virtual void OnGlobalTensorInputUndefined(const CDepletionStage &Stage) const;
 
   const CFaceSupportDef &FaceSupportDef(const CSurfaceDef &SurfaceDef) const;
 
-  geo::CVector StressFromDistribution(const geo::IPoint &pt, const CDepletionStage &stage, const geo::IVector &VecNorm) const;
+  geo::CVector StressFromDistribution(const geo::IPoint &pt, const CDepletionStage &stage,
+                                      const geo::IVector &VecNorm) const;
 
-  virtual bool IsValueTypeAllowed(const CDepletionStage& stage) const;
+  virtual bool IsValueTypeAllowed(const CDepletionStage &stage) const;
   virtual bool IsValidValueTypeId(unsigned int uValueType) const;
 
-  typedef std::vector <std::pair <const geo::ISurface*, TSurfaceLocation> >
-  TSurfaceVec;
+  typedef std::vector<std::pair<const geo::ISurface *, TSurfaceLocation>> TSurfaceVec;
 
   TSurfaceVec getSurfaces() const;
-  void setSelectedSurface(const geo::ISurface* selectedSurface);
-  const geo::ISurface* getSelectedSurface() const;
+  void setSelectedSurface(const geo::ISurface *selectedSurface);
+  const geo::ISurface *getSelectedSurface() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitPressureSupportNode);
 
 private:
-  class CDefaultDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CDefaultDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CDefaultDrawDef(const COpenGLNode& node);
+    CDefaultDrawDef(const COpenGLNode &node);
     virtual DrawDecisionFloat LineWidth() const;
   };
 
-  class CFilledSurfaceDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CFilledSurfaceDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CFilledSurfaceDrawDef(const COpenGLNode& node);
+    CFilledSurfaceDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
     virtual DrawDecisionBool PolyFillFront() const;
     virtual DrawDecisionBool PolyFillBack() const;
   };
 
-  class CTransparentSurfaceDrawDef : public COpenGLNode::CDrawDef
-  {
+  class CTransparentSurfaceDrawDef : public COpenGLNode::CDrawDef {
   public:
-    CTransparentSurfaceDrawDef(const COpenGLNode& node);
+    CTransparentSurfaceDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
     virtual DrawDecisionBool PolyFillFront() const;
     virtual DrawDecisionBool PolyFillBack() const;
@@ -190,7 +172,7 @@ private:
 public:
   typedef std::map<CSurfaceDef, CFaceSupportDef> TStageSupportMap;
 
-  TStageSupportMap& getSupports() const;
+  TStageSupportMap &getSupports() const;
 
 private:
   mutable TStageSupportMap m_Supports;

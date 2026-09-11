@@ -5,24 +5,22 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
-class CFilterResults
-{
-  public:
-  typedef std::map <QString, bool> TFilterMap;
+class CFilterResults {
+public:
+  typedef std::map<QString, bool> TFilterMap;
 
   CFilterResults();
 
-  bool isResultAllowed(const QString& result) const;
-  bool isResultPresent(const QString& result) const;
+  bool isResultAllowed(const QString &result) const;
+  bool isResultPresent(const QString &result) const;
 
-  const TFilterMap& getFilter() const;
+  const TFilterMap &getFilter() const;
 
-  private:
-  CFilterResults(const CFilterResults& rhs);
-  CFilterResults& operator = (CFilterResults rhs);
+private:
+  CFilterResults(const CFilterResults &rhs);
+  CFilterResults &operator=(CFilterResults rhs);
 
   static TFilterMap fillFilter();
 
@@ -31,4 +29,4 @@ class CFilterResults
 
 } // namespace cora
 
-#endif  // _cora_FilterResults_h_
+#endif // _cora_FilterResults_h_

@@ -1,46 +1,43 @@
 // ModelValidationDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "geomec.h"
-#include "BaseEntryTypes.h"
 #include "ModelValidationDlg.h"
-#include "ModelBase.h"
+#include "BaseEntryTypes.h"
 #include "FormationBase.h"
 #include "MaterialServer.h"
-#include "TetraModel.h"
-#include "depletionstage.h"
-#include "TetraBoundary.h"
-#include "pressuresupportnode.h"
-#include "displacementsupportnode.h"
-#include "TetraFormation.h"
-#include "TetraEntryTypes.h"
+#include "ModelBase.h"
 #include "SurfaceDesc.h"
 #include "TetSurface.h"
+#include "TetraBoundary.h"
+#include "TetraEntryTypes.h"
+#include "TetraFormation.h"
 #include "TetraHorizonBase.h"
+#include "TetraModel.h"
+#include "depletionstage.h"
+#include "displacementsupportnode.h"
+#include "geomec.h"
+#include "pressuresupportnode.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CModelValidationDlg dialog
 
-
-CModelValidationDlg::CModelValidationDlg(CModelBase *pModel, CWnd* pParent /*=NULL*/)
-  : CDialog(CModelValidationDlg::IDD, pParent), m_pModel(pModel), m_ValidateModel(m_pModel), m_bMesh(false), m_bReservoir(false), m_bDepletion(false), m_bMaterial(false)
-{
+CModelValidationDlg::CModelValidationDlg(CModelBase *pModel, CWnd *pParent /*=NULL*/)
+    : CDialog(CModelValidationDlg::IDD, pParent), m_pModel(pModel), m_ValidateModel(m_pModel), m_bMesh(false),
+      m_bReservoir(false), m_bDepletion(false), m_bMaterial(false) {
   //{{AFX_DATA_INIT(CModelValidationDlg)
   //}}AFX_DATA_INIT
 }
 
-
-void CModelValidationDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CModelValidationDlg::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
 
   //{{AFX_DATA_MAP(CModelValidationDlg)
@@ -53,16 +50,14 @@ void CModelValidationDlg::DoDataExchange(CDataExchange* pDX)
   DDX_Control(pDX, IDC_MESH_CHECK, m_MeshCheckIcon);
   //}}AFX_DATA_MAP
 
-  if(!pDX->m_bSaveAndValidate)
-  {
+  if (!pDX->m_bSaveAndValidate) {
     m_bMesh = m_ValidateModel.checkMesh();
     m_bReservoir = m_ValidateModel.checkReservoir();
     m_bDepletion = m_ValidateModel.checkExistenceDepletionStage();
     m_bMaterial = m_ValidateModel.checkMaterial();
 
-    CTetraModel *pModel = dynamic_cast<CTetraModel*>(m_pModel);
-    if(!pModel)
-    {
+    CTetraModel *pModel = dynamic_cast<CTetraModel *>(m_pModel);
+    if (!pModel) {
       CWnd *pWnd = GetDlgItem(IDC_TETRA_GROUP);
       pWnd->EnableWindow(FALSE);
       pWnd = GetDlgItem(IDC_INPUTSTAT_BOUND);
@@ -71,11 +66,9 @@ void CModelValidationDlg::DoDataExchange(CDataExchange* pDX)
       pWnd->EnableWindow(FALSE);
       pWnd = GetDlgItem(IDC_INPUTSTAT_EMPT_FAULT);
       pWnd->EnableWindow(FALSE);
-    }
-    else
-    {
-  
-      if(m_bMesh)
+    } else {
+
+      if (m_bMesh)
         m_bBoundCond = m_ValidateModel.checkBoundaryConditions();
       else
         m_bBoundCond = false;
@@ -85,18 +78,16 @@ void CModelValidationDlg::DoDataExchange(CDataExchange* pDX)
   }
 }
 
-
 BEGIN_MESSAGE_MAP(CModelValidationDlg, CDialog)
-  //{{AFX_MSG_MAP(CModelValidationDlg)
-  ON_WM_PAINT()
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CModelValidationDlg)
+ON_WM_PAINT()
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CModelValidationDlg message handlers
 
-void CModelValidationDlg::OnPaint() 
-{
+void CModelValidationDlg::OnPaint() {
   CPaintDC dc(this); // device context for painting
 
   DrawCheck(dc, m_DepletionCheckIcon, m_bDepletion);
@@ -104,28 +95,27 @@ void CModelValidationDlg::OnPaint()
   DrawCheck(dc, m_MeshCheckIcon, m_bMesh);
   DrawCheck(dc, m_ResCheckIcon, m_bReservoir);
 
-  CTetraModel *pMod = dynamic_cast<CTetraModel*>(m_pModel);
-  if(pMod)
-  {
+  CTetraModel *pMod = dynamic_cast<CTetraModel *>(m_pModel);
+  if (pMod) {
     DrawCheck(dc, m_BoundConditionsCheck, m_bBoundCond);
     DrawCheck(dc, m_EmptyFormationsCheck, m_bEmptForm);
     DrawCheck(dc, m_EmptyFaultsCheck, m_bEmptFault);
   }
-  
+
   // Do not call CDialog::OnPaint() for painting messages
 }
 
-void CModelValidationDlg::DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck)
-{
+void CModelValidationDlg::DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck) {
   RECT rect;
   IconCheck.GetWindowRect(&rect);
   ScreenToClient(&rect);
 
   unsigned int CheckID;
-  if(bCheck)
+  if (bCheck)
     CheckID = IDI_CHECK_RED;
   else
     CheckID = IDI_CROSS_RED;
 
-  DrawIconEx(dc, rect.left, rect.top, LoadIcon(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(CheckID)), 16, 16, 0, 0, DI_NORMAL);	
+  DrawIconEx(dc, rect.left, rect.top, LoadIcon(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(CheckID)), 16, 16, 0, 0,
+             DI_NORMAL);
 }

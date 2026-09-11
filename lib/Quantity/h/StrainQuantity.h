@@ -11,28 +11,21 @@
 
 #include "SingleQuantity.h"
 
-class CStrainQuantity : public CDoubleQuantity
-{
+class CStrainQuantity : public CDoubleQuantity {
 public:
   CStrainQuantity(const CStrainQuantity &rhs);
   CStrainQuantity();
 
-  CStrainQuantity(const double &value , const UNIT unit = SI_UNIT);
-  
-  CStrainQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CStrainQuantity(const double &value, const UNIT unit = SI_UNIT);
 
-  CStrainQuantity(const double& value,
-           const double &min ,
-           const double &max,
-           bool bIncludeMin=true,
-           bool bIncludeMax=true,
-           const UNIT unit= SI_UNIT);
-  
-  
+  CStrainQuantity(const double &value, const double &min, const double &max, const UNIT unit = SI_UNIT);
+
+  CStrainQuantity(const double &value, const double &min, const double &max, bool bIncludeMin = true,
+                  bool bIncludeMax = true, const UNIT unit = SI_UNIT);
+
   virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
-  virtual std::string	QuantityName() const;
-  virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;	
+  virtual std::string QuantityName() const;
+  virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
 };
-
 
 #endif // !defined(AFX_STRAINQUANTITY_H__E6DDEE89_33FD_4B45_A84F_3E8591C06B7C__INCLUDED_)

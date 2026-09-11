@@ -32,8 +32,7 @@ Software Product or documentation licensed under this agreement.
 #include "boolSupport.h"
 class RCHString;
 
-class cSetString
-{
+class cSetString {
 protected:
   RCHString **objects;
   RESCUEINT64 allocated;
@@ -43,19 +42,15 @@ public:
   cSetString();
   ~cSetString();
   void operator+=(RCHString *newObject);
-  RESCUEBOOL operator-=(RCHString * existingObject);
+  RESCUEBOOL operator-=(RCHString *existingObject);
   RCHString *NthObject(RESCUEINT64 ordinal);
-  RCHString *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT64 Count64(void) {return count;}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) count;}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RCHString *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT64 Count64(void) { return count; }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)count; }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   RESCUEBOOL Contains(RCHString *example);
   void EmptySelf();
   void AddIfUnique(const RESCUECHAR *toAdd);
 };
 
 #endif
-
-
-
-

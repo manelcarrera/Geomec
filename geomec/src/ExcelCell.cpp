@@ -1,45 +1,28 @@
 #include "StdAfx.h"
 
 #include "ExcelCell.h"
-#include "GeomecStringTable.h"
 #include "FvInputStream.h"
+#include "GeomecStringTable.h"
 
 CExcelCell::CExcelCell(const TContentVec &vcReadContents, long nRowLength, int nRow, int nCol)
-: m_pvcReadContents(&vcReadContents),
-  m_pvcWriteContents(0),
-  m_nRowLength(nRowLength),
-  m_row(nRow - 1),
-  m_column(nCol - 1),
-  m_row_size(vcReadContents.size() / nRowLength)
-{
+    : m_pvcReadContents(&vcReadContents), m_pvcWriteContents(0), m_nRowLength(nRowLength), m_row(nRow - 1),
+      m_column(nCol - 1), m_row_size(vcReadContents.size() / nRowLength) {
   assert(m_column < m_nRowLength);
   assert(m_row * m_nRowLength + m_column < m_pvcReadContents->size());
 }
 
 CExcelCell::CExcelCell(const TContentVec &vcReadContents, long nRowLength, int nRow, int nCol, int nRowSize)
-: m_pvcReadContents(&vcReadContents),
-  m_pvcWriteContents(0),
-  m_nRowLength(nRowLength),
-  m_row(nRow - 1),
-  m_column(nCol - 1),
-  m_row_size(nRowSize)
-{
+    : m_pvcReadContents(&vcReadContents), m_pvcWriteContents(0), m_nRowLength(nRowLength), m_row(nRow - 1),
+      m_column(nCol - 1), m_row_size(nRowSize) {
   assert(m_column < m_nRowLength);
   assert(m_row * m_nRowLength + m_column < m_pvcReadContents->size());
 }
 
 CExcelCell::CExcelCell(int nRow, int nCol)
-: m_pvcReadContents(0),
-  m_pvcWriteContents(0),
-  m_nRowLength(0),
-  m_row(nRow - 1),
-  m_column(nCol - 1),
-  m_row_size(0)
-{
+    : m_pvcReadContents(0), m_pvcWriteContents(0), m_nRowLength(0), m_row(nRow - 1), m_column(nCol - 1), m_row_size(0) {
 }
 
-VARIANT CExcelCell::getValue() const
-{
+VARIANT CExcelCell::getValue() const {
   assert(m_pvcReadContents); // must be in read mode
 
   assert(!m_pvcReadContents->empty());
@@ -49,8 +32,7 @@ VARIANT CExcelCell::getValue() const
   return (*m_pvcReadContents)[idx];
 }
 
-void CExcelCell::setValue(VARIANT varValue)
-{
+void CExcelCell::setValue(VARIANT varValue) {
   assert(!m_pvcReadContents); // must be in write mode
   m_buffer.insert(TWriteBuffer::value_type(std::make_pair(m_row, m_column), varValue));
 }
@@ -58,8 +40,7 @@ void CExcelCell::setValue(VARIANT varValue)
 /*!
   Return true when the cell is empty
 */
-bool CExcelCell::isEmpty() const
-{
+bool CExcelCell::isEmpty() const {
   VARIANT val = getValue();
 
   return (val.vt == VT_EMPTY);
@@ -68,8 +49,7 @@ bool CExcelCell::isEmpty() const
 /*!
   Retrun true when cell type is a string
 */
-bool CExcelCell::isString() const
-{
+bool CExcelCell::isString() const {
   VARIANT val = getValue();
 
   return (val.vt == VT_BSTR);
@@ -78,49 +58,42 @@ bool CExcelCell::isString() const
 /*!
   Retrun true when cell type is a double
 */
-bool CExcelCell::isDouble() const
-{
+bool CExcelCell::isDouble() const {
   VARIANT val = getValue();
 
   return (val.vt == VT_R8);
 }
 
-QString CExcelCell::getString() const
-{
-  return QString((LPCSTR)GetString());
-}
+QString CExcelCell::getString() const { return QString((LPCSTR)GetString()); }
 
-CString CExcelCell::GetString() const
-{
+CString CExcelCell::GetString() const {
   VARIANT val = getValue();
 
-  if(val.vt != VT_BSTR) throwMessage("String type expected.");
+  if (val.vt != VT_BSTR)
+    throwMessage("String type expected.");
 
-  CString sRet( val.bstrVal );
+  CString sRet(val.bstrVal);
   sRet.TrimLeft();
   sRet.TrimRight();
   return sRet;
 }
 
-geo::CValue CExcelCell::getDouble() const
-{
+geo::CValue CExcelCell::getDouble() const {
   VARIANT val = getValue();
 
-  if(val.vt != VT_R8)
-  {
-  if ((val.vt == VT_BSTR) && wcslen(val.bstrVal) == 3)
-  {
+  if (val.vt != VT_R8) {
+    if ((val.vt == VT_BSTR) && wcslen(val.bstrVal) == 3) {
       static wchar_t nan[] = L"NAN";
       bool ok = true;
 
       for (size_t i = 0; i < 3; ++i)
-    ok = ok && towupper(val.bstrVal[i]) == nan[i];
+        ok = ok && towupper(val.bstrVal[i]) == nan[i];
 
       if (ok)
-    return geo::CValue();
-  }
+        return geo::CValue();
+    }
 
-  throwMessage("Real type expected.");
+    throwMessage("Real type expected.");
   }
 
   return val.dblVal;
@@ -129,8 +102,7 @@ geo::CValue CExcelCell::getDouble() const
 /*!
   Go to the next column on the current row
 */
-bool CExcelCell::nextColumn()
-{
+bool CExcelCell::nextColumn() {
   m_column++;
   return m_column < m_nRowLength;
 }
@@ -138,8 +110,7 @@ bool CExcelCell::nextColumn()
 /*!
   Go to the next row and sets the column back to the begin
 */
-bool CExcelCell::nextRow()
-{
+bool CExcelCell::nextRow() {
   m_column = 0;
   m_row++;
   return m_row < m_row_size;
@@ -148,8 +119,7 @@ bool CExcelCell::nextRow()
 /*!
  Go to the previous row and sets the column back to the begin
 */
-bool CExcelCell::prevRow()
-{
+bool CExcelCell::prevRow() {
   m_column = 0;
   m_row--;
   return m_row >= 0;
@@ -158,16 +128,12 @@ bool CExcelCell::prevRow()
 /*!
   Writes an QT string on the cell position
 */
-void CExcelCell::writeString(const QString& sValue)
-{
-  WriteString( sValue.toStdString().c_str() );
-}
+void CExcelCell::writeString(const QString &sValue) { WriteString(sValue.toStdString().c_str()); }
 
 /*!
   Writes an MFC string on the cell position
 */
-void CExcelCell::WriteStringID(unsigned int uValue)
-{
+void CExcelCell::WriteStringID(unsigned int uValue) {
   CString sValue;
   sValue = getStringTableEntry(uValue);
   WriteString(sValue);
@@ -176,55 +142,49 @@ void CExcelCell::WriteStringID(unsigned int uValue)
 /*!
   Writes an MFC string on the cell position
 */
-void CExcelCell::WriteString(const CString& sValue)
-{
+void CExcelCell::WriteString(const CString &sValue) {
   // Initialize parameter container
   VARIANT vStringValue;
   V_VT(&vStringValue) = VT_BSTR;
 
   V_BSTR(&vStringValue) = sValue.AllocSysString();
-  setValue(vStringValue);  
+  setValue(vStringValue);
 }
 
-void CExcelCell::writeDouble(const double& dValue)
-{
+void CExcelCell::writeDouble(const double &dValue) {
   // Initialize parameter container
   VARIANT vDoubleValue;
   V_VT(&vDoubleValue) = VT_R8;
 
-  V_R8(&vDoubleValue) = (double) dValue;
+  V_R8(&vDoubleValue) = (double)dValue;
   setValue(vDoubleValue);
 }
 
-std::pair<const TContentVec*, int> CExcelCell::GetWriteBufferAndRowLength() const
-{
+std::pair<const TContentVec *, int> CExcelCell::GetWriteBufferAndRowLength() const {
   assert(!m_pvcReadContents); // must be in write mode
-  if(m_pvcWriteContents)
-  delete m_pvcWriteContents;
+  if (m_pvcWriteContents)
+    delete m_pvcWriteContents;
 
   int nRows = 0;
   int nColumns = 0;
-  for(TWriteBuffer::const_iterator it = m_buffer.begin(); it != m_buffer.end(); ++it)
-  {
-  nRows = max(nRows, it->first.first + 1);
-  nColumns = max(nColumns, it->first.second + 1);
+  for (TWriteBuffer::const_iterator it = m_buffer.begin(); it != m_buffer.end(); ++it) {
+    nRows = max(nRows, it->first.first + 1);
+    nColumns = max(nColumns, it->first.second + 1);
   }
 
   m_pvcWriteContents = new TContentVec(nRows * nColumns);
 
-  for(int r = 0; r < nRows; ++r)
-  {
-  for(int c = 0; c < nColumns; ++c)
-  {
+  for (int r = 0; r < nRows; ++r) {
+    for (int c = 0; c < nColumns; ++c) {
       VARIANT varValue;
       TWriteBuffer::const_iterator it = m_buffer.find(std::make_pair(r, c));
-      if(it != m_buffer.end())
-    varValue = it->second;
+      if (it != m_buffer.end())
+        varValue = it->second;
       else
-    varValue.vt = VT_EMPTY;
+        varValue.vt = VT_EMPTY;
 
       (*m_pvcWriteContents)[r * nColumns + c] = varValue;
-  }
+    }
   }
 
   return std::make_pair(m_pvcWriteContents, nColumns);
@@ -233,8 +193,7 @@ std::pair<const TContentVec*, int> CExcelCell::GetWriteBufferAndRowLength() cons
 /*!
   Throws an exception with the cell.
 */
-void CExcelCell::throwMessage(const QString& sMessage) const
-{
+void CExcelCell::throwMessage(const QString &sMessage) const {
   char c = 'A' + m_column;
   throw CReadException(QString("Cell %1%2: %3").arg(c).arg(m_row + 1).arg(sMessage));
 }
@@ -242,16 +201,12 @@ void CExcelCell::throwMessage(const QString& sMessage) const
 /*!
   Throws an exception with the cell.
 */
-void CExcelCell::ThrowMessage(const CString& sMessage) const
-{
-  throwMessage((LPCSTR)sMessage);
-}
+void CExcelCell::ThrowMessage(const CString &sMessage) const { throwMessage((LPCSTR)sMessage); }
 
 /*!
   Throws an exception with the cell based on a resource ID
 */
-void CExcelCell::ThrowMessageID(unsigned int uMessage) const
-{
+void CExcelCell::ThrowMessageID(unsigned int uMessage) const {
   CString sMessage;
   sMessage = getStringTableEntry(uMessage);
   ThrowMessage(sMessage);
@@ -260,31 +215,21 @@ void CExcelCell::ThrowMessageID(unsigned int uMessage) const
 /*!
   Returns column position
 */
-int CExcelCell::column() const
-{
-  return m_column + 1;
-}
+int CExcelCell::column() const { return m_column + 1; }
 
 /*!
   Returns row position
 */
-int CExcelCell::row() const
-{
-  return m_row + 1;
-}
+int CExcelCell::row() const { return m_row + 1; }
 
 /*!
   Returns the size of the rows
 */
-int CExcelCell::rowSize() const
-{
-  return m_row_size;
-}
+int CExcelCell::rowSize() const { return m_row_size; }
 
-void CExcelCell::WriteToSheet(_Worksheet ws) const
-{
-  std::pair<const TContentVec*, int> prBuffer = GetWriteBufferAndRowLength();
-  const TContentVec& vcContents = *prBuffer.first;
+void CExcelCell::WriteToSheet(_Worksheet ws) const {
+  std::pair<const TContentVec *, int> prBuffer = GetWriteBufferAndRowLength();
+  const TContentVec &vcContents = *prBuffer.first;
   int rowlength = prBuffer.second;
 
   int nRows = vcContents.size() / rowlength;
@@ -295,17 +240,15 @@ void CExcelCell::WriteToSheet(_Worksheet ws) const
   rgsabound[0].cElements = nRows;
   rgsabound[1].lLbound = 1;
   rgsabound[1].cElements = nCols;
-  SAFEARRAY* psa = SafeArrayCreate(VT_VARIANT, 2, rgsabound);
+  SAFEARRAY *psa = SafeArrayCreate(VT_VARIANT, 2, rgsabound);
 
   LONG rgIndices[2];
-  for(int r = 0; r < nRows; ++r)
-  {
-  rgIndices[0] = r + 1;
-  for(int c = 0; c < nCols; ++c)
-  {
+  for (int r = 0; r < nRows; ++r) {
+    rgIndices[0] = r + 1;
+    for (int c = 0; c < nCols; ++c) {
       rgIndices[1] = c + 1;
-      SafeArrayPutElement(psa, rgIndices, (void*)&vcContents[r * rowlength + c]);
-  }
+      SafeArrayPutElement(psa, rgIndices, (void *)&vcContents[r * rowlength + c]);
+    }
   }
 
   VARIANT varValues;
@@ -318,11 +261,11 @@ void CExcelCell::WriteToSheet(_Worksheet ws) const
   Range cell1;
   // Initialize parameter containers
   VARIANT vRow1, vColumn1;
-  V_VT(&vRow1)    = VT_I4;
+  V_VT(&vRow1) = VT_I4;
   V_VT(&vColumn1) = VT_I4;
 
-  //Write header
-  V_I4(&vRow1)    = 1;
+  // Write header
+  V_I4(&vRow1) = 1;
   V_I4(&vColumn1) = 1;
   VARIANT var1 = cells.GetItem(vRow1, vColumn1);
   cell1.AttachDispatch(V_DISPATCH(&var1));
@@ -333,11 +276,11 @@ void CExcelCell::WriteToSheet(_Worksheet ws) const
   Range cell2;
   // Initialize parameter containers
   VARIANT vRow2, vColumn2;
-  V_VT(&vRow2)    = VT_I4;
+  V_VT(&vRow2) = VT_I4;
   V_VT(&vColumn2) = VT_I4;
 
-  //Write header
-  V_I4(&vRow2)    = nRows;
+  // Write header
+  V_I4(&vRow2) = nRows;
   V_I4(&vColumn2) = nCols;
   VARIANT var2 = cells.GetItem(vRow2, vColumn2);
   cell2.AttachDispatch(V_DISPATCH(&var2));

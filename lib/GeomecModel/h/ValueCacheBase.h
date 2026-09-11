@@ -1,8 +1,7 @@
 #ifndef _ValueCacheBase_h_
 #define _ValueCacheBase_h_
 
-class CValueCacheBase
-{
+class CValueCacheBase {
 public:
   virtual void clearCache() = 0;
 
@@ -11,4 +10,4 @@ protected:
   virtual ~CValueCacheBase() = 0;
 };
 
-#endif  // _ValueCacheBase_h_
+#endif // _ValueCacheBase_h_

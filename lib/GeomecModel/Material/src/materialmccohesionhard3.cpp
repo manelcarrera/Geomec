@@ -5,13 +5,10 @@
 
 #include "Material.h"
 
-CMaterialMCCohesionHard3::CMaterialMCCohesionHard3(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: CMaterialMohrCo(entry, libmat)
-{
-}
+CMaterialMCCohesionHard3::CMaterialMCCohesionHard3(CMaterialEntry &entry, CLibraryMaterial &libmat)
+    : CMaterialMohrCo(entry, libmat) {}
 
-bool CMaterialMCCohesionHard3::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+bool CMaterialMCCohesionHard3::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   ftn_double_t kapcoh[8];
 
   kapcoh[0] = 0;
@@ -29,32 +26,30 @@ bool CMaterialMCCohesionHard3::Write(const CFFMaterial &ffmat, dia::IDianaRunner
 }
 
 // Interface for dia::IElementProperty
-int CMaterialMCCohesionHard3::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialMCCohesionHard3::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = 8; // KAPCOH(8)
 
   size += CMaterialMohrCo::WriteFilosParamSize(ffmat, diarunner);
   return size;
 }
 
-bool CMaterialMCCohesionHard3::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
-  if (i < 8)
-  {
-  QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
-  strncpy(name, kapcoh.toStdString().c_str(), 10);
-  return true;
+bool CMaterialMCCohesionHard3::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                                   char *name) const {
+  if (i < 8) {
+    QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
+    strncpy(name, kapcoh.toStdString().c_str(), 10);
+    return true;
   }
   i -= 8;
 
   return CMaterialMohrCo::WriteFilosParamName(ffmat, diarunner, i, name);
 }
 
-void CMaterialMCCohesionHard3::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialMCCohesionHard3::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner,
+                                                     double *values, int stride) const {
   *values = 0; // KAPCOH(1)
   values += stride;
-  
+
   *values = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6; // KAPCOH(2)
   values += stride;
 

@@ -5,25 +5,24 @@
 
 // from Loki (Alexandrescu)
 
-class TypeInfo
-{
+class TypeInfo {
 public:
   TypeInfo();
-  TypeInfo(const std::type_info&);
-  TypeInfo(const TypeInfo&);
-  TypeInfo& operator=(const TypeInfo&);
-  bool before(const TypeInfo&) const;
-  const char* name() const;
+  TypeInfo(const std::type_info &);
+  TypeInfo(const TypeInfo &);
+  TypeInfo &operator=(const TypeInfo &);
+  bool before(const TypeInfo &) const;
+  const char *name() const;
 
 private:
-  const std::type_info* m_pInfo;
+  const std::type_info *m_pInfo;
 };
 
-bool operator == (const TypeInfo&, const TypeInfo&);
-bool operator != (const TypeInfo&, const TypeInfo&);
-bool operator < (const TypeInfo&, const TypeInfo&);
-bool operator <= (const TypeInfo&, const TypeInfo&);
-bool operator > (const TypeInfo&, const TypeInfo&);
-bool operator >= (const TypeInfo&, const TypeInfo&);
+bool operator==(const TypeInfo &, const TypeInfo &);
+bool operator!=(const TypeInfo &, const TypeInfo &);
+bool operator<(const TypeInfo &, const TypeInfo &);
+bool operator<=(const TypeInfo &, const TypeInfo &);
+bool operator>(const TypeInfo &, const TypeInfo &);
+bool operator>=(const TypeInfo &, const TypeInfo &);
 
-#endif  // _TypeInfo_h_
+#endif // _TypeInfo_h_

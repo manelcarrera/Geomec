@@ -1,8 +1,8 @@
 #pragma once
 
-//qt
+// qt
 #include <QString>
-//own
+// own
 #include "IListener.h"
 #include "IListenerIpc.h"
 #include "Wait.h"
@@ -11,9 +11,8 @@ class DR;
 
 struct trace_queue;
 
-class GI : public IListener, public IListenerIpc
-{
-  DR* m_dr;
+class GI : public IListener, public IListenerIpc {
+  DR *m_dr;
 
   CWait m_wait;
 
@@ -22,8 +21,7 @@ protected:
   void received(Cmd cmd);
 
 public:
-
-  GI( const std::string& token = std::string() );
+  GI(const std::string &token = std::string());
   ~GI();
 
   void wait();

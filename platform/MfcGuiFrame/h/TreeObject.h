@@ -12,15 +12,15 @@
 #include "ITreeObject.h"
 
 class CMfcTreeObjectObserver;
-class CTreeObject : public ITreeObject
-{
-  CMfcTreeObjectObserver& m_observer;
+class CTreeObject : public ITreeObject {
+  CMfcTreeObjectObserver &m_observer;
+
 public:
-  CTreeObject(CMfcTreeObjectObserver& observer, CTreeCtrl &ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
-  CTreeObject(CMfcTreeObjectObserver& observer, ITreeObject &parent, HTREEITEM m_hInsertAfter);
+  CTreeObject(CMfcTreeObjectObserver &observer, CTreeCtrl &ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
+  CTreeObject(CMfcTreeObjectObserver &observer, ITreeObject &parent, HTREEITEM m_hInsertAfter);
   virtual ~CTreeObject();
 
-  CMfcTreeObjectObserver& Observer() {return m_observer;}
+  CMfcTreeObjectObserver &Observer() { return m_observer; }
 
   virtual unsigned int Icon() const;
   virtual unsigned int StateIcon() const;

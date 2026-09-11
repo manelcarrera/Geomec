@@ -15,8 +15,7 @@ namespace dia {
 
 class CLoadManager;
 
-class CLineMoment : public IDirectedLoad  
-{
+class CLineMoment : public IDirectedLoad {
   const geo::ILine &m_Line;
 
 public:
@@ -27,6 +26,6 @@ public:
   const geo::ILine &Line() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_ILINEMOMENT_H__A91B3021_C9BD_4689_A371_FA8FB19DBFD0__INCLUDED_)

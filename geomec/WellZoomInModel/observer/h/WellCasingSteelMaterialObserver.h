@@ -9,11 +9,16 @@ class CModelBase;
 class CWellCasingSteelMaterialEntry;
 
 #include "DeletableNodeObserver_Delegate.h"
-#include "StateBranch_Delegate.h"
 #include "Geomec.h"
+#include "StateBranch_Delegate.h"
 #include "WellCasingSteelMaterial_Delegate.h"
 
-typedef CDeletableNodeObserver_Delegate<CWellCasingSteelMaterial, CWellCasingSteelMaterial_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TWellCasingSteelMaterialObserver;
-typedef CStateBranch_Delegate<CWellCasingSteelMaterialEntry, CWellCasingSteelMaterialEntry_Delegate, CWellCasingSteelMaterial, TWellCasingSteelMaterialObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM> TWellCasingSteelMaterialEntryObserver;
+typedef CDeletableNodeObserver_Delegate<CWellCasingSteelMaterial, CWellCasingSteelMaterial_Delegate, CDummyNode,
+                                        CDummyObserver, FALSE, FIXED_ITEM>
+    TWellCasingSteelMaterialObserver;
+typedef CStateBranch_Delegate<CWellCasingSteelMaterialEntry, CWellCasingSteelMaterialEntry_Delegate,
+                              CWellCasingSteelMaterial, TWellCasingSteelMaterialObserver, CUndefinedIconProvider, TRUE,
+                              DELETE_ITEM>
+    TWellCasingSteelMaterialEntryObserver;
 
 #endif // _WELLCASINGSTEELMATERIALOBSERVER_H_

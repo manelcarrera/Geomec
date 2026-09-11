@@ -13,33 +13,31 @@ class CColorScaleEntry;
 
 #include "resource.h"
 
-class CAttriColorScaleEntryDlg : public CDialog
-{
-// Construction
-  CColorScaleEntry& m_entry;
+class CAttriColorScaleEntryDlg : public CDialog {
+  // Construction
+  CColorScaleEntry &m_entry;
   void OnUpdateHotSpotBox();
   void OnUpdateGlobalScaleBox();
-public:
-  CAttriColorScaleEntryDlg(CColorScaleEntry& entry, CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
+public:
+  CAttriColorScaleEntryDlg(CColorScaleEntry &entry, CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CAttriColorScaleEntryDlg)
   enum { IDD = IDD_ATTRI_COLOR_SCALE_ENTRY };
-  CComboBox	m_cbHotSpot;
-  CComboBox	m_cbGlobal;
+  CComboBox m_cbHotSpot;
+  CComboBox m_cbGlobal;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriColorScaleEntryDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriColorScaleEntryDlg)
   afx_msg void OnDeleteGlobalScale();

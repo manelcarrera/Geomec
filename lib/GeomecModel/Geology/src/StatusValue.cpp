@@ -6,76 +6,54 @@
 
 #include <qstring.h>
 
-#include "StatusValue.h"
 #include "GeomecStringTable.h"
+#include "StatusValue.h"
 #include "resourceIDS.h"
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+CDsbStatusValue::CDsbStatusValue() : m_status(NOT_CALCULATED) {}
 
+bool CDsbStatusValue::Valid() const { return IsCalculated(); }
 
-CDsbStatusValue::CDsbStatusValue()
-:m_status(NOT_CALCULATED)
-{
-
-}
-
-bool CDsbStatusValue::Valid() const
-{
-  return IsCalculated();
-}
-
-const double &CDsbStatusValue::Value() const
-{
+const double &CDsbStatusValue::Value() const {
   assert(Valid());
   return m_dValue;
 }
 
-bool CDsbStatusValue::IsCalculated() const 
-{
-  return m_status != NOT_CALCULATED;
-}
+bool CDsbStatusValue::IsCalculated() const { return m_status != NOT_CALCULATED; }
 
-void CDsbStatusValue::Invalidate()
-{
-  m_status = NOT_CALCULATED;
-}
+void CDsbStatusValue::Invalidate() { m_status = NOT_CALCULATED; }
 
-CDsbStatusValue::eDsbStatus CDsbStatusValue::Status() const
-{
-  return m_status;
-}
+CDsbStatusValue::eDsbStatus CDsbStatusValue::Status() const { return m_status; }
 
-void CDsbStatusValue::Value(const double& value, eDsbStatus status)
-{
+void CDsbStatusValue::Value(const double &value, eDsbStatus status) {
   m_status = status;
   m_dValue = value;
 }
 
-std::string CDsbStatusValue::Representation() const
-{
-  if(!Valid()) return std::string("NAN");
+std::string CDsbStatusValue::Representation() const {
+  if (!Valid())
+    return std::string("NAN");
 
   std::stringstream ss;
   ss << Value();
   return ss.str();
 }
 
-QString CDsbStatusValue::StatusText() const
-{
+QString CDsbStatusValue::StatusText() const {
   QString sRet;
-  switch(m_status)
-  {
+  switch (m_status) {
   case NOT_CALCULATED:
     sRet = getStringTableEntry(IDS_DSB_NOT_CALCULATED);
     break;

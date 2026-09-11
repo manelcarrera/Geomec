@@ -1,20 +1,19 @@
 #ifndef _IDCSTRUCTURALLOAD_H_
 #define _IDCSTRUCTURALLOAD_H_
 
-#include "IDCLoad.h"
 #include "DCLoadCase.h"
+#include "IDCLoad.h"
 
 namespace dia {
 
-class IStructuralLoad : public ILoad
-{
+class IStructuralLoad : public ILoad {
   CLoadCase &m_LoadCase;
 
 public:
   IStructuralLoad(CLoadCase &loadcase, double size);
-  IStructuralLoad(CLoadCase &loadcase, const std::vector<double>& vcValue);
+  IStructuralLoad(CLoadCase &loadcase, const std::vector<double> &vcValue);
 
-  virtual const CLoadCase& Case() const;
+  virtual const CLoadCase &Case() const;
   const CLoadCase &LoadCase() const;
 };
 

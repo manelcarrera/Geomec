@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescuePropertyGroup_H
 #define cBagRescuePropertyGroup_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescuePropertyGroup;
 
-class cBagRescuePropertyGroup
-{
+class cBagRescuePropertyGroup {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescuePropertyGroup();
   ~cBagRescuePropertyGroup();
   void operator+=(RescuePropertyGroup *newObject);
   RESCUEBOOL operator-=(RescuePropertyGroup *existingObject);
   RescuePropertyGroup *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescuePropertyGroup *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescuePropertyGroup *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

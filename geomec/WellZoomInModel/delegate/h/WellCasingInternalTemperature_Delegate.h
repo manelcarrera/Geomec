@@ -6,25 +6,19 @@ class CWellCasingInternalTemperature;
 
 #include "IWellCasingInternalLoad_Delegate.h"
 
-class CWellCasingInternalTemperature_Delegate :
-  public IWellCasingInternalLoad_Delegate <TTemperature>
-{
+class CWellCasingInternalTemperature_Delegate : public IWellCasingInternalLoad_Delegate<TTemperature> {
 public:
-  CWellCasingInternalTemperature_Delegate(
-  CWellCasingInternalTemperature* wellCasingInternalTemperature);
+  CWellCasingInternalTemperature_Delegate(CWellCasingInternalTemperature *wellCasingInternalTemperature);
 
   virtual bool Attributes();
 
 private:
-  CWellCasingInternalTemperature_Delegate(
-  const CWellCasingInternalTemperature_Delegate& rhs);
-  CWellCasingInternalTemperature_Delegate& operator = (
-  const CWellCasingInternalTemperature_Delegate& rhs);
+  CWellCasingInternalTemperature_Delegate(const CWellCasingInternalTemperature_Delegate &rhs);
+  CWellCasingInternalTemperature_Delegate &operator=(const CWellCasingInternalTemperature_Delegate &rhs);
 
-  CWellCasingInternalTemperature* m_wellCasingInternalTemperature;
+  CWellCasingInternalTemperature *m_wellCasingInternalTemperature;
 
-  REGISTER_DELEGATE(CWellCasingInternalTemperature,
-  CWellCasingInternalTemperature_Delegate);
+  REGISTER_DELEGATE(CWellCasingInternalTemperature, CWellCasingInternalTemperature_Delegate);
 };
 
-#endif  // _WellCasingInternalTemperature_Delegate_h_
+#endif // _WellCasingInternalTemperature_Delegate_h_

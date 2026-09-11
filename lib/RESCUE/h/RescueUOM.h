@@ -12,32 +12,30 @@
 
 #include "myHeaders.h"
 
-class RescueUOM
-{
+class RescueUOM {
 public:
-  typedef enum {NONE,FACTOR,FRACTION,FORMULA} ConversionTypes;
+  typedef enum { NONE, FACTOR, FRACTION, FORMULA } ConversionTypes;
 
   static RESCUEBOOL IsPer(const RESCUECHAR *pos);
   static RESCUEBOOL IsIES(const RESCUECHAR *pos);
   static int CompareUOM(const RESCUECHAR *name1, const RESCUECHAR *name2);
   static RESCUEINT32 IndexFromName(const RESCUECHAR *name);
 
-  struct UOM
-  {
-  const RESCUECHAR *name;
-  const RESCUECHAR *quantityTypeArray[13];
-  RESCUEINT32 quantityTypeCount;
-  RESCUEINT32 baseUnit;
-  ConversionTypes conversionType;
-  RESCUEDOUBLE conversion_A;
-  RESCUEDOUBLE conversion_B;
-  RESCUEDOUBLE conversion_C;
-  RESCUEDOUBLE conversion_D;
+  struct UOM {
+    const RESCUECHAR *name;
+    const RESCUECHAR *quantityTypeArray[13];
+    RESCUEINT32 quantityTypeCount;
+    RESCUEINT32 baseUnit;
+    ConversionTypes conversionType;
+    RESCUEDOUBLE conversion_A;
+    RESCUEDOUBLE conversion_B;
+    RESCUEDOUBLE conversion_C;
+    RESCUEDOUBLE conversion_D;
   };
 
   static UOM uom[];
 
-  static RESCUEINT32 UOMCount() {return 1230;}
+  static RESCUEINT32 UOMCount() { return 1230; }
   static const RESCUECHAR *Name(RESCUEINT32 zeroBasedNdx);
   static RESCUEBOOL IsBase(RESCUEINT32 zeroBasedNdx);
   static const RESCUECHAR **QuantityTypeArray(RESCUEINT32 zeroBasedNdx);
@@ -51,6 +49,7 @@ public:
   static RESCUEDOUBLE Conversion_B(RESCUEINT32 zeroBasedNdx);
   static RESCUEDOUBLE Conversion_C(RESCUEINT32 zeroBasedNdx);
   static RESCUEDOUBLE Conversion_D(RESCUEINT32 zeroBasedNdx);
+
 private:
   static RESCUEINT32 IndexFromName_1(const RESCUECHAR *name);
   static RESCUEINT32 IndexFromName_a(const RESCUECHAR *name);
@@ -77,4 +76,3 @@ private:
 };
 
 #endif
-

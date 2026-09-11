@@ -9,7 +9,7 @@
 #endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
-  #error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
 #if BUILD_LICENSE_OPTION == -1
@@ -20,10 +20,10 @@
 #define LICENSE_BORROWING 1
 #endif
 
-#include "geomecdoc.h"
 #include "TNOWinApp.h"
 #include "TempPath.h"
-//#include "KeyFile.h"
+#include "geomecdoc.h"
+// #include "KeyFile.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CGeomecApp:
@@ -43,70 +43,69 @@ class ChangelogDlg;
 //
 //
 //
-namespace gm{
+namespace gm {
 
-namespace settings_{
-  void init();
-} //namespace settings
+namespace settings_ {
+void init();
+} // namespace settings_
 
-namespace global{
+namespace global {
 //
 // read config file (geomec.ini) and assign values to CGlobals vars
 //
 void read();
-} //namespace global
+} // namespace global
 
-} //namespace gm
+} // namespace gm
 //
 //
 //
 
-//##ModelId=3BC55D63015D
-class CGeomecApp : public CTnoWinApp
-{
+// ##ModelId=3BC55D63015D
+class CGeomecApp : public CTnoWinApp {
   QApplication *m_pQapp;
+
 public:
-  //##ModelId=3BE7AEC3039F
-  CGeomecDoc& GetDoc() const;
-  //##ModelId=3BC55D63016E
+  // ##ModelId=3BE7AEC3039F
+  CGeomecDoc &GetDoc() const;
+  // ##ModelId=3BC55D63016E
   CGeomecApp();
   virtual ~CGeomecApp();
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CGeomecApp)
 public:
-  //##ModelId=3BC55D63016F
+  // ##ModelId=3BC55D63016F
   virtual BOOL InitInstance();
   virtual int ExitInstance();
   //}}AFX_VIRTUAL
   BOOL OnCmdMsg(unsigned int nID, int nCode, void *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo);
 
-// Implementation
+  // Implementation
   //{{AFX_MSG(CGeomecApp)
-  //##ModelId=3BC55D630171
+  // ##ModelId=3BC55D630171
   afx_msg void OnAppAbout();
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
+  // NOTE - the ClassWizard will add and remove member functions here.
+  //    DO NOT EDIT what you see in these blocks of generated code !
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 
 public:
-  CTempPath* TempPath();
+  CTempPath *TempPath();
   const CKeyFile &KeyFile() const;
 
 private:
-  CTempPath* m_TempPath;
+  CTempPath *m_TempPath;
   CKeyFile *m_pKeyFile;
 
   void ShowTipAtStartup(void);
   void ShowTipOfTheDay(void);
-  BOOL ProcessShellOpenCommand(CCommandLineInfo& cmdInfo);
+  BOOL ProcessShellOpenCommand(CCommandLineInfo &cmdInfo);
 };
 
 // Global function to retrieve a pointer to the global WinApp derived object
 CGeomecApp *GetGeomecApp();
-
 
 /////////////////////////////////////////////////////////////////////////////
 

@@ -9,18 +9,17 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "MaterialServerParent.h"
 #include "IRockMaterialServerTempl.h"
+#include "MaterialServerParent.h"
 
 class CMaterialServer;
 typedef CMaterialServerParent<CColorNode, CMaterialServer> TMaterialServerParent;
 
-class CMaterialServer : public IRockMaterialServerTempl<TMaterialServerParent>
-{
+class CMaterialServer : public IRockMaterialServerTempl<TMaterialServerParent> {
   typedef IRockMaterialServerTempl<TMaterialServerParent> TBase;
 
 public:
-  CMaterialServer(TMaterialServerParent &parent, const CDepletionStage& stage);
+  CMaterialServer(TMaterialServerParent &parent, const CDepletionStage &stage);
 
   ACCEPT_GEOMECMODELVISITORS(VisitMaterialServer);
 };

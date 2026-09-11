@@ -3,24 +3,20 @@
 
 #include "SavePropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-  class CSavePropertyIsReservoir : public CSavePropertyBase
-  {
-  public:
-    CSavePropertyIsReservoir(const RGProperty& rgProperty);
-    virtual ~CSavePropertyIsReservoir();
+class CSavePropertyIsReservoir : public CSavePropertyBase {
+public:
+  CSavePropertyIsReservoir(const RGProperty &rgProperty);
+  virtual ~CSavePropertyIsReservoir();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
-      const CRockMechProcessor& rmp);
+  virtual bool saveProperty(RGInterface &rgi, CModelBase &modelBase, const CRockMechProcessor &rmp);
 
-  private:
-    CSavePropertyIsReservoir(const CSavePropertyIsReservoir& rhs);
-    CSavePropertyIsReservoir& operator = (
-      const CSavePropertyIsReservoir& rhs);
-  };
+private:
+  CSavePropertyIsReservoir(const CSavePropertyIsReservoir &rhs);
+  CSavePropertyIsReservoir &operator=(const CSavePropertyIsReservoir &rhs);
+};
 
 } // namespace GeomecRGI
 
-#endif  // _SavePropertyIsReservoir_h_
+#endif // _SavePropertyIsReservoir_h_

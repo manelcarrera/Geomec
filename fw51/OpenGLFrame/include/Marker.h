@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // Marker.h: interface for the CMarker class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -16,11 +16,11 @@
 
 #include "OpenGLFrameExports.h"
 
-class OPENGLFRAME_EXPORT CMarker: public ISymbol
-{
+class OPENGLFRAME_EXPORT CMarker : public ISymbol {
 public:
-  enum TMarkerType {MT_CIRCLE, MT_STAR, MT_POINT, MT_TRIANGLE};
+  enum TMarkerType { MT_CIRCLE, MT_STAR, MT_POINT, MT_TRIANGLE };
   typedef QRgb TColor;
+
 private:
   bool m_bFill;
   geo::CPoint m_location;
@@ -30,30 +30,27 @@ private:
   geo::CPtrArray<geo::IObject> m_geometry;
   double m_dSize;
   void CreateGeometry();
-public:
-  CMarker(const geo::IPoint& pivot_point,
-      TColor color, 
-      TMarkerType type,
-      const QString&  sLabel,
-      bool bFill = false,
-      const double& dSize = 10);
 
-  CMarker(const CMarker& rhs);
+public:
+  CMarker(const geo::IPoint &pivot_point, TColor color, TMarkerType type, const QString &sLabel, bool bFill = false,
+          const double &dSize = 10);
+
+  CMarker(const CMarker &rhs);
   virtual ~CMarker();
 
-  virtual const QString& Label() const;
-  void Label(const QString& sLabel);
+  virtual const QString &Label() const;
+  void Label(const QString &sLabel);
   virtual TColor Color() const;
   virtual TMarkerType Type() const;
   virtual bool Fill() const;
   void Fill(bool bFill);
-  void Position(const geo::IPoint& location);
+  void Position(const geo::IPoint &location);
 
   // ISymbol interface
   virtual int NrOfPositions() const;
-  virtual const geo::IPoint& Position(int Index) const;
-  virtual const geo::IArray& Geometry() const;
-  virtual const geo::IPoint& PivotPoint() const;
+  virtual const geo::IPoint &Position(int Index) const;
+  virtual const geo::IArray &Geometry() const;
+  virtual const geo::IPoint &PivotPoint() const;
 
   // IObject interface
   virtual void Rotate(const geo::IVector &vec, const double &dAngleDeg);

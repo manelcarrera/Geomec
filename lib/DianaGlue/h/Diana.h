@@ -12,10 +12,9 @@ class QWidget;
 
 class IDianaX;
 
-class CDiana  
-{
+class CDiana {
 public:
-  CDiana( IDianaX* diana_x );
+  CDiana(IDianaX *diana_x);
   virtual ~CDiana();
 
   BOOL Calculate();
@@ -34,9 +33,9 @@ public:
   QString m_strDiaExeName;
   QString m_strDataFile;
   QString m_strBaseName;
-  //FIXEM: MCR
-  QWidget* m_pParentWnd;
-  //CWnd *m_pParentWnd;
+  // FIXEM: MCR
+  QWidget *m_pParentWnd;
+  // CWnd *m_pParentWnd;
   QString m_strDiaShare;
 
 protected:

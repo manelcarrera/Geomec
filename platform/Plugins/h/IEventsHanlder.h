@@ -2,13 +2,11 @@
 
 #include "GmInterfaceGui.h"
 
-class IEventsHandler
-{
+class IEventsHandler {
 protected:
-  GmInterfaceGui* gm_iface_gui;
+  GmInterfaceGui *gm_iface_gui;
 
 public:
-  IEventsHandler( GmInterfaceGui* gm_iface_gui_ ) : gm_iface_gui( gm_iface_gui_ ){};
-  virtual void run()=0; //events loop
+  IEventsHandler(GmInterfaceGui *gm_iface_gui_) : gm_iface_gui(gm_iface_gui_) {};
+  virtual void run() = 0; // events loop
 };
-

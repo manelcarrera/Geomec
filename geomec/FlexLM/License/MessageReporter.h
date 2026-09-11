@@ -28,8 +28,7 @@
  *****************************************************************/
 #pragma once
 
-class MessageReporter
-{
+class MessageReporter {
 public:
   MessageReporter(void);
   ~MessageReporter(void);
@@ -37,4 +36,3 @@ public:
   virtual int ShowMessageBox(const char *message, const char *caption);
   virtual int ShowRetryBox(const char *message, const char *caption);
 };
-

@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueTimeStepGroup_H
 #define cBagRescueTimeStepGroup_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueTimeStepGroup;
 
-class cBagRescueTimeStepGroup
-{
+class cBagRescueTimeStepGroup {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueTimeStepGroup();
   ~cBagRescueTimeStepGroup();
   void operator+=(RescueTimeStepGroup *newObject);
   RESCUEBOOL operator-=(RescueTimeStepGroup *existingObject);
   RescueTimeStepGroup *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueTimeStepGroup *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueTimeStepGroup *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

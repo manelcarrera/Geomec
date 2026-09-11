@@ -2,9 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "IDCLoad.h"
-#include "IDCDirectedLoad.h"
 #include "DCLineLoad.h"
+#include "IDCDirectedLoad.h"
+#include "IDCLoad.h"
 
 #include "DCLoadManager.h"
 #include "IDCDianaRunner.h"
@@ -23,25 +23,20 @@
 namespace dia {
 
 CLineLoad::CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line)
-:	IDirectedLoad(loadcase, size, vecDirection), m_Object(line), m_nSetIndex(-1)
-{
-}
+    : IDirectedLoad(loadcase, size, vecDirection), m_Object(line), m_nSetIndex(-1) {}
 
-CLineLoad::CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IElementSet &group, int nSetIndex)
-:	IDirectedLoad(loadcase, size, vecDirection), m_Object(group), m_nSetIndex(nSetIndex)
-{
-}
+CLineLoad::CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IElementSet &group,
+                     int nSetIndex)
+    : IDirectedLoad(loadcase, size, vecDirection), m_Object(group), m_nSetIndex(nSetIndex) {}
 
-CLineLoad::~CLineLoad()
-{
-}
+CLineLoad::~CLineLoad() {}
 
-bool CLineLoad::WriteFilos() const
-{
-  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+bool CLineLoad::WriteFilos() const {
+  ftn_int_t idxdir = (ftn_int_t)Manager().Runner().AddDirection(Direction());
 
   ftn_int_t idx = Inquire("ELEMEN", "DIM");
-  if(idx < 0) idx = 0;
+  if (idx < 0)
+    idx = 0;
   idx++;
 
   assert(!XistIndexed("ELEMEN/", &idx));
@@ -50,22 +45,19 @@ bool CLineLoad::WriteFilos() const
 
   ChangeIndexedDir("ELEMEN/", &idx);
 
-  const geo::ILine *pLine = dynamic_cast<const geo::ILine *> (&m_Object);
-  const geo::CElementGroup *pGroup = dynamic_cast<const geo::CElementGroup *> (&m_Object);
+  const geo::ILine *pLine = dynamic_cast<const geo::ILine *>(&m_Object);
+  const geo::CElementGroup *pGroup = dynamic_cast<const geo::CElementGroup *>(&m_Object);
   assert(pLine || pGroup);
 
-  if(pLine)
-  {
-    ftn_int_t idxelm = (ftn_int_t) (pLine->Index() + 1);
+  if (pLine) {
+    ftn_int_t idxelm = (ftn_int_t)(pLine->Index() + 1);
     PutItemLength("ELEMEN", &idxelm, 1);
-  }
-  else
-  {
+  } else {
     assert(m_nSetIndex >= 0);
     WriteGroupName(*pGroup, m_nSetIndex);
   }
 
-  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  ftn_int_t idxcase = (ftn_int_t)(LoadCase().Index() + 1);
   PutItem("CASE", &idxcase);
 
   PutItem("DIRECT", &idxdir);

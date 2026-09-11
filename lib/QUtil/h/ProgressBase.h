@@ -2,16 +2,15 @@
 
 #include "IProgressBase.h"
 
-class CProgressBase : public IProgressBase
-{
-  public:
+class CProgressBase : public IProgressBase {
+public:
   CProgressBase();
   virtual ~CProgressBase();
 
-  protected:
+protected:
   static QString getDateTimeStamp();
 
-  private:
-  CProgressBase(const CProgressBase& rhs);
-  CProgressBase& operator = (const CProgressBase& rhs);
+private:
+  CProgressBase(const CProgressBase &rhs);
+  CProgressBase &operator=(const CProgressBase &rhs);
 };

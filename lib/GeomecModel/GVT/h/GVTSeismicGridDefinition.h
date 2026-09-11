@@ -8,12 +8,11 @@
 
 class CModelBase;
 
-class CGVTSeismicGridDefinition
-{
+class CGVTSeismicGridDefinition {
   QString m_KeyFile; // path to a possible keyfile
   QString m_Name;
   double m_Depth;
- 
+
   CGridDefinition m_Grid;
 
   friend class CGVTSettings;
@@ -70,14 +69,12 @@ public:
 
   typedef CStorageNode::TSTREAM TSTREAM;
   typedef CStorageNode::TPROGRESS TPROGRESS;
-  void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
-  bool FindBinTrack(double Northing, double Easting, int& nBin, int& nTrack);
+  bool FindBinTrack(double Northing, double Easting, int &nBin, int &nTrack);
 
-  bool Import(const QString& fileName, CModelBase& model, bool bNoData = false);
+  bool Import(const QString &fileName, CModelBase &model, bool bNoData = false);
 };
-
-
 
 #endif

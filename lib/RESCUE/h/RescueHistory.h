@@ -12,23 +12,21 @@
 #ifndef RESCUEHISTORY_H
 #define RESCUEHISTORY_H
 
-#include "myHeaders.h"
 #include "RescueHistoryObject.h"
+#include "myHeaders.h"
 class RCHString;
 class cBagRescueHistoryObject;
-#include "cBagRescueHistoryObject.h"
 #include "cBagRescueHistory.h"
+#include "cBagRescueHistoryObject.h"
 class cBagInt;
 class RescueModel;
 
-class RescueHistory:public RescueHistoryObject
-{
+class RescueHistory : public RescueHistoryObject {
 public:
-  RescueHistory(RescueModel *parentModelIn, RESCUECHAR *changeDescription, 
-                      RESCUECHAR *parsableDescription = 0);
-                                          // The object becomes the property of the model passed.
-                                          // The strings, however, are copied, so if you allocated
-                                          // them you should free them.
+  RescueHistory(RescueModel *parentModelIn, RESCUECHAR *changeDescription, RESCUECHAR *parsableDescription = 0);
+  // The object becomes the property of the model passed.
+  // The strings, however, are copied, so if you allocated
+  // them you should free them.
   void AddObjectChanged(RescueHistoryObject *newObjectChanged);
   void AddRelatedObject(RescueHistoryObject *newRelatedObject);
   void AddRelatedHistory(RescueHistory *newRelatedHistory);
@@ -39,34 +37,37 @@ public:
   void SetChangeDescription(const RESCUECHAR *newChangeDescription);
   void SetParsableDescription(const RESCUECHAR *newParsableDescription);
 
-  RescueModel *ParentModel() {return parentModel;}
-  RCHString *ChangeDescription() {return changeDescription;}
-  RCHString *ParsableDescription() {return parsableDescription;}
-  RCHString *TimeStamp() {return timeStamp;}
-  RescueHistory *NthForwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) 
-                {return forwardRelatedChanges->NthObject(zeroBasedOrdinal);}
-  RescueHistory *NthBackwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) 
-                {return backwardRelatedChanges->NthObject(zeroBasedOrdinal);}
-  RescueHistoryObject *NthChangedObject(RESCUEINT64 zeroBasedOrdinal) 
-                {return objectsChanged->NthObject(zeroBasedOrdinal);}
-  RescueHistoryObject *NthRelatedObject(RESCUEINT64 zeroBasedOrdinal) 
-                {return relatedObjects->NthObject(zeroBasedOrdinal);} 
-                                          // Never delete an RCHString returned by RescueHistory.
-                                          // You can delete the other objects returned by following
-                                          // the instructions for the object.  For example, RescueHistory
-                                          // are deleted via 
-                                          // rescueHistory->ParentModel()->DropRescueHistory(rescueHistory);
+  RescueModel *ParentModel() { return parentModel; }
+  RCHString *ChangeDescription() { return changeDescription; }
+  RCHString *ParsableDescription() { return parsableDescription; }
+  RCHString *TimeStamp() { return timeStamp; }
+  RescueHistory *NthForwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) {
+    return forwardRelatedChanges->NthObject(zeroBasedOrdinal);
+  }
+  RescueHistory *NthBackwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) {
+    return backwardRelatedChanges->NthObject(zeroBasedOrdinal);
+  }
+  RescueHistoryObject *NthChangedObject(RESCUEINT64 zeroBasedOrdinal) {
+    return objectsChanged->NthObject(zeroBasedOrdinal);
+  }
+  RescueHistoryObject *NthRelatedObject(RESCUEINT64 zeroBasedOrdinal) {
+    return relatedObjects->NthObject(zeroBasedOrdinal);
+  }
+  // Never delete an RCHString returned by RescueHistory.
+  // You can delete the other objects returned by following
+  // the instructions for the object.  For example, RescueHistory
+  // are deleted via
+  // rescueHistory->ParentModel()->DropRescueHistory(rescueHistory);
   virtual ~RescueHistory();
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
 private:
   RescueHistory(RescueContext *context, FILE *archiveFile);
   virtual void Archive(FILE *archiveFile);
-  virtual void Relink(RescueObject *object);  // Pass RescueModel.
+  virtual void Relink(RescueObject *object); // Pass RescueModel.
 
-  static RescueHistoryObject *FindObject(RescueModel *model, _RescueObjectType objectType, 
-                                         RESCUEINT64 objectId); 
+  static RescueHistoryObject *FindObject(RescueModel *model, _RescueObjectType objectType, RESCUEINT64 objectId);
 
   RCHString *changeDescription;
   RCHString *parsableDescription;
@@ -77,12 +78,11 @@ private:
   cBagRescueHistory *backwardRelatedChanges;
   RescueModel *parentModel;
 
-  cBagInt *forwardHistory;                // These all used only during relinking.
+  cBagInt *forwardHistory; // These all used only during relinking.
   cBagInt *objectTypes;
   cBagInt *objectIds;
   cBagInt *relatedTypes;
   cBagInt *relatedIds;
-
 
   friend class cSetRescueHistory;
   friend class cBagRescueHistory;
@@ -94,5 +94,3 @@ private:
 };
 
 #endif
-
-

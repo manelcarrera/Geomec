@@ -1,18 +1,11 @@
 #include "GVTVelocityModelSource.h"
 
-namespace GVT
-{
+namespace GVT {
 
-CGVTVelocityModelSource::CGVTVelocityModelSource()
-{
-}
+CGVTVelocityModelSource::CGVTVelocityModelSource() {}
 
-CGVTVelocityModelSource::~CGVTVelocityModelSource()
-{
-}
+CGVTVelocityModelSource::~CGVTVelocityModelSource() {}
 
-void CGVTVelocityModelSource::SetContents(const std::stringstream&)
-{
-}
+void CGVTVelocityModelSource::SetContents(const std::stringstream &) {}
 
 } // namespace GVT

@@ -7,53 +7,39 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-CNoneQuantity::CNoneQuantity()
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
-
+CNoneQuantity::CNoneQuantity() : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
 }
 
-CNoneQuantity::CNoneQuantity(const double &value, const UNIT unit)
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
+CNoneQuantity::CNoneQuantity(const double &value, const UNIT unit) : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
   Value(value, unit);
 }
 
-CNoneQuantity::CNoneQuantity(const double& value,const double &min ,const double &max, const UNIT unit)
-:CDoubleQuantity()
-{
+CNoneQuantity::CNoneQuantity(const double &value, const double &min, const double &max, const UNIT unit)
+    : CDoubleQuantity() {
 
-  MaxValue(max,  unit);
-  MinValue(min,  unit);
+  MaxValue(max, unit);
+  MinValue(min, unit);
   Value(value, unit);
 }
 
-CNoneQuantity::CNoneQuantity(      const double& value,
-                             const double &min ,
-                             const double &max,
-                             bool bIncludeMin,
-                             bool bIncludeMax,
-                     const UNIT unit)
-:CDoubleQuantity()
-{
-  m_bIncludeMin=bIncludeMin;
-  m_bIncludeMax=bIncludeMax;
-  MaxValue(max,  unit);
-  MinValue(min,  unit);
+CNoneQuantity::CNoneQuantity(const double &value, const double &min, const double &max, bool bIncludeMin,
+                             bool bIncludeMax, const UNIT unit)
+    : CDoubleQuantity() {
+  m_bIncludeMin = bIncludeMin;
+  m_bIncludeMax = bIncludeMax;
+  MaxValue(max, unit);
+  MinValue(min, unit);
   Value(value, unit);
 }
 
+double CNoneQuantity::Convert(const double &value, const UNIT /*out*/, const UNIT /*in*/) const {
 
-double CNoneQuantity::Convert(const double &value, const UNIT /*out*/, const UNIT /*in*/) const
-{
-
-  //if(in == out)
-    return value;
-
+  // if(in == out)
+  return value;
 
   /*double tmp=value;
 
@@ -91,15 +77,10 @@ double CNoneQuantity::Convert(const double &value, const UNIT /*out*/, const UNI
   return tmp;*/
 }
 
-std::string	CNoneQuantity::QuantityName() const
-{
-  return "None";
-}
+std::string CNoneQuantity::QuantityName() const { return "None"; }
 
-std::string CNoneQuantity::UnitName(const UNIT unit) const 
-{
-  switch(unit)
-  {
+std::string CNoneQuantity::UnitName(const UNIT unit) const {
+  switch (unit) {
   case SI_UNIT:
     return "-";
     break;
@@ -120,8 +101,4 @@ std::string CNoneQuantity::UnitName(const UNIT unit) const
   return "";
 }
 
-CNoneQuantity::CNoneQuantity(const CNoneQuantity &rhs)
-: CDoubleQuantity(rhs)
-{
-
-}
+CNoneQuantity::CNoneQuantity(const CNoneQuantity &rhs) : CDoubleQuantity(rhs) {}

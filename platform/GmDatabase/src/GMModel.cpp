@@ -1,51 +1,28 @@
 // GMModel.cpp: implementation of the CModel class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
 #include "GMModel.h"
+#include "stdafx.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-namespace gm { 
+namespace gm {
 
-CModel::CModel()
-{
+CModel::CModel() {}
 
-}
+CModel::~CModel() {}
 
-CModel::~CModel()
-{
+bool CModel::TimeAnalysis() const { return m_bTimeAnalysis; }
 
-}
+const QString &CModel::ProjectInfo() const { return m_strProjectInfo; }
 
-bool CModel::TimeAnalysis() const
-{
-  return m_bTimeAnalysis;
-}
+const double &CModel::WaterColumnStressGradient() const { return m_dWaterColumnStressGradient; }
 
-const QString& CModel::ProjectInfo() const 
-{
-  return m_strProjectInfo;
-}
+const double &CModel::TotalVerticalStressGradient() const { return m_dTotalVerticalStressGradient; }
 
-const double& CModel::WaterColumnStressGradient() const
-{
-  return m_dWaterColumnStressGradient;
-}
+const double &CModel::VerticalStressExponent() const { return m_dVerticalStressExponent; }
 
-const double& CModel::TotalVerticalStressGradient() const
-{
-  return m_dTotalVerticalStressGradient;
-}
+void CModel::OnNewTable(CString sTableName) {}
 
-const double& CModel::VerticalStressExponent() const
-{
-  return m_dVerticalStressExponent;
-}
-
-void CModel::OnNewTable(CString sTableName)
-{
-}
-
-}
+} // namespace gm

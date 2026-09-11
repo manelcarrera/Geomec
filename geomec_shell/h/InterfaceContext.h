@@ -9,8 +9,9 @@
 // dsa
 #include "Events.h"
 #include "SafeQueue.h"
-namespace std { class thread; }
-
+namespace std {
+class thread;
+}
 
 class CModelBase;
 class CDianaExecuter;
@@ -22,19 +23,17 @@ class IModelDiagnostics;
 
 class CDianaRunController;
 
-namespace gm_shell
-{
+namespace gm_shell {
 
 /////////////////////////////////////////////////
 //
 //				CInterfaceLogWrapper
 //
 /////////////////////////////////////////////////
-class CInterfaceLogWrapper
-{
+class CInterfaceLogWrapper {
 public:
   virtual ~CInterfaceLogWrapper() {}
-  virtual void AddLine(const QString& /*line*/, bool /*bVerbose*/ = false, bool /*bFatal*/ = false) const {}
+  virtual void AddLine(const QString & /*line*/, bool /*bVerbose*/ = false, bool /*bFatal*/ = false) const {}
 };
 
 /////////////////////////////////////////////////
@@ -42,52 +41,51 @@ public:
 //				CInterfaceModelContext
 //
 /////////////////////////////////////////////////
-class CInterfaceModelContext
-{
-  CAnalysisLogger  m_logger;
-  CModelBase      *m_pModel;
-  CVersionManager  m_VersionManager;
+class CInterfaceModelContext {
+  CAnalysisLogger m_logger;
+  CModelBase *m_pModel;
+  CVersionManager m_VersionManager;
 
-  bool             m_created;
+  bool m_created;
 
-  QString          m_app_version;
+  QString m_app_version;
 
-  QString          m_model_full_path;
-  QString          m_model_path;
-  QString          m_model_name;
-  QString          m_model_extension;
+  QString m_model_full_path;
+  QString m_model_path;
+  QString m_model_name;
+  QString m_model_extension;
 
-  QString          m_output_path;
-  QString          m_temp_path;
+  QString m_output_path;
+  QString m_temp_path;
 
-  QString          m_type;
+  QString m_type;
 
-  CDianaExecuter                 *m_pDianaExecuter;
-  CSaveModelConsole              *m_pSaveModel;
+  CDianaExecuter *m_pDianaExecuter;
+  CSaveModelConsole *m_pSaveModel;
   CRetrieveDianaFileNamesConsole *m_pRetrieveDianaFileNames;
 
-  int  m_nStage;
+  int m_nStage;
   bool m_bHasRun;
   bool m_bAutoExport;
-  int  m_nLicenseRetry;
+  int m_nLicenseRetry;
 
   QString m_sLicenseError;
   bool m_bHaveResults;
   bool m_bCalculationResult;
 
 public:
-  CInterfaceModelContext(const QString& app_version);
+  CInterfaceModelContext(const QString &app_version);
   ~CInterfaceModelContext();
 
-  void Load(const QString& model, IModelDiagnostics *pModelDiagnostics = 0);
-  void Create(const QString& model);
-  void Create(const QString& model, const QString& skua);
+  void Load(const QString &model, IModelDiagnostics *pModelDiagnostics = 0);
+  void Create(const QString &model);
+  void Create(const QString &model, const QString &skua);
   bool Validate(bool forRockMech);
 
-  void OutputPath(const QString& outputPath);
+  void OutputPath(const QString &outputPath);
   QString OutputPath() const;
 
-  void TempPath(const QString& tempPath);
+  void TempPath(const QString &tempPath);
   QString TempPath() const;
 
   QString ModelFullPath() const;
@@ -96,7 +94,7 @@ public:
   QString ModelExtension() const;
 
   CModelBase *Model();
-  bool  Created() const;
+  bool Created() const;
 
   void SwitchTo(CModelBase *model);
   void SwitchToParent();
@@ -105,9 +103,9 @@ public:
   void MoveFiles();
 
   void Stage(int nStage);
-  int  Stage() const;
+  int Stage() const;
 
-  void Type(const QString& type);
+  void Type(const QString &type);
   QString Type() const;
 
   void AutoExport(bool flag);
@@ -127,7 +125,7 @@ public:
   void CleanUpAfterRun();
 
   void Save();
-  void SaveAs(const QString& fileName);
+  void SaveAs(const QString &fileName);
 
   // deprecated
   CDianaExecuter *GetDianaExecuter();
@@ -136,18 +134,14 @@ public:
   QString ModelWorkPath();
 
 private:
-
-  void ProcessModelPath(const QString& model);
+  void ProcessModelPath(const QString &model);
   void SetupDianaRunEnvironment();
   void ShutdownDianaRunEnvironment();
 
 private:
-  CDianaRunController* m_drc;
-
+  CDianaRunController *m_drc;
 };
 
-
-}
-
+} // namespace gm_shell
 
 #endif

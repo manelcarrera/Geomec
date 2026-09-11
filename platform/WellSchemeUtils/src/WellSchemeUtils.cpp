@@ -5,26 +5,22 @@
 #include <afxdllx.h>
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
+static AFX_EXTENSION_MODULE WellSchemeUtilsDLL = {NULL, NULL};
 
-static AFX_EXTENSION_MODULE WellSchemeUtilsDLL = { NULL, NULL };
-
-extern "C" int APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
-{
+extern "C" int APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved) {
   // Remove this if you use lpReserved
   UNREFERENCED_PARAMETER(lpReserved);
 
-  if (dwReason == DLL_PROCESS_ATTACH)
-  {
+  if (dwReason == DLL_PROCESS_ATTACH) {
     TRACE0("WELLSCHEMEUTILS.DLL Initializing!\n");
-    
+
     // Extension DLL one-time initialization
     if (!AfxInitExtensionModule(WellSchemeUtilsDLL, hInstance))
       return 0;
@@ -42,12 +38,10 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     //  result.
 
     new CDynLinkLibrary(WellSchemeUtilsDLL);
-  }
-  else if (dwReason == DLL_PROCESS_DETACH)
-  {
+  } else if (dwReason == DLL_PROCESS_DETACH) {
     TRACE0("WELLSCHEMEUTILS.DLL Terminating!\n");
     // Terminate the library before destructors are called
     AfxTermExtensionModule(WellSchemeUtilsDLL);
   }
-  return 1;   // ok
+  return 1; // ok
 }

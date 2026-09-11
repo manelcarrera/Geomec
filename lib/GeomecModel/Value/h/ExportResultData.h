@@ -7,8 +7,8 @@
 class CDepletionStage;
 class CHotSpot;
 
-#include "colornode.h"
 #include "GeomecModelVisitor.h"
+#include "colornode.h"
 
 #include "DepletionStage.h"
 #include "FormationPlane.h"
@@ -16,18 +16,13 @@ class CHotSpot;
 
 class CExportResultData;
 
-
-class IExportResultDataFilter
-{
+class IExportResultDataFilter {
 public:
   typedef enum { NONE = 0, SET = 1, BYTYPE = 2, BYNAME = 3 } TType;
 };
 
-
-class CExportResultDataSettings : public IExportResultDataFilter
-{
+class CExportResultDataSettings : public IExportResultDataFilter {
 public:
-
   QString m_folder;
   QString m_file;
   bool m_export;
@@ -46,58 +41,60 @@ public:
 
   CExportResultDataSettings();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataDepletionStageFilter : public IExportResultDataFilter
-{
+class CExportResultDataDepletionStageFilter : public IExportResultDataFilter {
 public:
-
   TType m_nType;
 
   typedef enum { INITIAL = 0, LAST, ALL } TSetValue;
 
-  union
-  {
-  TSetValue m_nSetValue;
-  CDepletionStage::eOutputType m_nTypeValue;
+  union {
+    TSetValue m_nSetValue;
+    CDepletionStage::eOutputType m_nTypeValue;
   };
 
-  QString   m_sName;
+  QString m_sName;
 
   CExportResultDataDepletionStageFilter();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataDepletionStageFilterVector : public IExportResultDataFilter
-{
+class CExportResultDataDepletionStageFilterVector : public IExportResultDataFilter {
 public:
-
   std::vector<CExportResultDataDepletionStageFilter> m_depletionStageFilters;
 
   CExportResultDataDepletionStageFilterVector();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataModelFilter : public IExportResultDataFilter
-{
+class CExportResultDataModelFilter : public IExportResultDataFilter {
 public:
-
-  typedef enum { FAULTS = 0, HORIZONS, FORMATIONS, FORMATIONPLANES, WELLPATHS, POINTSETS, ELEMENTSETS, NONMESHEDSURFACES } TFilter;
+  typedef enum {
+    FAULTS = 0,
+    HORIZONS,
+    FORMATIONS,
+    FORMATIONPLANES,
+    WELLPATHS,
+    POINTSETS,
+    ELEMENTSETS,
+    NONMESHEDSURFACES
+  } TFilter;
 
   TFilter m_nFilter;
 
@@ -114,35 +111,31 @@ public:
 
   CExportResultDataModelFilter();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataModelFilterVector : public IExportResultDataFilter
-{
+class CExportResultDataModelFilterVector : public IExportResultDataFilter {
   typedef std::vector<CFormationPlane::ePlaneType> TFormationPlaneTypes;
   typedef std::map<const CHexaFormation *, TFormationPlaneTypes> TFormationPlaneTypeSet;
 
 public:
-
   std::vector<CExportResultDataModelFilter> m_modelFilters;
 
   CExportResultDataModelFilterVector();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataResultFilter : public IExportResultDataFilter
-{
+class CExportResultDataResultFilter : public IExportResultDataFilter {
 public:
-
   typedef enum { MATERIALS = 0, MESH, RESULTS, GVTRESULTS } TFilter;
 
   TFilter m_nFilter;
@@ -156,17 +149,15 @@ public:
 
   CExportResultDataResultFilter();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataResultFilterVector : public IExportResultDataFilter
-{
+class CExportResultDataResultFilterVector : public IExportResultDataFilter {
 public:
-
   IGeomecModelVisitor *m_matResults;
   IGeomecModelVisitor *m_meshResults;
   IGeomecModelVisitor *m_results;
@@ -182,48 +173,42 @@ public:
 
   CExportResultDataResultFilterVector();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 
 private:
-  void unbindMaterialResults(CExportResultData& exportResultData);
-  void unbindResults(CExportResultData& exportResultData);
-  void unbindGVTResults(CExportResultData& exportResultData);
+  void unbindMaterialResults(CExportResultData &exportResultData);
+  void unbindResults(CExportResultData &exportResultData);
+  void unbindGVTResults(CExportResultData &exportResultData);
 };
 
-
-class CExportResultDataDeformation : public IExportResultDataFilter
-{
+class CExportResultDataDeformation : public IExportResultDataFilter {
 public:
-
   TType m_nType;
 
   typedef enum { INITIAL = 0, LAST } TSetValue;
 
   TSetValue m_nSetValue;
-  QString   m_sName;
+  QString m_sName;
 
   typedef enum { LINEAR = 0, NONLIN, MIXTURE } TCalculation;
 
   TCalculation m_nCalculation;
 
-
   CExportResultDataDeformation();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-class CExportResultDataHotSpot : public IExportResultDataFilter
-{
+class CExportResultDataHotSpot : public IExportResultDataFilter {
 public:
-
   TType m_nType;
 
   QString m_sName;
@@ -237,22 +222,17 @@ public:
 
   CExportResultDataHotSpot();
 
-  void bind(CExportResultData& exportResultData);
-  void unbind(CExportResultData& exportResultData, bool bStore);
+  void bind(CExportResultData &exportResultData);
+  void unbind(CExportResultData &exportResultData, bool bStore);
 
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 };
 
-
-
-
-
-class CExportResultData : public CColorNode
-{
+class CExportResultData : public CColorNode {
 public:
-  CExportResultData(CFemAppModel& model);
-  CExportResultData(const QString& exportResultName, CFemAppModel& model);
+  CExportResultData(CFemAppModel &model);
+  CExportResultData(const QString &exportResultName, CFemAppModel &model);
 
   // Identification.
 
@@ -262,11 +242,10 @@ public:
   // Rendering and default color.
 
   virtual int DisplayListSize() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
 
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
   CExportResultDataSettings m_settings;
   CExportResultDataDepletionStageFilterVector m_depletionStageFilterVector;
@@ -280,8 +259,7 @@ public:
 
   bool ReservoirMacro() const;
 
-
-  typedef std::set <const CDepletionStage*> TTimeStepSet;
+  typedef std::set<const CDepletionStage *> TTimeStepSet;
 
   QString m_folder;
   QString m_file;
@@ -289,14 +267,14 @@ public:
   mutable COpenGLNodeSelection m_selection;
   int m_nUnit;
   int m_nTZ;
-  const CHotSpot* m_pHotSpot;
+  const CHotSpot *m_pHotSpot;
   bool m_bLinear;
   bool m_bNonLinear;
   bool m_bHeat;
   bool m_bMixture;
   bool m_bMixtureContainment;
   TResultComponentSet m_RGObserverData;
-  const CDepletionStage* m_pTimeStep;
+  const CDepletionStage *m_pTimeStep;
   int m_nLinear;
   int m_nCenterPoints;
   int m_nWellPoints;
@@ -311,8 +289,8 @@ public:
   ACCEPT_GEOMECMODELVISITORS(VisitExportResultData);
 
 private:
-  CExportResultData(const CExportResultData& rhs);
-  CExportResultData& operator = (const CExportResultData& rhs);
+  CExportResultData(const CExportResultData &rhs);
+  CExportResultData &operator=(const CExportResultData &rhs);
 };
 
-#endif  // _ExportResultData_h_
+#endif // _ExportResultData_h_

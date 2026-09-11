@@ -15,8 +15,7 @@
 class RescueIdTreeNode;
 class RescueObject;
 
-class RescueIdTree
-{
+class RescueIdTree {
 protected:
   RescueIdTreeNode *rootNode;
   RESCUEINT64 count;
@@ -27,12 +26,8 @@ public:
   void Add(RescueObject *newObject);
   RESCUEBOOL Delete(RescueObject *existingObject);
   RescueObject *Find(RESCUEINT64 identifier);
-  RESCUEINT64 Count64(void) {return count;}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) count;}
+  RESCUEINT64 Count64(void) { return count; }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)count; }
 };
 
 #endif
-
-
-
-

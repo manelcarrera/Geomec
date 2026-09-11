@@ -8,5 +8,4 @@
 
 #include "resource.h"
 
-
 #endif // !defined(AFX_SURFACETHINOUT_H__6E092238_6AE2_4EFB_BC08_137A72B63FA3__INCLUDED_)

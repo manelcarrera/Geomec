@@ -5,28 +5,25 @@ class RGProperty;
 class RGInterface;
 class CModelBase;
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
 class CRockMechProcessor;
 
-class CSavePropertyBase
-{
-  public:
-  CSavePropertyBase(const RGProperty& rgProperty);
+class CSavePropertyBase {
+public:
+  CSavePropertyBase(const RGProperty &rgProperty);
   virtual ~CSavePropertyBase() = 0;
 
-  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
-      const CRockMechProcessor& rmp) = 0;
+  virtual bool saveProperty(RGInterface &rgi, CModelBase &modelBase, const CRockMechProcessor &rmp) = 0;
 
-  protected:
-  const RGProperty& m_RGProperty;
+protected:
+  const RGProperty &m_RGProperty;
 
-  private:
-  CSavePropertyBase(const CSavePropertyBase& rhs);
-  CSavePropertyBase& operator = (const CSavePropertyBase& rhs);
+private:
+  CSavePropertyBase(const CSavePropertyBase &rhs);
+  CSavePropertyBase &operator=(const CSavePropertyBase &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _SavePropertyBase_h_
+#endif // _SavePropertyBase_h_

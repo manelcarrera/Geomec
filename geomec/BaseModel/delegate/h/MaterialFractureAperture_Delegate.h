@@ -5,22 +5,17 @@ class CMaterialFractureAperture;
 
 #include "MaterialFractureApertureBase_Delegate.h"
 
-class CMaterialFractureAperture_Delegate : public CMaterialFractureApertureBase_Delegate
-{
+class CMaterialFractureAperture_Delegate : public CMaterialFractureApertureBase_Delegate {
 public:
-  CMaterialFractureAperture_Delegate(
-  CMaterialFractureAperture* materialFractureAperture);
+  CMaterialFractureAperture_Delegate(CMaterialFractureAperture *materialFractureAperture);
 
 private:
-  CMaterialFractureAperture_Delegate(
-  const CMaterialFractureAperture_Delegate& rhs);
-  CMaterialFractureAperture_Delegate& operator = (
-  const CMaterialFractureAperture_Delegate& rhs);
+  CMaterialFractureAperture_Delegate(const CMaterialFractureAperture_Delegate &rhs);
+  CMaterialFractureAperture_Delegate &operator=(const CMaterialFractureAperture_Delegate &rhs);
 
-  CMaterialFractureAperture* m_materialFractureAperture;
+  CMaterialFractureAperture *m_materialFractureAperture;
 
-  REGISTER_DELEGATE(CMaterialFractureAperture,
-  CMaterialFractureAperture_Delegate);
+  REGISTER_DELEGATE(CMaterialFractureAperture, CMaterialFractureAperture_Delegate);
 };
 
-#endif  // _MaterialFractureAperture_Delegate_h_
+#endif // _MaterialFractureAperture_Delegate_h_

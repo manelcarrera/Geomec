@@ -9,19 +9,10 @@
 
 namespace dia {
 
-IConcentrationTable::IConcentrationTable(const IDianaRunner &runner)
-: IValueTable(runner)
-{
-}
+IConcentrationTable::IConcentrationTable(const IDianaRunner &runner) : IValueTable(runner) {}
 
-std::string IConcentrationTable::TableName() const
-{
-  return "CONCEN";
-}
+std::string IConcentrationTable::TableName() const { return "CONCEN"; }
 
-std::string IConcentrationTable::TimeTableName() const
-{
-  return "CTIMPT";
-}
+std::string IConcentrationTable::TimeTableName() const { return "CTIMPT"; }
 
 } // namespace dia

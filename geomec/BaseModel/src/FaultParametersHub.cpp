@@ -1,23 +1,16 @@
 #include "stdafx.h"
 
-#include "FaultParametersHub.h"
 #include "EditFaultSettings.h"
+#include "FaultParametersHub.h"
 
-CFaultParametersHub::CFaultParametersHub(CHorizonBase& horizonBase)
-: m_horizonBase(horizonBase)
-{
-}
+CFaultParametersHub::CFaultParametersHub(CHorizonBase &horizonBase) : m_horizonBase(horizonBase) {}
 
-void CFaultParametersHub::attributes()
-{
-  CEditFaultSettings
-  editFaultSettings(&(m_horizonBase.Model()), &m_horizonBase);
+void CFaultParametersHub::attributes() {
+  CEditFaultSettings editFaultSettings(&(m_horizonBase.Model()), &m_horizonBase);
 
   editFaultSettings.DoModal();
 }
 
-bool CFaultParametersHub::hasAttributes() const
-{
-  return ((&(m_horizonBase.Model()) != 0) &&
-  CEditFaultSettings::hasFaultFractures(&(m_horizonBase.Model())));
+bool CFaultParametersHub::hasAttributes() const {
+  return ((&(m_horizonBase.Model()) != 0) && CEditFaultSettings::hasFaultFractures(&(m_horizonBase.Model())));
 }

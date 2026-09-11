@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ITriangle.cpp: implementation of the ITriangle class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -8,26 +8,26 @@
 #include "dimple.h"
 #include <vector>
 
-#include "IObject.h"
 #include "ICoordinate.h"
-#include "IPoint.h"
-#include "Point.h"
-#include "IVector.h"
-#include "Vector.h"
-#include "Matrix.h"
-#include "VectorTempl.h"
-#include "IElementSet.h"
-#include "IValue.h"
-#include "Value.h"
-#include "IProgressBase.h"
-#include "IValueSet.h"
 #include "IElement.h"
-#include "ILine.h"
-#include "Line.h"
-#include "IPlane.h"
-#include "Plane.h"
+#include "IElementSet.h"
 #include "IFace.h"
+#include "ILine.h"
+#include "IObject.h"
+#include "IPlane.h"
+#include "IPoint.h"
+#include "IProgressBase.h"
 #include "ITriangle.h"
+#include "IValue.h"
+#include "IValueSet.h"
+#include "IVector.h"
+#include "Line.h"
+#include "Matrix.h"
+#include "Plane.h"
+#include "Point.h"
+#include "Value.h"
+#include "Vector.h"
+#include "VectorTempl.h"
 
 #include "lbel.h"
 
@@ -42,10 +42,9 @@ static const char L3[] = "L3";
 
 namespace geo {
 
-void ITriangle::BuildIntegrationPoints(IElement::TIntPtVec& vec, int numint)
-{
+void ITriangle::BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint) {
   int i;
-  for(i = 0; i < numint; i++)	{
+  for (i = 0; i < numint; i++) {
     // the hammer coordinates returned include the third
     // (dependent) coordinate 1 - xi - eta
     double coord[3];
@@ -59,100 +58,88 @@ void ITriangle::BuildIntegrationPoints(IElement::TIntPtVec& vec, int numint)
   }
 }
 
-const IElement::TIntPtVec& ITriangle::IntegrationPoints( int order )
-{
+const IElement::TIntPtVec &ITriangle::IntegrationPoints(int order) {
 
   // integration point location and weights
   static TIntPtVec s_LinearIntegrationPoints;
   static TIntPtVec s_QuadIntegrationPoints;
   static TIntPtVec s_CubicIntegrationPoints;
 
-  switch( order ) {
+  switch (order) {
   case 1:
-  if(s_LinearIntegrationPoints.empty())
+    if (s_LinearIntegrationPoints.empty())
       BuildIntegrationPoints(s_LinearIntegrationPoints, 1);
-  return s_LinearIntegrationPoints;
-  break;
+    return s_LinearIntegrationPoints;
+    break;
   case 2:
-  if(s_QuadIntegrationPoints.empty())
+    if (s_QuadIntegrationPoints.empty())
       BuildIntegrationPoints(s_QuadIntegrationPoints, 3);
     return s_QuadIntegrationPoints;
     break;
   case 3:
-    if(s_CubicIntegrationPoints.empty())
+    if (s_CubicIntegrationPoints.empty())
       BuildIntegrationPoints(s_CubicIntegrationPoints, 4);
     return s_CubicIntegrationPoints;
     break;
   }
 
   assert(false);
-  TIntPtVec* pBogus = 0;
+  TIntPtVec *pBogus = 0;
   return *pBogus;
 }
 
-const IElement::TIntPtVec& ITriangle::IntegrationPoints() const
-{
-  return IntegrationPoints( Order() );
-}
+const IElement::TIntPtVec &ITriangle::IntegrationPoints() const { return IntegrationPoints(Order()); }
 
-void ITriangle::PrepareMapping()
-{
+void ITriangle::PrepareMapping() {
   for (int i = 1; i < 4; ++i)
-  IntegrationPoints(i);
+    IntegrationPoints(i);
 }
 
-ITriangle::ITriangle()
-{
-}
+ITriangle::ITriangle() {}
 
-int ITriangle::NrOfPoints() const
-{
-  if ( NrOfNodes() > 0 ) return NrOfNodes();
+int ITriangle::NrOfPoints() const {
+  if (NrOfNodes() > 0)
+    return NrOfNodes();
   return 3;
 }
 
-const IPoint &ITriangle::Point(int nIndex) const
-{
-  return Node( nIndex );
+const IPoint &ITriangle::Point(int nIndex) const {
+  return Node(nIndex);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   return Node(Order() * nIndex);
 #endif
 }
 
-void ITriangle::Point(int nIndex, const IPoint &pt)
-{
-  Node( nIndex, pt );
+void ITriangle::Point(int nIndex, const IPoint &pt) {
+  Node(nIndex, pt);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   Node(Order() * nIndex, pt);
 #endif
 }
 
-void ITriangle::Swap(const double** d1, const double** d2) const
-{
+void ITriangle::Swap(const double **d1, const double **d2) const {
   const double *tmp = *d1;
   *d1 = *d2;
   *d2 = tmp;
 }
 
-CVector ITriangle::Normal() const
-{
-  const CPoint& p0 = Point( 0 );
-  const CPoint& p1 = Point( Order() * 1 );
-  const CPoint& p2 = Point( Order() * 2 );
-  const CVector& dir1 = CVector( p2 - p0 );
-  const CVector& dir2 = CVector( p2 - p1 );
-  CVector pointBasedNormal = dir1.CrossProduct( dir2 );
-  if ( ! pointBasedNormal.isNullVector() )
-   pointBasedNormal = pointBasedNormal.UnitVector();
+CVector ITriangle::Normal() const {
+  const CPoint &p0 = Point(0);
+  const CPoint &p1 = Point(Order() * 1);
+  const CPoint &p2 = Point(Order() * 2);
+  const CVector &dir1 = CVector(p2 - p0);
+  const CVector &dir2 = CVector(p2 - p1);
+  CVector pointBasedNormal = dir1.CrossProduct(dir2);
+  if (!pointBasedNormal.isNullVector())
+    pointBasedNormal = pointBasedNormal.UnitVector();
   return pointBasedNormal;
 }
 
-IElement::TDoubleVec ITriangle::ShapeFunction(const IElement::TDoubleVec& isocoords) const
-{
+IElement::TDoubleVec ITriangle::ShapeFunction(const IElement::TDoubleVec &isocoords) const {
   int nNodeSize = NrOfNodes();
-  if( nNodeSize == 0 )
+  if (nNodeSize == 0)
     nNodeSize = NrOfPoints();
 
   assert(isocoords.size() == 2); // xi and eta coordinate
@@ -164,8 +151,7 @@ IElement::TDoubleVec ITriangle::ShapeFunction(const IElement::TDoubleVec& isocoo
   coords[1] = isocoords[1];
   coords[2] = 1 - isocoords[0] - isocoords[1];
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     TriangleShape(coords, values);
     break;
@@ -182,7 +168,8 @@ IElement::TDoubleVec ITriangle::ShapeFunction(const IElement::TDoubleVec& isocoo
   IElement::TDoubleVec vcRet(nNodeSize);
 
   int i;
-  for(i = 0; i < nNodeSize; i++) vcRet[i] = values[i];
+  for (i = 0; i < nNodeSize; i++)
+    vcRet[i] = values[i];
 
   delete[] coords;
   delete[] values;
@@ -190,10 +177,9 @@ IElement::TDoubleVec ITriangle::ShapeFunction(const IElement::TDoubleVec& isocoo
   return vcRet;
 }
 
-CMatrix ITriangle::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const
-{
+CMatrix ITriangle::ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const {
   int nNodeSize = NrOfNodes();
-  if( nNodeSize == 0 )
+  if (nNodeSize == 0)
     nNodeSize = NrOfPoints();
 
   assert(isocoords.size() == 2);
@@ -212,8 +198,7 @@ CMatrix ITriangle::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) c
 
   assert(coord[2] >= 0.0);
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     DerivedTriangleShape(coord, 0, p);
     break;
@@ -231,10 +216,8 @@ CMatrix ITriangle::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) c
 
   int i;
   int j;
-  for(j = 0; j < nNodeSize; j++)
-  {
-    for(i = 0; i < 2; i++)
-    {
+  for (j = 0; j < nNodeSize; j++) {
+    for (i = 0; i < 2; i++) {
       ret.Value(i, j, *(v++));
     }
   }
@@ -243,12 +226,10 @@ CMatrix ITriangle::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) c
   return ret;
 }
 
-std::vector<IElement::TDoubleVec> ITriangle::IsoCoordinates() const
-{
+std::vector<IElement::TDoubleVec> ITriangle::IsoCoordinates() const {
   std::vector<IElement::TDoubleVec> ret;
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     // node 1
     ret.push_back(MakeVec(1, 0));
@@ -259,37 +240,37 @@ std::vector<IElement::TDoubleVec> ITriangle::IsoCoordinates() const
     break;
   case 2:
     // node 1
-    ret.push_back(MakeVec(1,   0  ));
+    ret.push_back(MakeVec(1, 0));
     // node 2
     ret.push_back(MakeVec(0.5, 0.5));
     // node 3
-    ret.push_back(MakeVec(0,   1  ));
+    ret.push_back(MakeVec(0, 1));
     // node 4
-    ret.push_back(MakeVec(0,   0.5));
+    ret.push_back(MakeVec(0, 0.5));
     // node 5
-    ret.push_back(MakeVec(0,   0  ));
+    ret.push_back(MakeVec(0, 0));
     // node 6
-    ret.push_back(MakeVec(0.5, 0  ));
+    ret.push_back(MakeVec(0.5, 0));
     break;
   case 3:
     // node 1
-    ret.push_back(MakeVec(1,    0   ));
+    ret.push_back(MakeVec(1, 0));
     // node 2
-    ret.push_back(MakeVec(2./3, 1./3));
+    ret.push_back(MakeVec(2. / 3, 1. / 3));
     // node 3
-    ret.push_back(MakeVec(1./3, 2./3));
+    ret.push_back(MakeVec(1. / 3, 2. / 3));
     // node 4
-    ret.push_back(MakeVec(0,    1   ));
+    ret.push_back(MakeVec(0, 1));
     // node 5
-    ret.push_back(MakeVec(0,    2./3));
+    ret.push_back(MakeVec(0, 2. / 3));
     // node 6
-    ret.push_back(MakeVec(0,    1./3));
+    ret.push_back(MakeVec(0, 1. / 3));
     // node 7
-    ret.push_back(MakeVec(0,    0   ));
+    ret.push_back(MakeVec(0, 0));
     // node 8
-    ret.push_back(MakeVec(1./3, 0   ));
+    ret.push_back(MakeVec(1. / 3, 0));
     // node 9
-    ret.push_back(MakeVec(2./3, 0   ));
+    ret.push_back(MakeVec(2. / 3, 0));
     break;
   default:
     assert(false);
@@ -298,8 +279,7 @@ std::vector<IElement::TDoubleVec> ITriangle::IsoCoordinates() const
   return ret;
 }
 
-IElement::TDoubleVec ITriangle::WorldToIso1stOrder(const IPoint& point) const
-{
+IElement::TDoubleVec ITriangle::WorldToIso1stOrder(const IPoint &point) const {
   // a fast implementation for 1st order triangles
   assert(Order() == 1);
   assert(NrOfPoints() == 3);
@@ -319,10 +299,8 @@ IElement::TDoubleVec ITriangle::WorldToIso1stOrder(const IPoint& point) const
   // we need to use the z coordinates to make sure we get an invertible matrix
   // (independent system)
   CVector n = Normal();
-  if(fabs(n.Z()) < EPS)
-  {
-  if(n == CVector::Xaxis)
-  {
+  if (fabs(n.Z()) < EPS) {
+    if (n == CVector::Xaxis) {
       // use y and z coords
       x0 = Point(0).Y();
       x1 = Point(1).Y();
@@ -334,16 +312,14 @@ IElement::TDoubleVec ITriangle::WorldToIso1stOrder(const IPoint& point) const
 
       xp = point.Y();
       yp = point.Z();
-  }
-  else
-  {
+    } else {
       // use x and z coords
       y0 = Point(0).Z();
       y1 = Point(1).Z();
       y2 = Point(2).Z();
 
       yp = point.Z();
-  }
+    }
   }
 
   CMatrix A(2, 2);
@@ -368,26 +344,21 @@ IElement::TDoubleVec ITriangle::WorldToIso1stOrder(const IPoint& point) const
   return vcRet;
 }
 
-IElement::TDoubleVec ITriangle::WorldToIso(const IPoint& point) const
-{
-  if(Order() == 1) return WorldToIso1stOrder(point);
+IElement::TDoubleVec ITriangle::WorldToIso(const IPoint &point) const {
+  if (Order() == 1)
+    return WorldToIso1stOrder(point);
 
   return IFace::WorldToIso(point);
 }
 
-int ITriangle::IntegrationPointSize() const
-{
-  return (int)IntegrationPoints().size();
-}
+int ITriangle::IntegrationPointSize() const { return (int)IntegrationPoints().size(); }
 
-const IElement::TDoubleVec& ITriangle::IntegrationPointCoords(int nIndex) const
-{
+const IElement::TDoubleVec &ITriangle::IntegrationPointCoords(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].first;
 }
 
-const double& ITriangle::IntegrationPointWeight(int nIndex) const
-{
+const double &ITriangle::IntegrationPointWeight(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].second;
 }

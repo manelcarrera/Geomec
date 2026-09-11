@@ -12,18 +12,19 @@
 #include <qobject.h>
 
 class CFemAppModel;
-class COperationReceiver : public QObject  
-{
+class COperationReceiver : public QObject {
   Q_OBJECT
   bool m_bOperation;
 protected slots:
   void slotBeginOperation();
   void slotEndOperation();
+
 protected:
   virtual void OnBeginOperation();
   virtual void OnEndOperation();
+
 public:
-  COperationReceiver(CFemAppModel& model);
+  COperationReceiver(CFemAppModel &model);
   virtual ~COperationReceiver();
   bool IsOperation() const;
 };

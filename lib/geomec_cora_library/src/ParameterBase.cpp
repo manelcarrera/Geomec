@@ -1,14 +1,9 @@
 #include "ParameterBase.h"
 
-namespace cora
-{
+namespace cora {
 
-CParameterBase::CParameterBase()
-{
-}
+CParameterBase::CParameterBase() {}
 
-CParameterBase::~CParameterBase()
-{
-}
+CParameterBase::~CParameterBase() {}
 
 } // namespace cora

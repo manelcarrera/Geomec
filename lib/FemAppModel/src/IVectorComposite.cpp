@@ -7,12 +7,6 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-IVectorComposite::IVectorComposite()
-{
+IVectorComposite::IVectorComposite() {}
 
-}
-
-IVectorComposite::~IVectorComposite()
-{
-
-}
+IVectorComposite::~IVectorComposite() {}

@@ -5,16 +5,13 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
-class CFailureModePatternMismatch : public std::runtime_error
-{
-  public:
-  CFailureModePatternMismatch(const QString& failureMode,
-      const QString& pattern);
+class CFailureModePatternMismatch : public std::runtime_error {
+public:
+  CFailureModePatternMismatch(const QString &failureMode, const QString &pattern);
 };
 
 } // namespace cora
 
-#endif  // _cora_FailureModePatternMismatch_h_
+#endif // _cora_FailureModePatternMismatch_h_

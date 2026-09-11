@@ -17,192 +17,162 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <string.h>
 #include "gts.h"
+#include <string.h>
 
-static gint nvertex_read (GtsObject ** po, FILE * fptr)
-{
-  GString * buf;
+static gint nvertex_read(GtsObject **po, FILE *fptr) {
+  GString *buf;
   gint delim = 0;
 
   if ((*po)->klass->parent_class->read)
-  delim = (* (*po)->klass->parent_class->read) (po, fptr);
+    delim = (*(*po)->klass->parent_class->read)(po, fptr);
   if (delim != '\n' && delim != EOF) {
-  buf = g_string_new ("");
-  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
-  if (delim == EOF) {
-      g_string_free (buf, TRUE);
+    buf = g_string_new("");
+    delim = gts_get_token(fptr, buf, " \t\n", GTS_COMMENTS);
+    if (delim == EOF) {
+      g_string_free(buf, TRUE);
       return EOF;
-  }
-  strncpy (GTS_NVERTEX (*po)->name, buf->str, GTS_NAME_LENGTH);
-  g_string_free (buf, TRUE);
+    }
+    strncpy(GTS_NVERTEX(*po)->name, buf->str, GTS_NAME_LENGTH);
+    g_string_free(buf, TRUE);
   }
   return delim;
 }
 
-static void nvertex_write (GtsObject * o, FILE * fptr)
-{
-  GtsNVertex * nv = GTS_NVERTEX (o);
+static void nvertex_write(GtsObject *o, FILE *fptr) {
+  GtsNVertex *nv = GTS_NVERTEX(o);
 
-  (* o->klass->parent_class->write) (o, fptr);
+  (*o->klass->parent_class->write)(o, fptr);
   if (nv->name[0] != '\0')
-  fprintf (fptr, " %s", nv->name);
+    fprintf(fptr, " %s", nv->name);
 }
 
-static void nvertex_class_init (GtsNVertexClass * klass)
-{
-  GTS_OBJECT_CLASS (klass)->read = nvertex_read;
-  GTS_OBJECT_CLASS (klass)->write = nvertex_write;
+static void nvertex_class_init(GtsNVertexClass *klass) {
+  GTS_OBJECT_CLASS(klass)->read = nvertex_read;
+  GTS_OBJECT_CLASS(klass)->write = nvertex_write;
 }
 
-static void nvertex_init (GtsNVertex * nvertex)
-{
-  nvertex->name[0] = '\0';
-}
+static void nvertex_init(GtsNVertex *nvertex) { nvertex->name[0] = '\0'; }
 
 /**
  * gts_nvertex_class:
  *
  * Returns: the #GtsNVertexClass.
  */
-GtsNVertexClass * gts_nvertex_class (void)
-{
-  static GtsNVertexClass * klass = NULL;
+GtsNVertexClass *gts_nvertex_class(void) {
+  static GtsNVertexClass *klass = NULL;
 
   if (klass == NULL) {
-  GtsObjectClassInfo nvertex_info = {
-      "GtsNVertex",
-      sizeof (GtsNVertex),
-      sizeof (GtsNVertexClass),
-      (GtsObjectClassInitFunc) nvertex_class_init,
-      (GtsObjectInitFunc) nvertex_init,
-      (GtsArgSetFunc) NULL,
-      (GtsArgGetFunc) NULL
-  };
-  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_vertex_class ()), 
-          &nvertex_info);
+    GtsObjectClassInfo nvertex_info = {"GtsNVertex",
+                                       sizeof(GtsNVertex),
+                                       sizeof(GtsNVertexClass),
+                                       (GtsObjectClassInitFunc)nvertex_class_init,
+                                       (GtsObjectInitFunc)nvertex_init,
+                                       (GtsArgSetFunc)NULL,
+                                       (GtsArgGetFunc)NULL};
+    klass = gts_object_class_new(GTS_OBJECT_CLASS(gts_vertex_class()), &nvertex_info);
   }
 
   return klass;
 }
 
-static gint nedge_read (GtsObject ** po, FILE * fptr)
-{
-  GString * buf;
+static gint nedge_read(GtsObject **po, FILE *fptr) {
+  GString *buf;
   gint delim;
 
-  buf = g_string_new ("");
-  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  buf = g_string_new("");
+  delim = gts_get_token(fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF) {
-  g_string_free (buf, TRUE);
-  return EOF;
+    g_string_free(buf, TRUE);
+    return EOF;
   }
-  strncpy (GTS_NEDGE (*po)->name, buf->str, GTS_NAME_LENGTH);
-  g_string_free (buf, TRUE);
+  strncpy(GTS_NEDGE(*po)->name, buf->str, GTS_NAME_LENGTH);
+  g_string_free(buf, TRUE);
   return delim;
 }
 
-static void nedge_write (GtsObject * o, FILE * fptr)
-{
-  GtsNEdge * ne = GTS_NEDGE (o);
+static void nedge_write(GtsObject *o, FILE *fptr) {
+  GtsNEdge *ne = GTS_NEDGE(o);
 
   if (ne->name[0] != '\0')
-  fprintf (fptr, " %s", ne->name);
+    fprintf(fptr, " %s", ne->name);
 }
 
-static void nedge_class_init (GtsNEdgeClass * klass)
-{
-  GTS_OBJECT_CLASS (klass)->read = nedge_read;
-  GTS_OBJECT_CLASS (klass)->write = nedge_write;
+static void nedge_class_init(GtsNEdgeClass *klass) {
+  GTS_OBJECT_CLASS(klass)->read = nedge_read;
+  GTS_OBJECT_CLASS(klass)->write = nedge_write;
 }
 
-static void nedge_init (GtsNEdge * nedge)
-{
-  nedge->name[0] = '\0';
-}
+static void nedge_init(GtsNEdge *nedge) { nedge->name[0] = '\0'; }
 
 /**
  * gts_nedge_class:
  *
  * Returns: the #GtsNEdgeClass.
  */
-GtsNEdgeClass * gts_nedge_class (void)
-{
-  static GtsNEdgeClass * klass = NULL;
+GtsNEdgeClass *gts_nedge_class(void) {
+  static GtsNEdgeClass *klass = NULL;
 
   if (klass == NULL) {
-  GtsObjectClassInfo nedge_info = {
-      "GtsNEdge",
-      sizeof (GtsNEdge),
-      sizeof (GtsNEdgeClass),
-      (GtsObjectClassInitFunc) nedge_class_init,
-      (GtsObjectInitFunc) nedge_init,
-      (GtsArgSetFunc) NULL,
-      (GtsArgGetFunc) NULL
-  };
-  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_edge_class ()), 
-          &nedge_info);
+    GtsObjectClassInfo nedge_info = {"GtsNEdge",
+                                     sizeof(GtsNEdge),
+                                     sizeof(GtsNEdgeClass),
+                                     (GtsObjectClassInitFunc)nedge_class_init,
+                                     (GtsObjectInitFunc)nedge_init,
+                                     (GtsArgSetFunc)NULL,
+                                     (GtsArgGetFunc)NULL};
+    klass = gts_object_class_new(GTS_OBJECT_CLASS(gts_edge_class()), &nedge_info);
   }
 
   return klass;
 }
 
-static gint nface_read (GtsObject ** po, FILE * fptr)
-{
-  GString * buf;
+static gint nface_read(GtsObject **po, FILE *fptr) {
+  GString *buf;
   gint delim;
 
-  buf = g_string_new ("");
-  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  buf = g_string_new("");
+  delim = gts_get_token(fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF) {
-  g_string_free (buf, TRUE);
-  return EOF;
+    g_string_free(buf, TRUE);
+    return EOF;
   }
-  strncpy (GTS_NFACE (*po)->name, buf->str, GTS_NAME_LENGTH);
-  g_string_free (buf, TRUE);
+  strncpy(GTS_NFACE(*po)->name, buf->str, GTS_NAME_LENGTH);
+  g_string_free(buf, TRUE);
   return delim;
 }
 
-static void nface_write (GtsObject * o, FILE * fptr)
-{
-  GtsNFace * nf = GTS_NFACE (o);
+static void nface_write(GtsObject *o, FILE *fptr) {
+  GtsNFace *nf = GTS_NFACE(o);
 
   if (nf->name[0] != '\0')
-  fprintf (fptr, " %s", GTS_NFACE (o)->name);
+    fprintf(fptr, " %s", GTS_NFACE(o)->name);
 }
 
-static void nface_class_init (GtsNFaceClass * klass)
-{
-  GTS_OBJECT_CLASS (klass)->read = nface_read;
-  GTS_OBJECT_CLASS (klass)->write = nface_write;
+static void nface_class_init(GtsNFaceClass *klass) {
+  GTS_OBJECT_CLASS(klass)->read = nface_read;
+  GTS_OBJECT_CLASS(klass)->write = nface_write;
 }
 
-static void nface_init (GtsNFace * nface)
-{
-  nface->name[0] = '\0';
-}
+static void nface_init(GtsNFace *nface) { nface->name[0] = '\0'; }
 
 /**
  * gts_nface_class:
  *
  * Returns: the #GtsNFaceClass.
  */
-GtsNFaceClass * gts_nface_class (void)
-{
-  static GtsNFaceClass * klass = NULL;
+GtsNFaceClass *gts_nface_class(void) {
+  static GtsNFaceClass *klass = NULL;
 
   if (klass == NULL) {
-  GtsObjectClassInfo nface_info = {
-      "GtsNFace",
-      sizeof (GtsNFace),
-      sizeof (GtsNFaceClass),
-      (GtsObjectClassInitFunc) nface_class_init,
-      (GtsObjectInitFunc) nface_init,
-      (GtsArgSetFunc) NULL,
-      (GtsArgGetFunc) NULL
-  };
-  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_face_class ()), 
-          &nface_info);
+    GtsObjectClassInfo nface_info = {"GtsNFace",
+                                     sizeof(GtsNFace),
+                                     sizeof(GtsNFaceClass),
+                                     (GtsObjectClassInitFunc)nface_class_init,
+                                     (GtsObjectInitFunc)nface_init,
+                                     (GtsArgSetFunc)NULL,
+                                     (GtsArgGetFunc)NULL};
+    klass = gts_object_class_new(GTS_OBJECT_CLASS(gts_face_class()), &nface_info);
   }
 
   return klass;

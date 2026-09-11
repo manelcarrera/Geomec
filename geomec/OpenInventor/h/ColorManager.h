@@ -1,8 +1,7 @@
 #ifndef _ColorManager_h_
 #define _ColorManager_h_
 
-class ColorManager
-{
+class ColorManager {
   static const int s_numUniqueColors = 16;
   static const int s_availableHues[s_numUniqueColors];
 
@@ -18,9 +17,9 @@ public:
 
   static QColor MakeMarkerColor(int n);
 
-  int allocateColorIndex ();
+  int allocateColorIndex();
 
   void releaseColorIndex(int index);
 };
 
-#endif  // _ColorManager_h_
+#endif // _ColorManager_h_

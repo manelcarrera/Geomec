@@ -10,24 +10,24 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#ifndef _WIN32_WINNT		// Allow use of features specific to Windows XP or later.                   
-#define _WIN32_WINNT 0x0501	// Change this to the appropriate value to target other versions of Windows.
+#ifndef _WIN32_WINNT        // Allow use of features specific to Windows XP or later.
+#define _WIN32_WINNT 0x0501 // Change this to the appropriate value to target other versions of Windows.
 #endif
 
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN // Exclude rarely-used stuff from Windows headers
 
 #include <afx.h>
+#include <afxext.h> // MFC extensions
+#include <afxole.h> // MFC OLE classes
 #include <afxwin.h>
-#include <afxext.h>         // MFC extensions
-#include <afxole.h>         // MFC OLE classes
 
-//QT libaries..
+// QT libaries..
 #include <qobject.h>
 
-#include "ICommand.h"
 #include "ContextMenuInvoker.h"
-#include "QuantityInclude.h"	// Quantity
-#include "DianaCore.h"			// Diana meshing and calculation
+#include "DianaCore.h" // Diana meshing and calculation
+#include "ICommand.h"
+#include "QuantityInclude.h" // Quantity
 
 // TODO: reference additional headers your program requires here
 

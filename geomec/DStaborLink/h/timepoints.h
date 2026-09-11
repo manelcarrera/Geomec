@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CTimePoints wrapper class
 
-class CTimePoints : public COleDispatchDriver
-{
+class CTimePoints : public COleDispatchDriver {
 public:
-  CTimePoints() {}		// Calls COleDispatchDriver default constructor
+  CTimePoints() {} // Calls COleDispatchDriver default constructor
   CTimePoints(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CTimePoints(const CTimePoints& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CTimePoints(const CTimePoints &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   long GetCount();
   void SetCount(long);
@@ -30,7 +29,7 @@ public:
   BOOL GetPressureCom();
   void SetPressureCom(BOOL);
 
-// Operations
+  // Operations
 public:
   long Add(double NewValue);
   double Item(long Index);
@@ -38,7 +37,7 @@ public:
   void Clear();
   void Sort();
   BOOL SetDefault();
-  BOOL GetOpenHoleTime(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OpenHoleTime);
+  BOOL GetOpenHoleTime(double CriticalPlasticStrain, VARIANT *EpeqResults, double *OpenHoleTime);
 };
 
 //{{AFX_INSERT_LOCATION}}

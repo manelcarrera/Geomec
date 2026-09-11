@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CWell wrapper class
 
-class CWell : public COleDispatchDriver
-{
+class CWell : public COleDispatchDriver {
 public:
-  CWell() {}		// Calls COleDispatchDriver default constructor
+  CWell() {} // Calls COleDispatchDriver default constructor
   CWell(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CWell(const CWell& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CWell(const CWell &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   double GetAzimuth();
   void SetAzimuth(double);
@@ -28,7 +27,7 @@ public:
   double GetVerticalDepth();
   void SetVerticalDepth(double);
 
-// Operations
+  // Operations
 public:
 };
 

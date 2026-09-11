@@ -1,8 +1,7 @@
 #ifndef _UNDEFINEDICONPROVIDER_H_
 #define _UNDEFINEDICONPROVIDER_H_
 
-class CUndefinedIconProvider
-{
+class CUndefinedIconProvider {
 public:
   CUndefinedIconProvider();
 

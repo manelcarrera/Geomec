@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "IModelFileItem.h"
 #include "IModelFile.h"
 
@@ -8,10 +8,7 @@
   and are removed from that list on destruction time, which will cause a
   performance degradation.
  */
-IModelFileItem::IModelFileItem( QObject* parent )
- : QObject( parent )
-{
-}
+IModelFileItem::IModelFileItem(QObject *parent) : QObject(parent) {}
 
 /*!
   Gives a message to the user. This message is not related to any error or
@@ -19,13 +16,11 @@ IModelFileItem::IModelFileItem( QObject* parent )
   The message will be extended with position information and line contents if
   needed.
 */
-void IModelFileItem::putStatusMessage( const QString&       message,
-                                       const TFilePosition& info )
-{
-  if ( info.isNull() )
-  modelFile().putStatusMessage( TFileMessage( message, *this ) );
+void IModelFileItem::putStatusMessage(const QString &message, const TFilePosition &info) {
+  if (info.isNull())
+    modelFile().putStatusMessage(TFileMessage(message, *this));
   else
-  modelFile().putStatusMessage( TFileMessage( message, info  ) );
+    modelFile().putStatusMessage(TFileMessage(message, info));
 }
 
 /*!
@@ -33,15 +28,12 @@ void IModelFileItem::putStatusMessage( const QString&       message,
   The message will be extended with position information and line contents if
   needed.
 */
-void IModelFileItem::putWarningMessage( int                  errorNo,
-                    const QString&       message,
-                    const TFilePosition& info )
-{
-  TModelError modelError( message, errorNo );
-  if ( info.isNull() )
-  modelFile().putWarningMessage( TFileError( modelError, *this ) );
+void IModelFileItem::putWarningMessage(int errorNo, const QString &message, const TFilePosition &info) {
+  TModelError modelError(message, errorNo);
+  if (info.isNull())
+    modelFile().putWarningMessage(TFileError(modelError, *this));
   else
-  modelFile().putWarningMessage( TFileError( modelError, info  ) );
+    modelFile().putWarningMessage(TFileError(modelError, info));
 }
 
 /*!
@@ -51,15 +43,12 @@ void IModelFileItem::putWarningMessage( int                  errorNo,
   The message will be extended with position information and line contents if
   needed.
 */
-void IModelFileItem::putFatalMessage( int                  errorNo,
-                                      const QString&       message,
-                                      const TFilePosition& info )
-{
-  TModelError modelError( message, errorNo );
-  if ( info.isNull() )
-  modelFile().putFatalMessage( TFileError( modelError, *this ) );
+void IModelFileItem::putFatalMessage(int errorNo, const QString &message, const TFilePosition &info) {
+  TModelError modelError(message, errorNo);
+  if (info.isNull())
+    modelFile().putFatalMessage(TFileError(modelError, *this));
   else
-  modelFile().putFatalMessage( TFileError( modelError, info  ) );
+    modelFile().putFatalMessage(TFileError(modelError, info));
 }
 
 /*!
@@ -68,15 +57,12 @@ void IModelFileItem::putFatalMessage( int                  errorNo,
   The message will be extended with position information and line contents if
   needed.
 */
-void IModelFileItem::putAbortMessage( int                  errorNo,
-                                      const QString&       message,
-                                      const TFilePosition& info )
-{
-  TModelError modelError( message, errorNo );
-  if ( info.isNull() )
-  modelFile().putAbortMessage( TFileError( modelError, *this ) );
+void IModelFileItem::putAbortMessage(int errorNo, const QString &message, const TFilePosition &info) {
+  TModelError modelError(message, errorNo);
+  if (info.isNull())
+    modelFile().putAbortMessage(TFileError(modelError, *this));
   else
-  modelFile().putAbortMessage( TFileError( modelError, info  ) );
+    modelFile().putAbortMessage(TFileError(modelError, info));
 }
 
 /*!

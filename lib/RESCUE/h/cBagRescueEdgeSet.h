@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueEdgeSet_H
 #define cBagRescueEdgeSet_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueEdgeSet;
 
-class cBagRescueEdgeSet
-{
+class cBagRescueEdgeSet {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueEdgeSet();
   ~cBagRescueEdgeSet();
   void operator+=(RescueEdgeSet *newObject);
   RESCUEBOOL operator-=(RescueEdgeSet *existingObject);
   RescueEdgeSet *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueEdgeSet *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueEdgeSet *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

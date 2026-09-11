@@ -1,71 +1,45 @@
 #include <fstream>
 #include <stdexcept>
 
-#include "GVTVelocityModelFromMaterial.h"
-#include "FormationBase.h"
 #include "BoundaryBase.h"
+#include "FormationBase.h"
+#include "GVTVelocityModelFromMaterial.h"
 #include "GeomecUtils.h"
 
-namespace GVT
-{
+namespace GVT {
 
-CGVTVelocityModelFromMaterial::CGVTVelocityModelFromMaterial(
-  CModelBase& /*modelBase*/)
-: CGVTVelocityModelSource()
-, m_velocityModelFile(GetGeomecTempPathExt(CTempPath::TEMP_GENERAL) + tmpnam(NULL))
-{
-}
+CGVTVelocityModelFromMaterial::CGVTVelocityModelFromMaterial(CModelBase & /*modelBase*/)
+    : CGVTVelocityModelSource(), m_velocityModelFile(GetGeomecTempPathExt(CTempPath::TEMP_GENERAL) + tmpnam(NULL)) {}
 
-CGVTVelocityModelFromMaterial::~CGVTVelocityModelFromMaterial()
-{
-  if (!m_velocityModelFile.isEmpty() && FileExists(m_velocityModelFile))
-  {
-  remove(m_velocityModelFile.toStdString().c_str());
+CGVTVelocityModelFromMaterial::~CGVTVelocityModelFromMaterial() {
+  if (!m_velocityModelFile.isEmpty() && FileExists(m_velocityModelFile)) {
+    remove(m_velocityModelFile.toStdString().c_str());
   }
 }
 
-
-void CGVTVelocityModelFromMaterial::SetContents(const std::stringstream& buffer)
-{
-  std::fstream velocityModelFile(m_velocityModelFile.toStdString().c_str(),
-  std::ios_base::out);
+void CGVTVelocityModelFromMaterial::SetContents(const std::stringstream &buffer) {
+  std::fstream velocityModelFile(m_velocityModelFile.toStdString().c_str(), std::ios_base::out);
 
   velocityModelFile << buffer.str();
 
   velocityModelFile.close();
 }
 
+const QString &CGVTVelocityModelFromMaterial::velocityModelFile() const { return m_velocityModelFile; }
 
-const QString& CGVTVelocityModelFromMaterial::velocityModelFile() const
-{
-  return m_velocityModelFile;
-}
-
-void CGVTVelocityModelFromMaterial::velocityModelFile(
-  const QString& /*velocityModelFile*/)
-{
+void CGVTVelocityModelFromMaterial::velocityModelFile(const QString & /*velocityModelFile*/) {
   // the member 'm_velocityModelFile' is truly constant and initialized at
   // construction time
 }
 
-bool CGVTVelocityModelFromMaterial::isVelocityModelFileReady() const
-{
-  return true;
-}
+bool CGVTVelocityModelFromMaterial::isVelocityModelFileReady() const { return true; }
 
-int CGVTVelocityModelFromMaterial::velocityModelSourceNumerator() const
-{
-  return VELOCITY_FROM_MATERIAL;
-}
+int CGVTVelocityModelFromMaterial::velocityModelSourceNumerator() const { return VELOCITY_FROM_MATERIAL; }
 
-void CGVTVelocityModelFromMaterial::LoadStream(TSTREAM& /*stream*/,
-  CStreamVersion& /*version*/, TPROGRESS& /*progress*/)
-{
-}
+void CGVTVelocityModelFromMaterial::LoadStream(TSTREAM & /*stream*/, CStreamVersion & /*version*/,
+                                               TPROGRESS & /*progress*/) {}
 
-void CGVTVelocityModelFromMaterial::SaveStream(TSTREAM& stream,
-  TPROGRESS& /*progress*/)
-{
+void CGVTVelocityModelFromMaterial::SaveStream(TSTREAM &stream, TPROGRESS & /*progress*/) {
   stream << VELOCITY_FROM_MATERIAL;
 }
 

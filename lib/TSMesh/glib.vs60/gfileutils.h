@@ -25,10 +25,9 @@
 
 G_BEGIN_DECLS
 
-#define G_FILE_ERROR g_file_error_quark ()
+#define G_FILE_ERROR g_file_error_quark()
 
-typedef enum
-{
+typedef enum {
   G_FILE_ERROR_EXIST,
   G_FILE_ERROR_ISDIR,
   G_FILE_ERROR_ACCES,
@@ -55,41 +54,31 @@ typedef enum
   G_FILE_ERROR_FAILED
 } GFileError;
 
-/* For backward-compat reasons, these are synced to an old 
+/* For backward-compat reasons, these are synced to an old
  * anonymous enum in libgnome. But don't use that enum
  * in new code.
  */
-typedef enum
-{
-  G_FILE_TEST_IS_REGULAR    = 1 << 0,
-  G_FILE_TEST_IS_SYMLINK    = 1 << 1,
-  G_FILE_TEST_IS_DIR        = 1 << 2,
+typedef enum {
+  G_FILE_TEST_IS_REGULAR = 1 << 0,
+  G_FILE_TEST_IS_SYMLINK = 1 << 1,
+  G_FILE_TEST_IS_DIR = 1 << 2,
   G_FILE_TEST_IS_EXECUTABLE = 1 << 3,
-  G_FILE_TEST_EXISTS        = 1 << 4
+  G_FILE_TEST_EXISTS = 1 << 4
 } GFileTest;
 
-GQuark     g_file_error_quark      (void);
+GQuark g_file_error_quark(void);
 /* So other code can generate a GFileError */
-GFileError g_file_error_from_errno (gint err_no);
+GFileError g_file_error_from_errno(gint err_no);
 
-gboolean g_file_test         (const gchar  *filename,
-                              GFileTest     test);
-gboolean g_file_get_contents (const gchar  *filename,
-                              gchar       **contents,
-                              guint        *length,
-                              GError      **error);
-
+gboolean g_file_test(const gchar *filename, GFileTest test);
+gboolean g_file_get_contents(const gchar *filename, gchar **contents, guint *length, GError **error);
 
 /* Wrapper / workalike for mkstemp() */
-int     g_mkstemp            (char         *tmpl);
+int g_mkstemp(char *tmpl);
 
 /* Wrapper for g_mkstemp */
-int     g_file_open_tmp      (const char   *tmpl,
-            char        **name_used,
-            GError      **error);
+int g_file_open_tmp(const char *tmpl, char **name_used, GError **error);
 
 G_END_DECLS
 
 #endif /* __G_FILEUTILS_H__ */
-
-

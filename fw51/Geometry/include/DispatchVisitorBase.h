@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // DispatchVisitorBase.h: interface for the IVisitor and CVisitorBase classes.
 //
 
@@ -8,10 +8,8 @@
 #if !defined(AFX_DISPATCHVISITORBASE_H__6538175C_53BA_4B86_B5EC_B1DB9247BAA6__INCLUDED_)
 #define AFX_DISPATCHVISITORBASE_H__6538175C_53BA_4B86_B5EC_B1DB9247BAA6__INCLUDED_
 
-
 class CLabelPoint;
 class ISymbol;
-
 
 namespace geo {
 
@@ -46,10 +44,7 @@ class IInterfaceElement;
 class IQuadrilateral;
 class IObject;
 
-
-
-class GEOMETRY_EXPORT IVisitor
-{
+class GEOMETRY_EXPORT IVisitor {
 protected:
   // must be derived
   IVisitor();
@@ -74,10 +69,10 @@ public:
   virtual bool HandleRectangle(const IRectangle &Rect);
   virtual bool HandleFace(const IFace &Face);
   virtual bool HandleQuadrilateral(const IQuadrilateral &Quad);
-  
+
   // interfaces
   virtual bool HandleInterface(const IInterfaceElement &interfaceElement);
-  
+
   // plane
   virtual bool HandlePlane(const IPlane &Plane);
 
@@ -114,24 +109,18 @@ public:
 
   // object
   virtual bool HandleObject(const IObject &Object);
-
 };
 
-
-class GEOMETRY_EXPORT CVisitorBase : public IVisitor
-{
+class GEOMETRY_EXPORT CVisitorBase : public IVisitor {
 public:
-
   // default
-  virtual bool HandleDefault(const IObject &/*Object*/) { return false; }
+  virtual bool HandleDefault(const IObject & /*Object*/) { return false; }
 
   virtual bool HandleBodyGroup(const CBodyGroup &BodyGroup);
   virtual bool HandlePolygonPtrArray(const CPolygonPtrArray &PolygonPtrArray);
   virtual bool HandleMeshNodeGroup(const CMeshNodeGroup &MeshNodeGroup);
-
 };
 typedef CVisitorBase CDispatchVisitorBase;
-
 
 }; // namespace geo
 

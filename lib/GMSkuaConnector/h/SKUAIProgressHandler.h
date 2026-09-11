@@ -2,12 +2,9 @@
 
 #include "GMSkuaConnectorExport.h"
 
+namespace gm_skua {
 
-namespace gm_skua
-{
-
-class INTERFACE_GMSKUACONNECTOR IProgressHandler
-{
+class INTERFACE_GMSKUACONNECTOR IProgressHandler {
 public:
   IProgressHandler() {}
   virtual ~IProgressHandler() {}
@@ -15,5 +12,4 @@ public:
   virtual bool Step(int number) { return true; } // returning false works as 'cancel'
 };
 
-}
-
+} // namespace gm_skua

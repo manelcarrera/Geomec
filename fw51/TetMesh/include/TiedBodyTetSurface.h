@@ -4,21 +4,18 @@
 
 #include "TetSurface.h"
 
-namespace geo
-{
+namespace geo {
 
 class CSurfaceDesc;
 class CBodyGroup;
 
-class CTiedBodyTetSurface : public CTetSurface
-{
+class CTiedBodyTetSurface : public CTetSurface {
 public:
-  CTiedBodyTetSurface(CSurfaceDesc& desc, CBodyGroup& body_group);
+  CTiedBodyTetSurface(CSurfaceDesc &desc, CBodyGroup &body_group);
 
   virtual ~CTiedBodyTetSurface();
 
   virtual bool isTiedSurface() const { return true; }
 };
 
-}
-
+} // namespace geo

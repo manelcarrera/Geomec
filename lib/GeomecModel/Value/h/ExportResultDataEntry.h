@@ -3,27 +3,27 @@
 
 class CExportResultData;
 
-#include "StorageNode.h"
 #include "GeomecModelVisitor.h"
+#include "StorageNode.h"
 
-class CExportResultDataEntry : public CStorageNodeEntry <CExportResultData>
-{
+class CExportResultDataEntry : public CStorageNodeEntry<CExportResultData> {
 public:
-  CExportResultDataEntry(CFemAppModel& model);
+  CExportResultDataEntry(CFemAppModel &model);
 
-  void Import(const QString& sFileName);
-  void Export(const QString& sFileName);
+  void Import(const QString &sFileName);
+  void Export(const QString &sFileName);
 
   CExportResultData *retrieveReservoirMacro() const;
   void initReservoirMacro();
 
-  virtual void LoadStream(CFemAppModel& model, CStorageNodeEntry<CExportResultData>::TSTREAM& stream, CStreamVersion& version, CStorageNodeEntry<CExportResultData>::TPROGRESS& progress);
+  virtual void LoadStream(CFemAppModel &model, CStorageNodeEntry<CExportResultData>::TSTREAM &stream,
+                          CStreamVersion &version, CStorageNodeEntry<CExportResultData>::TPROGRESS &progress);
 
 private:
-  CExportResultDataEntry(const CExportResultDataEntry& rhs);
-  CExportResultDataEntry& operator = (const CExportResultDataEntry& rhs);
+  CExportResultDataEntry(const CExportResultDataEntry &rhs);
+  CExportResultDataEntry &operator=(const CExportResultDataEntry &rhs);
 
   ACCEPT_GEOMECMODELVISITORS(VisitExportResultDataEntry);
 };
 
-#endif  // _ExportResultDataEntry_h_
+#endif // _ExportResultDataEntry_h_

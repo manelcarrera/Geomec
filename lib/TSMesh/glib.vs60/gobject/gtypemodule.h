@@ -24,18 +24,17 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GTypeModule      GTypeModule;
+typedef struct _GTypeModule GTypeModule;
 typedef struct _GTypeModuleClass GTypeModuleClass;
 
-#define G_TYPE_TYPE_MODULE              (g_type_module_get_type ())
-#define G_TYPE_MODULE(module)           (G_TYPE_CHECK_INSTANCE_CAST ((module), G_TYPE_TYPE_MODULE, GTypeModule))
-#define G_TYPE_MODULE_CLASS(class)      (G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_TYPE_MODULE, GTypeModuleClass))
-#define G_IS_TYPE_MODULE(module)        (G_TYPE_CHECK_INSTANCE_TYPE ((module), G_TYPE_TYPE_MODULE))
-#define G_IS_TYPE_MODULE_CLASS(class)   (G_TYPE_CHECK_CLASS_TYPE ((class), G_TYPE_TYPE_MODULE))
-#define G_TYPE_MODULE_GET_CLASS(module) (G_TYPE_INSTANCE_GET_CLASS ((module), G_TYPE_TYPE_MODULE, GTypeModuleClass))
+#define G_TYPE_TYPE_MODULE (g_type_module_get_type())
+#define G_TYPE_MODULE(module) (G_TYPE_CHECK_INSTANCE_CAST((module), G_TYPE_TYPE_MODULE, GTypeModule))
+#define G_TYPE_MODULE_CLASS(class) (G_TYPE_CHECK_CLASS_CAST((class), G_TYPE_TYPE_MODULE, GTypeModuleClass))
+#define G_IS_TYPE_MODULE(module) (G_TYPE_CHECK_INSTANCE_TYPE((module), G_TYPE_TYPE_MODULE))
+#define G_IS_TYPE_MODULE_CLASS(class) (G_TYPE_CHECK_CLASS_TYPE((class), G_TYPE_TYPE_MODULE))
+#define G_TYPE_MODULE_GET_CLASS(module) (G_TYPE_INSTANCE_GET_CLASS((module), G_TYPE_TYPE_MODULE, GTypeModuleClass))
 
-struct _GTypeModule 
-{
+struct _GTypeModule {
   GObject parent_instance;
 
   guint use_count;
@@ -44,28 +43,21 @@ struct _GTypeModule
   gchar *name;
 };
 
-struct _GTypeModuleClass
-{
+struct _GTypeModuleClass {
   GObjectClass parent_class;
 
-  gboolean (* load)   (GTypeModule *module);
-  void     (* unload) (GTypeModule *module);
+  gboolean (*load)(GTypeModule *module);
+  void (*unload)(GTypeModule *module);
 };
 
-GType    g_type_module_get_type      (void);
-gboolean g_type_module_use           (GTypeModule     *module);
-void     g_type_module_unuse         (GTypeModule     *module);
-void     g_type_module_set_name      (GTypeModule     *module,
-              const gchar     *name);
-GType    g_type_module_register_type (GTypeModule     *module,
-              GType            parent_type,
-              const gchar     *type_name,
-              const GTypeInfo *type_info,
-              GTypeFlags       flags);
-void     g_type_module_add_interface (GTypeModule     *module,
-              GType            instance_type,
-              GType            interface_type,
-              GInterfaceInfo  *interface_info);
+GType g_type_module_get_type(void);
+gboolean g_type_module_use(GTypeModule *module);
+void g_type_module_unuse(GTypeModule *module);
+void g_type_module_set_name(GTypeModule *module, const gchar *name);
+GType g_type_module_register_type(GTypeModule *module, GType parent_type, const gchar *type_name,
+                                  const GTypeInfo *type_info, GTypeFlags flags);
+void g_type_module_add_interface(GTypeModule *module, GType instance_type, GType interface_type,
+                                 GInterfaceInfo *interface_info);
 
 G_END_DECLS
 

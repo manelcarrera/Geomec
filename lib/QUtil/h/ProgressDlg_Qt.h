@@ -1,41 +1,40 @@
 #pragma once
 
-//qt
-#include <QString>
+// qt
 #include <QObject>
-//own
+#include <QString>
+// own
 #include "ProgressBase.h"
 #include "Progress_.h" //eProgress
-
 
 class QLabel;
 class QProgressBar;
 
-class QDlg; //own: custom QDialog
+class QDlg; // own: custom QDialog
 class QVBoxLayout;
 class QPushButton;
 
-namespace std{ class thread; }
+namespace std {
+class thread;
+}
 
-//#define DEBUG_PROGRESS_DLG
+// #define DEBUG_PROGRESS_DLG
 
-class CProgressDlg_Qt : public QObject, public CProgressBase
-{
+class CProgressDlg_Qt : public QObject, public CProgressBase {
   Q_OBJECT
 
-  QDlg* m_dlg;
-  QVBoxLayout* m_v_layout;
+  QDlg *m_dlg;
+  QVBoxLayout *m_v_layout;
 
-  QLabel* m_text;
-  QLabel* m_text_2;
+  QLabel *m_text;
+  QLabel *m_text_2;
 
-  QProgressBar* m_progress;
-  QProgressBar* m_progress_2;
+  QProgressBar *m_progress;
+  QProgressBar *m_progress_2;
 
+  QPushButton *m_btn;
 
-  QPushButton* m_btn;
-
-  std::thread* m_thread;
+  std::thread *m_thread;
 
   int m_job_idx;
 
@@ -64,12 +63,7 @@ public slots:
   void on_cancel();
 
 public:
-  
-  CProgressDlg_Qt(
-    eProgress type,
-    const QString &sTitle="", 
-    bool bCancel=true,
-    int jobs = 1 );
+  CProgressDlg_Qt(eProgress type, const QString &sTitle = "", bool bCancel = true, int jobs = 1);
 
   virtual ~CProgressDlg_Qt();
 
@@ -77,7 +71,7 @@ public:
 
   virtual void AddSteps(int nSteps);
   virtual void Step(int nSteps = 1);
-  virtual void StatusMessage(const QString& sMessage);
+  virtual void StatusMessage(const QString &sMessage);
   virtual void Enable(bool bEnable);
 
   virtual void SetProgress(int nCurrent);
@@ -85,13 +79,11 @@ public:
   //
   // only for IDualProgressBase
   //
-  void NextJob(const QString& name );
-
+  void NextJob(const QString &name);
 
   //
   // just for testing
   //
   void test();
   void refresh();
-
 };

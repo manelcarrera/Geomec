@@ -1,12 +1,12 @@
 #include "mlxmlMaterialLibrary.h"
 #include "mlMaterialLibrary.h"
-#include "mlxmlMaterial.h"
-#include "mlxmlFunctions.h"
 #include "mlxmlException.h"
+#include "mlxmlFunctions.h"
+#include "mlxmlMaterial.h"
 
-#include <QtXml/QDomElement>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include <QtXml/QDomElement>
 #include <vector>
 
 /*!
@@ -32,17 +32,12 @@ namespace mlxml {
  * \brief Constructor
  * \param matlib The material library to save or load
  */
-CMaterialLibraryXML::CMaterialLibraryXML(ml::CMaterialLibrary& matlib)
-: m_matlib(matlib)
-{
-}
+CMaterialLibraryXML::CMaterialLibraryXML(ml::CMaterialLibrary &matlib) : m_matlib(matlib) {}
 
 /*!
  * \brief Destructor
  */
-CMaterialLibraryXML::~CMaterialLibraryXML()
-{
-}
+CMaterialLibraryXML::~CMaterialLibraryXML() {}
 
 /*!
  * \brief Get the material library
@@ -50,10 +45,7 @@ CMaterialLibraryXML::~CMaterialLibraryXML()
  * This method can be overridden to supply another object for the
  * Save and Load methods.
  */
-ml::CMaterialLibrary& CMaterialLibraryXML::MaterialLibrary()
-{
-  return m_matlib;
-}
+ml::CMaterialLibrary &CMaterialLibraryXML::MaterialLibrary() { return m_matlib; }
 
 /*!
  * \brief Load the material library from a file
@@ -65,22 +57,20 @@ ml::CMaterialLibrary& CMaterialLibraryXML::MaterialLibrary()
  * library, they only append the data from the file.
  * \throw mlxml::CException on failure
  */
-void CMaterialLibraryXML::LoadFile(const QString& sFileName)
-{
+void CMaterialLibraryXML::LoadFile(const QString &sFileName) {
   QFile file(sFileName);
-  if(!file.open(QIODevice::ReadOnly))
-  throw CException(QObject::tr("Unable to open file '%1' for reading").arg(sFileName));
+  if (!file.open(QIODevice::ReadOnly))
+    throw CException(QObject::tr("Unable to open file '%1' for reading").arg(sFileName));
 
   QDomDocument doc;
-  if(!doc.setContent(&file))
-  {
-  file.close();
-  throw CException(QObject::tr("Unable to parse the content of file '%1'").arg(sFileName));
+  if (!doc.setContent(&file)) {
+    file.close();
+    throw CException(QObject::tr("Unable to parse the content of file '%1'").arg(sFileName));
   }
 
   QDomElement docElement = doc.documentElement();
-  if(docElement.tagName() != "MaterialLibrary")
-  throw CException(QObject::tr("The root element of the XML file must be 'MaterialLibrary'"));
+  if (docElement.tagName() != "MaterialLibrary")
+    throw CException(QObject::tr("The root element of the XML file must be 'MaterialLibrary'"));
 
   Load(docElement);
 }
@@ -94,11 +84,10 @@ void CMaterialLibraryXML::LoadFile(const QString& sFileName)
  * root element in the XML file will be "MaterialLibrary".
  * \throw mlxml::CException on failure
  */
-void CMaterialLibraryXML::SaveFile(const QString& sFileName)
-{
+void CMaterialLibraryXML::SaveFile(const QString &sFileName) {
   QFile file(sFileName);
-  if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-  throw CException(QObject::tr("Unable to open file '%1' for writing").arg(sFileName));
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    throw CException(QObject::tr("Unable to open file '%1' for writing").arg(sFileName));
 
   QDomDocument doc("MaterialLibrary");
   QDomElement root = doc.createElement("MaterialLibrary");
@@ -115,44 +104,38 @@ void CMaterialLibraryXML::SaveFile(const QString& sFileName)
  * \param domElement The 'MaterialLibrary' element to load the data from
  * \throw mlxml::CException on failure
  */
-void CMaterialLibraryXML::Load(QDomElement& domElement)
-{
-  std::vector<std::pair<int, ml::CMaterial*> > vcLoadedMaterials;
+void CMaterialLibraryXML::Load(QDomElement &domElement) {
+  std::vector<std::pair<int, ml::CMaterial *>> vcLoadedMaterials;
 
-  try
-  {
-  QDomElement child = domElement.firstChildElement("Material");
-  while(!child.isNull())
-  {
+  try {
+    QDomElement child = domElement.firstChildElement("Material");
+    while (!child.isNull()) {
       QString strName = AttributeStringValue(child, "Name");
       int iMaterialModel = AttributeIntValue(child, "MaterialModel");
-      ml::CMaterial* pMaterial = CreateMaterial(strName, iMaterialModel);
-      if(pMaterial)
-      {
-    CMaterialXML* pMatxml = OnCreateMaterialXML(*pMaterial);
-    pMatxml->Load(child);
-    delete pMatxml;
+      ml::CMaterial *pMaterial = CreateMaterial(strName, iMaterialModel);
+      if (pMaterial) {
+        CMaterialXML *pMatxml = OnCreateMaterialXML(*pMaterial);
+        pMatxml->Load(child);
+        delete pMatxml;
 
-    vcLoadedMaterials.push_back(std::make_pair(iMaterialModel, pMaterial));
+        vcLoadedMaterials.push_back(std::make_pair(iMaterialModel, pMaterial));
       }
 
       child = child.nextSiblingElement("Material");
-  }
-  }
-  catch(CException e)
-  {
-  // delete any created materials
-  size_t i;
-  for(i = 0; i < vcLoadedMaterials.size(); ++i)
+    }
+  } catch (CException e) {
+    // delete any created materials
+    size_t i;
+    for (i = 0; i < vcLoadedMaterials.size(); ++i)
       DestroyMaterial(vcLoadedMaterials[i].first, vcLoadedMaterials[i].second);
 
-  throw;
+    throw;
   }
 
   // add loaded materials to library
   size_t i;
-  for(i = 0; i < vcLoadedMaterials.size(); ++i)
-  MaterialLibrary().AddMaterial(*vcLoadedMaterials[i].second);
+  for (i = 0; i < vcLoadedMaterials.size(); ++i)
+    MaterialLibrary().AddMaterial(*vcLoadedMaterials[i].second);
 }
 
 /*!
@@ -160,16 +143,14 @@ void CMaterialLibraryXML::Load(QDomElement& domElement)
  * \param domElement The 'MaterialLibrary' element to save the data to
  * \throw mlxml::CException on failure
  */
-void CMaterialLibraryXML::Save(QDomElement& domElement)
-{
+void CMaterialLibraryXML::Save(QDomElement &domElement) {
   int i;
-  for(i = 0; i < MaterialLibrary().MaterialSize(); ++i)
-  {
-  QDomElement child = domElement.ownerDocument().createElement("Material");
-  domElement.appendChild(child);
-  CMaterialXML* pMatxml = OnCreateMaterialXML(MaterialLibrary().Material(i));
-  pMatxml->Save(child);
-  delete pMatxml;
+  for (i = 0; i < MaterialLibrary().MaterialSize(); ++i) {
+    QDomElement child = domElement.ownerDocument().createElement("Material");
+    domElement.appendChild(child);
+    CMaterialXML *pMatxml = OnCreateMaterialXML(MaterialLibrary().Material(i));
+    pMatxml->Save(child);
+    delete pMatxml;
   }
 }
 
@@ -180,10 +161,7 @@ void CMaterialLibraryXML::Save(QDomElement& domElement)
  * Derived classes should override this function to create an instance of a
  * derived class of CMaterialXML.
  */
-CMaterialXML* CMaterialLibraryXML::OnCreateMaterialXML(ml::CMaterial& mat)
-{
-  return new CMaterialXML(mat);
-}
+CMaterialXML *CMaterialLibraryXML::OnCreateMaterialXML(ml::CMaterial &mat) { return new CMaterialXML(mat); }
 
 /*!
  * \function virtual ml::CMaterial* CreateMaterial(const QString& strName, int iMaterialModel)

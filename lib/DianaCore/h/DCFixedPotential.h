@@ -13,8 +13,7 @@ namespace dia {
 
 class IDianaRunner;
 
-class CFixedPotential
-{
+class CFixedPotential {
   typedef std::set<int> TNodeIndexSet;
   TNodeIndexSet m_stNodeIndices;
 
@@ -23,14 +22,14 @@ class CFixedPotential
   CFixedPotential();
 
 public:
-  bool InsertNode(const geo::INode& node);
-  bool RemoveNode(const geo::INode& node);
+  bool InsertNode(const geo::INode &node);
+  bool RemoveNode(const geo::INode &node);
 
   int NodeSize() const;
 
-  bool WriteFilos(IProgressBase& progress) const;
+  bool WriteFilos(IProgressBase &progress) const;
 };
 
-}
+} // namespace dia
 
 #endif // _DCFIXEDPOTENTIAL_H_

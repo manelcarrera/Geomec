@@ -3,8 +3,7 @@
 
 #include <vector>
 
-namespace WellPath
-{
+namespace WellPath {
 
 class CElementFaces;
 
@@ -12,29 +11,26 @@ class CElementFaces;
 
 #include "ElementWrapper.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
-typedef std::vector <TElementWrapper> TWellPathSection;
-typedef std::vector <TWellPathSection> TWellPathSections;
+typedef std::vector<TElementWrapper> TWellPathSection;
+typedef std::vector<TWellPathSection> TWellPathSections;
 
-class CWellPathSections
-{
-  public:
-  CWellPathSections(const CElementFaces& elementFaces);
+class CWellPathSections {
+public:
+  CWellPathSections(const CElementFaces &elementFaces);
 
-  const TWellPathSections& wellPathSections() const;
+  const TWellPathSections &wellPathSections() const;
 
-  private:
-  CWellPathSections(const CWellPathSections& rhs);
-  CWellPathSections& operator = (const CWellPathSections& rhs);
+private:
+  CWellPathSections(const CWellPathSections &rhs);
+  CWellPathSections &operator=(const CWellPathSections &rhs);
 
-  static TWellPathSections createWellPathSections(
-      const CElementFaces& elementFaces);
+  static TWellPathSections createWellPathSections(const CElementFaces &elementFaces);
 
   TWellPathSections m_wellPathSections;
 };
 
 } // namespace WellPath
 
-#endif  // _WellPathSections_h_
+#endif // _WellPathSections_h_

@@ -1,20 +1,19 @@
 #pragma once
 
 #include "IDianaXWrapper.h"
-//#include "ExecuteDianaDialog.h"
+// #include "ExecuteDianaDialog.h"
 
 class IExecuteDianaDialog;
 
 #include <QString>
 
-//template< T >
-class CDianaXWrapper : public IDianaXWrapper
-{
-  //CExecuteDianaDialog m_executeDianaDialog;
-  IExecuteDianaDialog* m_exe_diana_dlg;
+// template< T >
+class CDianaXWrapper : public IDianaXWrapper {
+  // CExecuteDianaDialog m_executeDianaDialog;
+  IExecuteDianaDialog *m_exe_diana_dlg;
 
 public:
-  CDianaXWrapper( IExecuteDianaDialog* exe_diana_dlg );
+  CDianaXWrapper(IExecuteDianaDialog *exe_diana_dlg);
   virtual ~CDianaXWrapper();
 
   virtual void SetDisplayStopMessage(bool);

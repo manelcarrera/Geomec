@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __COMPOSITE_UNDO_H
 #define __COMPOSITE_UNDO_H
 
@@ -7,15 +7,14 @@
 
 #include "ModelFrameExports.h"
 
-class MODELFRAME_EXPORT  CCompositeUndo : public CUndoOperation
-{
+class MODELFRAME_EXPORT CCompositeUndo : public CUndoOperation {
 public:
-  typedef QStack<CUndoOperation*> TOperationStack;
+  typedef QStack<CUndoOperation *> TOperationStack;
 
-  CCompositeUndo( const TOperationStack& stack, const QString& text );
+  CCompositeUndo(const TOperationStack &stack, const QString &text);
   virtual ~CCompositeUndo();
 
-  virtual void undo( CDocumentBase& document );
+  virtual void undo(CDocumentBase &document);
 
 private:
   TOperationStack m_stack;

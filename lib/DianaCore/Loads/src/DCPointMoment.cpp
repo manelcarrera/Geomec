@@ -2,9 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "IDCLoad.h"
-#include "IDCDirectedLoad.h"
 #include "DCPointMoment.h"
+#include "IDCDirectedLoad.h"
+#include "IDCLoad.h"
 
 #include "DCLoadManager.h"
 #include "IDCDianaRunner.h"
@@ -21,25 +21,18 @@
 namespace dia {
 
 CPointMoment::CPointMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::INode &node)
-:	IDirectedLoad(loadcase, size, vecDirection), m_Node(node)
-{
-}
+    : IDirectedLoad(loadcase, size, vecDirection), m_Node(node) {}
 
-CPointMoment::~CPointMoment()
-{
-}
+CPointMoment::~CPointMoment() {}
 
-const geo::INode &CPointMoment::Node() const
-{
-  return m_Node;
-}
+const geo::INode &CPointMoment::Node() const { return m_Node; }
 
-bool CPointMoment::WriteFilos() const
-{
-  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+bool CPointMoment::WriteFilos() const {
+  ftn_int_t idxdir = (ftn_int_t)Manager().Runner().AddDirection(Direction());
 
   ftn_int_t idx = Inquire("NODAL", "DIM");
-  if(idx < 0) idx = 0;
+  if (idx < 0)
+    idx = 0;
   idx++;
 
   assert(!XistIndexed("NODAL/", &idx));
@@ -50,7 +43,7 @@ bool CPointMoment::WriteFilos() const
 
   PutItem("DIR", &idxdir);
 
-  ftn_int_t nodenr = (ftn_int_t) Node().Index() + 1;
+  ftn_int_t nodenr = (ftn_int_t)Node().Index() + 1;
   PutItemLength("NODES", &nodenr, 1);
 
   PutCharItem("TYPE", "RO");

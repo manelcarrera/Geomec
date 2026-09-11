@@ -4,14 +4,12 @@
 #include <Inventor/engines/SoSubEngine.h>
 #include <Inventor/fields/SoSFBool.h>
 
-class SoSwitchBool : public SoEngine
-{
+class SoSwitchBool : public SoEngine {
   SO_ENGINE_HEADER(SoSwitchBool);
 
   virtual void evaluate();
 
 public:
-
   static void initClass();
   static void exitClass();
 

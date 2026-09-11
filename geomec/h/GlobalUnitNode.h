@@ -3,20 +3,19 @@
 
 class CUnitNode;
 
-class CGlobalUnitNode
-{
-  public:
+class CGlobalUnitNode {
+public:
   CGlobalUnitNode();
 
-  const CUnitNode& unitNode() const;
+  const CUnitNode &unitNode() const;
 
-  private:
-  CGlobalUnitNode(const CGlobalUnitNode& rhs);
-  CGlobalUnitNode& operator = (const CGlobalUnitNode& rhs);
+private:
+  CGlobalUnitNode(const CGlobalUnitNode &rhs);
+  CGlobalUnitNode &operator=(const CGlobalUnitNode &rhs);
 
-  static const CUnitNode& retrieveGlobalUnitNode();
+  static const CUnitNode &retrieveGlobalUnitNode();
 
-  const CUnitNode& m_unitNode;
+  const CUnitNode &m_unitNode;
 };
 
-#endif  // _GlobalUnitNode_h_
+#endif // _GlobalUnitNode_h_

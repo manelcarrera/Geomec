@@ -2,18 +2,12 @@
 
 #include "ReadOnlyScene.h"
 
-CReadOnlyScene::CReadOnlyScene(const QString& type, CFemAppModel& femAppModel)
-: COpenGLSceneBase(femAppModel)
-, m_type(type)
-{
-}
+CReadOnlyScene::CReadOnlyScene(const QString &type, CFemAppModel &femAppModel)
+    : COpenGLSceneBase(femAppModel), m_type(type) {}
 
-CReadOnlyScene::~CReadOnlyScene()
-{
-}
+CReadOnlyScene::~CReadOnlyScene() {}
 
-namespace
-{
+namespace {
 
 const QString BIRDEYE_SCENE = "BIRDEYE";
 const QString XSEC_SCENE = "XSEC";
@@ -25,27 +19,18 @@ const QString DEFAULT_SCENE = "DEFAULT";
 
 } // anonymous namespace
 
-void CReadOnlyScene::LoadStream(TSTREAM& stream, CStreamVersion &version,
-  TPROGRESS& progress)
-{
-  if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) ||
-  (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
-  (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
-  (m_type == DEFAULT_SCENE))
-  {
-  COpenGLSceneBase::LoadStream(stream, version, progress);
+void CReadOnlyScene::LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress) {
+  if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) || (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
+      (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) || (m_type == DEFAULT_SCENE)) {
+    COpenGLSceneBase::LoadStream(stream, version, progress);
   }
 }
 
-void CReadOnlyScene::SaveStream(TSTREAM& stream, TPROGRESS& progress)
-{
+void CReadOnlyScene::SaveStream(TSTREAM &stream, TPROGRESS &progress) {
   assert(false);
 
-  if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) ||
-  (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
-  (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
-  (m_type == DEFAULT_SCENE))
-  {
-  COpenGLSceneBase::SaveStream(stream, progress);
+  if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) || (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
+      (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) || (m_type == DEFAULT_SCENE)) {
+    COpenGLSceneBase::SaveStream(stream, progress);
   }
 }

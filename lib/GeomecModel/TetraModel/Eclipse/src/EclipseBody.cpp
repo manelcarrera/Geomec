@@ -3,32 +3,25 @@
 #include "IMesh.h"
 
 // bodyface names
-static const char XI1[]   = "XI1";
-static const char XI2[]   = "XI2";
-static const char ETA1[]  = "ETA1";
-static const char ETA2[]  = "ETA2";
+static const char XI1[] = "XI1";
+static const char XI2[] = "XI2";
+static const char ETA1[] = "ETA1";
+static const char ETA2[] = "ETA2";
 static const char ZETA1[] = "ZETA1";
 static const char ZETA2[] = "ZETA2";
 
 #define SQRT3_6 (0.28867513459481288225457439025098)
 
-CEclipseBody::CEclipseBody(geo::IMesh &mesh, const std::vector<int> &points)
-: m_mesh(mesh), m_vcNodes(points)
-{
-}
+CEclipseBody::CEclipseBody(geo::IMesh &mesh, const std::vector<int> &points) : m_mesh(mesh), m_vcNodes(points) {}
 
-CEclipseBody::~CEclipseBody()
-{
-}
+CEclipseBody::~CEclipseBody() {}
 
-const geo::IPoint &CEclipseBody::Point(int nIndex) const
-{
+const geo::IPoint &CEclipseBody::Point(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   return m_mesh.Node(m_vcNodes[nIndex]);
 }
 
-void CEclipseBody::Point(int nIndex, const geo::IPoint &pt)
-{
+void CEclipseBody::Point(int nIndex, const geo::IPoint &pt) {
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   m_mesh.Node(nIndex, pt);
 }
@@ -102,29 +95,28 @@ geo::CPoint CEclipseBody::IsoparametricFromGlobal(const geo::IPoint &point) cons
 }
 */
 // checks whether the element is degenerate (e.g. concave)
-bool CEclipseBody::Degenerate() const
-{
-/*
-  // loop over nodes, and see if det(J) is <= 0 for any of them
-  geo::CMatrix J(3, 3);
+bool CEclipseBody::Degenerate() const {
+  /*
+    // loop over nodes, and see if det(J) is <= 0 for any of them
+    geo::CMatrix J(3, 3);
 
-  Jacobian(J, -0.5, -0.5, -0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J,  0.5, -0.5, -0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J,  0.5,  0.5, -0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J, -0.5,  0.5, -0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J, -0.5, -0.5,  0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J,  0.5, -0.5,  0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J,  0.5,  0.5,  0.5);
-  if(J.GetDeterminant() < EPS) return true;
-  Jacobian(J, -0.5,  0.5,  0.5);
-  if(J.GetDeterminant() < EPS) return true;
-*/
+    Jacobian(J, -0.5, -0.5, -0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J,  0.5, -0.5, -0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J,  0.5,  0.5, -0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J, -0.5,  0.5, -0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J, -0.5, -0.5,  0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J,  0.5, -0.5,  0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J,  0.5,  0.5,  0.5);
+    if(J.GetDeterminant() < EPS) return true;
+    Jacobian(J, -0.5,  0.5,  0.5);
+    if(J.GetDeterminant() < EPS) return true;
+  */
 
   return false;
 }

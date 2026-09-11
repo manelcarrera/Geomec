@@ -5,12 +5,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-
 // CGVTSeismicGridDlg dialog
 class CGVTSeismicGridDefinition;
 
-class CGVTSeismicGridDlg : public CDialog
-{
+class CGVTSeismicGridDlg : public CDialog {
   DECLARE_DYNAMIC(CGVTSeismicGridDlg)
 
   const CModelBase &m_Model;
@@ -32,14 +30,15 @@ class CGVTSeismicGridDlg : public CDialog
   CGVTSeismicGridDefinition &m_SeismicGridDefinition;
 
 public:
-  CGVTSeismicGridDlg(CGVTSeismicGridDefinition &griddefinition, const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
+  CGVTSeismicGridDlg(CGVTSeismicGridDefinition &griddefinition, const CModelBase &model,
+                     CWnd *pParent = NULL); // standard constructor
   virtual ~CGVTSeismicGridDlg();
 
-// Dialog Data
+  // Dialog Data
   enum { IDD = IDD_GVT_SEISMIC_GRID };
 
 protected:
- 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual BOOL OnInitDialog();
   virtual void OnOK();
 

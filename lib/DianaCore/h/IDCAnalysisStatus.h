@@ -6,16 +6,14 @@
 
 class QString;
 
-
 namespace dia {
 
-class IAnalysisStatus
-{
+class IAnalysisStatus {
 public:
   IAnalysisStatus();
   virtual ~IAnalysisStatus();
 
-  virtual void ParseMessage(const QString& message);
+  virtual void ParseMessage(const QString &message);
 
   virtual int PhaseNumber() const;
 
@@ -30,7 +28,6 @@ public:
   virtual bool Converged() const;
 
 private:
-
   void ProcessTimeStep(std::size_t step, bool value);
 
   int m_nPhase;
@@ -40,9 +37,7 @@ private:
   std::vector<bool> m_vcTimeSteps;
 };
 
-
-class IAnalysisStatusContainer
-{
+class IAnalysisStatusContainer {
 public:
   IAnalysisStatusContainer();
   virtual ~IAnalysisStatusContainer();
@@ -59,8 +54,6 @@ private:
   std::vector<IAnalysisStatus *> m_vcAnalysisStatus;
 };
 
-
-}
-
+} // namespace dia
 
 #endif

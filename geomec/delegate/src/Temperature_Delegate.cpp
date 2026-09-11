@@ -1,26 +1,21 @@
 #include "stdafx.h"
 
-#include "Temperature_Delegate.h"
-#include "Temperature.h"
 #include "AttriTemperatureDlg.h"
+#include "Temperature.h"
+#include "Temperature_Delegate.h"
 
-CTemperature_Delegate::CTemperature_Delegate(CTemperature* temperature)
-: TTemperatureBase_Delegate(temperature)
-, m_temperature(temperature)
-{
-}
+CTemperature_Delegate::CTemperature_Delegate(CTemperature *temperature)
+    : TTemperatureBase_Delegate(temperature), m_temperature(temperature) {}
 
-bool CTemperature_Delegate::Attributes()
-{
+bool CTemperature_Delegate::Attributes() {
   m_temperature->AssertValid();
 
   CAttriTemperatureDlg dlg(*m_temperature);
 
-  if (dlg.DoModal() == IDOK)
-  {
-  m_temperature->AssertValid();
+  if (dlg.DoModal() == IDOK) {
+    m_temperature->AssertValid();
 
-  return true;
+    return true;
   }
 
   return false;

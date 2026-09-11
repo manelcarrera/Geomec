@@ -25,70 +25,44 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueProperty.h"
-#include "RescueProperty.h"
 #include "RescueModel.h"
+#include "RescueProperty.h"
+#include "myHeaders.h"
 
-cBagRescueProperty::cBagRescueProperty()
-{
-  tree = new RescueTree();
+cBagRescueProperty::cBagRescueProperty() { tree = new RescueTree(); }
+
+cBagRescueProperty::~cBagRescueProperty() { delete tree; }
+
+void cBagRescueProperty::operator+=(RescueProperty *newObject) { tree->Add(newObject); }
+
+RESCUEBOOL cBagRescueProperty::operator-=(RescueProperty *existingObject) { return tree->Delete(existingObject); }
+
+RescueProperty *cBagRescueProperty::NthObject(RESCUEINT64 ordinal) {
+  return (RescueProperty *)tree->NthObject(ordinal);
 }
 
-cBagRescueProperty::~cBagRescueProperty()
-{
-  delete tree;
-}
-
-void cBagRescueProperty::operator+=(RescueProperty *newObject)
-{
-  tree->Add(newObject);
-}
-
-RESCUEBOOL cBagRescueProperty::operator-=(RescueProperty * existingObject)
-{
-  return tree->Delete(existingObject);
-}
-
-RescueProperty *cBagRescueProperty::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueProperty *) tree->NthObject(ordinal);
-}
-
-RescueProperty *cBagRescueProperty::PropertyNamed(RESCUECHAR *propertyName)
-{
+RescueProperty *cBagRescueProperty::PropertyNamed(RESCUECHAR *propertyName) {
   RescueProperty *myReturn = 0;
   int ordinal = 0;
-  RescueProperty *candidate = (RescueProperty *) tree->NthObject(ordinal++);
-  while (myReturn == 0 && candidate != 0)
-  {
-  if (candidate->IsNamed(propertyName))
-  {
+  RescueProperty *candidate = (RescueProperty *)tree->NthObject(ordinal++);
+  while (myReturn == 0 && candidate != 0) {
+    if (candidate->IsNamed(propertyName)) {
       myReturn = candidate;
-  }
-  else
-  {
-      candidate = (RescueProperty *) tree->NthObject(ordinal++);
-  }
+    } else {
+      candidate = (RescueProperty *)tree->NthObject(ordinal++);
+    }
   }
   return myReturn;
 }
 
-RESCUEINT32 cBagRescueProperty::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueProperty::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-

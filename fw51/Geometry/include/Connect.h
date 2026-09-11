@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // Connect.h: interface for the IElementConnect class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -14,23 +14,23 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class GEOMETRY_EXPORT  IElementConnect  
-{
+class GEOMETRY_EXPORT IElementConnect {
 protected:
   IElementConnect();
 
-    virtual ~IElementConnect() {}
+  virtual ~IElementConnect() {}
+
 public:
   virtual int NodeIndex(int nIndex) const = 0;
   virtual int NodeSize() const = 0;
 };
 
-class GEOMETRY_EXPORT  INodeConnect
-{
+class GEOMETRY_EXPORT INodeConnect {
 protected:
   INodeConnect();
 
-    virtual ~INodeConnect() {}
+  virtual ~INodeConnect() {}
+
 public:
   virtual int ElementIndex(int nIndex) const = 0;
   virtual int ElementSize() const = 0;

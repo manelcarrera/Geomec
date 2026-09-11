@@ -1,10 +1,10 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 
 #ifndef IHEXAHEDRON_H
 #define IHEXAHEDRON_H
 
-#include "IBody.h"
 #include "DispatchVisitorBase.h"
+#include "IBody.h"
 
 #include "GeometryExports.h"
 
@@ -13,11 +13,9 @@ namespace geo {
 class CBodyQuadrilateral;
 class CBodyLine;
 
-class GEOMETRY_EXPORT  IHexahedron : public IBody
-{
+class GEOMETRY_EXPORT IHexahedron : public IBody {
 
-
-public: 
+public:
   IHexahedron();
   ~IHexahedron();
 
@@ -35,25 +33,25 @@ public:
   // given index is connected to
   using IBody::FaceNodeIndices;
   using IBody::FacePointIndices;
-  virtual const TIndexVec& FaceNodeIndices(int nIndex) const;
-  virtual const TIndexVec& FacePointIndices(int nIndex) const;
+  virtual const TIndexVec &FaceNodeIndices(int nIndex) const;
+  virtual const TIndexVec &FacePointIndices(int nIndex) const;
 
   virtual int NrOfLines() const;
   virtual const ILine &Line(int nIndex) const;
-  using IBody::LinePointIndices;
   using IBody::LineNodeIndices;
-  virtual const TIndexVec& LinePointIndices(int nIndex) const;
-  virtual const TIndexVec& LineNodeIndices(int nIndex) const;
+  using IBody::LinePointIndices;
+  virtual const TIndexVec &LinePointIndices(int nIndex) const;
+  virtual const TIndexVec &LineNodeIndices(int nIndex) const;
 
-  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec& isocoords) const;
+  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec &isocoords) const;
 
-  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const;
+  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const;
   virtual std::vector<IElement::TDoubleVec> IsoCoordinates() const;
 
   // integration points
   virtual int IntegrationPointSize() const;
-  virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
-  virtual const double& IntegrationPointWeight(int nIndex) const;
+  virtual const TDoubleVec &IntegrationPointCoords(int nIndex) const;
+  virtual const double &IntegrationPointWeight(int nIndex) const;
 
   static void PrepareMapping();
 
@@ -61,19 +59,19 @@ public:
 
 private:
   typedef std::vector<TIndexVec> TFaceNodeVec;
-  static void InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs );
-  static const TIndexVec& FaceNodeIndices( int order, int nIndex );
+  static void InitFaceNodeIndices(std::vector<TFaceNodeVec> &FaceNodeIdxs);
+  static const TIndexVec &FaceNodeIndices(int order, int nIndex);
 
   typedef std::vector<TIndexVec> TLineNodeVec;
-  static void InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs );
-  static const TIndexVec& LineNodeIndices( int order, int nIndex );
+  static void InitLineNodeIndices(std::vector<TLineNodeVec> &LineNodeIdxs);
+  static const TIndexVec &LineNodeIndices(int order, int nIndex);
 
-  const TIntPtVec& IntegrationPoints() const;
-  static const TIntPtVec& IntegrationPoints( int order );
-  static void BuildIntegrationPoints(IElement::TIntPtVec& vec, int numint);
+  const TIntPtVec &IntegrationPoints() const;
+  static const TIntPtVec &IntegrationPoints(int order);
+  static void BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint);
 
   mutable std::vector<CBodyQuadrilateral *> m_vcFaces;
-  mutable std::vector<CBodyLine*> m_vcLines;
+  mutable std::vector<CBodyLine *> m_vcLines;
 };
 
 } // namespace geo

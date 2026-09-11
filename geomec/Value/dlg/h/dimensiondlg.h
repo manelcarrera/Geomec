@@ -12,33 +12,30 @@
 
 #include "PointSet.h"
 
-class CDimensionDlg : public CDialog
-{
+class CDimensionDlg : public CDialog {
   CPointSet::DIMENSION m_dim;
-// Construction
+  // Construction
 public:
-  CDimensionDlg(CPointSet::DIMENSION dim, CWnd* pParent = NULL);   // standard constructor
+  CDimensionDlg(CPointSet::DIMENSION dim, CWnd *pParent = NULL); // standard constructor
   CPointSet::DIMENSION Dimension() const;
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CDimensionDlg)
   enum { IDD = IDD_SET_DIMENSION_DLG };
-  //int		nDim;
-  //}}AFX_DATA
+  // int		nDim;
+  // }}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CDimensionDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CDimensionDlg)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

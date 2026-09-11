@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ISupport.h: interface for the ISupport class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -19,14 +19,13 @@ class IMesh;
 class CMesh;
 class INode;
 class IVector;
-class GEOMETRY_EXPORT ISupport
-{
+class GEOMETRY_EXPORT ISupport {
   IMesh &m_mesh;
   int m_nNode;
   mutable COrthogonalBase m_Base;
 
 protected:
-  ISupport(IMesh& mesh, int nLimitedNode, const IVector &direction);
+  ISupport(IMesh &mesh, int nLimitedNode, const IVector &direction);
 
 public:
   virtual ~ISupport();
@@ -48,13 +47,12 @@ public:
   void AlignWith(const IVector &dir) const;
 };
 
-class GEOMETRY_EXPORT  CTranslationSupport : public ISupport
-{
+class GEOMETRY_EXPORT CTranslationSupport : public ISupport {
   friend class IMesh;
 
 private:
   // private constructor: derived class is not possible due to creation by IMesh
-  CTranslationSupport(IMesh& mesh, int nLimitedNode, const IVector &direction);
+  CTranslationSupport(IMesh &mesh, int nLimitedNode, const IVector &direction);
 
 public:
   virtual ~CTranslationSupport();
@@ -62,13 +60,12 @@ public:
   virtual std::string Type() const;
 };
 
-class GEOMETRY_EXPORT  CRotationSupport : public ISupport
-{
+class GEOMETRY_EXPORT CRotationSupport : public ISupport {
   friend class IMesh;
 
 private:
   // private constructor: derived class is not possible due to creation by IMesh
-  CRotationSupport(IMesh& mesh, int nLimitedNode, const IVector &direction);
+  CRotationSupport(IMesh &mesh, int nLimitedNode, const IVector &direction);
 
 public:
   virtual ~CRotationSupport();
@@ -76,6 +73,6 @@ public:
   virtual std::string Type() const;
 };
 
-}
+} // namespace geo
 
 #endif // !defined(AFX_ISUPPORT_H__F9016FE9_AE84_49C3_8212_074C32FB3EE7__INCLUDED_)

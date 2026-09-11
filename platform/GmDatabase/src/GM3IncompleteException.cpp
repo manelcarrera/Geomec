@@ -2,21 +2,15 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
 #include "GM3IncompleteException.h"
+#include "stdafx.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-//##ModelId=3BA8A1C8018A
-CIncompleteException::CIncompleteException()
-{
+// ##ModelId=3BA8A1C8018A
+CIncompleteException::CIncompleteException() {}
 
-}
-
-//##ModelId=3BA8A1C8018B
-CIncompleteException::~CIncompleteException()
-{
-
-}
+// ##ModelId=3BA8A1C8018B
+CIncompleteException::~CIncompleteException() {}

@@ -16,27 +16,26 @@ class CDepletionStage;
 class CFaultParametersNode;
 
 namespace geo {
-  class CElementGroup;
+class CElementGroup;
 }
 
-#include "colornode.h"
+#include "GeomecModelVisitor.h"
 #include "IDCElementProperty.h"
 #include "SingleQuantity.h"
-#include "GeomecModelVisitor.h"
+#include "colornode.h"
 
-//This is the base class for horizon model horizons and gocad 
-//type horizons.
-//##ModelId=3D633E640039
-class CHorizonBase : public CColorNode
-{
+// This is the base class for horizon model horizons and gocad
+// type horizons.
+// ##ModelId=3D633E640039
+class CHorizonBase : public CColorNode {
 public:
-  typedef std::set<dia::IMaterial*, dia::IMaterial::CMaterialLess> TMaterialSet;
+  typedef std::set<dia::IMaterial *, dia::IMaterial::CMaterialLess> TMaterialSet;
   // enumeration used when the horizon acts as a fault. It can either be
   // complete stick, complete slip or user defined.
-  typedef enum eSlipType{ STICK = 0, SLIP, USER, FRACTURE } TSlipType;
+  typedef enum eSlipType { STICK = 0, SLIP, USER, FRACTURE } TSlipType;
 
-  CHorizonBase(CFemAppModel& model);
-  CHorizonBase(const QString& strInstanceName, CFemAppModel& model, bool bAttachToEntry = true);
+  CHorizonBase(CFemAppModel &model);
+  CHorizonBase(const QString &strInstanceName, CFemAppModel &model, bool bAttachToEntry = true);
   CHorizonBase(const CHorizonBase &rhs);
   virtual ~CHorizonBase();
 
@@ -50,17 +49,20 @@ public:
   virtual bool IgnoreFault() const;
 
   // ONLY valid when slipping!!
-  const CFaultPressure& Pressure(const CDepletionStage& stage) const;
-  CFaultPressure& Pressure(const CDepletionStage& stage);
+  const CFaultPressure &Pressure(const CDepletionStage &stage) const;
+  CFaultPressure &Pressure(const CDepletionStage &stage);
 
-  virtual const geo::CElementGroup* InterfaceElementGroup() const { return 0; }
+  virtual const geo::CElementGroup *InterfaceElementGroup() const { return 0; }
 
   // determines whether this horizon can be marked as slipping, must be implemented by derived class
-  virtual bool CanSlip() const { assert(false); return false; }
+  virtual bool CanSlip() const {
+    assert(false);
+    return false;
+  }
 
   // Assignment
-  bool operator==(const CHorizonBase& rhs) const;
-  CHorizonBase& operator=(const CHorizonBase& rhs);
+  bool operator==(const CHorizonBase &rhs) const;
+  CHorizonBase &operator=(const CHorizonBase &rhs);
 
   virtual bool Destroy();
 
@@ -71,10 +73,10 @@ public:
   virtual unsigned int TypeId() const;
   virtual QString TypeName() const;
 
-  CFaultParametersNode& FaultParameters(const CDepletionStage& stage);
-  const CFaultParametersNode& FaultParameters(const CDepletionStage& stage) const;
-  bool canHaveFaultParameters(const CDepletionStage& stage) const;
-  bool hasFaultParameters(const CDepletionStage& stage) const;
+  CFaultParametersNode &FaultParameters(const CDepletionStage &stage);
+  const CFaultParametersNode &FaultParameters(const CDepletionStage &stage) const;
+  bool canHaveFaultParameters(const CDepletionStage &stage) const;
+  bool hasFaultParameters(const CDepletionStage &stage) const;
   void UpdateFaultParameters();
 
   virtual unsigned int IconId() const;
@@ -83,17 +85,16 @@ public:
   virtual long SavedItems() const;
 
   // Stream
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-  
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
+
   virtual bool Less(const CGraphNode &node) const;
 
   // materials
-  virtual const dia::IMaterial &InterfaceMaterial(const geo::IElement &element, const CDepletionStage& stage) const;
+  virtual const dia::IMaterial &InterfaceMaterial(const geo::IElement &element, const CDepletionStage &stage) const;
   void ClearMaterials();
 
   void LinkToEntry();
-
 
 #ifdef _DEBUG
   virtual void AssertValid() const;
@@ -107,7 +108,7 @@ protected:
   mutable TMaterialSet m_stMaterials;
 
   virtual double CalculateAverageDStif() const = 0;
-  const double& AverageDStif() const;
+  const double &AverageDStif() const;
   virtual void OnSlipToggled();
 
 private:
@@ -118,10 +119,10 @@ private:
   bool m_bSlip;
   TSlipType m_SlipType;
 
-  typedef std::map<const CDepletionStage*, CFaultParametersNode*> TFaultParametersMap;
+  typedef std::map<const CDepletionStage *, CFaultParametersNode *> TFaultParametersMap;
   TFaultParametersMap m_mpFaultParameters;
 
-  typedef std::map<const CDepletionStage*, CFaultPressure*> TPressureMap;
+  typedef std::map<const CDepletionStage *, CFaultPressure *> TPressureMap;
   TPressureMap m_mpPressure;
   double m_dAverageDStif;
   // *************************************************************************************** //

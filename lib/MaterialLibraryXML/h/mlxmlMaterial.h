@@ -14,23 +14,22 @@ namespace mlxml {
 
 class CMaterialParameterXML;
 
-class CMaterialXML
-{
+class CMaterialXML {
 public:
-  CMaterialXML(ml::CMaterial& mat);
+  CMaterialXML(ml::CMaterial &mat);
   virtual ~CMaterialXML();
 
-  virtual ml::CMaterial& Material();
+  virtual ml::CMaterial &Material();
 
   // these functions throw an mlxml::CException on failure
-  virtual void Load(QDomElement& domElement);
-  virtual void Save(QDomElement& domElement);
+  virtual void Load(QDomElement &domElement);
+  virtual void Save(QDomElement &domElement);
 
 protected:
-  virtual CMaterialParameterXML* OnCreateMaterialParameterXML(ml::CMatParam& matparam);
+  virtual CMaterialParameterXML *OnCreateMaterialParameterXML(ml::CMatParam &matparam);
 
 private:
-  ml::CMaterial& m_mat;
+  ml::CMaterial &m_mat;
 };
 
 } // namespace mlxml

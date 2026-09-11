@@ -2,61 +2,61 @@
 
 #include <QString>
 
-class CAnalysisType
-{
+class CAnalysisType {
 public:
-  typedef enum _AnalysisType{ AT_FIRST, AT_LINEAR = AT_FIRST, AT_NONLIN, AT_HEAT, AT_MIXTURE, AT_MIXTURE_CONTAINMENT, AT_LAST = AT_MIXTURE_CONTAINMENT } TAnalysisType;
+  typedef enum _AnalysisType {
+    AT_FIRST,
+    AT_LINEAR = AT_FIRST,
+    AT_NONLIN,
+    AT_HEAT,
+    AT_MIXTURE,
+    AT_MIXTURE_CONTAINMENT,
+    AT_LAST = AT_MIXTURE_CONTAINMENT
+  } TAnalysisType;
 
 public:
   CAnalysisType() {};
 };
 
-class CDepletionStage
-{
+class CDepletionStage {
 public:
-
-  enum eOutputType		{ NONE, RESULTS, BRANCH, PHASE };
+  enum eOutputType { NONE, RESULTS, BRANCH, PHASE };
 
 public:
-  CDepletionStage(){};
-  CDepletionStage* Initial(){ return new CDepletionStage(); }
-  CDepletionStage* Previous(){ return new CDepletionStage(); };
-  void setOutputType( eOutputType type ){}
-  bool IsPhaseStartStage(){ return true; };
+  CDepletionStage() {};
+  CDepletionStage *Initial() { return new CDepletionStage(); }
+  CDepletionStage *Previous() { return new CDepletionStage(); };
+  void setOutputType(eOutputType type) {}
+  bool IsPhaseStartStage() { return true; };
 };
 
-class CDepletionStageEntry
-{
+class CDepletionStageEntry {
 public:
-  CDepletionStageEntry(){}
-  CDepletionStage* LastStage(){ return new CDepletionStage(); };
+  CDepletionStageEntry() {}
+  CDepletionStage *LastStage() { return new CDepletionStage(); };
 };
 
-class CBranchState
-{
+class CBranchState {
 public:
-  CBranchState(){};
-  void ClearBranch(){};
+  CBranchState() {};
+  void ClearBranch() {};
 };
 
-class CModelBase
-{
+class CModelBase {
 public:
   CModelBase() {};
-  CDepletionStageEntry* DepletionStageEntry(){ return new CDepletionStageEntry(); }
-  CBranchState* BranchState(){ return new CBranchState(); };
+  CDepletionStageEntry *DepletionStageEntry() { return new CDepletionStageEntry(); }
+  CBranchState *BranchState() { return new CBranchState(); };
 };
 
-class CProgressCancel
-{
+class CProgressCancel {
 public:
-  CProgressCancel(){};
+  CProgressCancel() {};
 };
 
-class CGeomecDoc
-{
+class CGeomecDoc {
 public:
-  CGeomecDoc(){};
-  CModelBase* Model(){ return new CModelBase(); }
-  QString GetPathName(){ return ""; }
+  CGeomecDoc() {};
+  CModelBase *Model() { return new CModelBase(); }
+  QString GetPathName() { return ""; }
 };

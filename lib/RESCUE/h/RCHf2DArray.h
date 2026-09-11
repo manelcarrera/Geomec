@@ -15,16 +15,19 @@
 ***********************************************************************/
 #include "myHeaders.h"
 
-template <class cType> class RCHf2DArray
-{
+template <class cType> class RCHf2DArray {
 public:
   RCHf2DArray(RESCUEINT64 maxI, RESCUEINT64 maxJ, cType *values = 0);
   cType &Ndx(RESCUEINT64 i, RESCUEINT64 j);
   cType Value(RESCUEINT64 i, RESCUEINT64 j);
-  cType *Array() {return values;}
-  RESCUEINT64 ArrayLength64() {return maxI * maxJ;}
-  RESCUEINT32 ArrayLength() {return (RESCUEINT32) ArrayLength64();}
-  ~RCHf2DArray() {if (freeValues) delete [] values;}
+  cType *Array() { return values; }
+  RESCUEINT64 ArrayLength64() { return maxI * maxJ; }
+  RESCUEINT32 ArrayLength() { return (RESCUEINT32)ArrayLength64(); }
+  ~RCHf2DArray() {
+    if (freeValues)
+      delete[] values;
+  }
+
 private:
   RESCUEINT64 maxI;
   RESCUEINT64 maxJ;
@@ -32,36 +35,23 @@ private:
   RESCUEBOOL freeValues;
 };
 
-
-template <class cType> RCHf2DArray<cType>::RCHf2DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, cType *valuesIn)
-                                                      :maxI(maxIin)
-                                                      ,maxJ(maxJin)
-                                                      ,values(valuesIn)
-{
-  if (values == 0)
-  {
-  values = new cType[maxI * maxJ];
-  freeValues = TRUE;
-  }
-  else
-  {
-  freeValues = FALSE;
+template <class cType>
+RCHf2DArray<cType>::RCHf2DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, cType *valuesIn)
+    : maxI(maxIin), maxJ(maxJin), values(valuesIn) {
+  if (values == 0) {
+    values = new cType[maxI * maxJ];
+    freeValues = TRUE;
+  } else {
+    freeValues = FALSE;
   }
 }
 
-template <class cType> cType& RCHf2DArray<cType>::Ndx(RESCUEINT64 i, RESCUEINT64 j)
-{
-  RESCUEINT64 ndx = (j * maxI)
-         +  i;
+template <class cType> cType &RCHf2DArray<cType>::Ndx(RESCUEINT64 i, RESCUEINT64 j) {
+  RESCUEINT64 ndx = (j * maxI) + i;
   return values[ndx];
 }
 
-template <class cType> cType RCHf2DArray<cType>::Value(RESCUEINT64 i, RESCUEINT64 j)
-{
-  RESCUEINT64 ndx = (j * maxI)
-         +  i;
+template <class cType> cType RCHf2DArray<cType>::Value(RESCUEINT64 i, RESCUEINT64 j) {
+  RESCUEINT64 ndx = (j * maxI) + i;
   return values[ndx];
 }
-
-
-

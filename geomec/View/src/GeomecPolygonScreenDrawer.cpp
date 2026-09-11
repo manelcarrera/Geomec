@@ -2,25 +2,23 @@
 
 #include "GeomecPolygonScreenDrawer.h"
 
-#include <Inventor/events/SoEvent.h>
-#include <Inventor/actions/SoHandleEventAction.h>
-#include <Inventor/events/SoKeyboardEvent.h>
-#include "intersection.h"
-#include "OpenInventorEventsHandler.h"
 #include "Inventor/nodes/SoCoordinate3.h"
-#include "Inventor/nodes/SoMaterial.h"
 #include "Inventor/nodes/SoMarkerSet.h"
-#include "Inventor/nodes/SoSwitch.h"
-#include "Inventor/nodes/SoSeparator.h"
-#include "IvTune/SoIvTune.h"
+#include "Inventor/nodes/SoMaterial.h"
 #include "Inventor/nodes/SoMaterialBinding.h"
+#include "Inventor/nodes/SoSeparator.h"
+#include "Inventor/nodes/SoSwitch.h"
+#include "IvTune/SoIvTune.h"
+#include "OpenInventorEventsHandler.h"
+#include "intersection.h"
+#include <Inventor/actions/SoHandleEventAction.h>
+#include <Inventor/events/SoEvent.h>
+#include <Inventor/events/SoKeyboardEvent.h>
 
-SO_NODE_SOURCE( GeomecPolygonScreenDrawer );
+SO_NODE_SOURCE(GeomecPolygonScreenDrawer);
 
-GeomecPolygonScreenDrawer::GeomecPolygonScreenDrawer() : Base()
-{
-  SO_NODE_CONSTRUCTOR( GeomecPolygonScreenDrawer );
-
+GeomecPolygonScreenDrawer::GeomecPolygonScreenDrawer() : Base() {
+  SO_NODE_CONSTRUCTOR(GeomecPolygonScreenDrawer);
 
   isBuiltIn = TRUE;
 
@@ -33,49 +31,41 @@ GeomecPolygonScreenDrawer::GeomecPolygonScreenDrawer() : Base()
   m_drawerMode = Creating;
   m_polygonMode = Polygon;
 
-
-  SoNode * node = sceneGraph.getValue();
-  SoSeparator * nodeAsSeparator = dynamic_cast<SoSeparator *> (node);
-  if (!nodeAsSeparator) return;
+  SoNode *node = sceneGraph.getValue();
+  SoSeparator *nodeAsSeparator = dynamic_cast<SoSeparator *>(node);
+  if (!nodeAsSeparator)
+    return;
 
   SoMaterialBinding *markerMaterialBinding = new SoMaterialBinding;
   markerMaterialBinding->value = SoMaterialBinding::PER_VERTEX;
   nodeAsSeparator->addChild(markerMaterialBinding);
 
-     m_pointMarkerGroup = new SoGroup;
+  m_pointMarkerGroup = new SoGroup;
   nodeAsSeparator->addChild(m_pointMarkerGroup);
 }
 
 //------------------------------------------------------------------------------
-// 
-GeomecPolygonScreenDrawer::~GeomecPolygonScreenDrawer()
-{
+//
+GeomecPolygonScreenDrawer::~GeomecPolygonScreenDrawer() {}
+
+//------------------------------------------------------------------------------
+//
+void GeomecPolygonScreenDrawer::initClass() {
+  SO__NODE_INIT_CLASS(GeomecPolygonScreenDrawer, "GeomecPolygonScreenDrawer", SoPolygonScreenDrawer);
 }
 
 //------------------------------------------------------------------------------
-// 
-void GeomecPolygonScreenDrawer::initClass()
-{
-  SO__NODE_INIT_CLASS( GeomecPolygonScreenDrawer, "GeomecPolygonScreenDrawer", SoPolygonScreenDrawer );
-}
-
-//------------------------------------------------------------------------------
-// 
-void GeomecPolygonScreenDrawer::exitClass()
-{
-  SO__NODE_EXIT_CLASS( GeomecPolygonScreenDrawer );
-}
-
+//
+void GeomecPolygonScreenDrawer::exitClass() { SO__NODE_EXIT_CLASS(GeomecPolygonScreenDrawer); }
 
 /** Called on keyDown event. Should be implemented by sub-classes. */
-void GeomecPolygonScreenDrawer::onKeyDown( SoHandleEventAction*  action)
-{
-  if (m_finalized) return;
+void GeomecPolygonScreenDrawer::onKeyDown(SoHandleEventAction *action) {
+  if (m_finalized)
+    return;
   int numPoints = point.getNum();
 
-  const SoKeyboardEvent * event = static_cast<const SoKeyboardEvent *> (action->getEvent());
-  switch (event->getKey())
-  {
+  const SoKeyboardEvent *event = static_cast<const SoKeyboardEvent *>(action->getEvent());
+  switch (event->getKey()) {
   case SoKeyboardEvent::RETURN:
     revertOnSelfIntersect();
     finalize(action);
@@ -91,23 +81,22 @@ void GeomecPolygonScreenDrawer::onKeyDown( SoHandleEventAction*  action)
   updateMarkers();
 }
 
-void GeomecPolygonScreenDrawer::onMouseUp( SoHandleEventAction* action)
-{
-  if (m_finalized) return;
+void GeomecPolygonScreenDrawer::onMouseUp(SoHandleEventAction *action) {
+  if (m_finalized)
+    return;
   // TRACE("1: onMouseUp: points = %d\n", point.getNum());
 
-  if (m_dragging && (m_drawerMode == Modifying || m_polygonMode == Rectangular) )
-  {
-    onMouseDown(action );
+  if (m_dragging && (m_drawerMode == Modifying || m_polygonMode == Rectangular)) {
+    onMouseDown(action);
   }
 
   Base::onMouseUp(action);
   // TRACE("2: onMouseUp: points = %d\n", point.getNum());
 }
 
-void GeomecPolygonScreenDrawer::onMouseDown( SoHandleEventAction* action)
-{
-  if (m_finalized) return;
+void GeomecPolygonScreenDrawer::onMouseDown(SoHandleEventAction *action) {
+  if (m_finalized)
+    return;
 
   // TRACE("1: onMouseDown: points = %d\n", point.getNum());
 
@@ -115,61 +104,48 @@ void GeomecPolygonScreenDrawer::onMouseDown( SoHandleEventAction* action)
 
   // TRACE("2: onMouseDown: points = %d\n", point.getNum());
 
-  if (m_drawerMode == Modifying)
-  {
+  if (m_drawerMode == Modifying) {
     // we don't want new points, just (re)move them
     removeLastPoint();
     if (m_firstMouseDown)
       removeLastPoint();
 
-    if(m_dragging)
-    {
+    if (m_dragging) {
       // dragging a point
-      if (!selfIntersects())
-      {
-        // legal polygon, 
+      if (!selfIntersects()) {
+        // legal polygon,
         m_dragging = false;
       }
 
-      if (m_polygonMode == SinglePoint)
-      {
-        assert (point.getNum() == 2);
+      if (m_polygonMode == SinglePoint) {
+        assert(point.getNum() == 2);
         removePoint(0); // remove original point
         finalize(action);
         return;
       }
-    }
-    else
-    {
+    } else {
       // selecting a point
-      if (!handleModificationOnMouseDown(action))    
-      {
+      if (!handleModificationOnMouseDown(action)) {
         // no point was selected
         finalize(action);
         return;
       }
       m_dragging = true;
     }
-  }
-  else // Creating
+  } else // Creating
   {
     int numPoints = point.getNum();
-    if (numPoints > 2 && (actionOnOrigin(action) || m_polygonMode == Rectangular))
-    {
+    if (numPoints > 2 && (actionOnOrigin(action) || m_polygonMode == Rectangular)) {
       // polygon is closed
       removeLastPoint();
       if (m_polygonMode != Rectangular) //  If rectangular, we need only the four points we already have
         removeLastPoint();
       // TRACE("4: onMouseDown: points = %d\n", point.getNum());
       finalize(action);
-    }
-    else if (numPoints == 2 && m_polygonMode == SinglePoint && !m_firstMouseDown)
-    {
+    } else if (numPoints == 2 && m_polygonMode == SinglePoint && !m_firstMouseDown) {
       removeLastPoint();
       finalize(action);
-    }
-    else
-    {
+    } else {
       revertOnSelfIntersect();
     }
     m_dragging = true;
@@ -181,21 +157,16 @@ void GeomecPolygonScreenDrawer::onMouseDown( SoHandleEventAction* action)
   // TRACE("3: onMouseDown: points = %d\n", point.getNum());
 }
 
-void GeomecPolygonScreenDrawer::onMouseMove( SoHandleEventAction* action)
-{
-  if (m_polygonMode == SinglePoint && m_firstMouseDown)
-  {
+void GeomecPolygonScreenDrawer::onMouseMove(SoHandleEventAction *action) {
+  if (m_polygonMode == SinglePoint && m_firstMouseDown) {
     onMouseDown(action);
     Base::onMouseUp(action);
 
-    if (m_drawerMode == Modifying)
-    {
+    if (m_drawerMode == Modifying) {
       int numPoints = point.getNum();
-      assert (numPoints == 1);
-      addPoint (point[0]);
-    }
-    else
-    {
+      assert(numPoints == 1);
+      addPoint(point[0]);
+    } else {
       removeLastPoint();
     }
   }
@@ -213,8 +184,7 @@ void GeomecPolygonScreenDrawer::onMouseMove( SoHandleEventAction* action)
   updateMarkers();
 }
 
-void GeomecPolygonScreenDrawer::onMouseDragging( SoHandleEventAction* action)
-{
+void GeomecPolygonScreenDrawer::onMouseDragging(SoHandleEventAction *action) {
   if (m_finalized)
     return;
 
@@ -227,90 +197,73 @@ void GeomecPolygonScreenDrawer::onMouseDragging( SoHandleEventAction* action)
   updateMarkers();
 }
 
-void GeomecPolygonScreenDrawer::onMouseDblClick( SoHandleEventAction* action)
-{
-  if (m_finalized) return;
+void GeomecPolygonScreenDrawer::onMouseDblClick(SoHandleEventAction *action) {
+  if (m_finalized)
+    return;
   revertOnSelfIntersect();
   finalize(action);
 }
 
-void GeomecPolygonScreenDrawer::rotatePoints( int pLast )
-{
+void GeomecPolygonScreenDrawer::rotatePoints(int pLast) {
   std::vector<SbVec2f> rotatedPoints;
   int numPoints = point.getNum();
-  for (int p = 1; p <= numPoints; ++p)
-  {
+  for (int p = 1; p <= numPoints; ++p) {
     rotatedPoints.push_back(point[(p + pLast) % numPoints]);
   }
 
   clear();
-  for (int p = 0; p < numPoints; ++p)
-  {
+  for (int p = 0; p < numPoints; ++p) {
     addPoint(rotatedPoints[p]);
   }
 }
 
-void GeomecPolygonScreenDrawer::checkSelfIntersection()
-{
+void GeomecPolygonScreenDrawer::checkSelfIntersection() {
   std::vector<SbVec2f> pointVector;
   int numPoints = point.getNum();
-  for (int p = 0; p < numPoints; ++p)
-  {
+  for (int p = 0; p < numPoints; ++p) {
     pointVector.push_back(point[p]);
   }
 
-  if ((m_selfIntersects = ::selfIntersects(pointVector)))
-  {
+  if ((m_selfIntersects = ::selfIntersects(pointVector))) {
     switchToRed();
-  }
-  else
-  {
+  } else {
     switchToGreen();
   }
 }
 
-void GeomecPolygonScreenDrawer::makeRectangular()
-{
-  if (m_polygonMode != Rectangular) return;
+void GeomecPolygonScreenDrawer::makeRectangular() {
+  if (m_polygonMode != Rectangular)
+    return;
 
-  if (point.getNum() == 0) return;
-                                                  // 0 ---> 1
-  if (point.getNum() == 2)                      // |      |
-  {                                             // |      |
-    addPoint(point[1]);                       // 3 <--- 2
+  if (point.getNum() == 0)
+    return;
+  // 0 ---> 1
+  if (point.getNum() == 2) // |      |
+  {                        // |      |
+    addPoint(point[1]);    // 3 <--- 2
     addPoint(point[1]);
   }
-  assert (point.getNum() == 4);
+  assert(point.getNum() == 4);
 
   // adapt points 0 and 2 to match 1 and 3 as point 3 is being moved
-     point.set1Value(0, point[1][0], point[3][1]);
-     point.set1Value(2, point[3][0], point[1][1]);
+  point.set1Value(0, point[1][0], point[3][1]);
+  point.set1Value(2, point[3][0], point[1][1]);
 }
 
-bool GeomecPolygonScreenDrawer::selfIntersects()
-{
-  return m_selfIntersects;
-}
+bool GeomecPolygonScreenDrawer::selfIntersects() { return m_selfIntersects; }
 
-void GeomecPolygonScreenDrawer::setDrawerMode( DrawerMode mode )
-{
-  m_drawerMode = mode;
-}
+void GeomecPolygonScreenDrawer::setDrawerMode(DrawerMode mode) { m_drawerMode = mode; }
 
-void GeomecPolygonScreenDrawer::setPolygonMode( PolygonMode mode )
-{
-  m_polygonMode = mode;
-}
+void GeomecPolygonScreenDrawer::setPolygonMode(PolygonMode mode) { m_polygonMode = mode; }
 /// Selected point is to be made the last point by rotating the list of points so it can be moved around
-bool GeomecPolygonScreenDrawer::handleModificationOnMouseDown( SoHandleEventAction* action )
-{
-  if (m_polygonMode == SinglePoint) return true;
+bool GeomecPolygonScreenDrawer::handleModificationOnMouseDown(SoHandleEventAction *action) {
+  if (m_polygonMode == SinglePoint)
+    return true;
 
   int p = getActionPointIndex(action, false);
-  if (p >= 0)
-  {
+  if (p >= 0) {
     size_t numPoints = point.getNum();
-    rotatePoints (p);
+    rotatePoints(p);
     m_rotated = true;
     m_rotatedOut = point[numPoints - 1];
     // removePoint(numPoints - 1);
@@ -320,8 +273,7 @@ bool GeomecPolygonScreenDrawer::handleModificationOnMouseDown( SoHandleEventActi
   return false;
 }
 
-void GeomecPolygonScreenDrawer::clean()
-{
+void GeomecPolygonScreenDrawer::clean() {
   clear();
   updateMarkers();
   m_rotated = false;
@@ -329,34 +281,30 @@ void GeomecPolygonScreenDrawer::clean()
   m_drawerMode = Creating;
 }
 
-SbVec2f GeomecPolygonScreenDrawer::getActionPoint( SoHandleEventAction* action )
-{
-  const SoEvent* event = action->getEvent();
-  const SbViewportRegion& viewport = action->getViewportRegion();
+SbVec2f GeomecPolygonScreenDrawer::getActionPoint(SoHandleEventAction *action) {
+  const SoEvent *event = action->getEvent();
+  const SbViewportRegion &viewport = action->getViewportRegion();
 
   float width = viewport.getWindowSize()[0];
   float height = viewport.getWindowSize()[1];
 
-  float x =  (2.0f * event->getPosition()[0] / width) - 1.0f;
-  float y =  (2.0f * event->getPosition()[1] / height) - 1.0f;
+  float x = (2.0f * event->getPosition()[0] / width) - 1.0f;
+  float y = (2.0f * event->getPosition()[1] / height) - 1.0f;
 
-  return SbVec2f (x, y);
+  return SbVec2f(x, y);
 }
 
-bool GeomecPolygonScreenDrawer::actionOnOrigin( SoHandleEventAction* action )
-{
+bool GeomecPolygonScreenDrawer::actionOnOrigin(SoHandleEventAction *action) {
   return point.getNum() > 0 && CloseEnough(point[0], getActionPoint(action));
 }
 
-int GeomecPolygonScreenDrawer::getActionPointIndex( SoHandleEventAction* action, bool doNotUseLastPoint )
-{
+int GeomecPolygonScreenDrawer::getActionPointIndex(SoHandleEventAction *action, bool doNotUseLastPoint) {
   SbVec2f mousePoint = getActionPoint(action);
   size_t numPoints = point.getNum();
 
   size_t offset = doNotUseLastPoint ? 1 : 0;
 
-  for (size_t i = 0; i + offset < numPoints; ++i)
-  {
+  for (size_t i = 0; i + offset < numPoints; ++i) {
     if (CloseEnough(point[i], mousePoint))
       return i;
   }
@@ -364,18 +312,11 @@ int GeomecPolygonScreenDrawer::getActionPointIndex( SoHandleEventAction* action,
   return -1;
 }
 
-void GeomecPolygonScreenDrawer::switchToRed()
-{
-  color = SbColor(1.0f, 0.0f, 0.0f);
-}
+void GeomecPolygonScreenDrawer::switchToRed() { color = SbColor(1.0f, 0.0f, 0.0f); }
 
-void GeomecPolygonScreenDrawer::switchToGreen()
-{
-  color = SbColor(0.0f, 1.0f, 0.0f);
-}
+void GeomecPolygonScreenDrawer::switchToGreen() { color = SbColor(0.0f, 1.0f, 0.0f); }
 
-void GeomecPolygonScreenDrawer::finalize( SoHandleEventAction* action )
-{
+void GeomecPolygonScreenDrawer::finalize(SoHandleEventAction *action) {
   switchToGreen();
   COpenInventorEventsHandler::SetCursor(Qt::ArrowCursor);
   Base::finalize(action);
@@ -383,15 +324,12 @@ void GeomecPolygonScreenDrawer::finalize( SoHandleEventAction* action )
   m_finalized = true;
 }
 
-bool GeomecPolygonScreenDrawer::revertOnSelfIntersect()
-{
+bool GeomecPolygonScreenDrawer::revertOnSelfIntersect() {
   bool intersecting = selfIntersects();
-  if (intersecting)
-  {
+  if (intersecting) {
     // remove the point that creates the self intersect and replace by old point if necessary.
     removePoint(point.getNum() - 1);
-    if (m_rotated)
-    {
+    if (m_rotated) {
       addPoint(m_rotatedOut);
     }
   }
@@ -400,71 +338,59 @@ bool GeomecPolygonScreenDrawer::revertOnSelfIntersect()
   return intersecting;
 }
 
-void GeomecPolygonScreenDrawer::removeLastPoint()
-{
-  removePoint(point.getNum() - 1);
+void GeomecPolygonScreenDrawer::removeLastPoint() { removePoint(point.getNum() - 1); }
+
+bool GeomecPolygonScreenDrawer::actionAtDestination(SoHandleEventAction *action) {
+  return (m_drawerMode == Creating ? actionOnOrigin(action)
+                                   : (getActionPointIndex(action, m_dragging ? true : false) >= 0));
 }
 
-bool GeomecPolygonScreenDrawer::actionAtDestination( SoHandleEventAction* action )
-{
-  return (m_drawerMode == Creating ? actionOnOrigin (action) : (getActionPointIndex(action, m_dragging ? true : false) >= 0));
-}
-
-void GeomecPolygonScreenDrawer::onMousePositionChanged( SoHandleEventAction* action )
-{
+void GeomecPolygonScreenDrawer::onMousePositionChanged(SoHandleEventAction *action) {
   makeRectangular(); // if needed
   checkSelfIntersection();
 
-  if (actionAtDestination(action))
-  {
+  if (actionAtDestination(action)) {
     COpenInventorEventsHandler::SetCursor(Qt::ArrowCursor);
-  }
-  else
-  {
+  } else {
     COpenInventorEventsHandler::SetCursor(Qt::CrossCursor);
   }
 }
 
-void GeomecPolygonScreenDrawer::updateMarkers()
-{
+void GeomecPolygonScreenDrawer::updateMarkers() {
   int numPoints = point.getNum();
 
   const int32_t markerIndex = SoMarkerSet::SQUARE_FILLED_9_9;
-  const SbColor markerYellowColor (1.0f, 1.0f, 0.1f);
-  const SbColor markerRedColor (1.0f, 0.1f, 0.1f);
-  const SbColor markerGreenColor (0.1f, 1.0f, 0.1f);
+  const SbColor markerYellowColor(1.0f, 1.0f, 0.1f);
+  const SbColor markerRedColor(1.0f, 0.1f, 0.1f);
+  const SbColor markerGreenColor(0.1f, 1.0f, 0.1f);
 
   // remove obsolete point markers
-  for (int p = m_pointMarkerGroup->getNumChildren() - 1; p >= numPoints; --p)
-  {
+  for (int p = m_pointMarkerGroup->getNumChildren() - 1; p >= numPoints; --p) {
     removePointMarker(p);
   }
 
   // create missing point markers
-  for (int p = m_pointMarkerGroup->getNumChildren(); p < numPoints; ++p)
-  {
+  for (int p = m_pointMarkerGroup->getNumChildren(); p < numPoints; ++p) {
     addPointMarker();
   }
 
-  for (int p = 0; p < numPoints; ++p)
-  {
+  for (int p = 0; p < numPoints; ++p) {
     SbVec2f pt = point[p];
-    setPointMarkerCoordinates (p, pt);
-    setPointMarkerIndex (p, markerIndex);
+    setPointMarkerCoordinates(p, pt);
+    setPointMarkerIndex(p, markerIndex);
     if (p == 0)
-      setPointMarkerColor (p, markerGreenColor);
+      setPointMarkerColor(p, markerGreenColor);
     else if (p == numPoints - 1)
-      setPointMarkerColor (p, markerRedColor);
+      setPointMarkerColor(p, markerRedColor);
     else
-      setPointMarkerColor (p, markerYellowColor);
-  }     
+      setPointMarkerColor(p, markerYellowColor);
+  }
 }
 
-void GeomecPolygonScreenDrawer::addPointMarker()
-{
-  SoCoordinate3 * pointMarkerCoordinates = new SoCoordinate3;
-  SoMaterial * pointMarkerMaterial = new SoMaterial;
-  SoMarkerSet * pointMarkerSet = new SoMarkerSet;
+void GeomecPolygonScreenDrawer::addPointMarker() {
+  SoCoordinate3 *pointMarkerCoordinates = new SoCoordinate3;
+  SoMaterial *pointMarkerMaterial = new SoMaterial;
+  SoMarkerSet *pointMarkerSet = new SoMarkerSet;
 
   pointMarkerCoordinates->point.setNum(1);
   pointMarkerSet->markerIndex.setNum(1);
@@ -473,7 +399,7 @@ void GeomecPolygonScreenDrawer::addPointMarker()
   pointMarkerMaterial->ambientColor.setNum(1);
   pointMarkerMaterial->emissiveColor.setNum(1);
 
-  SoSeparator * pointMarker = new SoSeparator;
+  SoSeparator *pointMarker = new SoSeparator;
   pointMarker->addChild(pointMarkerCoordinates);
   pointMarker->addChild(pointMarkerMaterial);
   pointMarker->addChild(pointMarkerSet);
@@ -481,39 +407,33 @@ void GeomecPolygonScreenDrawer::addPointMarker()
   m_pointMarkerGroup->addChild(pointMarker);
 }
 
-void GeomecPolygonScreenDrawer::removePointMarker( int p )
-{
-  assert (p < m_pointMarkerGroup->getNumChildren());
+void GeomecPolygonScreenDrawer::removePointMarker(int p) {
+  assert(p < m_pointMarkerGroup->getNumChildren());
   m_pointMarkerGroup->removeChild(p);
 }
 
-void GeomecPolygonScreenDrawer::setPointMarkerCoordinates( int p, const SbVec2f & pt )
-{
-  SoSeparator * pointMarker = static_cast<SoSeparator *> (m_pointMarkerGroup->getChild(p));
-  SoCoordinate3 * pointMarkerCoordinates = static_cast<SoCoordinate3 *> (pointMarker->getChild(0));
+void GeomecPolygonScreenDrawer::setPointMarkerCoordinates(int p, const SbVec2f &pt) {
+  SoSeparator *pointMarker = static_cast<SoSeparator *>(m_pointMarkerGroup->getChild(p));
+  SoCoordinate3 *pointMarkerCoordinates = static_cast<SoCoordinate3 *>(pointMarker->getChild(0));
   pointMarkerCoordinates->point.set1Value(1, pt[0], pt[1], 0);
 }
 
-void GeomecPolygonScreenDrawer::setPointMarkerIndex( int p, const int32_t markerIndex )
-{
-  SoSeparator * pointMarker = static_cast<SoSeparator *> (m_pointMarkerGroup->getChild(p));
-  SoMarkerSet * pointMarkerSet = static_cast<SoMarkerSet *> (pointMarker->getChild(2));
+void GeomecPolygonScreenDrawer::setPointMarkerIndex(int p, const int32_t markerIndex) {
+  SoSeparator *pointMarker = static_cast<SoSeparator *>(m_pointMarkerGroup->getChild(p));
+  SoMarkerSet *pointMarkerSet = static_cast<SoMarkerSet *>(pointMarker->getChild(2));
   pointMarkerSet->markerIndex.set1Value(1, markerIndex);
 }
 
-void GeomecPolygonScreenDrawer::setPointMarkerColor( int p, const SbColor & markerHighlightColor )
-{
-  SoSeparator * pointMarker = static_cast<SoSeparator *> (m_pointMarkerGroup->getChild(p));
-  SoMaterial * pointMarkerMaterial = static_cast<SoMaterial *> (pointMarker->getChild(1));
+void GeomecPolygonScreenDrawer::setPointMarkerColor(int p, const SbColor &markerHighlightColor) {
+  SoSeparator *pointMarker = static_cast<SoSeparator *>(m_pointMarkerGroup->getChild(p));
+  SoMaterial *pointMarkerMaterial = static_cast<SoMaterial *>(pointMarker->getChild(1));
   pointMarkerMaterial->diffuseColor.set1Value(1, markerHighlightColor);
   pointMarkerMaterial->specularColor.set1Value(1, markerHighlightColor);
   pointMarkerMaterial->ambientColor.set1Value(1, markerHighlightColor);
   pointMarkerMaterial->emissiveColor.set1Value(1, markerHighlightColor);
 }
 
-bool CloseEnough( const SbVec2f & pt, const SbVec2f & mousePoint )
-{
+bool CloseEnough(const SbVec2f &pt, const SbVec2f &mousePoint) {
   float distance = (pt - mousePoint).length();
-  return  distance < 0.02;
+  return distance < 0.02;
 }
-

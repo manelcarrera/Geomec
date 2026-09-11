@@ -1,12 +1,11 @@
-#include <QString>
 #include <QFile>
+#include <QString>
 #include <QTextStream>
 
-#include "WriteLogASCIIStandardFile.h"
 #include "NewWellPath.h"
+#include "WriteLogASCIIStandardFile.h"
 
-namespace
-{
+namespace {
 
 const QString TILDE = "~";
 
@@ -191,33 +190,26 @@ const int PRE_DEFINED_COLUMNS = 7;
 const int LENGTH_COLUMNS_0_4 = 5;
 const int ANGLE_COLUMNS_5_6 = PRE_DEFINED_COLUMNS;
 
-void streamLine(QTextStream& lasStream, const QString& name,
-  const QString& unit, const QString& value,
-  const QString& format = EMPTY_VALUE)
-{
-  lasStream << left << qSetFieldWidth(WIDTH_NAME_FIELD) <<
-  name << qSetFieldWidth(WIDTH_UNIT_FIELD) << (POINT + unit) <<
-  qSetFieldWidth(WIDTH_VAlUE_FIELD) << value <<
-  qSetFieldWidth(WIDTH_OTHER_FIELDS) << COMMENT_CHARACTER << SPACE <<
-  format << endl;
+void streamLine(QTextStream &lasStream, const QString &name, const QString &unit, const QString &value,
+                const QString &format = EMPTY_VALUE) {
+  lasStream << left << qSetFieldWidth(WIDTH_NAME_FIELD) << name << qSetFieldWidth(WIDTH_UNIT_FIELD) << (POINT + unit)
+            << qSetFieldWidth(WIDTH_VAlUE_FIELD) << value << qSetFieldWidth(WIDTH_OTHER_FIELDS) << COMMENT_CHARACTER
+            << SPACE << format << endl;
 }
 
-void writeSectionVersion(QFile& lasFile)
-{
+void writeSectionVersion(QFile &lasFile) {
   QTextStream lasStream(&lasFile);
 
   lasStream << TILDE << SECTION_VERSION << endl;
 
   streamLine(lasStream, MNEMONIC_VERSION_VERS, EMPTY_VALUE, LAS_VERSION);
   streamLine(lasStream, MNEMONIC_VERSION_WRAP, EMPTY_VALUE, WRAP);
-  streamLine(lasStream, MNEMONIC_VERSION_DLM, EMPTY_VALUE,
-  DELIMITING_CHARACTER);
+  streamLine(lasStream, MNEMONIC_VERSION_DLM, EMPTY_VALUE, DELIMITING_CHARACTER);
 }
 
 const QString ILLEGAL_CHARACTERS = "[.: \t{}\\[\\]]";
 
-QString validateString(const QString& s)
-{
+QString validateString(const QString &s) {
   QString v = s;
 
   v.remove(QRegExp(ILLEGAL_CHARACTERS));
@@ -228,44 +220,32 @@ QString validateString(const QString& s)
 const QString REGULAR_EXPRESSION_SCIENTIFIC = "[-+]?\\d+(.\\d+)?[eE][-+]?\\d+";
 const QRegExp IS_SCIENTIFIC_NOTATION(REGULAR_EXPRESSION_SCIENTIFIC);
 
-QString getValueString(const CNodalExportFormat& nodalExportFormat,
-  int row, int column)
-{
-  switch (nodalExportFormat.OutputType(row, column))
-  {
-  case CNodalExportFormat::OT_DOUBLE:
-      {
+QString getValueString(const CNodalExportFormat &nodalExportFormat, int row, int column) {
+  switch (nodalExportFormat.OutputType(row, column)) {
+  case CNodalExportFormat::OT_DOUBLE: {
     double value = nodalExportFormat.DoubleAt(row, column);
     QString valueString = FORMAT.arg(value);
 
-    if (IS_SCIENTIFIC_NOTATION.indexIn(valueString) >= 0)
-    {
-          return QString::number(value, 'E', 5);
+    if (IS_SCIENTIFIC_NOTATION.indexIn(valueString) >= 0) {
+      return QString::number(value, 'E', 5);
+    } else {
+      return valueString;
     }
-    else
-    {
-          return valueString;
-    }
-      }
+  }
   case CNodalExportFormat::OT_INTEGER:
-      return FORMAT.arg(nodalExportFormat.IntegerAt(row, column));
-  case CNodalExportFormat::OT_STRING:
-      {
-    QString string =
-          validateString(nodalExportFormat.StringAt(row, column));
+    return FORMAT.arg(nodalExportFormat.IntegerAt(row, column));
+  case CNodalExportFormat::OT_STRING: {
+    QString string = validateString(nodalExportFormat.StringAt(row, column));
 
-    if (string == getStringTableEntry(IDS_ET_NAN))
-    {
-          return NULL_VALUE;
+    if (string == getStringTableEntry(IDS_ET_NAN)) {
+      return NULL_VALUE;
+    } else {
+      return string;
     }
-    else
-    {
-          return string;
-    }
-      }
+  }
   default:
-      assert(false);
-      return EMPTY_VALUE;
+    assert(false);
+    return EMPTY_VALUE;
   }
 }
 
@@ -274,103 +254,76 @@ const QString FORMAT_INTEGER = "{I}";
 const QString FORMAT_STRING = "{S}";
 const QString FORMAT_SCIENTIFIC = "{E0.00000E+00}";
 
-QString getFormatString(const CNodalExportFormat& nodalExportFormat,
-  int row, int column)
-{
-  switch (nodalExportFormat.OutputType(row, column))
-  {
-  case CNodalExportFormat::OT_DOUBLE:
-      {
+QString getFormatString(const CNodalExportFormat &nodalExportFormat, int row, int column) {
+  switch (nodalExportFormat.OutputType(row, column)) {
+  case CNodalExportFormat::OT_DOUBLE: {
     QString valueString = getValueString(nodalExportFormat, row, column);
 
-    if (IS_SCIENTIFIC_NOTATION.indexIn(valueString) >= 0)
-    {
-          return FORMAT_SCIENTIFIC;
+    if (IS_SCIENTIFIC_NOTATION.indexIn(valueString) >= 0) {
+      return FORMAT_SCIENTIFIC;
+    } else {
+      return FORMAT_DOUBLE;
     }
-    else
-    {
-          return FORMAT_DOUBLE;
-    }
-      }
+  }
   case CNodalExportFormat::OT_INTEGER:
-      return FORMAT_INTEGER;
-  case CNodalExportFormat::OT_STRING:
-      {
-    QString string =
-          validateString(nodalExportFormat.StringAt(row, column));
+    return FORMAT_INTEGER;
+  case CNodalExportFormat::OT_STRING: {
+    QString string = validateString(nodalExportFormat.StringAt(row, column));
 
-    if (string == getStringTableEntry(IDS_ET_NAN))
-    {
-          return FORMAT_DOUBLE;
+    if (string == getStringTableEntry(IDS_ET_NAN)) {
+      return FORMAT_DOUBLE;
+    } else {
+      return FORMAT_STRING;
     }
-    else
-    {
-          return FORMAT_STRING;
-    }
-      }
+  }
   default:
-      assert(false);
-      return EMPTY_VALUE;
+    assert(false);
+    return EMPTY_VALUE;
   }
 }
 
-double calculateSTEP(const CNodalExportFormat& nodalExportFormat)
-{
+double calculateSTEP(const CNodalExportFormat &nodalExportFormat) {
   assert(nodalExportFormat.RowSize() > (ROW_HEADER + 1));
 
   double begin = nodalExportFormat.DoubleAt(ROW_HEADER + 1, COLUMN_DEPTH);
   double step = 0;
 
-  for (int r = ROW_HEADER + 2; r < nodalExportFormat.RowSize(); ++r)
-  {
-  double end = nodalExportFormat.DoubleAt(r, COLUMN_DEPTH);
+  for (int r = ROW_HEADER + 2; r < nodalExportFormat.RowSize(); ++r) {
+    double end = nodalExportFormat.DoubleAt(r, COLUMN_DEPTH);
 
-  if (step != 0)
-  {
-      if ((end - begin) != step)
-      {
-    return 0;
+    if (step != 0) {
+      if ((end - begin) != step) {
+        return 0;
       }
-  }
-  else
-  {
+    } else {
       step = end - begin;
-  }
+    }
 
-  begin = end;
+    begin = end;
   }
 
   return step;
 }
 
-QString getUnitName(const CNodalExportFormat& nodalExportFormat, int column)
-{
+QString getUnitName(const CNodalExportFormat &nodalExportFormat, int column) {
   QString unitName;
 
-  if (column < LENGTH_COLUMNS_0_4)
-  {
-  CLengthQuantity lengthQuantity;
+  if (column < LENGTH_COLUMNS_0_4) {
+    CLengthQuantity lengthQuantity;
 
-  unitName = lengthQuantity.UnitName(nodalExportFormat.Unit()).c_str();
-  }
-  else if (column < ANGLE_COLUMNS_5_6)
-  {
-  CAngleQuantity angleQuantity;
+    unitName = lengthQuantity.UnitName(nodalExportFormat.Unit()).c_str();
+  } else if (column < ANGLE_COLUMNS_5_6) {
+    CAngleQuantity angleQuantity;
 
-  unitName = angleQuantity.UnitName(nodalExportFormat.Unit()).c_str();
-  }
-  else
-  {
-  unitName = nodalExportFormat.DataValue(column - PRE_DEFINED_COLUMNS).
-      UnitName(nodalExportFormat.Unit());
+    unitName = angleQuantity.UnitName(nodalExportFormat.Unit()).c_str();
+  } else {
+    unitName = nodalExportFormat.DataValue(column - PRE_DEFINED_COLUMNS).UnitName(nodalExportFormat.Unit());
   }
 
   return unitName;
 }
 
-void writeSectionWell(QFile& lasFile,
-  const CNodalExportFormat& nodalExportFormat)
-{
+void writeSectionWell(QFile &lasFile, const CNodalExportFormat &nodalExportFormat) {
   // force the initialization of CNodalExportFormat::m_iteratorWellPath
   // before the first two 'streamLine' statements are executed
 
@@ -380,16 +333,12 @@ void writeSectionWell(QFile& lasFile,
 
   lasStream << TILDE << SECTION_WELL << endl;
 
-  streamLine(lasStream, MNEMONIC_WELL_STRT,
-  getUnitName(nodalExportFormat, COLUMN_DEPTH),
-  getValueString(nodalExportFormat, ROW_HEADER + 1, COLUMN_DEPTH));
-  streamLine(lasStream, MNEMONIC_WELL_STOP,
-  getUnitName(nodalExportFormat, COLUMN_DEPTH),
-  getValueString(nodalExportFormat, nodalExportFormat.RowSize() - 1,
-      COLUMN_DEPTH));
-  streamLine(lasStream, MNEMONIC_WELL_STEP,
-  getUnitName(nodalExportFormat, COLUMN_DEPTH),
-  FORMAT.arg(calculateSTEP(nodalExportFormat)));
+  streamLine(lasStream, MNEMONIC_WELL_STRT, getUnitName(nodalExportFormat, COLUMN_DEPTH),
+             getValueString(nodalExportFormat, ROW_HEADER + 1, COLUMN_DEPTH));
+  streamLine(lasStream, MNEMONIC_WELL_STOP, getUnitName(nodalExportFormat, COLUMN_DEPTH),
+             getValueString(nodalExportFormat, nodalExportFormat.RowSize() - 1, COLUMN_DEPTH));
+  streamLine(lasStream, MNEMONIC_WELL_STEP, getUnitName(nodalExportFormat, COLUMN_DEPTH),
+             FORMAT.arg(calculateSTEP(nodalExportFormat)));
   streamLine(lasStream, MNEMONIC_WELL_NULL, EMPTY_VALUE, NULL_VALUE);
   streamLine(lasStream, MNEMONIC_WELL_COMP, EMPTY_VALUE, EMPTY_VALUE);
   streamLine(lasStream, MNEMONIC_WELL_WELL, EMPTY_VALUE, EMPTY_VALUE);
@@ -412,18 +361,13 @@ void writeSectionWell(QFile& lasFile,
   streamLine(lasStream, MNEMONIC_WELL_HZCS, EMPTY_VALUE, EMPTY_VALUE);
 }
 
-void writeSectionParameter(QFile& lasFile,
-  const CNodalExportFormat& nodalExportFormat)
-{
+void writeSectionParameter(QFile &lasFile, const CNodalExportFormat &nodalExportFormat) {
   QTextStream lasStream(&lasFile);
 
   lasStream << TILDE << SECTION_PARAMETER << endl;
 
-  for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c)
-  {
-  streamLine(lasStream,
-      HEADER_PREFIX + getValueString(nodalExportFormat, ROW_HEADER, c),
-      EMPTY_VALUE, EMPTY_VALUE);
+  for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c) {
+    streamLine(lasStream, HEADER_PREFIX + getValueString(nodalExportFormat, ROW_HEADER, c), EMPTY_VALUE, EMPTY_VALUE);
   }
 }
 
@@ -433,61 +377,45 @@ void writeSectionParameter(QFile& lasFile,
 
 const QString SECTION_CURVE_POSTFIX = "Information";
 
-void writeSectionCurve(QFile& lasFile,
-  const CNodalExportFormat& nodalExportFormat)
-{
+void writeSectionCurve(QFile &lasFile, const CNodalExportFormat &nodalExportFormat) {
   QTextStream lasStream(&lasFile);
 
   lasStream << TILDE << SECTION_CURVE << SPACE << SECTION_CURVE_POSTFIX << endl;
 
-  for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c)
-  {
-  streamLine(lasStream, getValueString(nodalExportFormat, ROW_HEADER, c),
-      getUnitName(nodalExportFormat, c), EMPTY_VALUE,
-      getFormatString(nodalExportFormat, ROW_HEADER + 1, c)); // actual value
+  for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c) {
+    streamLine(lasStream, getValueString(nodalExportFormat, ROW_HEADER, c), getUnitName(nodalExportFormat, c),
+               EMPTY_VALUE, getFormatString(nodalExportFormat, ROW_HEADER + 1, c)); // actual value
   }
 }
 
-void writeSectionASCII(QFile& lasFile,
-  const CNodalExportFormat& nodalExportFormat)
-{
+void writeSectionASCII(QFile &lasFile, const CNodalExportFormat &nodalExportFormat) {
   QTextStream lasStream(&lasFile);
 
   lasStream << TILDE << SECTION_ASCII << endl;
 
-  for (int r = (ROW_HEADER + 1); r < nodalExportFormat.RowSize(); ++r)
-  {
-  for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c)
-  {
-      lasStream << left <<
-    getValueString(nodalExportFormat, r, c) << SPACE;
-  }
+  for (int r = (ROW_HEADER + 1); r < nodalExportFormat.RowSize(); ++r) {
+    for (int c = 0; c < nodalExportFormat.ColumnSize(); ++c) {
+      lasStream << left << getValueString(nodalExportFormat, r, c) << SPACE;
+    }
 
-  lasStream << endl;
+    lasStream << endl;
   }
 }
 
 } // anonymous namespace
 
-CWriteLogASCIIStandardFile::CWriteLogASCIIStandardFile(
-  const CNewWellPath* newWellPath)
-: m_newWellPath(newWellPath)
-{
-}
+CWriteLogASCIIStandardFile::CWriteLogASCIIStandardFile(const CNewWellPath *newWellPath) : m_newWellPath(newWellPath) {}
 
-void CWriteLogASCIIStandardFile::writeLogASCIIStandardFile(
-  const QString& fileName, const IExportFormat::TDataVec& dataVector,
-  const IExportFormat::CExportArg& arguments)
-{
+void CWriteLogASCIIStandardFile::writeLogASCIIStandardFile(const QString &fileName,
+                                                           const IExportFormat::TDataVec &dataVector,
+                                                           const IExportFormat::CExportArg &arguments) {
   QFile lasFile(fileName);
 
-  if (!lasFile.open(QIODevice::WriteOnly | QIODevice::Text))
-  {
-  return;
+  if (!lasFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    return;
   }
 
-  CNodalExportFormat
-  nodalExportFormat(*m_newWellPath, dataVector, arguments, true);
+  CNodalExportFormat nodalExportFormat(*m_newWellPath, dataVector, arguments, true);
 
   writeSectionVersion(lasFile);
   writeSectionWell(lasFile, nodalExportFormat);

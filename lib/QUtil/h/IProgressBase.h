@@ -1,13 +1,12 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #pragma once
 
-//#include "GeometryExports.h"
+// #include "GeometryExports.h"
 
 class QString;
 
-//class GEOMETRY_EXPORT  IProgressBase  
-class IProgressBase  
-{
+// class GEOMETRY_EXPORT  IProgressBase
+class IProgressBase {
 public:
   IProgressBase();
   virtual ~IProgressBase();
@@ -19,15 +18,14 @@ public:
   virtual void Step(int nSteps = 1);
 
   // set the title of the progress indicator
-  virtual void StatusMessage(const QString& sMessage);
+  virtual void StatusMessage(const QString &sMessage);
 
   virtual void SetProgress(int nCurrent);
 
   //
-  //only for dual
+  // only for dual
   //
-  virtual void NextJob(const QString& secondaryTitle);
-
+  virtual void NextJob(const QString &secondaryTitle);
 
   virtual void Enable(bool bEnable);
 };

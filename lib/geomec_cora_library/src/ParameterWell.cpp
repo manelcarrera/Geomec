@@ -1,15 +1,9 @@
 #include "ParameterWell.h"
 
-namespace cora
-{
+namespace cora {
 
-CParameterWell::CParameterWell()
-: CParameterLimit()
-{
-}
+CParameterWell::CParameterWell() : CParameterLimit() {}
 
-CParameterWell::~CParameterWell()
-{
-}
+CParameterWell::~CParameterWell() {}
 
 } // namespace cora

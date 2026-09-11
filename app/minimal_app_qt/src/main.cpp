@@ -1,8 +1,8 @@
 #include "headers.h"
 
-//std
-#include <thread>
+// std
 #include <chrono>
+#include <thread>
 
 /////////////////////////////////////////////////
 //
@@ -15,12 +15,11 @@
 //
 /////////////////////////////////////////////////
 
-int main( int argc, char *argv[] )
-{
-  //Class_01 c;	// work-around OIV license
-  //Class_02 c;	// kill a process
-  //Class_03 c;	// boost producer / consumer test
-  Class_04 c;	// timed_wait
+int main(int argc, char *argv[]) {
+  // Class_01 c;	// work-around OIV license
+  // Class_02 c;	// kill a process
+  // Class_03 c;	// boost producer / consumer test
+  Class_04 c; // timed_wait
 
   c.start();
 

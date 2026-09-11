@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef INODE_H
 #define INODE_H
 
@@ -12,9 +12,8 @@ class IMesh;
 class IElement;
 class IElementSet;
 
-class GEOMETRY_EXPORT  INode : public IPoint
-{
-public: 
+class GEOMETRY_EXPORT INode : public IPoint {
+public:
   INode();
   ~INode();
 
@@ -23,14 +22,14 @@ public:
 
   // Looping over elements
   virtual int AttachedElementSize() const = 0;
-  virtual const IElement& AttachedElement(int nIndex) const = 0;
+  virtual const IElement &AttachedElement(int nIndex) const = 0;
 
   // Register element
-  virtual int RegisterElement(IElement& element) = 0;
-  virtual bool UnregisterElement(IElement& element) = 0;
+  virtual int RegisterElement(IElement &element) = 0;
+  virtual bool UnregisterElement(IElement &element) = 0;
 
   // Indexing elementset
-  virtual const IElementSet* IndexingElementSet() const;
+  virtual const IElementSet *IndexingElementSet() const;
 };
 
 } // namespace geo

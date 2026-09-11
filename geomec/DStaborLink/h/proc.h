@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CProc wrapper class
 
-class CProc : public COleDispatchDriver
-{
+class CProc : public COleDispatchDriver {
 public:
-  CProc() {}		// Calls COleDispatchDriver default constructor
+  CProc() {} // Calls COleDispatchDriver default constructor
   CProc(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CProc(const CProc& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CProc(const CProc &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   long GetMaxIter();
   void SetMaxIter(long);
@@ -30,7 +29,7 @@ public:
   long GetTypeCrit();
   void SetTypeCrit(long);
 
-// Operations
+  // Operations
 public:
   BOOL SetDefault();
 };

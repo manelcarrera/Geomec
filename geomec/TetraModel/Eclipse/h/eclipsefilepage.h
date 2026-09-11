@@ -5,41 +5,38 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "WizzardPageBase.h"
 #include "EclipseModel.h"
+#include "WizzardPageBase.h"
 
-class CEclipseFilePage : public CWizzardPageBase
-{
+class CEclipseFilePage : public CWizzardPageBase {
   DECLARE_DYNCREATE(CEclipseFilePage)
 
-  CString	m_sPath;
-// Construction
+  CString m_sPath;
+  // Construction
 public:
   CEclipseFilePage();
-  CEclipseFilePage(CEclipseModel& model);
+  CEclipseFilePage(CEclipseModel &model);
   ~CEclipseFilePage();
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CEclipseFilePage)
   enum { IDD = IDD_ECLIPSE_FILE };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generate virtual function overrides
   //{{AFX_VIRTUAL(CEclipseFilePage)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   // Generated message map functions
   //{{AFX_MSG(CEclipseFilePage)
   afx_msg void OnBrowse();
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
-
 };
 
 //{{AFX_INSERT_LOCATION}}

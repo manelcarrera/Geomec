@@ -5,24 +5,21 @@
 
 class CNewWellPathInput;
 
-
-class CNewWellPathInput_Delegate : public CPointSet_Delegate
-{
+class CNewWellPathInput_Delegate : public CPointSet_Delegate {
 public:
-  CNewWellPathInput_Delegate(CNewWellPathInput* wellpathInput);
+  CNewWellPathInput_Delegate(CNewWellPathInput *wellpathInput);
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
   void FlipDepth();
 
 private:
-  CNewWellPathInput_Delegate(const CNewWellPathInput_Delegate& rhs);
-  CNewWellPathInput_Delegate& operator = (const CNewWellPathInput_Delegate& rhs);
+  CNewWellPathInput_Delegate(const CNewWellPathInput_Delegate &rhs);
+  CNewWellPathInput_Delegate &operator=(const CNewWellPathInput_Delegate &rhs);
 
-  CNewWellPathInput* m_wellpathInput;
+  CNewWellPathInput *m_wellpathInput;
 
   REGISTER_DELEGATE(CNewWellPathInput, CNewWellPathInput_Delegate);
 };
-
 
 #endif

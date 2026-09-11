@@ -36,8 +36,7 @@ class RescueBlockUnit;
 class RescueGeometry;
 class RescueContext;
 
-class cSetRescueBlockUnit
-{
+class cSetRescueBlockUnit {
 protected:
   RescueBlockUnit **objects;
   RESCUEINT64 allocated;
@@ -55,14 +54,15 @@ public:
   RescueGeometry *GeometryIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueBlockUnit *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueBlockUnit *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
   RESCUEBOOL AnyFileTruncated();
+
 private:
   void PrepareModelDelete();
   void DropWireframeMemory();
@@ -74,6 +74,3 @@ private:
 };
 
 #endif
-
-
-

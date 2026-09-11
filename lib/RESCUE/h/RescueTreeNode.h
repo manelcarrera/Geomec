@@ -12,8 +12,7 @@
 #define RescueTreeNode_H
 #include "boolSupport.h"
 
-class RescueTreeNode
-{
+class RescueTreeNode {
 protected:
   RESCUEINT64 objectCount;
   RESCUEINT64 objectAllocated;
@@ -30,9 +29,9 @@ public:
   ~RescueTreeNode();
   void Add(Leaf *newObject, RESCUEINT64 numberToFill, RESCUEINT64 memo = 0);
   RESCUEBOOL Delete(void *existingObject, RescueTree *tree, RESCUEINT64 memo = 0);
+
 private:
-  RescueTreeNode(RescueTreeNode *parentNodeIn, Leaf **objectList, 
-                 RESCUEINT64 allocateCount, RESCUEINT64 objectCount);
+  RescueTreeNode(RescueTreeNode *parentNodeIn, Leaf **objectList, RESCUEINT64 allocateCount, RESCUEINT64 objectCount);
   RESCUEBOOL Find(void *objectToFind, RESCUEINT64 &ndx);
   void ChildSplit(RescueTreeNode *newChild, Leaf *firstKey, RESCUEINT64 memo);
   RESCUEBOOL LayOffToLeft(Leaf *object, RESCUEINT64 numberToFill, RESCUEINT64 memo);
@@ -43,5 +42,3 @@ private:
   friend class RescuePolyLineNodeAvatar;
 };
 #endif
-
-

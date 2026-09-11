@@ -3,18 +3,17 @@
 
 class CUpscalingPointsetRangesBranch;
 
-class CAttriUpscalingTargetPointsets : public CDialog
-{
+class CAttriUpscalingTargetPointsets : public CDialog {
 public:
-  CAttriUpscalingTargetPointsets(CUpscalingPointsetRangesBranch& branch, CWnd* pParent = NULL);   // standard constructor
+  CAttriUpscalingTargetPointsets(CUpscalingPointsetRangesBranch &branch, CWnd *pParent = NULL); // standard constructor
   virtual ~CAttriUpscalingTargetPointsets();
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual void OnOK();
 
 private:
-  CUpscalingPointsetRangesBranch& m_branch;
+  CUpscalingPointsetRangesBranch &m_branch;
   int m_nAll;
 };
 

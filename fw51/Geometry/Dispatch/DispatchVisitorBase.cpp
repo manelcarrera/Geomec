@@ -3,198 +3,98 @@
 //
 
 #include "DispatchVisitorBase.h"
-#include "IObject.h"
-#include "IPoint.h"
-#include "IVector.h"
-#include "ICoordinate.h"
-#include "ILine.h"
-#include "IPolygon.h"
-#include "ITriangle.h"
-#include "IQuadrilateral.h"
-#include "IRectangle.h"
-#include "IInterfaceElement.h"
-#include "IPlane.h"
+#include "BodyGroup.h"
+#include "IBox.h"
 #include "ICircle.h"
 #include "IConus.h"
-#include "ISphere.h"
-#include "IBox.h"
-#include "ITetrahedron.h"
-#include "IHexahedron.h"
-#include "ISurface.h"
-#include "IPointElement.h"
-#include "IVolume.h"
-#include "IMesh.h"
-#include "IPolyLine.h"
+#include "ICoordinate.h"
 #include "IElementSet.h"
-#include "BodyGroup.h"
+#include "IHexahedron.h"
+#include "IInterfaceElement.h"
+#include "ILine.h"
+#include "IMesh.h"
+#include "IObject.h"
+#include "IPlane.h"
+#include "IPoint.h"
+#include "IPointElement.h"
+#include "IPolyLine.h"
+#include "IPolygon.h"
+#include "IQuadrilateral.h"
+#include "IRectangle.h"
+#include "ISphere.h"
+#include "ISurface.h"
+#include "ITetrahedron.h"
+#include "ITriangle.h"
+#include "IVector.h"
+#include "IVolume.h"
 #include "MeshNodeGroup.h"
 
 namespace geo {
 
+IVisitor::IVisitor() {}
 
+IVisitor::~IVisitor() {}
 
-IVisitor::IVisitor()
-{
-}
+bool IVisitor::HandlePoint(const IPoint &Point) { return HandleCoordinate(Point); }
 
-IVisitor::~IVisitor()
-{
-}
+bool IVisitor::HandleVector(const IVector &Vector) { return HandleCoordinate(Vector); }
 
+bool IVisitor::HandleCoordinate(const ICoordinate &Coord) { return HandleObject(Coord); }
 
-bool IVisitor::HandlePoint(const IPoint &Point)
-{
-  return HandleCoordinate(Point);
-}
+bool IVisitor::HandleLine(const ILine &Line) { return HandleElement(Line); }
 
-bool IVisitor::HandleVector(const IVector &Vector)
-{
-  return HandleCoordinate(Vector);
-}
+bool IVisitor::HandlePolygon(const IPolygon &Polygon) { return HandleFace(Polygon); }
 
-bool IVisitor::HandleCoordinate(const ICoordinate &Coord)
-{
-  return HandleObject(Coord);
-}
+bool IVisitor::HandleTriangle(const ITriangle &Triangle) { return HandleFace(Triangle); }
 
-bool IVisitor::HandleLine(const ILine &Line)
-{
-  return HandleElement(Line);
-}
+bool IVisitor::HandleRectangle(const IRectangle &Rect) { return HandleQuadrilateral(Rect); }
 
-bool IVisitor::HandlePolygon(const IPolygon &Polygon)
-{
-  return HandleFace(Polygon);
-}
+bool IVisitor::HandleFace(const IFace &Face) { return HandleElement(Face); }
 
-bool IVisitor::HandleTriangle(const ITriangle &Triangle)
-{
-  return HandleFace(Triangle);
-}
+bool IVisitor::HandleQuadrilateral(const IQuadrilateral &Quad) { return HandleFace(Quad); }
 
-bool IVisitor::HandleRectangle(const IRectangle &Rect)
-{
-  return HandleQuadrilateral(Rect);
-}
+bool IVisitor::HandleInterface(const IInterfaceElement &interfaceElement) { return HandleElement(interfaceElement); }
 
-bool IVisitor::HandleFace(const IFace &Face)
-{
-  return HandleElement(Face);
-}
+bool IVisitor::HandlePlane(const IPlane &Plane) { return HandleObject(Plane); }
 
-bool IVisitor::HandleQuadrilateral(const IQuadrilateral &Quad)
-{
-  return HandleFace(Quad);
-}
+bool IVisitor::HandleCircle(const ICircle &Circle) { return HandleObject(Circle); }
 
-bool IVisitor::HandleInterface(const IInterfaceElement &interfaceElement)
-{
-  return HandleElement(interfaceElement);
-}
+bool IVisitor::HandleConus(const IConus &Conus) { return HandleObject(Conus); }
 
-bool IVisitor::HandlePlane(const IPlane &Plane)
-{
-  return HandleObject(Plane);
-}
+bool IVisitor::HandleSphere(const ISphere &Sphere) { return HandleObject(Sphere); }
 
-bool IVisitor::HandleCircle(const ICircle &Circle)
-{
-  return HandleObject(Circle);
-}
+bool IVisitor::HandleBox(const IBox &Box) { return HandleHexahedron(Box); }
 
-bool IVisitor::HandleConus(const IConus &Conus)
-{
-  return HandleObject(Conus);
-}
+bool IVisitor::HandleTetrahedron(const ITetrahedron &Tetrahedron) { return HandleBody(Tetrahedron); }
 
-bool IVisitor::HandleSphere(const ISphere &Sphere)
-{
-  return HandleObject(Sphere);
-}
+bool IVisitor::HandleHexahedron(const IHexahedron &Hexahedron) { return HandleBody(Hexahedron); }
 
-bool IVisitor::HandleBox(const IBox &Box)
-{
-  return HandleHexahedron(Box);
-}
+bool IVisitor::HandleBody(const IBody &Body) { return HandleElement(Body); }
 
-bool IVisitor::HandleTetrahedron(const ITetrahedron &Tetrahedron)
-{
-  return HandleBody(Tetrahedron);
-}
+bool IVisitor::HandlePointElement(const IPointElement &PointElement) { return HandleElement(PointElement); }
 
-bool IVisitor::HandleHexahedron(const IHexahedron &Hexahedron)
-{
-  return HandleBody(Hexahedron);
-}
+bool IVisitor::HandleElement(const IElement &Element) { return HandleObject(Element); }
 
-bool IVisitor::HandleBody(const IBody &Body)
-{
-  return HandleElement(Body);
-}
+bool IVisitor::HandleSurface(const ISurface &Surface) { return HandleElementSet(Surface); }
 
-bool IVisitor::HandlePointElement(const IPointElement &PointElement)
-{
-  return HandleElement(PointElement);
-}
+bool IVisitor::HandleVolume(const IVolume &Volume) { return HandleElementSet(Volume); }
 
-bool IVisitor::HandleElement(const IElement &Element)
-{
-  return HandleObject(Element);
-}
+bool IVisitor::HandleMesh(const IMesh &Mesh) { return HandleElementSet(Mesh); }
 
-bool IVisitor::HandleSurface(const ISurface &Surface)
-{
-  return HandleElementSet(Surface);
-}
+bool IVisitor::HandlePolyLine(const IPolyLine &PolyLine) { return HandleElementSet(PolyLine); }
 
-bool IVisitor::HandleVolume(const IVolume &Volume)
-{
-  return HandleElementSet(Volume);
-}
+bool IVisitor::HandleElementSet(const IElementSet &ElementSet) { return HandleObject(ElementSet); }
 
-bool IVisitor::HandleMesh(const IMesh &Mesh)
-{
-  return HandleElementSet(Mesh);
-}
+bool IVisitor::HandleArray(const IArray &Array) { return HandleObject(Array); }
 
-bool IVisitor::HandlePolyLine(const IPolyLine &PolyLine)
-{
-  return HandleElementSet(PolyLine);
-}
+bool IVisitor::HandleObject(const IObject &Object) { return HandleDefault(Object); }
 
-bool IVisitor::HandleElementSet(const IElementSet &ElementSet)
-{
-  return HandleObject(ElementSet);
-}
+bool CVisitorBase::HandleBodyGroup(const CBodyGroup &BodyGroup) { return HandleVolume(BodyGroup); }
 
-bool IVisitor::HandleArray(const IArray &Array)
-{
-  return HandleObject(Array);
-}
-
-bool IVisitor::HandleObject(const IObject &Object)
-{
-  return HandleDefault(Object);
-}
-
-
-
-bool CVisitorBase::HandleBodyGroup(const CBodyGroup &BodyGroup)
-{
-  return HandleVolume(BodyGroup);
-}
-
-bool CVisitorBase::HandlePolygonPtrArray(const CPolygonPtrArray &PolygonPtrArray)
-{
+bool CVisitorBase::HandlePolygonPtrArray(const CPolygonPtrArray &PolygonPtrArray) {
   return HandleArray(PolygonPtrArray);
 }
 
-bool CVisitorBase::HandleMeshNodeGroup(const CMeshNodeGroup &MeshNodeGroup)
-{
-  return HandleObject(MeshNodeGroup);
-}
-
-
+bool CVisitorBase::HandleMeshNodeGroup(const CMeshNodeGroup &MeshNodeGroup) { return HandleObject(MeshNodeGroup); }
 
 }; // namespace geo
-

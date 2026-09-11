@@ -25,52 +25,32 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueWellboreSurface.h"
-#include "RescueWellboreSurface.h"
 #include "RescueModel.h"
+#include "RescueWellboreSurface.h"
+#include "myHeaders.h"
 
-cBagRescueWellboreSurface::cBagRescueWellboreSurface()
-{
-  tree = new RescueTree();
-}
+cBagRescueWellboreSurface::cBagRescueWellboreSurface() { tree = new RescueTree(); }
 
-cBagRescueWellboreSurface::~cBagRescueWellboreSurface()
-{
-  delete tree;
-}
+cBagRescueWellboreSurface::~cBagRescueWellboreSurface() { delete tree; }
 
-void cBagRescueWellboreSurface::operator+=(RescueWellboreSurface *newObject)
-{
-  tree->Add(newObject);
-}
+void cBagRescueWellboreSurface::operator+=(RescueWellboreSurface *newObject) { tree->Add(newObject); }
 
-RESCUEBOOL cBagRescueWellboreSurface::operator-=(RescueWellboreSurface * existingObject)
-{
+RESCUEBOOL cBagRescueWellboreSurface::operator-=(RescueWellboreSurface *existingObject) {
   return tree->Delete(existingObject);
 }
 
-RescueWellboreSurface *cBagRescueWellboreSurface::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueWellboreSurface *) tree->NthObject(ordinal);
+RescueWellboreSurface *cBagRescueWellboreSurface::NthObject(RESCUEINT64 ordinal) {
+  return (RescueWellboreSurface *)tree->NthObject(ordinal);
 }
 
-RESCUEINT32 cBagRescueWellboreSurface::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueWellboreSurface::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-

@@ -6,7 +6,6 @@ struct PyMethodDef;
 typedef PyObject PyTuple;
 
 #include <vector>
-typedef std::vector< PyObject* > TPyObjectPtrV;
+typedef std::vector<PyObject *> TPyObjectPtrV;
 
 #endif
-

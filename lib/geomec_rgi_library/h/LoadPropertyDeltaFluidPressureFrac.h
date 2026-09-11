@@ -3,30 +3,26 @@
 
 #include "LoadPropertyPressureBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CLoadPropertyDeltaFluidPressureFrac : public CLoadPropertyPressureBase
-{
-  public:
-  CLoadPropertyDeltaFluidPressureFrac(const RGProperty& rgProperty,
-      RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
+class CLoadPropertyDeltaFluidPressureFrac : public CLoadPropertyPressureBase {
+public:
+  CLoadPropertyDeltaFluidPressureFrac(const RGProperty &rgProperty, RGInterface &rgi, CModelBase &modelBase,
+                                      CRockMechProcessor &rmp);
   virtual ~CLoadPropertyDeltaFluidPressureFrac();
 
-  protected:
-  virtual bool addDelta(std::vector <geo::CValue>& vcNodalValues,
-      const QString& strPropertyName, const CFormationBase* pFormation,
-      const geo::IElement& elm, int nNod) const;
-  virtual IValueDomainScalar::TValueVec addDeltaSpecific(
-      const CDepletionStage& prevstage, const CFormationBase* pFormation,
-      const geo::IElement& elm, int nNod) const;
+protected:
+  virtual bool addDelta(std::vector<geo::CValue> &vcNodalValues, const QString &strPropertyName,
+                        const CFormationBase *pFormation, const geo::IElement &elm, int nNod) const;
+  virtual IValueDomainScalar::TValueVec addDeltaSpecific(const CDepletionStage &prevstage,
+                                                         const CFormationBase *pFormation, const geo::IElement &elm,
+                                                         int nNod) const;
 
-  private:
-  CLoadPropertyDeltaFluidPressureFrac(const CLoadPropertyDeltaFluidPressureFrac& rhs);
-  CLoadPropertyDeltaFluidPressureFrac& operator = (
-      const CLoadPropertyDeltaFluidPressureFrac& rhs);
+private:
+  CLoadPropertyDeltaFluidPressureFrac(const CLoadPropertyDeltaFluidPressureFrac &rhs);
+  CLoadPropertyDeltaFluidPressureFrac &operator=(const CLoadPropertyDeltaFluidPressureFrac &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _LoadPropertyDeltaFluidPressureFrac_h_
+#endif // _LoadPropertyDeltaFluidPressureFrac_h_

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "UndoOperation.h"
 
 /*!
@@ -13,25 +13,17 @@
   \param text might be used to provide feedback to the user as to what state
   can be restored.
 */
-CUndoOperation::CUndoOperation( const QString& text )
-: m_text( text )
-{
-}
+CUndoOperation::CUndoOperation(const QString &text) : m_text(text) {}
 
 /*!
   Destroys the object and frees any allocated resources.
 */
-CUndoOperation::~CUndoOperation()
-{
-}
+CUndoOperation::~CUndoOperation() {}
 
 /*!
   Returns the description of the action that can be reverted by this object.
 */
-const QString& CUndoOperation::text() const
-{
-  return m_text;
-}
+const QString &CUndoOperation::text() const { return m_text; }
 
 /*!
   \fn virtual void CUndoOperation::undo( CDocumentBase& document ) = 0;

@@ -9,26 +9,23 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class CControlManager
-{
+class CControlManager {
 public:
-  typedef enum
-  {
-    LEFT = 0,	// maintain offset from left
-    RIGHT = 1,	// maintain offset from right
-    HBOTH = 2	// maintain both offsets (resize)
+  typedef enum {
+    LEFT = 0,  // maintain offset from left
+    RIGHT = 1, // maintain offset from right
+    HBOTH = 2  // maintain both offsets (resize)
   } THorizontal;
 
-  typedef enum
-  {
-    TOP = 0,	// maintain offset from top
-    BOTTOM = 1,	// maintain offset from bottom
-    VBOTH = 2	// maintain both offsets (resize)
+  typedef enum {
+    TOP = 0,    // maintain offset from top
+    BOTTOM = 1, // maintain offset from bottom
+    VBOTH = 2   // maintain both offsets (resize)
   } TVertical;
 
 private:
-  CWnd& m_control;
-  CWnd& m_parent;
+  CWnd &m_control;
+  CWnd &m_parent;
   THorizontal m_horbehaviour;
   TVertical m_verbehaviour;
 
@@ -45,10 +42,10 @@ private:
   int m_size[2];
 
   void GetOffsets();
-  void ResizeParams(int beh, int newsiz, int left, int right, int size, int& x, int& width);
+  void ResizeParams(int beh, int newsiz, int left, int right, int size, int &x, int &width);
 
 public:
-  CControlManager(CWnd& control, CWnd& parent, THorizontal horbehaviour, TVertical verbehaviour);
+  CControlManager(CWnd &control, CWnd &parent, THorizontal horbehaviour, TVertical verbehaviour);
   ~CControlManager();
 
   // call when parent is resized

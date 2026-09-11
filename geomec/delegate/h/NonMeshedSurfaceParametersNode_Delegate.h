@@ -5,18 +5,17 @@
 
 class CNonMeshedSurfaceParametersNode;
 
-class CNonMeshedSurfaceParametersNode_Delegate : public CStorageNode_Delegate
-{
+class CNonMeshedSurfaceParametersNode_Delegate : public CStorageNode_Delegate {
 public:
-  CNonMeshedSurfaceParametersNode_Delegate(CNonMeshedSurfaceParametersNode* node);
+  CNonMeshedSurfaceParametersNode_Delegate(CNonMeshedSurfaceParametersNode *node);
 
   virtual bool Attributes();
 
 private:
-  CNonMeshedSurfaceParametersNode_Delegate(const CNonMeshedSurfaceParametersNode_Delegate& rhs);
-  CNonMeshedSurfaceParametersNode_Delegate& operator=(const CNonMeshedSurfaceParametersNode_Delegate& rhs);
+  CNonMeshedSurfaceParametersNode_Delegate(const CNonMeshedSurfaceParametersNode_Delegate &rhs);
+  CNonMeshedSurfaceParametersNode_Delegate &operator=(const CNonMeshedSurfaceParametersNode_Delegate &rhs);
 
-  CNonMeshedSurfaceParametersNode* m_node;
+  CNonMeshedSurfaceParametersNode *m_node;
 
   REGISTER_DELEGATE(CNonMeshedSurfaceParametersNode, CNonMeshedSurfaceParametersNode_Delegate);
 };

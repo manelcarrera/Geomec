@@ -1,23 +1,21 @@
 #pragma once
 
-#include <QString>
 #include <QDialog>
+#include <QString>
 
-class IDianaX
-{
+class IDianaX {
 
-// Attributes
+  // Attributes
 public:
-
   /*virtual void SetShowDialog(bool);
   virtual void SetSuccessMessageString(QString);*/
-  virtual void SetNumberOfMessages(long)=0;
+  virtual void SetNumberOfMessages(long) = 0;
   /*virtual void SetDisplayStopMessage(bool);
   virtual void SetShowDefaultMessages(bool);
   virtual void SetDialogCaption(QString);
   virtual void SetAutoCloseDialog(bool);
   virtual void SetAlwaysAutoCloseDialog(bool);*/
-  virtual void SetProgressIsLifesign(bool)=0;
+  virtual void SetProgressIsLifesign(bool) = 0;
   /*virtual void SetNumberOfAppSpcMessages(long);
 
   virtual int GetShowDialog();
@@ -32,16 +30,15 @@ public:
 
   virtual long GetNumberOfMessages();
   virtual long GetNumberOfAppSpcMessages();*/
-  
 
-// Operations
+  // Operations
 public:
   /*virtual void AboutBox();*/
 
-  virtual bool SetEnvironmentVar(QString VarName, QString Value)=0;
-  virtual bool GetCalculationResult()=0;
-  //virtual int SetUserMagic(QString Leader, QString Trailer);
+  virtual bool SetEnvironmentVar(QString VarName, QString Value) = 0;
+  virtual bool GetCalculationResult() = 0;
+  // virtual int SetUserMagic(QString Leader, QString Trailer);
 
-  virtual short ExecuteDiana(QString ExeName, QString WorkingDir, QString ComFile, QString DatFile, QString FilosFile, QString BaseName)=0;
+  virtual short ExecuteDiana(QString ExeName, QString WorkingDir, QString ComFile, QString DatFile, QString FilosFile,
+                             QString BaseName) = 0;
 };
-

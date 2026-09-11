@@ -3,24 +3,21 @@
 
 #include <QString>
 
-namespace cora
-{
+namespace cora {
 
 class CObject;
 
-class CFilterOutputProperty
-{
-  public:
+class CFilterOutputProperty {
+public:
   CFilterOutputProperty();
 
-  bool isOutputPropertyAllowed(const CObject& object, const QString& result)
-      const;
+  bool isOutputPropertyAllowed(const CObject &object, const QString &result) const;
 
-  private:
-  CFilterOutputProperty(const CFilterOutputProperty& rhs);
-  CFilterOutputProperty& operator = (CFilterOutputProperty rhs);
+private:
+  CFilterOutputProperty(const CFilterOutputProperty &rhs);
+  CFilterOutputProperty &operator=(CFilterOutputProperty rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_FilterOutputProperty_h_
+#endif // _cora_FilterOutputProperty_h_

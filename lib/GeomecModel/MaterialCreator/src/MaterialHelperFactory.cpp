@@ -1,31 +1,30 @@
 #include "MaterialHelperFactory.h"
 #include "mlMatParamDomain.h"
 
-
 #include "MaterialModelAnisotropy.h"
 #include "MaterialModelCamClay.h"
 #include "MaterialModelCamClayCreep.h"
 #include "MaterialModelDualCap.h"
 #include "MaterialModelLinear.h"
+#include "MaterialModelMCHardeningCheckStrategies.h"
 #include "MaterialModelModifiedMohrCoulomb.h"
 #include "MaterialModelMohrCoulomb.h"
 #include "MaterialModelUndrained.h"
-#include "MaterialModelMCHardeningCheckStrategies.h"
 
+#include "MaterialAnisotropicCamClay.h"
 #include "MaterialCreep.h"
+#include "MaterialDualCapLinEla.h"
+#include "MaterialFractAnisotropy.h"
+#include "MaterialFractureAperture.h"
+#include "MaterialFractureAperture2.h"
+#include "MaterialRigidity.h"
+#include "MaterialUpscaledAnisotropy.h"
 #include "materialmccohesionhard1.h"
 #include "materialmccohesionhard2.h"
 #include "materialmccohesionhard3.h"
 #include "materialmcfrictionhard1.h"
 #include "materialmcfrictionhard2.h"
 #include "materialmcfrictionhard3.h"
-#include "MaterialRigidity.h"
-#include "MaterialDualCapLinEla.h"
-#include "MaterialFractAnisotropy.h"
-#include "MaterialUpscaledAnisotropy.h"
-#include "MaterialFractureAperture.h"
-#include "MaterialAnisotropicCamClay.h"
-#include "MaterialFractureAperture2.h"
 
 #include "MaterialUnitTypes.h"
 
@@ -33,18 +32,13 @@
 
 #include <cassert>
 
-
-
-const CMaterialHelperFactory *CMaterialHelperFactory::Instance()
-{
+const CMaterialHelperFactory *CMaterialHelperFactory::Instance() {
   static CMaterialHelperFactory *instance = new CMaterialHelperFactory();
   assert(instance != 0);
   return instance;
 }
 
-
-CMaterialHelperFactory::CMaterialHelperFactory()
-{
+CMaterialHelperFactory::CMaterialHelperFactory() {
   createMatCreators();
   createMatCheckStrategies();
   createMatPQPlotters();
@@ -53,9 +47,7 @@ CMaterialHelperFactory::CMaterialHelperFactory()
   createMPUnitTypes();
 }
 
-
-void CMaterialHelperFactory::createMatCreators()
-{
+void CMaterialHelperFactory::createMatCreators() {
 
   m_MatCreator.push_back(new CMaterialLinearCreator);
   assert(m_MatCreator.size() - 1 == MM_LINEAR);
@@ -101,33 +93,30 @@ void CMaterialHelperFactory::createMatCreators()
 
   m_MatCreator.push_back(new CMaterialLinearCreator); // not used anymore
   assert(m_MatCreator.size() - 1 == MM_DUALCAP);
-                
+
   m_MatCreator.push_back(new CMaterialDualCapLinElaCreator);
   assert(m_MatCreator.size() - 1 == MM_DUALCAP_LINELA);
-  
+
   m_MatCreator.push_back(new CMaterialFractureAnisotropyCreator);
   assert(m_MatCreator.size() - 1 == MM_FRACTURE_ANISOTROPY);
-  
+
   m_MatCreator.push_back(new CMaterialUpscaledAnisotropyCreator);
   assert(m_MatCreator.size() - 1 == MM_UPSCALED_ANISOTROPY);
-  
+
   m_MatCreator.push_back(new CMaterialFractureApertureCreator);
   assert(m_MatCreator.size() - 1 == MM_FRACTURE_APERTURE);
-  
+
   m_MatCreator.push_back(new CMaterialAnisotropicCamClayCreator);
   assert(m_MatCreator.size() - 1 == MM_ANISOTROPIC_CAMCLAY);
-  
+
   m_MatCreator.push_back(new CMaterialFractureAperture2Creator);
   assert(m_MatCreator.size() - 1 == MM_FRACTURE_APERTURE2);
-  
+
   m_MatCreator.push_back(new CMaterialCamClayCreepCreator);
   assert(m_MatCreator.size() - 1 == MM_CAMCLAY_CREEP);
-
 }
 
-
-void CMaterialHelperFactory::createMatCheckStrategies()
-{
+void CMaterialHelperFactory::createMatCheckStrategies() {
   m_MatCheckStrategy.reserve(_MAT_CHECK_STRATEGY_SIZE);
 
   m_MatCheckStrategy.push_back(0);
@@ -139,8 +128,7 @@ void CMaterialHelperFactory::createMatCheckStrategies()
   assert(m_MatCheckStrategy.size() == _MAT_CHECK_STRATEGY_SIZE);
 }
 
-void CMaterialHelperFactory::createMatPQPlotters()
-{
+void CMaterialHelperFactory::createMatPQPlotters() {
   m_MatCheckStrategy.reserve(_MAT_PQ_PLOTTER_SIZE);
 
   m_MatPQPlotter.push_back(0);
@@ -164,8 +152,7 @@ void CMaterialHelperFactory::createMatPQPlotters()
   assert(m_MatPQPlotter.size() == _MAT_PQ_PLOTTER_SIZE);
 }
 
-void CMaterialHelperFactory::createMPCheckStrategies()
-{
+void CMaterialHelperFactory::createMPCheckStrategies() {
   m_MPCheckStrategy.reserve(_MP_CHECK_STRATEGY_SIZE);
 
   m_MPCheckStrategy.push_back(0);
@@ -227,46 +214,46 @@ void CMaterialHelperFactory::createMPCheckStrategies()
 
   m_MPCheckStrategy.push_back(new MP_GE_LE(.1, 2));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_1Emin1_LE_2);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(0, 10));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_0_LE_10);
 
   m_MPCheckStrategy.push_back(new MP_GE_LE(1, 10));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_1_LE_10);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(0, 100));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_0_LE_100);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(1, 100));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_1_LE_100);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(0, 1E3));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_0_LE_1E3);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(0, 1E6));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_0_LE_1E6);
-  
+
   m_MPCheckStrategy.push_back(new MP_GE_LE(10, 1E6));
   assert(m_MPCheckStrategy.size() - 1 == MP_GE_10_LE_1E6);
 
   m_MPCheckStrategy.push_back(new CMaterialAnisotropyThomsenDeltaCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_AnisotropyThomsenDelta);
- 
+
   m_MPCheckStrategy.push_back(new CMaterialAnisotropyThomsenEpsilonCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_AnisotropyThomsenEpsilon);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialAnisotropyThomsenGammaCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_AnisotropyThomsenGamma);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialAnisotropyVpCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_AnisotropyVp);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialAnisotropyVsCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_AnisotropyVs);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialCamClayCMPCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_CamClayCMP);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialCamClayCreepCMPCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_CamClayCreepCMP);
 
@@ -308,25 +295,23 @@ void CMaterialHelperFactory::createMPCheckStrategies()
 
   m_MPCheckStrategy.push_back(new CMaterialMCHardEquivalentPlasticStrain1CheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_MCHardEquivalentPlasticStrain1);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialMCHardEquivalentPlasticStrain2CheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_MCHardEquivalentPlasticStrain2);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialMCHardEquivalentPlasticStrain3CheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_MCHardEquivalentPlasticStrain3);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialMohrCoulombDilatationCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_MohrCoulombDilatation);
-  
+
   m_MPCheckStrategy.push_back(new CMaterialMohrCoulombFrictionCheckStrategy());
   assert(m_MPCheckStrategy.size() - 1 == MP_MohrCoulombFriction);
 
   assert(m_MPCheckStrategy.size() == _MP_CHECK_STRATEGY_SIZE);
 }
 
-
-void CMaterialHelperFactory::createMPSetStrategies()
-{
+void CMaterialHelperFactory::createMPSetStrategies() {
   m_MPSetStrategy.reserve(_MP_SET_STRATEGY_SIZE);
 
   m_MPSetStrategy.push_back(0);
@@ -334,64 +319,64 @@ void CMaterialHelperFactory::createMPSetStrategies()
 
   m_MPSetStrategy.push_back(new CMaterialAnisotropyPoissonNormSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyPoissonNorm);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyPoissonTransSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyPoissonTrans);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyShearStiffSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyShearStiff);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyThomsenDeltaSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyThomsenDelta);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyThomsenEpsilonSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyThomsenEpsilon);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyThomsenGammaSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyThomsenGamma);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyVpSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyVp);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyVsSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyVs);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyYoungNormSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyYoungNorm);
-  
+
   m_MPSetStrategy.push_back(new CMaterialAnisotropyYoungTransSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_AnisotropyYoungTrans);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayBulkStiffSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayBulkStiff);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCapShapSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCapShap);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCMESetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCME);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCMPSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCMP);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepBulkStiffSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepBulkStiff);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepCapShapSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepCapShap);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepCMESetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepCME);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepCMPSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepCMP);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepDynShearSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepDynShear);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepDynUniSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepDynUni);
-  
+
   m_MPSetStrategy.push_back(new CMaterialCamClayCreepFrictionSetStrategy());
   assert(m_MPSetStrategy.size() - 1 == MP_SET_CamClayCreepFriction);
 
@@ -530,116 +515,105 @@ void CMaterialHelperFactory::createMPSetStrategies()
   assert(m_MPSetStrategy.size() == _MP_SET_STRATEGY_SIZE);
 }
 
-
-void CMaterialHelperFactory::createMPUnitTypes()
-{
+void CMaterialHelperFactory::createMPUnitTypes() {
   m_MPUnitType.reserve(_MP_UNIT_TYPE_SIZE);
 
   m_MPUnitType.push_back(new CUnitTypeNone());
   assert(m_MPUnitType.size() - 1 == UT_NONE);
-  
+
   m_MPUnitType.push_back(new CUnitTypeStress());
   assert(m_MPUnitType.size() - 1 == UT_STRESS);
-  
+
   m_MPUnitType.push_back(new CUnitTypeStressGradient());
   assert(m_MPUnitType.size() - 1 == UT_STRESS_GRADIENT);
-  
+
   m_MPUnitType.push_back(new CUnitTypeDensity());
   assert(m_MPUnitType.size() - 1 == UT_DENSITY);
-  
+
   m_MPUnitType.push_back(new CUnitTypeDepth());
   assert(m_MPUnitType.size() - 1 == UT_DEPTH);
-  
+
   m_MPUnitType.push_back(new CUnitTypeForce());
   assert(m_MPUnitType.size() - 1 == UT_FORCE);
-  
+
   m_MPUnitType.push_back(new CUnitTypeVelocity());
   assert(m_MPUnitType.size() - 1 == UT_VELOCITY);
-  
+
   m_MPUnitType.push_back(new CUnitTypeAngle());
   assert(m_MPUnitType.size() - 1 == UT_ANGLE);
-  
+
   m_MPUnitType.push_back(new CUnitTypePerStress());
   assert(m_MPUnitType.size() - 1 == UT_PER_STRESS);
-  
+
   m_MPUnitType.push_back(new CUnitTypePerTime());
   assert(m_MPUnitType.size() - 1 == UT_PER_TIME);
-  
+
   m_MPUnitType.push_back(new CUnitTypeTemper());
   assert(m_MPUnitType.size() - 1 == UT_TEMPER);
-  
+
   m_MPUnitType.push_back(new CUnitTypeKelvinTemper());
   assert(m_MPUnitType.size() - 1 == UT_KELVIN_TEMPER);
-  
+
   m_MPUnitType.push_back(new CUnitTypePerTemper());
   assert(m_MPUnitType.size() - 1 == UT_PER_TEMPER);
-  
+
   m_MPUnitType.push_back(new CUnitTypePerDistance());
   assert(m_MPUnitType.size() - 1 == UT_PER_DISTANCE);
-  
+
   m_MPUnitType.push_back(new CUnitTypeThermConduct());
   assert(m_MPUnitType.size() - 1 == UT_THERM_CONDUCT);
-  
+
   m_MPUnitType.push_back(new CUnitTypeThermCapacity());
   assert(m_MPUnitType.size() - 1 == UT_THERM_CAPACITY);
-  
+
   m_MPUnitType.push_back(new CUnitTypePermea());
   assert(m_MPUnitType.size() - 1 == UT_PERMEA);
-  
+
   m_MPUnitType.push_back(new CUnitTypeViscosity());
   assert(m_MPUnitType.size() - 1 == UT_VISCOSITY);
 
   assert(m_MPUnitType.size() == _MP_UNIT_TYPE_SIZE);
 }
 
-
-ml::CMaterial::CCreator *CMaterialHelperFactory::getMatCreator(int material) const
-{
+ml::CMaterial::CCreator *CMaterialHelperFactory::getMatCreator(int material) const {
   ml::CMaterial::CCreator *pCreator = 0;
 
-  if (material >= 0 && material < m_MatCreator.size())
-  {
-  pCreator = m_MatCreator[material];
-  pCreator->Reset();
+  if (material >= 0 && material < m_MatCreator.size()) {
+    pCreator = m_MatCreator[material];
+    pCreator->Reset();
   }
 
   return pCreator;
 }
 
-const ml::CMaterial::CCheckStrategy *CMaterialHelperFactory::getMatCheckStrategy(enum MaterialCheckStrategy strategy) const
-{
+const ml::CMaterial::CCheckStrategy *
+CMaterialHelperFactory::getMatCheckStrategy(enum MaterialCheckStrategy strategy) const {
   assert(strategy < m_MatCheckStrategy.size());
   assert(strategy == MAT_NO_CHECK_STRATEGY || m_MatCheckStrategy[strategy] != 0);
   return m_MatCheckStrategy[strategy];
 }
 
-IPQPlotter *CMaterialHelperFactory::getMatPQPlotter(enum MaterialPQPlotter plotter) const
-{
+IPQPlotter *CMaterialHelperFactory::getMatPQPlotter(enum MaterialPQPlotter plotter) const {
   assert(plotter < m_MatPQPlotter.size());
   assert(plotter == MAT_NO_PQ_PLOTTER || m_MatPQPlotter[plotter] != 0);
   return m_MatPQPlotter[plotter];
 }
 
-const ml::CMatParam::CCheckStrategy *CMaterialHelperFactory::getMPCheckStrategy(enum MatParamCheckStrategy strategy) const
-{
+const ml::CMatParam::CCheckStrategy *
+CMaterialHelperFactory::getMPCheckStrategy(enum MatParamCheckStrategy strategy) const {
   assert(strategy < m_MPCheckStrategy.size());
   assert(strategy == MP_NO_CHECK_STRATEGY || m_MPCheckStrategy[strategy] != 0);
   return m_MPCheckStrategy[strategy];
 }
 
-const ml::CMatParam::CSetStrategy *CMaterialHelperFactory::getMPSetStrategy(enum MatParamSetStrategy strategy) const
-{
+const ml::CMatParam::CSetStrategy *CMaterialHelperFactory::getMPSetStrategy(enum MatParamSetStrategy strategy) const {
   assert(strategy < m_MPSetStrategy.size());
   assert(strategy == MP_NO_SET_STRATEGY || m_MPSetStrategy[strategy] != 0);
   return m_MPSetStrategy[strategy];
 }
 
-const ml::CMatParam::CUnitType& CMaterialHelperFactory::getMPUnitType(enum MatParamUnitType unitType) const
-{
+const ml::CMatParam::CUnitType &CMaterialHelperFactory::getMPUnitType(enum MatParamUnitType unitType) const {
   assert(unitType < m_MPUnitType.size());
   assert(m_MPUnitType[unitType] != 0);
   return *m_MPUnitType[unitType];
 }
-
-
-

@@ -1,22 +1,14 @@
 
 #include "LoadPropertyIsReservoir.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-  CLoadPropertyIsReservoir::CLoadPropertyIsReservoir(const RGProperty& rgProperty,
-    RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp)
-    : CLoadPropertyBase(rgProperty, rgi, modelBase, rmp)
-  {
-  }
+CLoadPropertyIsReservoir::CLoadPropertyIsReservoir(const RGProperty &rgProperty, RGInterface &rgi,
+                                                   CModelBase &modelBase, CRockMechProcessor &rmp)
+    : CLoadPropertyBase(rgProperty, rgi, modelBase, rmp) {}
 
-  CLoadPropertyIsReservoir::~CLoadPropertyIsReservoir()
-  {
-  }
+CLoadPropertyIsReservoir::~CLoadPropertyIsReservoir() {}
 
-  bool CLoadPropertyIsReservoir::loadProperty()
-  {
-    return true;
-  }
+bool CLoadPropertyIsReservoir::loadProperty() { return true; }
 
 } // namespace GeomecRGI

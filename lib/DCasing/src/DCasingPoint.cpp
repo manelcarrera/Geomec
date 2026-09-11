@@ -3,45 +3,36 @@
 //////////////////////////////////////////////////////////////////////
 #include "DCasingPoint.h"
 
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-
 CDCasingPoint::CDCasingPoint(/*CDCasing* pDCasing*/)
-//:m_pDCasing(pDCasing)
-{
+//: m_pDCasing(pDCasing)
+{}
 
-}
-
-
-CDCasingPoint::~CDCasingPoint()
-{
-
-}
+CDCasingPoint::~CDCasingPoint() {}
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 // interface
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-bool CDCasingPoint::Defined()
-{
+bool CDCasingPoint::Defined() {
 
-//	if (TMD().Undefined())
-//		return false;
+  //	if (TMD().Undefined())
+  //		return false;
 
-  if(ElasticSupportYoungsMod().Undefined())
+  if (ElasticSupportYoungsMod().Undefined())
     return false;
 
-  if(ElasticSupportPoissonRatio().Undefined())
+  if (ElasticSupportPoissonRatio().Undefined())
     return false;
 
-  if(InternalPressure().Undefined())
+  if (InternalPressure().Undefined())
     return false;
 
-  if(ExternalPressure().Undefined())
+  if (ExternalPressure().Undefined())
     return false;
 
   if (Epscom().Undefined())
@@ -52,49 +43,28 @@ bool CDCasingPoint::Defined()
 
 //////////////////////////////////////////////////////////////////////
 
-CSinglePressure& CDCasingPoint::ElasticSupportYoungsMod()
-{
-  return m_ElasticSupportYoungsMod;
-}
+CSinglePressure &CDCasingPoint::ElasticSupportYoungsMod() { return m_ElasticSupportYoungsMod; }
 
 //////////////////////////////////////////////////////////////////////
 
-CNoneQuantity& CDCasingPoint::ElasticSupportPoissonRatio()
-{
-  return m_ElasticSupportPoissonRatio;
-}
+CNoneQuantity &CDCasingPoint::ElasticSupportPoissonRatio() { return m_ElasticSupportPoissonRatio; }
 
 //////////////////////////////////////////////////////////////////////
 
-CSinglePressure& CDCasingPoint::InternalPressure()
-{
-  return m_InternalPressure;
-}
+CSinglePressure &CDCasingPoint::InternalPressure() { return m_InternalPressure; }
 
 //////////////////////////////////////////////////////////////////////
 
-CSinglePressure& CDCasingPoint::ExternalPressure()
-{
-  return m_ExternalPressure;
-}
+CSinglePressure &CDCasingPoint::ExternalPressure() { return m_ExternalPressure; }
 
 //////////////////////////////////////////////////////////////////////
 
-CNoneQuantity& CDCasingPoint::Epscom()
-{
-  return m_Epscom;
-}
+CNoneQuantity &CDCasingPoint::Epscom() { return m_Epscom; }
 
 //////////////////////////////////////////////////////////////////////
 
-CDCasingPointResult & CDCasingPoint::GetCDCasingPointResult()
-{
-  return m_CDCasingPointResult;
-}
+CDCasingPointResult &CDCasingPoint::GetCDCasingPointResult() { return m_CDCasingPointResult; }
 
 //////////////////////////////////////////////////////////////////////
 
-const CDCasingPointResult & CDCasingPoint::GetCDCasingPointResult() const
-{
-  return m_CDCasingPointResult;
-}
+const CDCasingPointResult &CDCasingPoint::GetCDCasingPointResult() const { return m_CDCasingPointResult; }

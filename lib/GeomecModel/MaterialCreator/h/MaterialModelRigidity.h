@@ -3,11 +3,10 @@
 
 #include "MaterialCreator.h"
 
-class CMaterialRigidityCreatorDEPRECATED : public CMaterialCreator
-{
+class CMaterialRigidityCreatorDEPRECATED : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -15,11 +14,10 @@ protected:
   virtual bool CanCalibratePlastic() const { return false; }
 };
 
-class CMaterialRigidityCreatorV2 : public CMaterialCreator
-{
+class CMaterialRigidityCreatorV2 : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -29,5 +27,4 @@ protected:
 
 typedef CMaterialRigidityCreatorV2 CMaterialRigidityCreator;
 
-
-#endif  // _MATERIALMODELRIGIDITY_H_
+#endif // _MATERIALMODELRIGIDITY_H_

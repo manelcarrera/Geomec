@@ -1,17 +1,13 @@
 #include "TestRGInterface.h"
 #include "RGInterface.h"
 
-ITestRGInterface::ITestRGInterface()
-{
-}
+ITestRGInterface::ITestRGInterface() {}
 
-void ITestRGInterface::createDepletionStage(RGInterface& rgInterface)
-{
+void ITestRGInterface::createDepletionStage(RGInterface &rgInterface) {
   rgInterface.setCurrentDepletionStage(RGDepletionStage(0, 0));
 }
 
-void ITestRGInterface::createCommands(RGInterface& rgInterface)
-{
+void ITestRGInterface::createCommands(RGInterface &rgInterface) {
   rgInterface.clearCommandList();
   rgInterface.addCommand(GMCommand(typeCommandLoadGrid));
   rgInterface.addCommand(GMCommand(typeCommandQuit));
@@ -19,8 +15,7 @@ void ITestRGInterface::createCommands(RGInterface& rgInterface)
 
 // protected
 
-void ITestRGInterface::createTest(const QString& modelName)
-{
+void ITestRGInterface::createTest(const QString &modelName) {
   RGInterface rgInterface(modelName.toStdString());
 
   createNodes(rgInterface);

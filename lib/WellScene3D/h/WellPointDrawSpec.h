@@ -9,11 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-
-
-
 //*******************************************************************
-//              
+//
 //  FILE:       WellPointDrawSpec.h
 //  AUTHOR:     htg
 //  PROJECT:    TestViewExe
@@ -25,42 +22,37 @@
 //*******************************************************************
 
 namespace well {
-  class CWellPoint;
+class CWellPoint;
 }
 
-#include "WellDrawSpecBase.h"
 #include "Vector.h"
+#include "WellDrawSpecBase.h"
 
-class CWellPointDrawSpec  : public CWellDrawSpecBase
-{
+class CWellPointDrawSpec : public CWellDrawSpecBase {
   Q_OBJECT
 
-friend class CWellSceneInterMed;
+  friend class CWellSceneInterMed;
 
 public:
-  enum TYPE
-  {
-    SINGLE_DOT,
-    ARROW
-  };
+  enum TYPE { SINGLE_DOT, ARROW };
 
   virtual ~CWellPointDrawSpec();
 
-  void SetArrowDirection(const geo::CVector& dir);
+  void SetArrowDirection(const geo::CVector &dir);
 private slots:
   void OnTMDChanged();
-  void OnPointDestroyed(const well::CWellPoint& wellpoint);
+  void OnPointDestroyed(const well::CWellPoint &wellpoint);
 
 private:
   virtual void CreateScene();
 
-  //only CWellSceneInterMed can construct a CWellPointDrawSpec
-  CWellPointDrawSpec(CWellSceneInterMed& WellSceneInterMed, well::CWellPoint& WellPoint,TYPE type = SINGLE_DOT);
-  
-  well::CWellPoint* m_pWellPoint;
+  // only CWellSceneInterMed can construct a CWellPointDrawSpec
+  CWellPointDrawSpec(CWellSceneInterMed &WellSceneInterMed, well::CWellPoint &WellPoint, TYPE type = SINGLE_DOT);
 
-  void			  CreateArrow();
-  void			  CreateDot();
+  well::CWellPoint *m_pWellPoint;
+
+  void CreateArrow();
+  void CreateDot();
   TYPE m_Type;
   geo::CVector m_ArrowDirection;
 };

@@ -1,16 +1,9 @@
 #include "ElementWrapper.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
-CElementWrapper::CElementWrapper(const geo::IElement& element)
-: m_element(element)
-{
-}
+CElementWrapper::CElementWrapper(const geo::IElement &element) : m_element(element) {}
 
-const geo::IElement& CElementWrapper::element() const
-{
-  return m_element;
-}
+const geo::IElement &CElementWrapper::element() const { return m_element; }
 
 } // namespace WellPath

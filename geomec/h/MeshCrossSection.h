@@ -11,36 +11,35 @@ struct MeshNodeSettings;
 
 #include "CrossSection.h"
 
+#include "MeshMode.h"
 #include "SoSwitchBool.h"
-#include <Inventor/nodes/SoGroup.h>
-#include <Inventor/fields/SoSFPlane.h>
-#include <Inventor/fields/SoSFVec3f.h>
 #include <Inventor/fields/SoSFEnum.h>
 #include <Inventor/fields/SoSFFloat.h>
-#include "MeshMode.h"
+#include <Inventor/fields/SoSFPlane.h>
+#include <Inventor/fields/SoSFVec3f.h>
+#include <Inventor/nodes/SoGroup.h>
 
 /**
- * 
+ *
  */
-class MeshCrossSection : public SoGroup
-{
+class MeshCrossSection : public SoGroup {
   SO_NODE_HEADER(MeshCrossSection);
 
-  static void basePointSensorCallback(void* data, SoSensor* sensor);
-  static void normalSensorCallback(void* data, SoSensor* sensor);
+  static void basePointSensorCallback(void *data, SoSensor *sensor);
+  static void normalSensorCallback(void *data, SoSensor *sensor);
 
   static SbPlane getDefaultPlane();
   static SbVec3f getDefaultBasePoint();
   static SbVec3f getDefaultNormal();
 
-  OIDIMeshNodeManager* m_manager;
+  OIDIMeshNodeManager *m_manager;
 
-  CCrossSection* m_parent;
+  CCrossSection *m_parent;
 
-  SoGroup*       m_formationCrossSections;
-  SoClipPlane*   m_clipPlane;
-  SoFieldSensor* m_basepointSensor;
-  SoFieldSensor* m_normalSensor;
+  SoGroup *m_formationCrossSections;
+  SoClipPlane *m_clipPlane;
+  SoFieldSensor *m_basepointSensor;
+  SoFieldSensor *m_normalSensor;
 
   bool m_updatingFromParent;
 
@@ -48,44 +47,39 @@ class MeshCrossSection : public SoGroup
   void normalChanged();
   void planeChanged();
 
-  void add(FormationCrossSection* fmtXSec);
+  void add(FormationCrossSection *fmtXSec);
 
-  TensorVectorMode  m_tensorVectorMode;
+  TensorVectorMode m_tensorVectorMode;
 
 public:
-
   static void initClass();
   static void exitClass();
 
-  enum ColoringType
-  {
-      COLOR,
-      CONTOURING
-  };
+  enum ColoringType { COLOR, CONTOURING };
 
-  static MeshCrossSection* build(OIDIMeshNodeManager& mgr, CCrossSection* parent);
+  static MeshCrossSection *build(OIDIMeshNodeManager &mgr, CCrossSection *parent);
 
   MeshCrossSection();
 
   virtual ~MeshCrossSection();
 
-  const CCrossSection* getParent() const;
+  const CCrossSection *getParent() const;
 
-  void setColor(const MiMesh* formationMesh, SbColor color);
+  void setColor(const MiMesh *formationMesh, SbColor color);
 
-  void setScalarSetId(const MiMesh* formationMesh, int scalarSetId);
+  void setScalarSetId(const MiMesh *formationMesh, int scalarSetId);
 
-  int getScalarSetId(const MiMesh* formationMesh) const;
+  int getScalarSetId(const MiMesh *formationMesh) const;
 
-  void setVectorSetId(const MiMesh* formationMesh, int vectorSetId);
+  void setVectorSetId(const MiMesh *formationMesh, int vectorSetId);
 
-  int getVectorSetId(const MiMesh* formationMesh) const;
+  int getVectorSetId(const MiMesh *formationMesh) const;
 
-  void setTensorVectorSetId(const MiMesh* formationMesh, int tensorVectorSetId, int colorScalarSetId);
+  void setTensorVectorSetId(const MiMesh *formationMesh, int tensorVectorSetId, int colorScalarSetId);
 
-  void getTensorVectorSetIds(const MiMesh* formationMesh, int& vectorSetId, int& scalarSetId) const;
+  void getTensorVectorSetIds(const MiMesh *formationMesh, int &vectorSetId, int &scalarSetId) const;
 
-  void setIsoScalarSetId(const MiMesh* formationMesh, int isoScalarSetId);
+  void setIsoScalarSetId(const MiMesh *formationMesh, int isoScalarSetId);
 
   void setIsoValues(int count, float minval, float maxval);
 
@@ -93,9 +87,9 @@ public:
 
   CCrossSection::OrientationType getOrientation() const;
 
-  void updateDisplaySettings(const MeshNodeSettings& meshNodeSettings);
+  void updateDisplaySettings(const MeshNodeSettings &meshNodeSettings);
 
-  void connectFrom(CrossSectionManipulator* manip);
+  void connectFrom(CrossSectionManipulator *manip);
 
   void disconnect();
 
@@ -112,7 +106,7 @@ public:
   SoSFVec3f basepoint;
   SoSFVec3f normal;
 
-  /** 
+  /**
    * Turn clipping on (true) or off (false)
    */
   SoSFBool clip;

@@ -10,36 +10,34 @@
 /////////////////////////////////////////////////////////////////////////////
 // CModelGeneralPg dialog
 
-//##ModelId=3BC55D610276
+// ##ModelId=3BC55D610276
 #include "Geomecdoc.h"
 #include "StaticFile.h"
 
-class CModelGeneralPg : public CPropertyPage
-{
-// Construction
-  CGeomecDoc& m_doc;
-public:
-  //##ModelId=3BC55D610278
-  CModelGeneralPg(CGeomecDoc &doc);   // standard constructor
+class CModelGeneralPg : public CPropertyPage {
+  // Construction
+  CGeomecDoc &m_doc;
 
-// Dialog Data
+public:
+  // ##ModelId=3BC55D610278
+  CModelGeneralPg(CGeomecDoc &doc); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CModelGeneralPg)
   enum { IDD = IDD_ATTRI_MODEL_GENERAL };
-  CStaticFile	m_stPath;
+  CStaticFile m_stPath;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CModelGeneralPg)
-  protected:
-  //##ModelId=3BC55D610279
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  // ##ModelId=3BC55D610279
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CModelGeneralPg)
   afx_msg void OnChangeProjectInfo();

@@ -3,11 +3,10 @@
 
 #include <string>
 
-//class IResult;
+// class IResult;
 class IValueComposite;
 
-class CResultInfo
-{
+class CResultInfo {
 public:
   CResultInfo();
   void Clear();
@@ -33,4 +32,4 @@ private:
   std::string m_name;
 };
 
-#endif //CRESULTINFO_H
+#endif // CRESULTINFO_H

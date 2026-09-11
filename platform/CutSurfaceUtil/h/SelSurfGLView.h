@@ -11,46 +11,36 @@
 // SelSurfGLView view
 #include "openglview.h"
 
-
 class COpenGLScene;
 
-
-
-class SelSurfGLView : public COpenGLView
-{
-
+class SelSurfGLView : public COpenGLView {
 
 private:
-
-  COpenGLScene* m_pScene;
-  //QU::UNIT m_Us;
+  COpenGLScene *m_pScene;
+  // QU::UNIT m_Us;
 
 protected:
-  SelSurfGLView();           // protected constructor used by dynamic creation
+  SelSurfGLView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(SelSurfGLView)
 
-// Attributes
+  // Attributes
 public:
+  COpenGLScene *CurrentScene();
 
-  COpenGLScene* CurrentScene(); 
-
-
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(SelSurfGLView)
-  protected:
+protected:
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~SelSurfGLView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
@@ -58,7 +48,7 @@ protected:
   //{{AFX_MSG(SelSurfGLView)
   afx_msg void OnSize(unsigned int nType, int cx, int cy);
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

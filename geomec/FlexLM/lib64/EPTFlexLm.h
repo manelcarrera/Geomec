@@ -52,39 +52,36 @@
 #ifndef EPTFLEXLMAPI_H
 #define EPTFLEXLMAPI_H
 
-#define EPTFLEXLM_OK 0                /* return status successful, no warning */
-#define EPTFLEXLM_WARN 1              /* return status successful with warning */
+#define EPTFLEXLM_OK 0   /* return status successful, no warning */
+#define EPTFLEXLM_WARN 1 /* return status successful with warning */
 
-#define EPTFLEXLM_MAX_MESS_LEN 1025   /* array length for message string */
-#define EPTFLEXLM_MAX_FEATURE_LEN 31  /* = MAX_FEATURE_LEN (in lmclient.h) + 1 */
-#define EPTFLEXLM_MAX_VER_LEN 11      /* = MAX_VER_LEN (in lmclient.h) + 1     */
-
+#define EPTFLEXLM_MAX_MESS_LEN 1025  /* array length for message string */
+#define EPTFLEXLM_MAX_FEATURE_LEN 31 /* = MAX_FEATURE_LEN (in lmclient.h) + 1 */
+#define EPTFLEXLM_MAX_VER_LEN 11     /* = MAX_VER_LEN (in lmclient.h) + 1     */
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-  int EPTFlexLmInit(char *);
-    int EPTFlexLmGetHostid(char *);
-  int EPTFlexLmCheckOut(char *, char *, char *) ;
-  void EPTFlexLmCheckIn(char *);
-    int EPTFlexLmExpDays(char *, char *);
-    int EPTFlexLmMaxBorrowDays(char *);
-    int EPTFlexLmSetBorrow(char *, char *);
-    int EPTFlexLmSetBorrowDays(int, char *);
-    int EPTFlexLmGetBorrow(	char *, char *);
-    int EPTFlexLmShowBorrow(char *);
-    int EPTFlexLmReturnBorrow( char *, char * );
-  void EPTFlexLmTerminate(void);
-    void EPTFlexLmAddDays(int, char *);
-    int EPTFlexLmLeapYear(int);
-    int EPTFlexLmDaysInYear(int);
-  void EPTFlexLMVersionString(char *);
+int EPTFlexLmInit(char *);
+int EPTFlexLmGetHostid(char *);
+int EPTFlexLmCheckOut(char *, char *, char *);
+void EPTFlexLmCheckIn(char *);
+int EPTFlexLmExpDays(char *, char *);
+int EPTFlexLmMaxBorrowDays(char *);
+int EPTFlexLmSetBorrow(char *, char *);
+int EPTFlexLmSetBorrowDays(int, char *);
+int EPTFlexLmGetBorrow(char *, char *);
+int EPTFlexLmShowBorrow(char *);
+int EPTFlexLmReturnBorrow(char *, char *);
+void EPTFlexLmTerminate(void);
+void EPTFlexLmAddDays(int, char *);
+int EPTFlexLmLeapYear(int);
+int EPTFlexLmDaysInYear(int);
+void EPTFlexLMVersionString(char *);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif
-

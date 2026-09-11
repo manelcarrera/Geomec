@@ -13,17 +13,18 @@
 #include "boolSupport.h"
 class RescueTree;
 
-class RescueListNode
-{
+class RescueListNode {
 protected:
   RESCUEINT64 objectCount;
   void **objects;
   RescueListNode *leftNode;
   RescueListNode *rightNode;
+
 public:
   RescueListNode *Add(void *newObject);
   void Delete(void *existingObject, RescueTree *tree);
   ~RescueListNode();
+
 private:
   RescueListNode(RescueListNode *leftNodeIn = 0);
   RESCUEINT64 Find(void *objectToFind);
@@ -31,5 +32,3 @@ private:
   friend class RescueTree;
 };
 #endif
-
-

@@ -3,17 +3,16 @@
 
 #include "NewWellPointList.h"
 
-class CNewWellDefinitionPointList : public CNewWellPointList
-{
-  public:
-  //returns the number of removed points
+class CNewWellDefinitionPointList : public CNewWellPointList {
+public:
+  // returns the number of removed points
   long RemoveRedundantPoints();
 
-  private:
+private:
   friend class CNewWellPathBase;
 
-  CNewWellDefinitionPointList(CNewWellPathBase& WellPath);
+  CNewWellDefinitionPointList(CNewWellPathBase &WellPath);
   virtual ~CNewWellDefinitionPointList();
 };
 
-#endif  // _WellDefinitionPointList_h_
+#endif // _WellDefinitionPointList_h_

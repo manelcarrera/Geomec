@@ -10,51 +10,51 @@
 /////////////////////////////////////////////////////////////////////////////
 // CTreeSplitView view
 
-//##ModelId=3B497D7A0022
-class CTreeSplitView : public CView
-{
-  //##ModelId=3B497D7A008F
-  CSplitterWnd	m_wndSplitter;
+// ##ModelId=3B497D7A0022
+class CTreeSplitView : public CView {
+  // ##ModelId=3B497D7A008F
+  CSplitterWnd m_wndSplitter;
+
 protected:
-  //##ModelId=3B497D7A009D
-  CTreeSplitView();           // protected constructor used by dynamic creation
+  // ##ModelId=3B497D7A009D
+  CTreeSplitView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CTreeSplitView)
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-  void GetRowInfo(int row, int& cyCur, int& cyMin) const;
+  void GetRowInfo(int row, int &cyCur, int &cyMin) const;
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTreeSplitView)
-  public:
-  //##ModelId=3B497D7A009E
+public:
+  // ##ModelId=3B497D7A009E
   virtual void OnInitialUpdate();
-  protected:
-  //##ModelId=3B497D7A00AD
-  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+
+protected:
+  // ##ModelId=3B497D7A00AD
+  virtual void OnDraw(CDC *pDC); // overridden to draw this view
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-  //##ModelId=3B497D7A00B0
+  // ##ModelId=3B497D7A00B0
   virtual ~CTreeSplitView();
 #ifdef _DEBUG
-  //##ModelId=3B497D7A00B2
+  // ##ModelId=3B497D7A00B2
   virtual void AssertValid() const;
-  //##ModelId=3B497D7A00BD
-  virtual void Dump(CDumpContext& dc) const;
+  // ##ModelId=3B497D7A00BD
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(CTreeSplitView)
-  //##ModelId=3B497D7A00C0
+  // ##ModelId=3B497D7A00C0
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-  //##ModelId=3B497D7A00C3
+  // ##ModelId=3B497D7A00C3
   afx_msg void OnSize(unsigned int nType, int cx, int cy);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()

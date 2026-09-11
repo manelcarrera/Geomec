@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __I_CONTEXT_MENU_H
 #define __I_CONTEXT_MENU_H
 
@@ -6,10 +6,9 @@
 
 class IGuiCommand;
 
-class GUIFRAME_EXPORT IContextMenu
-{
+class GUIFRAME_EXPORT IContextMenu {
 public:
-  virtual void append( IGuiCommand* cmd ) = 0; //!< ownership is transferred
+  virtual void append(IGuiCommand *cmd) = 0; //!< ownership is transferred
   virtual void appendSeparator() = 0;
 };
 

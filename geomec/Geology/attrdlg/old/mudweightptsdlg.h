@@ -7,7 +7,6 @@
 // mudweightptsdlg.h : header file
 //
 
-
 #include "DsbXDlg.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -16,11 +15,9 @@ class CWellPath;
 class CHexaFormation;
 class CDsbXDlg;
 
-
-class CMudWeightPtsDlg : public CDialog
-{
+class CMudWeightPtsDlg : public CDialog {
   CWellPath *m_pWellPath;
-  const CUnitNode& UnitNode();
+  const CUnitNode &UnitNode();
   void SetButtonState();
   void UpdateList();
 
@@ -31,40 +28,37 @@ class CMudWeightPtsDlg : public CDialog
   CEdit *m_pFrom;
   CEdit *m_pTo;
   CEdit *m_pNrOPts;
-  typedef std::map<int, CGeoWellPoint*> IndexPointMap;
-  typedef std::pair<int, CGeoWellPoint*> IndexPointPair;
+  typedef std::map<int, CGeoWellPoint *> IndexPointMap;
+  typedef std::pair<int, CGeoWellPoint *> IndexPointPair;
 
-  std::set<CGeoWellPoint*> m_stTempPoints;
-  
+  std::set<CGeoWellPoint *> m_stTempPoints;
+
   IndexPointMap m_mpIndexPoints;
   CWellPath::TWellPointSet m_stPts;
   CWellPath::TWellPointSet m_stTemp;
   bool m_bDefaultOnly;
-// Construction
+  // Construction
 public:
-  CMudWeightPtsDlg(CWellPath *pWellPath, CWnd* pParent = NULL);   // standard constructor
+  CMudWeightPtsDlg(CWellPath *pWellPath, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CMudWeightPtsDlg)
   enum { IDD = IDD_DSBATCH_SELECT_POINTS };
-  double	m_dSingleValue;
-  double	m_dFrom;
-  double	m_dTo;
-  double	m_dNrOPts;
+  double m_dSingleValue;
+  double m_dFrom;
+  double m_dTo;
+  double m_dNrOPts;
   //}}AFX_DATA
-  
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CMudWeightPtsDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-  
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CMudWeightPtsDlg)
   virtual BOOL OnInitDialog();
@@ -77,8 +71,8 @@ protected:
   afx_msg void OnButtonRecalcdef();
   afx_msg void OnButtonStartDStabor();
   afx_msg void OnButtonStartDSbBatch();
-  afx_msg void OnClickListDsbatchPoints(NMHDR* pNMHDR, LRESULT* pResult);
-  afx_msg void OnItemchangingListDsbatchPoints(NMHDR* pNMHDR, LRESULT* pResult);
+  afx_msg void OnClickListDsbatchPoints(NMHDR *pNMHDR, LRESULT *pResult);
+  afx_msg void OnItemchangingListDsbatchPoints(NMHDR *pNMHDR, LRESULT *pResult);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

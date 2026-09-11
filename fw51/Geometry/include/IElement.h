@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // IElement.h: interface for the IElement class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -10,13 +10,12 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-
+#include "DispatchVisitorBase.h"
+#include "ElementPoint.h"
 #include "IObject.h"
+#include "Matrix.h"
 #include "Value.h"
 #include "VectorTempl.h"
-#include "Matrix.h"
-#include "ElementPoint.h"
-#include "DispatchVisitorBase.h"
 
 #include "GeometryExports.h"
 
@@ -29,19 +28,16 @@ class INode;
 class ICacheInterface;
 class CElementCacheObject;
 
-typedef enum _WeightingType
-{
-  WT_NONE,    // no weighting
-  WT_VOIGHT,  // volume weighted
-  WT_REUSS    // inverse volume weighted
+typedef enum _WeightingType {
+  WT_NONE,   // no weighting
+  WT_VOIGHT, // volume weighted
+  WT_REUSS   // inverse volume weighted
 } TWeightingType;
 
-
-class GEOMETRY_EXPORT  IElement : public IObject  
-{
+class GEOMETRY_EXPORT IElement : public IObject {
 public:
   typedef std::vector<double> TDoubleVec;
-  typedef std::vector<std::pair<TDoubleVec, double> > TIntPtVec;
+  typedef std::vector<std::pair<TDoubleVec, double>> TIntPtVec;
 
 protected:
   IElement();
@@ -50,16 +46,16 @@ protected:
 
   // returns a "relative" EPS for isoparametric coordinates
   double IsoEps() const;
-  TDoubleVec MakeVec(const double& d1, const double& d2, const double& d3) const;
-  TDoubleVec MakeVec(const double& d1, const double& d2) const;
+  TDoubleVec MakeVec(const double &d1, const double &d2, const double &d3) const;
+  TDoubleVec MakeVec(const double &d1, const double &d2) const;
 
 public:
   virtual ~IElement();
   //	PRE		: TRUE
-  //  POST	: Return value 
+  //  POST	: Return value
   //				0	No element set is assiocated with the element
   //				Ptr Elementset is given. Index() and PointIndex(int) apply to the given elementset.
-  virtual const IElementSet* IndexingElementSet() const;
+  virtual const IElementSet *IndexingElementSet() const;
   //  PRE		: IndexingElementSet() returns valid ptr
   //	POST	: Index in the IndexingElementSet is returned
   //			: -1 is returned when IndexingElementSet() == 0
@@ -74,12 +70,12 @@ public:
   // this implementation can be overiden for each element implementation
   virtual CElementPoint MidPoint() const;
 
-  virtual ICacheInterface& CacheInterface();
+  virtual ICacheInterface &CacheInterface();
 
   // An element should always be able to return points up to NrOfMeshNodes or NrOfPoints,
   // whichever is larger
   virtual const IPoint &Point(int nIndex) const = 0;
-  virtual void Point(int nIndex, const IPoint &pt) = 0;//Substitute point at nIndex with pt.....
+  virtual void Point(int nIndex, const IPoint &pt) = 0; // Substitute point at nIndex with pt.....
   virtual int NrOfPoints() const = 0;
 
   // the order of this element (1 = linear, 2 = quadratic, 3 = cubic, etc.)
@@ -88,21 +84,21 @@ public:
   // The NrOfMeshNodes function returns the number of nodes as DIANA sees them
   // This can include higher-order nodes and doubled nodes in interface elements
   virtual size_t NrOfNodes() const;
-  virtual const INode& Node(int nIndex) const;
-  virtual void Node(int nIndex, const IPoint& point);
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &point);
 
   // Return the lines of the elements
   virtual int NrOfLines() const = 0;
-  virtual const ILine& Line(int nIndex) const = 0;
+  virtual const ILine &Line(int nIndex) const = 0;
 
   // integration points
   virtual int IntegrationPointSize() const;
-  virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
-  virtual const double& IntegrationPointWeight(int nIndex) const;
+  virtual const TDoubleVec &IntegrationPointCoords(int nIndex) const;
+  virtual const double &IntegrationPointWeight(int nIndex) const;
 
   // return the name of the side with the given index
   // returns 0 if not applicable (e.g. for line and point elements)
-  virtual const char* SideName(int nIndex) const;
+  virtual const char *SideName(int nIndex) const;
 
   // returns volume, area or length (depending on type)
   // the default implementation makes use of ShapeFunctionDerived and
@@ -110,7 +106,7 @@ public:
   virtual double Size() const;
 
   virtual bool Contains(const IPoint &point, bool bIncludeEdge) const;
-  virtual bool operator < (const IElement &rhs) const;
+  virtual bool operator<(const IElement &rhs) const;
 
   // old style, for the (old) DianaCore library
   virtual std::string Type() const;
@@ -130,24 +126,23 @@ public:
   // returns a matrix of <NrOfNodes()> * <dimension>
   // this asserts false in IElement and should be implemented
   // for each element class
-  virtual CMatrix ShapeFunctionDerived(const TDoubleVec& isocoords) const;
+  virtual CMatrix ShapeFunctionDerived(const TDoubleVec &isocoords) const;
 
   // return the values of the shape functions
   // the vector is <NrOfNodes()> long
   // this functions asserts false in IElement and should be implemented
   // for each element class
-  virtual TDoubleVec ShapeFunction(const TDoubleVec& isocoords) const;
+  virtual TDoubleVec ShapeFunction(const TDoubleVec &isocoords) const;
 
   // convert an isocoordinate to a world point
-  virtual CPoint IsoToWorld(const TDoubleVec& isocoords) const;
-
+  virtual CPoint IsoToWorld(const TDoubleVec &isocoords) const;
 
   virtual TDoubleVec IsoShapeFunction(const IPoint &point) const;
 
   // returns the Jacobian matrix
-  CMatrix Jacobian(const TDoubleVec& isocoords) const;
+  CMatrix Jacobian(const TDoubleVec &isocoords) const;
   // same, but now given the coordinates in a matrix (NrOfNodes * 3)
-  CMatrix Jacobian(const TDoubleVec& isocoords, const IMatrix& matcoords) const;
+  CMatrix Jacobian(const TDoubleVec &isocoords, const IMatrix &matcoords) const;
 
   // returns a matrix filled with all coordinates of the element
   // has <NrOfNodes()> columns
@@ -158,31 +153,33 @@ public:
   // isoparametric coordinates for each node
   virtual std::vector<TDoubleVec> IsoCoordinates() const;
 
-  double JacobianDeterminant(const IMatrix& J) const;
+  double JacobianDeterminant(const IMatrix &J) const;
 
-  virtual CValue InterpolateValue(const TDoubleVec& isocoords, const std::vector<CValue> &values) const;
-  virtual CValue InterpolateValue(const IPoint& point, const std::vector<CValue>& values) const;
+  virtual CValue InterpolateValue(const TDoubleVec &isocoords, const std::vector<CValue> &values) const;
+  virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
 
   // convert world coordinates into isoparametric coordinates
   // this is not always implemented and may assert false
   // in IElement because of this
   // for higher order elements this requires an iterative procedure
-  virtual TDoubleVec WorldToIso(const geo::IPoint& point) const;
+  virtual TDoubleVec WorldToIso(const geo::IPoint &point) const;
 
   // return the value of the influence sphere for each node (area for a 2D object, volume for a 3D object)
-  virtual double InfluenceSize(int nNode) const; 
+  virtual double InfluenceSize(int nNode) const;
 
   // return the indices in the given vector that represent elements that (partially) overlap with this element
-  virtual std::vector<int> OverlappingElementIndices(std::vector<const IElement*> &vecElements) const;
+  virtual std::vector<int> OverlappingElementIndices(std::vector<const IElement *> &vecElements) const;
 
-  typedef std::pair<const IPoint*, CValue> TValuePoint;
+  typedef std::pair<const IPoint *, CValue> TValuePoint;
   typedef std::vector<TValuePoint> TSourceValueVector;
 
-  virtual std::vector<CValue> MapValues(TSourceValueVector &SourceValues, TWeightingType nWeightingType, const std::vector<double> &WeightFactors) const;
+  virtual std::vector<CValue> MapValues(TSourceValueVector &SourceValues, TWeightingType nWeightingType,
+                                        const std::vector<double> &WeightFactors) const;
   virtual std::vector<CValue> MapValues(TSourceValueVector &SourceValues, TWeightingType nWeightingType) const;
 
   virtual void MapValuesPrepare(CElementCacheObject &cached, TWeightingType nWeightingType) const;
-  virtual std::vector<CValue> MapValuesFinal(const CElementCacheObject &cached, const std::vector<CValue> &SourceValues, TWeightingType nWeightingType) const;
+  virtual std::vector<CValue> MapValuesFinal(const CElementCacheObject &cached, const std::vector<CValue> &SourceValues,
+                                             TWeightingType nWeightingType) const;
 
   // return a representative length for this element
   // length of a line
@@ -210,14 +207,14 @@ public:
 
 private:
   void MapValuesVoightPrepare(CElementCacheObject &cached) const;
-  std::vector<double> MapValuesVoightFinal(const CElementCacheObject &cached, const std::vector<CValue> &SourceValues) const;
+  std::vector<double> MapValuesVoightFinal(const CElementCacheObject &cached,
+                                           const std::vector<CValue> &SourceValues) const;
 
   std::vector<double> MapValuesVoight(TSourceValueVector &SourceValues, const std::vector<double> &WeightFactors) const;
   std::vector<double> MapValuesReuss(TSourceValueVector &SourceValues, const std::vector<double> &WeightFactors) const;
-  double ReussDerived(TSourceValueVector &SourceValues, const std::vector<double> &WeightFactors, const IMatrix &NodeValues, int iIndex) const;
-
-
+  double ReussDerived(TSourceValueVector &SourceValues, const std::vector<double> &WeightFactors,
+                      const IMatrix &NodeValues, int iIndex) const;
 };
-}
+} // namespace geo
 
 #endif // !defined(AFX_IELEMENT_H__945505EA_3611_4B7E_ABC7_C47892A2E773__INCLUDED_)

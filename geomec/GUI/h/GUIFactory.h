@@ -5,16 +5,15 @@ class CFemAppGUI;
 class CGUIBase;
 class CModelBase;
 
-class CGUIFactory
-{
+class CGUIFactory {
 public:
   CGUIFactory();
 
-  static CGUIBase* createGUI(CFemAppGUI* parentGUI, CFemAppModel* model);
+  static CGUIBase *createGUI(CFemAppGUI *parentGUI, CFemAppModel *model);
 
 private:
-  CGUIFactory(const CGUIFactory& rhs);
-  CGUIFactory& operator = (const CGUIFactory& rhs);
+  CGUIFactory(const CGUIFactory &rhs);
+  CGUIFactory &operator=(const CGUIFactory &rhs);
 };
 
-#endif  // _GUIFactory_h_
+#endif // _GUIFactory_h_

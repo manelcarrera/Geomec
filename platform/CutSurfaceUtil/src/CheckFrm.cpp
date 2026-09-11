@@ -1,21 +1,16 @@
 #include "stdafx.h"
 
-
 #include "Checkfrm.h"
 #include "GlobalMessage.h"
 
-
-
 //////////////////////////////////////
 // EnumChildWnds Callback
-BOOL CALLBACK EnumChildWnds(HWND hwnd, CCheckFrame *pObj)
-{
+BOOL CALLBACK EnumChildWnds(HWND hwnd, CCheckFrame *pObj) {
   CRect R;
   GetWindowRect(hwnd, &R);
   pObj->m_pDialog->ScreenToClient(&R);
 
-  if (hwnd != pObj->m_pFrame->m_hWnd)
-  {
+  if (hwnd != pObj->m_pFrame->m_hWnd) {
     if (IsRectContainedInRect(R, pObj->m_rFrm))
       pObj->m_adwWndHandles.Add(hwnd);
   }
@@ -23,22 +18,19 @@ BOOL CALLBACK EnumChildWnds(HWND hwnd, CCheckFrame *pObj)
   return TRUE;
 }
 
-
 //////////////////////////////////////
 // Function name	: Set
-// Description	    : Set the connection between the frame and 
+// Description	    : Set the connection between the frame and
 //					  the parent window holding the controls
-// Return type		: void 
+// Return type		: void
 // Argument         : CWnd *pParentWnd - WIndows with frame control
 // Argument         : unsigned int nFrmCtl - ID of frame control
-void CCheckFrame::Set(CWnd *pParentWnd, unsigned int nFrmCtl)
-{
+void CCheckFrame::Set(CWnd *pParentWnd, unsigned int nFrmCtl) {
   m_pDialog = pParentWnd;
 
   // Calculate the size of the rect that should contain the controls
   m_pFrame = m_pDialog->GetDlgItem(nFrmCtl);
-  if (!m_pFrame)
-  {
+  if (!m_pFrame) {
     _m()->msg("Unable to find frame control");
     return;
   }
@@ -56,32 +48,27 @@ void CCheckFrame::Set(CWnd *pParentWnd, unsigned int nFrmCtl)
 //////////////////////////////////////
 // Function name	: CCheckFrame::Enable
 // Description	    : Enable/Disable all the controls within the frame control window
-// Return type		: void 
+// Return type		: void
 // Argument         : BOOL bEnable
-void CCheckFrame::Enable(BOOL bEnable)
-{
-  for (int i=0 ; i<m_adwWndHandles.GetSize() ; i++)
+void CCheckFrame::Enable(BOOL bEnable) {
+  for (int i = 0; i < m_adwWndHandles.GetSize(); i++)
     EnableWindow((HWND)m_adwWndHandles[i], bEnable);
 }
 
-void CCheckFrame::Visible(BOOL bShow,BOOL bDoFrame/*=FALSE*/)
-{
-  for (int i=0 ; i<m_adwWndHandles.GetSize() ; i++)
-  {
-    if(bShow)
-      ShowWindow( (HWND)m_adwWndHandles[i],SW_SHOW);
+void CCheckFrame::Visible(BOOL bShow, BOOL bDoFrame /*=FALSE*/) {
+  for (int i = 0; i < m_adwWndHandles.GetSize(); i++) {
+    if (bShow)
+      ShowWindow((HWND)m_adwWndHandles[i], SW_SHOW);
     else
-      ShowWindow( (HWND)m_adwWndHandles[i],SW_HIDE);
+      ShowWindow((HWND)m_adwWndHandles[i], SW_HIDE);
   }
 
-  if(bDoFrame)
-  {
-    if(bShow)
-      ShowWindow( m_pFrame->m_hWnd,SW_SHOW);
+  if (bDoFrame) {
+    if (bShow)
+      ShowWindow(m_pFrame->m_hWnd, SW_SHOW);
     else
-      ShowWindow( m_pFrame->m_hWnd,SW_HIDE);
+      ShowWindow(m_pFrame->m_hWnd, SW_HIDE);
   }
-
 }
 
 //////////////////////////////////////
@@ -99,13 +86,10 @@ void CCheckFrame::Visible(BOOL bShow,BOOL bDoFrame/*=FALSE*/)
 | |----------|  |
 |---------------|
 */
-BOOL IsRectContainedInRect(CRect &rcChild, CRect &rcMother)
-{	 
+BOOL IsRectContainedInRect(CRect &rcChild, CRect &rcMother) {
 
-  if (rcMother.PtInRect(CPoint(rcChild.left,  rcChild.top)) &&
-    rcMother.PtInRect(CPoint(rcChild.left,  rcChild.bottom)) &&
-    rcMother.PtInRect(CPoint(rcChild.right, rcChild.top)) &&
-    rcMother.PtInRect(CPoint(rcChild.right, rcChild.bottom)))
+  if (rcMother.PtInRect(CPoint(rcChild.left, rcChild.top)) && rcMother.PtInRect(CPoint(rcChild.left, rcChild.bottom)) &&
+      rcMother.PtInRect(CPoint(rcChild.right, rcChild.top)) && rcMother.PtInRect(CPoint(rcChild.right, rcChild.bottom)))
     return TRUE;
 
   return FALSE;

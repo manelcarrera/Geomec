@@ -4,8 +4,7 @@
 class RGInterface;
 class RGProperty;
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
 class CRockMechProcessor;
 
@@ -13,27 +12,23 @@ class CRockMechProcessor;
 
 #include "ITensorGroup.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CBuildTensor
-{
-  public:
+class CBuildTensor {
+public:
   class CBuildTensorImpl;
 
   CBuildTensor();
   ~CBuildTensor();
 
-  bool loadProperty(RGInterface& rgi, CModelBase& modelBase,
-      CRockMechProcessor& rmp, const RGProperty& rgProperty,
-      const ITensorGroup::CComponentComposite::TENSOR_COMPONENT&
-    tensorComponent);
+  bool loadProperty(RGInterface &rgi, CModelBase &modelBase, CRockMechProcessor &rmp, const RGProperty &rgProperty,
+                    const ITensorGroup::CComponentComposite::TENSOR_COMPONENT &tensorComponent);
 
   bool isTensorComplete() const;
 
-  private:
-  CBuildTensor(const CBuildTensor& rhs);
-  CBuildTensor& operator = (const CBuildTensor& rhs);
+private:
+  CBuildTensor(const CBuildTensor &rhs);
+  CBuildTensor &operator=(const CBuildTensor &rhs);
 
 #if 0
   // prevent heap allocation
@@ -43,9 +38,9 @@ class CBuildTensor
   void operator delete (void*);
   void operator delete [] (void*);
 #endif
-  QSharedPointer <CBuildTensorImpl> m_Tensor;
+  QSharedPointer<CBuildTensorImpl> m_Tensor;
 };
 
 } // namespace GeomecRGI
 
-#endif  // _BuildTensor_h_
+#endif // _BuildTensor_h_

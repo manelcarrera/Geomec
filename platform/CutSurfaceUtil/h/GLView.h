@@ -11,44 +11,34 @@
 // CGLView view
 #include "openglview.h"
 
-
 class COpenGLScene;
 
-
-
-class AFX_EXT_CLASS CGLView : public COpenGLView
-{
-
+class AFX_EXT_CLASS CGLView : public COpenGLView {
 
 private:
-
-  COpenGLScene* m_pScene;
-  //QU::UNIT m_Us;
+  COpenGLScene *m_pScene;
+  // QU::UNIT m_Us;
 
 protected:
-  CGLView();           // protected constructor used by dynamic creation
+  CGLView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CGLView)
 
-// Attributes
+  // Attributes
 public:
-
-
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CGLView)
-  protected:
+protected:
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CGLView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
@@ -56,7 +46,7 @@ protected:
   //{{AFX_MSG(CGLView)
   afx_msg void OnSize(unsigned int nType, int cx, int cy);
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

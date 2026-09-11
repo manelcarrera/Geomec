@@ -3,20 +3,18 @@
 
 #include "ParameterLimit.h"
 
-namespace cora
-{
+namespace cora {
 
-class CParameterWell : public CParameterLimit
-{
-  public:
+class CParameterWell : public CParameterLimit {
+public:
   CParameterWell();
   virtual ~CParameterWell();
 
-  private:
-  CParameterWell(const CParameterWell& rhs);
-  CParameterWell& operator = (const CParameterWell& rhs);
+private:
+  CParameterWell(const CParameterWell &rhs);
+  CParameterWell &operator=(const CParameterWell &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ParameterWell_h_
+#endif // _cora_ParameterWell_h_

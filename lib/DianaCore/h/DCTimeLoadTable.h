@@ -9,15 +9,14 @@ class CLoadCase;
 
 // instances of this class must be created on the heap (with new)
 // ownership is transferred to the provided loadcase
-class CTimeLoadTable : public ITimeTable
-{
+class CTimeLoadTable : public ITimeTable {
 protected:
   virtual void ChangeToTableDir() const;
 
 public:
-  CTimeLoadTable(CLoadCase& loadcase);
+  CTimeLoadTable(CLoadCase &loadcase);
 };
 
-}
+} // namespace dia
 
 #endif // _DCTIMELOADTABLE_H_

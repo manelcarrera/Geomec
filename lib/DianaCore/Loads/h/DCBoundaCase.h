@@ -8,8 +8,7 @@ namespace dia {
 class CLoadManager;
 class ILoad;
 
-class CBoundaCase : public ICase
-{
+class CBoundaCase : public ICase {
   friend class CLoadManager;
 
   // only called by (friend) CLoadManager
@@ -19,6 +18,6 @@ protected:
   virtual std::string FilosDirName() const;
 };
 
-}
+} // namespace dia
 
 #endif // _DCBOUNDACASE_H_

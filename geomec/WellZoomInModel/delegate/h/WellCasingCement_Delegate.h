@@ -5,21 +5,19 @@ class CWellCasingCement;
 
 #include "FormationBase_Delegate.h"
 
-class CWellCasingCement_Delegate : public CFormationBase_Delegate
-{
+class CWellCasingCement_Delegate : public CFormationBase_Delegate {
 public:
-  CWellCasingCement_Delegate(CWellCasingCement* wellCasingCement);
+  CWellCasingCement_Delegate(CWellCasingCement *wellCasingCement);
 
   virtual bool Attributes();
 
 private:
-  CWellCasingCement_Delegate(const CWellCasingCement_Delegate& rhs);
-  CWellCasingCement_Delegate& operator = (
-  const CWellCasingCement_Delegate& rhs);
+  CWellCasingCement_Delegate(const CWellCasingCement_Delegate &rhs);
+  CWellCasingCement_Delegate &operator=(const CWellCasingCement_Delegate &rhs);
 
-  CWellCasingCement* m_wellCasingCement;
+  CWellCasingCement *m_wellCasingCement;
 
   REGISTER_DELEGATE(CWellCasingCement, CWellCasingCement_Delegate);
 };
 
-#endif  // _WellCasingCement_Delegate_h_
+#endif // _WellCasingCement_Delegate_h_

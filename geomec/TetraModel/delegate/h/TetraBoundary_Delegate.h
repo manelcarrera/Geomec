@@ -3,17 +3,16 @@
 
 class CTetraBoundary;
 
-#include "BoundaryBase_Delegate.h"
 #include "AttriBoundaryDlg.h"
+#include "BoundaryBase_Delegate.h"
 
-class CTetraBoundary_Delegate : public CBoundaryBase_Delegate
-{
+class CTetraBoundary_Delegate : public CBoundaryBase_Delegate {
 public:
-  CTetraBoundary_Delegate(CTetraBoundary* tetraBoundary);
+  CTetraBoundary_Delegate(CTetraBoundary *tetraBoundary);
 
   virtual bool Attributes();
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
   virtual bool CanModify() const;
 
@@ -24,21 +23,20 @@ public:
   void ExportSurfaces();
 
 private:
-  CTetraBoundary_Delegate(const CTetraBoundary_Delegate& rhs);
-  CTetraBoundary_Delegate& operator = (const CTetraBoundary_Delegate& rhs);
+  CTetraBoundary_Delegate(const CTetraBoundary_Delegate &rhs);
+  CTetraBoundary_Delegate &operator=(const CTetraBoundary_Delegate &rhs);
 
-  CTetraBoundary* m_tetraBoundary;
+  CTetraBoundary *m_tetraBoundary;
 
   REGISTER_DELEGATE(CTetraBoundary, CTetraBoundary_Delegate);
 };
 
-class CAttriTetraBoundaryDlg : public CAttriBoundaryDlg <CTetraBoundary>
-{
+class CAttriTetraBoundaryDlg : public CAttriBoundaryDlg<CTetraBoundary> {
 public:
-  CAttriTetraBoundaryDlg(CTetraBoundary& boundary, CWnd* pParent = 0);
+  CAttriTetraBoundaryDlg(CTetraBoundary &boundary, CWnd *pParent = 0);
 
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 };
 
-#endif  // _TetraBoundary_Delegate_h_
+#endif // _TetraBoundary_Delegate_h_

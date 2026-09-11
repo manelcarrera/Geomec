@@ -7,27 +7,25 @@ class CModelData;
 
 #include "XMLComponents.h"
 
-namespace cora
-{
+namespace cora {
 
-class CXMLModelInfo
-{
-  public:
-  CXMLModelInfo(CModelData& modelData, const char* modelInfoFileName);
+class CXMLModelInfo {
+public:
+  CXMLModelInfo(CModelData &modelData, const char *modelInfoFileName);
 
-  bool operator () () const;
+  bool operator()() const;
 
-  private:
-  CXMLModelInfo(const CXMLModelInfo& rhs);
-  CXMLModelInfo& operator = (CXMLModelInfo rhs);
+private:
+  CXMLModelInfo(const CXMLModelInfo &rhs);
+  CXMLModelInfo &operator=(CXMLModelInfo rhs);
 
   bool createModelInfo() const;
 
-  CModelData& m_modelData;
-  const char* m_modelInfoFileName;
+  CModelData &m_modelData;
+  const char *m_modelInfoFileName;
   CXMLComponents m_components;
 };
 
 } // namespace cora
 
-#endif  // _cora_XMLModelInfo_h_
+#endif // _cora_XMLModelInfo_h_

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __UNDO_OPERATION_H
 #define __UNDO_OPERATION_H
 
@@ -9,15 +9,14 @@
 
 class CDocumentBase;
 
-class MODELFRAME_EXPORT  CUndoOperation
-{
+class MODELFRAME_EXPORT CUndoOperation {
 public:
-  CUndoOperation( const QString& text );
+  CUndoOperation(const QString &text);
   virtual ~CUndoOperation();
 
-  const QString& text() const;
+  const QString &text() const;
 
-  virtual void undo( CDocumentBase& document ) = 0;
+  virtual void undo(CDocumentBase &document) = 0;
 
 private:
   QString m_text;

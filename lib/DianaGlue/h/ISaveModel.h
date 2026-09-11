@@ -2,11 +2,10 @@
 
 class QString;
 
-class ISaveModel
-{
+class ISaveModel {
 public:
-  ISaveModel();//{};
-  virtual ~ISaveModel();//{}
+  ISaveModel();          //{};
+  virtual ~ISaveModel(); //{}
 
-  virtual bool saveModel(const QString& fileName, bool bSwitch) = 0;
+  virtual bool saveModel(const QString &fileName, bool bSwitch) = 0;
 };

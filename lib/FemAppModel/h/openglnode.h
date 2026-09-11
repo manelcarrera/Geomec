@@ -10,37 +10,35 @@
 #endif // _MSC_VER > 1000
 
 #include "IOpenGLFrame.h"
+#include "MouseListener.h"
 #include "OpenGLNodeBase.h"
 #include "ZeroDrawDef.h"
-#include "MouseListener.h"
 
-class COpenGLNode : public COpenGLNodeBase
-{
+class COpenGLNode : public COpenGLNodeBase {
 public:
-  virtual bool Value() const;//wjrx mantis 2568
-  class CDrawDef
-  {
-    const COpenGLNode& m_node;
+  virtual bool Value() const; // wjrx mantis 2568
+  class CDrawDef {
+    const COpenGLNode &m_node;
     const CZeroDrawDef m_zeroDrawDef;
 
   public:
     typedef QRgb TColor;
 
-    typedef std::pair <bool, bool> DrawDecisionBool;
-    typedef std::pair <bool, int> DrawDecisionInt;
-    typedef std::pair <bool, long> DrawDecisionLong;
-    typedef std::pair <bool, float> DrawDecisionFloat;
-    typedef std::pair <bool, std::vector <TColor> > DrawDecisionVector;
+    typedef std::pair<bool, bool> DrawDecisionBool;
+    typedef std::pair<bool, int> DrawDecisionInt;
+    typedef std::pair<bool, long> DrawDecisionLong;
+    typedef std::pair<bool, float> DrawDecisionFloat;
+    typedef std::pair<bool, std::vector<TColor>> DrawDecisionVector;
 
-    typedef std::pair <bool, GLint> DrawDecisionGLint;
-    typedef std::pair <bool, GLuint> DrawDecisionGLuint;
-    typedef std::pair <bool, GLenum> DrawDecisionGLenum;
-    typedef std::pair <bool, TColor> DrawDecisionColor;
-    typedef std::pair <bool, GLushort> DrawDecisionGLushort;
+    typedef std::pair<bool, GLint> DrawDecisionGLint;
+    typedef std::pair<bool, GLuint> DrawDecisionGLuint;
+    typedef std::pair<bool, GLenum> DrawDecisionGLenum;
+    typedef std::pair<bool, TColor> DrawDecisionColor;
+    typedef std::pair<bool, GLushort> DrawDecisionGLushort;
 
-    CDrawDef(const COpenGLNode& node);
+    CDrawDef(const COpenGLNode &node);
     virtual DrawDecisionVector Color(const geo::IObject &object) const;
-    const COpenGLNode& OpenGLNode() const;
+    const COpenGLNode &OpenGLNode() const;
     virtual DrawDecisionBool Visible() const;
     virtual DrawDecisionBool PolyFillFront() const;
     virtual DrawDecisionBool PolyFillBack() const;
@@ -50,9 +48,9 @@ public:
     virtual DrawDecisionBool PolyDrawFront() const;
     virtual DrawDecisionBool PolyDrawBack() const;
     virtual DrawDecisionInt DepthFunc() const;
-    //wjrx mantis 2568 virtual bool Value() const;
+    // wjrx mantis 2568 virtual bool Value() const;
     virtual DrawDecisionBool CurvedDraw() const;
-    virtual DrawDecisionBool IsSelectable(const geo::IObject &object) const;		
+    virtual DrawDecisionBool IsSelectable(const geo::IObject &object) const;
 
     virtual DrawDecisionColor TextColor() const;
     virtual DrawDecisionGLint LineStippleFactor() const;
@@ -74,27 +72,27 @@ public:
     virtual DrawDecisionGLenum StencilOpZPass() const;
   };
 
-  typedef std::vector<const geo::IObject*> TDisplayVec;
+  typedef std::vector<const geo::IObject *> TDisplayVec;
 
   // Construction ...
-  COpenGLNode(CFemAppModel& model);
-  COpenGLNode(const QString &strName, CFemAppModel& model);
-  COpenGLNode(const unsigned int uName, CFemAppModel& model);
+  COpenGLNode(CFemAppModel &model);
+  COpenGLNode(const QString &strName, CFemAppModel &model);
+  COpenGLNode(const unsigned int uName, CFemAppModel &model);
   COpenGLNode(const COpenGLNode &rhs);
 
   // Rendering and default color
   virtual int DisplayListSize() const = 0;
-  virtual const geo::IObject& DisplayList(int nIndex) const = 0;		// Always ...
+  virtual const geo::IObject &DisplayList(int nIndex) const = 0; // Always ...
   virtual TColor Color() const = 0;
 
   virtual geo::CPoint Min() const;
   virtual geo::CPoint Max() const;
 
   virtual std::vector<CDrawDef::TColor> OnColor(const geo::IObject &object) const;
-  virtual CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
+  virtual CDrawDef *OnCreateDrawDef(const geo::IObject &object) const;
 
   // Equal and assignment
-  COpenGLNode& operator=(const COpenGLNode &rhs);
+  COpenGLNode &operator=(const COpenGLNode &rhs);
   bool operator==(const COpenGLNode &rhs) const;
 
   typedef CMouseListener::TFrame TFrame;
@@ -106,8 +104,8 @@ public:
   virtual int SelectionPriority() const;
   virtual bool BlocksDrawing() const { return true; }
 
-  virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitOpenGLNode(*this); }
-  virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitOpenGLNode(*this); }
+  virtual bool Accept(graphnode::IConstVisitor &visitor) const { return visitor.VisitOpenGLNode(*this); }
+  virtual bool Accept(graphnode::IVisitor &visitor) { return visitor.VisitOpenGLNode(*this); }
 };
 
 typedef CSingleCommandTemplate<COpenGLNode> TOpenGLNodeCommand;

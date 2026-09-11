@@ -9,38 +9,35 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CWellLogDlg dialog
-//class well::CWellLog;
-class AFX_EXT_CLASS CWellLogDlg : public CDialog
-{
+// class well::CWellLog;
+class AFX_EXT_CLASS CWellLogDlg : public CDialog {
   const well::CWellLog *m_pWellLog;
 
-// Construction
+  // Construction
 public:
-  CWellLogDlg(const well::CWellLog *pLog, CWnd* pParent = NULL);   // standard constructor
+  CWellLogDlg(const well::CWellLog *pLog, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CWellLogDlg)
   enum { IDD = UT_IDD_WELLOG_DLG };
-  CListCtrl	m_WellLogCtrl;
-  CString	m_SndCut;
-  CString	m_AvgComp;
+  CListCtrl m_WellLogCtrl;
+  CString m_SndCut;
+  CString m_AvgComp;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellLogDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CWellLogDlg)
-    virtual BOOL OnInitDialog();
-    // NOTE: the ClassWizard will add member functions here
+  virtual BOOL OnInitDialog();
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

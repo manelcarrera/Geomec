@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // IBodyFace.h: interface for the IBodyFace class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -18,16 +18,15 @@ namespace geo {
 
 class IBody;
 
-class GEOMETRY_EXPORT  IBodyFace : public IFace  
-{
+class GEOMETRY_EXPORT IBodyFace : public IFace {
   std::vector<int> m_vcPoint;
-  const IBody& m_body;
+  const IBody &m_body;
   const char *m_Name;
 
 public:
-  IBodyFace(const IBody& body, const std::vector<int>& vcPoint, const char *name);
-  IBodyFace(const IBody& body, int p0, int p1, int p2, const char *name);
-  IBodyFace(const IBody& body, int p0, int p1, int p2, int p3, const char *name);
+  IBodyFace(const IBody &body, const std::vector<int> &vcPoint, const char *name);
+  IBodyFace(const IBody &body, int p0, int p1, int p2, const char *name);
+  IBodyFace(const IBody &body, int p0, int p1, int p2, int p3, const char *name);
 
   virtual const IPoint &Point(int nIndex) const;
   virtual void Point(int nIndex, const IPoint &pt);
@@ -42,6 +41,6 @@ public:
   const char *Name() const;
 };
 
-}
+} // namespace geo
 
 #endif // !defined(AFX_IBODYFACE_H__69B4D902_A58D_42DC_AA05_95A24F873C16__INCLUDED_)

@@ -2,6 +2,4 @@
 
 #include "BusinessAction.h"
 
-CWorldAction::~CWorldAction()
-{
-}
+CWorldAction::~CWorldAction() {}

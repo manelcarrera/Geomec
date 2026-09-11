@@ -5,33 +5,29 @@ class CSurfaceBase;
 
 #include "ParameterLimit.h"
 
-namespace cora
-{
+namespace cora {
 
-class CParameterNonMeshedSurface : public CParameterLimit
-{
-  public:
-  CParameterNonMeshedSurface(const QString& name, const geo::CValue& minimum,
-      const geo::CValue& maximum, double mean, unsigned int valueTypeID,
-      int depletionStage, CSurfaceBase* surfaceBase);
+class CParameterNonMeshedSurface : public CParameterLimit {
+public:
+  CParameterNonMeshedSurface(const QString &name, const geo::CValue &minimum, const geo::CValue &maximum, double mean,
+                             unsigned int valueTypeID, int depletionStage, CSurfaceBase *surfaceBase);
   virtual ~CParameterNonMeshedSurface();
 
   virtual int depletionStage() const;
   virtual unsigned int valueTypeID() const;
-  virtual const QString& name() const;
+  virtual const QString &name() const;
 
-  virtual CGraphNode* object() const;
+  virtual CGraphNode *object() const;
 
   virtual double min() const;
   virtual double max() const;
   virtual double mean() const;
 
-  virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream &operator()(std::ostream &os) const;
 
-  private:
-  CParameterNonMeshedSurface(const CParameterNonMeshedSurface& rhs);
-  CParameterNonMeshedSurface& operator = (
-      const CParameterNonMeshedSurface& rhs);
+private:
+  CParameterNonMeshedSurface(const CParameterNonMeshedSurface &rhs);
+  CParameterNonMeshedSurface &operator=(const CParameterNonMeshedSurface &rhs);
 
   QString m_name;
   geo::CValue m_minimum;
@@ -39,9 +35,9 @@ class CParameterNonMeshedSurface : public CParameterLimit
   double m_mean;
   unsigned int m_valueTypeID;
   int m_depletionStage;
-  CSurfaceBase* m_surfaceBase;
+  CSurfaceBase *m_surfaceBase;
 };
 
 } // namespace cora
 
-#endif  // _cora_ParameterNonMeshedSurface_h_
+#endif // _cora_ParameterNonMeshedSurface_h_

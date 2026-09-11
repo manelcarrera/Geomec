@@ -14,91 +14,89 @@
 
 class CModelBase;
 
-class CMaterialEntry : public CGraphEntryTemp<IMaterial> 
-{
+class CMaterialEntry : public CGraphEntryTemp<IMaterial> {
 private:
   typedef CStorageNode::TSTREAM TSTREAM;
   typedef CStorageNode::TPROGRESS TPROGRESS;
 
 public:
-  CMaterialEntry(int nEntryId, unsigned int uIconId, const QString& strName, CModelBase& model);
-  CMaterialEntry(int nEntryId, unsigned int uIconId, unsigned int uName, CModelBase& model);
+  CMaterialEntry(int nEntryId, unsigned int uIconId, const QString &strName, CModelBase &model);
+  CMaterialEntry(int nEntryId, unsigned int uIconId, unsigned int uName, CModelBase &model);
   virtual ~CMaterialEntry();
-//	BOOL Append(CMatLib &source);
-//	BOOL Append(CMatLib &source, const QString &sMat);
-//	BOOL Append(CMaterialEntry& source);
-//	const CMatLib& Library() const;
-//	CMatLib& Library();
-//	QString CurrentWorkingDir() const;
-//	IMaterial *Material(const QString &sName);
-//	const IMaterial *Material(const QString &sName) const;
-//	virtual void OnNewNeighbour(const CGraphNode &node);
-//	virtual void OnNeighbourDeleted(const CGraphNode &node);
-  IMaterial& CreateMaterial(int iMaterialModel, const QString& strName);
-  void DeleteMaterial(IMaterial& material);
+  //	BOOL Append(CMatLib &source);
+  //	BOOL Append(CMatLib &source, const QString &sMat);
+  //	BOOL Append(CMaterialEntry& source);
+  //	const CMatLib& Library() const;
+  //	CMatLib& Library();
+  //	QString CurrentWorkingDir() const;
+  //	IMaterial *Material(const QString &sName);
+  //	const IMaterial *Material(const QString &sName) const;
+  //	virtual void OnNewNeighbour(const CGraphNode &node);
+  //	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  IMaterial &CreateMaterial(int iMaterialModel, const QString &strName);
+  void DeleteMaterial(IMaterial &material);
 
   // this function may (will) reshuffle the materials list, so don't call from a loop (or break the loop)
-  IMaterial& ConvertMaterial(IMaterial& mat, int iNewMaterialModel);
+  IMaterial &ConvertMaterial(IMaterial &mat, int iNewMaterialModel);
 
-  void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  void LoadStream(CFemAppModel &model, TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  void SaveStream(TSTREAM &stream, TPROGRESS &progress);
   long SavedItems() const;
 
   int MaterialSize() const;
-  const IMaterial& Material(int i) const;
-  IMaterial& Material(int i);
+  const IMaterial &Material(int i) const;
+  IMaterial &Material(int i);
 
-  void ExportToMatLib(const CLibraryMaterial& mat);
-  void ImportFromMatLib(const CLibraryMaterial& mat);
-  void SetExternalMatLibFileName(const QString& strFileName, bool bImport);
-  const QString& GetExternalMatLibFileName() const;
+  void ExportToMatLib(const CLibraryMaterial &mat);
+  void ImportFromMatLib(const CLibraryMaterial &mat);
+  void SetExternalMatLibFileName(const QString &strFileName, bool bImport);
+  const QString &GetExternalMatLibFileName() const;
   bool HasValidMatLib() const;
   void UpdateExternalMatLib();
 
-//	void SetFilterRockMaterial(CMatLib& library);
+  //	void SetFilterRockMaterial(CMatLib& library);
 
   bool ReadOnly() const;
 
-  ml::CMaterialLibrary& MaterialLibrary();
+  ml::CMaterialLibrary &MaterialLibrary();
   int MaterialModelFilter() const;
-  ml::CMaterialLibrary& ExternalLibrary();
+  ml::CMaterialLibrary &ExternalLibrary();
 
-  void OnLibraryMaterialSwitched(CLibraryMaterial& libmat, IMaterial& mat);
+  void OnLibraryMaterialSwitched(CLibraryMaterial &libmat, IMaterial &mat);
 
   ACCEPT_GEOMECMODELVISITORS(VisitMaterialEntry);
 
 private:
-  class CMaterialLibraryObserver : public ml::CMaterialLibrary::IObserver
-  {
+  class CMaterialLibraryObserver : public ml::CMaterialLibrary::IObserver {
   public:
-  CMaterialLibraryObserver(CMaterialEntry& entry);
-  virtual ~CMaterialLibraryObserver();
-  // called just after the material was added
-  virtual void OnMaterialAdded(ml::CMaterial& mat);
-  // called just before the material is deleted
-  virtual void OnDeleteMaterial(ml::CMaterial& mat);
+    CMaterialLibraryObserver(CMaterialEntry &entry);
+    virtual ~CMaterialLibraryObserver();
+    // called just after the material was added
+    virtual void OnMaterialAdded(ml::CMaterial &mat);
+    // called just before the material is deleted
+    virtual void OnDeleteMaterial(ml::CMaterial &mat);
 
   private:
-  CMaterialEntry& m_entry;
+    CMaterialEntry &m_entry;
   };
 
   friend class CMaterialLibraryObserver;
 
 private:
-  void OnLibraryMaterialAdded(CLibraryMaterial& mat);
-  void OnDeleteLibraryMaterial(CLibraryMaterial& mat);
-  IMaterial* CorrespondingMaterial(CLibraryMaterial& libmat);
+  void OnLibraryMaterialAdded(CLibraryMaterial &mat);
+  void OnDeleteLibraryMaterial(CLibraryMaterial &mat);
+  IMaterial *CorrespondingMaterial(CLibraryMaterial &libmat);
   void ReadExternalMatLib();
 
 private:
-  typedef std::map<CLibraryMaterial*, IMaterial*> TMaterialMap;
+  typedef std::map<CLibraryMaterial *, IMaterial *> TMaterialMap;
   TMaterialMap m_mpMaterial;
 
-  ml::CMaterialLibrary* m_pMaterialLibrary;
-  CMaterialLibraryObserver* m_pLibraryObserver;
+  ml::CMaterialLibrary *m_pMaterialLibrary;
+  CMaterialLibraryObserver *m_pLibraryObserver;
 
   // the material library for import and export
-  ml::CMaterialLibrary* m_pExternalLibrary;
+  ml::CMaterialLibrary *m_pExternalLibrary;
   QString m_strExternalLibraryFileName;
 };
 

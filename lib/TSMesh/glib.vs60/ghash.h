@@ -21,7 +21,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_HASH_H__
@@ -31,50 +31,35 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GHashTable	GHashTable;
+typedef struct _GHashTable GHashTable;
 
-typedef gboolean	(*GHRFunc)		(gpointer	key,
-             gpointer	value,
-             gpointer	user_data);
+typedef gboolean (*GHRFunc)(gpointer key, gpointer value, gpointer user_data);
 
 /* Hash tables
  */
-GHashTable* g_hash_table_new		(GHashFunc	 hash_func,
-           GEqualFunc	 key_equal_func);
-void	    g_hash_table_destroy	(GHashTable	*hash_table);
-void	    g_hash_table_insert		(GHashTable	*hash_table,
-           gpointer	 key,
-           gpointer	 value);
-gboolean    g_hash_table_remove		(GHashTable	*hash_table,
-           gconstpointer	 key);
-gpointer    g_hash_table_lookup		(GHashTable	*hash_table,
-           gconstpointer	 key);
-gboolean    g_hash_table_lookup_extended(GHashTable	*hash_table,
-           gconstpointer	 lookup_key,
-           gpointer	*orig_key,
-           gpointer	*value);
-void	    g_hash_table_foreach	(GHashTable	*hash_table,
-           GHFunc		 func,
-           gpointer	 user_data);
-guint	    g_hash_table_foreach_remove	(GHashTable	*hash_table,
-           GHRFunc	 func,
-           gpointer	 user_data);
-guint	    g_hash_table_size		(GHashTable	*hash_table);
+GHashTable *g_hash_table_new(GHashFunc hash_func, GEqualFunc key_equal_func);
+void g_hash_table_destroy(GHashTable *hash_table);
+void g_hash_table_insert(GHashTable *hash_table, gpointer key, gpointer value);
+gboolean g_hash_table_remove(GHashTable *hash_table, gconstpointer key);
+gpointer g_hash_table_lookup(GHashTable *hash_table, gconstpointer key);
+gboolean g_hash_table_lookup_extended(GHashTable *hash_table, gconstpointer lookup_key, gpointer *orig_key,
+                                      gpointer *value);
+void g_hash_table_foreach(GHashTable *hash_table, GHFunc func, gpointer user_data);
+guint g_hash_table_foreach_remove(GHashTable *hash_table, GHRFunc func, gpointer user_data);
+guint g_hash_table_size(GHashTable *hash_table);
 
 /* The following two functions are deprecated and will be removed in
  * the next major release. They do no good. */
-void	    g_hash_table_freeze		(GHashTable	*hash_table);
-void	    g_hash_table_thaw		(GHashTable	*hash_table);
+void g_hash_table_freeze(GHashTable *hash_table);
+void g_hash_table_thaw(GHashTable *hash_table);
 
 /* Hash Functions
  */
-gboolean g_str_equal (gconstpointer   v,
-                      gconstpointer   v2);
-guint    g_str_hash  (gconstpointer   v);
+gboolean g_str_equal(gconstpointer v, gconstpointer v2);
+guint g_str_hash(gconstpointer v);
 
-gboolean g_int_equal (gconstpointer   v,
-                      gconstpointer   v2) G_GNUC_CONST;
-guint    g_int_hash  (gconstpointer   v) G_GNUC_CONST;
+gboolean g_int_equal(gconstpointer v, gconstpointer v2) G_GNUC_CONST;
+guint g_int_hash(gconstpointer v) G_GNUC_CONST;
 
 /* This "hash" function will just return the key's adress as an
  * unsigned integer. Useful for hashing on plain adresses or
@@ -82,11 +67,9 @@ guint    g_int_hash  (gconstpointer   v) G_GNUC_CONST;
  * passing NULL into g_hash_table_new() as GHashFunc has the
  * same effect as passing g_direct_hash().
  */
-guint    g_direct_hash  (gconstpointer v) G_GNUC_CONST;
-gboolean g_direct_equal (gconstpointer v,
-                         gconstpointer v2) G_GNUC_CONST;
+guint g_direct_hash(gconstpointer v) G_GNUC_CONST;
+gboolean g_direct_equal(gconstpointer v, gconstpointer v2) G_GNUC_CONST;
 
 G_END_DECLS
 
 #endif /* __G_HASH_H__ */
-

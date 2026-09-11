@@ -35,12 +35,12 @@ Software Product or documentation licensed under this agreement.
 class RescueSurfaceCell;
 class RescueContext;
 
-class cSetRescueSurfaceCell
-{
+class cSetRescueSurfaceCell {
 protected:
   RescueSurfaceCell **objects;
   RESCUEINT64 allocated;
   RESCUEINT64 count;
+
 public:
   cSetRescueSurfaceCell();
   ~cSetRescueSurfaceCell();
@@ -52,13 +52,14 @@ public:
   RescueSurfaceCell *ObjectIdentifiedBy(RESCUEINT64 identifier);
   RESCUEINT64 Count64(void);
   RESCUEINT32 Count(void);
-  RESCUEBOOL operator-=(RESCUEINT32 ndx) {return (*this) -=((RESCUEINT64) ndx);}
-  RescueSurfaceCell *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
+  RESCUEBOOL operator-=(RESCUEINT32 ndx) { return (*this) -= ((RESCUEINT64)ndx); }
+  RescueSurfaceCell *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
   void EmptySelf(void);
   void Archive(RescueContext *context, FILE *archiveFile);
   void UnArchive(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parent);
+
 private:
   void PrepareModelDelete();
 
@@ -66,6 +67,3 @@ private:
 };
 
 #endif
-
-
-

@@ -16,49 +16,43 @@
 class CNewWellPath;
 class CModelBase;
 
-class CFistExportDlg : public CDialog
-{
-  const CNewWellPath *m_pNewWellPath; //wjrx mantis 3564
-    bool m_bNewWellPaths; // wjrx mantis 3564; used when m_pWellPath and m_bNewWellPath are 0
+class CFistExportDlg : public CDialog {
+  const CNewWellPath *m_pNewWellPath; // wjrx mantis 3564
+  bool m_bNewWellPaths;               // wjrx mantis 3564; used when m_pWellPath and m_bNewWellPath are 0
   const CModelBase *m_pModel;
-  std::list<const QDate *> m_NewDateList; //wjrx mantis 3564
-  std::list<const CNewWellPath*> m_NewWellList; //wjrx mantis 3564
+  std::list<const QDate *> m_NewDateList;        // wjrx mantis 3564
+  std::list<const CNewWellPath *> m_NewWellList; // wjrx mantis 3564
 
   void UpdateDateList();
   void UpdatePointList();
 
   void AssignDatesToWellPath() const; // wjrx mantis 3564
 
-
-
-// Construction
+  // Construction
 public:
-  CFistExportDlg(CWnd* pParent = NULL);   // standard constructor
-  CFistExportDlg(const CNewWellPath *pWellPath,const CModelBase *pModel,CWnd* pParent=NULL);
-  CFistExportDlg(bool bNewWellPaths,const CModelBase *pModel,CWnd* pParent=NULL);
+  CFistExportDlg(CWnd *pParent = NULL); // standard constructor
+  CFistExportDlg(const CNewWellPath *pWellPath, const CModelBase *pModel, CWnd *pParent = NULL);
+  CFistExportDlg(bool bNewWellPaths, const CModelBase *pModel, CWnd *pParent = NULL);
 
-
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CFistExportDlg)
   enum { IDD = IDD_FIST_EXPORT_DLG };
-  CButton	m_BtnRmvDate;
-  CButton	m_BtnExport;
-  CButton	m_BtnAddDate;
-  CListCtrl	m_ListDateCtrl;
-  CListCtrl	m_ListPtCtrl;
+  CButton m_BtnRmvDate;
+  CButton m_BtnExport;
+  CButton m_BtnAddDate;
+  CListCtrl m_ListDateCtrl;
+  CListCtrl m_ListPtCtrl;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CFistExportDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CFistExportDlg)
   virtual BOOL OnInitDialog();
@@ -66,7 +60,7 @@ protected:
   afx_msg void OnBtnIncStages();
   afx_msg void OnBtnRmvDate();
   virtual void OnCancel();
-  afx_msg void OnItemchangedDateList(NMHDR* pNMHDR, LRESULT* pResult);
+  afx_msg void OnItemchangedDateList(NMHDR *pNMHDR, LRESULT *pResult);
   afx_msg void OnExport();
   afx_msg void OnClose();
   //}}AFX_MSG

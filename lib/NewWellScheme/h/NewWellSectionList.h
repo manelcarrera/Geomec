@@ -6,19 +6,17 @@
 class INewWellSection;
 class CNewWellPoint;
 
-class CNewWellSectionList
-{
-  public:
-  CNewWellSectionList(const std::list <INewWellSection*>& newWellSectionList);
+class CNewWellSectionList {
+public:
+  CNewWellSectionList(const std::list<INewWellSection *> &newWellSectionList);
 
-  std::list <INewWellSection*> getSections(const CNewWellPoint& newWellPoint,
-      bool includeEdge = true);
+  std::list<INewWellSection *> getSections(const CNewWellPoint &newWellPoint, bool includeEdge = true);
 
-  private:
-  CNewWellSectionList(const CNewWellSectionList& rhs);
-  CNewWellSectionList& operator = (const CNewWellSectionList& rhs);
+private:
+  CNewWellSectionList(const CNewWellSectionList &rhs);
+  CNewWellSectionList &operator=(const CNewWellSectionList &rhs);
 
-  const std::list <INewWellSection*>& m_newWellSectionList;
+  const std::list<INewWellSection *> &m_newWellSectionList;
 };
 
-#endif  // _NewWellSectionList_h_
+#endif // _NewWellSectionList_h_

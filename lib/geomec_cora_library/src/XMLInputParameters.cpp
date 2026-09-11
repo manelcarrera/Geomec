@@ -1,17 +1,12 @@
 #include "XMLInputParameters.h"
 #include "ModelData.h"
 
-namespace cora
-{
+namespace cora {
 
-CXMLInputParameters::CXMLInputParameters(CModelData& modelData,
-  const TObject& object)
-: m_inputParameters(createInputParameters(modelData, object))
-{
-}
+CXMLInputParameters::CXMLInputParameters(CModelData &modelData, const TObject &object)
+    : m_inputParameters(createInputParameters(modelData, object)) {}
 
-namespace
-{
+namespace {
 
 const QString INPUT_PARAMETERS_OPEN = "<InputParameters>";
 const QString INPUT_PARAMETERS_CLOSE = "</InputParameters>";
@@ -19,19 +14,15 @@ const QString INPUT_PARAMETERS_EMPTY = "<InputParameters/>";
 
 } // anonymous namespace
 
-std::ostream& CXMLInputParameters::operator () (std::ostream& stream) const
-{
-  if (m_inputParameters.empty())
-  {
-  stream << INPUT_PARAMETERS_EMPTY.toStdString() << std::endl;
-  }
-  else
-  {
-  stream << INPUT_PARAMETERS_OPEN.toStdString() << std::endl;
+std::ostream &CXMLInputParameters::operator()(std::ostream &stream) const {
+  if (m_inputParameters.empty()) {
+    stream << INPUT_PARAMETERS_EMPTY.toStdString() << std::endl;
+  } else {
+    stream << INPUT_PARAMETERS_OPEN.toStdString() << std::endl;
 
-  stream << m_inputParameters;
+    stream << m_inputParameters;
 
-  stream << INPUT_PARAMETERS_CLOSE.toStdString() << std::endl;
+    stream << INPUT_PARAMETERS_CLOSE.toStdString() << std::endl;
   }
 
   return stream;
@@ -41,17 +32,12 @@ std::ostream& CXMLInputParameters::operator () (std::ostream& stream) const
 
 // static
 
-TXMLInputParameters CXMLInputParameters::createInputParameters(
-  CModelData& /*modelData*/, TObject object)
-{
+TXMLInputParameters CXMLInputParameters::createInputParameters(CModelData & /*modelData*/, TObject object) {
   TXMLInputParameters inputParameters;
   const TParameters parameters = object->getParameters();
 
-  for (TParameters::const_iterator parameter = parameters.begin();
-  parameter != parameters.end(); ++parameter)
-  {
-  inputParameters.push_back(TXMLInputParameter(
-      new CXMLInputParameter(*parameter)));
+  for (TParameters::const_iterator parameter = parameters.begin(); parameter != parameters.end(); ++parameter) {
+    inputParameters.push_back(TXMLInputParameter(new CXMLInputParameter(*parameter)));
   }
 
   return inputParameters;
@@ -61,8 +47,4 @@ TXMLInputParameters CXMLInputParameters::createInputParameters(
 
 // global
 
-std::ostream& operator << (std::ostream& stream,
-  const cora::CXMLInputParameters& rhs)
-{
-  return rhs(stream);
-}
+std::ostream &operator<<(std::ostream &stream, const cora::CXMLInputParameters &rhs) { return rhs(stream); }

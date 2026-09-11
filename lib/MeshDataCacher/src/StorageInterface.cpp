@@ -1,9 +1,9 @@
 #include "StorageInterface.h"
 
-#include <cstring>
 #include <cassert>
-#include <sys/types.h>
+#include <cstring>
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #ifdef _WIN32
 #include <io.h>
@@ -16,54 +16,43 @@
 
 #include <algorithm>
 
+namespace mdc {
 
-namespace mdc
-{
+IStorageInterface::IStorageInterface() {}
 
-IStorageInterface::IStorageInterface()
-{
-}
-
-IStorageInterface::~IStorageInterface()
-{
-}
-
-
-
-
-
+IStorageInterface::~IStorageInterface() {}
 
 #ifdef WIN32
 #include <io.h>
-#endif  // WIN32
+#endif // WIN32
 
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <limits>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #ifndef _S_IFDIR
 #define _S_IFDIR S_IFDIR
-#endif  // _S_IFDIR
+#endif // _S_IFDIR
 
 #ifndef _O_RDONLY
 #define _O_RDONLY O_RDONLY
-#endif  // _O_RDONLY
+#endif // _O_RDONLY
 
 #ifndef _O_BINARY
 #define _O_BINARY O_BINARY
-#endif  // _O_BINARY
+#endif // _O_BINARY
 
 #ifndef _O_WRONLY
 #define _O_WRONLY O_WRONLY
-#endif  // _O_WRONLY
+#endif // _O_WRONLY
 
 #ifndef _O_CREAT
 #define _O_CREAT O_CREAT
-#endif  // _O_CREAT
+#endif // _O_CREAT
 
 #ifndef _S_IWRITE
 #define _S_IWRITE S_IWRITE
-#endif  // _S_IWRITE
+#endif // _S_IWRITE
 
 #ifndef _S_IREAD
 #define _S_IREAD S_IREAD
@@ -71,70 +60,56 @@ IStorageInterface::~IStorageInterface()
 
 #ifndef WIN32
 #define _snprintf snprintf
-#endif  // WIN32
-
+#endif // WIN32
 
 CStorageInterfaceDefault::CStorageInterfaceDefault(const char *directory)
-  : IStorageInterface()
-  , m_dir(0)
-  , m_dir_exists(false)
-{
+    : IStorageInterface(), m_dir(0), m_dir_exists(false) {
   if (directory)
 #ifdef _WIN32
-  m_dir = _strdup(directory);
+    m_dir = _strdup(directory);
 #else
-  m_dir = strdup(directory);
+    m_dir = strdup(directory);
 #endif
 
   m_dir_exists = DirExists();
 }
 
-CStorageInterfaceDefault::~CStorageInterfaceDefault()
-{
-  free(m_dir);
-}
+CStorageInterfaceDefault::~CStorageInterfaceDefault() { free(m_dir); }
 
-const char *CStorageInterfaceDefault::Directory() const
-{
-  return m_dir;
-}
+const char *CStorageInterfaceDefault::Directory() const { return m_dir; }
 
-void CStorageInterfaceDefault::Directory(const char *directory)
-{
-  if (m_dir)
-  {
-  assert(!directory || strcmp(m_dir, directory) == 0);
-  free(m_dir);
-  m_dir = 0;
+void CStorageInterfaceDefault::Directory(const char *directory) {
+  if (m_dir) {
+    assert(!directory || strcmp(m_dir, directory) == 0);
+    free(m_dir);
+    m_dir = 0;
   }
 
   if (directory)
 #ifdef _WIN32
-  m_dir = _strdup(directory);
+    m_dir = _strdup(directory);
 #else
-  m_dir = strdup(directory);
+    m_dir = strdup(directory);
 #endif
 
   m_dir_exists = DirExists();
 }
 
-
 // Tested on the laptop, different sizes could perform better on different computers.
 // Timings laptop were about 10ms for 50mb write and half that for read; unbuffered around 500ms write, 20ms read
-#define READ_BUF_SIZE  0x80000
+#define READ_BUF_SIZE 0x80000
 #define WRITE_BUF_SIZE 0x40000
 
-bool CStorageInterfaceDefault::ReadBlock(CDataCell& cell)
-{
+bool CStorageInterfaceDefault::ReadBlock(CDataCell &cell) {
   char *fname = FileNameExists(cell.m_nColumn);
 
   if (!fname)
-  return true;
+    return true;
 
   int fh = open(fname, _O_RDONLY | _O_BINARY);
   DiFree(fname, "CStorageInterfaceDefault::ReadBlock");
   if (fh == -1)
-  return true;
+    return true;
 
   cell.InitData();
 
@@ -145,12 +120,11 @@ bool CStorageInterfaceDefault::ReadBlock(CDataCell& cell)
   nBytesRead += read(fh, &cell.m_checkSum, sizeof(CChecksum));
 
 #ifdef READ_BUF_SIZE
-  for (int i = 0; i < nBytesToRead; i += READ_BUF_SIZE)
-  {
-  int nToRead = ::std::min(nBytesToRead - i, READ_BUF_SIZE);
-  int nRead = read(fh, (uchar *)cell.m_pData + i, nToRead);
+  for (int i = 0; i < nBytesToRead; i += READ_BUF_SIZE) {
+    int nToRead = ::std::min(nBytesToRead - i, READ_BUF_SIZE);
+    int nRead = read(fh, (uchar *)cell.m_pData + i, nToRead);
 
-  nBytesRead += nRead;
+    nBytesRead += nRead;
   }
 #else
   nBytesRead += read(fh, cell.m_pData, nBytesToRead);
@@ -163,18 +137,19 @@ bool CStorageInterfaceDefault::ReadBlock(CDataCell& cell)
   return nBytesToRead + sizeof(CChecksum) == nBytesRead && cell.ChecksumOK();
 }
 
-bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
-{
-  if (!cell.m_pData) return true;
+bool CStorageInterfaceDefault::WriteBlock(CDataCell &cell) {
+  if (!cell.m_pData)
+    return true;
 
   char *fname = FileName(cell.m_nColumn);
 
   if (!fname)
-  return true;
+    return true;
 
   int fh = open(fname, _O_WRONLY | _O_CREAT | _O_BINARY, _S_IWRITE | _S_IREAD);
   DiFree(fname, "CDataCell::WriteData");
-  if (fh == -1) return false;
+  if (fh == -1)
+    return false;
 
   int nBytesToWrite = cell.m_cacher.Size() * sizeof(double);
 
@@ -186,12 +161,11 @@ bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
 
 #ifdef WRITE_BUF_SIZE
 
-  for (int i = 0; i < nBytesToWrite; i += WRITE_BUF_SIZE)
-  {
-  int nToWrite = ::std::min(nBytesToWrite - i, WRITE_BUF_SIZE);
-  int nWritten = write(fh, (uchar *)cell.m_pData + i, nToWrite);
+  for (int i = 0; i < nBytesToWrite; i += WRITE_BUF_SIZE) {
+    int nToWrite = ::std::min(nBytesToWrite - i, WRITE_BUF_SIZE);
+    int nWritten = write(fh, (uchar *)cell.m_pData + i, nToWrite);
 
-  nBytesWritten += nWritten;
+    nBytesWritten += nWritten;
   }
 #else
   nBytesWritten += write(fh, cell.m_pData, nBytesToWrite);
@@ -201,35 +175,31 @@ bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
 
   if (nBytesToWrite + sizeof(CChecksum) == nBytesWritten) // if we failed to write, this cell remains dirty
   {
-  cell.m_bDirty = false;
-  return true;
-  }
-  else
-  {
-  remove(fname);
-  return false;
+    cell.m_bDirty = false;
+    return true;
+  } else {
+    remove(fname);
+    return false;
   }
 }
 
-char *CStorageInterfaceDefault::FileNameExists(int block)
-{
+char *CStorageInterfaceDefault::FileNameExists(int block) {
   struct stat buf;
 
   char *fn = FileName(block);
   if (!fn)
-  return 0;
+    return 0;
 
   if (stat(fn, &buf) == 0)
-  return fn;
+    return fn;
 
   DiFree(fn, "CStorageInterfaceDefault::FileNameExists");
   return 0;
 }
 
-char *CStorageInterfaceDefault::FileName(int block)
-{
+char *CStorageInterfaceDefault::FileName(int block) {
   if (!m_dir_exists)
-  return 0;
+    return 0;
 
   char filename[127];
   char *ret;
@@ -243,34 +213,26 @@ char *CStorageInterfaceDefault::FileName(int block)
   return ret;
 }
 
-bool CStorageInterfaceDefault::DirExists()
-{
+bool CStorageInterfaceDefault::DirExists() {
   struct stat buf;
 
   if (!m_dir)
-  return false;
+    return false;
 
   // check existence of directory
   int status = stat(m_dir, &buf);
   if (status != 0)
-  return false; // does not exist
+    return false; // does not exist
   if (!(buf.st_mode | _S_IFDIR))
-  return false; // not a directory
+    return false; // not a directory
   if (!(buf.st_mode & _S_IWRITE))
-  return false; // read only
+    return false; // read only
 
   return true;
 }
 
+bool CStorageInterfaceDefault::OwnedByGuard() const { return false; }
 
-bool CStorageInterfaceDefault::OwnedByGuard() const
-{
-  return false;
-}
+void CStorageInterfaceDefault::OwnedByGuard(bool /*bOwnedByGuard*/) {}
 
-void CStorageInterfaceDefault::OwnedByGuard(bool /*bOwnedByGuard*/)
-{
-}
-
-
-}
+} // namespace mdc

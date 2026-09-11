@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueGeometry_H
 #define cBagRescueGeometry_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueGeometry;
 
-class cBagRescueGeometry
-{
+class cBagRescueGeometry {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueGeometry();
   ~cBagRescueGeometry();
   void operator+=(RescueGeometry *newObject);
   RESCUEBOOL operator-=(RescueGeometry *existingObject);
   RescueGeometry *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueGeometry *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueGeometry *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

@@ -13,20 +13,20 @@
 #ifndef RescueHistoryObject_H
 #define RescueHistoryObject_H
 
-#include "myHeaders.h"
 #include "RCHString.h"
+#include "myHeaders.h"
 
-class RescueHistoryObject:public RescueObject
-{
+class RescueHistoryObject : public RescueObject {
 public:
-  RescueHistoryObject(RescueContext *context):RescueObject(context),objectChanges(0),objectRelated(0) {}
+  RescueHistoryObject(RescueContext *context) : RescueObject(context), objectChanges(0), objectRelated(0) {}
   virtual ~RescueHistoryObject();
 
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
   RescueHistory *NthObjectChanges(RESCUEINT64 zeroBasedOrdinal);
   RescueHistory *NthRelatedChanges(RESCUEINT64 zeroBasedOrdinal);
+
 private:
   void AddObjectChanged(RescueHistory *history);
   void AddRelatedChange(RescueHistory *history);
@@ -40,8 +40,3 @@ private:
 };
 
 #endif
-
-
-
-
-

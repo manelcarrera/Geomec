@@ -21,7 +21,7 @@
  *   $Date: 11/21/05 10:21a $
  *
  * PART OF MODULE:
- *   
+ *
  *
  * MODULE CONTROLLER:
  *    LogicaCMG
@@ -40,32 +40,31 @@
 /////////////////////////////////////////////////////////////////////////////
 // CLicenseBorrowDlg dialog
 
-class CLicenseBorrowDlg : public CDialog
-{
-// Construction
+class CLicenseBorrowDlg : public CDialog {
+  // Construction
 public:
-  CLicenseBorrowDlg(CWnd* pParent = NULL);   // standard constructor
+  CLicenseBorrowDlg(CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CLicenseBorrowDlg)
   enum { IDD = IDD_LICENSE_BORROW_DLG };
-  CDateTimeCtrl	m_cBorrowEnd;
-  CEdit	m_cReturnLicenseInformationEdit;
-  CEdit	m_cBorrowInformationEdit;
+  CDateTimeCtrl m_cBorrowEnd;
+  CEdit m_cReturnLicenseInformationEdit;
+  CEdit m_cBorrowInformationEdit;
   //}}AFX_DATA
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CLicenseBorrowDlg)
-  public:
+public:
   virtual INT_PTR DoModal();
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   void Updatelist();
   void SetDateRange();
 

@@ -14,18 +14,16 @@
 
 class CWellSceneInterMed;
 
-//##ModelId=3F7AA97E036E
-class CWellDrawSpecBase : public CGeoObjectHandlerBase 
-{
+// ##ModelId=3F7AA97E036E
+class CWellDrawSpecBase : public CGeoObjectHandlerBase {
   Q_OBJECT
 
 public:
-
   bool GetVisible() const;
-  void SetVisible(bool visible );
+  void SetVisible(bool visible);
 
   QRgb GetColor() const;
-  void SetColor(QRgb color );
+  void SetColor(QRgb color);
 
   int GetLineWidth() const;
   void SetLineWidth(int linewidth);
@@ -40,21 +38,20 @@ public:
   void ArrowColor(QRgb color);
 
   QString GetDescription() const;
-  void SetDescription(QString description );
-  
+  void SetDescription(QString description);
+
   virtual ~CWellDrawSpecBase();
 
-  CWellSceneInterMed& InterMed();
+  CWellSceneInterMed &InterMed();
 
   CLabelPoint::eLabelAlign GetAlign() const;
-  void SetAlign(CLabelPoint::eLabelAlign align) ;
+  void SetAlign(CLabelPoint::eLabelAlign align);
 
-  
 protected:
-  virtual void CreateScene()=0;
+  virtual void CreateScene() = 0;
 
-  CWellDrawSpecBase(CWellSceneInterMed& WellSceneInterMed);
-  CWellSceneInterMed* m_pWellSceneInterMed;
+  CWellDrawSpecBase(CWellSceneInterMed &WellSceneInterMed);
+  CWellSceneInterMed *m_pWellSceneInterMed;
 
   void DeleteAllDisplayList();
   void UpdateScene();
@@ -62,14 +59,13 @@ protected:
   void OnSceneDetached();
   void OnSceneAttached();
 
-
-  int      m_PointSize;
-  int      m_LineWidth;
-  bool     m_Visible;
+  int m_PointSize;
+  int m_LineWidth;
+  bool m_Visible;
   QRgb m_Color;
   QRgb m_TextColor;
   QRgb m_ArrowColor;
-  QString  m_Description;	
+  QString m_Description;
   CLabelPoint::eLabelAlign m_Align;
 };
 

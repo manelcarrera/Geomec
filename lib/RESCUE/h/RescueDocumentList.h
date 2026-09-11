@@ -13,19 +13,18 @@
 #include "myHeaders.h"
 class RescueDocument;
 
-class RescueDocumentList:public RescueHistoryObject
-{
+class RescueDocumentList : public RescueHistoryObject {
 public:
   ~RescueDocumentList();
 
-  RESCUEINT64 Count64() {return count;}
-  RESCUEINT32 Count() {return (RESCUEINT32) count;}
+  RESCUEINT64 Count64() { return count; }
+  RESCUEINT32 Count() { return (RESCUEINT32)count; }
   RescueDocument *NthRescueDocument(RESCUEINT64 zeroBasedIndex);
-                // Never directly delete a RescueDocument object.
+  // Never directly delete a RescueDocument object.
   cSetString *UniqueMetaKeys(); // This is expensive so don't do it iteratively.
-                // Delete the object when you are thru.
+                                // Delete the object when you are thru.
   RescueDocument *NthDocumentWithKey(RESCUEINT64 zeroBasedIndex, const RESCUECHAR *keyToFind);
-                // May return null.
+  // May return null.
   RESCUEBOOL RemoveDocument(RescueDocument *toRemove); // Archive model afterwards.
 
 private:
@@ -49,4 +48,3 @@ private:
   friend class RescueDocument;
 };
 #endif
-

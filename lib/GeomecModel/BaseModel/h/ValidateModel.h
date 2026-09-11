@@ -5,19 +5,17 @@ class CModelBase;
 class CTetraBoundary;
 class CFormationBase;
 
-namespace geo
-{
-  class CSurfaceDesc;
-  class CVector;
-  class ISurface;
-}
+namespace geo {
+class CSurfaceDesc;
+class CVector;
+class ISurface;
+} // namespace geo
 
 #include <vector>
 
-class CValidateModel
-{
+class CValidateModel {
 public:
-  CValidateModel(CModelBase* modelBase);
+  CValidateModel(CModelBase *modelBase);
 
   bool checkModel(bool rockMech) const;
 
@@ -33,15 +31,14 @@ public:
   bool checkNoEmptyFaults() const;
 
 private:
-  CValidateModel(const CValidateModel& rhs);
-  CValidateModel& operator = (const CValidateModel& rhs);
+  CValidateModel(const CValidateModel &rhs);
+  CValidateModel &operator=(const CValidateModel &rhs);
 
-  bool collectNormalVectors(const geo::CSurfaceDesc& Desc,
-    std::vector <geo::CVector>& vcNormals, CTetraBoundary* pTetBound) const;
-  void addNorm(const geo::ISurface& surf,
-    std::vector <geo::CVector>& normvec) const;
+  bool collectNormalVectors(const geo::CSurfaceDesc &Desc, std::vector<geo::CVector> &vcNormals,
+                            CTetraBoundary *pTetBound) const;
+  void addNorm(const geo::ISurface &surf, std::vector<geo::CVector> &normvec) const;
 
-  CModelBase* m_ModelBase;
+  CModelBase *m_ModelBase;
 };
 
-#endif  // _ValidateModel_h_
+#endif // _ValidateModel_h_

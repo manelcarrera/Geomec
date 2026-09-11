@@ -25,52 +25,30 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueBlockUnit.h"
 #include "RescueBlockUnit.h"
 #include "RescueModel.h"
+#include "myHeaders.h"
 
-cBagRescueBlockUnit::cBagRescueBlockUnit()
-{
-  tree = new RescueTree();
+cBagRescueBlockUnit::cBagRescueBlockUnit() { tree = new RescueTree(); }
+
+cBagRescueBlockUnit::~cBagRescueBlockUnit() { delete tree; }
+
+void cBagRescueBlockUnit::operator+=(RescueBlockUnit *newObject) { tree->Add(newObject); }
+
+RESCUEBOOL cBagRescueBlockUnit::operator-=(RescueBlockUnit *existingObject) { return tree->Delete(existingObject); }
+
+RescueBlockUnit *cBagRescueBlockUnit::NthObject(RESCUEINT64 ordinal) {
+  return (RescueBlockUnit *)tree->NthObject(ordinal);
 }
 
-cBagRescueBlockUnit::~cBagRescueBlockUnit()
-{
-  delete tree;
-}
-
-void cBagRescueBlockUnit::operator+=(RescueBlockUnit *newObject)
-{
-  tree->Add(newObject);
-}
-
-RESCUEBOOL cBagRescueBlockUnit::operator-=(RescueBlockUnit * existingObject)
-{
-  return tree->Delete(existingObject);
-}
-
-RescueBlockUnit *cBagRescueBlockUnit::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueBlockUnit *) tree->NthObject(ordinal);
-}
-
-RESCUEINT32 cBagRescueBlockUnit::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueBlockUnit::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-

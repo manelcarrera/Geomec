@@ -1,5 +1,5 @@
-//#include <QtGui/QGuiApplication>
-//#include <QtCore/QProcess>
+// #include <QtGui/QGuiApplication>
+// #include <QtCore/QProcess>
 
 #include <QGuiApplication>
 #include <QProcess>
@@ -9,8 +9,8 @@
 
 #include "ProcessManager.h"
 
-#include "QUtil.h"
 #include "Printer.h"
+#include "QUtil.h"
 
 #include "GlobalMessage.h"
 #include "GlobalMessage_CLI.h"
@@ -19,29 +19,23 @@
 
 #include "LauncherBusClient.h"
 
-
-#include <QFile> 
 #include <QDateTime>
+#include <QFile>
 #include <QProcessEnvironment>
 
-
 #ifdef _DEBUG
-#define MAX_BACKEND_PROCESSES   1
+#define MAX_BACKEND_PROCESSES 1
 #else
-#define MAX_BACKEND_PROCESSES   1
+#define MAX_BACKEND_PROCESSES 1
 #endif
 
-namespace
-{
-  //static QString PRINTER_LOGS_FILE = QString::fromStdString( Printer::DEFAULT_FOLDER ) + "/geomec.log";
+namespace {
+// static QString PRINTER_LOGS_FILE = QString::fromStdString( Printer::DEFAULT_FOLDER ) + "/geomec.log";
 }
-
 
 // global in case we want to (test the) use the CtrlHandler
 
 ProcessManager *procMan = nullptr;
-
-
 
 #if 0
 BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
@@ -85,39 +79,41 @@ BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
 }
 #endif
 
-
-
 // we can use this to suppress qDebug output, but it won't suppress Qt internal messages
 // for that we need preprocessor definitions
-void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
-{
-}
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg) {}
 
-//QString LOGS_FILE = QString::fromStdString( Printer::DEFAULT_FOLDER ) + "/geomec_qdebug.log";
-//QFile g_qdebug_out_file( LOGS_FILE );
-//QFile g_qdebug_out_file;
-void qdebug_msg_handler( QtMsgType type, const QMessageLogContext & context, const QString & msg )
-{
+// QString LOGS_FILE = QString::fromStdString( Printer::DEFAULT_FOLDER ) + "/geomec_qdebug.log";
+// QFile g_qdebug_out_file( LOGS_FILE );
+// QFile g_qdebug_out_file;
+void qdebug_msg_handler(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
   std::string url = Printer::instance()->folder() + "\\" + "geomec_qdebug.log";
-  QFile g_qdebug_out_file( url.c_str() );
+  QFile g_qdebug_out_file(url.c_str());
 
   QString txt;
 
-  //QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
+  // QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
   QString s_time = QDateTime::currentDateTime().toString("yyyy-MM-dd, hh:mm:ss");
 
-  switch (type) 
-  {
-    // (%s:%u, %s)
-    // context.file, context.line, context.function
-    case QtDebugMsg:	txt = QString("Debug: %1: %2").arg( s_time, msg); break;
-    case QtWarningMsg:	txt = QString("Warning: %1").arg(msg); break;
-    case QtCriticalMsg: txt = QString("Critical: %1").arg(msg); break;
-    case QtFatalMsg:	txt = QString("Fatal: %1").arg(msg); break;
+  switch (type) {
+  // (%s:%u, %s)
+  // context.file, context.line, context.function
+  case QtDebugMsg:
+    txt = QString("Debug: %1: %2").arg(s_time, msg);
+    break;
+  case QtWarningMsg:
+    txt = QString("Warning: %1").arg(msg);
+    break;
+  case QtCriticalMsg:
+    txt = QString("Critical: %1").arg(msg);
+    break;
+  case QtFatalMsg:
+    txt = QString("Fatal: %1").arg(msg);
+    break;
   }
-  
+
   g_qdebug_out_file.open(QIODevice::WriteOnly | QIODevice::Append);
-  QTextStream ts( &g_qdebug_out_file );
+  QTextStream ts(&g_qdebug_out_file);
   ts << txt << endl;
   g_qdebug_out_file.close(); // ????
 }
@@ -134,16 +130,14 @@ void qdebug_msg_handler( QtMsgType type, const QMessageLogContext & context, con
   Printer::instance()->info( "ProcessManager > main [file:%s pid=%d]", file.fileName().toStdString().c_str(), pid );
 }*/
 
-void token_to_file( quint64 pid, std::string file_ )
-{
-  QString filename = QString::fromStdString( Printer::instance()->folder() + "/" + file_ );
-  QFile file( filename );
-  if ( file.open(QIODevice::ReadWrite) )
-  {
-    QTextStream stream( &file );
+void token_to_file(quint64 pid, std::string file_) {
+  QString filename = QString::fromStdString(Printer::instance()->folder() + "/" + file_);
+  QFile file(filename);
+  if (file.open(QIODevice::ReadWrite)) {
+    QTextStream stream(&file);
     stream << pid << endl;
   }
-  Printer::instance()->info( "ProcessManager > main [file:%s pid=%d]", file.fileName().toStdString().c_str(), pid );
+  Printer::instance()->info("ProcessManager > main [file:%s pid=%d]", file.fileName().toStdString().c_str(), pid);
 }
 
 //
@@ -159,42 +153,40 @@ void token_to_file( quint64 pid, std::string file_ )
 // -Environment
 // -TempPath
 //
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   QGuiApplication a(argc, argv);
 
-  GlobalMessage::init( new GlobalMessage_CLI() );
+  GlobalMessage::init(new GlobalMessage_CLI());
 
   CSettingsIni::instance()->init();
 
-  //Printer::multiprocess( true );
+  // Printer::multiprocess( true );
   std::string filename = "gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log";
-  Printer::instance()->url( QUtil::url( QUtil::eUsrDir::Goemec, filename ) );
-  Printer::instance()->info( "" );
-  Printer::instance()->info( "gm_launcher > main" );
+  Printer::instance()->url(QUtil::url(QUtil::eUsrDir::Goemec, filename));
+  Printer::instance()->info("");
+  Printer::instance()->info("gm_launcher > main");
 
-
-  //Printer::instance()->file("geomec_pm.log");
+  // Printer::instance()->file("geomec_pm.log");
 
   // no need, default is Ok
-  //Printer::instance()->file( PRINTER_LOGS_FILE.toStdString() );
+  // Printer::instance()->file( PRINTER_LOGS_FILE.toStdString() );
   Printer::instance()->info("%s", argv[0]);
 
-  //Printer::instance()->info("");
-  //Printer::instance()->info("ProcessManager > main");
+  // Printer::instance()->info("");
+  // Printer::instance()->info("ProcessManager > main");
 
-  	for( int i = 0; i < argc; ++i ) 
-    Printer::instance()->debug("arg: %s", argv[ i ] );
+  for (int i = 0; i < argc; ++i)
+    Printer::instance()->debug("arg: %s", argv[i]);
 
   // BOOTSTRAP 1: set control handlers and get relevant input
 
-  //SetConsoleCtrlHandler(CtrlHandler, TRUE);
+  // SetConsoleCtrlHandler(CtrlHandler, TRUE);
 
   // No messages
   // qInstallMessageHandler(myMessageOutput);
 
-  // MCR 2019-04-18: This makes app randomly crash 
-  qInstallMessageHandler( qdebug_msg_handler );
+  // MCR 2019-04-18: This makes app randomly crash
+  qInstallMessageHandler(qdebug_msg_handler);
 
   quint64 pid = a.applicationPid();
 
@@ -213,24 +205,23 @@ int main(int argc, char *argv[])
   //
   // Note: we have yet to determine if we will allow user-configurations
 
-  for( auto process : { DIANA_BIN, GEOMEC_BIN } )
-    QUtil::kill_process( process.toStdString() );
+  for (auto process : {DIANA_BIN, GEOMEC_BIN})
+    QUtil::kill_process(process.toStdString());
 
   procMan = new ProcessManager(pid);
 
-  for( auto process : { GEOMEC_BIN, LAUNCHER_BIN } )
-    procMan->RegisterProcess( process, true);
+  for (auto process : {GEOMEC_BIN, LAUNCHER_BIN})
+    procMan->RegisterProcess(process, true);
 
-  QString name( LAUNCHER_ID );
-  QString base = ModGMLocalBusHelper::getBase( pid );
+  QString name(LAUNCHER_ID);
+  QString base = ModGMLocalBusHelper::getBase(pid);
 
-  LauncherBusClient* client = new LauncherBusClient( base, name ); // this_->m_qapp -> no difference passing the parent in terms of events handling -> so don't pass it
+  LauncherBusClient *client = new LauncherBusClient(
+      base, name); // this_->m_qapp -> no difference passing the parent in terms of events handling -> so don't pass it
   client->m_pm = procMan;
 
-  QTimer::singleShot( 0, client, SLOT( setup() ) ); // needed to rergister the client into the bus
-  //QApplication::instance()->processEvents();
-
-
+  QTimer::singleShot(0, client, SLOT(setup())); // needed to rergister the client into the bus
+  // QApplication::instance()->processEvents();
 
   // BOOTSTRAP 3: set up listener, bus and connect them to each other as well as process manager
 
@@ -240,27 +231,24 @@ int main(int argc, char *argv[])
   QObject::connect(&a, &QGuiApplication::aboutToQuit, procMan, &ProcessManager::stop);
   QObject::connect(procMan, &ProcessManager::quit, &a, &QGuiApplication::quit);
 
-
   // BOOTSTRAP DONE
   // start the processes and run the event loop
 
-  //procMan->start();
+  // procMan->start();
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 
-  
   QString key = "Path";
-  QString path = env.value( key );
-  env.remove( key );
+  QString path = env.value(key);
+  env.remove(key);
   path += ";C:\\aWork\\aFlexLM\\lib64";
-  env.insert( key , path );
-  
+  env.insert(key, path);
 
-  QStringList args = QStringList{ QString("pid=%1").arg( pid ) };
-  if( argc > 1 )
-    args.append( QString("%s").arg( argv[ 1 ] ) );
+  QStringList args = QStringList{QString("pid=%1").arg(pid)};
+  if (argc > 1)
+    args.append(QString("%s").arg(argv[1]));
 
-  procMan->start( GEOMEC_BIN, args, &env );
+  procMan->start(GEOMEC_BIN, args, &env);
 
   return a.exec();
 }

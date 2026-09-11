@@ -1,18 +1,12 @@
 #include "DepletionStageAnalysisType.h"
 #include "ModelBase.h"
 
-namespace cora
-{
+namespace cora {
 
-CDepletionStageAnalysisType::CDepletionStageAnalysisType(CModelBase* modelBase)
-: m_depletionStageAnalysisTypeVector(
-  createDepletionStageAnalysisTypeVector(modelBase))
-{
-}
+CDepletionStageAnalysisType::CDepletionStageAnalysisType(CModelBase *modelBase)
+    : m_depletionStageAnalysisTypeVector(createDepletionStageAnalysisTypeVector(modelBase)) {}
 
-const TDepletionStageAnalysisTypeVector
-  CDepletionStageAnalysisType::getDepletionStageAnalysisType() const
-{
+const TDepletionStageAnalysisTypeVector CDepletionStageAnalysisType::getDepletionStageAnalysisType() const {
   return m_depletionStageAnalysisTypeVector;
 }
 
@@ -20,24 +14,18 @@ const TDepletionStageAnalysisTypeVector
 
 // static
 
-TDepletionStageAnalysisTypeVector CDepletionStageAnalysisType::
-  createDepletionStageAnalysisTypeVector(CModelBase* modelBase)
-{
+TDepletionStageAnalysisTypeVector
+CDepletionStageAnalysisType::createDepletionStageAnalysisTypeVector(CModelBase *modelBase) {
   TDepletionStageAnalysisTypeVector depletionStageAnalysisTypeVector;
-  const CDepletionStage* depletionStage =
-  &(modelBase->InitialDepletionStage());
+  const CDepletionStage *depletionStage = &(modelBase->InitialDepletionStage());
 
-  while ((depletionStage =
-  (depletionStage->Last()) ? 0 : &(depletionStage->Next())) != 0)
-  {
-  CAnalysisType analysisType = CAnalysisType::FirstType();
+  while ((depletionStage = (depletionStage->Last()) ? 0 : &(depletionStage->Next())) != 0) {
+    CAnalysisType analysisType = CAnalysisType::FirstType();
 
-  while (analysisType.Valid())
-  {
-      depletionStageAnalysisTypeVector.
-    push_back(TDepletionStageAnalysisType(depletionStage, analysisType));
+    while (analysisType.Valid()) {
+      depletionStageAnalysisTypeVector.push_back(TDepletionStageAnalysisType(depletionStage, analysisType));
       analysisType = analysisType.NextType();
-  }
+    }
   }
 
   return depletionStageAnalysisTypeVector;

@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueWellboreCell_H
 #define cBagRescueWellboreCell_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueWellboreCell;
 
-class cBagRescueWellboreCell
-{
+class cBagRescueWellboreCell {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueWellboreCell();
   ~cBagRescueWellboreCell();
   void operator+=(RescueWellboreCell *newObject);
   RESCUEBOOL operator-=(RescueWellboreCell *existingObject);
   RescueWellboreCell *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueWellboreCell *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueWellboreCell *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

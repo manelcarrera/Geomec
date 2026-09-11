@@ -10,28 +10,25 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMeshMessageDlg dialog
 
-class CMeshMessageDlg : public CDialog
-{
-  const std::vector<std::string>& m_message;
-// Construction
+class CMeshMessageDlg : public CDialog {
+  const std::vector<std::string> &m_message;
+  // Construction
 public:
-  CMeshMessageDlg(const std::vector<std::string>& message, CWnd* pParent = NULL);   // standard constructor
+  CMeshMessageDlg(const std::vector<std::string> &message, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CMeshMessageDlg)
   enum { IDD = IDD_MESH_MESSAGES };
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CMeshMessageDlg)
-  protected:
+protected:
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CMeshMessageDlg)
   virtual BOOL OnInitDialog();

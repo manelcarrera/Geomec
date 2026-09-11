@@ -5,17 +5,15 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <map>
 #include <QString>
+#include <map>
 
-
-class CGVT123DIImport
-{
+class CGVT123DIImport {
 public:
   CGVT123DIImport(void);
   ~CGVT123DIImport(void);
 
-  bool Import(const QString& strFileName);
+  bool Import(const QString &strFileName);
 
   int N_BIN() { return m_N_BIN.first; }
   int N_TRACK() { return m_N_TRACK.first; }
@@ -34,7 +32,7 @@ private:
   FILE *m_fp;
   int m_nLineNr;
   QString m_strError;
-  typedef bool (CGVT123DIImport::*pReadFunc)(const QString&);
+  typedef bool (CGVT123DIImport::*pReadFunc)(const QString &);
   typedef std::map<QString, pReadFunc> TKeyToFuncMap;
   TKeyToFuncMap m_KeyToFunction;
 
@@ -60,16 +58,16 @@ private:
   bool ReadREAL_GEO_X(const QString &strLine);
   bool ReadREAL_GEO_Y(const QString &strLine);
   bool ReadSKEW_ANGLE(const QString &strLine);
-  bool ReadUNITS(const QString& strLine);
-  bool ReadDELTA_BIN_NUM(const QString& strLine);
-  bool ReadDELTA_TRACK_NUM(const QString& strLine);
-  bool ReadFIRST_BIN(const QString& strLine);
-  bool ReadFIRST_TRACK(const QString& strLine);
+  bool ReadUNITS(const QString &strLine);
+  bool ReadDELTA_BIN_NUM(const QString &strLine);
+  bool ReadDELTA_TRACK_NUM(const QString &strLine);
+  bool ReadFIRST_BIN(const QString &strLine);
+  bool ReadFIRST_TRACK(const QString &strLine);
 
   bool ReadIntegerValue(const QString &strLine, int &nVal);
   bool ReadDoubleValue(const QString &strLine, double &nVal);
-  bool StringToDouble(const QString& strVal, double& dVal) const;
-  bool StringToInt(const QString& strVal, int& iVal) const;
+  bool StringToDouble(const QString &strVal, double &dVal) const;
+  bool StringToInt(const QString &strVal, int &iVal) const;
 
   bool CheckReadParameters();
   void ConvertParameters();

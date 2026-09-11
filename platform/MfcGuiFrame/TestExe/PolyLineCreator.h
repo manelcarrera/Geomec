@@ -12,20 +12,20 @@
 #include "mouselistener.h"
 
 class C2DDocument;
-class CPolyLineCreator : public CMouseListener  
-{
+class CPolyLineCreator : public CMouseListener {
   std::vector<geo::CPoint> m_points;
   std::vector<geo::CPoint> m_crossings;
-  C2DDocument& m_document;
+  C2DDocument &m_document;
+
 public:
-  CPolyLineCreator(IOpenGLFrame& frame, C2DDocument& document);
+  CPolyLineCreator(IOpenGLFrame &frame, C2DDocument &document);
   virtual ~CPolyLineCreator();
 
   virtual bool OnOK();
 
   virtual void DrawScene();
-  virtual bool MouseRelease(TButtonState state, TButtonState button, const TScreenPoint& point);
-  virtual bool MouseMove(TButtonState state, TButtonState button, const TScreenPoint& point);
+  virtual bool MouseRelease(TButtonState state, TButtonState button, const TScreenPoint &point);
+  virtual bool MouseMove(TButtonState state, TButtonState button, const TScreenPoint &point);
 };
 
 #endif // !defined(AFX_POLYLINECREATOR_H__12683905_549A_411E_9B20_E72605E54166__INCLUDED_)

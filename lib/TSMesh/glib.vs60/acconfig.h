@@ -30,14 +30,12 @@
    a given entry is in the file.
 
    Leave the following blank line there!!  Autoheader needs it.  */
-
 
 /* Other stuff */
 
 /* #undef PACKAGE */
 /* #undef VERSION */
 
-
 /* Leave that blank line there!!  Autoheader needs it.
    If you're adding to this file, keep in mind:
    The entries are in sort -df order: alphabetical, case insensitive,

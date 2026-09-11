@@ -1,21 +1,21 @@
-#include "stdafx.h"
-#include "resource.h"
 #include "TipDlg.h"
+#include "resource.h"
+#include "stdafx.h"
 // CG: This file added by 'Tip of the Day' component.
 
-#include <winreg.h>
 #include <sys\stat.h>
 #include <sys\types.h>
+#include <winreg.h>
 
 #include "GeomecStringTable.h"
 #include "GlobalMessage.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,71 +28,62 @@ static const TCHAR szIntFilePos[] = _T("FilePos");
 static const TCHAR szTimeStamp[] = _T("TimeStamp");
 static const TCHAR szIntStartup[] = _T("StartUp");
 
-CTipDlg::CTipDlg(CWnd* pParent /*=NULL*/)
-  : CDialog(IDD_TIP, pParent)
-{
+CTipDlg::CTipDlg(CWnd *pParent /*=NULL*/) : CDialog(IDD_TIP, pParent) {
   //{{AFX_DATA_INIT(CTipDlg)
   m_bStartup = TRUE;
   //}}AFX_DATA_INIT
 
   // We need to find out what the startup and file position parameters are
   // If startup does not exist, we assume that the Tips on startup is checked TRUE.
-  CWinApp* pApp = AfxGetApp();
+  CWinApp *pApp = AfxGetApp();
   m_bStartup = !pApp->GetProfileInt(szSection, szIntStartup, 0);
   unsigned int iFilePos = pApp->GetProfileInt(szSection, szIntFilePos, 0);
 
   // Now try to open the tips file
   m_pStream = fopen("tips.txt", "r");
-  if (m_pStream == NULL) 
-  {
+  if (m_pStream == NULL) {
     m_strTip = getStringTableEntry(CG_IDS_FILE_ABSENT);
     return;
-  } 
+  }
 
   // If the timestamp in the INI file is different from the timestamp of
   // the tips file, then we know that the tips file has been modified
   // Reset the file position to 0 and write the latest timestamp to the
   // ini file
-/*	struct _stat buf;
-  _fstat(_fileno(m_pStream), &buf);
-  CString strCurrentTime = ctime(&buf.st_ctime);
-  strCurrentTime.TrimRight();
-  CString strStoredTime = 
-    pApp->GetProfileString(szSection, szTimeStamp, NULL);
-  if (strCurrentTime != strStoredTime) 
-  {
-    iFilePos = 0;
-    pApp->WriteProfileString(szSection, szTimeStamp, strCurrentTime);
-  }
-*/
-  if (fseek(m_pStream, iFilePos, SEEK_SET) != 0) 
-  {
+  /*	struct _stat buf;
+    _fstat(_fileno(m_pStream), &buf);
+    CString strCurrentTime = ctime(&buf.st_ctime);
+    strCurrentTime.TrimRight();
+    CString strStoredTime =
+      pApp->GetProfileString(szSection, szTimeStamp, NULL);
+    if (strCurrentTime != strStoredTime)
+    {
+      iFilePos = 0;
+      pApp->WriteProfileString(szSection, szTimeStamp, strCurrentTime);
+    }
+  */
+  if (fseek(m_pStream, iFilePos, SEEK_SET) != 0) {
     _m()->msg(CG_IDP_FILE_CORRUPT);
-  }
-  else 
-  {
+  } else {
     GetNextTipString(m_strTip);
   }
 }
 
-CTipDlg::~CTipDlg()
-{
+CTipDlg::~CTipDlg() {
   // This destructor is executed whether the user had pressed the escape key
   // or clicked on the close button. If the user had pressed the escape key,
-  // it is still required to update the filepos in the ini file with the 
-  // latest position so that we don't repeat the tips! 
-  
+  // it is still required to update the filepos in the ini file with the
+  // latest position so that we don't repeat the tips!
+
   // But make sure the tips file existed in the first place....
-  if (m_pStream != NULL) 
-  {
-    CWinApp* pApp = AfxGetApp();
+  if (m_pStream != NULL) {
+    CWinApp *pApp = AfxGetApp();
     pApp->WriteProfileInt(szSection, szIntFilePos, ftell(m_pStream));
     fclose(m_pStream);
   }
 }
-    
-void CTipDlg::DoDataExchange(CDataExchange* pDX)
-{
+
+void CTipDlg::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
   //{{AFX_DATA_MAP(CTipDlg)
   DDX_Check(pDX, IDC_STARTUP, m_bStartup);
@@ -101,44 +92,36 @@ void CTipDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CTipDlg, CDialog)
-  //{{AFX_MSG_MAP(CTipDlg)
-  ON_BN_CLICKED(IDC_NEXTTIP, OnNextTip)
-  ON_WM_CTLCOLOR()
-  ON_WM_PAINT()
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CTipDlg)
+ON_BN_CLICKED(IDC_NEXTTIP, OnNextTip)
+ON_WM_CTLCOLOR()
+ON_WM_PAINT()
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CTipDlg message handlers
 
-void CTipDlg::OnNextTip()
-{
+void CTipDlg::OnNextTip() {
   GetNextTipString(m_strTip);
   UpdateData(FALSE);
 }
 
-void CTipDlg::GetNextTipString(CString& strNext)
-{
+void CTipDlg::GetNextTipString(CString &strNext) {
   LPTSTR lpsz = strNext.GetBuffer(MAX_BUFLEN);
 
   // This routine identifies the next string that needs to be
   // read from the tips file
   BOOL bStop = FALSE;
-  while (!bStop) 
-  {
-    if (_fgetts(lpsz, MAX_BUFLEN, m_pStream) == NULL) 
-    {
+  while (!bStop) {
+    if (_fgetts(lpsz, MAX_BUFLEN, m_pStream) == NULL) {
       // We have either reached EOF or enocuntered some problem
       // In both cases reset the pointer to the beginning of the file
       // This behavior is same as VC++ Tips file
-      if (fseek(m_pStream, 0, SEEK_SET) != 0) 
+      if (fseek(m_pStream, 0, SEEK_SET) != 0)
         _m()->msg(CG_IDP_FILE_CORRUPT);
-    } 
-    else 
-    {
-      if (*lpsz != ' ' && *lpsz != '\t' && 
-        *lpsz != '\n' && *lpsz != ';') 
-      {
+    } else {
+      if (*lpsz != ' ' && *lpsz != '\t' && *lpsz != '\n' && *lpsz != ';') {
         // There should be no space at the beginning of the tip
         // This behavior is same as VC++ Tips file
         // Comment lines are ignored and they start with a semicolon
@@ -149,40 +132,36 @@ void CTipDlg::GetNextTipString(CString& strNext)
   strNext.ReleaseBuffer();
 }
 
-HBRUSH CTipDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, unsigned int nCtlColor)
-{
+HBRUSH CTipDlg::OnCtlColor(CDC *pDC, CWnd *pWnd, unsigned int nCtlColor) {
   if (pWnd->GetDlgCtrlID() == IDC_TIPSTRING)
     return (HBRUSH)GetStockObject(WHITE_BRUSH);
 
   return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
-void CTipDlg::OnOK()
-{
+void CTipDlg::OnOK() {
   CDialog::OnOK();
-  
+
   // Update the startup information stored in the INI file
-  CWinApp* pApp = AfxGetApp();
+  CWinApp *pApp = AfxGetApp();
   pApp->WriteProfileInt(szSection, szIntStartup, !m_bStartup);
 }
 
-BOOL CTipDlg::OnInitDialog()
-{
+BOOL CTipDlg::OnInitDialog() {
   CDialog::OnInitDialog();
 
   // If Tips file does not exist then disable NextTip
   if (m_pStream == NULL)
     GetDlgItem(IDC_NEXTTIP)->EnableWindow(FALSE);
 
-  return TRUE;  // return TRUE unless you set the focus to a control
+  return TRUE; // return TRUE unless you set the focus to a control
 }
 
-void CTipDlg::OnPaint()
-{
+void CTipDlg::OnPaint() {
   CPaintDC dc(this); // device context for painting
 
   // Get paint area for the big static control
-  CWnd* pStatic = GetDlgItem(IDC_BULB);
+  CWnd *pStatic = GetDlgItem(IDC_BULB);
   CRect rect;
   pStatic->GetWindowRect(&rect);
   ScreenToClient(&rect);
@@ -203,8 +182,7 @@ void CTipDlg::OnPaint()
   dcTmp.CreateCompatibleDC(&dc);
   dcTmp.SelectObject(&bmp);
   rect.bottom = bmpInfo.bmHeight + rect.top;
-  dc.BitBlt(rect.left, rect.top, rect.Width(), rect.Height(), 
-    &dcTmp, 0, 0, SRCCOPY);
+  dc.BitBlt(rect.left, rect.top, rect.Width(), rect.Height(), &dcTmp, 0, 0, SRCCOPY);
 
   // Draw out "Did you know..." message next to the bitmap
   CString strMessage;
@@ -214,4 +192,3 @@ void CTipDlg::OnPaint()
 
   // Do not call CDialog::OnPaint() for painting messages
 }
-

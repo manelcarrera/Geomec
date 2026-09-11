@@ -2,33 +2,25 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
 #include "ControlManager.h"
+#include "stdafx.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
 //// CControlManager implementation
-CControlManager::CControlManager(CWnd& control, CWnd& parent, THorizontal horbehaviour, TVertical verbehaviour)
-: m_control(control),
-  m_parent(parent),
-  m_horbehaviour(horbehaviour),
-  m_verbehaviour(verbehaviour)
-{
+CControlManager::CControlManager(CWnd &control, CWnd &parent, THorizontal horbehaviour, TVertical verbehaviour)
+    : m_control(control), m_parent(parent), m_horbehaviour(horbehaviour), m_verbehaviour(verbehaviour) {
   GetOffsets();
 }
 
-CControlManager::~CControlManager()
-{
-}
+CControlManager::~CControlManager() {}
 
-void CControlManager::ResizeParams(int beh, int newsiz, int left, int right, int size, int& x, int& width)
-{
+void CControlManager::ResizeParams(int beh, int newsiz, int left, int right, int size, int &x, int &width) {
   // determine resize parameters based on behaviour, size and offsets
   // in vertical sense left is top and right is bottom
-  switch(beh)
-  {
+  switch (beh) {
   case 0:
     x = left;
     width = size;
@@ -46,8 +38,7 @@ void CControlManager::ResizeParams(int beh, int newsiz, int left, int right, int
   }
 }
 
-void CControlManager::OnResize()
-{
+void CControlManager::OnResize() {
   int x;
   int y;
   int nWidth;
@@ -72,8 +63,7 @@ void CControlManager::OnResize()
   m_control.Invalidate();
 }
 
-void CControlManager::GetOffsets()
-{
+void CControlManager::GetOffsets() {
   CRect rectControl;
   m_control.GetWindowRect(&rectControl);
 

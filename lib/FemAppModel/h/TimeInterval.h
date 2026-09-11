@@ -3,15 +3,13 @@
 
 #include <QDateTime>
 
-typedef struct _TimeInterval
-{
+typedef struct _TimeInterval {
   int days;
   int hours;
   int minutes;
   int seconds;
 } TTimeInterval;
 
-TTimeInterval calculateTimeInterval(const QDateTime& begin,
-  const QDateTime& end);
+TTimeInterval calculateTimeInterval(const QDateTime &begin, const QDateTime &end);
 
-#endif  // _TimeInterval_h_
+#endif // _TimeInterval_h_

@@ -12,15 +12,13 @@
 #include <qstring.h>
 
 #include "IProgressBase.h"
-#include "polyline.h"
 #include "gm3wellpoint.h"
+#include "polyline.h"
 
-namespace gm 
-{
+namespace gm {
 class C3DDatabase;
 
-class C3DWellPath 
-{
+class C3DWellPath {
   double m_dElevation;
   QString m_strName;
   geo::CPoint m_RefPoint;
@@ -34,18 +32,17 @@ public:
 
   void ReadWellPath(C3DDatabase &db, const long lWellPathKey, IProgressBase &callback);
   virtual bool PushBack(const geo::IPoint &point);
-  double DerrickElevation() const {return m_dElevation;}
-  double Northing() const {return m_RefPoint.X();}
-  double Easting() const {return m_RefPoint.Y();}
-  bool IsVertical() const {return m_bIsVertical;}
-  
-  const geo::CPtrArray<C3DWellPoint>& Points() const {return m_PointArr;}
-  const geo::CPolyLine& PolyLine() const {return m_PolyLine;}
+  double DerrickElevation() const { return m_dElevation; }
+  double Northing() const { return m_RefPoint.X(); }
+  double Easting() const { return m_RefPoint.Y(); }
+  bool IsVertical() const { return m_bIsVertical; }
 
-  const QString& Name() const {return m_strName;}
+  const geo::CPtrArray<C3DWellPoint> &Points() const { return m_PointArr; }
+  const geo::CPolyLine &PolyLine() const { return m_PolyLine; }
 
+  const QString &Name() const { return m_strName; }
 };
 
-}
+} // namespace gm
 
 #endif // !defined(AFX_GM3WELLPATH_H__2F744A64_EB60_44CC_AB97_064FA04EB3DF__INCLUDED_)

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __I_MODEL_OBJECT_FACTORY_H
 #define __I_MODEL_OBJECT_FACTORY_H
 
@@ -6,11 +6,10 @@
 
 class IModelObject;
 
-class MODELOBJFACTORY_EXPORT IModelObjectFactory
-{
+class MODELOBJFACTORY_EXPORT IModelObjectFactory {
 public:
-  static  IModelObject* create( const char* className );
-  virtual IModelObject* createObject( const char* className ) const = 0;
+  static IModelObject *create(const char *className);
+  virtual IModelObject *createObject(const char *className) const = 0;
 
 protected:
   IModelObjectFactory();

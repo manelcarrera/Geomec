@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // TriangleMeshElement.h: interface for the CTriangleMeshElement class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -13,13 +13,12 @@
 #include "ITriangle.h"
 
 class CTriangleSurface;
-class CTriangleElement : public geo::ITriangle 
-{
+class CTriangleElement : public geo::ITriangle {
   int m_nIndex;
-  const CTriangleSurface& m_surface;
+  const CTriangleSurface &m_surface;
   int *m_pPointIndex; // point indices from the surface
 public:
-  CTriangleElement(const CTriangleSurface& surface, int nIndex, int *pointindex);
+  CTriangleElement(const CTriangleSurface &surface, int nIndex, int *pointindex);
   virtual ~CTriangleElement();
 
   // Nodal interface
@@ -28,11 +27,11 @@ public:
   virtual int NrOfPoints() const;
 
   // Distributed interface
-  virtual const geo::IElementSet* IndexingElementSet() const;
+  virtual const geo::IElementSet *IndexingElementSet() const;
   virtual int Index() const;
   virtual int PointIndex(int nIndex) const;
   virtual std::string Type() const;
-  
+
   virtual void AssertValid() const;
   virtual bool Empty() const;
 

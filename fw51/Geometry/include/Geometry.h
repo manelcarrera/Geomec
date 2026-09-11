@@ -1,11 +1,11 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 
 #if !defined(__GEOMETRY_H__)
 #define __GEOMETRY_H__
 
-#include "Vector.h"
-#include "Point.h"
 #include "BucketKernel.h"
+#include "Point.h"
+#include "Vector.h"
 
 #include "OrthogonalBase.h"
 
@@ -14,21 +14,21 @@
 #include "VectorTempl.h"
 
 #include "IProgressBase.h"
-#include "Value.h"
 #include "IValueSet.h"
+#include "Value.h"
 
 #include "Line.h"
 
-#include "Rectangle.h"
 #include "IBox.h"
+#include "Rectangle.h"
 
 #include "PolyLine.h"
 #include "Polygon.h"
 
 #include "Box.h"
-#include "Triangle.h"
-#include "TriSurface.h"
 #include "Tetrahedron.h"
+#include "TriSurface.h"
+#include "Triangle.h"
 
 #include "Plane.h"
 
@@ -40,35 +40,35 @@
 
 #include "RingFactory.h"
 
-#include "Volume.h"
-#include "RegisterVolume.h"
-#include "MeshNodeGroup.h"
 #include "BodyGroup.h"
-#include "FaceGroup.h"
 #include "ElementGroup.h"
-#include "Tying.h"
+#include "FaceGroup.h"
 #include "IMesh3D.h"
-#include "MeshTriangle.h"
-#include "SpringLineElement.h"
 #include "ISupport.h"
+#include "MeshNodeGroup.h"
+#include "MeshTriangle.h"
+#include "RegisterVolume.h"
+#include "SpringLineElement.h"
 #include "Surface.h"
+#include "Tying.h"
+#include "Volume.h"
 
-#include "ITriangle.h"
 #include "IQuadrilateral.h"
+#include "ITriangle.h"
 
-#include "ValueSet.h"
-#include "ConvexHull_2D.h"
 #include "ConvexHull.h"
-#include "Hexahedron.h"
+#include "ConvexHull_2D.h"
 #include "GeoStream.h"
+#include "Hexahedron.h"
+#include "ValueSet.h"
 
 #include "Circle.h"
 
 #include "Conus.h"
 
+#include "BlockMesh.h"
 #include "DispatchVisitorBase.h"
 #include "ObjectDispatcher.h"
-#include "BlockMesh.h"
 
 #include "GeometryExports.h"
 

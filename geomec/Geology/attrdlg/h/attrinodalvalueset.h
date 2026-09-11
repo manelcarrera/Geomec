@@ -14,35 +14,33 @@ class CUnitNode;
 
 #include "NodalValueSet.h"
 
-class CAttriNodalValueSet : public CDialog
-{
-  CNodalValueSet& m_value_set;
-public:
-// Construction
-  CAttriNodalValueSet(CNodalValueSet &value_set, CWnd* pParent = NULL);   
+class CAttriNodalValueSet : public CDialog {
+  CNodalValueSet &m_value_set;
 
-// Dialog Data
+public:
+  // Construction
+  CAttriNodalValueSet(CNodalValueSet &value_set, CWnd *pParent = NULL);
+
+  // Dialog Data
   //{{AFX_DATA(CAttriValueSet)
   enum { IDD = IDD_ATTRI_VALUE_SET };
-  CListCtrl	m_lcValue;
+  CListCtrl m_lcValue;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriNodalValueSet)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriValueSet)
   virtual BOOL OnInitDialog();
 
-  afx_msg void OnGetDisplayInfo(NMHDR* pNMHDR, LRESULT* pResult);
+  afx_msg void OnGetDisplayInfo(NMHDR *pNMHDR, LRESULT *pResult);
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

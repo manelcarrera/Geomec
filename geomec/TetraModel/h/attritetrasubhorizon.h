@@ -9,32 +9,29 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CAttriTetraSubHorizon dialog
-#include "TetraSubHorizon.h"
 #include "AttributesTemplate.h"
+#include "TetraSubHorizon.h"
 
-class CAttriTetraSubHorizon : public CAttributesTemplate<CTetraSubHorizon>
-{
-// Construction
+class CAttriTetraSubHorizon : public CAttributesTemplate<CTetraSubHorizon> {
+  // Construction
 public:
-  CAttriTetraSubHorizon(CTetraSubHorizon& horizon, UINT uTemplateID, CWnd* pParent = NULL);   // standard constructor
+  CAttriTetraSubHorizon(CTetraSubHorizon &horizon, UINT uTemplateID, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAttriTetraSubHorizon)
   enum { IDD = IDD_ATTRI_SUB_FAULT };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriTetraSubHorizon)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriTetraSubHorizon)
   afx_msg void OnPaint();

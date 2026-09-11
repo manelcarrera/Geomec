@@ -3,8 +3,7 @@
 
 class CModelBase;
 
-namespace cora
-{
+namespace cora {
 
 class CFailureTypeParameterBase;
 
@@ -12,24 +11,20 @@ class CFailureTypeParameterBase;
 
 #include "ICreateElementValueSet.h"
 
-namespace cora
-{
+namespace cora {
 
-class CMapSingleValue2ElementValues : public ICreateElementValueSet
-{
-  public:
+class CMapSingleValue2ElementValues : public ICreateElementValueSet {
+public:
   CMapSingleValue2ElementValues();
   virtual ~CMapSingleValue2ElementValues();
 
-  virtual void createElementValueSet(CModelBase* modelBase,
-      const CFailureTypeParameterBase* failureTypeParameterBase);
+  virtual void createElementValueSet(CModelBase *modelBase, const CFailureTypeParameterBase *failureTypeParameterBase);
 
-  private:
-  CMapSingleValue2ElementValues(const CMapSingleValue2ElementValues& rhs);
-  CMapSingleValue2ElementValues& operator = (
-      const CMapSingleValue2ElementValues& rhs);
+private:
+  CMapSingleValue2ElementValues(const CMapSingleValue2ElementValues &rhs);
+  CMapSingleValue2ElementValues &operator=(const CMapSingleValue2ElementValues &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_MapSingleValue2ElementValues_h_
+#endif // _cora_MapSingleValue2ElementValues_h_

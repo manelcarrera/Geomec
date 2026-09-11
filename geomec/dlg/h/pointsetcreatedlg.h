@@ -15,31 +15,30 @@ class CPointSet;
 
 #include "PointSetCoordinates.h"
 
-class CPointSetCreateDlg : public CDialog
-{
-  CModelBase& m_model;
+class CPointSetCreateDlg : public CDialog {
+  CModelBase &m_model;
   CPointSetCoordinates m_pointSetCoordinates;
   BOOL m_bValidateDensityOnly;
-  const CUnitNode& UnitNode();
+  const CUnitNode &UnitNode();
   void CreatePointSet();
-public:
-  CPointSetCreateDlg(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
+public:
+  CPointSetCreateDlg(CModelBase &model, CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CPointSetCreateDlg)
   enum { IDD = IDD_CREATE_POINTSET };
-  CString	m_sName;
+  CString m_sName;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CPointSetCreateDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   // Generated message map functions
   //{{AFX_MSG(CPointSetCreateDlg)

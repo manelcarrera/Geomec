@@ -8,12 +8,6 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-C2DVertex::C2DVertex()
-{
+C2DVertex::C2DVertex() {}
 
-}
-
-C2DVertex::~C2DVertex()
-{
-
-}
+C2DVertex::~C2DVertex() {}

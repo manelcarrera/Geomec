@@ -15,15 +15,9 @@
 //
 //
 
-class CTempPath  
-{
+class CTempPath {
 public:
-
-  typedef enum {
-  TEMP_GENERAL = 0,
-  TEMP_CALCULATION,
-  _TEMP_NR_OF_CATEGORIES
-  } Category;
+  typedef enum { TEMP_GENERAL = 0, TEMP_CALCULATION, _TEMP_NR_OF_CATEGORIES } Category;
 
   CTempPath();
   CTempPath(const CTempPath &rhs);

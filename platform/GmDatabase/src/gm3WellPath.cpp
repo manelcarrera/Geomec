@@ -1,30 +1,22 @@
 // gm3WellPath.cpp: implementation of the C3DWellPath class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
-#include "gm3Database.h"
 #include "gm3WellPath.h"
-#include "gm3wellpoint.h"
 #include "GM3TableDef.h"
-
+#include "gm3Database.h"
+#include "gm3wellpoint.h"
+#include "stdafx.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 namespace gm {
 
-C3DWellPath::C3DWellPath(): m_dElevation(0)
-{
+C3DWellPath::C3DWellPath() : m_dElevation(0) {}
 
-}
+C3DWellPath::~C3DWellPath() {}
 
-C3DWellPath::~C3DWellPath()
-{
-
-}
-
-void C3DWellPath::ReadWellPath(C3DDatabase &db, const long lWellPathKey, IProgressBase &callback)
-{
+void C3DWellPath::ReadWellPath(C3DDatabase &db, const long lWellPathKey, IProgressBase &callback) {
 #ifndef _WIN64
   // Well Path data ...
   CDaoRecordset rs(&db);
@@ -35,19 +27,17 @@ void C3DWellPath::ReadWellPath(C3DDatabase &db, const long lWellPathKey, IProgre
   strQuery += _T("=%d");
   CString strNewQuery;
   strNewQuery.Format(strQuery, lWellPathKey);
-  rs.Open(dbOpenDynaset,strNewQuery,dbReadOnly);
+  rs.Open(dbOpenDynaset, strNewQuery, dbReadOnly);
 
-    
   rs.MoveFirst();
   callback.Step();
-  m_strName = rs.GetFieldValue(FD_LINER_NAME).pcVal; 
+  m_strName = rs.GetFieldValue(FD_LINER_NAME).pcVal;
 
-  m_RefPoint = geo::CPoint(rs.GetFieldValue(FD_LINER_YPOINT).dblVal,
-                rs.GetFieldValue(FD_LINER_XPOINT).dblVal);
+  m_RefPoint = geo::CPoint(rs.GetFieldValue(FD_LINER_YPOINT).dblVal, rs.GetFieldValue(FD_LINER_XPOINT).dblVal);
 
   m_bIsVertical = (rs.GetFieldValue(FD_LINER_ISVERTICAL).boolVal != 0);
 
-  if(db.Version() >= 2.8)
+  if (db.Version() >= 2.8)
     m_dElevation = rs.GetFieldValue(FD_LINER_ELEVATION).dblVal;
 
   rs.Close();
@@ -58,44 +48,36 @@ void C3DWellPath::ReadWellPath(C3DDatabase &db, const long lWellPathKey, IProgre
   strQuery += FD_INLINER_INDEX;
   strQuery += _T("=%d");
   strNewQuery.Format(strQuery, lWellPathKey);
-  rs.Open(dbOpenDynaset,strNewQuery,dbReadOnly);
+  rs.Open(dbOpenDynaset, strNewQuery, dbReadOnly);
 
-  
   // Read the coordinates
   rs.MoveFirst();
 
-  while (!rs.IsEOF()) 
-  {
+  while (!rs.IsEOF()) {
     // Update progress ctrl
     callback.Step();
 
     // Read point field
 
-    if(rs.GetFieldValue(FD_POINTTYPE).lVal == 0)
-    {
-      C3DWellPoint *pWellPoint = new C3DWellPoint(rs.GetFieldValue(FD_AHD).dblVal, 
-                            rs.GetFieldValue(FD_INCLINATION).dblVal, 
-                            rs.GetFieldValue(FD_AZIMUTH).dblVal,
-                            rs.GetFieldValue(FD_NORTHING).dblVal, 
-                            rs.GetFieldValue(FD_EASTING).dblVal,
-                            rs.GetFieldValue(FD_TVD).dblVal);
+    if (rs.GetFieldValue(FD_POINTTYPE).lVal == 0) {
+      C3DWellPoint *pWellPoint = new C3DWellPoint(
+          rs.GetFieldValue(FD_AHD).dblVal, rs.GetFieldValue(FD_INCLINATION).dblVal, rs.GetFieldValue(FD_AZIMUTH).dblVal,
+          rs.GetFieldValue(FD_NORTHING).dblVal, rs.GetFieldValue(FD_EASTING).dblVal, rs.GetFieldValue(FD_TVD).dblVal);
       PushBack(*pWellPoint);
     }
-      
-      rs.MoveNext();
+
+    rs.MoveNext();
   }
 #endif
 }
 
-bool C3DWellPath::PushBack(const geo::IPoint &point)
-{
-  if(!(m_PolyLine.PushBack(point))) // points for the polyline...
-    return false; // point  has already been inserted...
-    
-  m_PointArr.PushBack((C3DWellPoint&)point); // the well points...
-  
+bool C3DWellPath::PushBack(const geo::IPoint &point) {
+  if (!(m_PolyLine.PushBack(point))) // points for the polyline...
+    return false;                    // point  has already been inserted...
+
+  m_PointArr.PushBack((C3DWellPoint &)point); // the well points...
+
   return true;
 }
 
-
-}
+} // namespace gm

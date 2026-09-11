@@ -8,26 +8,22 @@
 
 #include "SKUADefs.h"
 
-#include <unordered_map>
 #include <cstring>
+#include <unordered_map>
 #include <vector>
 
-namespace gm_skua
-{
+namespace gm_skua {
 
 class IProgressHandler;
 struct SKUAParseData;
 class SKUAIPostProcessor;
 
-namespace internal
-{
+namespace internal {
 
-#define DEFAULT_SYMBOLTABLE_SIZE  2048
-
+#define DEFAULT_SYMBOLTABLE_SIZE 2048
 
 // we use one symbol type for keywords and identifiers
-struct Symbol
-{
+struct Symbol {
   int token;
   int attribute;
   char data[MAX_IDENTIFIER_SIZE];
@@ -35,37 +31,31 @@ struct Symbol
   Symbol();
   Symbol(int token, int attribute);
   Symbol(int token, int attribute, char *token_data);
-  Symbol(const Symbol& rhs);
+  Symbol(const Symbol &rhs);
 };
 
-
-class SymbolTable
-{
-  // Standard hashing function; not particular fast or optimized for the SKUA files (where a lot of identifiers differ in the last characters)
-  // but... it suffices; more complex ones need length, which means either walking over the string again, or keeping track of the string size (a la Pascal)
-  struct HashKey
-  {
-  int operator()(const char *str) const
-  {
+class SymbolTable {
+  // Standard hashing function; not particular fast or optimized for the SKUA files (where a lot of identifiers differ
+  // in the last characters) but... it suffices; more complex ones need length, which means either walking over the
+  // string again, or keeping track of the string size (a la Pascal)
+  struct HashKey {
+    int operator()(const char *str) const {
       int hash = 5381;
       for (int i = 0; *str; ++str, ++i)
-    hash = ((hash << 5) + hash) + *str;
+        hash = ((hash << 5) + hash) + *str;
       return hash;
-  }
+    }
   };
 
   // Assume case sensitive checking
-  struct HashEqual
-  {
-  bool operator()(const char *lhs, const char *rhs) const
-  {
-      return strncmp(lhs, rhs, MAX_IDENTIFIER_SIZE) == 0;
-  }
+  struct HashEqual {
+    bool operator()(const char *lhs, const char *rhs) const { return strncmp(lhs, rhs, MAX_IDENTIFIER_SIZE) == 0; }
   };
 
   // we use an array of identifiers, and a hash to look them up (the int is an index into SymbolStorage, as is the key)
   // for a new attempt, we reserve a new entry in the storage,
-  // if it already exists we keep the reserved area, if it is added, we simply mark the reserved spot as part of the table
+  // if it already exists we keep the reserved area, if it is added, we simply mark the reserved spot as part of the
+  // table
   //
   // careful: as the hash table points into the vector for its keys, we need to re-hash when we resize the vector!
   //
@@ -96,7 +86,7 @@ public:
   void start_identifiers_at(int size);
 
   // insert keywords (follow with start_identifiers_at)
-  int insert(const Symbol& symbol);
+  int insert(const Symbol &symbol);
   // insert reserved spot
   int insert();
 
@@ -113,34 +103,29 @@ public:
   int size() const;
 
   // index into the vector
-  Symbol& operator[](int index);
-  const Symbol& operator[](int index) const;
+  Symbol &operator[](int index);
+  const Symbol &operator[](int index) const;
 };
-
-
-
 
 // we put both keywords and identifiers in the same symbol table
 // m_identifier_start is set after the keywords
 
-class SKUAParser
-{
+class SKUAParser {
   FILE *m_fp;
-  IProgressHandler& m_progress;
+  IProgressHandler &m_progress;
   SymbolTable m_symbols;
   int m_identifier_start;
 
   SKUAIPostProcessor *m_postProcessor;
 
-
   int m_lineNr;
 
   // data for maintaining a double buffer
-  // 16Mb (per buffer) gives experimentally a good performance, while keeping the buffer small (32Mb gives same results, 64Mb close)
-  // we define the two buffers with one malloc, and add a sentinel value after them, with some padding for alignment
-  // sentinel 0 gives good performance in tests
-  // m_lexeme lags behind m_forward (which tries to find the extend of the lexeme), and new buffer will be loaded when *m_forward = sentinel
-  // this is standard stuff from the Dragon book, except that we never decrease m_forward
+  // 16Mb (per buffer) gives experimentally a good performance, while keeping the buffer small (32Mb gives same results,
+  // 64Mb close) we define the two buffers with one malloc, and add a sentinel value after them, with some padding for
+  // alignment sentinel 0 gives good performance in tests m_lexeme lags behind m_forward (which tries to find the extend
+  // of the lexeme), and new buffer will be loaded when *m_forward = sentinel this is standard stuff from the Dragon
+  // book, except that we never decrease m_forward
   //
   // extracting this to a separate class severely slows down the scanner
   const size_t m_buffer_size = 16 * 1024 * 1024;
@@ -157,46 +142,43 @@ class SKUAParser
   char *m_forward;
   char *m_lexeme;
 
-
-  // everything in SKUA is 7-bits ASCII; we define our character classes to avoid locale handling in the std routines for isdigit, isalpha, etc
+  // everything in SKUA is 7-bits ASCII; we define our character classes to avoid locale handling in the std routines
+  // for isdigit, isalpha, etc
   static int m_char_class[256];
-
 
   // the current character and its character class
   char m_char_read;
-  int  m_char_class_read;
-
+  int m_char_class_read;
 
   // we keep track of state transitions ourselves; they're fairly simple
   int m_lexstate;
 
-
   // define a temporary buffer for strtod here
   // if the double crosses buffers, we can't feed it to strtod directly
   // (there is no speed difference for checking for buffer crossing and only using the buffer then)
-  // (there is also no speed difference for trying our own double parsing, and since it's fairly involved to do it right, we use the std)
+  // (there is also no speed difference for trying our own double parsing, and since it's fairly involved to do it
+  // right, we use the std)
   char m_tmp_buffer_for_double[256];
 
-  // there is an enormous speedup for parsing integers ourselves; main reason is that we don't check for different bases 0x, 0b, etc
-
+  // there is an enormous speedup for parsing integers ourselves; main reason is that we don't check for different bases
+  // 0x, 0b, etc
 
   // our pointer to where we can write our current lexeme (in the reserved spot in the symbol table)
   char *m_identifier_data;
-
 
   // variables that keep track of the info we need to pass on from the scanner to the parser itself
   // for identifiers, ATTRIB (+ m_identifier_start) points into the symbol table
   int TOKEN;
   int ATTRIB;
 
-  char   CVAL;
-  int    IVAL;
+  char CVAL;
+  int IVAL;
   double DVAL;
 
   int SIGN;
 
 public:
-  SKUAParser(FILE *fp, IProgressHandler& progress, SKUAIPostProcessor *postProcessor = nullptr);
+  SKUAParser(FILE *fp, IProgressHandler &progress, SKUAIPostProcessor *postProcessor = nullptr);
   ~SKUAParser();
 
   int LineNr() const;
@@ -210,7 +192,6 @@ public:
   bool Parse();
 
 private:
-
   // PARSER INTERNAL routines
 
   SKUAParseData *m_data;
@@ -240,14 +221,12 @@ private:
   bool ParseTFace();
   bool ParseModelRegions();
 
-
   // BUFFER INTERFACE
 
   // load the next buffer
   bool load();
   // decide which buffer to load and call load
   bool handle_forward_is_null();
-
 
   // SCANNER INTERFACE
 
@@ -265,7 +244,6 @@ private:
 
   // skips to end of line
   void scan_skip_to_eol();
-
 
   // SCANNER INTERNAL routines
 
@@ -306,7 +284,6 @@ private:
   void debug_print_token(const char *filename) const;
 };
 
+} // namespace internal
 
-}
-
-}
+} // namespace gm_skua

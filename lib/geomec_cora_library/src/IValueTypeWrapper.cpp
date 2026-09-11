@@ -1,14 +1,9 @@
 #include "IValueTypeWrapper.h"
 
-namespace cora
-{
+namespace cora {
 
-IValueTypeWrapper::IValueTypeWrapper()
-{
-}
+IValueTypeWrapper::IValueTypeWrapper() {}
 
-IValueTypeWrapper::~IValueTypeWrapper()
-{
-}
+IValueTypeWrapper::~IValueTypeWrapper() {}
 
 } // namespace cora

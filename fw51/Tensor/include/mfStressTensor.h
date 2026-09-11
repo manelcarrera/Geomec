@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #if !defined(AFX_STRESSTENSOR_H__INCLUDED_)
 #define AFX_STRESSTENSOR_H__INCLUDED_
 
@@ -10,13 +10,12 @@
 
 #include "TensorExports.h"
 
-class TENSOR_EXPORT CStressTensor : public CMechanicalTensor 
-{
+class TENSOR_EXPORT CStressTensor : public CMechanicalTensor {
 public:
   CStressTensor();
-  CStressTensor(const ITensor& tensor);
-  CStressTensor(const double &xx, const double &yy, const double &zz,
-                  const double &xy, const double &yz, const double &xz);
+  CStressTensor(const ITensor &tensor);
+  CStressTensor(const double &xx, const double &yy, const double &zz, const double &xy, const double &yz,
+                const double &xz);
   virtual ~CStressTensor();
 
   double Tresca() const;

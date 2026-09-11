@@ -5,19 +5,18 @@
 
 #include "ZoominModelPlaceHolder.h"
 
-class CZoominModelPlaceHolder_Delegate : public COpenGLNode_Delegate
-{
+class CZoominModelPlaceHolder_Delegate : public COpenGLNode_Delegate {
 public:
-  CZoominModelPlaceHolder_Delegate(CZoominModelPlaceHolder* zoominModelPlaceHolder);
+  CZoominModelPlaceHolder_Delegate(CZoominModelPlaceHolder *zoominModelPlaceHolder);
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
   virtual bool Attributes();
 
 private:
-  CZoominModelPlaceHolder* m_zoominModelPlaceHolder;
+  CZoominModelPlaceHolder *m_zoominModelPlaceHolder;
 
-  CZoominModelPlaceHolder_Delegate(const CZoominModelPlaceHolder_Delegate&);
-  CZoominModelPlaceHolder_Delegate& operator=(const CZoominModelPlaceHolder_Delegate&);
+  CZoominModelPlaceHolder_Delegate(const CZoominModelPlaceHolder_Delegate &);
+  CZoominModelPlaceHolder_Delegate &operator=(const CZoominModelPlaceHolder_Delegate &);
 
   REGISTER_DELEGATE(CZoominModelPlaceHolder, CZoominModelPlaceHolder_Delegate);
 };

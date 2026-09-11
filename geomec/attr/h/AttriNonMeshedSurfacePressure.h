@@ -4,14 +4,13 @@
 #include "AttributeTempl.h"
 #include "NonMeshedSurfacePressure.h"
 
-class CAttriNonMeshedSurfacePressure : public CAttributesTemplate<CNonMeshedSurfacePressure>
-{
+class CAttriNonMeshedSurfacePressure : public CAttributesTemplate<CNonMeshedSurfacePressure> {
 public:
-  CAttriNonMeshedSurfacePressure(CNonMeshedSurfacePressure& pressure, CWnd* pParent = NULL);
+  CAttriNonMeshedSurfacePressure(CNonMeshedSurfacePressure &pressure, CWnd *pParent = NULL);
 
 protected:
   virtual BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 
   afx_msg void OnFormationPressure();
   afx_msg void OnManualPressure();

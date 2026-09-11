@@ -5,10 +5,9 @@ class CEclipseModel;
 
 #include "TetraGUI.h"
 
-class CEclipseGUI : public CTetraGUI
-{
+class CEclipseGUI : public CTetraGUI {
 public:
-  CEclipseGUI(CFemAppGUI* parentGUI, CEclipseModel* eclipseModel);
+  CEclipseGUI(CFemAppGUI *parentGUI, CEclipseModel *eclipseModel);
 
   virtual bool NewModel(bool bAttachToDocument = true);
 
@@ -16,16 +15,16 @@ public:
 
   bool EditSubModel();
 
-  CEclipseModel* model() const;
+  CEclipseModel *model() const;
 
 protected:
   virtual bool LoadPre381Stream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
 
 private:
-  CEclipseGUI(const CEclipseGUI& rhs);
-  CEclipseGUI& operator = (const CEclipseGUI& rhs);
+  CEclipseGUI(const CEclipseGUI &rhs);
+  CEclipseGUI &operator=(const CEclipseGUI &rhs);
 
-  CEclipseModel* m_eclipseModel;
+  CEclipseModel *m_eclipseModel;
 };
 
-#endif  // _EclipseGUI_h_
+#endif // _EclipseGUI_h_

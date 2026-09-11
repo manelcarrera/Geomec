@@ -4,13 +4,11 @@
 //
 // Interface Diana Executer, for diana_app in dsa
 //
-class IGI
-{
+class IGI {
 
 public:
+  IGI() {};
+  ~IGI() {};
 
-  IGI(){};
-  ~IGI(){};
-
-  virtual void push(Cmd cmd)=0;
+  virtual void push(Cmd cmd) = 0;
 };

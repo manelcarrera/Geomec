@@ -10,16 +10,15 @@ class IMesh;
 class IPoint;
 class CBodyTriangle;
 
-class GEOMETRY_EXPORT  CTiedBodyTriangle : public ITriangle
-{
-  IMesh& m_mesh;
-  int    m_nIndex;
-  int    m_nNodes[3];
+class GEOMETRY_EXPORT CTiedBodyTriangle : public ITriangle {
+  IMesh &m_mesh;
+  int m_nIndex;
+  int m_nNodes[3];
   const CBodyTriangle *m_pTriangles[3];
 
 public:
-  CTiedBodyTriangle(IMesh& mesh, std::vector<int> vcNodes, std::vector<const CBodyTriangle *> vcTriangles);
-  CTiedBodyTriangle(IMesh& mesh, int nIndex, std::vector<int> vcNodes, std::vector<const CBodyTriangle *> vcTriangles);
+  CTiedBodyTriangle(IMesh &mesh, std::vector<int> vcNodes, std::vector<const CBodyTriangle *> vcTriangles);
+  CTiedBodyTriangle(IMesh &mesh, int nIndex, std::vector<int> vcNodes, std::vector<const CBodyTriangle *> vcTriangles);
   ~CTiedBodyTriangle();
 
   int Index() const { return m_nIndex; }
@@ -30,11 +29,10 @@ public:
 
   virtual int PointIndex(int nIndex) const;
   virtual size_t NrOfNodes() const;
-  virtual const INode& Node(int nIndex) const;
-  virtual void Node(int nIndex, const IPoint& point);
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &point);
 
   virtual size_t Order() const;
-
 };
 
 } // namespace geo

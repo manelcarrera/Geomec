@@ -1,101 +1,74 @@
 #ifndef _MODEL_OPERATIONS_H_
 #define _MODEL_OPERATIONS_H_
 
-#include <gtest/gtest.h>
-#include "TestLib.h"
 #include "AnalysisLogger.h"
+#include "TestLib.h"
+#include <gtest/gtest.h>
 
 #include <vector>
 
-
-namespace test_model_operations
-{
+namespace test_model_operations {
 
 int LibraryLoad_ModelOperations();
 int LibraryLoad_SpecialModelOperations();
-
 
 //
 // input: geomec_shell command line parameters
 //
 // output: geomec_shell response dumped to std_out to be parsed and evaluated
 //
-void execute_geomec_shell(
-  const char *params, 
-  QString *captureOutput = 0);
-void execute_geomec_cora(
-  const char *params, 
-  QString *captureOutput = 0);
+void execute_geomec_shell(const char *params, QString *captureOutput = 0);
+void execute_geomec_cora(const char *params, QString *captureOutput = 0);
 
-class ModelOperations : public ::testing::Test
-{
+class ModelOperations : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   CAnalysisLogger m_Logger;
-  
-  ModelOperations() : m_ModelsPath(test_lib::TestLib::ModelPath())
-  {
-  }
+
+  ModelOperations() : m_ModelsPath(test_lib::TestLib::ModelPath()) {}
 };
 
-class ModelOperationsExport : public ::testing::Test
-{
+class ModelOperationsExport : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   CAnalysisLogger m_Logger;
 
   QString m_model;
-  
-  ModelOperationsExport() : 
-    m_ModelsPath(test_lib::TestLib::ModelPath()),
-    m_model("ResultsBranched.gm5")
-  {}
+
+  ModelOperationsExport() : m_ModelsPath(test_lib::TestLib::ModelPath()), m_model("ResultsBranched.gm5") {}
 };
 
-class ModelOperationsDsa : public ::testing::Test
-{
+class ModelOperationsDsa : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   CAnalysisLogger m_Logger;
-  
-  ModelOperationsDsa() : m_ModelsPath(test_lib::TestLib::ModelPath()){}
+
+  ModelOperationsDsa() : m_ModelsPath(test_lib::TestLib::ModelPath()) {}
 };
 
-class ModelOperationsIpc : public ::testing::Test
-{
+class ModelOperationsIpc : public ::testing::Test {
 protected:
-  ModelOperationsIpc(){}
+  ModelOperationsIpc() {}
 };
 
-
-class ModelOperationsGui : public ::testing::Test
-{
+class ModelOperationsGui : public ::testing::Test {
 protected:
-  ModelOperationsGui(){}
+  ModelOperationsGui() {}
 };
 
-
-class ModelOperationsCORA : public ::testing::Test
-{
+class ModelOperationsCORA : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   QString m_OutputPath;
   CAnalysisLogger m_Logger;
-  
+
   ModelOperationsCORA();
 
   void some_grouped_tests();
 };
 
-
-class ModelOperationsRGI : public ::testing::Test
-{
+class ModelOperationsRGI : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   QString m_OutputPath;
   CAnalysisLogger m_Logger;
@@ -110,11 +83,8 @@ protected:
   void log_messages_test();
 };
 
-
-class ModelOperationsSkua : public ::testing::Test
-{
+class ModelOperationsSkua : public ::testing::Test {
 protected:
-
   QString m_ModelsPath;
   QString m_OutputPath;
   CAnalysisLogger m_Logger;
@@ -124,38 +94,31 @@ protected:
   void import_test();
 };
 
-
-
-
-struct Command
-{
-  typedef enum
-  {
-  NOP = 0, // params:
-  LOAD,    // m_ModelPath + filename, or if empty load previous path
-  SAVE,    // save to previous path [must be under m_OutputPath]
-  SAVE_AS, // save to m_OutputPath + filename
-  CLOSE,
-  RUN,     // 1 if in steps
-  IMPORT,  // mesh gocad.so | gocad gocad.so # # | petrel petrel.txt U U
-  MESH     // 0 = invalidate, 1 = create, nothing = auto
+struct Command {
+  typedef enum {
+    NOP = 0, // params:
+    LOAD,    // m_ModelPath + filename, or if empty load previous path
+    SAVE,    // save to previous path [must be under m_OutputPath]
+    SAVE_AS, // save to m_OutputPath + filename
+    CLOSE,
+    RUN,    // 1 if in steps
+    IMPORT, // mesh gocad.so | gocad gocad.so # # | petrel petrel.txt U U
+    MESH    // 0 = invalidate, 1 = create, nothing = auto
   } Opcode;
 
-  Opcode  opcode;
+  Opcode opcode;
   QString params;
 
   Command() : opcode(NOP) {}
 };
 
-struct Script
-{
+struct Script {
   std::vector<Command> commands;
 
   Script(const char *);
 };
 
-class ModelOperationsBatch : public ::testing::TestWithParam<const char *>
-{
+class ModelOperationsBatch : public ::testing::TestWithParam<const char *> {
   QString m_ModelsPath;
   QString m_OutputPath;
   CAnalysisLogger m_Logger;
@@ -168,7 +131,6 @@ protected:
 
 typedef ModelOperationsBatch ModelOperationsShell;
 
-}
-
+} // namespace test_model_operations
 
 #endif

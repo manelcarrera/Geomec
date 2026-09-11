@@ -3,27 +3,26 @@
 #include "CoordinateAxis.h"
 #include "OIDIMeshNodeManager.h"
 
-#include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/nodes/SoMaterial.h>
 #include <Inventor/nodes/SoScale.h>
+#include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/nodes/SoTranslation.h>
 
+#include <Inventor/nodes/SoAnnoText3Property.h>
 #include <MeshViz/graph/PoGroup3Axis3.h>
 #include <MeshViz/graph/PoLinearAxis.h>
 #include <MeshViz/nodes/PoMiscTextAttr.h>
-#include <Inventor/nodes/SoAnnoText3Property.h>
 
-CoordinateAxis::CoordinateAxis(OIDIMeshNodeManager * meshNodeManager)
-{
+CoordinateAxis::CoordinateAxis(OIDIMeshNodeManager *meshNodeManager) {
   setName("CoordinateAxis");
-  SoSeparator* coordAxisSeparator = new SoSeparator;
+  SoSeparator *coordAxisSeparator = new SoSeparator;
 
   m_coordAxisMaterial = new SoMaterial;
   coordAxisSeparator->addChild(m_coordAxisMaterial);
   m_coordAxisMaterial->diffuseColor.setValue(1.0f, 1.0f, 0.0f);
 
-  SoScale * scale = meshNodeManager->getScale();
-  assert (scale != 0);
+  SoScale *scale = meshNodeManager->getScale();
+  assert(scale != 0);
   coordAxisSeparator->addChild(scale);
 
   m_translation = new SoTranslation;
@@ -35,36 +34,34 @@ CoordinateAxis::CoordinateAxis(OIDIMeshNodeManager * meshNodeManager)
   m_coordAxisGroup->yTitle = "E";
   m_coordAxisGroup->zTitle = "D";
 
-  PoLinearAxis * xAxis = (SO_GET_PART (m_coordAxisGroup, "xAxis", PoLinearAxis));
-  PoLinearAxis * yAxis = (SO_GET_PART (m_coordAxisGroup, "yAxis", PoLinearAxis));
-  PoLinearAxis * zAxis = (SO_GET_PART (m_coordAxisGroup, "zAxis", PoLinearAxis));
+  PoLinearAxis *xAxis = (SO_GET_PART(m_coordAxisGroup, "xAxis", PoLinearAxis));
+  PoLinearAxis *yAxis = (SO_GET_PART(m_coordAxisGroup, "yAxis", PoLinearAxis));
+  PoLinearAxis *zAxis = (SO_GET_PART(m_coordAxisGroup, "zAxis", PoLinearAxis));
 
-  xAxis->set("mainGradTextApp.drawStyle", "style FILLED") ;
-  yAxis->set("mainGradTextApp.drawStyle", "style FILLED") ;
-  zAxis->set("mainGradTextApp.drawStyle", "style FILLED") ;
+  xAxis->set("mainGradTextApp.drawStyle", "style FILLED");
+  yAxis->set("mainGradTextApp.drawStyle", "style FILLED");
+  zAxis->set("mainGradTextApp.drawStyle", "style FILLED");
 
-  xAxis->set("titleApp.drawStyle", "style FILLED") ;
-  yAxis->set("titleApp.drawStyle", "style FILLED") ;
-  zAxis->set("titleApp.drawStyle", "style FILLED") ;
-
+  xAxis->set("titleApp.drawStyle", "style FILLED");
+  yAxis->set("titleApp.drawStyle", "style FILLED");
+  zAxis->set("titleApp.drawStyle", "style FILLED");
 
   m_textProperty = new SoAnnoText3Property;
-  
 
   m_textProperty->renderPrintType = SoAnnoText3Property::RENDER2D_PRINT_RASTER;
   m_textProperty->fontSizeHint = SoAnnoText3Property::ANNOTATION;
 
   PoMiscTextAttr *MyTextAttr = new PoMiscTextAttr;
 #ifdef _WIN32
-  MyTextAttr->fontName = "Courier New"  ;
+  MyTextAttr->fontName = "Courier New";
 #else
-  MyTextAttr->fontName = "Courier"  ;
+  MyTextAttr->fontName = "Courier";
 #endif
 
-  PbNumericDisplayFormat * numFormat = new PbNumericDisplayFormat (PbNumericDisplayFormat::INTEGER_FORMAT);
-  xAxis->setFormat (numFormat);
-  yAxis->setFormat (numFormat);
-  zAxis->setFormat (numFormat);
+  PbNumericDisplayFormat *numFormat = new PbNumericDisplayFormat(PbNumericDisplayFormat::INTEGER_FORMAT);
+  xAxis->setFormat(numFormat);
+  yAxis->setFormat(numFormat);
+  zAxis->setFormat(numFormat);
 
   coordAxisSeparator->addChild(m_textProperty);
   coordAxisSeparator->addChild(MyTextAttr);
@@ -72,8 +69,7 @@ CoordinateAxis::CoordinateAxis(OIDIMeshNodeManager * meshNodeManager)
   addChild(coordAxisSeparator);
 }
 
-void CoordinateAxis::reset(const SbBox3f & bbox, const SbVec3d& translation)
-{
+void CoordinateAxis::reset(const SbBox3f &bbox, const SbVec3d &translation) {
   float sizeX, sizeY, sizeZ;
   float originX, originY, originZ;
 
@@ -96,9 +92,9 @@ void CoordinateAxis::reset(const SbBox3f & bbox, const SbVec3d& translation)
   sizeY *= (1 + 2 * extensionFactor);
   sizeZ *= (1 + 2 * extensionFactor);
 
-  PoLinearAxis * axisX = (SO_GET_PART (m_coordAxisGroup, "xAxis", PoLinearAxis));
-  PoLinearAxis * axisY = (SO_GET_PART (m_coordAxisGroup, "yAxis", PoLinearAxis));
-  PoLinearAxis * axisZ = (SO_GET_PART (m_coordAxisGroup, "zAxis", PoLinearAxis));
+  PoLinearAxis *axisX = (SO_GET_PART(m_coordAxisGroup, "xAxis", PoLinearAxis));
+  PoLinearAxis *axisY = (SO_GET_PART(m_coordAxisGroup, "yAxis", PoLinearAxis));
+  PoLinearAxis *axisZ = (SO_GET_PART(m_coordAxisGroup, "zAxis", PoLinearAxis));
 
   adjustAxis(axisX, sizeX, originX);
   adjustAxis(axisY, sizeY, originY);
@@ -106,8 +102,8 @@ void CoordinateAxis::reset(const SbBox3f & bbox, const SbVec3d& translation)
 
   m_translation->translation.setValue(-translation);
 
-  m_coordAxisGroup->start.setValue(SbVec3f (originX, originY, originZ));
-  m_coordAxisGroup->end.setValue (SbVec3f (originX + sizeX, originY + sizeY, originZ + sizeZ));
+  m_coordAxisGroup->start.setValue(SbVec3f(originX, originY, originZ));
+  m_coordAxisGroup->end.setValue(SbVec3f(originX + sizeX, originY + sizeY, originZ + sizeZ));
 
   const float fontSizeScale = 0.02f;
   const float arrowLengthScale = 0.025f;
@@ -139,31 +135,21 @@ void CoordinateAxis::reset(const SbBox3f & bbox, const SbVec3d& translation)
   axisZ->tickMainLength = tickMainLength;
 }
 
-void CoordinateAxis::adjustAxis( PoLinearAxis * axis, float &size, float &origin )
-{
+void CoordinateAxis::adjustAxis(PoLinearAxis *axis, float &size, float &origin) {
   axis->step = 0;
-  if (size == 0)
-  {
+  if (size == 0) {
     origin -= 10;
     size = 20;
     axis->step = 10;
   }
 }
 
-void CoordinateAxis::SetAxisColor( float * rgb )
-{
-  m_coordAxisMaterial->diffuseColor.setValue(rgb);
-}
+void CoordinateAxis::SetAxisColor(float *rgb) { m_coordAxisMaterial->diffuseColor.setValue(rgb); }
 
-void CoordinateAxis::GetAxisColor( float * rgb ) const
-{
+void CoordinateAxis::GetAxisColor(float *rgb) const {
 
-  const SbColor & color = m_coordAxisMaterial->diffuseColor[0];
+  const SbColor &color = m_coordAxisMaterial->diffuseColor[0];
   color.getValue(rgb[0], rgb[1], rgb[2]);
 }
 
-void CoordinateAxis::PointSize( const double & size )
-{
-  m_textProperty->setMaxViewingFontSize((unsigned int) size);
-}
-
+void CoordinateAxis::PointSize(const double &size) { m_textProperty->setMaxViewingFontSize((unsigned int)size); }

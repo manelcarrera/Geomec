@@ -5,29 +5,23 @@
 
 class CLibraryMaterial;
 
-class CLibraryMaterialParameter : public ml::CMatParam
-{
+class CLibraryMaterialParameter : public ml::CMatParam {
 public:
-  CLibraryMaterialParameter(const QString& strName,
-              double dValue,
-              CLibraryMaterial& parentMat,
-              const CUnitType& unitConversion,
-              unsigned int uiValueTypeID,
-              const CCheckStrategy* pCheckStrategy = 0,
-              const CSetStrategy* pSetStrategy = 0,
-              const QString& strCalibrationPath = QString(),
-              bool bFixedCalibrationParam = false);
+  CLibraryMaterialParameter(const QString &strName, double dValue, CLibraryMaterial &parentMat,
+                            const CUnitType &unitConversion, unsigned int uiValueTypeID,
+                            const CCheckStrategy *pCheckStrategy = 0, const CSetStrategy *pSetStrategy = 0,
+                            const QString &strCalibrationPath = QString(), bool bFixedCalibrationParam = false);
 
-  CLibraryMaterialParameter(CLibraryMaterial& parentMat);
+  CLibraryMaterialParameter(CLibraryMaterial &parentMat);
   virtual ~CLibraryMaterialParameter();
 
-  virtual CLibraryMaterialParameter* Clone(ml::CMaterial& parentMat) const;
+  virtual CLibraryMaterialParameter *Clone(ml::CMaterial &parentMat) const;
 
-  CLibraryMaterialParameter& operator=(const CLibraryMaterialParameter& rhs);
-  bool operator==(const CLibraryMaterialParameter& rhs) const;
-  bool operator!=(const CLibraryMaterialParameter& rhs) const;
+  CLibraryMaterialParameter &operator=(const CLibraryMaterialParameter &rhs);
+  bool operator==(const CLibraryMaterialParameter &rhs) const;
+  bool operator!=(const CLibraryMaterialParameter &rhs) const;
 
-  const QString& CalibrationPath() const;
+  const QString &CalibrationPath() const;
   bool IsFixedCalibrationParameter() const;
 
   bool IsCurrentlyFixed() const;
@@ -37,7 +31,7 @@ public:
   unsigned int IconID() const;
 
 protected:
-  CLibraryMaterialParameter(const CLibraryMaterialParameter& rhs, ml::CMaterial& parentMat);
+  CLibraryMaterialParameter(const CLibraryMaterialParameter &rhs, ml::CMaterial &parentMat);
 
 private:
   QString m_strCalibrationPath;

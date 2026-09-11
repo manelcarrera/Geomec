@@ -12,14 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // COutput wrapper class
 
-class COutput : public COleDispatchDriver
-{
+class COutput : public COleDispatchDriver {
 public:
-  COutput() {}		// Calls COleDispatchDriver default constructor
+  COutput() {} // Calls COleDispatchDriver default constructor
   COutput(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  COutput(const COutput& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  COutput(const COutput &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   BOOL GetTabulated();
   void SetTabulated(BOOL);
@@ -40,7 +39,7 @@ public:
   BOOL GetTemperature();
   void SetTemperature(BOOL);
 
-// Operations
+  // Operations
 public:
 };
 

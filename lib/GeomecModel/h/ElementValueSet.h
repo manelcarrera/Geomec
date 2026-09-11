@@ -17,43 +17,44 @@ class IElementSet;
 
 #include "GeomecIValueSet.h"
 
-class CElementValueSet : public IValueSet
-{
+class CElementValueSet : public IValueSet {
   geo::CValueSet m_value_set;
-public:
-  
-  typedef std::map<int, double> TElementAverageVec;
-private:
-  IElementSet* m_pElementSet;
 
-  mutable geo::CValue m_dMin;					// Cache min
-  mutable geo::CValue m_dMax;					// Cache max
-  mutable bool m_bDirty;						// Dirty flag
+public:
+  typedef std::map<int, double> TElementAverageVec;
+
+private:
+  IElementSet *m_pElementSet;
+
+  mutable geo::CValue m_dMin; // Cache min
+  mutable geo::CValue m_dMax; // Cache max
+  mutable bool m_bDirty;      // Dirty flag
 
   void CalculateProperties() const;
   void CalculateAverage();
 
-  TValueVec LoadValueVec(TSTREAM& stream, const CStreamVersion& version);
-  void SaveValueVec(const TValueVec& data, TSTREAM& stream);
+  TValueVec LoadValueVec(TSTREAM &stream, const CStreamVersion &version);
+  void SaveValueVec(const TValueVec &data, TSTREAM &stream);
   TValueVec ValueElement(int nIndex, geo::IParallelInitializationCallback *cb) const;
+
 public:
   // Construction
-  CElementValueSet(IElementSet& set);
-  CElementValueSet(const QString &sName, CQuantity::UNIT unit, IElementSet& set);
-  CElementValueSet(const CElementValueSet& rhs);
+  CElementValueSet(IElementSet &set);
+  CElementValueSet(const QString &sName, CQuantity::UNIT unit, IElementSet &set);
+  CElementValueSet(const CElementValueSet &rhs);
   virtual ~CElementValueSet();
 
-  virtual CElementValueSet* clone();
+  virtual CElementValueSet *clone();
 
-  void Clear();	// Clear valueset
+  void Clear(); // Clear valueset
 
   // Compare and assignment
   bool operator==(const CElementValueSet &rhs) const;
-  CElementValueSet& operator=(const CElementValueSet& rhs);
+  CElementValueSet &operator=(const CElementValueSet &rhs);
 
   // Elementset access
-  const IElementSet& ElementSet() const;
-  IElementSet& ElementSet();
+  const IElementSet &ElementSet() const;
+  IElementSet &ElementSet();
 
   // Tree visualisation
   virtual unsigned int TypeId() const;
@@ -67,10 +68,10 @@ public:
   virtual TValue Max() const;
 
   // Present Point
-  virtual TValue ValuePoint(const geo::IPoint& point, geo::IParallelInitializationCallback *cb) const;
+  virtual TValue ValuePoint(const geo::IPoint &point, geo::IParallelInitializationCallback *cb) const;
 
   // Present Element
-  virtual TValueVec ValueElement(const geo::IElement& element, geo::IParallelInitializationCallback *cb) const;
+  virtual TValueVec ValueElement(const geo::IElement &element, geo::IParallelInitializationCallback *cb) const;
 
   int PushBack(const double &value);
   int PushBack(const TValueVec &value);
@@ -80,8 +81,8 @@ public:
   virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
   virtual long SavedItems() const;
 
-  const geo::CValueSet& getValueSet() const;
-  geo::CValueSet& getValueSet();
+  const geo::CValueSet &getValueSet() const;
+  geo::CValueSet &getValueSet();
 
   ACCEPT_GEOMECMODELVISITORS(VisitElementValueSet);
 };

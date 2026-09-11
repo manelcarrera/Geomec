@@ -21,19 +21,18 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_CONVERT_H__
 #define __G_CONVERT_H__
 
-#include <stddef.h>      /* For size_t */
 #include <gerror.h>
+#include <stddef.h> /* For size_t */
 
 G_BEGIN_DECLS
 
-typedef enum 
-{
+typedef enum {
   G_CONVERT_ERROR_NO_CONVERSION,
   G_CONVERT_ERROR_ILLEGAL_SEQUENCE,
   G_CONVERT_ERROR_FAILED,
@@ -47,43 +46,25 @@ GQuark g_convert_error_quark();
  */
 typedef struct _GIConv *GIConv;
 
-GIConv g_iconv_open   (const gchar  *to_codeset,
-           const gchar  *from_codeset);
-size_t g_iconv        (GIConv        converter,
-           gchar       **inbuf,
-           size_t       *inbytes_left,
-           gchar       **outbuf,
-           size_t       *outbytes_left);
-gint   g_iconv_close  (GIConv        converter);
+GIConv g_iconv_open(const gchar *to_codeset, const gchar *from_codeset);
+size_t g_iconv(GIConv converter, gchar **inbuf, size_t *inbytes_left, gchar **outbuf, size_t *outbytes_left);
+gint g_iconv_close(GIConv converter);
 
-
-gchar* g_convert               (const gchar  *str,
-        gint          len,
-        const gchar  *to_codeset,
-        const gchar  *from_codeset,
-        gint         *bytes_read,
-        gint         *bytes_written,
-        GError      **error);
-gchar* g_convert_with_fallback (const gchar  *str,
-        gint          len,
-        const gchar  *to_codeset,
-        const gchar  *from_codeset,
-        gchar        *fallback,
-        gint         *bytes_read,
-        gint         *bytes_written,
-        GError      **error);
-
+gchar *g_convert(const gchar *str, gint len, const gchar *to_codeset, const gchar *from_codeset, gint *bytes_read,
+                 gint *bytes_written, GError **error);
+gchar *g_convert_with_fallback(const gchar *str, gint len, const gchar *to_codeset, const gchar *from_codeset,
+                               gchar *fallback, gint *bytes_read, gint *bytes_written, GError **error);
 
 /* Convert between libc's idea of strings and UTF-8.
  */
-gchar*   g_locale_to_utf8 (const gchar *opsysstring, GError **error);
-gchar*   g_locale_from_utf8 (const gchar *utf8string, GError **error);
+gchar *g_locale_to_utf8(const gchar *opsysstring, GError **error);
+gchar *g_locale_from_utf8(const gchar *utf8string, GError **error);
 
 /* Convert between the operating system (or C runtime)
  * representation of file names and UTF-8.
  */
-gchar*   g_filename_to_utf8 (const gchar *opsysstring, GError **error);
-gchar*   g_filename_from_utf8 (const gchar *utf8string, GError **error);
+gchar *g_filename_to_utf8(const gchar *opsysstring, GError **error);
+gchar *g_filename_from_utf8(const gchar *utf8string, GError **error);
 
 G_END_DECLS
 

@@ -11,13 +11,10 @@
 
 #include "Boundary.h"
 
-class CEclipseBoundary : public CBoundary
-{
+class CEclipseBoundary : public CBoundary {
 public:
-  CEclipseBoundary(const geo::IPoint& ptMin,
-           const geo::IPoint& ptMax,
-           CGraphModel& model,
-           BOUNDARY_STATE state = DEFAULT_DEFINED);
+  CEclipseBoundary(const geo::IPoint &ptMin, const geo::IPoint &ptMax, CGraphModel &model,
+                   BOUNDARY_STATE state = DEFAULT_DEFINED);
 
   virtual TMinMax BestFit() const;
 

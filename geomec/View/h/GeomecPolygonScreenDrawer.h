@@ -7,14 +7,13 @@ class SoCoordinate3;
 class SoMarkerSet;
 class SoMaterial;
 
-bool CloseEnough( const SbVec2f & pt, const SbVec2f & mousePoint );
+bool CloseEnough(const SbVec2f &pt, const SbVec2f &mousePoint);
 
 /**
-* A modifiable version of OIV SoPolygonScreenDrawer.
-*/
-class GeomecPolygonScreenDrawer : public SoPolygonScreenDrawer 
-{
-  SO_NODE_HEADER( GeomecPolygonScreenDrawer );
+ * A modifiable version of OIV SoPolygonScreenDrawer.
+ */
+class GeomecPolygonScreenDrawer : public SoPolygonScreenDrawer {
+  SO_NODE_HEADER(GeomecPolygonScreenDrawer);
 
   friend class PolyLineScreenDrawerRetainer;
 
@@ -25,60 +24,47 @@ public:
   /** Constructor */
   GeomecPolygonScreenDrawer();
 
-  enum DrawerMode
-  {
-    Creating,
-    Modifying
-  };
+  enum DrawerMode { Creating, Modifying };
 
-  enum PolygonMode
-  {
-    SinglePoint,
-    SingleLine,
-    Rectangular,
-    Polygon
-  };
+  enum PolygonMode { SinglePoint, SingleLine, Rectangular, Polygon };
 
 public:
-
   /** Register in database */
   static void initClass();
 
   /** Unregister from database */
   static void exitClass();
 
-  void setDrawerMode (DrawerMode mode);
-  void setPolygonMode (PolygonMode mode);
+  void setDrawerMode(DrawerMode mode);
+  void setPolygonMode(PolygonMode mode);
 
   void clean();
 
 protected:
-
-
   /** Called on keyDown event. Should be implemented by sub-classes. */
-  virtual void onKeyDown( SoHandleEventAction* );
+  virtual void onKeyDown(SoHandleEventAction *);
 
   /** Called on mouseDown event. Should be implemented by sub-classes. */
-  virtual void onMouseDown( SoHandleEventAction* );
+  virtual void onMouseDown(SoHandleEventAction *);
 
   void removeLastPoint();
 
-  bool handleModificationOnMouseDown( SoHandleEventAction* action );
+  bool handleModificationOnMouseDown(SoHandleEventAction *action);
 
-  SbVec2f getActionPoint( SoHandleEventAction* action );
+  SbVec2f getActionPoint(SoHandleEventAction *action);
 
   /** Called on mouseMove event. Should be implemented by sub-classes. */
-  virtual void onMouseMove( SoHandleEventAction* );
+  virtual void onMouseMove(SoHandleEventAction *);
 
-  void onMousePositionChanged( SoHandleEventAction* action );
+  void onMousePositionChanged(SoHandleEventAction *action);
 
-  bool actionAtDestination( SoHandleEventAction* action );
+  bool actionAtDestination(SoHandleEventAction *action);
 
   /** Called on double click event. Should be implemented by sub-classes. */
-  virtual void onMouseDblClick( SoHandleEventAction* );
+  virtual void onMouseDblClick(SoHandleEventAction *);
 
   /** Called on mouseDrag event. Should be implemented by sub-classes. */
-  virtual void onMouseDragging( SoHandleEventAction* );
+  virtual void onMouseDragging(SoHandleEventAction *);
 
   void makeRectangular();
   void checkSelfIntersection();
@@ -88,29 +74,28 @@ protected:
   void switchToRed();
 
   /** Called on mouseUp event. Should be implemented by sub-classes. */
-  virtual void onMouseUp( SoHandleEventAction* );
+  virtual void onMouseUp(SoHandleEventAction *);
 
   bool revertOnSelfIntersect();
 
-  bool actionOnOrigin( SoHandleEventAction* action );
+  bool actionOnOrigin(SoHandleEventAction *action);
 
-  int getActionPointIndex( SoHandleEventAction* action, bool doNotUseLastPoint = false );
+  int getActionPointIndex(SoHandleEventAction *action, bool doNotUseLastPoint = false);
 
 protected:
-
   /** Destructor. */
   virtual ~GeomecPolygonScreenDrawer();
 
 private:
-  void finalize( SoHandleEventAction* action ); // function is also defined in base class, but non-virtual.
+  void finalize(SoHandleEventAction *action); // function is also defined in base class, but non-virtual.
   bool selfIntersects();
-  void rotatePoints( int p );
+  void rotatePoints(int p);
   void updateMarkers();
   void addPointMarker();
-  void removePointMarker( int p );
-  void setPointMarkerCoordinates( int p, const SbVec2f & pt );
-  void setPointMarkerIndex( int p, const int32_t markerIndex );
-  void setPointMarkerColor( int p, const SbColor & markerHighlightColor );
+  void removePointMarker(int p);
+  void setPointMarkerCoordinates(int p, const SbVec2f &pt);
+  void setPointMarkerIndex(int p, const int32_t markerIndex);
+  void setPointMarkerColor(int p, const SbColor &markerHighlightColor);
   bool m_rotated;
   SbVec2f m_rotatedOut;
 
@@ -123,8 +108,5 @@ private:
   bool m_selfIntersects;
   bool m_finalized;
 
-  SoGroup *             m_pointMarkerGroup;
+  SoGroup *m_pointMarkerGroup;
 };
-
-
-

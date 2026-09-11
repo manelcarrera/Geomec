@@ -17,13 +17,10 @@ class CDataCell;
 class CMeshDataCacher;
 class CMeshDataCacherTestAccessor;
 
-
-class CCache  
-{
+class CCache {
   friend class CMeshDataCacherTestAccessor;
 
-  class CCellList
-  {
+  class CCellList {
     CDataCell &m_cell;
     CCellList *m_prev;
     CCellList *m_next;
@@ -41,7 +38,7 @@ class CCache
     void InsertBefore(CCellList *list);
   };
 
-  const CMeshDataCacher& m_meshdatacacher;
+  const CMeshDataCacher &m_meshdatacacher;
   int m_nLength;
   int m_nMaxLength;
   int m_nMaxLengthDefined;
@@ -57,6 +54,7 @@ class CCache
 
 public:
   CDataCell *Cell(int nElement, int nColumn, bool bReading);
+
 private:
   CDataCell *CellImpl(int nElement, int nColumn, bool bReading);
 
@@ -77,12 +75,12 @@ public:
   void Flush();
 
   const double *Value(int nElement, int nColumn, int nNode = 0); // don't access beyond the element's number of nodes !
-  void Value(int nElement, int nColumn, int nNode, double val); // to set the nodal values for the elements
+  void Value(int nElement, int nColumn, int nNode, double val);  // to set the nodal values for the elements
 
   bool StartCriticalSection(int nColumn, int nNumber); // preload cells nColumn ... nColumn + nNumber - 1; additive
-  void EndCriticalSection(); // free them; only needs to be called once
+  void EndCriticalSection();                           // free them; only needs to be called once
 };
 
-}
+} // namespace mdc
 
 #endif // !defined(AFX_CACHE_H__D10ADD51_A8FE_4777_9A16_0478E557A86B__INCLUDED_)

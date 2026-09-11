@@ -2,17 +2,18 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "geomec.h"
+#include "OptimumMudResult.h"
 #include "FormationBase.h"
 #include "HexaFormation.h"
 #include "Wellpath.h"
-#include "OptimumMudResult.h"
-
+#include "geomec.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
-#ifdef _MSC_VER#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
+#ifdef _MSC_VER
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
 #define new DEBUG_NEW
 #endif
 
@@ -20,54 +21,34 @@ static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CString CResultValue::GetDsbCaseString(int iDsbCase)
-{
-  if(iDsbCase==-1)
-  {
-    return CString("Optimum mudweight not calculated");		
+CString CResultValue::GetDsbCaseString(int iDsbCase) {
+  if (iDsbCase == -1) {
+    return CString("Optimum mudweight not calculated");
   }
-  if(iDsbCase==0)
-  {
-    return CString("Unknow error in mudweight calculation");		
+  if (iDsbCase == 0) {
+    return CString("Unknow error in mudweight calculation");
   }
-  if(iDsbCase==1)
-  {
-    return CString("Optimum mudweight found");		
-  }
-  else if(iDsbCase==2)
-  {
-    return CString("Well always stable");		
-  }
-  else if(iDsbCase==3)
-  {
-    return CString("Premature analysis failure");		
-  }
-  else if(iDsbCase==4)
-  {
-    return CString("Well always unstable");		
-  }
-  else if(iDsbCase==5)
-  {
-    return CString("Unable to determine stable mudweight");		
-  }
-  else
-  {
+  if (iDsbCase == 1) {
+    return CString("Optimum mudweight found");
+  } else if (iDsbCase == 2) {
+    return CString("Well always stable");
+  } else if (iDsbCase == 3) {
+    return CString("Premature analysis failure");
+  } else if (iDsbCase == 4) {
+    return CString("Well always unstable");
+  } else if (iDsbCase == 5) {
+    return CString("Unable to determine stable mudweight");
+  } else {
     ASSERT(FALSE);
-    return CString("Unknow error in mudweight calculation");		
+    return CString("Unknow error in mudweight calculation");
   }
-
 }
 
-bool CResultValue::IsCalculated() 
-{
-  return !(m_iStatus < 0);
-}
+bool CResultValue::IsCalculated() { return !(m_iStatus < 0); }
 
-CString CResultValue::Info()
-{
+CString CResultValue::Info() {
   CString ret;
-  switch(m_iStatus)
-  {
+  switch (m_iStatus) {
   case -1:
     ret = "Not calculated";
     break;
@@ -84,7 +65,8 @@ CString CResultValue::Info()
     ret = "Premature analysis failure";
     break;
   case 4:
-    ret = "Well always unstable";;
+    ret = "Well always unstable";
+    ;
     break;
   case 5:
     ret = "Optimum mudweight not found";

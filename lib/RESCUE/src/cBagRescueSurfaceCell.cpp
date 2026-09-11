@@ -25,56 +25,35 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueSurfaceCell.h"
-#include "RescueSurfaceCell.h"
 #include "RescueModel.h"
+#include "RescueSurfaceCell.h"
+#include "myHeaders.h"
 
-cBagRescueSurfaceCell::cBagRescueSurfaceCell()
-{
-  tree = new RescueTree();
+cBagRescueSurfaceCell::cBagRescueSurfaceCell() { tree = new RescueTree(); }
+
+cBagRescueSurfaceCell::~cBagRescueSurfaceCell() { delete tree; }
+
+void cBagRescueSurfaceCell::operator+=(RescueSurfaceCell *newObject) { tree->Add(newObject); }
+
+RESCUEBOOL cBagRescueSurfaceCell::operator-=(RescueSurfaceCell *existingObject) { return tree->Delete(existingObject); }
+
+RescueSurfaceCell *cBagRescueSurfaceCell::NthObject(RESCUEINT64 ordinal) {
+  return (RescueSurfaceCell *)tree->NthObject(ordinal);
 }
 
-cBagRescueSurfaceCell::~cBagRescueSurfaceCell()
-{
-  delete tree;
-}
-
-void cBagRescueSurfaceCell::operator+=(RescueSurfaceCell *newObject)
-{
-  tree->Add(newObject);
-}
-
-RESCUEBOOL cBagRescueSurfaceCell::operator-=(RescueSurfaceCell * existingObject)
-{
-  return tree->Delete(existingObject);
-}
-
-RescueSurfaceCell *cBagRescueSurfaceCell::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueSurfaceCell *) tree->NthObject(ordinal);
-}
-
-void cBagRescueSurfaceCell::EmptySelf()
-{
+void cBagRescueSurfaceCell::EmptySelf() {
   delete tree;
   tree = new RescueTree();
 }
 
-RESCUEINT32 cBagRescueSurfaceCell::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueSurfaceCell::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-

@@ -1,20 +1,14 @@
 #include "StdAfx.h"
 
-#include "SaveModelGUI.h"
 #include "GeomecDoc.h"
+#include "SaveModelGUI.h"
 
-CSaveModelGUI::CSaveModelGUI()
-: ISaveModel()
-{
-}
+CSaveModelGUI::CSaveModelGUI() : ISaveModel() {}
 
-CSaveModelGUI::~CSaveModelGUI()
-{
-}
+CSaveModelGUI::~CSaveModelGUI() {}
 
-bool CSaveModelGUI::saveModel(const QString& fileName, bool bSwitch)
-{
-  CGeomecDoc& doc = *GetGeomecDoc();
+bool CSaveModelGUI::saveModel(const QString &fileName, bool bSwitch) {
+  CGeomecDoc &doc = *GetGeomecDoc();
 
   return doc.SaveModel(fileName.toStdString().c_str(), 0, bSwitch);
 }

@@ -3,24 +3,20 @@
 
 #include "ResponseTypeBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseTypeMax : public CResponseTypeBase
-{
-  public:
-  CResponseTypeMax(CSummaryResultFile& summaryResultFile,
-      const std::vector <QString>& function);
+class CResponseTypeMax : public CResponseTypeBase {
+public:
+  CResponseTypeMax(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function);
   virtual ~CResponseTypeMax();
 
-  virtual double calculate(const TObject& object,
-      const TFailureMode& failureMode);
+  virtual double calculate(const TObject &object, const TFailureMode &failureMode);
 
-  private:
-  CResponseTypeMax(const CResponseTypeMax& rhs);
-  CResponseTypeMax& operator = (CResponseTypeMax rhs);
+private:
+  CResponseTypeMax(const CResponseTypeMax &rhs);
+  CResponseTypeMax &operator=(CResponseTypeMax rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ResponseTypeMax_h_
+#endif // _cora_ResponseTypeMax_h_

@@ -3,7 +3,6 @@
 // Neither the whole nor any part of this document may be copied, modified or distributed in any
 // form without the prior written consent of the copyright owner.
 
-
 #ifndef RG_GENERAL_PROPERTY_H
 #define RG_GENERAL_PROPERTY_H
 
@@ -11,64 +10,54 @@
 
 #include <string>
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// General property, as opposed to RGProperty that is defined by a fixed string.
 ///////////////////////////////////////////////////////////////////////////////
 
-namespace RGSupport
-{
-   ///////////////////////////////////////////////////////////////////////////////
-   /// Topological support of property
-   ///////////////////////////////////////////////////////////////////////////////
-   enum Support
-   {
-       InvalidSupport = -1, Element = 0, Node, IntegrationPoint
-   };
+namespace RGSupport {
+///////////////////////////////////////////////////////////////////////////////
+/// Topological support of property
+///////////////////////////////////////////////////////////////////////////////
+enum Support { InvalidSupport = -1, Element = 0, Node, IntegrationPoint };
 
-   inline std::string toString(Support support)
-   {
-     std::string retValue;
-     switch (support)
-     {
-     case RGSupport::Element:
-       retValue = "Element";
-       break;
-     case RGSupport::Node:
-       retValue = "Node";
-       break;
-     case RGSupport::IntegrationPoint:
-       retValue = "IntegrationPoint";
-       break;
-     default:
-       retValue = "";
-       break;
-     }
+inline std::string toString(Support support) {
+  std::string retValue;
+  switch (support) {
+  case RGSupport::Element:
+    retValue = "Element";
+    break;
+  case RGSupport::Node:
+    retValue = "Node";
+    break;
+  case RGSupport::IntegrationPoint:
+    retValue = "IntegrationPoint";
+    break;
+  default:
+    retValue = "";
+    break;
+  }
 
-     return retValue;
-   }
-
-   inline Support toEnum(std::string support)
-   {
-     if (support == "Element")
-       return Element;
-     else if (support == "Node")
-       return Node;
-     else if (support == "IntegrationPoint")
-       return IntegrationPoint;
-     else
-       return InvalidSupport;
-   }
+  return retValue;
 }
+
+inline Support toEnum(std::string support) {
+  if (support == "Element")
+    return Element;
+  else if (support == "Node")
+    return Node;
+  else if (support == "IntegrationPoint")
+    return IntegrationPoint;
+  else
+    return InvalidSupport;
+}
+} // namespace RGSupport
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @class RGGeneralProperty
 /// @brief General property description
 ///////////////////////////////////////////////////////////////////////////////
-class INTERFACE_RGINTERFACE RGGeneralProperty
-{
+class INTERFACE_RGINTERFACE RGGeneralProperty {
 public:
-
   RGGeneralProperty(const std::string &propName, const std::string &quant, const RGSupport::Support &support);
 
   std::string GetProperty() const;
@@ -79,9 +68,6 @@ private:
   std::string m_propName;
   std::string m_quantity;
   RGSupport::Support m_support;
-
 };
 
 #endif
-
-

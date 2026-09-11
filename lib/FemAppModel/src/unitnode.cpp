@@ -8,30 +8,23 @@
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-
-CUnitNode::CUnitNode(TUnitType unit)
-: CGraphNode(""), m_unit(unit)
-{
+CUnitNode::CUnitNode(TUnitType unit) : CGraphNode(""), m_unit(unit) {
   ReadRegister();
   Name(UnitName(m_unit));
 }
 
-CUnitNode::TUnitType CUnitNode::Unit() const
-{
-  return m_unit;
-}
+CUnitNode::TUnitType CUnitNode::Unit() const { return m_unit; }
 
-void CUnitNode::Unit(TUnitType unit)
-{
+void CUnitNode::Unit(TUnitType unit) {
   assert((unit == IQuantityDouble::SI_UNIT) || (unit == IQuantityDouble::FIELD_UNIT));
   m_unit = unit;
   Name(UnitName(unit));
@@ -39,11 +32,9 @@ void CUnitNode::Unit(TUnitType unit)
   Modified();
 }
 
-QString CUnitNode::UnitName(TUnitType unit) const
-{
+QString CUnitNode::UnitName(TUnitType unit) const {
   QString strRet;
-  switch(unit)
-  {
+  switch (unit) {
   case IQuantityDouble::SI_UNIT:
     return "SI";
     break;
@@ -51,36 +42,27 @@ QString CUnitNode::UnitName(TUnitType unit) const
     return "FIELD";
     break;
   default:
-    assert(false);	// Type not defined 
+    assert(false); // Type not defined
     break;
   }
 
   return strRet;
 }
 
-unsigned int CUnitNode::IconId() const
-{
-  return 0;
-}
+unsigned int CUnitNode::IconId() const { return 0; }
 
-unsigned int CUnitNode::TypeId() const
-{
-  return 0;
-}
+unsigned int CUnitNode::TypeId() const { return 0; }
 
-void CUnitNode::StoreRegister()
-{
-  ISettings* registry = ISettings::instance();
+void CUnitNode::StoreRegister() {
+  ISettings *registry = ISettings::instance();
   int nUnit = (int)(m_unit);
   registry->writeProfileInt("Settings", "UNIT", nUnit);
 }
 
-void CUnitNode::ReadRegister()
-{
-  ISettings* registry = ISettings::instance();
+void CUnitNode::ReadRegister() {
+  ISettings *registry = ISettings::instance();
   int nUnit = registry->getProfileInt("Settings", "UNIT", -1);
-  switch(nUnit)
-  {
+  switch (nUnit) {
   case IQuantityDouble::FIELD_UNIT:
     m_unit = IQuantityDouble::FIELD_UNIT;
     break;

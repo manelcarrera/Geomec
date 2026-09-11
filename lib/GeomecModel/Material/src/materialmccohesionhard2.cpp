@@ -5,13 +5,10 @@
 
 #include "Material.h"
 
-CMaterialMCCohesionHard2::CMaterialMCCohesionHard2(CMaterialEntry &entry, CLibraryMaterial& libmat)
-: CMaterialMohrCo(entry, libmat)
-{
-}
+CMaterialMCCohesionHard2::CMaterialMCCohesionHard2(CMaterialEntry &entry, CLibraryMaterial &libmat)
+    : CMaterialMohrCo(entry, libmat) {}
 
-bool CMaterialMCCohesionHard2::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+bool CMaterialMCCohesionHard2::Write(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   ftn_double_t kapcoh[6];
 
   kapcoh[0] = 0;
@@ -26,31 +23,28 @@ bool CMaterialMCCohesionHard2::Write(const CFFMaterial &ffmat, dia::IDianaRunner
   return CMaterialMohrCo::Write(ffmat, diarunner);
 }
 
-
 // Interface for dia::IElementProperty
-int CMaterialMCCohesionHard2::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
-{
+int CMaterialMCCohesionHard2::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner) const {
   int size = 6; // KAPCOH(6)
 
   size += CMaterialMohrCo::WriteFilosParamSize(ffmat, diarunner);
   return size;
 }
 
-bool CMaterialMCCohesionHard2::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, int i, char *name) const
-{
-  if (i < 6)
-  {
-  QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
-  strncpy(name, kapcoh.toStdString().c_str(), 10);
-  return true;
+bool CMaterialMCCohesionHard2::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner, int i,
+                                                   char *name) const {
+  if (i < 6) {
+    QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
+    strncpy(name, kapcoh.toStdString().c_str(), 10);
+    return true;
   }
   i -= 6;
 
   return CMaterialMohrCo::WriteFilosParamName(ffmat, diarunner, i, name);
 }
 
-void CMaterialMCCohesionHard2::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner, double *values, int stride) const
-{
+void CMaterialMCCohesionHard2::WriteFilosParamValues(const CFFMaterial &ffmat, dia::IDianaRunner &diarunner,
+                                                     double *values, int stride) const {
   *values = 0; // KAPCOH(1)
   values += stride;
 

@@ -5,8 +5,7 @@
 
 namespace dia {
 
-class IConcentrationTable : public IValueTable
-{
+class IConcentrationTable : public IValueTable {
 public:
   IConcentrationTable(const IDianaRunner &runner);
 

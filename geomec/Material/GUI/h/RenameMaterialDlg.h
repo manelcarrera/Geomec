@@ -6,18 +6,18 @@
 #include "Materials.h"
 
 namespace ml {
-  class CMaterial;
+class CMaterial;
 }
 
-class CRenameMaterialDlg : public CDialog
-{
+class CRenameMaterialDlg : public CDialog {
 public:
-  CRenameMaterialDlg(const QString& sName = QString(), mlMatModel matmodel = MM_LINEAR, bool bAllowModelChange = false, int nFilter = 0, CWnd* pParent = NULL);   // standard constructor
-  const QString& Name() const;
+  CRenameMaterialDlg(const QString &sName = QString(), mlMatModel matmodel = MM_LINEAR, bool bAllowModelChange = false,
+                     int nFilter = 0, CWnd *pParent = NULL); // standard constructor
+  const QString &Name() const;
   mlMatModel MaterialModel() const;
- 
+
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 
 private:
   QString m_strName;
@@ -29,7 +29,6 @@ private:
   int m_iModelComboIndex;
 
   enum { IDD = IDD_RENAMEMATERIALDLG };
-
 
   void AddListedModel(mlMatModel mm);
   void FillModelListBox();

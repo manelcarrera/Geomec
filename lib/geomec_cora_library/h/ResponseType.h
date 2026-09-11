@@ -1,8 +1,7 @@
 #ifndef _cora_ResponseType_h_
 #define _cora_ResponseType_h_
 
-namespace cora
-{
+namespace cora {
 
 class CResponseParameterFile;
 
@@ -10,32 +9,28 @@ class CResponseParameterFile;
 
 #include "ResponseTypeBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CResponseType
-{
-  public:
-  CResponseType(CSummaryResultFile& summaryResultFile,
-      const QString& versionNumber, const std::vector <QString>& function);
+class CResponseType {
+public:
+  CResponseType(CSummaryResultFile &summaryResultFile, const QString &versionNumber,
+                const std::vector<QString> &function);
 
-  void calculate(CResponseParameterFile& responseParameterFile,
-      const TObject& object, const TFailureMode& failureMode);
+  void calculate(CResponseParameterFile &responseParameterFile, const TObject &object, const TFailureMode &failureMode);
 
-  private:
-  CResponseType(const CResponseType& rhs);
-  CResponseType& operator = (CResponseType rhs);
+private:
+  CResponseType(const CResponseType &rhs);
+  CResponseType &operator=(CResponseType rhs);
 
-  static TResponseTypeBase selectResponseType(
-      CSummaryResultFile& summaryResultFile, const QString& versionNumber,
-      const std::vector <QString>& function);
+  static TResponseTypeBase selectResponseType(CSummaryResultFile &summaryResultFile, const QString &versionNumber,
+                                              const std::vector<QString> &function);
 
   TResponseTypeBase m_responseTypeBase;
-  CSummaryResultFile& m_summaryResultFile;
+  CSummaryResultFile &m_summaryResultFile;
 };
 
-typedef QSharedPointer <CResponseType> TResponseType;
+typedef QSharedPointer<CResponseType> TResponseType;
 
 } // namespace cora
 
-#endif  // _cora_ResponseType_h_
+#endif // _cora_ResponseType_h_

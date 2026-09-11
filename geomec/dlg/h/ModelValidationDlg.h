@@ -14,8 +14,7 @@ class CModelBase;
 
 #include "ValidateModel.h"
 
-class CModelValidationDlg : public CDialog
-{
+class CModelValidationDlg : public CDialog {
   CModelBase *m_pModel;
   CValidateModel m_ValidateModel;
 
@@ -28,34 +27,31 @@ class CModelValidationDlg : public CDialog
   bool m_bEmptFault;
 
   void DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck);
-  
 
 public:
-  CModelValidationDlg(CModelBase *pModel, CWnd* pParent = NULL);   // standard constructor
+  CModelValidationDlg(CModelBase *pModel, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CModelValidationDlg)
   enum { IDD = IDD_MODEL_VALID_DLG };
   CStatic m_EmptyFaultsCheck;
-  CStatic	m_EmptyFormationsCheck;
-  CStatic	m_BoundConditionsCheck;
-  CStatic	m_MaterialCheckIcon;
-  CStatic	m_DepletionCheckIcon;
-  CStatic	m_ResCheckIcon;
-  CStatic	m_MeshCheckIcon;
+  CStatic m_EmptyFormationsCheck;
+  CStatic m_BoundConditionsCheck;
+  CStatic m_MaterialCheckIcon;
+  CStatic m_DepletionCheckIcon;
+  CStatic m_ResCheckIcon;
+  CStatic m_MeshCheckIcon;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CModelValidationDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CModelValidationDlg)
   afx_msg void OnPaint();

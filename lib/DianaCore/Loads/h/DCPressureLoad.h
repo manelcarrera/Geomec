@@ -15,9 +15,9 @@ namespace dia {
 
 class CLoadManager;
 
-class CPressureLoad : public IStructuralLoad  
-{
+class CPressureLoad : public IStructuralLoad {
   const geo::IElement &m_Element;
+
 public:
   // same value in all nodes
   CPressureLoad(CLoadCase &loadcase, double size, const geo::IElement &element);
@@ -30,6 +30,6 @@ public:
   const geo::IElement &Element() const;
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_IPRESSURELOAD_H__103BD489_2102_4ADA_BD0A_BBF1E8431AE4__INCLUDED_)

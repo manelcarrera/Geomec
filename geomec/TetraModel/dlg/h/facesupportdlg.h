@@ -12,31 +12,30 @@
 
 #include "SupportDlgBase.h"
 
-class CFaceSupportDlg : public CSupportDlgBase
-{
-// Construction
+class CFaceSupportDlg : public CSupportDlgBase {
+  // Construction
   void SetButton(unsigned int uButton, bool bCheck);
   bool GetButton(unsigned int uButton);
-public:
-  CFaceSupportDlg(CPressureSupportNode::CFaceSupportDef &supdef, const CPressureSupportNode &node, CWnd* pParent = NULL);
 
-// Dialog Data
+public:
+  CFaceSupportDlg(CPressureSupportNode::CFaceSupportDef &supdef, const CPressureSupportNode &node,
+                  CWnd *pParent = NULL);
+
+  // Dialog Data
   //{{AFX_DATA(CFaceSupportDlg)
   enum { IDD = IDD_ATTRI_FACE_SUPPORT_SHORT };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CFaceSupportDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CFaceSupportDlg)
   afx_msg void OnSelchangeStage();

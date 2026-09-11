@@ -6,8 +6,7 @@
 
 #include <QSharedPointer>
 
-namespace geo
-{
+namespace geo {
 
 class IElement;
 
@@ -15,49 +14,46 @@ class IElement;
 
 #include "ElementVertex.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
 class CElementVertex;
 
-typedef QSharedPointer <CElementVertex> TElementVertex;
+typedef QSharedPointer<CElementVertex> TElementVertex;
 
-struct COrderByVertexIndices
-{
-  bool operator () (const TElementVertex& lhs, const TElementVertex& rhs);
+struct COrderByVertexIndices {
+  bool operator()(const TElementVertex &lhs, const TElementVertex &rhs);
 };
 
-typedef std::set <TElementVertex, COrderByVertexIndices> TElementVertices;
+typedef std::set<TElementVertex, COrderByVertexIndices> TElementVertices;
 
-class CElementVertex
-{
-  public:
-  typedef std::vector <int> TIndices;
+class CElementVertex {
+public:
+  typedef std::vector<int> TIndices;
 
-  CElementVertex(const geo::IElement& element, int index0, int index1);
+  CElementVertex(const geo::IElement &element, int index0, int index1);
   ~CElementVertex();
 
-  const geo::IElement& element() const;
+  const geo::IElement &element() const;
 
   TIndices vertexIndices() const;
 
-  TElementVertices& otherElementVertices();
-  const TElementVertices& otherElementVertices() const;
-  void otherElementVertex(const TElementVertex& otherElementVertex);
+  TElementVertices &otherElementVertices();
+  const TElementVertices &otherElementVertices() const;
+  void otherElementVertex(const TElementVertex &otherElementVertex);
 
   void removeLinkWithOtherElementVertices();
 
-  private:
-  CElementVertex(const CElementVertex& rhs);
-  CElementVertex& operator = (CElementVertex rhs);
+private:
+  CElementVertex(const CElementVertex &rhs);
+  CElementVertex &operator=(CElementVertex rhs);
 
   static TIndices createVertexIndices(int index0, int index1);
 
-  const geo::IElement& m_element;
+  const geo::IElement &m_element;
   TIndices m_vertexIndices;
   TElementVertices m_otherElementVertices;
 };
 
 } // namespace WellPath
 
-#endif  // _ElementVertex_h_
+#endif // _ElementVertex_h_

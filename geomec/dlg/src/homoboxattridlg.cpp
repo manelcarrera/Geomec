@@ -1,35 +1,30 @@
-#include "stdafx.h"
-#include "geomec.h"
 #include "homoboxattridlg.h"
 #include "GlobalMessage.h"
+#include "geomec.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
-//#define new DEBUG_NEW
+// #define new DEBUG_NEW
 #ifdef _MSC_VER
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif  // _MSC_VER
+#endif // _MSC_VER
 #endif
-
 
 const int MESH_DIVISION_OFFSET = 4;
 
-
-CHomoBoxAttriDlg::CHomoBoxAttriDlg(const CFemAppModel &model, CHomogenizationBox &homo_box, CWnd* pParent /*=NULL*/)
-:CAttributesTemplate<CHomogenizationBox>(CHomoBoxAttriDlg::IDD, homo_box, pParent)
-{
+CHomoBoxAttriDlg::CHomoBoxAttriDlg(const CFemAppModel &model, CHomogenizationBox &homo_box, CWnd *pParent /*=NULL*/)
+    : CAttributesTemplate<CHomogenizationBox>(CHomoBoxAttriDlg::IDD, homo_box, pParent) {
   //{{AFX_DATA_INIT(CHomoBoxAttriDlg)
-    // NOTE: the ClassWizard will add member initialization here
+  // NOTE: the ClassWizard will add member initialization here
   //}}AFX_DATA_INIT
   m_unit = GetGeomecDoc()->UnitNode().Unit();
 }
 
-
-void CHomoBoxAttriDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CHomoBoxAttriDlg::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
   //{{AFX_DATA_MAP(CHomoBoxAttriDlg)
-    // NOTE: the ClassWizard will add DDX and DDV calls here
+  // NOTE: the ClassWizard will add DDX and DDV calls here
   //}}AFX_DATA_MAP
 
   double center_northing;
@@ -54,13 +49,12 @@ void CHomoBoxAttriDlg::DoDataExchange(CDataExchange* pDX)
   CString sName;
   strUnitLength = qLength.UnitName(m_unit).c_str();
   strUnitAngle = qAngle.UnitName(m_unit).c_str();
-  
-  CComboBox *pComboN = (CComboBox*)(GetDlgItem(IDC_COM_DIVISION_N));
-  CComboBox *pComboE = (CComboBox*)(GetDlgItem(IDC_COM_DIVISION_E));
-  CComboBox *pComboD = (CComboBox*)(GetDlgItem(IDC_COM_DIVISION_D));
 
-  if(!pDX->m_bSaveAndValidate)
-  {
+  CComboBox *pComboN = (CComboBox *)(GetDlgItem(IDC_COM_DIVISION_N));
+  CComboBox *pComboE = (CComboBox *)(GetDlgItem(IDC_COM_DIVISION_E));
+  CComboBox *pComboD = (CComboBox *)(GetDlgItem(IDC_COM_DIVISION_D));
+
+  if (!pDX->m_bSaveAndValidate) {
     sName = Copy().Name().toStdString().c_str();
 
     edge_length_northing = Copy().Mesh().XSpace() * Copy().Mesh().LengthDivision();
@@ -87,7 +81,7 @@ void CHomoBoxAttriDlg::DoDataExchange(CDataExchange* pDX)
   center_depth = qLength.Convert(center_depth, m_unit, IQuantityDouble::SI_UNIT);
 
   azimuth = qAngle.Convert(azimuth, m_unit, IQuantityDouble::SI_UNIT);
-  
+
   DDX_Text(pDX, IDC_EDIT_BOXNAME, sName);
 
   DDX_Text(pDX, IDC_NORTH_CENTER, center_northing);
@@ -107,16 +101,14 @@ void CHomoBoxAttriDlg::DoDataExchange(CDataExchange* pDX)
   DDX_Text(pDX, IDC_AZIMUTH, azimuth);
   DDX_Text(pDX, IDC_AZIMUTH_UNIT, strUnitAngle);
 
-  if(pDX->m_bSaveAndValidate)
-  {
+  if (pDX->m_bSaveAndValidate) {
     center_northing = qLength.Convert(center_northing, IQuantityDouble::SI_UNIT, m_unit);
     center_easting = qLength.Convert(center_easting, IQuantityDouble::SI_UNIT, m_unit);
     center_depth = qLength.Convert(center_depth, IQuantityDouble::SI_UNIT, m_unit);
 
     // perform validity test in SI units
-    if(edge_length_northing < EPS || edge_length_easting < EPS || edge_length_depth < EPS)
-    {
-      _m()->msg("One or more edge lengths too small, please correct your input.", MB_OK|MB_ICONEXCLAMATION);
+    if (edge_length_northing < EPS || edge_length_easting < EPS || edge_length_depth < EPS) {
+      _m()->msg("One or more edge lengths too small, please correct your input.", MB_OK | MB_ICONEXCLAMATION);
       pDX->Fail();
     }
 
@@ -130,47 +122,42 @@ void CHomoBoxAttriDlg::DoDataExchange(CDataExchange* pDX)
     division_easting = pComboE->GetCurSel() + MESH_DIVISION_OFFSET;
     division_depth = pComboD->GetCurSel() + MESH_DIVISION_OFFSET;
 
-    Copy().SetMesh(geo::CPoint(center_northing, center_easting, center_depth),
-             edge_length_northing, edge_length_easting, edge_length_depth,
-             division_northing, division_easting, division_depth, azimuth);
+    Copy().SetMesh(geo::CPoint(center_northing, center_easting, center_depth), edge_length_northing,
+                   edge_length_easting, edge_length_depth, division_northing, division_easting, division_depth,
+                   azimuth);
 
-    Copy().Name((LPCSTR) sName);
+    Copy().Name((LPCSTR)sName);
   }
 }
 
-
 BEGIN_MESSAGE_MAP(CHomoBoxAttriDlg, CDialog)
-  //{{AFX_MSG_MAP(CHomoBoxAttriDlg)
-    // NOTE: the ClassWizard will add message map macros here
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CHomoBoxAttriDlg)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-void CHomoBoxAttriDlg::configureDivisionCombo(CComboBox& combo, int division)
-{
+void CHomoBoxAttriDlg::configureDivisionCombo(CComboBox &combo, int division) {
   CString str;
   int i;
-  for(i = 0; i < 17; ++i)
-  {
+  for (i = 0; i < 17; ++i) {
     str.Format(_T("%d"), i + MESH_DIVISION_OFFSET);
     combo.InsertString(i, str);
   }
 
   assert(division < 21);
 
-  if(division == 0)
+  if (division == 0)
     combo.SetCurSel(0);
   else
     combo.SetCurSel(division - MESH_DIVISION_OFFSET);
 }
 
-BOOL CHomoBoxAttriDlg::OnInitDialog()
-{
+BOOL CHomoBoxAttriDlg::OnInitDialog() {
   CAttributesTemplate<CHomogenizationBox>::OnInitDialog();
 
-  configureDivisionCombo(*(CComboBox*)(GetDlgItem(IDC_COM_DIVISION_N)), Copy().Mesh().LengthDivision());
-  configureDivisionCombo(*(CComboBox*)(GetDlgItem(IDC_COM_DIVISION_E)), Copy().Mesh().WidthDivision());
-  configureDivisionCombo(*(CComboBox*)(GetDlgItem(IDC_COM_DIVISION_D)), Copy().Mesh().HeightDivision());
+  configureDivisionCombo(*(CComboBox *)(GetDlgItem(IDC_COM_DIVISION_N)), Copy().Mesh().LengthDivision());
+  configureDivisionCombo(*(CComboBox *)(GetDlgItem(IDC_COM_DIVISION_E)), Copy().Mesh().WidthDivision());
+  configureDivisionCombo(*(CComboBox *)(GetDlgItem(IDC_COM_DIVISION_D)), Copy().Mesh().HeightDivision());
 
   return TRUE;
 }
-

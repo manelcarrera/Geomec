@@ -6,16 +6,15 @@
 
 class GmInterfaceGui;
 
-class GuiCommandTask : public tbb::task 
-{
+class GuiCommandTask : public tbb::task {
   HWND hWnd;
   Command cmd;
-  GmInterfaceGui* gm_iface;
+  GmInterfaceGui *gm_iface;
 
-  tbb::task* execute();
+  tbb::task *execute();
 
 public:
-  GuiCommandTask( GmInterfaceGui* gm_iface, Command _cmd, HWND hWnd_ = nullptr );
+  GuiCommandTask(GmInterfaceGui *gm_iface, Command _cmd, HWND hWnd_ = nullptr);
 };
 
-void Launch_GuiCommandTask(  GmInterfaceGui* gm_iface, Command _cmd, HWND _hWnd = nullptr   );
+void Launch_GuiCommandTask(GmInterfaceGui *gm_iface, Command _cmd, HWND _hWnd = nullptr);

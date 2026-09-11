@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "Geometry.h"
 #include "Checksum.h"
+#include "Geometry.h"
 
 class CHDF5StorageInterface;
 
@@ -18,9 +18,7 @@ namespace mdc {
 
 class CMeshDataCacher;
 
-
-class CDataCell  
-{
+class CDataCell {
   friend class CCache;
   friend class CMeshDataCacherTestAccessor;
   friend class CStorageInterfaceDefault;
@@ -55,7 +53,7 @@ public:
   bool Contains(int nColumn) const;
 
   const double *Value(int nElement, int nNode = 0); // don't access beyond the element's number of nodes !
-  void Value(int nElement, int nNode, double val); // to set the nodal values for the elements
+  void Value(int nElement, int nNode, double val);  // to set the nodal values for the elements
 
   bool Dirty() const;
   const CMeshDataCacher &Cacher() const;

@@ -13,8 +13,7 @@
 
 namespace dia {
 
-class ITemperatureTable : public IValueTable
-{
+class ITemperatureTable : public IValueTable {
 public:
   ITemperatureTable(const IDianaRunner &runner);
 

@@ -13,42 +13,43 @@ class CHotSpot;
 class CColorGradient;
 class CModelBase;
 
-#include "IColorScaleEntry.h"
 #include "GeomecModelVisitor.h"
+#include "IColorScaleEntry.h"
 
-class CColorScaleEntry : public IColorScaleEntry
-{
-  CColorGradient	*m_pLocal;		// The one and only colorscale always available
-  CColorGradient	*m_pGlobal;		// The currently selected color scale
-  CHotSpot		*m_pHotSpot;	// The currently selected hotspot
+class CColorScaleEntry : public IColorScaleEntry {
+  CColorGradient *m_pLocal;  // The one and only colorscale always available
+  CColorGradient *m_pGlobal; // The currently selected color scale
+  CHotSpot *m_pHotSpot;      // The currently selected hotspot
 public:
   enum COLORSCALE_TYPE { LOCAL, GLOBAL, HOTSPOT };
+
 private:
   COLORSCALE_TYPE m_color_scale;
+
 public:
   // Construction
-  CColorScaleEntry(CModelBase& model);
+  CColorScaleEntry(CModelBase &model);
   ~CColorScaleEntry();
 
   // Set selection
-  void SelectHotSpot(CHotSpot& hot_spot);
-  void SelectGlobalColorGradient(CColorGradient& gradient);
+  void SelectHotSpot(CHotSpot &hot_spot);
+  void SelectGlobalColorGradient(CColorGradient &gradient);
 
   // Access to hotspot enz.
-  const CHotSpot* HotSpot() const;
-  CHotSpot* HotSpot();
-  const CColorGradient* GlobalColorGradient() const;
-  CColorGradient* GlobalColorGradient();
-  const CColorGradient* LocalColorGradient() const;
-  CColorGradient* LocalColorGradient();
+  const CHotSpot *HotSpot() const;
+  CHotSpot *HotSpot();
+  const CColorGradient *GlobalColorGradient() const;
+  CColorGradient *GlobalColorGradient();
+  const CColorGradient *LocalColorGradient() const;
+  CColorGradient *LocalColorGradient();
 
   // return selected colorgradient
-  const CColorGradient* CurrentColorGradient() const;
-  CColorGradient* CurrentColorGradient();
+  const CColorGradient *CurrentColorGradient() const;
+  CColorGradient *CurrentColorGradient();
 
   // Selected one
-  virtual const IColorScaleNode& CurrentColorScale() const;
-  virtual IColorScaleNode& CurrentColorScale();
+  virtual const IColorScaleNode &CurrentColorScale() const;
+  virtual IColorScaleNode &CurrentColorScale();
 
   // Selecting the gradient
   COLORSCALE_TYPE ColorScaleType() const;
@@ -56,8 +57,8 @@ public:
 
   // Messages
   virtual void OnNeighbourDeleted(const CGraphNode &node);
-  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
+  void SaveStream(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
   long SavedItems() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitColorScaleEntry);

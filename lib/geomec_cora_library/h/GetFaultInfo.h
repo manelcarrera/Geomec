@@ -6,10 +6,9 @@
 
 #include <QString>
 
-namespace geo
-{
+namespace geo {
 
-  class CInterfaceElement;
+class CInterfaceElement;
 
 } // namespace geo
 
@@ -19,35 +18,33 @@ class CModelBase;
 
 #include "Object.h"
 
-namespace cora
-{
+namespace cora {
 
-class CGetFaultInfo
-{
-  public:
-  static CGetFaultInfo& instance(CModelBase* modelBase);
+class CGetFaultInfo {
+public:
+  static CGetFaultInfo &instance(CModelBase *modelBase);
 
   const TObjects getObjects() const;
 
-  std::ostream& operator () (std::ostream& os) const;
+  std::ostream &operator()(std::ostream &os) const;
 
-  private:
-  CGetFaultInfo(CModelBase* modelBase);
+private:
+  CGetFaultInfo(CModelBase *modelBase);
   ~CGetFaultInfo();
 
-  CGetFaultInfo(const CGetFaultInfo& rhs);
-  CGetFaultInfo& operator = (CGetFaultInfo rhs);
+  CGetFaultInfo(const CGetFaultInfo &rhs);
+  CGetFaultInfo &operator=(CGetFaultInfo rhs);
 
-  static TObjects getObjects(CModelBase* modelBase);
+  static TObjects getObjects(CModelBase *modelBase);
   static void cleanup();
 
-  static CGetFaultInfo* m_getFaultInfo;
-  CModelBase* m_modelBase;
+  static CGetFaultInfo *m_getFaultInfo;
+  CModelBase *m_modelBase;
   TObjects m_objects;
 };
 
 } // namespace cora
 
-std::ostream& operator << (std::ostream& os, const cora::CGetFaultInfo& i);
+std::ostream &operator<<(std::ostream &os, const cora::CGetFaultInfo &i);
 
-#endif  // _cora_GetFaultInfo_h_
+#endif // _cora_GetFaultInfo_h_

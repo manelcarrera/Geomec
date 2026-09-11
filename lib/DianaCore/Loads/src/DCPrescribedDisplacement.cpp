@@ -2,10 +2,10 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "IDCLoad.h"
-#include "IDCDirectedLoad.h"
-#include "IDCSupportLoad.h"
 #include "DCPrescribedDisplacement.h"
+#include "IDCDirectedLoad.h"
+#include "IDCLoad.h"
+#include "IDCSupportLoad.h"
 
 #include "ISupport.h"
 
@@ -15,18 +15,12 @@
 
 namespace dia {
 
-CPrescribedDisplacement::CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CTranslationSupport &support)
-:	ISupportLoad(loadcase, size, vecDirection, support)
-{
-}
+CPrescribedDisplacement::CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection,
+                                                 const geo::CTranslationSupport &support)
+    : ISupportLoad(loadcase, size, vecDirection, support) {}
 
-CPrescribedDisplacement::~CPrescribedDisplacement()
-{
-}
+CPrescribedDisplacement::~CPrescribedDisplacement() {}
 
-bool CPrescribedDisplacement::WriteFilos() const
-{
-  return ISupportLoad::WriteFilos("TR");
-}
+bool CPrescribedDisplacement::WriteFilos() const { return ISupportLoad::WriteFilos("TR"); }
 
 } // namespace dia

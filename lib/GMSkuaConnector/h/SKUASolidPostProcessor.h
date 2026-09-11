@@ -2,12 +2,9 @@
 
 #include "SKUAIPostProcessor.h"
 
+namespace gm_skua {
 
-namespace gm_skua
-{
-
-class INTERFACE_GMSKUACONNECTOR SKUASolidPostProcessor : public SKUAIPostProcessor
-{
+class INTERFACE_GMSKUACONNECTOR SKUASolidPostProcessor : public SKUAIPostProcessor {
 public:
   using SKUAIPostProcessor::SKUAIPostProcessor;
 
@@ -24,4 +21,4 @@ private:
   void FixSharedVertices();
 };
 
-}
+} // namespace gm_skua

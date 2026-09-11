@@ -1,18 +1,12 @@
 
 #include "LoadPropertyFluidPressureFrac.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-CLoadPropertyFluidPressureFrac::CLoadPropertyFluidPressureFrac(
-  const RGProperty& rgProperty, RGInterface& rgi, CModelBase& modelBase,
-  CRockMechProcessor& rmp)
-: CLoadPropertyPressureBase(rgProperty, rgi, modelBase, rmp)
-{
-}
+CLoadPropertyFluidPressureFrac::CLoadPropertyFluidPressureFrac(const RGProperty &rgProperty, RGInterface &rgi,
+                                                               CModelBase &modelBase, CRockMechProcessor &rmp)
+    : CLoadPropertyPressureBase(rgProperty, rgi, modelBase, rmp) {}
 
-CLoadPropertyFluidPressureFrac::~CLoadPropertyFluidPressureFrac()
-{
-}
+CLoadPropertyFluidPressureFrac::~CLoadPropertyFluidPressureFrac() {}
 
 } // namespace GeomecRGI

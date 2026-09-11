@@ -9,19 +9,19 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "GeoSurface.h"
-#include "openglnodeobserver.h"
-#include "Valuetype.h"
-#include "ValueCompositeObserver.h"
 #include "FaultParametersNode.h"
-#include "OpenGLNodeObserver_Delegate.h"
+#include "GeoSurface.h"
 #include "HorizonBase_Delegate.h"
+#include "OpenGLNodeObserver_Delegate.h"
+#include "ValueCompositeObserver.h"
+#include "Valuetype.h"
+#include "openglnodeobserver.h"
 
 class CFaultPressure;
 
+#include "EnumerationBranch.h"
 #include "FaultParametersNode_Delegate.h"
 #include "StateBranch_Delegate.h"
-#include "EnumerationBranch.h"
 
 class CSurfaceBase_Delegate;
 
@@ -29,40 +29,32 @@ class CSurfaceBase_Delegate;
 #include "UndefinedIconProvider.h"
 
 // Observer shows surfaces and distributed fault properties
-template<bool bFixedSurface>
-class CHorizonObserver : public COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode, CDummyObserver, TRUE, UNLINK_ITEM>
-{
-  typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TSurfaceObserver;
+template <bool bFixedSurface>
+class CHorizonObserver : public COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode,
+                                                             CDummyObserver, TRUE, UNLINK_ITEM> {
+  typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE,
+                                       FIXED_ITEM>
+      TSurfaceObserver;
+
 public:
-  CHorizonObserver(CHorizonBase& node,
-           CTreeNode &parent,
-           const BOOL rename,
-           const enum REMOVE_TYPE remove,
-           HTREEITEM hInsertAfter = TVI_LAST,
-           const BOOL bInitialUpdate = TRUE)
-  : COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode, CDummyObserver, TRUE, UNLINK_ITEM> (node, parent, rename, remove, hInsertAfter, false)
-  {
+  CHorizonObserver(CHorizonBase &node, CTreeNode &parent, const BOOL rename, const enum REMOVE_TYPE remove,
+                   HTREEITEM hInsertAfter = TVI_LAST, const BOOL bInitialUpdate = TRUE)
+      : COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode, CDummyObserver, TRUE,
+                                     UNLINK_ITEM>(node, parent, rename, remove, hInsertAfter, false) {
     Update();
   }
-  CHorizonObserver(CHorizonBase& node,
-           CTreeCtrl &ctrl,
-           const BOOL rename,
-           const enum REMOVE_TYPE remove,
-           HTREEITEM hParent = TVI_ROOT,
-           HTREEITEM hInsertAfter = TVI_LAST,
-           const BOOL bInitialUpdate = TRUE)
-  : COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode, CDummyObserver, TRUE, UNLINK_ITEM> (node, ctrl, rename, remove, hParent, hInsertAfter)
-  {
+  CHorizonObserver(CHorizonBase &node, CTreeCtrl &ctrl, const BOOL rename, const enum REMOVE_TYPE remove,
+                   HTREEITEM hParent = TVI_ROOT, HTREEITEM hInsertAfter = TVI_LAST, const BOOL bInitialUpdate = TRUE)
+      : COpenGLNodeObserver_Delegate<CHorizonBase, CHorizonBase_Delegate, CGraphNode, CDummyObserver, TRUE,
+                                     UNLINK_ITEM>(node, ctrl, rename, remove, hParent, hInsertAfter) {
     Update();
   }
 
-  virtual CTreeNode* InsertChild(CGraphNode& t)
-  {
-    CSurfaceBase* pSurface = dynamic_cast<CSurfaceBase*>(&t);
+  virtual CTreeNode *InsertChild(CGraphNode &t) {
+    CSurfaceBase *pSurface = dynamic_cast<CSurfaceBase *>(&t);
 
-    if(pSurface)
-    {
-      if(bFixedSurface)
+    if (pSurface) {
+      if (bFixedSurface)
         return new TSurfaceObserver(*pSurface, *this, FALSE, FIXED_ITEM, TVI_LAST, TRUE);
       else
         return new TSurfaceObserver(*pSurface, *this, FALSE, UNLINK_ITEM, TVI_LAST, TRUE);
@@ -70,91 +62,82 @@ public:
     return 0;
   }
 
-  virtual BOOL OnFilter(const CGraphNode& t) const
-  {
-    const CSurfaceBase* pSurface = dynamic_cast<const CSurfaceBase*>(&t);
-  return pSurface != 0;
+  virtual BOOL OnFilter(const CGraphNode &t) const {
+    const CSurfaceBase *pSurface = dynamic_cast<const CSurfaceBase *>(&t);
+    return pSurface != 0;
   }
 };
 
 typedef CEnumerationBranch<CFaultPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TFaultPressureEnumerator;
 
-typedef CNodeObserver_Delegate <CFaultParametersNode,
-  CFaultParametersNode_Delegate, CValueType, CValueCompositeObserver, FALSE,
-  UNLINK_ITEM> TFaultParametersNodeObserver;
-typedef CFaultParametersEnumerationBranch <CFaultParametersNode,
-  TFaultParametersNodeObserver, FALSE, FIXED_ITEM>
-  TFaultParametersEnumerationBranch;
+typedef CNodeObserver_Delegate<CFaultParametersNode, CFaultParametersNode_Delegate, CValueType, CValueCompositeObserver,
+                               FALSE, UNLINK_ITEM>
+    TFaultParametersNodeObserver;
+typedef CFaultParametersEnumerationBranch<CFaultParametersNode, TFaultParametersNodeObserver, FALSE, FIXED_ITEM>
+    TFaultParametersEnumerationBranch;
 
 template <bool bFixedSurface>
-class CHorizonEntryObserver : public CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHorizonBase, CHorizonObserver<bFixedSurface>, CUndefinedIconProvider, TRUE, DELETE_ITEM>
-{
-  typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHorizonBase, CHorizonObserver<bFixedSurface>, CUndefinedIconProvider, TRUE, DELETE_ITEM> TBase;
+class CHorizonEntryObserver
+    : public CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHorizonBase, CHorizonObserver<bFixedSurface>,
+                                   CUndefinedIconProvider, TRUE, DELETE_ITEM> {
+  typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHorizonBase, CHorizonObserver<bFixedSurface>,
+                                CUndefinedIconProvider, TRUE, DELETE_ITEM>
+      TBase;
+
 public:
-  CHorizonEntryObserver(CGraphEntry& entry, CTreeCtrl& ctrl, const BOOL rename, const enum REMOVE_TYPE remove, HTREEITEM hParent = TVI_ROOT, HTREEITEM hInsertAfter = TVI_LAST);
-  virtual CTreeNode* InsertChild(CHorizonBase& t);
-  virtual void OnChildModified(CTreeNode &child);			// Called when child is modified
+  CHorizonEntryObserver(CGraphEntry &entry, CTreeCtrl &ctrl, const BOOL rename, const enum REMOVE_TYPE remove,
+                        HTREEITEM hParent = TVI_ROOT, HTREEITEM hInsertAfter = TVI_LAST);
+  virtual CTreeNode *InsertChild(CHorizonBase &t);
+  virtual void OnChildModified(CTreeNode &child); // Called when child is modified
 };
 
 template <bool bFixedSurface>
-CHorizonEntryObserver<bFixedSurface>::CHorizonEntryObserver(CGraphEntry& entry, CTreeCtrl& ctrl, const BOOL rename, const enum REMOVE_TYPE remove, HTREEITEM hParent, HTREEITEM hInsertAfter)
-: TBase(entry, ctrl, rename, remove, hParent, hInsertAfter, TRUE, FALSE)
-{
+CHorizonEntryObserver<bFixedSurface>::CHorizonEntryObserver(CGraphEntry &entry, CTreeCtrl &ctrl, const BOOL rename,
+                                                            const enum REMOVE_TYPE remove, HTREEITEM hParent,
+                                                            HTREEITEM hInsertAfter)
+    : TBase(entry, ctrl, rename, remove, hParent, hInsertAfter, TRUE, FALSE) {
   Update();
 }
 
-template <bool bFixedSurface>
-CTreeNode* CHorizonEntryObserver<bFixedSurface>::InsertChild(CHorizonBase& t)
-{
-  CTreeNode* pTreeObserver = TBase::InsertChild(t);
+template <bool bFixedSurface> CTreeNode *CHorizonEntryObserver<bFixedSurface>::InsertChild(CHorizonBase &t) {
+  CTreeNode *pTreeObserver = TBase::InsertChild(t);
 
-  if(t.Slip())
-  {
+  if (t.Slip()) {
     new TFaultPressureEnumerator(*pTreeObserver, _T("Pressures"), IDI_PRESSURES);
-  new TFaultParametersEnumerationBranch(*pTreeObserver,
-      _T("Fault Parameters"), IDI_FAULTPARAMETERS);
+    new TFaultParametersEnumerationBranch(*pTreeObserver, _T("Fault Parameters"), IDI_FAULTPARAMETERS);
   }
 
   return pTreeObserver;
 }
 
-template <bool bFixedSurface>
-void CHorizonEntryObserver<bFixedSurface>::OnChildModified(CTreeNode &child)
-{
-  CHorizonBase& hor = dynamic_cast<CHorizonBase&>(child.ObservedItem());
+template <bool bFixedSurface> void CHorizonEntryObserver<bFixedSurface>::OnChildModified(CTreeNode &child) {
+  CHorizonBase &hor = dynamic_cast<CHorizonBase &>(child.ObservedItem());
 
-  if(hor.Slip())
-  {
+  if (hor.Slip()) {
     bool bPressuresFound = false;
-  bool bParametersFound = false;
+    bool bParametersFound = false;
     CTreeNode::TChildren vcChildren = child.Children();
-    for(size_t i = 0; i < vcChildren.size(); ++i)
-    {
-      if(dynamic_cast<TFaultPressureEnumerator*>(vcChildren[i]))
+    for (size_t i = 0; i < vcChildren.size(); ++i) {
+      if (dynamic_cast<TFaultPressureEnumerator *>(vcChildren[i]))
         bPressuresFound = true;
-      else if(dynamic_cast<TFaultParametersEnumerationBranch*>(vcChildren[i]))
-    bParametersFound = true;
+      else if (dynamic_cast<TFaultParametersEnumerationBranch *>(vcChildren[i]))
+        bParametersFound = true;
     }
 
-    if(!bPressuresFound)
+    if (!bPressuresFound)
       new TFaultPressureEnumerator(child, _T("Pressures"), IDI_PRESSURES);
-  if(!bParametersFound)
-      new TFaultParametersEnumerationBranch(child, _T("Fault Parameters"),
-    IDI_FAULTPARAMETERS);
-  }
-  else
-  {
+    if (!bParametersFound)
+      new TFaultParametersEnumerationBranch(child, _T("Fault Parameters"), IDI_FAULTPARAMETERS);
+  } else {
     CTreeNode::TChildren vcChildren = child.Children();
-    for(size_t i = 0; i < vcChildren.size(); ++i)
-    {
-      TFaultPressureEnumerator* fpe = dynamic_cast<TFaultPressureEnumerator*>(vcChildren[i]);
-      if(fpe)
+    for (size_t i = 0; i < vcChildren.size(); ++i) {
+      TFaultPressureEnumerator *fpe = dynamic_cast<TFaultPressureEnumerator *>(vcChildren[i]);
+      if (fpe)
         delete fpe;
 
-      TFaultParametersEnumerationBranch* pe =
-    dynamic_cast<TFaultParametersEnumerationBranch*>(vcChildren[i]);
-      if(pe)
-    delete pe;
+      TFaultParametersEnumerationBranch *pe = dynamic_cast<TFaultParametersEnumerationBranch *>(vcChildren[i]);
+      if (pe)
+        delete pe;
     }
   }
 

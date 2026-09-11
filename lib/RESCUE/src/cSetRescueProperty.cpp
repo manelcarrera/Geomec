@@ -25,353 +25,260 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
-#include "RescueModel.h"
 #include "cSetRescueProperty.h"
+#include "RescueModel.h"
 #include "RescueProperty.h"
 
-cSetRescueProperty::cSetRescueProperty()
-{
+cSetRescueProperty::cSetRescueProperty() {
   allocated = 10;
   count = 0;
-  objects = (RescueProperty **) malloc(sizeof(RescueProperty *) * (size_t) allocated);
+  objects = (RescueProperty **)malloc(sizeof(RescueProperty *) * (size_t)allocated);
 }
 
-cSetRescueProperty::~cSetRescueProperty()
-{
+cSetRescueProperty::~cSetRescueProperty() {
   RESCUEINT64 loop;
 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   free(objects);
 }
 
-void cSetRescueProperty::RelinquishAll()
-{
-  count = 0;
-}
+void cSetRescueProperty::RelinquishAll() { count = 0; }
 
-void cSetRescueProperty::Relinquish(RescueProperty *existingObject)
-{
+void cSetRescueProperty::Relinquish(RescueProperty *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
 }
 
-RESCUEBOOL cSetRescueProperty::AnyFileTruncated()
-{
+RESCUEBOOL cSetRescueProperty::AnyFileTruncated() {
   RESCUEBOOL myReturn = FALSE;
   RESCUEINT64 loop;
-  for (loop = 0; loop < count && myReturn == FALSE; loop++)
-  {
-  myReturn = objects[loop]->AnyFileTruncated();
+  for (loop = 0; loop < count && myReturn == FALSE; loop++) {
+    myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
 
-void cSetRescueProperty::DropWireframeMemory()
-{
+void cSetRescueProperty::DropWireframeMemory() {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->DropWireframeMemory();
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->DropWireframeMemory();
   }
 }
 
-void cSetRescueProperty::UnArchiveWireframeData(RescueModel *model, FILE *archiveFile)
-{
+void cSetRescueProperty::UnArchiveWireframeData(RescueModel *model, FILE *archiveFile) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->UnArchiveWireframeData(model, archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->UnArchiveWireframeData(model, archiveFile);
   }
 }
 
-void cSetRescueProperty::RelinkWireframeData(RescueObject *parent)
-{
+void cSetRescueProperty::RelinkWireframeData(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->RelinkWireframeData(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->RelinkWireframeData(parent);
   }
 }
 
-void cSetRescueProperty::ArchiveWireframeData(FILE *archiveFile)
-{
+void cSetRescueProperty::ArchiveWireframeData(FILE *archiveFile) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->ArchiveWireframeData(archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->ArchiveWireframeData(archiveFile);
   }
 }
 
-void cSetRescueProperty::Archive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueProperty::Archive(RescueContext *context, FILE *archiveFile) {
   RESCUEINT64 countToArchive = count;
-  if (context->FileVersion() == 9)
-  {
-  countToArchive = 0;
-  RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-      if (objects[loop]->parentBlockUnit != 0)
-      {
-    if (objects[loop]->geometry == objects[loop]->parentBlockUnit->GridGeometry(0))
-    {
+  if (context->FileVersion() == 9) {
+    countToArchive = 0;
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++) {
+      if (objects[loop]->parentBlockUnit != 0) {
+        if (objects[loop]->geometry == objects[loop]->parentBlockUnit->GridGeometry(0)) {
           countToArchive++;
+        }
+      }
     }
+  } else if (context->FileVersion() == 19) {
+    countToArchive = 0;
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++) {
+      if (objects[loop]->Data()->IsA() == R_RescueArray2dVector ||
+          objects[loop]->Data()->IsA() == R_RescueArray3dVector) {
+      } else {
+        countToArchive++;
       }
-  }
-  }
-  else if (context->FileVersion() == 19)
-  {
-  countToArchive = 0;
-  RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-      if (objects[loop]->Data()->IsA() == R_RescueArray2dVector
-      ||  objects[loop]->Data()->IsA() == R_RescueArray3dVector)
-      {
-      }
-      else
-      {
-    countToArchive++;
-      }
-  }
+    }
   }
   myfprintf(context, archiveFile, countToArchive);
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Archive(archiveFile);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Archive(archiveFile);
   }
 }
 
-void cSetRescueProperty::Relink(RescueObject *parent)
-{
+void cSetRescueProperty::Relink(RescueObject *parent) {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Relink(parent);
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Relink(parent);
   }
 }
 
-void cSetRescueProperty::UnArchive(RescueContext *context, FILE *archiveFile)
-{
+void cSetRescueProperty::UnArchive(RescueContext *context, FILE *archiveFile) {
   RESCUEINT64 newCount;
 
   EmptySelf();
 
   myfscanf(context, archiveFile, &newCount);
   RESCUEINT64 loop;
-  for (loop = 0; loop < newCount; loop++)
-  {
-  RescueProperty *newObject = new RescueProperty(context, archiveFile);
-  (*this) += newObject;
+  for (loop = 0; loop < newCount; loop++) {
+    RescueProperty *newObject = new RescueProperty(context, archiveFile);
+    (*this) += newObject;
   }
 }
 
-void cSetRescueProperty::EmptySelf(void)
-{
+void cSetRescueProperty::EmptySelf(void) {
   RESCUEINT64 loop;
- 
-  for (loop = 0; loop < count; loop++)
-  {
-  delete objects[loop];
+
+  for (loop = 0; loop < count; loop++) {
+    delete objects[loop];
   }
   count = 0;
 }
 
-void cSetRescueProperty::operator+=(RescueProperty *newObject)
-{
-  if (allocated == count)
-  {
-  allocated += 10;
-  objects = (RescueProperty **) realloc(objects, sizeof(RescueProperty *) * (size_t) allocated);
+void cSetRescueProperty::operator+=(RescueProperty *newObject) {
+  if (allocated == count) {
+    allocated += 10;
+    objects = (RescueProperty **)realloc(objects, sizeof(RescueProperty *) * (size_t)allocated);
   }
   objects[count++] = newObject;
 }
 
-RESCUEBOOL cSetRescueProperty::operator-=(RescueProperty *existingObject)
-{
+RESCUEBOOL cSetRescueProperty::operator-=(RescueProperty *existingObject) {
   RESCUEBOOL found = FALSE;
   RESCUEINT64 ndx = 0;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (existingObject == objects[ndx])
-  {
+  while (ndx < count && found == FALSE) {
+    if (existingObject == objects[ndx]) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  RESCUEINT64 loop;
+  if (found) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
+    }
   }
   return found;
 }
 
-RescueProperty *cSetRescueProperty::ObjectNamed(const RESCUECHAR *mayBeName)
-{
+RescueProperty *cSetRescueProperty::ObjectNamed(const RESCUECHAR *mayBeName) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsNamed(mayBeName))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsNamed(mayBeName)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-void cSetRescueProperty::Dispose()
-{
+void cSetRescueProperty::Dispose() {
   RESCUEINT64 loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  objects[loop]->Dispose();
+  for (loop = 0; loop < count; loop++) {
+    objects[loop]->Dispose();
   }
 }
 
-RescueProperty *cSetRescueProperty::ObjectIdentifiedBy(RESCUEINT64 identifier)
-{
+RescueProperty *cSetRescueProperty::ObjectIdentifiedBy(RESCUEINT64 identifier) {
   RESCUEINT64 ndx = 0;
   RESCUEBOOL found = FALSE;
 
-  while (ndx < count && found == FALSE)
-  {
-  if (objects[ndx]->IsIdentifiedBy(identifier))
-  {
+  while (ndx < count && found == FALSE) {
+    if (objects[ndx]->IsIdentifiedBy(identifier)) {
       found = TRUE;
-  }
-  else
-  {
+    } else {
       ndx++;
+    }
   }
-  }
-  if (found)
-  {
-  return objects[ndx];
-  }
-  else
-  {
-  return 0;
+  if (found) {
+    return objects[ndx];
+  } else {
+    return 0;
   }
 }
 
-RESCUEBOOL cSetRescueProperty::operator-=(RESCUEINT64 ndx)
-{
-  if (ndx >= 0 && ndx < count)
-  {
-  RESCUEINT64 loop;
+RESCUEBOOL cSetRescueProperty::operator-=(RESCUEINT64 ndx) {
+  if (ndx >= 0 && ndx < count) {
+    RESCUEINT64 loop;
 
-  delete objects[ndx];
-  count--;
-  for (loop = ndx; loop < count; loop++)
-  {
+    delete objects[ndx];
+    count--;
+    for (loop = ndx; loop < count; loop++) {
       objects[loop] = objects[loop + 1];
-  }
-  return TRUE;
-  }
-  else
-  {
-  return FALSE;
+    }
+    return TRUE;
+  } else {
+    return FALSE;
   }
 }
 
-RescueProperty *cSetRescueProperty::NthObject(RESCUEINT64 ordinal)
-{
-  if (ordinal < 0 || ordinal >= count)
-  {
-  return 0;
-  }
-  else
-  {
-  return objects[ordinal];
+RescueProperty *cSetRescueProperty::NthObject(RESCUEINT64 ordinal) {
+  if (ordinal < 0 || ordinal >= count) {
+    return 0;
+  } else {
+    return objects[ordinal];
   }
 }
 
-RESCUEINT32 cSetRescueProperty::Count(void)
-{
-  return (RESCUEINT32) count;
-}
+RESCUEINT32 cSetRescueProperty::Count(void) { return (RESCUEINT32)count; }
 
-RESCUEINT64 cSetRescueProperty::Count64(void)
-{
-  return count;
-}
+RESCUEINT64 cSetRescueProperty::Count64(void) { return count; }
 
-void cSetRescueProperty::FindUniquePropertyNames(cSetString *container)
-{
+void cSetRescueProperty::FindUniquePropertyNames(cSetString *container) {
   int loop;
-  for (loop = 0; loop < count; loop++)
-  {
-  RCHString *propertyName = objects[loop]->Data()->PropertyName();
-  container->AddIfUnique(propertyName->String());
+  for (loop = 0; loop < count; loop++) {
+    RCHString *propertyName = objects[loop]->Data()->PropertyName();
+    container->AddIfUnique(propertyName->String());
   }
 }
 
-RESCUEINT32 cSetRescueProperty::Count(RESCUEBOOL throwIfTrue)
-{
-  if (count > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cSetRescueProperty::Count(RESCUEBOOL throwIfTrue) {
+  if (count > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) count;
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)count;
   }
 }
-
-
-

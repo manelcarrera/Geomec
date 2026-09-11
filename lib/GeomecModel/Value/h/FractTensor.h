@@ -7,8 +7,7 @@
 
 #include "MatParamsTensor.h"
 
-class CFractTensor : public CMatParamsTensor
-{
+class CFractTensor : public CMatParamsTensor {
 public:
   CFractTensor(IPointSet &point_set, const QString &strName);
   virtual void AddComponents();

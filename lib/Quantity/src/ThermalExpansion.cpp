@@ -8,63 +8,46 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+CThermalExpansionQuantity::~CThermalExpansionQuantity() {}
 
-CThermalExpansionQuantity::~CThermalExpansionQuantity()
-{
-
+CThermalExpansionQuantity::CThermalExpansionQuantity() : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
 }
 
-CThermalExpansionQuantity::CThermalExpansionQuantity()
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
-  
-}
-
-CThermalExpansionQuantity::CThermalExpansionQuantity(const double &value, const UNIT unit)
-: CDoubleQuantity()
-{
-  MaxValue(DOUBLE_MAX_,  SI_UNIT);
-  MinValue(DOUBLE_MIN_,  SI_UNIT);
+CThermalExpansionQuantity::CThermalExpansionQuantity(const double &value, const UNIT unit) : CDoubleQuantity() {
+  MaxValue(DOUBLE_MAX_, SI_UNIT);
+  MinValue(DOUBLE_MIN_, SI_UNIT);
   Value(value, unit);
 }
 
-CThermalExpansionQuantity::CThermalExpansionQuantity(const double& dTimeH,const double &min ,const double &max, const UNIT unit)
-:CDoubleQuantity()
-{
+CThermalExpansionQuantity::CThermalExpansionQuantity(const double &dTimeH, const double &min, const double &max,
+                                                     const UNIT unit)
+    : CDoubleQuantity() {
 
-  CDoubleQuantity::MaxValue(max,  unit);
-  CDoubleQuantity::MinValue(min,  unit);
+  CDoubleQuantity::MaxValue(max, unit);
+  CDoubleQuantity::MinValue(min, unit);
   Value(dTimeH, unit);
 }
 
-CThermalExpansionQuantity::CThermalExpansionQuantity(		const double& value,
-                      const double &min ,
-                      const double &max,
-                      bool bIncludeMin,
-                      bool bIncludeMax,
-                      const UNIT unit)
-:CDoubleQuantity()
-{
-  m_bIncludeMin=bIncludeMin;
-  m_bIncludeMax=bIncludeMax;
-  MaxValue(max,  unit);
-  MinValue(min,  unit);
+CThermalExpansionQuantity::CThermalExpansionQuantity(const double &value, const double &min, const double &max,
+                                                     bool bIncludeMin, bool bIncludeMax, const UNIT unit)
+    : CDoubleQuantity() {
+  m_bIncludeMin = bIncludeMin;
+  m_bIncludeMax = bIncludeMax;
+  MaxValue(max, unit);
+  MinValue(min, unit);
   Value(value, unit);
 }
 
-double CThermalExpansionQuantity::Convert(const double &value, const UNIT out, const UNIT in) const
-{
+double CThermalExpansionQuantity::Convert(const double &value, const UNIT out, const UNIT in) const {
 
-  if(in == out)
+  if (in == out)
     return value;
 
+  double tmp = value;
 
-  double tmp=value;
-
-  switch(in)
-  {
+  switch (in) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
@@ -72,16 +55,14 @@ double CThermalExpansionQuantity::Convert(const double &value, const UNIT out, c
   case FIELD_UNIT:
     break;
   case US_UNIT:
-    tmp=tmp / 0.5556;
+    tmp = tmp / 0.5556;
     break;
   default:
     assert(false);
     break;
   }
 
-
-  switch(out)
-  {
+  switch (out) {
   case SI_UNIT:
     break;
   case SI_USER_UNIT:
@@ -89,7 +70,7 @@ double CThermalExpansionQuantity::Convert(const double &value, const UNIT out, c
   case FIELD_UNIT:
     break;
   case US_UNIT:
-    tmp=tmp * 0.5556;
+    tmp = tmp * 0.5556;
     break;
   default:
     assert(false);
@@ -99,16 +80,10 @@ double CThermalExpansionQuantity::Convert(const double &value, const UNIT out, c
   return tmp;
 }
 
-std::string	CThermalExpansionQuantity::QuantityName() const
-{
-  return "Thermal expansion";
-}
+std::string CThermalExpansionQuantity::QuantityName() const { return "Thermal expansion"; }
 
-
-std::string CThermalExpansionQuantity::UnitName(const UNIT unit) const 
-{
-  switch(unit)
-  {
+std::string CThermalExpansionQuantity::UnitName(const UNIT unit) const {
+  switch (unit) {
   case SI_UNIT:
     return "1/oC";
     break;
@@ -129,10 +104,4 @@ std::string CThermalExpansionQuantity::UnitName(const UNIT unit) const
   return "";
 }
 
-
-
-CThermalExpansionQuantity::CThermalExpansionQuantity(const CThermalExpansionQuantity &rhs)
-: CDoubleQuantity(rhs)
-{
-
-}
+CThermalExpansionQuantity::CThermalExpansionQuantity(const CThermalExpansionQuantity &rhs) : CDoubleQuantity(rhs) {}

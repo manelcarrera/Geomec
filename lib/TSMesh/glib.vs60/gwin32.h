@@ -21,7 +21,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_WIN32_H__
@@ -57,44 +57,41 @@ typedef int pid_t;
  */
 
 /* pipe is not in OLDNAMES.LIB or -lmoldname-msvc. */
-#define pipe(phandles)	_pipe (phandles, 4096, _O_BINARY)
+#define pipe(phandles) _pipe(phandles, 4096, _O_BINARY)
 
 /* For some POSIX functions that are not provided by the MS runtime,
  * we provide emulators in glib, which are prefixed with g_win32_.
  */
-#    define ftruncate(fd, size)	g_win32_ftruncate (fd, size)
+#define ftruncate(fd, size) g_win32_ftruncate(fd, size)
 
 /* -lmingw32 also has emulations for these, but we need our own
  * for MSVC anyhow, so we might aswell use them always.
  */
-#    define opendir		g_win32_opendir
-#    define readdir		g_win32_readdir
-#    define rewinddir		g_win32_rewinddir
-#    define closedir		g_win32_closedir
-#    define NAME_MAX 255
+#define opendir g_win32_opendir
+#define readdir g_win32_readdir
+#define rewinddir g_win32_rewinddir
+#define closedir g_win32_closedir
+#define NAME_MAX 255
 
-struct dirent
-{
-  gchar  d_name[NAME_MAX + 1];
+struct dirent {
+  gchar d_name[NAME_MAX + 1];
 };
 
-struct DIR
-{
-  gchar        *dir_name;
-  gboolean 	just_opened;
-  guint    	find_file_handle;
-  gpointer 	find_file_data;
+struct DIR {
+  gchar *dir_name;
+  gboolean just_opened;
+  guint find_file_handle;
+  gpointer find_file_data;
   struct dirent readdir_result;
 };
 typedef struct DIR DIR;
 
 /* emulation functions */
-extern int	g_win32_ftruncate	(gint		 f,
-           guint		 size);
-DIR*		g_win32_opendir		(const gchar	*dirname);
-struct dirent*	g_win32_readdir  	(DIR		*dir);
-void		g_win32_rewinddir 	(DIR		*dir);
-gint		g_win32_closedir  	(DIR		*dir);
+extern int g_win32_ftruncate(gint f, guint size);
+DIR *g_win32_opendir(const gchar *dirname);
+struct dirent *g_win32_readdir(DIR *dir);
+void g_win32_rewinddir(DIR *dir);
+gint g_win32_closedir(DIR *dir);
 
 /* The MS setlocale uses locale names of the form "English_United
  * States.1252" etc. We want the Unixish standard form "en", "zh_TW"
@@ -102,16 +99,16 @@ gint		g_win32_closedir  	(DIR		*dir);
  * returns it as a string of the above form for use in forming file
  * names etc. The returned string should be deallocated with g_free().
  */
-gchar *		g_win32_getlocale  (void);
+gchar *g_win32_getlocale(void);
 
 /* Translate a Win32 error code (as returned by GetLastError()) into
  * the corresponding message. The returned string should be deallocated
  * with g_free().
  */
-gchar *         g_win32_error_message (gint error);
+gchar *g_win32_error_message(gint error);
 
 G_END_DECLS
 
-#endif	 /* G_OS_WIN32 */
+#endif /* G_OS_WIN32 */
 
 #endif /* __G_WIN32_H__ */

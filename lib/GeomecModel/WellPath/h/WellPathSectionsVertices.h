@@ -3,15 +3,13 @@
 
 #include <vector>
 
-namespace WellPath
-{
+namespace WellPath {
 
 class CWellPathSections;
 
 } // namespace WellPath
 
-namespace geo
-{
+namespace geo {
 
 class IElement;
 
@@ -19,33 +17,28 @@ class IElement;
 
 #include "ElementVertex.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
 typedef TElementVertices TWellPathSectionVertices;
-typedef std::vector <TWellPathSectionVertices> TWellPathSectionsVertices;
+typedef std::vector<TWellPathSectionVertices> TWellPathSectionsVertices;
 
-class CWellPathSectionsVertices
-{
-  public:
-  CWellPathSectionsVertices(const CWellPathSections& wellPathSections);
+class CWellPathSectionsVertices {
+public:
+  CWellPathSectionsVertices(const CWellPathSections &wellPathSections);
 
-  TWellPathSectionsVertices& wellPathSectionsVertices();
-  const TWellPathSectionsVertices& wellPathSectionsVertices() const;
+  TWellPathSectionsVertices &wellPathSectionsVertices();
+  const TWellPathSectionsVertices &wellPathSectionsVertices() const;
 
-  private:
-  CWellPathSectionsVertices(const CWellPathSectionsVertices& rhs);
-  CWellPathSectionsVertices& operator = (const CWellPathSectionsVertices& rhs);
+private:
+  CWellPathSectionsVertices(const CWellPathSectionsVertices &rhs);
+  CWellPathSectionsVertices &operator=(const CWellPathSectionsVertices &rhs);
 
-  static TWellPathSectionsVertices createElementVertices(
-      const CWellPathSections& wellPathSections);
-  static void createElementVertex(
-      TWellPathSectionVertices& wellPathSectionVertices,
-      const geo::IElement& element);
+  static TWellPathSectionsVertices createElementVertices(const CWellPathSections &wellPathSections);
+  static void createElementVertex(TWellPathSectionVertices &wellPathSectionVertices, const geo::IElement &element);
 
   TWellPathSectionsVertices m_wellPathSectionsVertices;
 };
 
 } // namespace WellPath
 
-#endif  // _WellPathSectionsVertices_h_
+#endif // _WellPathSectionsVertices_h_

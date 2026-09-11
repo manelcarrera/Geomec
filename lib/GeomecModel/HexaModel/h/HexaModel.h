@@ -11,64 +11,62 @@
 
 #include "3dmodel.h"
 
-
-//##ModelId=3BC55D6103AF
+// ##ModelId=3BC55D6103AF
 class CSurfaceBase;
 class CHexaMesh;
 
-class CHexaModel : public C3DModel  
-{
+class CHexaModel : public C3DModel {
   long SavedItemsMeshRegions() const;
-  void SaveMeshRegions(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress);
-  void LoadMeshRegions(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress);
-
+  void SaveMeshRegions(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
+  void LoadMeshRegions(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &progress);
 
   // Pointer to the mesher
-  CHexaMesh* m_pMesh;
+  CHexaMesh *m_pMesh;
+
 protected:
   virtual void CreateDensityPoints(const geo::IElement &element, CPointSet &pointset);
   virtual bool IsHexaModel() const { return true; }
 
 public:
-// Meshing Functions
+  // Meshing Functions
   virtual void createContainers();
   virtual void createDefaults();
 
 private:
   friend class IModelLifetimeFacade;
 
-  //##ModelId=3BC55D6103C1
-  CHexaModel(CAnalysisLogger& logger, const CVersionManager& versionManager);
-  //##ModelId=3BC55D6103C3
+  // ##ModelId=3BC55D6103C1
+  CHexaModel(CAnalysisLogger &logger, const CVersionManager &versionManager);
+  // ##ModelId=3BC55D6103C3
   virtual ~CHexaModel();
 
 public:
-  //##ModelId=3BC55D6103C5
+  // ##ModelId=3BC55D6103C5
   virtual unsigned int ModelIconId() const;
-  //##ModelId=3BC55D6103CE
+  // ##ModelId=3BC55D6103CE
   virtual QString documentType() const;
 
   static unsigned int staticModelIconId();
   static QString staticDocumentType();
 
-  //##ModelId=3BC55D6103D0
-  //##ModelId=3BC55D6103D3
+  // ##ModelId=3BC55D6103D0
+  // ##ModelId=3BC55D6103D3
   virtual void OnCloseModel();
-  bool CreateHorizon(const CSurfaceBase& s);
+  bool CreateHorizon(const CSurfaceBase &s);
 
   bool LoadHexa1(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
   bool LoadHexa2(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
   bool LoadHexa3(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-  virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& prog);
-  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog);
+  virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &prog);
 
   // Mesh/state methods.
   virtual bool IsResult() const;
 
   virtual void Calculate();
 
-  virtual CMeshBase& Mesh();
-  virtual const CMeshBase& Mesh() const;
+  virtual CMeshBase &Mesh();
+  virtual const CMeshBase &Mesh() const;
 
   virtual ModelType modelType() const;
 

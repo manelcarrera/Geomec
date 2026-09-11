@@ -17,15 +17,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <stdlib.h>
 #include "gts.h"
+#include <stdlib.h>
 
-#define PARENT(i) ((i) >= 2 ? (i)/2 : 0)
-#define LEFT_CHILD(i) (2*(i))
-#define RIGHT_CHILD(i) (2*(i) + 1)
+#define PARENT(i) ((i) >= 2 ? (i) / 2 : 0)
+#define LEFT_CHILD(i) (2 * (i))
+#define RIGHT_CHILD(i) (2 * (i) + 1)
 
 struct _GtsHeap {
-  GPtrArray * elts;
+  GPtrArray *elts;
   GCompareFunc func;
   gboolean frozen;
 };
@@ -36,35 +36,32 @@ struct _GtsHeap {
  *
  * Returns: a new #GtsHeap using @compare_func as a sorting function.
  */
-GtsHeap * gts_heap_new (GCompareFunc compare_func)
-{
-  GtsHeap * heap;
+GtsHeap *gts_heap_new(GCompareFunc compare_func) {
+  GtsHeap *heap;
 
-  g_return_val_if_fail (compare_func != NULL, NULL);
-  
-  heap = g_malloc (sizeof(GtsHeap));
-  heap->elts = g_ptr_array_new ();
+  g_return_val_if_fail(compare_func != NULL, NULL);
+
+  heap = g_malloc(sizeof(GtsHeap));
+  heap->elts = g_ptr_array_new();
   heap->func = compare_func;
   heap->frozen = FALSE;
   return heap;
 }
 
-static void sift_up (GtsHeap * heap, guint i)
-{
+static void sift_up(GtsHeap *heap, guint i) {
   gpointer parent, child;
   guint p;
-  gpointer * pdata = heap->elts->pdata;
+  gpointer *pdata = heap->elts->pdata;
   GCompareFunc func = heap->func;
 
   child = pdata[i - 1];
-  while ((p = PARENT (i))) {
-  parent = pdata[p - 1];
-  if ((*func) (parent, child) > 0) {
+  while ((p = PARENT(i))) {
+    parent = pdata[p - 1];
+    if ((*func)(parent, child) > 0) {
       pdata[p - 1] = child;
       pdata[i - 1] = parent;
       i = p;
-  }
-  else
+    } else
       i = 0;
   }
 }
@@ -76,49 +73,44 @@ static void sift_up (GtsHeap * heap, guint i)
  *
  * Inserts a new element @p in the heap.
  */
-void gts_heap_insert (GtsHeap * heap, gpointer p)
-{
-  g_return_if_fail (heap != NULL);
+void gts_heap_insert(GtsHeap *heap, gpointer p) {
+  g_return_if_fail(heap != NULL);
 
-  g_ptr_array_add (heap->elts, p);
+  g_ptr_array_add(heap->elts, p);
   if (!heap->frozen)
-  sift_up (heap, heap->elts->len);
+    sift_up(heap, heap->elts->len);
 }
 
-static void sift_down (GtsHeap * heap, guint i)
-{
+static void sift_down(GtsHeap *heap, guint i) {
   gpointer left_child, right_child, child, parent;
   guint lc, rc, c;
-  gpointer * pdata = heap->elts->pdata;
+  gpointer *pdata = heap->elts->pdata;
   guint len = heap->elts->len;
   GCompareFunc func = heap->func;
 
-  lc = LEFT_CHILD (i);
-  rc = RIGHT_CHILD (i);
+  lc = LEFT_CHILD(i);
+  rc = RIGHT_CHILD(i);
   left_child = lc <= len ? pdata[lc - 1] : NULL;
   right_child = rc <= len ? pdata[rc - 1] : NULL;
 
   parent = pdata[i - 1];
   while (left_child != NULL) {
-  if (right_child == NULL ||
-  (*func) (left_child, right_child) < 0) {
+    if (right_child == NULL || (*func)(left_child, right_child) < 0) {
       child = left_child;
       c = lc;
-  }
-  else {
+    } else {
       child = right_child;
       c = rc;
-  }
-  if ((*func) (parent, child) > 0) {
+    }
+    if ((*func)(parent, child) > 0) {
       pdata[i - 1] = child;
       pdata[c - 1] = parent;
       i = c;
-      lc = LEFT_CHILD (i);
-      rc = RIGHT_CHILD (i);
+      lc = LEFT_CHILD(i);
+      rc = RIGHT_CHILD(i);
       left_child = lc <= len ? pdata[lc - 1] : NULL;
-      right_child = rc <= len ? pdata[rc - 1] : NULL;      
-  }
-  else
+      right_child = rc <= len ? pdata[rc - 1] : NULL;
+    } else
       left_child = NULL;
   }
 }
@@ -131,24 +123,24 @@ static void sift_down (GtsHeap * heap, guint i)
  *
  * Returns: the element at the top of the heap.
  */
-gpointer gts_heap_remove_top (GtsHeap * heap)
-{
+gpointer gts_heap_remove_top(GtsHeap *heap) {
   gpointer root;
-  GPtrArray * elts;
+  GPtrArray *elts;
   guint len;
 
-  g_return_val_if_fail (heap != NULL, NULL);
+  g_return_val_if_fail(heap != NULL, NULL);
 
-  elts = heap->elts; len = elts->len;
+  elts = heap->elts;
+  len = elts->len;
 
   if (len == 0)
-  return NULL;
+    return NULL;
   if (len == 1)
-  return g_ptr_array_remove_index (elts, 0);
+    return g_ptr_array_remove_index(elts, 0);
 
   root = elts->pdata[0];
-  elts->pdata[0] = g_ptr_array_remove_index (elts, len - 1);
-  sift_down (heap, 1);
+  elts->pdata[0] = g_ptr_array_remove_index(elts, len - 1);
+  sift_down(heap, 1);
   return root;
 }
 
@@ -158,32 +150,30 @@ gpointer gts_heap_remove_top (GtsHeap * heap)
  *
  * Returns: the element at the top of the heap.
  */
-gpointer gts_heap_top (GtsHeap * heap)
-{
-  GPtrArray * elts;
+gpointer gts_heap_top(GtsHeap *heap) {
+  GPtrArray *elts;
   guint len;
 
-  g_return_val_if_fail (heap != NULL, NULL);
+  g_return_val_if_fail(heap != NULL, NULL);
 
-  elts = heap->elts; 
+  elts = heap->elts;
   len = elts->len;
   if (len == 0)
-  return NULL;
+    return NULL;
   return elts->pdata[0];
 }
 
 /**
  * gts_heap_destroy:
  * @heap: a #GtsHeap.
- * 
+ *
  * Free all the memory allocated for @heap.
  */
-void gts_heap_destroy (GtsHeap * heap)
-{
-  g_return_if_fail (heap != NULL);
+void gts_heap_destroy(GtsHeap *heap) {
+  g_return_if_fail(heap != NULL);
 
-  g_ptr_array_free (heap->elts, TRUE);
-  g_free (heap);
+  g_ptr_array_free(heap->elts, TRUE);
+  g_free(heap);
 }
 
 /**
@@ -193,17 +183,16 @@ void gts_heap_destroy (GtsHeap * heap)
  * If @heap has been frozen previously using gts_heap_freeze(), reorder it
  * in O(n) time and unfreeze it.
  */
-void gts_heap_thaw (GtsHeap * heap)
-{
+void gts_heap_thaw(GtsHeap *heap) {
   guint i;
-  
-  g_return_if_fail (heap != NULL);
+
+  g_return_if_fail(heap != NULL);
 
   if (!heap->frozen)
-  return;
+    return;
 
-  for (i = heap->elts->len/2; i > 0; i--)
-  sift_down (heap, i);
+  for (i = heap->elts->len / 2; i > 0; i--)
+    sift_down(heap, i);
 
   heap->frozen = FALSE;
 }
@@ -214,19 +203,16 @@ void gts_heap_thaw (GtsHeap * heap)
  * @func: the function to call for each element in the heap.
  * @user_data: to pass to @func.
  */
-void gts_heap_foreach (GtsHeap * heap, 
-           GFunc func,
-           gpointer user_data)
-{
+void gts_heap_foreach(GtsHeap *heap, GFunc func, gpointer user_data) {
   guint i;
-  GPtrArray * elts;
-  
-  g_return_if_fail (heap != NULL);
-  g_return_if_fail (func != NULL);
+  GPtrArray *elts;
+
+  g_return_if_fail(heap != NULL);
+  g_return_if_fail(func != NULL);
 
   elts = heap->elts;
   for (i = 0; i < elts->len; i++)
-  (*func) (elts->pdata[i], user_data);
+    (*func)(elts->pdata[i], user_data);
 }
 
 /**
@@ -237,9 +223,8 @@ void gts_heap_foreach (GtsHeap * heap,
  * property. Used in conjunction with gts_heap_insert() and gts_heap_thaw()
  * to create a heap in O(n) time.
  */
-void gts_heap_freeze (GtsHeap * heap)
-{
-  g_return_if_fail (heap != NULL);
+void gts_heap_freeze(GtsHeap *heap) {
+  g_return_if_fail(heap != NULL);
 
   heap->frozen = TRUE;
 }
@@ -250,9 +235,8 @@ void gts_heap_freeze (GtsHeap * heap)
  *
  * Returns: the number of items in @heap.
  */
-guint gts_heap_size (GtsHeap * heap)
-{
-  g_return_val_if_fail (heap != NULL, 0);
+guint gts_heap_size(GtsHeap *heap) {
+  g_return_val_if_fail(heap != NULL, 0);
 
   return heap->elts->len;
 }

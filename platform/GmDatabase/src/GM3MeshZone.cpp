@@ -1,55 +1,33 @@
 // GM3MeshZone.cpp: implementation of the C3DMeshZone class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
-#include "Gm3Database.h"
 #include "GM3MeshZone.h"
 #include "GM3TableDef.h"
+#include "Gm3Database.h"
+#include "stdafx.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-namespace gm
-{
+namespace gm {
 
-C3DMeshZone::C3DMeshZone()
-{
+C3DMeshZone::C3DMeshZone() {}
 
-}
+C3DMeshZone::~C3DMeshZone() {}
 
-C3DMeshZone::~C3DMeshZone()
-{
+int C3DMeshZone::Index() const { return m_nIndex; }
 
-}
+int C3DMeshZone::ExponentX() const { return m_nExponentX; }
 
-int C3DMeshZone::Index() const
-{
-  return m_nIndex;
-}
+int C3DMeshZone::ExponentY() const { return m_nExponentY; }
 
-int C3DMeshZone::ExponentX() const
-{
-  return m_nExponentX;
-}
+int C3DMeshZone::Size() const { return m_vcPoint.size(); }
 
-int C3DMeshZone::ExponentY() const
-{
-  return m_nExponentY;
-}
+const geo::IPoint &C3DMeshZone::Point(int nIndex) const { return m_vcPoint[nIndex]; }
 
-int C3DMeshZone::Size() const
-{
-  return m_vcPoint.size();
-}
-
-const geo::IPoint& C3DMeshZone::Point(int nIndex) const
-{
-  return m_vcPoint[nIndex];
-}
-
-void C3DMeshZone::ReadMeshZone(C3DDatabase &db, const C3DModel& model, const long lMeshZoneKey, IProgressBase &callback)
-{
+void C3DMeshZone::ReadMeshZone(C3DDatabase &db, const C3DModel &model, const long lMeshZoneKey,
+                               IProgressBase &callback) {
 #ifndef _WIN64
   // Mesh zone data
   CDaoRecordset rs(&db);
@@ -60,9 +38,8 @@ void C3DMeshZone::ReadMeshZone(C3DDatabase &db, const C3DModel& model, const lon
   strQuery += _T("=%d");
   CString strNewQuery;
   strNewQuery.Format(strQuery, lMeshZoneKey);
-  rs.Open(dbOpenDynaset,strNewQuery,dbReadOnly);
+  rs.Open(dbOpenDynaset, strNewQuery, dbReadOnly);
 
-    
   rs.MoveFirst();
   callback.Step();
 
@@ -83,28 +60,24 @@ void C3DMeshZone::ReadMeshZone(C3DDatabase &db, const C3DModel& model, const lon
   strQuery += _T("=%d");
 
   strNewQuery.Format(strQuery, lMeshZoneKey);
-  rs.Open(dbOpenDynaset, strNewQuery,dbReadOnly);
+  rs.Open(dbOpenDynaset, strNewQuery, dbReadOnly);
   rs.MoveFirst();
-  int iCount=0; 
-  while(!rs.IsEOF())
-  {
-    if(iCount++!=0) //the first record is invalid (bug from Geomec2.x)
+  int iCount = 0;
+  while (!rs.IsEOF()) {
+    if (iCount++ != 0) // the first record is invalid (bug from Geomec2.x)
     {
       callback.Step();
-  //		COleVariant vVariant;
-  //		vVariant=rs.GetFieldValue("X");
-      geo::CPoint pt(rs.GetFieldValue(FD_MESH_ZONE_NODE_Y).dblVal,
-               rs.GetFieldValue(FD_MESH_ZONE_NODE_X).dblVal ); 
+      //		COleVariant vVariant;
+      //		vVariant=rs.GetFieldValue("X");
+      geo::CPoint pt(rs.GetFieldValue(FD_MESH_ZONE_NODE_Y).dblVal, rs.GetFieldValue(FD_MESH_ZONE_NODE_X).dblVal);
 
       m_vcPoint.push_back(pt);
     }
     rs.MoveNext();
-    
   }
-
 
   rs.Close();
 #endif
 }
 
-}
+} // namespace gm

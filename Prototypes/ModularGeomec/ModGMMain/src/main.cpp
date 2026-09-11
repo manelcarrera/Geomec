@@ -1,23 +1,19 @@
-#include <QtGui/QGuiApplication>
 #include <QtCore/QProcess>
+#include <QtGui/QGuiApplication>
 
 #include "ModGMBus.h"
-#include <iostream>
 #include "ProcessManager.h"
-
+#include <iostream>
 
 #ifdef _DEBUG
-#define MAX_BACKEND_PROCESSES   1
+#define MAX_BACKEND_PROCESSES 1
 #else
-#define MAX_BACKEND_PROCESSES   1
+#define MAX_BACKEND_PROCESSES 1
 #endif
-
 
 // global in case we want to (test the) use the CtrlHandler
 
 ProcessManager *procMan = nullptr;
-
-
 
 #if 0
 BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
@@ -61,27 +57,19 @@ BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
 }
 #endif
 
-
 // we can use this to suppress qDebug output, but it won't suppress Qt internal messages
 // for that we need preprocessor definitions
-void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
-{
-}
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg) {}
 
-
-
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   QGuiApplication a(argc, argv);
 
   // BOOTSTRAP 1: set control handlers and get relevant input
 
-  //SetConsoleCtrlHandler(CtrlHandler, TRUE);
-  //qInstallMessageHandler(myMessageOutput);
+  // SetConsoleCtrlHandler(CtrlHandler, TRUE);
+  // qInstallMessageHandler(myMessageOutput);
 
   quint64 pid = a.applicationPid();
-
 
   // BOOTSTRAP 2: read configuration and set up process manager
   // (we pre-define instead of reading any configuration)
@@ -96,13 +84,11 @@ int main(int argc, char *argv[])
 
   procMan = new ProcessManager(pid);
 
-  for (int i = 0; i < MAX_BACKEND_PROCESSES; ++i)
-  {
-  QString p = QString("ModGMBackend.exe:Bcknd%1").arg(i);
-  procMan->RegisterProcess(p, false);
+  for (int i = 0; i < MAX_BACKEND_PROCESSES; ++i) {
+    QString p = QString("ModGMBackend.exe:Bcknd%1").arg(i);
+    procMan->RegisterProcess(p, false);
   }
   procMan->RegisterProcess("ModGMGui.exe", true);
-
 
   // BOOTSTRAP 3: set up listener, bus and connect them to each other as well as process manager
 
@@ -111,7 +97,6 @@ int main(int argc, char *argv[])
   QObject::connect(&server, &ModGMLocalBusManager::quit, procMan, &ProcessManager::stop);
   QObject::connect(&a, &QGuiApplication::aboutToQuit, procMan, &ProcessManager::stop);
   QObject::connect(procMan, &ProcessManager::quit, &a, &QGuiApplication::quit);
-
 
   // BOOTSTRAP DONE
   // start the processes and run the event loop

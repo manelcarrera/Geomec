@@ -13,19 +13,18 @@
 #include <malloc.h>
 #include <stdio.h>
 
-#include "myHeaders.h"
-#include "boolSupport.h"
 #include "RCHString.h"
+#include "boolSupport.h"
+#include "myHeaders.h"
 
-class RCHXMLTokenizer
-{
+class RCHXMLTokenizer {
   RCHString nextToken;
   FILE *inputFile;
   RESCUEBOOL needSpecialTerminator;
   RESCUEBOOL returnSpecialTerminator;
   RESCUEBOOL hitEOF;
   RESCUEBOOL inTag;
-  
+
   RESCUECHAR buffer[512];
   int readPos;
   int writePos;
@@ -33,15 +32,14 @@ class RCHXMLTokenizer
   void FillBuffer();
   RESCUECHAR NextByte();
   void PushByte(int toPush);
+
 public:
   RCHXMLTokenizer(FILE *inputFileIn);
   RESCUECHAR *NextToken();
   RESCUECHAR *UnquotedToken();
-  RESCUEBOOL InTag() {return inTag;}
+  RESCUEBOOL InTag() { return inTag; }
   void ConsumeTag();
   RESCUEBOOL TokenIsTag(const RESCUECHAR *tag);
 };
 
 #endif
-
-

@@ -4,10 +4,9 @@
 #include "AttriFormationLoadDlg.h"
 #include "Temperature.h"
 
-class CAttriTemperatureDlg : public CAttriFormationLoadDlg<CTemperature>
-{
+class CAttriTemperatureDlg : public CAttriFormationLoadDlg<CTemperature> {
 public:
-  CAttriTemperatureDlg(CTemperature& temperature, CWnd* pParent = 0);
+  CAttriTemperatureDlg(CTemperature &temperature, CWnd *pParent = 0);
 
 protected:
   virtual CString UndefinedLabel() const;

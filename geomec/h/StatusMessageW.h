@@ -10,6 +10,6 @@ class QString;
  * stored with the application code.
  */
 
-void statusMessageW(const QString& message);
+void statusMessageW(const QString &message);
 
-#endif  // _StatusMessage_h_
+#endif // _StatusMessage_h_

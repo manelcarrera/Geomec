@@ -6,9 +6,9 @@ class CDianaExecuterSignalHandler;
 
 class CDianaStartUp;
 
-class CDianaExecuter : public IDianaXWrapper
-{
-  CDianaStartUp* m_dsu;
+class CDianaExecuter : public IDianaXWrapper {
+  CDianaStartUp *m_dsu;
+
 public:
   CDianaExecuter();
   virtual ~CDianaExecuter();
@@ -29,7 +29,7 @@ private:
   //
   // not used !!!
   //
-  CDianaExecuterSignalHandler* m_handler;
+  CDianaExecuterSignalHandler *m_handler;
 
   //
   // not used !!!

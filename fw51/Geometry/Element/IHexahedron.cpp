@@ -1,9 +1,9 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "IHexahedron.h"
-#include "BodyQuadrilateral.h"
 #include "BodyLine.h"
-#include <cmath>
+#include "BodyQuadrilateral.h"
 #include "lbel.h"
+#include <cmath>
 
 #include <tbb/spin_rw_mutex.h>
 
@@ -13,47 +13,24 @@ namespace {
 
 tbb::spin_rw_mutex myGlobalIHexahedronMutex[16];
 
-}
-
+} // namespace
 
 namespace geo {
 
-static const int quad_point_indices[] =
-{
-  0,
-  2,
-  4,
-  6,
-  12,
-  14,
-  16,
-  18
-};
+static const int quad_point_indices[] = {0, 2, 4, 6, 12, 14, 16, 18};
 
-static const int cubic_point_indices[] =
-{
-  0,
-  3,
-  6,
-  9,
-  20,
-  23,
-  26,
-  29
-};
+static const int cubic_point_indices[] = {0, 3, 6, 9, 20, 23, 26, 29};
 
-void IHexahedron::BuildIntegrationPoints( IElement::TIntPtVec& vec,
-                                          int                  numint )
-{
+void IHexahedron::BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint) {
   int ixi, ieta, izeta;
   double xxi, xeta, xzeta;
   double wxi, weta, wzeta;
 
-  for(ixi = 0; ixi < numint; ixi++) {
+  for (ixi = 0; ixi < numint; ixi++) {
     GaussCoeff(ixi + 1, numint, &xxi, &wxi);
-    for(ieta = 0; ieta < numint; ieta++) {
+    for (ieta = 0; ieta < numint; ieta++) {
       GaussCoeff(ieta + 1, numint, &xeta, &weta);
-      for(izeta = 0; izeta < numint; izeta++)	{
+      for (izeta = 0; izeta < numint; izeta++) {
         GaussCoeff(izeta + 1, numint, &xzeta, &wzeta);
         std::pair<IElement::TDoubleVec, double> prGaussp;
         prGaussp.first.push_back(xxi);
@@ -66,63 +43,56 @@ void IHexahedron::BuildIntegrationPoints( IElement::TIntPtVec& vec,
   }
 }
 
-const IElement::TIntPtVec& IHexahedron::IntegrationPoints( int order )
-{
+const IElement::TIntPtVec &IHexahedron::IntegrationPoints(int order) {
   static TIntPtVec s_LinearIntegrationPoints;
   static TIntPtVec s_QuadIntegrationPoints;
   static TIntPtVec s_CubicIntegrationPoints;
 
-  switch( order )	{
+  switch (order) {
   case 1:
-    if ( s_LinearIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_LinearIntegrationPoints, 1 );
+    if (s_LinearIntegrationPoints.empty())
+      BuildIntegrationPoints(s_LinearIntegrationPoints, 1);
     return s_LinearIntegrationPoints;
     break;
   case 2:
-    if ( s_QuadIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_QuadIntegrationPoints, 2 );
+    if (s_QuadIntegrationPoints.empty())
+      BuildIntegrationPoints(s_QuadIntegrationPoints, 2);
     return s_QuadIntegrationPoints;
     break;
   case 3:
-    if ( s_CubicIntegrationPoints.empty() )
-      BuildIntegrationPoints( s_CubicIntegrationPoints, 3 );
+    if (s_CubicIntegrationPoints.empty())
+      BuildIntegrationPoints(s_CubicIntegrationPoints, 3);
     return s_CubicIntegrationPoints;
     break;
   }
 
   assert(false);
-  TIntPtVec* pBogus = 0;
+  TIntPtVec *pBogus = 0;
   return *pBogus;
 }
 
-const IElement::TIntPtVec& IHexahedron::IntegrationPoints() const
-{
-  return IntegrationPoints( Order() );
-}
+const IElement::TIntPtVec &IHexahedron::IntegrationPoints() const { return IntegrationPoints(Order()); }
 
-void IHexahedron::PrepareMapping()
-{
+void IHexahedron::PrepareMapping() {
   for (int i = 1; i < 4; ++i)
-  IntegrationPoints(i);
+    IntegrationPoints(i);
 }
 
-IHexahedron::IHexahedron()
-{
-}
+IHexahedron::IHexahedron() {}
 
-IHexahedron::~IHexahedron()
-{
+IHexahedron::~IHexahedron() {
   int i;
-  for(i = 0; i < m_vcFaces.size(); i++)
-    if(m_vcFaces[i]) delete m_vcFaces[i];
+  for (i = 0; i < m_vcFaces.size(); i++)
+    if (m_vcFaces[i])
+      delete m_vcFaces[i];
 
-  for(i = 0; i < m_vcLines.size(); i++)
-    if(m_vcLines[i]) delete m_vcLines[i];
+  for (i = 0; i < m_vcLines.size(); i++)
+    if (m_vcLines[i])
+      delete m_vcLines[i];
 }
 
-const IPoint &IHexahedron::Point(int nIndex) const
-{
-  return Node( nIndex );
+const IPoint &IHexahedron::Point(int nIndex) const {
+  return Node(nIndex);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch( Order() ) {
@@ -137,9 +107,8 @@ const IPoint &IHexahedron::Point(int nIndex) const
 #endif
 }
 
-void IHexahedron::Point(int nIndex, const IPoint &pt)
-{
-  Node( nIndex, pt );
+void IHexahedron::Point(int nIndex, const IPoint &pt) {
+  Node(nIndex, pt);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch(Order())
@@ -159,55 +128,48 @@ void IHexahedron::Point(int nIndex, const IPoint &pt)
 #endif
 }
 
-int IHexahedron::NrOfPoints() const
-{
+int IHexahedron::NrOfPoints() const {
   return NrOfNodes();
-//	return 8;
+  //	return 8;
 }
 
-int IHexahedron::NrOfFaces() const
-{
-  return 6;
-}
+int IHexahedron::NrOfFaces() const { return 6; }
 
-const IFace &IHexahedron::Face(int nIndex) const
-{
+const IFace &IHexahedron::Face(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfFaces());
 
   {
-  int index = (intptr_t)this >> 6 & 0xf;
+    int index = (intptr_t)this >> 6 & 0xf;
 
-  tbb::spin_rw_mutex::scoped_lock lock(myGlobalIHexahedronMutex[index], false);
+    tbb::spin_rw_mutex::scoped_lock lock(myGlobalIHexahedronMutex[index], false);
 
-  if (m_vcFaces.empty())
-  {
+    if (m_vcFaces.empty()) {
       lock.upgrade_to_writer();
 
-      if (m_vcFaces.empty()) m_vcFaces.resize(6, 0);
-      if (!m_vcFaces[nIndex]) m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IHexahedron*>(this), nIndex);
-  }
-  else if (!m_vcFaces[nIndex])
-  {
+      if (m_vcFaces.empty())
+        m_vcFaces.resize(6, 0);
+      if (!m_vcFaces[nIndex])
+        m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IHexahedron *>(this), nIndex);
+    } else if (!m_vcFaces[nIndex]) {
       lock.upgrade_to_writer();
 
-      if (!m_vcFaces[nIndex]) m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IHexahedron*>(this), nIndex);
-  }
+      if (!m_vcFaces[nIndex])
+        m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IHexahedron *>(this), nIndex);
+    }
   }
 
   return *m_vcFaces[nIndex];
 }
 
-const IHexahedron::TIndexVec& IHexahedron::FacePointIndices(int nIndex) const
-{
+const IHexahedron::TIndexVec &IHexahedron::FacePointIndices(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfFaces());
-  return FaceNodeIndices( 1, nIndex );
+  return FaceNodeIndices(1, nIndex);
 }
 
-void IHexahedron::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
-{
-  assert( FaceNodeIdxs.size() == 0 );  // Init once ...
+void IHexahedron::InitFaceNodeIndices(std::vector<TFaceNodeVec> &FaceNodeIdxs) {
+  assert(FaceNodeIdxs.size() == 0); // Init once ...
 
-  FaceNodeIdxs.resize(3, TFaceNodeVec(6) );
+  FaceNodeIdxs.resize(3, TFaceNodeVec(6));
 
   // Initialise for First Order elements
   // Face 0 - ZETA1
@@ -396,65 +358,53 @@ void IHexahedron::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
   FaceNodeIdxs[2][5][11] = 31;
 }
 
-const IHexahedron::TIndexVec& IHexahedron::FaceNodeIndices( int order,
-                              int nIndex )
-{
+const IHexahedron::TIndexVec &IHexahedron::FaceNodeIndices(int order, int nIndex) {
   static std::vector<TFaceNodeVec> s_FaceNodeIndices;
 
   //	assert(nIndex >= 0 && nIndex < NrOfFaces());
-  if( s_FaceNodeIndices.empty() ) InitFaceNodeIndices( s_FaceNodeIndices );
+  if (s_FaceNodeIndices.empty())
+    InitFaceNodeIndices(s_FaceNodeIndices);
 
-  return s_FaceNodeIndices[order-1][nIndex];
+  return s_FaceNodeIndices[order - 1][nIndex];
 }
 
-const IHexahedron::TIndexVec& IHexahedron::FaceNodeIndices( int nIndex ) const
-{
-  return FaceNodeIndices( Order(), nIndex );
+const IHexahedron::TIndexVec &IHexahedron::FaceNodeIndices(int nIndex) const {
+  return FaceNodeIndices(Order(), nIndex);
 }
 
-int IHexahedron::NrOfLines() const
-{
-  return 12;
-}
+int IHexahedron::NrOfLines() const { return 12; }
 
-const ILine &IHexahedron::Line(int nIndex) const
-{
+const ILine &IHexahedron::Line(int nIndex) const {
   {
-  int index = (intptr_t)this >> 6 & 0xf;
+    int index = (intptr_t)this >> 6 & 0xf;
 
-  tbb::spin_rw_mutex::scoped_lock lock(myGlobalIHexahedronMutex[index], false);
+    tbb::spin_rw_mutex::scoped_lock lock(myGlobalIHexahedronMutex[index], false);
 
-  if (m_vcLines.empty())
-  {
+    if (m_vcLines.empty()) {
       lock.upgrade_to_writer();
 
-      if (m_vcLines.empty()) m_vcLines.resize(NrOfLines(), 0);
+      if (m_vcLines.empty())
+        m_vcLines.resize(NrOfLines(), 0);
 
       if (!m_vcLines[nIndex])
-    m_vcLines[nIndex] = new CBodyLine(*const_cast<IHexahedron*>(this), nIndex);
-  }
-  else if (!m_vcLines[nIndex])
-  {
+        m_vcLines[nIndex] = new CBodyLine(*const_cast<IHexahedron *>(this), nIndex);
+    } else if (!m_vcLines[nIndex]) {
       lock.upgrade_to_writer();
 
       if (!m_vcLines[nIndex])
-    m_vcLines[nIndex] = new CBodyLine(*const_cast<IHexahedron*>(this), nIndex);
-  }
+        m_vcLines[nIndex] = new CBodyLine(*const_cast<IHexahedron *>(this), nIndex);
+    }
   }
 
   return *m_vcLines[nIndex];
 }
 
-const IHexahedron::TIndexVec& IHexahedron::LinePointIndices(int nIndex) const
-{
-  return LineNodeIndices( 1, nIndex );
-}
+const IHexahedron::TIndexVec &IHexahedron::LinePointIndices(int nIndex) const { return LineNodeIndices(1, nIndex); }
 
-void IHexahedron::InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs )
-{
-  assert( LineNodeIdxs.size() == 0 );  // Init once ...
+void IHexahedron::InitLineNodeIndices(std::vector<TLineNodeVec> &LineNodeIdxs) {
+  assert(LineNodeIdxs.size() == 0); // Init once ...
 
-  LineNodeIdxs.resize(3, TLineNodeVec(12) );
+  LineNodeIdxs.resize(3, TLineNodeVec(12));
 
   // Initialise for First Order elements
   // Line 0
@@ -641,30 +591,25 @@ void IHexahedron::InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs )
   LineNodeIdxs[2][11][1] = 30;
   LineNodeIdxs[2][11][2] = 31;
   LineNodeIdxs[2][11][3] = 20;
-
 }
 
-const IHexahedron::TIndexVec& IHexahedron::LineNodeIndices( int order,
-                              int nIndex )
-{
+const IHexahedron::TIndexVec &IHexahedron::LineNodeIndices(int order, int nIndex) {
   static std::vector<TLineNodeVec> s_LineNodeIndices;
-  assert(nIndex >= 0 && nIndex < 12 );
-  if( s_LineNodeIndices.size() == 0 ) InitLineNodeIndices( s_LineNodeIndices );
-  return s_LineNodeIndices[order-1][nIndex];
+  assert(nIndex >= 0 && nIndex < 12);
+  if (s_LineNodeIndices.size() == 0)
+    InitLineNodeIndices(s_LineNodeIndices);
+  return s_LineNodeIndices[order - 1][nIndex];
 }
 
-const IHexahedron::TIndexVec& IHexahedron::LineNodeIndices( int nIndex ) const
-{
-  return LineNodeIndices( Order(), nIndex );
+const IHexahedron::TIndexVec &IHexahedron::LineNodeIndices(int nIndex) const {
+  return LineNodeIndices(Order(), nIndex);
 }
-IElement::TDoubleVec IHexahedron::ShapeFunction(const IElement::TDoubleVec& isocoords) const
-{
+IElement::TDoubleVec IHexahedron::ShapeFunction(const IElement::TDoubleVec &isocoords) const {
   assert(isocoords.size() == 3); // xi, eta and zeta coordinate
 
   double *values = new double[NrOfNodes()];
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     HexaHedronShape(isocoords[0], isocoords[1], isocoords[2], values);
     break;
@@ -680,28 +625,27 @@ IElement::TDoubleVec IHexahedron::ShapeFunction(const IElement::TDoubleVec& isoc
 
   IElement::TDoubleVec vcRet(NrOfNodes());
   int i;
-  for(i = 0; i < NrOfNodes(); i++) vcRet[i] = values[i];
+  for (i = 0; i < NrOfNodes(); i++)
+    vcRet[i] = values[i];
 
   delete[] values;
 
   return vcRet;
 }
 
-CMatrix IHexahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const
-{
+CMatrix IHexahedron::ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const {
   assert(isocoords.size() == 3);
 
   int i;
-//	for(i = 0; i < isocoords.size(); i++)
-//		assert(isocoords[i] >= -1.0 && isocoords[i] <= 1.0);
+  //	for(i = 0; i < isocoords.size(); i++)
+  //		assert(isocoords[i] >= -1.0 && isocoords[i] <= 1.0);
 
   // 3 rows, NrOfNodes() columns
   CMatrix ret(3, NrOfNodes());
 
   double *p = new double[3 * NrOfNodes()];
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     DerivedHexaHedronShape(isocoords[0], isocoords[1], isocoords[2], 0, p);
     break;
@@ -718,10 +662,8 @@ CMatrix IHexahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords)
   double *v = p;
 
   int j;
-  for(j = 0; j < NrOfNodes(); j++)
-  {
-    for(i = 0; i < 3; i++)
-    {
+  for (j = 0; j < NrOfNodes(); j++) {
+    for (i = 0; i < 3; i++) {
       ret.Value(i, j, *(v++));
     }
   }
@@ -730,137 +672,135 @@ CMatrix IHexahedron::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords)
   return ret;
 }
 
-std::vector<IElement::TDoubleVec> IHexahedron::IsoCoordinates() const
-{
+std::vector<IElement::TDoubleVec> IHexahedron::IsoCoordinates() const {
   std::vector<IElement::TDoubleVec> ret;
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     // node 1
     ret.push_back(MakeVec(-1, -1, -1));
     // node 2
-    ret.push_back(MakeVec( 1, -1, -1));
+    ret.push_back(MakeVec(1, -1, -1));
     // node 3
-    ret.push_back(MakeVec( 1,  1, -1));
+    ret.push_back(MakeVec(1, 1, -1));
     // node 4
-    ret.push_back(MakeVec(-1,  1, -1));
+    ret.push_back(MakeVec(-1, 1, -1));
     // node 5
-    ret.push_back(MakeVec(-1, -1,  1));
+    ret.push_back(MakeVec(-1, -1, 1));
     // node 6
-    ret.push_back(MakeVec( 1, -1,  1));
+    ret.push_back(MakeVec(1, -1, 1));
     // node 7
-    ret.push_back(MakeVec( 1,  1,  1));
+    ret.push_back(MakeVec(1, 1, 1));
     // node 8
-    ret.push_back(MakeVec(-1,  1,  1));
+    ret.push_back(MakeVec(-1, 1, 1));
     break;
   case 2:
     // node 1
     ret.push_back(MakeVec(-1, -1, -1));
     // node 2
-    ret.push_back(MakeVec( 0, -1, -1));
+    ret.push_back(MakeVec(0, -1, -1));
     // node 3
-    ret.push_back(MakeVec( 1, -1, -1));
+    ret.push_back(MakeVec(1, -1, -1));
     // node 4
-    ret.push_back(MakeVec( 1,  0, -1));
+    ret.push_back(MakeVec(1, 0, -1));
     // node 5
-    ret.push_back(MakeVec( 1,  1, -1));
+    ret.push_back(MakeVec(1, 1, -1));
     // node 6
-    ret.push_back(MakeVec( 0,  1, -1));
+    ret.push_back(MakeVec(0, 1, -1));
     // node 7
-    ret.push_back(MakeVec(-1,  1, -1));
+    ret.push_back(MakeVec(-1, 1, -1));
     // node 8
-    ret.push_back(MakeVec(-1,  0, -1));
+    ret.push_back(MakeVec(-1, 0, -1));
     // node 9
-    ret.push_back(MakeVec(-1, -1,  0));
+    ret.push_back(MakeVec(-1, -1, 0));
     // node 10
-    ret.push_back(MakeVec( 1, -1,  0));
+    ret.push_back(MakeVec(1, -1, 0));
     // node 11
-    ret.push_back(MakeVec( 1,  1,  0));
+    ret.push_back(MakeVec(1, 1, 0));
     // node 12
-    ret.push_back(MakeVec(-1,  1,  0));
+    ret.push_back(MakeVec(-1, 1, 0));
     // node 13
-    ret.push_back(MakeVec(-1, -1,  1));
+    ret.push_back(MakeVec(-1, -1, 1));
     // node 14
-    ret.push_back(MakeVec( 0, -1,  1));
+    ret.push_back(MakeVec(0, -1, 1));
     // node 15
-    ret.push_back(MakeVec( 1, -1,  1));
+    ret.push_back(MakeVec(1, -1, 1));
     // node 16
-    ret.push_back(MakeVec(-1,  0,  1));
+    ret.push_back(MakeVec(-1, 0, 1));
     // node 17
-    ret.push_back(MakeVec( 1,  1,  1));
+    ret.push_back(MakeVec(1, 1, 1));
     // node 18
-    ret.push_back(MakeVec( 1,  0,  1));
+    ret.push_back(MakeVec(1, 0, 1));
     // node 19
-    ret.push_back(MakeVec(-1,  1,  1));
+    ret.push_back(MakeVec(-1, 1, 1));
     // node 20
-    ret.push_back(MakeVec(-1,  1,  1));
+    ret.push_back(MakeVec(-1, 1, 1));
     break;
   case 3:
     // node 1
-    ret.push_back(MakeVec(-1,    -1,    -1   ));
+    ret.push_back(MakeVec(-1, -1, -1));
     // node 2
-    ret.push_back(MakeVec(-1./3, -1,    -1   ));
+    ret.push_back(MakeVec(-1. / 3, -1, -1));
     // node 3
-    ret.push_back(MakeVec( 1./3, -1,    -1   ));
+    ret.push_back(MakeVec(1. / 3, -1, -1));
     // node 4
-    ret.push_back(MakeVec( 1,    -1,    -1   ));
+    ret.push_back(MakeVec(1, -1, -1));
     // node 5
-    ret.push_back(MakeVec( 1,    -1./3, -1   ));
+    ret.push_back(MakeVec(1, -1. / 3, -1));
     // node 6
-    ret.push_back(MakeVec( 1,     1./3, -1   ));
+    ret.push_back(MakeVec(1, 1. / 3, -1));
     // node 7
-    ret.push_back(MakeVec( 1,     1,    -1   ));
+    ret.push_back(MakeVec(1, 1, -1));
     // node 8
-    ret.push_back(MakeVec( 1./3,  1,    -1   ));
+    ret.push_back(MakeVec(1. / 3, 1, -1));
     // node 9
-    ret.push_back(MakeVec(-1./3,  1,    -1   ));
+    ret.push_back(MakeVec(-1. / 3, 1, -1));
     // node 10
-    ret.push_back(MakeVec(-1,     1,    -1   ));
+    ret.push_back(MakeVec(-1, 1, -1));
     // node 11
-    ret.push_back(MakeVec(-1,     1./3, -1   ));
+    ret.push_back(MakeVec(-1, 1. / 3, -1));
     // node 12
-    ret.push_back(MakeVec(-1,    -1./3, -1   ));
+    ret.push_back(MakeVec(-1, -1. / 3, -1));
     // node 13
-    ret.push_back(MakeVec(-1,    -1,    -1./3));
+    ret.push_back(MakeVec(-1, -1, -1. / 3));
     // node 14
-    ret.push_back(MakeVec( 1,    -1,    -1./3));
+    ret.push_back(MakeVec(1, -1, -1. / 3));
     // node 15
-    ret.push_back(MakeVec( 1,     1,    -1./3));
+    ret.push_back(MakeVec(1, 1, -1. / 3));
     // node 16
-    ret.push_back(MakeVec(-1,     1,    -1./3));
+    ret.push_back(MakeVec(-1, 1, -1. / 3));
     // node 17
-    ret.push_back(MakeVec(-1,    -1,     1./3));
+    ret.push_back(MakeVec(-1, -1, 1. / 3));
     // node 18
-    ret.push_back(MakeVec( 1,    -1,     1./3));
+    ret.push_back(MakeVec(1, -1, 1. / 3));
     // node 19
-    ret.push_back(MakeVec( 1,     1,     1./3));
+    ret.push_back(MakeVec(1, 1, 1. / 3));
     // node 20
-    ret.push_back(MakeVec(-1,     1,     1./3));
+    ret.push_back(MakeVec(-1, 1, 1. / 3));
     // node 21
-    ret.push_back(MakeVec(-1,    -1,     1   ));
+    ret.push_back(MakeVec(-1, -1, 1));
     // node 22
-    ret.push_back(MakeVec(-1./3, -1,     1   ));
+    ret.push_back(MakeVec(-1. / 3, -1, 1));
     // node 23
-    ret.push_back(MakeVec( 1./3, -1,     1   ));
+    ret.push_back(MakeVec(1. / 3, -1, 1));
     // node 24
-    ret.push_back(MakeVec( 1,    -1,     1   ));
+    ret.push_back(MakeVec(1, -1, 1));
     // node 25
-    ret.push_back(MakeVec( 1,    -1./3,  1   ));
+    ret.push_back(MakeVec(1, -1. / 3, 1));
     // node 26
-    ret.push_back(MakeVec( 1,     1./3,  1   ));
+    ret.push_back(MakeVec(1, 1. / 3, 1));
     // node 27
-    ret.push_back(MakeVec( 1,     1,     1   ));
+    ret.push_back(MakeVec(1, 1, 1));
     // node 28
-    ret.push_back(MakeVec( 1./3,  1,     1   ));
+    ret.push_back(MakeVec(1. / 3, 1, 1));
     // node 29
-    ret.push_back(MakeVec(-1./3,  1,     1   ));
+    ret.push_back(MakeVec(-1. / 3, 1, 1));
     // node 30
-    ret.push_back(MakeVec(-1,     1,     1   ));
+    ret.push_back(MakeVec(-1, 1, 1));
     // node 31
-    ret.push_back(MakeVec(-1,     1./3,  1   ));
+    ret.push_back(MakeVec(-1, 1. / 3, 1));
     // node 32
-    ret.push_back(MakeVec(-1,    -1./3,  1   ));
+    ret.push_back(MakeVec(-1, -1. / 3, 1));
     break;
   default:
     assert(false);
@@ -869,19 +809,14 @@ std::vector<IElement::TDoubleVec> IHexahedron::IsoCoordinates() const
   return ret;
 }
 
-int IHexahedron::IntegrationPointSize() const
-{
-  return (int)IntegrationPoints().size();
-}
+int IHexahedron::IntegrationPointSize() const { return (int)IntegrationPoints().size(); }
 
-const IElement::TDoubleVec& IHexahedron::IntegrationPointCoords(int nIndex) const
-{
+const IElement::TDoubleVec &IHexahedron::IntegrationPointCoords(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].first;
 }
 
-const double& IHexahedron::IntegrationPointWeight(int nIndex) const
-{
+const double &IHexahedron::IntegrationPointWeight(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].second;
 }

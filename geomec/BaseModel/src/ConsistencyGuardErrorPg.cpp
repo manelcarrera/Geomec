@@ -4,27 +4,20 @@
 #include "ModelBase.h"
 #include "resource.h"
 
-
 CConsistencyGuardErrorPg::CConsistencyGuardErrorPg(CModelBase *pModel)
-  : CPropertyPage(IDD_CG_ERROR_PG)
-  , m_pModel(pModel)
-{
-}
+    : CPropertyPage(IDD_CG_ERROR_PG), m_pModel(pModel) {}
 
 BEGIN_MESSAGE_MAP(CConsistencyGuardErrorPg, CDialog)
-  ON_BN_CLICKED(IDC_CG_ERROR_PG_CLEAR, OnClearErrors)
+ON_BN_CLICKED(IDC_CG_ERROR_PG_CLEAR, OnClearErrors)
 END_MESSAGE_MAP()
 
-
-BOOL CConsistencyGuardErrorPg::OnInitDialog()
-{
+BOOL CConsistencyGuardErrorPg::OnInitDialog() {
   UpdateData(false);
 
   return TRUE;
 }
 
-void CConsistencyGuardErrorPg::DoDataExchange(CDataExchange* pDX)
-{
+void CConsistencyGuardErrorPg::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
 
   QStringList errors;
@@ -33,14 +26,12 @@ void CConsistencyGuardErrorPg::DoDataExchange(CDataExchange* pDX)
   CEdit *canvas = (CEdit *)GetDlgItem(IDC_CG_ERROR_PG_ERRORS);
 
   if (errors.size() > 0)
-  canvas->SetWindowText(errors.join("\r\n").toStdString().c_str());
+    canvas->SetWindowText(errors.join("\r\n").toStdString().c_str());
   else
-  canvas->SetWindowText("No errors");
+    canvas->SetWindowText("No errors");
 }
 
-void CConsistencyGuardErrorPg::OnClearErrors()
-{
+void CConsistencyGuardErrorPg::OnClearErrors() {
   m_pModel->GetConsistencyGuard()->ClearErrors();
   UpdateData(false);
 }
-

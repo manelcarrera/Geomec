@@ -11,9 +11,8 @@ namespace dia {
 
 class CLoadManager;
 
-class ISupportLoad : public IDirectedLoad  
-{
-  const geo::ISupport& m_support;
+class ISupportLoad : public IDirectedLoad {
+  const geo::ISupport &m_support;
 
 public:
   ISupportLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ISupport &support);
@@ -22,9 +21,9 @@ public:
   const geo::ISupport &Support() const;
 
 protected:
-  bool WriteFilos(const std::string& sType) const;
+  bool WriteFilos(const std::string &sType) const;
 };
 
-}
+} // namespace dia
 
 #endif // _IDCSUPPORTLOAD_H_

@@ -3,10 +3,9 @@
 
 #include "ListCtrlBase.h"
 
-class CDefineRegular2DGridDlg : public CDialog
-{
+class CDefineRegular2DGridDlg : public CDialog {
 public:
-  CDefineRegular2DGridDlg(const CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  CDefineRegular2DGridDlg(const CModelBase &model, CWnd *pParent = NULL); // standard constructor
   virtual ~CDefineRegular2DGridDlg();
 
   geo::CPoint Corner1() const;
@@ -14,14 +13,14 @@ public:
   int NumPointsNorthing() const;
   int NumPointsEasting() const;
 
-// Dialog Data
+  // Dialog Data
   enum { IDD = IDD_DEFINEREGULAR2DGRID_DLG };
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
 
 private:
-  const CModelBase& m_model;
+  const CModelBase &m_model;
   CLengthQuantity m_Corner1Northing;
   CLengthQuantity m_Corner1Easting;
   CLengthQuantity m_Corner2Northing;
@@ -30,92 +29,87 @@ private:
   int m_nPointsEasting;
 };
 
-class ISelectObjectDlg : public CDialog
-{
+class ISelectObjectDlg : public CDialog {
 public:
-  ISelectObjectDlg(const CModelBase& model, CWnd* pParent = NULL);
+  ISelectObjectDlg(const CModelBase &model, CWnd *pParent = NULL);
 
-  const CModelBase& Model() const;
+  const CModelBase &Model() const;
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual BOOL OnInitDialog();
   virtual CString ObjectTitle() const = 0;
-  virtual void CreateListObjects(CListCtrl& ctrl) = 0;
+  virtual void CreateListObjects(CListCtrl &ctrl) = 0;
 
 private:
-  const CModelBase& m_model;
+  const CModelBase &m_model;
   CListCtrlBase m_lbObjects;
 };
 
 // CSelect2DPointsetDlg dialog
 
 class CPointSet;
-class CSelect2DPointsetDlg : public ISelectObjectDlg
-{
+class CSelect2DPointsetDlg : public ISelectObjectDlg {
 public:
-  CSelect2DPointsetDlg(const CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  CSelect2DPointsetDlg(const CModelBase &model, CWnd *pParent = NULL); // standard constructor
 
-  const CPointSet* SelectedPointset() const;
+  const CPointSet *SelectedPointset() const;
 
   // set the selection, may be NULL to deselect all
-  void SelectPointset(const CPointSet* pPointset);
+  void SelectPointset(const CPointSet *pPointset);
 
 protected:
   virtual CString ObjectTitle() const;
-  virtual void CreateListObjects(CListCtrl& ctrl);
+  virtual void CreateListObjects(CListCtrl &ctrl);
 
 private:
-  class CPointsetListObject : public IListObject
-  {
+  class CPointsetListObject : public IListObject {
   public:
-  CPointsetListObject(const CPointSet& pointset, CSelect2DPointsetDlg& dlg, CListCtrl& ctrl);
-  virtual unsigned int Icon() const;
-  virtual QString Text() const;
-  virtual void SelectionStateChanged(bool bSelected);
-  virtual void OnDoubleClick();
+    CPointsetListObject(const CPointSet &pointset, CSelect2DPointsetDlg &dlg, CListCtrl &ctrl);
+    virtual unsigned int Icon() const;
+    virtual QString Text() const;
+    virtual void SelectionStateChanged(bool bSelected);
+    virtual void OnDoubleClick();
 
   private:
-  const CPointSet& m_pointset;
-  CSelect2DPointsetDlg& m_dlg;
+    const CPointSet &m_pointset;
+    CSelect2DPointsetDlg &m_dlg;
   };
 
 private:
-  const CPointSet* m_pSelectedPointset;
+  const CPointSet *m_pSelectedPointset;
 };
 
 class CSurfaceBase;
-class CSelectSurfaceDlg : public ISelectObjectDlg
-{
+class CSelectSurfaceDlg : public ISelectObjectDlg {
 public:
-  CSelectSurfaceDlg(const CModelBase& model, CWnd* pParent = NULL);
+  CSelectSurfaceDlg(const CModelBase &model, CWnd *pParent = NULL);
 
-  const CSurfaceBase* SelectedSurface() const;
+  const CSurfaceBase *SelectedSurface() const;
 
   // set the selection, may be NULL to deselect all
-  void SelectSurface(const CSurfaceBase* pSurface);
+  void SelectSurface(const CSurfaceBase *pSurface);
 
 protected:
   virtual CString ObjectTitle() const;
-  virtual void CreateListObjects(CListCtrl& ctrl);
+  virtual void CreateListObjects(CListCtrl &ctrl);
 
 private:
-  class CSurfaceListObject : public IListObject
-  {
+  class CSurfaceListObject : public IListObject {
   public:
-  CSurfaceListObject(const CSurfaceBase& surface, CSelectSurfaceDlg& dlg, CListCtrl& ctrl);
-  virtual unsigned int Icon() const;
-  virtual QString Text() const;
-  virtual void SelectionStateChanged(bool bSelected);
-  virtual void OnDoubleClick();
+    CSurfaceListObject(const CSurfaceBase &surface, CSelectSurfaceDlg &dlg, CListCtrl &ctrl);
+    virtual unsigned int Icon() const;
+    virtual QString Text() const;
+    virtual void SelectionStateChanged(bool bSelected);
+    virtual void OnDoubleClick();
 
   private:
-  const CSurfaceBase& m_surface;
-  CSelectSurfaceDlg& m_dlg;
+    const CSurfaceBase &m_surface;
+    CSelectSurfaceDlg &m_dlg;
   };
 
 private:
-  const CSurfaceBase* m_pSelectedSurface;
+  const CSurfaceBase *m_pSelectedSurface;
 };
 
 #endif // _THINLAYERUPSCALINGCREATETARGETPOINTSET_H_

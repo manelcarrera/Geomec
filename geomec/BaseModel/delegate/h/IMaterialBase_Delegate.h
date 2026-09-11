@@ -5,18 +5,17 @@ class IMaterialBase;
 
 #include "StorageNode_Delegate.h"
 
-class IMaterialBase_Delegate : public CStorageNode_Delegate
-{
+class IMaterialBase_Delegate : public CStorageNode_Delegate {
 public:
-  IMaterialBase_Delegate(IMaterialBase* materialBase);
+  IMaterialBase_Delegate(IMaterialBase *materialBase);
 
 private:
-  IMaterialBase_Delegate(const IMaterialBase_Delegate& rhs);
-  IMaterialBase_Delegate& operator = (const IMaterialBase_Delegate& rhs);
+  IMaterialBase_Delegate(const IMaterialBase_Delegate &rhs);
+  IMaterialBase_Delegate &operator=(const IMaterialBase_Delegate &rhs);
 
-  IMaterialBase* m_materialBase;
+  IMaterialBase *m_materialBase;
 
   REGISTER_DELEGATE(IMaterialBase, IMaterialBase_Delegate);
 };
 
-#endif  // _IMaterialBase_Delegate_h_
+#endif // _IMaterialBase_Delegate_h_

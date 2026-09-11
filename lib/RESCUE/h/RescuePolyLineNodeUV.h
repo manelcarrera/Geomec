@@ -16,21 +16,22 @@
 class RescueIJSurface;
 class RescueOrientationLedger;
 
-class RescuePolyLineNodeUV:public RescueObject
-{
+class RescuePolyLineNodeUV : public RescueObject {
 public:
   RescuePolyLineNodeUV(RescueContext *context, RescueIJSurface *faceIn, RESCUEFLOAT u, RESCUEFLOAT v)
-              :RescueObject(context)
-              ,uValue(u)
-              ,vValue(v)
-              ,face(faceIn) {isA = R_RescuePolyLineNodeUV;}
-  void SetUVValue(RESCUEFLOAT u, RESCUEFLOAT v) {uValue = u; vValue = v;}
-  RESCUEFLOAT U() {return uValue;} 
-  RESCUEFLOAT V() {return vValue;} 
-  RescueIJSurface *Face() {return face;}
+      : RescueObject(context), uValue(u), vValue(v), face(faceIn) {
+    isA = R_RescuePolyLineNodeUV;
+  }
+  void SetUVValue(RESCUEFLOAT u, RESCUEFLOAT v) {
+    uValue = u;
+    vValue = v;
+  }
+  RESCUEFLOAT U() { return uValue; }
+  RESCUEFLOAT V() { return vValue; }
+  RescueIJSurface *Face() { return face; }
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
-     // Returns TRUE if the object is a
-     // member of the specified class.
+  // Returns TRUE if the object is a
+  // member of the specified class.
 protected:
   virtual void Archive(RescueContext *context, FILE *archiveFile);
   RescuePolyLineNodeUV(RescueContext *context, FILE *archiveFile);
@@ -38,19 +39,15 @@ protected:
 
 private:
   virtual void Relink(RescueObject *object);
- 
+
   RESCUEFLOAT uValue;
   RESCUEFLOAT vValue;
   RescueIJSurface *face;
 
-  RESCUEINT64 faceID;     // Used only for relinking.
+  RESCUEINT64 faceID; // Used only for relinking.
 
   friend class cSetRescuePolyLineNodeUV;
   friend class RescuePolyLine;
 };
 
 #endif
-
-
-
-

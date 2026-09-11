@@ -1,19 +1,11 @@
 #include "ObjectBase.h"
 
-namespace cora
-{
+namespace cora {
 
-CObjectBase::CObjectBase()
-{
-}
+CObjectBase::CObjectBase() {}
 
-CObjectBase::~CObjectBase()
-{
-}
+CObjectBase::~CObjectBase() {}
 
-CElementSet* CObjectBase::getElementSet() const
-{
-  return 0;
-}
+CElementSet *CObjectBase::getElementSet() const { return 0; }
 
 } // namespace cora

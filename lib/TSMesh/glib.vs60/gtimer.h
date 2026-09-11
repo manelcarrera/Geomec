@@ -21,7 +21,7 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
 #ifndef __G_TIMER_H__
@@ -35,18 +35,17 @@ G_BEGIN_DECLS
  */
 
 /* microseconds per second */
-typedef struct _GTimer		GTimer;
+typedef struct _GTimer GTimer;
 
 #define G_USEC_PER_SEC 1000000
 
-GTimer* g_timer_new	(void);
-void	g_timer_destroy (GTimer	 *timer);
-void	g_timer_start	(GTimer	 *timer);
-void	g_timer_stop	(GTimer	 *timer);
-void	g_timer_reset	(GTimer	 *timer);
-gdouble g_timer_elapsed (GTimer	 *timer,
-       gulong	 *microseconds);
-void    g_usleep        (gulong microseconds);
+GTimer *g_timer_new(void);
+void g_timer_destroy(GTimer *timer);
+void g_timer_start(GTimer *timer);
+void g_timer_stop(GTimer *timer);
+void g_timer_reset(GTimer *timer);
+gdouble g_timer_elapsed(GTimer *timer, gulong *microseconds);
+void g_usleep(gulong microseconds);
 
 G_END_DECLS
 

@@ -12,19 +12,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // COleFont wrapper class
 
-class COleFont : public COleDispatchDriver
-{
+class COleFont : public COleDispatchDriver {
 public:
-  COleFont() {}		// Calls COleDispatchDriver default constructor
+  COleFont() {} // Calls COleDispatchDriver default constructor
   COleFont(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  COleFont(const COleFont& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  COleFont(const COleFont &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   CString GetName();
   void SetName(LPCTSTR);
   CY GetSize();
-  void SetSize(const CY&);
+  void SetSize(const CY &);
   BOOL GetBold();
   void SetBold(BOOL);
   BOOL GetItalic();
@@ -38,7 +37,7 @@ public:
   short GetCharset();
   void SetCharset(short);
 
-// Operations
+  // Operations
 public:
 };
 

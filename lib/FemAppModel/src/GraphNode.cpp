@@ -3,153 +3,135 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "GraphNode.h"
-#include <vector>
-#include <assert.h>
 #include "Delegate.h"
 #include "GeomecStringTable.h"
+#include <assert.h>
+#include <vector>
 
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-//##ModelId=3B653D010266 
-CGraphNode::CGraphNode(const QString& strName)
-: m_pSource(0), m_pCopy(0), m_strName(strName)
-, m_eStatus(NO_ACTION)
-, m_parent(0)
-, m_delegate(0)
-, m_modifiedByAttributesDialog(false)
-{
-}
+// ##ModelId=3B653D010266
+CGraphNode::CGraphNode(const QString &strName)
+    : m_pSource(0), m_pCopy(0), m_strName(strName), m_eStatus(NO_ACTION), m_parent(0), m_delegate(0),
+      m_modifiedByAttributesDialog(false) {}
 
-//##ModelId=3B653D010273
+// ##ModelId=3B653D010273
 CGraphNode::CGraphNode(unsigned int uName)
-: m_pSource(0), m_pCopy(0)
-, m_eStatus(NO_ACTION)
-, m_parent(0)
-, m_delegate(0)
-, m_modifiedByAttributesDialog(false)
-{
+    : m_pSource(0), m_pCopy(0), m_eStatus(NO_ACTION), m_parent(0), m_delegate(0), m_modifiedByAttributesDialog(false) {
   m_strName = getStringTableEntry(uName);
 }
 
 // Copies the name.
 CGraphNode::CGraphNode(const CGraphNode &rhs)
-: m_pSource(0), 
-  m_pCopy(0), 
-  m_strName(rhs.m_strName), 
-  m_vcChild( rhs.m_vcChild ),
-  m_vcReference( rhs.m_vcReference )
-, m_eStatus(rhs.m_eStatus)
-, m_parent(rhs.m_parent)
-, m_delegate(0)
-, m_modifiedByAttributesDialog(rhs.m_modifiedByAttributesDialog)
-{
+    : m_pSource(0), m_pCopy(0), m_strName(rhs.m_strName), m_vcChild(rhs.m_vcChild), m_vcReference(rhs.m_vcReference),
+      m_eStatus(rhs.m_eStatus), m_parent(rhs.m_parent), m_delegate(0),
+      m_modifiedByAttributesDialog(rhs.m_modifiedByAttributesDialog) {
   assert(!rhs.IsCopied());
   assert(!rhs.IsCopy());
   // Assign the the pointer of the copy to the source ...
-  m_pSource			= const_cast<CGraphNode*>(&rhs); 
-  m_pSource->m_pCopy	= this;
+  m_pSource = const_cast<CGraphNode *>(&rhs);
+  m_pSource->m_pCopy = this;
 
   AssertValid();
 }
 
-//##ModelId=3B653D0102D0
-CGraphNode::~CGraphNode()
-{	
+// ##ModelId=3B653D0102D0
+CGraphNode::~CGraphNode() {
   AssertValid();
 
   m_eStatus = FORCE_DELETE;
 
   // Is a copy deleting?
- 	if(IsCopy()) {
+  if (IsCopy()) {
     // Unlink all copied neighbour nodes
     // Because after unlinking the iterator of the neighbourhood invalidates a copy
     // is made.
-    while(m_vcChild.size() > 0)
-    {
-      assert( m_vcChild[0] );
+    while (m_vcChild.size() > 0) {
+      assert(m_vcChild[0]);
       assert(!m_vcChild[0]->IsCopy());
-      if(m_vcChild[0]->IsCopied())
+      if (m_vcChild[0]->IsCopied())
         delete &m_vcChild[0]->Copy();
       else
         m_vcChild.erase(m_vcChild.begin());
     }
 
-    while(referenceSize() > 0)
-    {
+    while (referenceSize() > 0) {
       CGraphNode *pNode = m_vcReference[0];
       assert(pNode);
       assert(!pNode->IsCopy());
-      if(pNode->IsCopied())
+      if (pNode->IsCopied())
         UnLink(pNode->Copy());
       else
         m_vcReference.erase(m_vcReference.begin());
     }
 
-    if( m_parent ) {
-      assert( !m_parent->IsCopy() );
-      if( m_parent->IsCopied() ) UnLink( m_parent->Copy() );
+    if (m_parent) {
+      assert(!m_parent->IsCopy());
+      if (m_parent->IsCopied())
+        UnLink(m_parent->Copy());
     }
 
     // Go back to original situation ...
     Source().m_pCopy = 0;
 
   } else {
-    while( childSize() > 0     ) delete m_vcChild[0];
-    while( referenceSize() > 0 ) m_vcReference[0]->UnLink( *this );
-    if( m_parent ) m_parent->UnLink( *this );
+    while (childSize() > 0)
+      delete m_vcChild[0];
+    while (referenceSize() > 0)
+      m_vcReference[0]->UnLink(*this);
+    if (m_parent)
+      m_parent->UnLink(*this);
   }
 
-  if (m_delegate != 0)
-  {
-  delete m_delegate;
-  m_delegate = 0;
+  if (m_delegate != 0) {
+    delete m_delegate;
+    m_delegate = 0;
   }
 }
 
-void CGraphNode::create(CGraphNode* new_parent)
-{
-  assert( !m_parent );
-  reParent( new_parent );
+void CGraphNode::create(CGraphNode *new_parent) {
+  assert(!m_parent);
+  reParent(new_parent);
 }
 
-void CGraphNode::reParent(CGraphNode* new_parent)
-{
-  if(m_parent) UnLink(*m_parent);
+void CGraphNode::reParent(CGraphNode *new_parent) {
+  if (m_parent)
+    UnLink(*m_parent);
   m_parent = new_parent;
 
-  if(m_parent) {
-    if(IsCopy()) {
+  if (m_parent) {
+    if (IsCopy()) {
       // Linkage of two copies ....
       assert(new_parent->IsCopy());
-//			assert( !isChild( Source() ) && !isReferenced( new_parent->Source() ) );
-//			assert( !rhs.isChild( Source() ) && !rhs.isReferenced( Source() ) );
+      //			assert( !isChild( Source() ) && !isReferenced( new_parent->Source() ) );
+      //			assert( !rhs.isChild( Source() ) && !rhs.isReferenced( Source() ) );
 
       m_parent = &new_parent->Source();
-      new_parent->m_vcChild.push_back( &Source() );
-    
-      OnNewNeighbour(new_parent->Source());		// Inform nodes ...
-      new_parent->OnNewNeighbour(Source());		// Inform nodes ...
-    } else 	{
+      new_parent->m_vcChild.push_back(&Source());
+
+      OnNewNeighbour(new_parent->Source()); // Inform nodes ...
+      new_parent->OnNewNeighbour(Source()); // Inform nodes ...
+    } else {
       // Linkage of two sources
       assert(!new_parent->IsCopy());
-//			assert( !isChild( rhs ) && !isReferenced( rhs ) );
-//			assert( !rhs.isChild( *this ) && !rhs.isReferenced( *this ) );
+      //			assert( !isChild( rhs ) && !isReferenced( rhs ) );
+      //			assert( !rhs.isChild( *this ) && !rhs.isReferenced( *this ) );
 
       m_parent = new_parent;
-      new_parent->m_vcChild.push_back( this );
-    
-      OnNewNeighbour(*new_parent);			// Inform nodes ...
-      new_parent->OnNewNeighbour(*this);		// Inform nodes ...
+      new_parent->m_vcChild.push_back(this);
+
+      OnNewNeighbour(*new_parent);       // Inform nodes ...
+      new_parent->OnNewNeighbour(*this); // Inform nodes ...
     }
 
     assert(IsLinkedTo(*new_parent));
@@ -159,30 +141,26 @@ void CGraphNode::reParent(CGraphNode* new_parent)
   }
 }
 
-//##ModelId=3B653D010297
-void CGraphNode::OnNewNeighbour(const CGraphNode &node) 
-{
+// ##ModelId=3B653D010297
+void CGraphNode::OnNewNeighbour(const CGraphNode &node) {
   assert(this != &node);
   assert(!node.IsCopy());
 }
 
 // PRE	: Neighbour in set and no copy ..
 // POST	: Neighbour not in set
-//##ModelId=3B653D0102A5
-void CGraphNode::OnNeighbourDeleted(const CGraphNode &node) 
-{
+// ##ModelId=3B653D0102A5
+void CGraphNode::OnNeighbourDeleted(const CGraphNode &node) {
   assert(&node != this);
   assert(!node.IsCopy());
-} 
+}
 
 // PRE	: Can connect item is allows to connect
 // POST	: Default we link to the graph node
-//##ModelId=3B653D0102B4
-bool CGraphNode::ConnectItem(const CGraphNode &item) 
-{
-  if(CanConnectItem(item))
-  {
-    LinkTo(const_cast<CGraphNode&>(item));
+// ##ModelId=3B653D0102B4
+bool CGraphNode::ConnectItem(const CGraphNode &item) {
+  if (CanConnectItem(item)) {
+    LinkTo(const_cast<CGraphNode &>(item));
     return true;
   }
 
@@ -191,97 +169,92 @@ bool CGraphNode::ConnectItem(const CGraphNode &item)
 
 // PRE	: Can this GeoGraphItem connect to us
 // POST	: No in default no GeoGraphItem can connect to us
-//##ModelId=3B653D0102B7
-bool CGraphNode::CanConnectItem(const CGraphNode &/*item*/) const
-{
-  return false;
-}
+// ##ModelId=3B653D0102B7
+bool CGraphNode::CanConnectItem(const CGraphNode & /*item*/) const { return false; }
 
-bool CGraphNode::CanDisconnectItem(const CGraphNode& /*item*/) const
-{
-  return true;
-}
+bool CGraphNode::CanDisconnectItem(const CGraphNode & /*item*/) const { return true; }
 
-void CGraphNode::OnDragLeave(const CGraphNode& /*item*/) const
-{
+void CGraphNode::OnDragLeave(const CGraphNode & /*item*/) const {
   // ignore
 }
 
-//##ModelId=3B653D0102A2
-void CGraphNode::OnNeighbourModified(const CGraphNode &/*node*/, enum ModifiedHint /*uHint*/) 
-{
+// ##ModelId=3B653D0102A2
+void CGraphNode::OnNeighbourModified(const CGraphNode & /*node*/, enum ModifiedHint /*uHint*/) {
   // Default no action
 }
 
-void CGraphNode::OnDeselect(CGraphNode* /*NewSeleceted*/)
-{
+void CGraphNode::OnDeselect(CGraphNode * /*NewSeleceted*/) {
   // Default no action
 }
 
-class CGraphNodeIterator
-{
+class CGraphNodeIterator {
   typedef enum { ST_PARENT, ST_CHILD, ST_REFERENCE } TState;
-  CGraphNode& m_node;
-  CGraphNode* m_current;
-  TState      m_state;
-  size_t      m_idx;
+  CGraphNode &m_node;
+  CGraphNode *m_current;
+  TState m_state;
+  size_t m_idx;
+
 public:
   /*!
     Construction of the iterator
   */
-  CGraphNodeIterator( CGraphNode& node ) : m_node(node), m_current(0), m_state(ST_PARENT), m_idx(0) 
-  {
-    if(m_node.parent()) {
+  CGraphNodeIterator(CGraphNode &node) : m_node(node), m_current(0), m_state(ST_PARENT), m_idx(0) {
+    if (m_node.parent()) {
       m_current = m_node.parent();
-    } else if(m_node.childSize()) {
+    } else if (m_node.childSize()) {
       m_current = &m_node.childAt(0);
-      m_state   = ST_CHILD;
+      m_state = ST_CHILD;
     } else {
-      m_state   = ST_REFERENCE;
-      if(m_node.referenceSize()) m_current = &m_node.referenceAt(0);
+      m_state = ST_REFERENCE;
+      if (m_node.referenceSize())
+        m_current = &m_node.referenceAt(0);
     }
   }
 
   /*!
     Returns the current
   */
-  CGraphNode* current() { return m_current; }
+  CGraphNode *current() { return m_current; }
 
   /*!
     Returns the next and zero if the current was the last
   */
-  CGraphNode* next() {
-    switch( m_state ) {
+  CGraphNode *next() {
+    switch (m_state) {
     case ST_PARENT:
       assert(m_idx == 0);
-      if(m_node.childSize()) {
+      if (m_node.childSize()) {
         m_current = &m_node.childAt(0);
-        m_state   = ST_CHILD;
+        m_state = ST_CHILD;
       } else {
-        m_state   = ST_REFERENCE;
+        m_state = ST_REFERENCE;
         m_current = 0;
-        if(m_node.referenceSize()) m_current = &m_node.referenceAt(0);
+        if (m_node.referenceSize())
+          m_current = &m_node.referenceAt(0);
       }
       break;
     case ST_CHILD:
       // Only increase when the child is still the same...
-      if(m_idx < m_node.childSize()) {
-        if(&m_node.childAt(m_idx) == m_current) m_idx++; 
+      if (m_idx < m_node.childSize()) {
+        if (&m_node.childAt(m_idx) == m_current)
+          m_idx++;
       }
-      if(m_idx < m_node.childSize()) {
+      if (m_idx < m_node.childSize()) {
         m_current = &m_node.childAt(m_idx);
       } else {
-        m_state   = ST_REFERENCE;
-        m_idx     = 0;
+        m_state = ST_REFERENCE;
+        m_idx = 0;
         m_current = 0;
-        if(m_node.referenceSize()) m_current = &m_node.referenceAt(0);
+        if (m_node.referenceSize())
+          m_current = &m_node.referenceAt(0);
       }
       break;
     case ST_REFERENCE:
-      if(m_idx < m_node.referenceSize()) {
-        if(m_current == &m_node.referenceAt(m_idx)) m_idx++;
+      if (m_idx < m_node.referenceSize()) {
+        if (m_current == &m_node.referenceAt(m_idx))
+          m_idx++;
       }
-      if( m_idx < m_node.referenceSize())
+      if (m_idx < m_node.referenceSize())
         m_current = &m_node.referenceAt(m_idx);
       else
         m_current = 0;
@@ -293,29 +266,23 @@ public:
   }
 };
 
-
-//##ModelId=3B653D010296
+// ##ModelId=3B653D010296
 /*!
   Modified start to inform parent, then children and then references.
 */
-void CGraphNode::Modified(enum ModifiedHint uHint) 
-{
+void CGraphNode::Modified(enum ModifiedHint uHint) {
   // Intialize routine
   CGraphNodeIterator it(*this);
 
-  while(it.current())
-  {
+  while (it.current()) {
     // Execute modified
-    if(IsCopy())
-    {
+    if (IsCopy()) {
       assert(!it.current()->IsCopy());
-      if(it.current()->IsCopied())
+      if (it.current()->IsCopied())
         it.current()->Copy().OnNeighbourModified(Source(), uHint);
-    
-    }
-    else
-    {
-      if(!it.current()->IsCopied())
+
+    } else {
+      if (!it.current()->IsCopied())
         it.current()->OnNeighbourModified(*this, uHint);
     }
 
@@ -324,11 +291,9 @@ void CGraphNode::Modified(enum ModifiedHint uHint)
   }
 }
 
-//##ModelId=3B653D0102A8
-bool CGraphNode::Destroy()
-{
-  if(CanDestroy())
-  {
+// ##ModelId=3B653D0102A8
+bool CGraphNode::Destroy() {
+  if (CanDestroy()) {
     delete this;
     return true;
   }
@@ -336,16 +301,12 @@ bool CGraphNode::Destroy()
   return false;
 }
 
-//##ModelId=3B653D0102B2
-bool CGraphNode::CanDestroy() const
-{ 
-  return true;
-}
+// ##ModelId=3B653D0102B2
+bool CGraphNode::CanDestroy() const { return true; }
 
-//##ModelId=3B653D010282
-void CGraphNode::Name(const QString &strName)
-{
-  if(Name() == strName)
+// ##ModelId=3B653D010282
+void CGraphNode::Name(const QString &strName) {
+  if (Name() == strName)
     return;
 
   m_strName = strName;
@@ -353,130 +314,120 @@ void CGraphNode::Name(const QString &strName)
   Modified(NAME_CHANGED);
 }
 
-//##ModelId=3B653D010277
-const QString& CGraphNode::Name() const
-{
-  return m_strName;
-}
+// ##ModelId=3B653D010277
+const QString &CGraphNode::Name() const { return m_strName; }
 
 /*!
   Makes reference to two graphnodes
 */
-void CGraphNode::LinkTo(CGraphNode &rhs)
-{
+void CGraphNode::LinkTo(CGraphNode &rhs) {
   // We can only link node which are disconnected ...
   assert(!IsLinkedTo(rhs));
 
-  if(IsCopy())
-  {
+  if (IsCopy()) {
     // Linkage of two copies ....
     assert(rhs.IsCopy());
-    assert( isChild( rhs.Source() ) == -1 && isReferenced( rhs.Source() ) == -1 );
-    assert( rhs.isChild( Source() ) == -1 && rhs.isReferenced( Source() ) == -1 );
+    assert(isChild(rhs.Source()) == -1 && isReferenced(rhs.Source()) == -1);
+    assert(rhs.isChild(Source()) == -1 && rhs.isReferenced(Source()) == -1);
 
-    m_vcReference.push_back( &rhs.Source() );
-    rhs.m_vcReference.push_back( &Source() );
-    
-    OnNewNeighbour(rhs.Source());		// Inform nodes ...
-    rhs.OnNewNeighbour(Source());		// Inform nodes ...
-  } 
-  else 
-  {
+    m_vcReference.push_back(&rhs.Source());
+    rhs.m_vcReference.push_back(&Source());
+
+    OnNewNeighbour(rhs.Source()); // Inform nodes ...
+    rhs.OnNewNeighbour(Source()); // Inform nodes ...
+  } else {
     // Linkage of two sources
     assert(!rhs.IsCopy());
-    assert( isChild( rhs ) == -1 && isReferenced( rhs ) == -1 );
-    assert( rhs.isChild( *this ) == -1 && rhs.isReferenced( *this ) == -1 );
+    assert(isChild(rhs) == -1 && isReferenced(rhs) == -1);
+    assert(rhs.isChild(*this) == -1 && rhs.isReferenced(*this) == -1);
 
-    m_vcReference.push_back( &rhs );
-    rhs.m_vcReference.push_back( this );
-    
-    OnNewNeighbour(rhs);		// Inform nodes ...
-    rhs.OnNewNeighbour(*this);	// Inform nodes ...
+    m_vcReference.push_back(&rhs);
+    rhs.m_vcReference.push_back(this);
+
+    OnNewNeighbour(rhs);       // Inform nodes ...
+    rhs.OnNewNeighbour(*this); // Inform nodes ...
   }
 
   assert(IsLinkedTo(rhs));
 }
 
-void CGraphNode::UnLink(CGraphNode &rhs)
-{
+void CGraphNode::UnLink(CGraphNode &rhs) {
   // AssertValid is done for both argmuments in "IsLinkedTo"
   // We can only unlink nodes which are connected ...
   // We can only link node which are disconnected ...
   assert(IsLinkedTo(rhs));
 
   // Child parent relation ship?
-  if(IsCopy()) {
+  if (IsCopy()) {
     assert(rhs.IsCopy());
-    if( m_parent == &rhs.Source() ) {
-    rhs.m_vcChild.erase( rhs.m_vcChild.begin() + rhs.isChild( Source() ) );
-    	m_parent = 0;
-    } else if( rhs.m_parent == &Source() ) {
-    m_vcChild.erase( m_vcChild.begin() + isChild( rhs.Source() ) );
-    rhs.m_parent = 0;
-    } else {
-    m_vcReference.erase( m_vcReference.begin() + isReferenced( rhs.Source() ) );
-    rhs.m_vcReference.erase( rhs.m_vcReference.begin() + rhs.isReferenced( Source() ) );
-    }
-    OnNeighbourDeleted( rhs.Source() );	// Inform nodes ...
-    rhs.OnNeighbourDeleted( Source() );	// Inform nodes ..
-  } else {
-    assert(!rhs.IsCopy());
-    if( m_parent == &rhs ) {
-    if(rhs.IsCopied()) 
-      rhs.Copy().m_vcChild.erase( rhs.Copy().m_vcChild.begin() + rhs.Copy().isChild( *this ) );
-    else
-      rhs.m_vcChild.erase( rhs.m_vcChild.begin() + rhs.isChild( *this ) );
-   	m_parent = 0;
-    } else if( rhs.m_parent == this ) {
-    m_vcChild.erase( m_vcChild.begin() + isChild( rhs ) );
-    if(IsCopied())
-    {
-      int idx = Copy().isChild(rhs);
-      if(idx >= 0)
-        Copy().m_vcChild.erase(Copy().m_vcChild.begin() + idx);
-    }
-    if(rhs.IsCopied()) 
-   		rhs.Copy().m_parent = 0;
-    else
+    if (m_parent == &rhs.Source()) {
+      rhs.m_vcChild.erase(rhs.m_vcChild.begin() + rhs.isChild(Source()));
+      m_parent = 0;
+    } else if (rhs.m_parent == &Source()) {
+      m_vcChild.erase(m_vcChild.begin() + isChild(rhs.Source()));
       rhs.m_parent = 0;
     } else {
-    m_vcReference.erase( m_vcReference.begin() + isReferenced( rhs ) );
-    if(rhs.IsCopied())
-      rhs.Copy().m_vcReference.erase( rhs.Copy().m_vcReference.begin() + rhs.Copy().isReferenced( *this ) );
-    else
-      rhs.m_vcReference.erase( rhs.m_vcReference.begin() + rhs.isReferenced( *this ) );
+      m_vcReference.erase(m_vcReference.begin() + isReferenced(rhs.Source()));
+      rhs.m_vcReference.erase(rhs.m_vcReference.begin() + rhs.isReferenced(Source()));
     }
-    if(rhs.IsCopied()) 
-    rhs.Copy().OnNeighbourDeleted(*this);		// Inform nodes ...
+    OnNeighbourDeleted(rhs.Source()); // Inform nodes ...
+    rhs.OnNeighbourDeleted(Source()); // Inform nodes ..
+  } else {
+    assert(!rhs.IsCopy());
+    if (m_parent == &rhs) {
+      if (rhs.IsCopied())
+        rhs.Copy().m_vcChild.erase(rhs.Copy().m_vcChild.begin() + rhs.Copy().isChild(*this));
+      else
+        rhs.m_vcChild.erase(rhs.m_vcChild.begin() + rhs.isChild(*this));
+      m_parent = 0;
+    } else if (rhs.m_parent == this) {
+      m_vcChild.erase(m_vcChild.begin() + isChild(rhs));
+      if (IsCopied()) {
+        int idx = Copy().isChild(rhs);
+        if (idx >= 0)
+          Copy().m_vcChild.erase(Copy().m_vcChild.begin() + idx);
+      }
+      if (rhs.IsCopied())
+        rhs.Copy().m_parent = 0;
+      else
+        rhs.m_parent = 0;
+    } else {
+      m_vcReference.erase(m_vcReference.begin() + isReferenced(rhs));
+      if (rhs.IsCopied())
+        rhs.Copy().m_vcReference.erase(rhs.Copy().m_vcReference.begin() + rhs.Copy().isReferenced(*this));
+      else
+        rhs.m_vcReference.erase(rhs.m_vcReference.begin() + rhs.isReferenced(*this));
+    }
+    if (rhs.IsCopied())
+      rhs.Copy().OnNeighbourDeleted(*this); // Inform nodes ...
     else
-    rhs.OnNeighbourDeleted(*this);
-    OnNeighbourDeleted(rhs);		// Inform nodes ...
+      rhs.OnNeighbourDeleted(*this);
+    OnNeighbourDeleted(rhs); // Inform nodes ...
   }
 }
 
-int CGraphNode::isReferenced(const CGraphNode& rhs) const
-{
-  if( !IsCopy() && !rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcReference.size(); i++) {
-      if( m_vcReference[i] == &rhs ) {
+int CGraphNode::isReferenced(const CGraphNode &rhs) const {
+  if (!IsCopy() && !rhs.IsCopy()) {
+    for (int i = 0; i < m_vcReference.size(); i++) {
+      if (m_vcReference[i] == &rhs) {
         return i;
       }
     }
-  } else 	if( IsCopy() && !rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcReference.size(); i++) {
-      if( m_vcReference[i] == &rhs ) {
+  } else if (IsCopy() && !rhs.IsCopy()) {
+    for (int i = 0; i < m_vcReference.size(); i++) {
+      if (m_vcReference[i] == &rhs) {
         return i;
       }
     }
-  } else 	if( !IsCopy() && rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcReference.size(); i++) {
-      if( m_vcReference[i] == &rhs.Source() ) {
+  } else if (!IsCopy() && rhs.IsCopy()) {
+    for (int i = 0; i < m_vcReference.size(); i++) {
+      if (m_vcReference[i] == &rhs.Source()) {
         return i;
       }
     }
   } else {
-    for(int i = 0; i < m_vcReference.size(); i++) {
-      if( m_vcReference[i] == &rhs.Source() ) {
+    for (int i = 0; i < m_vcReference.size(); i++) {
+      if (m_vcReference[i] == &rhs.Source()) {
         return i;
       }
     }
@@ -485,207 +436,169 @@ int CGraphNode::isReferenced(const CGraphNode& rhs) const
   return -1;
 }
 
-int CGraphNode::isChild(const CGraphNode& rhs) const
-{
-  if( !IsCopy() && !rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcChild.size(); i++) {
-      if( m_vcChild[i] == &rhs ) {
-        assert( rhs.m_parent == this );
+int CGraphNode::isChild(const CGraphNode &rhs) const {
+  if (!IsCopy() && !rhs.IsCopy()) {
+    for (int i = 0; i < m_vcChild.size(); i++) {
+      if (m_vcChild[i] == &rhs) {
+        assert(rhs.m_parent == this);
         return i;
       }
     }
-    assert( rhs.m_parent != this );
-  } else 	if( IsCopy() && !rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcChild.size(); i++) {
-      if( m_vcChild[i] == &rhs ) {
+    assert(rhs.m_parent != this);
+  } else if (IsCopy() && !rhs.IsCopy()) {
+    for (int i = 0; i < m_vcChild.size(); i++) {
+      if (m_vcChild[i] == &rhs) {
         return i;
       }
     }
-  } else 	if( !IsCopy() && rhs.IsCopy() ) {
-    for(int i = 0; i < m_vcChild.size(); i++) {
-      if( m_vcChild[i] == &rhs.Source() ) {
+  } else if (!IsCopy() && rhs.IsCopy()) {
+    for (int i = 0; i < m_vcChild.size(); i++) {
+      if (m_vcChild[i] == &rhs.Source()) {
         return i;
       }
     }
   } else {
-    for(int i = 0; i < m_vcChild.size(); i++) {
-      if( m_vcChild[i] == &rhs.Source() ) {
-        assert( rhs.m_parent == this );
+    for (int i = 0; i < m_vcChild.size(); i++) {
+      if (m_vcChild[i] == &rhs.Source()) {
+        assert(rhs.m_parent == this);
         return i;
       }
     }
-    assert( rhs.m_parent != this );
+    assert(rhs.m_parent != this);
   }
 
   return -1;
 }
 
-std::size_t CGraphNode::childSize() const
-{
-  return m_vcChild.size();
-}
+std::size_t CGraphNode::childSize() const { return m_vcChild.size(); }
 
-const CGraphNode& CGraphNode::childAt(size_t nIndex) const
-{
+const CGraphNode &CGraphNode::childAt(size_t nIndex) const {
   assert(nIndex < m_vcChild.size());
-//  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
+  //  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
   return *m_vcChild[nIndex];
 }
 
-CGraphNode& CGraphNode::childAt(size_t nIndex)
-{
+CGraphNode &CGraphNode::childAt(size_t nIndex) {
   assert(nIndex < m_vcChild.size());
-//  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
+  //  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
   return *m_vcChild[nIndex];
 }
 
+std::size_t CGraphNode::referenceSize() const { return m_vcReference.size(); }
 
-std::size_t CGraphNode::referenceSize() const
-{
-  return m_vcReference.size();
-}
-
-const CGraphNode& CGraphNode::referenceAt(size_t nIndex) const
-{
+const CGraphNode &CGraphNode::referenceAt(size_t nIndex) const {
   assert(nIndex < m_vcReference.size());
-//  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
+  //  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
   return *m_vcReference[nIndex];
 }
 
-CGraphNode& CGraphNode::referenceAt(size_t nIndex)
-{
+CGraphNode &CGraphNode::referenceAt(size_t nIndex) {
   assert(nIndex < m_vcReference.size());
-//  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
+  //  if(IsCopy() && m_vcReference[nIndex]->IsCopy()) return m_vcReference[nIndex]->Copy();
   return *m_vcReference[nIndex];
 }
 
-
-bool CGraphNode::IsLinkedTo(const CGraphNode &rhs) const
-{
-  if( !IsCopy() && !rhs.IsCopy() ) {
-    if( rhs.m_parent == this || m_parent == &rhs ) return true;
-  } else if( IsCopy() && !rhs.IsCopy() ) {
-    if( rhs.m_parent == &Source() || m_parent == &rhs ) return true;
-  } else if( !IsCopy() && rhs.IsCopy() ) {
-    if( rhs.m_parent == this || m_parent == &rhs.Source() ) return true;
+bool CGraphNode::IsLinkedTo(const CGraphNode &rhs) const {
+  if (!IsCopy() && !rhs.IsCopy()) {
+    if (rhs.m_parent == this || m_parent == &rhs)
+      return true;
+  } else if (IsCopy() && !rhs.IsCopy()) {
+    if (rhs.m_parent == &Source() || m_parent == &rhs)
+      return true;
+  } else if (!IsCopy() && rhs.IsCopy()) {
+    if (rhs.m_parent == this || m_parent == &rhs.Source())
+      return true;
   } else {
     assert(IsCopy() && rhs.IsCopy());
-    if( rhs.m_parent == &Source() || m_parent == &rhs.Source() ) return true;
+    if (rhs.m_parent == &Source() || m_parent == &rhs.Source())
+      return true;
   }
 
-  if( isReferenced( rhs ) > -1 ) {
-    assert( rhs.isReferenced( *this ) > -1 );
+  if (isReferenced(rhs) > -1) {
+    assert(rhs.isReferenced(*this) > -1);
     return true;
   }
-  assert( rhs.isReferenced( *this ) == -1 );
+  assert(rhs.isReferenced(*this) == -1);
 
   return false;
 }
 
-void CGraphNode::UnLinkAll() 
-{
-  while( childSize() > 0     ) m_vcChild[0]->UnLink( *this );
-  while( referenceSize() > 0 ) m_vcReference[0]->UnLink( *this );
-  if( m_parent ) m_parent->UnLink( *this );
+void CGraphNode::UnLinkAll() {
+  while (childSize() > 0)
+    m_vcChild[0]->UnLink(*this);
+  while (referenceSize() > 0)
+    m_vcReference[0]->UnLink(*this);
+  if (m_parent)
+    m_parent->UnLink(*this);
 }
 
-enum CGraphNode::eHandleStatus CGraphNode::HandleStatus() const
-{
-  return m_eStatus;
-}
+enum CGraphNode::eHandleStatus CGraphNode::HandleStatus() const { return m_eStatus; }
 
-void CGraphNode::HandleStatus(enum CGraphNode::eHandleStatus status)
-{
-  m_eStatus = status;
-}
+void CGraphNode::HandleStatus(enum CGraphNode::eHandleStatus status) { m_eStatus = status; }
 
 // Default implementation for deleting objects.
-unsigned int CGraphNode::IconId() const
-{
-  return 0;
-}
+unsigned int CGraphNode::IconId() const { return 0; }
 
-unsigned int CGraphNode::TypeId() const
-{
-  return 0;
-}
+unsigned int CGraphNode::TypeId() const { return 0; }
 
-QString CGraphNode::TypeName() const
-{
-  return QString();
-}
+QString CGraphNode::TypeName() const { return QString(); }
 
-bool CGraphNode::Less(const CGraphNode &node) const
-{
-  return Name().compare(node.Name(), Qt::CaseInsensitive) < 0;
-}
+bool CGraphNode::Less(const CGraphNode &node) const { return Name().compare(node.Name(), Qt::CaseInsensitive) < 0; }
 
 // Return value :
 // true		The graphnode has a copy
-// false	The graph node is copy or is not copied 
-bool CGraphNode::IsCopied() const
-{
-  return m_pCopy != 0;
-}
+// false	The graph node is copy or is not copied
+bool CGraphNode::IsCopied() const { return m_pCopy != 0; }
 
-bool CGraphNode::IsCopy() const
-{
-  return m_pSource != 0;
-}
-  
-const CGraphNode& CGraphNode::Source() const
-{
+bool CGraphNode::IsCopy() const { return m_pSource != 0; }
+
+const CGraphNode &CGraphNode::Source() const {
   assert(IsCopy());
   assert(!IsCopied());
-  return (CGraphNode&)(*m_pSource);
+  return (CGraphNode &)(*m_pSource);
 }
 
-const CGraphNode& CGraphNode::Copy() const
-{
+const CGraphNode &CGraphNode::Copy() const {
   assert(IsCopied());
   assert(!IsCopy());
-  return (CGraphNode&)(*m_pCopy);
+  return (CGraphNode &)(*m_pCopy);
 }
 
-CGraphNode& CGraphNode::Source()
-{
+CGraphNode &CGraphNode::Source() {
   assert(IsCopy());
   assert(!IsCopied());
-  return (CGraphNode&)(*m_pSource);
+  return (CGraphNode &)(*m_pSource);
 }
 
-CGraphNode& CGraphNode::Copy() 
-{
+CGraphNode &CGraphNode::Copy() {
   assert(IsCopied());
   assert(!IsCopy());
-  return (CGraphNode&)(*m_pCopy);
+  return (CGraphNode &)(*m_pCopy);
 }
 
-bool CGraphNode::operator==(const CGraphNode& rhs) const
-{
+bool CGraphNode::operator==(const CGraphNode &rhs) const {
   // Validate input ...
   AssertValid();
   rhs.AssertValid();
 
-  // Extra validation 
+  // Extra validation
   assert(IsCopied());
   assert(rhs.IsCopy());
-  assert(&Copy() == &rhs);	// You can only validate with a copy belonging to the source ...
+  assert(&Copy() == &rhs); // You can only validate with a copy belonging to the source ...
 
   // Are the names the same?
-  if(Name() != rhs.Name())
+  if (Name() != rhs.Name())
     return false;
 
   // Check connectivity
   return m_vcChild == rhs.m_vcChild && m_vcReference == rhs.m_vcReference;
 }
 
-CGraphNode& CGraphNode::operator=(const CGraphNode &rhs)
-{	
+CGraphNode &CGraphNode::operator=(const CGraphNode &rhs) {
   rhs.AssertValid();
-  assert(IsCopied());		// Must be the source ...
-  assert(rhs.IsCopy());	// Must be a copy ..
-  
+  assert(IsCopied());   // Must be the source ...
+  assert(rhs.IsCopy()); // Must be a copy ..
+
   // We can only assign temporary copies ...
   assert(this == rhs.m_pSource);
 
@@ -693,29 +606,26 @@ CGraphNode& CGraphNode::operator=(const CGraphNode &rhs)
   m_strName = rhs.m_strName;
 
   // Assign parent, children and references
-  m_parent      = rhs.m_parent;
-  m_vcChild     = rhs.m_vcChild;
+  m_parent = rhs.m_parent;
+  m_vcChild = rhs.m_vcChild;
   m_vcReference = rhs.m_vcReference;
 
   return *this;
 }
 
-void CGraphNode::AssertValid() const
-{
+void CGraphNode::AssertValid() const {
 #ifdef _DEBUG
   // Check status
-  if(IsCopy())
-  {
-    assert(Source().IsCopied());		// The source must have a copy ...
-    assert(&Source().Copy() == this);	// The copy of the source is equal to this
+  if (IsCopy()) {
+    assert(Source().IsCopied());      // The source must have a copy ...
+    assert(&Source().Copy() == this); // The copy of the source is equal to this
   }
 
-  if(IsCopied())
-  {
-    assert(Copy().IsCopy());			// The copy must have a source ...
-    assert(&Copy().Source() == this);	// the source of the copy must be equal to this
+  if (IsCopied()) {
+    assert(Copy().IsCopy());          // The copy must have a source ...
+    assert(&Copy().Source() == this); // the source of the copy must be equal to this
   }
-/*	
+/*
   // Check connections ....
   for(const_iterator it = begin(); it != end(); it++)
   {
@@ -724,13 +634,13 @@ void CGraphNode::AssertValid() const
     // The pointer of a copy is never connected in graph ..
     assert(pNode != pThis);
     assert(!pNode->IsCopy());
-    
+
     if(pThis->IsCopy() && pNode->IsCopied())
     {
       assert(pThis->m_stNeighbours.find(pNode) != pThis->m_stNeighbours.end());
       assert(pNode->Copy().m_stNeighbours.find(&pThis->Source()) != pNode->Copy().m_stNeighbours.end());
     }
-    
+
     if(!pThis->IsCopy())
     {
       assert(m_stNeighbours.find(pNode) != m_stNeighbours.end());
@@ -738,7 +648,7 @@ void CGraphNode::AssertValid() const
     }
 
   }
-*/		
+*/
 #endif //_DEBUG
 }
 
@@ -754,8 +664,7 @@ void CGraphNode::AssertValid() const
  * Use the Create method to create a CDelegate for a specific node type.
  */
 
-CGraphNode::CDelegateFactory* CGraphNode::CDelegateFactory::getInstance()
-{
+CGraphNode::CDelegateFactory *CGraphNode::CDelegateFactory::getInstance() {
   static CDelegateFactory fact;
 
   return &fact;
@@ -766,15 +675,12 @@ CGraphNode::CDelegateFactory* CGraphNode::CDelegateFactory::getInstance()
  * This function is automatically called via the REGISTER_DELEGATE system.
  */
 
-std::string CGraphNode::CDelegateFactory::Register(const std::type_info& tinfo,
-  TFactory createMethod)
-{
+std::string CGraphNode::CDelegateFactory::Register(const std::type_info &tinfo, TFactory createMethod) {
   // if the VERIFY fails there is already a factory method registered for this
   // node type (there is already a delegate type for this node type registered
   // in the map)
 
-  bool succeeded =
-  m_mpFactory.insert(TFactoryMap::value_type(tinfo, createMethod)).second;
+  bool succeeded = m_mpFactory.insert(TFactoryMap::value_type(tinfo, createMethod)).second;
 
   assert(succeeded);
 
@@ -786,13 +692,11 @@ std::string CGraphNode::CDelegateFactory::Register(const std::type_info& tinfo,
  * Provide the node and the delegate is returned.
  */
 
-CDelegate* CGraphNode::CDelegateFactory::Create(CGraphNode* node)
-{
+CDelegate *CGraphNode::CDelegateFactory::Create(CGraphNode *node) {
   TFactoryMap::iterator it = m_mpFactory.find(typeid(*node));
 
-  if (it == m_mpFactory.end())
-  {
-  return 0;
+  if (it == m_mpFactory.end()) {
+    return 0;
   }
 
   return it->second(node);
@@ -800,18 +704,13 @@ CDelegate* CGraphNode::CDelegateFactory::Create(CGraphNode* node)
 
 // public
 
-std::string CGraphNode::Register(const std::type_info& tinfo,
-  CDelegateFactory::TFactory createMethod)
-{
-  return CGraphNode::CDelegateFactory::getInstance()->Register(tinfo,
-  createMethod);
+std::string CGraphNode::Register(const std::type_info &tinfo, CDelegateFactory::TFactory createMethod) {
+  return CGraphNode::CDelegateFactory::getInstance()->Register(tinfo, createMethod);
 }
 
-CDelegate* CGraphNode::getDelegate()
-{
-  if (m_delegate == 0)
-  {
-  m_delegate = CDelegateFactory::getInstance()->Create(this);
+CDelegate *CGraphNode::getDelegate() {
+  if (m_delegate == 0) {
+    m_delegate = CDelegateFactory::getInstance()->Create(this);
   }
 
   return m_delegate;

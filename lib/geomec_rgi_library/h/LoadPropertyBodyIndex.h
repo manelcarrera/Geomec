@@ -3,23 +3,21 @@
 
 #include "LoadPropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-class CLoadPropertyBodyIndex : public CLoadPropertyBase
-{
-  public:
-  CLoadPropertyBodyIndex(const RGProperty& rgProperty, RGInterface& rgi,
-      CModelBase& modelBase, CRockMechProcessor& rmp);
+class CLoadPropertyBodyIndex : public CLoadPropertyBase {
+public:
+  CLoadPropertyBodyIndex(const RGProperty &rgProperty, RGInterface &rgi, CModelBase &modelBase,
+                         CRockMechProcessor &rmp);
   virtual ~CLoadPropertyBodyIndex();
 
   virtual bool loadProperty();
 
-  private:
-  CLoadPropertyBodyIndex(const CLoadPropertyBodyIndex& rhs);
-  CLoadPropertyBodyIndex& operator = (const CLoadPropertyBodyIndex& rhs);
+private:
+  CLoadPropertyBodyIndex(const CLoadPropertyBodyIndex &rhs);
+  CLoadPropertyBodyIndex &operator=(const CLoadPropertyBodyIndex &rhs);
 };
 
 } // namespace GeomecRGI
 
-#endif  // _LoadPropertyBodyIndex_h_
+#endif // _LoadPropertyBodyIndex_h_

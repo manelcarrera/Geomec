@@ -6,37 +6,34 @@ class CBoundaryInterfaceMaterial;
 class CSinglePressure;
 class CStressGradientQuantity;
 
-#include "StorageNode.h"
-#include "SingleQuantity.h"
-#include "SinglePressure.h"
-#include "StressGradientQuantity.h"
 #include "GeomecModelVisitor.h"
+#include "SinglePressure.h"
+#include "SingleQuantity.h"
+#include "StorageNode.h"
+#include "StressGradientQuantity.h"
 
-namespace geo
-{
+namespace geo {
 class CInterfaceElement;
 }
 
-class CBoundaryInterfaceDef : public CStorageNode
-{
+class CBoundaryInterfaceDef : public CStorageNode {
 public:
-  enum eIntMatType { G = 0, K, L }; // how is the interface material defined, Shear modulus G or
-                  // via the Krad and Ktan values
+  enum eIntMatType {
+    G = 0,
+    K,
+    L
+  }; // how is the interface material defined, Shear modulus G or
+     // via the Krad and Ktan values
 
-  typedef enum
-  {
-  BSURF_TOP = 0,
-  BSURF_SIDE,
-  BSURF_BOTTOM
-  } TBoundarySurface;
+  typedef enum { BSURF_TOP = 0, BSURF_SIDE, BSURF_BOTTOM } TBoundarySurface;
 
 public:
-  CBoundaryInterfaceDef(CBoundaryBase& boundary);
-  CBoundaryInterfaceDef(const CBoundaryInterfaceDef& rhs);
+  CBoundaryInterfaceDef(CBoundaryBase &boundary);
+  CBoundaryInterfaceDef(const CBoundaryInterfaceDef &rhs);
   virtual ~CBoundaryInterfaceDef();
 
-  bool operator==(const CBoundaryInterfaceDef& rhs) const;
-  CBoundaryInterfaceDef& operator=(const CBoundaryInterfaceDef& rhs);
+  bool operator==(const CBoundaryInterfaceDef &rhs) const;
+  CBoundaryInterfaceDef &operator=(const CBoundaryInterfaceDef &rhs);
 
   inline eIntMatType IntMatType() const { return m_eIntMatType; }
   void IntMatType(eIntMatType val);
@@ -65,9 +62,9 @@ public:
   double Krad(CDoubleQuantity::UNIT unit) const;
   double Ktan(CDoubleQuantity::UNIT unit) const;
 
-  const CBoundaryInterfaceMaterial& InterfaceMaterialTop(const geo::CInterfaceElement& iface) const;
-  const CBoundaryInterfaceMaterial& InterfaceMaterialBottom(const geo::CInterfaceElement& iface) const;
-  const CBoundaryInterfaceMaterial& InterfaceMaterialSides(const geo::CInterfaceElement& iface) const;
+  const CBoundaryInterfaceMaterial &InterfaceMaterialTop(const geo::CInterfaceElement &iface) const;
+  const CBoundaryInterfaceMaterial &InterfaceMaterialBottom(const geo::CInterfaceElement &iface) const;
+  const CBoundaryInterfaceMaterial &InterfaceMaterialSides(const geo::CInterfaceElement &iface) const;
 
   void ClearInterfaceMaterials(); // is called when the OK button in the interface attribute dialog
 
@@ -76,19 +73,20 @@ public:
   virtual bool Empty() const;
   virtual long SavedItems() const;
 
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
   ACCEPT_GEOMECMODELVISITORS(VisitBoundaryInterfaceDef);
 
 private:
   void GenerateInterfaceMaterials() const;
-  CBoundaryInterfaceMaterial& FindOrCreateInterfaceMaterial(const geo::CInterfaceElement& iface, bool isBottom = false) const;
+  CBoundaryInterfaceMaterial &FindOrCreateInterfaceMaterial(const geo::CInterfaceElement &iface,
+                                                            bool isBottom = false) const;
 
 private:
-  CBoundaryBase& m_boundary;
+  CBoundaryBase &m_boundary;
   CSinglePressure m_ShearQuantity;
-  double                  m_lambda;
+  double m_lambda;
   CStressGradientQuantity m_KradTop;
   CStressGradientQuantity m_KradBottom;
   CStressGradientQuantity m_KradSides;

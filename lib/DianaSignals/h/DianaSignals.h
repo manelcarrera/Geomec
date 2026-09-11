@@ -3,12 +3,11 @@
 
 #include <qobject.h>
 
-class CDianaSignals : public QObject
-{
+class CDianaSignals : public QObject {
   Q_OBJECT
 
 public:
-  CDianaSignals(const QObject* sender);
+  CDianaSignals(const QObject *sender);
   ~CDianaSignals();
 
   virtual void onMessage(QString message) = 0;
@@ -27,10 +26,10 @@ private slots:
   void slotFinished();
 
 private:
-  CDianaSignals(const CDianaSignals& rhs);
-  CDianaSignals& operator = (const CDianaSignals& rhs);
+  CDianaSignals(const CDianaSignals &rhs);
+  CDianaSignals &operator=(const CDianaSignals &rhs);
 
-  const QObject* m_sender;
+  const QObject *m_sender;
 };
 
-#endif  // _DianaSignals_h_
+#endif // _DianaSignals_h_

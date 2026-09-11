@@ -23,4 +23,3 @@
 
 /* Define if this is Win32 without Cygwin.  */
 #define NATIVE_WIN32 1
-

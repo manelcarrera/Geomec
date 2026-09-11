@@ -4,11 +4,10 @@
 #include "MaterialCreator.h"
 #include "MaterialModelLinear.h"
 
-class CMaterialUndrainedCreatorDEPRECATED : public CMaterialCreator
-{
+class CMaterialUndrainedCreatorDEPRECATED : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -16,11 +15,10 @@ protected:
   virtual bool CanCalibratePlastic() const { return false; }
 };
 
-class CMaterialUndrainedCreatorV2 : public CMaterialCreator
-{
+class CMaterialUndrainedCreatorV2 : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -30,75 +28,71 @@ protected:
 
 typedef CMaterialUndrainedCreatorV2 CMaterialUndrainedCreator;
 
-
-class CMaterialUndrainedYoungSetStrategy : public CMaterialLinearYoungSetStrategy
-{
+class CMaterialUndrainedYoungSetStrategy : public CMaterialLinearYoungSetStrategy {
 public:
-  //virtual CMaterialUndrainedYoungSetStrategy* Clone() const { return new CMaterialUndrainedYoungSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedYoungSetStrategy* Clone() const { return new CMaterialUndrainedYoungSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedPoissonSetStrategy : public CMaterialLinearPoissonSetStrategy
-{
+class CMaterialUndrainedPoissonSetStrategy : public CMaterialLinearPoissonSetStrategy {
 public:
-  //virtual CMaterialUndrainedPoissonSetStrategy* Clone() const { return new CMaterialUndrainedPoissonSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedPoissonSetStrategy* Clone() const { return new CMaterialUndrainedPoissonSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedUndrainedYoungSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedUndrainedYoungSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedUndrainedYoungSetStrategy* Clone() const { return new CMaterialUndrainedUndrainedYoungSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedUndrainedYoungSetStrategy* Clone() const { return new
+  // CMaterialUndrainedUndrainedYoungSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedUndrainedPoissonSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedUndrainedPoissonSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedUndrainedPoissonSetStrategy* Clone() const { return new CMaterialUndrainedUndrainedPoissonSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedUndrainedPoissonSetStrategy* Clone() const { return new
+  // CMaterialUndrainedUndrainedPoissonSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy* Clone() const { return new CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy* Clone() const { return new
+  // CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedPorositySetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedPorositySetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedPorositySetStrategy* Clone() const { return new CMaterialUndrainedPorositySetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedPorositySetStrategy* Clone() const { return new CMaterialUndrainedPorositySetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedGrainStiffnessSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedGrainStiffnessSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedGrainStiffnessSetStrategy* Clone() const { return new CMaterialUndrainedGrainStiffnessSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedGrainStiffnessSetStrategy* Clone() const { return new
+  // CMaterialUndrainedGrainStiffnessSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedFluidBulkModulusSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedFluidBulkModulusSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedFluidBulkModulusSetStrategy* Clone() const { return new CMaterialUndrainedFluidBulkModulusSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedFluidBulkModulusSetStrategy* Clone() const { return new
+  // CMaterialUndrainedFluidBulkModulusSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy* Clone() const { return new CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy* Clone() const { return new
+  // CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
-class CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy
-{
+class CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy : public ml::CMatParam::CSetStrategy {
 public:
-  //virtual CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy* Clone() const { return new CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy; }
-  virtual void operator()(double dValue, ml::CMatParam& param) const;
+  // virtual CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy* Clone() const { return new
+  // CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy; }
+  virtual void operator()(double dValue, ml::CMatParam &param) const;
 };
 
 #endif // _MATERIALMODELUNDRAINED_H_

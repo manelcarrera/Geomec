@@ -12,69 +12,67 @@
 #include "3DHorizon.h"
 #include "GeomecModelVisitor.h"
 
-//Implements GeoItem for the horizon
+// Implements GeoItem for the horizon
 //
-//The childeren of a horizon are surfaces. The only object a 
-//horizon accepts are surfaces (and maybe pointset which can 
-//be meshed to a surface.)
+// The childeren of a horizon are surfaces. The only object a
+// horizon accepts are surfaces (and maybe pointset which can
+// be meshed to a surface.)
 //
-//A horizon separates the formations from each other. A 
-//horizon is represented by a collection of surfaces. The 
-//surfaces of a horizon can't cross each other or can't be a 
-//subset of each other. A surface of a horizon hasn't double 
-//z co-ordinates on the same xy value. The edge of same every 
-//edge of a horizon is always connected to a boundery, fault 
-//or another horizon. An horizon  Horizons cannot cross each 
-//other.
-//##ModelId=3BC55D620073
+// A horizon separates the formations from each other. A
+// horizon is represented by a collection of surfaces. The
+// surfaces of a horizon can't cross each other or can't be a
+// subset of each other. A surface of a horizon hasn't double
+// z co-ordinates on the same xy value. The edge of same every
+// edge of a horizon is always connected to a boundery, fault
+// or another horizon. An horizon  Horizons cannot cross each
+// other.
+// ##ModelId=3BC55D620073
 class CHexaFormation;
 class CHexaModel;
-class CHexaHorizon : public C3DHorizon
-{
+class CHexaHorizon : public C3DHorizon {
 private:
-  class CFaceXYLess
-  {
+  class CFaceXYLess {
   public:
-    bool operator()(const geo::IFace* f1, const geo::IFace* f2) const;
+    bool operator()(const geo::IFace *f1, const geo::IFace *f2) const;
   };
 
-  typedef std::set<const geo::IFace*, CFaceXYLess> TFaceSet;
+  typedef std::set<const geo::IFace *, CFaceXYLess> TFaceSet;
   mutable TFaceSet m_stHexFaces;
-  const geo::CElementGroup* m_pInterfaceElementGroup;
+  const geo::CElementGroup *m_pInterfaceElementGroup;
+
 public:
   // construction
-  CHexaHorizon(CFemAppModel& model);
-  CHexaHorizon(CSurfaceBase &surface, CFemAppModel& model, bool bSlip = false, bool bAttachToModel = true);
-  CHexaHorizon(const QString& strInstanceName, const double& dDepth, CFemAppModel& model, bool bAttachToModel = true);
+  CHexaHorizon(CFemAppModel &model);
+  CHexaHorizon(CSurfaceBase &surface, CFemAppModel &model, bool bSlip = false, bool bAttachToModel = true);
+  CHexaHorizon(const QString &strInstanceName, const double &dDepth, CFemAppModel &model, bool bAttachToModel = true);
   CHexaHorizon(const CHexaHorizon &rhs);
   virtual ~CHexaHorizon();
 
-  CHexaFormation* UpperFormation() const;
-  CHexaFormation* LowerFormation() const;
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  CHexaFormation *UpperFormation() const;
+  CHexaFormation *LowerFormation() const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
   virtual int DisplayListSize() const;
 
-  virtual const geo::CElementGroup* InterfaceElementGroup() const;
-  void InterfaceElementGroup(const geo::CElementGroup& group);
+  virtual const geo::CElementGroup *InterfaceElementGroup() const;
+  void InterfaceElementGroup(const geo::CElementGroup &group);
 
   // Assignment
-  bool operator==(const CHexaHorizon& rhs) const;
-  CHexaHorizon& operator=(const CHexaHorizon& rhs);
+  bool operator==(const CHexaHorizon &rhs) const;
+  CHexaHorizon &operator=(const CHexaHorizon &rhs);
 
   void MoveUp();
   void MoveDown();
   bool CanMove() const;
 
-  const geo::IFace* FindXYFace(const geo::IFace& face) const;
+  const geo::IFace *FindXYFace(const geo::IFace &face) const;
 
   virtual bool Destroy();
-  bool LocalDestroy(CHexaFormation* pUpper, CHexaFormation* pLower,
-    const CHexaFormation* selection);
+  bool LocalDestroy(CHexaFormation *pUpper, CHexaFormation *pLower, const CHexaFormation *selection);
   virtual bool CanDestroy() const;
 
-  virtual	bool ConnectItem(const CGraphNode &item);
+  virtual bool ConnectItem(const CGraphNode &item);
   virtual bool CanConnectItem(const CGraphNode &item) const;
-  virtual bool CanDisconnectItem(const CGraphNode& item) const;
+  virtual bool CanDisconnectItem(const CGraphNode &item) const;
   virtual void OnNeighbourModified(const CGraphNode &item, enum ModifiedHint uHint);
 
   virtual bool Less(const CGraphNode &node) const;
@@ -83,15 +81,15 @@ public:
   virtual long SavedItems() const;
 
   // Stream
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-  
-  IValueDomainScalar::TValueVec CalculatePorePressure(const geo::IBody& body) const;
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
+
+  IValueDomainScalar::TValueVec CalculatePorePressure(const geo::IBody &body) const;
 
   virtual int MeshedSurfaceSize() const;
-  virtual const geo::ISurface& MeshedSurface(int nIndex) const;
+  virtual const geo::ISurface &MeshedSurface(int nIndex) const;
 
-  virtual int MeshFaceSize() const;  
+  virtual int MeshFaceSize() const;
   virtual const geo::IFace &MeshFace(int nIndex) const;
 
   virtual int BodyFaceSize() const;
@@ -108,38 +106,34 @@ public:
 #endif //_DEBUG
 
   ACCEPT_GEOMECMODELVISITORS(VisitHexaHorizon);
-
 };
 
-
-
-//typedef CGraphEntryTemp<CHorizon> THorizonEntry;
-class CHexaHorizonEntry : public CStorageNodeEntry<CHexaHorizon> 
-{
+// typedef CGraphEntryTemp<CHorizon> THorizonEntry;
+class CHexaHorizonEntry : public CStorageNodeEntry<CHexaHorizon> {
 public:
   typedef CSingleCommandTemplate<CHexaHorizonEntry> THexaHorizonEntryCommand;
   void InsertHorizon(CHexaHorizon &horizon);
   // Sorted vector of horizons
-  typedef std::vector<CHexaHorizon*> THorizonVec; 
+  typedef std::vector<CHexaHorizon *> THorizonVec;
 
   // Construction ....
-  CHexaHorizonEntry(CHexaModel& model);
-  virtual	bool ConnectItem(const CGraphNode &item);
+  CHexaHorizonEntry(CHexaModel &model);
+  virtual bool ConnectItem(const CGraphNode &item);
   virtual bool CanConnectItem(const CGraphNode &item) const;
-  virtual bool CanDisconnectItem(const CGraphNode& item) const;
+  virtual bool CanDisconnectItem(const CGraphNode &item) const;
   THorizonVec Horizons() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitHexaHorizonEntry);
 };
 
 /*
-typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHexaHorizon, CHorizonObserver<true>, IDI_TRI_CHECKED, true, DELETE_ITEM> THexaHorizonEntryObserver;
-class CHexaHorizonEntryObserver : public THexaHorizonEntryObserver
+typedef CStateBranch_Delegate<CGraphEntry, CGraphEntry_Delegate, CHexaHorizon, CHorizonObserver<true>, IDI_TRI_CHECKED,
+true, DELETE_ITEM> THexaHorizonEntryObserver; class CHexaHorizonEntryObserver : public THexaHorizonEntryObserver
 {
 public:
-  CHexaHorizonEntryObserver(CHexaHorizonEntry& entry, CTreeCtrl& ctrl, HTREEITEM hParent = TVI_ROOT, HTREEITEM hInsertAfter = TVI_LAST);
-  virtual CTreeNode* InsertChild(CHexaHorizon& t);
-  virtual void OnChildModified(CTreeNode &child);			// Called when child is modified
+  CHexaHorizonEntryObserver(CHexaHorizonEntry& entry, CTreeCtrl& ctrl, HTREEITEM hParent = TVI_ROOT, HTREEITEM
+hInsertAfter = TVI_LAST); virtual CTreeNode* InsertChild(CHexaHorizon& t); virtual void OnChildModified(CTreeNode
+&child);			// Called when child is modified
 };
 
 typedef CEnumerationBranch<CFaultPressure, CValueCompositeObserver, false, FIXED_ITEM> TFaultPressureEnumerator;

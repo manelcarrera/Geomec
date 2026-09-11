@@ -12,28 +12,26 @@
 
 class CAnalysisLogger;
 
-class CAnalysisLogDlg : public CDialog
-{
+class CAnalysisLogDlg : public CDialog {
   void UpdateControls();
 
-// Construction
+  // Construction
 public:
-  CAnalysisLogDlg(CAnalysisLogger &logger, CWnd* pParent = NULL);   // standard constructor
+  CAnalysisLogDlg(CAnalysisLogger &logger, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CAnalysisLogDlg)
   enum { IDD = IDD_ANALYSISLOG };
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAnalysisLogDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAnalysisLogDlg)
   virtual BOOL OnInitDialog();
@@ -46,7 +44,7 @@ protected:
 private:
   void FillControl(bool bFilterBadShapeWarnings = false, bool bVerbose = false);
 
-  CListBox	m_List;
+  CListBox m_List;
   int m_nVerbose;
   //}}AFX_DATA
   CAnalysisLogger &m_logger;

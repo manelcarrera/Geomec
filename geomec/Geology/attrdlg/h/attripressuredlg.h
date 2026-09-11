@@ -5,19 +5,18 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "Pressure.h"
 #include "AttriFormationLoadDlg.h"
+#include "Pressure.h"
 
-class CAttriPressureDlg : public CAttriFormationLoadDlg<CPressure>
-{
+class CAttriPressureDlg : public CAttriFormationLoadDlg<CPressure> {
 protected:
   virtual void UpdateControls();
 
 public:
-  CAttriPressureDlg(CPressure& prs, CWnd* pParent = NULL);   // standard constructor
+  CAttriPressureDlg(CPressure &prs, CWnd *pParent = NULL); // standard constructor
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   virtual void OnOK();
   virtual CString UndefinedLabel() const;
 

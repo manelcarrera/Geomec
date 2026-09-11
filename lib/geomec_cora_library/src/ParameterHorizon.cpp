@@ -1,15 +1,9 @@
 #include "ParameterHorizon.h"
 
-namespace cora
-{
+namespace cora {
 
-CParameterHorizon::CParameterHorizon()
-: CParameterLimit()
-{
-}
+CParameterHorizon::CParameterHorizon() : CParameterLimit() {}
 
-CParameterHorizon::~CParameterHorizon()
-{
-}
+CParameterHorizon::~CParameterHorizon() {}
 
 } // namespace cora

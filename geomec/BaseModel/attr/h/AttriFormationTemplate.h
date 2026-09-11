@@ -9,56 +9,45 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "BranchState.h"
 #include "AttributeTempl.h"
+#include "BranchState.h"
 
-template<class T>
-class CAttriFormationTemplate : public CAttributesTemplate<T>
-{
+template <class T> class CAttriFormationTemplate : public CAttributesTemplate<T> {
 public:
-  CAttriFormationTemplate(unsigned int uIDTemplate, T& source, CWnd* pParent = NULL)
-  : CAttributesTemplate<T>(uIDTemplate, source, pParent)
-  {
-  }
+  CAttriFormationTemplate(unsigned int uIDTemplate, T &source, CWnd *pParent = NULL)
+      : CAttributesTemplate<T>(uIDTemplate, source, pParent) {}
   virtual BOOL OnInitDialog();
-//	virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );
-  virtual void DoDataExchange(CDataExchange* pDX);  
-
+  //	virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );
+  virtual void DoDataExchange(CDataExchange *pDX);
 };
 
-template<class T>
-void CAttriFormationTemplate<T>::DoDataExchange(CDataExchange* pDX)
-{
-  CString	strName;
+template <class T> void CAttriFormationTemplate<T>::DoDataExchange(CDataExchange *pDX) {
+  CString strName;
   int nFormationType;
 
   CAttributesTemplate<T>::DoDataExchange(pDX);
 
-  if(!pDX->m_bSaveAndValidate)
-  {
+  if (!pDX->m_bSaveAndValidate) {
     strName = Copy().Name().toStdString().c_str();
     nFormationType = Copy().FormationType();
   }
 
   DDX_Text(pDX, IDC_EB_NAME, strName);
 
-  if(pDX->m_bSaveAndValidate)
-  {
-    Copy().Name((LPCSTR) strName);
+  if (pDX->m_bSaveAndValidate) {
+    Copy().Name((LPCSTR)strName);
 
-    CComboBox* pBox = (CComboBox*)GetDlgItem(IDC_CB_FORMATIONTYPE);
+    CComboBox *pBox = (CComboBox *)GetDlgItem(IDC_CB_FORMATIONTYPE);
     nFormationType = pBox->GetCurSel();
     Copy().FormationType((CFormationBase::TFormationType)nFormationType);
   }
 }
 
-template<class T>
-BOOL CAttriFormationTemplate<T>::OnInitDialog() 
-{
+template <class T> BOOL CAttriFormationTemplate<T>::OnInitDialog() {
   CAttributesTemplate<T>::OnInitDialog();
 
   // Select formation type
-  CComboBox* pBox = (CComboBox*)GetDlgItem(IDC_CB_FORMATIONTYPE);
+  CComboBox *pBox = (CComboBox *)GetDlgItem(IDC_CB_FORMATIONTYPE);
   VERIFY(pBox->AddString("Not Specified") == CFormationBase::FT_NOTSPECIFIED);
   VERIFY(pBox->AddString("Shale") == CFormationBase::FT_SHALE);
   VERIFY(pBox->AddString("Sand") == CFormationBase::FT_SAND);

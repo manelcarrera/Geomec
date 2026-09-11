@@ -5,4 +5,4 @@ class CDepletionStage;
 
 typedef std::pair<const CDepletionStage *, geo::CValue> DepletionStageValuePair;
 
-#endif  // _DepletionStageValuePair_h_
+#endif // _DepletionStageValuePair_h_

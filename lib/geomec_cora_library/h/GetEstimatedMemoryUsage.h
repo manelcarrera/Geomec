@@ -3,21 +3,19 @@
 
 #include <fstream>
 
-namespace cora
-{
+namespace cora {
 
-class CGetEstimatedMemoryUsage
-{
-  public:
+class CGetEstimatedMemoryUsage {
+public:
   CGetEstimatedMemoryUsage();
 
-  std::ostream& operator () (std::ostream& os) const;
+  std::ostream &operator()(std::ostream &os) const;
 
-  private:
-  CGetEstimatedMemoryUsage(const CGetEstimatedMemoryUsage& rhs);
-  CGetEstimatedMemoryUsage& operator = (CGetEstimatedMemoryUsage rhs);
+private:
+  CGetEstimatedMemoryUsage(const CGetEstimatedMemoryUsage &rhs);
+  CGetEstimatedMemoryUsage &operator=(CGetEstimatedMemoryUsage rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_GetEstimatedMemoryUsage_h_
+#endif // _cora_GetEstimatedMemoryUsage_h_

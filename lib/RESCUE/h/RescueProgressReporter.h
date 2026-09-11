@@ -18,11 +18,7 @@ class RescueProgressReporter
 
 {
 public:
-  virtual void ReportProgress(const RESCUECHAR *phaseDescription)=0;
+  virtual void ReportProgress(const RESCUECHAR *phaseDescription) = 0;
 };
 
 #endif
-
-
-
-

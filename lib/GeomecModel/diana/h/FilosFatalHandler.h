@@ -1,8 +1,6 @@
 #pragma once
 
-
-class IFilosFatalStrategy
-{
+class IFilosFatalStrategy {
 public:
   IFilosFatalStrategy() {}
   virtual ~IFilosFatalStrategy() {}
@@ -10,8 +8,7 @@ public:
   virtual void Execute(const char *) = 0;
 };
 
-class CDefaultFilosFatalStrategy : public IFilosFatalStrategy
-{
+class CDefaultFilosFatalStrategy : public IFilosFatalStrategy {
 public:
   CDefaultFilosFatalStrategy() {}
   virtual ~CDefaultFilosFatalStrategy() {}
@@ -19,12 +16,11 @@ public:
   virtual void Execute(const char *) {}
 };
 
-class FilosFatalHandler
-{
+class FilosFatalHandler {
 public:
   static FilosFatalHandler *instance();
 
-  IFilosFatalStrategy& Strategy() const;
+  IFilosFatalStrategy &Strategy() const;
   void Strategy(IFilosFatalStrategy *strategy);
 
 private:
@@ -32,4 +28,3 @@ private:
 
   IFilosFatalStrategy *m_strategy;
 };
-

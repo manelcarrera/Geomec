@@ -7,11 +7,11 @@ class IProgressBase;
 
 #include "TSProgressBase.h"
 
-class CTSSurfaceProgress : public ITSProgressBase
-{
+class CTSSurfaceProgress : public ITSProgressBase {
 private:
-  std::auto_ptr <IProgressBase> m_pWaitCursor;
-  std::auto_ptr <IProgressBase> m_progress;
+  std::auto_ptr<IProgressBase> m_pWaitCursor;
+  std::auto_ptr<IProgressBase> m_progress;
+
 public:
   CTSSurfaceProgress();
   virtual ~CTSSurfaceProgress();

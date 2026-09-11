@@ -25,52 +25,32 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescuePropertyGroup.h"
-#include "RescuePropertyGroup.h"
 #include "RescueModel.h"
+#include "RescuePropertyGroup.h"
+#include "myHeaders.h"
 
-cBagRescuePropertyGroup::cBagRescuePropertyGroup()
-{
-  tree = new RescueTree();
-}
+cBagRescuePropertyGroup::cBagRescuePropertyGroup() { tree = new RescueTree(); }
 
-cBagRescuePropertyGroup::~cBagRescuePropertyGroup()
-{
-  delete tree;
-}
+cBagRescuePropertyGroup::~cBagRescuePropertyGroup() { delete tree; }
 
-void cBagRescuePropertyGroup::operator+=(RescuePropertyGroup *newObject)
-{
-  tree->Add(newObject);
-}
+void cBagRescuePropertyGroup::operator+=(RescuePropertyGroup *newObject) { tree->Add(newObject); }
 
-RESCUEBOOL cBagRescuePropertyGroup::operator-=(RescuePropertyGroup * existingObject)
-{
+RESCUEBOOL cBagRescuePropertyGroup::operator-=(RescuePropertyGroup *existingObject) {
   return tree->Delete(existingObject);
 }
 
-RescuePropertyGroup *cBagRescuePropertyGroup::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescuePropertyGroup *) tree->NthObject(ordinal);
+RescuePropertyGroup *cBagRescuePropertyGroup::NthObject(RESCUEINT64 ordinal) {
+  return (RescuePropertyGroup *)tree->NthObject(ordinal);
 }
 
-RESCUEINT32 cBagRescuePropertyGroup::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescuePropertyGroup::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-

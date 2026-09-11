@@ -1,53 +1,40 @@
 
 #include "LoadPropertyDeltaFluidPressureFrac.h"
-#include "FormationBase.h"
-#include "Pressure.h"
-#include "HorizonBase.h"
 #include "FaultPressure.h"
+#include "FormationBase.h"
+#include "HorizonBase.h"
+#include "Pressure.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-CLoadPropertyDeltaFluidPressureFrac::CLoadPropertyDeltaFluidPressureFrac(
-  const RGProperty& rgProperty, RGInterface& rgi, CModelBase& modelBase,
-  CRockMechProcessor& rmp)
-: CLoadPropertyPressureBase(rgProperty, rgi, modelBase, rmp)
-{
-}
+CLoadPropertyDeltaFluidPressureFrac::CLoadPropertyDeltaFluidPressureFrac(const RGProperty &rgProperty, RGInterface &rgi,
+                                                                         CModelBase &modelBase, CRockMechProcessor &rmp)
+    : CLoadPropertyPressureBase(rgProperty, rgi, modelBase, rmp) {}
 
-CLoadPropertyDeltaFluidPressureFrac::~CLoadPropertyDeltaFluidPressureFrac()
-{
-}
+CLoadPropertyDeltaFluidPressureFrac::~CLoadPropertyDeltaFluidPressureFrac() {}
 
 // protected
 
-bool CLoadPropertyDeltaFluidPressureFrac::addDelta(
-  std::vector <geo::CValue>& vcNodalValues, const QString& strPropertyName,
-  const CFormationBase* pFormation, const geo::IElement& elm, int nNod) const
-{
+bool CLoadPropertyDeltaFluidPressureFrac::addDelta(std::vector<geo::CValue> &vcNodalValues,
+                                                   const QString &strPropertyName, const CFormationBase *pFormation,
+                                                   const geo::IElement &elm, int nNod) const {
   return addDeltaBase(vcNodalValues, strPropertyName, pFormation, elm, nNod);
 }
 
-IValueDomainScalar::TValueVec
-  CLoadPropertyDeltaFluidPressureFrac::addDeltaSpecific(
-  const CDepletionStage& prevstage, const CFormationBase* pFormation,
-  const geo::IElement& elm, int nNod) const
-{
-  if (pFormation)
-  {
-  if (isFractureApertureModel(*pFormation, prevstage, elm))
-  {
+IValueDomainScalar::TValueVec CLoadPropertyDeltaFluidPressureFrac::addDeltaSpecific(const CDepletionStage &prevstage,
+                                                                                    const CFormationBase *pFormation,
+                                                                                    const geo::IElement &elm,
+                                                                                    int nNod) const {
+  if (pFormation) {
+    if (isFractureApertureModel(*pFormation, prevstage, elm)) {
       return pFormation->Pressure(prevstage).Component().ScalarData().ValueElement(elm);
-  }
-  }
-  else
-  {
-  const CHorizonBase* pFault = m_ModelBase.Mesh().SlipHorizon(elm);
+    }
+  } else {
+    const CHorizonBase *pFault = m_ModelBase.Mesh().SlipHorizon(elm);
 
-  if (pFault && pFault->Slip())
-  {
+    if (pFault && pFault->Slip()) {
       return pFault->Pressure(prevstage).Component().ScalarData().ValueElement(elm);
-  }
+    }
   }
 
   IValueDomainScalar::TValueVec vcPrevValues(nNod, 0);

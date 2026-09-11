@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 //**********************************************************************************************
-// CVersionInfo (c)1997 Roberto Rocco 
+// CVersionInfo (c)1997 Roberto Rocco
 //----------------------------------------------------------------------------------------------
 // CVersionInfo is a tiny class, which wraps the stuff needed to get the version info from a
 // resource file.
@@ -16,7 +16,7 @@
 //
 // CVersionInfo requires to be linked with VERSION.LIB!
 //
-//********************************************************************************************** 
+//**********************************************************************************************
 
 #include "VersionInfo.h"
 
@@ -25,44 +25,36 @@
 #ifdef _DEBUG
 #ifdef _MSC_VER
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#endif  // _MSC_VER
-//#define new DEBUG_NEW
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
+// #define new DEBUG_NEW
 #endif
 
 // Standard-Constructor. Does nothing particular
-CVersionInfo::CVersionInfo ()
-: m_major( 0 ), m_minor( 0 )
-{
-} 
+CVersionInfo::CVersionInfo() : m_major(0), m_minor(0) {}
 
 // Standard-Destructor. Does nothing particular
-CVersionInfo::~CVersionInfo ()
-{
-} 
+CVersionInfo::~CVersionInfo() {}
 
 // Constructor with hModule, strLangId and strInfoType as parameter
-CVersionInfo::CVersionInfo (HMODULE hModule, LPCTSTR strLangID/*=NULL*/, LPCTSTR strInfoType/*=NULL*/)
-: m_major( 0 ), m_minor( 0 )
-{
-  GetVersionInfo (hModule, strLangID, strInfoType);
-}
- 
-// Constructor with szFilename, strLangId and strInfoType as parameter
-CVersionInfo::CVersionInfo (LPTSTR szFilename, LPCTSTR strLangID/*=NULL*/, LPCTSTR strInfoType/*=NULL*/)
-: m_major( 0 ), m_minor( 0 )
-{
-  GetVersionInfo (szFilename, strLangID, strInfoType);
+CVersionInfo::CVersionInfo(HMODULE hModule, LPCTSTR strLangID /*=NULL*/, LPCTSTR strInfoType /*=NULL*/)
+    : m_major(0), m_minor(0) {
+  GetVersionInfo(hModule, strLangID, strInfoType);
 }
 
-void CVersionInfo::GetVersionInfo (HMODULE hModule, LPCTSTR strLangID/*=NULL*/, LPCTSTR strInfoType/*=NULL*/)
-{
-  TCHAR szExeName[MAX_PATH];  
-  if(hModule == NULL) 
-      return;  
-  GetModuleFileName(hModule, szExeName, sizeof (szExeName)); 
-  GetVersionInfo(szExeName, strLangID, strInfoType); 
-} 
+// Constructor with szFilename, strLangId and strInfoType as parameter
+CVersionInfo::CVersionInfo(LPTSTR szFilename, LPCTSTR strLangID /*=NULL*/, LPCTSTR strInfoType /*=NULL*/)
+    : m_major(0), m_minor(0) {
+  GetVersionInfo(szFilename, strLangID, strInfoType);
+}
+
+void CVersionInfo::GetVersionInfo(HMODULE hModule, LPCTSTR strLangID /*=NULL*/, LPCTSTR strInfoType /*=NULL*/) {
+  TCHAR szExeName[MAX_PATH];
+  if (hModule == NULL)
+    return;
+  GetModuleFileName(hModule, szExeName, sizeof(szExeName));
+  GetVersionInfo(szExeName, strLangID, strInfoType);
+}
 
 //**********************************************************************************************
 // GetVersionInfo (requires VERSION.LIB!!!)
@@ -87,49 +79,45 @@ void CVersionInfo::GetVersionInfo (HMODULE hModule, LPCTSTR strLangID/*=NULL*/, 
 // m_strVersionInfo contains the desired version info string (language dependent)
 //
 //**********************************************************************************************
-void CVersionInfo::GetVersionInfo (LPTSTR szFilename, LPCTSTR strLangID/*=NULL*/, LPCTSTR strInfoType/*=NULL*/)
-{
+void CVersionInfo::GetVersionInfo(LPTSTR szFilename, LPCTSTR strLangID /*=NULL*/, LPCTSTR strInfoType /*=NULL*/) {
   DWORD dwVerInfoSize;
   DWORD dwHnd;
-  void* pBuffer; 
+  void *pBuffer;
   VS_FIXEDFILEINFO *pFixedInfo; // pointer to fixed file info structure
-  LPVOID  lpVersion;    // String pointer to 'version' text
-  unsigned int    uVersionLen;   // Current length of full version string
-  TCHAR szGetName[500]; 
-  dwVerInfoSize = GetFileVersionInfoSize(szFilename, &dwHnd); 
-  if (dwVerInfoSize) 
-  { 
-      pBuffer = malloc(dwVerInfoSize); 
-      if (pBuffer == NULL)
-         return; 
-      GetFileVersionInfo(szFilename, dwHnd, dwVerInfoSize, pBuffer); 
-      // get the fixed file info (language-independend) 
-      VerQueryValue(pBuffer,_T("\\"),(void**)&pFixedInfo,(unsigned int *)&uVersionLen);  
-      m_major = HIWORD (pFixedInfo->dwProductVersionMS);
-      m_minor = LOWORD (pFixedInfo->dwProductVersionMS);
-      m_strFixedProductVersion.Format ("%u.%u.%u.%u", m_major, m_minor,
-                    HIWORD (pFixedInfo->dwProductVersionLS),
-                    LOWORD (pFixedInfo->dwProductVersionLS)); 
-      m_strFixedFileVersion.Format ("%u.%u.%u.%u",HIWORD (pFixedInfo->dwFileVersionMS),
-                   LOWORD (pFixedInfo->dwFileVersionMS),
-                   HIWORD (pFixedInfo->dwFileVersionLS),
-                   LOWORD (pFixedInfo->dwFileVersionLS));
+  LPVOID lpVersion;             // String pointer to 'version' text
+  unsigned int uVersionLen;     // Current length of full version string
+  TCHAR szGetName[500];
+  dwVerInfoSize = GetFileVersionInfoSize(szFilename, &dwHnd);
+  if (dwVerInfoSize) {
+    pBuffer = malloc(dwVerInfoSize);
+    if (pBuffer == NULL)
+      return;
+    GetFileVersionInfo(szFilename, dwHnd, dwVerInfoSize, pBuffer);
+    // get the fixed file info (language-independend)
+    VerQueryValue(pBuffer, _T("\\"), (void **)&pFixedInfo, (unsigned int *)&uVersionLen);
+    m_major = HIWORD(pFixedInfo->dwProductVersionMS);
+    m_minor = LOWORD(pFixedInfo->dwProductVersionMS);
+    m_strFixedProductVersion.Format("%u.%u.%u.%u", m_major, m_minor, HIWORD(pFixedInfo->dwProductVersionLS),
+                                    LOWORD(pFixedInfo->dwProductVersionLS));
+    m_strFixedFileVersion.Format("%u.%u.%u.%u", HIWORD(pFixedInfo->dwFileVersionMS),
+                                 LOWORD(pFixedInfo->dwFileVersionMS), HIWORD(pFixedInfo->dwFileVersionLS),
+                                 LOWORD(pFixedInfo->dwFileVersionLS));
 
-      if (VerQueryValue(pBuffer,"\\StringFileInfo\\040904b0\\ProductVersion",(void**)&lpVersion,(unsigned int *)&uVersionLen)) 
-          m_strFullVersion = (LPTSTR)lpVersion;
+    if (VerQueryValue(pBuffer, "\\StringFileInfo\\040904b0\\ProductVersion", (void **)&lpVersion,
+                      (unsigned int *)&uVersionLen))
+      m_strFullVersion = (LPTSTR)lpVersion;
 
-      // get the string file info (language-dependend) 
-      if (strLangID != NULL || strInfoType != NULL)
-      {
-         lstrcpy(szGetName, "\\StringFileInfo\\");  
-         lstrcat (szGetName, strLangID);
-         lstrcat (szGetName, "\\");
-         lstrcat (szGetName, strInfoType);
-         // copy version info, if desired entry exists
-         if (VerQueryValue(pBuffer,szGetName,(void**)&lpVersion,(unsigned int *)&uVersionLen) != 0)
-          m_strVersionInfo = (LPTSTR)lpVersion;
-      } 
-      if (pBuffer != NULL)
-         free(pBuffer); 
-  } 
+    // get the string file info (language-dependend)
+    if (strLangID != NULL || strInfoType != NULL) {
+      lstrcpy(szGetName, "\\StringFileInfo\\");
+      lstrcat(szGetName, strLangID);
+      lstrcat(szGetName, "\\");
+      lstrcat(szGetName, strInfoType);
+      // copy version info, if desired entry exists
+      if (VerQueryValue(pBuffer, szGetName, (void **)&lpVersion, (unsigned int *)&uVersionLen) != 0)
+        m_strVersionInfo = (LPTSTR)lpVersion;
+    }
+    if (pBuffer != NULL)
+      free(pBuffer);
+  }
 }

@@ -9,15 +9,13 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <stack>
 #include "GraphPtr.h"
+#include <stack>
 
-//##ModelId=3B653D0201B7
+// ##ModelId=3B653D0201B7
 class CProgressCtrl;
-class CGraphMainFrm : public CFrameWnd
-{
-  class CProgressStackItem
-  {
+class CGraphMainFrm : public CFrameWnd {
+  class CProgressStackItem {
     int m_pos;
     int m_maxpos;
     int m_skippos;
@@ -35,27 +33,27 @@ class CGraphMainFrm : public CFrameWnd
   };
 
   CGraphPtr<CGraphNode> m_clip_board;
-  CProgressCtrl*	m_pProgress;
-  CString			m_sStatusText;
+  CProgressCtrl *m_pProgress;
+  CString m_sStatusText;
   std::stack<CProgressStackItem> m_ProgressStack;
 
   void CreateProgress(const CProgressStackItem &item);
   void DestroyProgress();
 
 protected: // create from serialization only
-  //##ModelId=3B653D020272
+  // ##ModelId=3B653D020272
   CGraphMainFrm();
 
-  virtual CStatusBar& StatusBar() = 0;
+  virtual CStatusBar &StatusBar() = 0;
 
-// Implementation
+  // Implementation
 public:
-  void Copy(CGraphNode& node);
-  CGraphNode* Paste();
-  const CGraphNode* Paste() const;
+  void Copy(CGraphNode &node);
+  CGraphNode *Paste();
+  const CGraphNode *Paste() const;
 
   // Progress in the status bar
-  void StartProgress(const CString& sCaption, int nSteps);
+  void StartProgress(const CString &sCaption, int nSteps);
   void ProgressStep();
   void EndProgress();
 };

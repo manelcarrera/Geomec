@@ -19,33 +19,32 @@
 // for a simple setting / flag, it may be overkill to store it as a vector of int, or QString,
 // but it will suffice
 
-class CGeneralDataBlock
-{
+class CGeneralDataBlock {
 public:
   CGeneralDataBlock();
-  CGeneralDataBlock(const QString& name, int type = 0);
-  CGeneralDataBlock(const CGeneralDataBlock& rhs);
+  CGeneralDataBlock(const QString &name, int type = 0);
+  CGeneralDataBlock(const CGeneralDataBlock &rhs);
   virtual ~CGeneralDataBlock();
 
-  bool operator==(const CGeneralDataBlock& rhs) const;
-  bool operator<(const CGeneralDataBlock& rhs) const;
+  bool operator==(const CGeneralDataBlock &rhs) const;
+  bool operator<(const CGeneralDataBlock &rhs) const;
 
   QString Name() const;
-  void Name(const QString& name);
+  void Name(const QString &name);
 
   int Size() const;
 
   int Type() const;
   void Type(int type);
 
-  void getIntValues(std::vector<int>& values) const;
-  void setIntValues(const std::vector<int>& values);
+  void getIntValues(std::vector<int> &values) const;
+  void setIntValues(const std::vector<int> &values);
 
-  void getDblValues(std::vector<double>& values) const;
-  void setDblValues(const std::vector<double>& values);
+  void getDblValues(std::vector<double> &values) const;
+  void setDblValues(const std::vector<double> &values);
 
-  void getStrValues(std::vector<QString>& values) const;
-  void setStrValues(const std::vector<QString>& values);
+  void getStrValues(std::vector<QString> &values) const;
+  void setStrValues(const std::vector<QString> &values);
 
 private:
   QString m_name;

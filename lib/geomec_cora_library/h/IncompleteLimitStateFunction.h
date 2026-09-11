@@ -3,15 +3,13 @@
 
 #include <stdexcept>
 
-namespace cora
-{
+namespace cora {
 
-class CIncompleteLimitStateFunction : public std::runtime_error
-{
-  public:
-  CIncompleteLimitStateFunction(const std::string& what);
+class CIncompleteLimitStateFunction : public std::runtime_error {
+public:
+  CIncompleteLimitStateFunction(const std::string &what);
 };
 
 } // namespace cora
 
-#endif  // _cora_IncompleteLimitStateFunction_h_
+#endif // _cora_IncompleteLimitStateFunction_h_

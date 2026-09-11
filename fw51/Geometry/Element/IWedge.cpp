@@ -1,46 +1,26 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #include "IWedge.h"
-#include "BodyTriangle.h"
-#include "BodyQuadrilateral.h"
 #include "BodyLine.h"
+#include "BodyQuadrilateral.h"
+#include "BodyTriangle.h"
 
 #include "lbel.h"
 
 namespace geo {
 
-static const int quad_point_indices[] =
-{
-  0,
-  2,
-  4,
-  9,
-  11,
-  13
-};
+static const int quad_point_indices[] = {0, 2, 4, 9, 11, 13};
 
-static const int cubic_point_indices[] =
-{
-  0,
-  3,
-  6,
-  15,
-  18,
-  21
-};
+static const int cubic_point_indices[] = {0, 3, 6, 15, 18, 21};
 
-
-void IWedge::BuildIntegrationPoints( IElement::TIntPtVec& vec,
-                                     int                  nintxy,
-                                     int                  nintz )
-{
+void IWedge::BuildIntegrationPoints(IElement::TIntPtVec &vec, int nintxy, int nintz) {
   int ixy, iz;
 
   // the wedge has nintz layers of triangular schemes in the z direction
-  for(iz = 0; iz < nintz; iz++)	{
+  for (iz = 0; iz < nintz; iz++) {
     double coordz;
     double weightz;
     GaussCoeff(iz + 1, nintz, &coordz, &weightz);
-  for(ixy = 0; ixy < nintxy; ixy++) {
+    for (ixy = 0; ixy < nintxy; ixy++) {
       // the hammer coordinates returned include the third
       // (dependent) coordinate 1 - xi - eta
       double coordxy[3];
@@ -56,64 +36,53 @@ void IWedge::BuildIntegrationPoints( IElement::TIntPtVec& vec,
   }
 }
 
-const IElement::TIntPtVec& IWedge::IntegrationPoints( int order )
-{
+const IElement::TIntPtVec &IWedge::IntegrationPoints(int order) {
   // integration point location and weights
   static TIntPtVec s_LinearIntegrationPoints;
   static TIntPtVec s_QuadIntegrationPoints;
   static TIntPtVec s_CubicIntegrationPoints;
 
-  switch( order ) {
+  switch (order) {
   case 1:
-    if(s_LinearIntegrationPoints.empty())
+    if (s_LinearIntegrationPoints.empty())
       BuildIntegrationPoints(s_LinearIntegrationPoints, 1, 1);
     return s_LinearIntegrationPoints;
     break;
   case 2:
-    if(s_QuadIntegrationPoints.empty())
+    if (s_QuadIntegrationPoints.empty())
       BuildIntegrationPoints(s_QuadIntegrationPoints, 3, 2);
     return s_QuadIntegrationPoints;
     break;
   case 3:
-    if(s_CubicIntegrationPoints.empty())
+    if (s_CubicIntegrationPoints.empty())
       BuildIntegrationPoints(s_CubicIntegrationPoints, 4, 3);
     return s_CubicIntegrationPoints;
     break;
   }
 
   assert(false);
-  TIntPtVec* pBogus = 0;
+  TIntPtVec *pBogus = 0;
   return *pBogus;
 }
 
-const IElement::TIntPtVec& IWedge::IntegrationPoints() const
-{
-  return IntegrationPoints( Order() );
-}
+const IElement::TIntPtVec &IWedge::IntegrationPoints() const { return IntegrationPoints(Order()); }
 
-void IWedge::PrepareMapping()
-{
+void IWedge::PrepareMapping() {
   for (int i = 1; i < 4; ++i)
-  IntegrationPoints(i);
+    IntegrationPoints(i);
 }
 
-IWedge::IWedge()
-{
-}
+IWedge::IWedge() {}
 
-IWedge::~IWedge()
-{
-}
+IWedge::~IWedge() {}
 
-int IWedge::NrOfPoints() const
-{
+int IWedge::NrOfPoints() const {
   return NrOfNodes();
-//	return 6;
+  //	return 6;
 }
 
-const IPoint &IWedge::Point(int nIndex) const
-{
-  return Node( nIndex );
+const IPoint &IWedge::Point(int nIndex) const {
+  return Node(nIndex);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch(Order())
@@ -132,9 +101,8 @@ const IPoint &IWedge::Point(int nIndex) const
 #endif
 }
 
-void IWedge::Point(int nIndex, const IPoint &pt)
-{
-  Node( nIndex, pt );
+void IWedge::Point(int nIndex, const IPoint &pt) {
+  Node(nIndex, pt);
 #if 0
   assert(nIndex >= 0 && nIndex < NrOfPoints());
   switch(Order())
@@ -154,50 +122,41 @@ void IWedge::Point(int nIndex, const IPoint &pt)
 #endif
 }
 
-int IWedge::NrOfFaces() const
-{
-  return 5;
-}
+int IWedge::NrOfFaces() const { return 5; }
 
-const IFace &IWedge::Face(int nIndex) const
-{
+const IFace &IWedge::Face(int nIndex) const {
   assert(nIndex >= 0 && nIndex < NrOfFaces());
 
-  if(m_vcFaces.empty()) m_vcFaces.resize(NrOfFaces(), 0);
+  if (m_vcFaces.empty())
+    m_vcFaces.resize(NrOfFaces(), 0);
 
-  if(!m_vcFaces[nIndex])
-  {
-    switch(nIndex)
-    {
-      // top and bottom are triangles
-      case 0:
-      case 4:
-        m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<IWedge*>(this), nIndex);
-        break;
-      // sides are quadrilaterals
-      case 1:
-      case 2:
-      case 3:
-        m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IWedge*>(this), nIndex);
-        break;
-      default:
-        assert(false);
+  if (!m_vcFaces[nIndex]) {
+    switch (nIndex) {
+    // top and bottom are triangles
+    case 0:
+    case 4:
+      m_vcFaces[nIndex] = new CBodyTriangle(*const_cast<IWedge *>(this), nIndex);
+      break;
+    // sides are quadrilaterals
+    case 1:
+    case 2:
+    case 3:
+      m_vcFaces[nIndex] = new CBodyQuadrilateral(*const_cast<IWedge *>(this), nIndex);
+      break;
+    default:
+      assert(false);
     }
   }
 
   return *m_vcFaces[nIndex];
 }
 
-const IWedge::TIndexVec& IWedge::FacePointIndices(int nIndex) const
-{
-  return FaceNodeIndices( 1, nIndex );
-}
+const IWedge::TIndexVec &IWedge::FacePointIndices(int nIndex) const { return FaceNodeIndices(1, nIndex); }
 
-void IWedge::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
-{
-  assert( FaceNodeIdxs.size() == 0 );  // Init once ...
+void IWedge::InitFaceNodeIndices(std::vector<TFaceNodeVec> &FaceNodeIdxs) {
+  assert(FaceNodeIdxs.size() == 0); // Init once ...
 
-  FaceNodeIdxs.resize(3, TFaceNodeVec(5) );
+  FaceNodeIdxs.resize(3, TFaceNodeVec(5));
 
   // Initialise for First Order elements
   // Face 0
@@ -228,7 +187,7 @@ void IWedge::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
   FaceNodeIdxs[0][4][0] = 3;
   FaceNodeIdxs[0][4][1] = 4;
   FaceNodeIdxs[0][4][2] = 5;
-      
+
   // Initialise second order elements
   // Face 0
   FaceNodeIdxs[1][0].resize(6);
@@ -344,44 +303,35 @@ void IWedge::InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs )
   FaceNodeIdxs[2][4][8] = 23;
 }
 
-const IWedge::TIndexVec& IWedge::FaceNodeIndices( int order, int nIndex )
-{
+const IWedge::TIndexVec &IWedge::FaceNodeIndices(int order, int nIndex) {
   static std::vector<TFaceNodeVec> s_FaceNodeIndices;
 
-  assert(nIndex >= 0 && nIndex < 5 );
-  if( s_FaceNodeIndices.size() == 0 ) InitFaceNodeIndices( s_FaceNodeIndices );
+  assert(nIndex >= 0 && nIndex < 5);
+  if (s_FaceNodeIndices.size() == 0)
+    InitFaceNodeIndices(s_FaceNodeIndices);
 
-  return s_FaceNodeIndices[order-1][nIndex];
+  return s_FaceNodeIndices[order - 1][nIndex];
 }
 
-const IWedge::TIndexVec& IWedge::FaceNodeIndices( int nIndex ) const
-{
-  return FaceNodeIndices( Order(), nIndex );
-}
-int IWedge::NrOfLines() const
-{
-  return 9;
-}
+const IWedge::TIndexVec &IWedge::FaceNodeIndices(int nIndex) const { return FaceNodeIndices(Order(), nIndex); }
+int IWedge::NrOfLines() const { return 9; }
 
-const ILine &IWedge::Line(int nIndex) const
-{
-  if(m_vcLines.empty()) m_vcLines.resize(NrOfLines(), 0);
+const ILine &IWedge::Line(int nIndex) const {
+  if (m_vcLines.empty())
+    m_vcLines.resize(NrOfLines(), 0);
 
-  if(!m_vcLines[nIndex]) m_vcLines[nIndex] = new CBodyLine(*const_cast<IWedge*>(this), nIndex);
+  if (!m_vcLines[nIndex])
+    m_vcLines[nIndex] = new CBodyLine(*const_cast<IWedge *>(this), nIndex);
 
   return *m_vcLines[nIndex];
 }
 
-const IWedge::TIndexVec& IWedge::LinePointIndices(int nIndex) const
-{
-  return LineNodeIndices( 1, nIndex );
-}
+const IWedge::TIndexVec &IWedge::LinePointIndices(int nIndex) const { return LineNodeIndices(1, nIndex); }
 
-void IWedge::InitLineNodeIndices( std::vector<TLineNodeVec>& lineNodeIdxs )
-{
-  assert( lineNodeIdxs.size() == 0 );  // Init once ...
+void IWedge::InitLineNodeIndices(std::vector<TLineNodeVec> &lineNodeIdxs) {
+  assert(lineNodeIdxs.size() == 0); // Init once ...
 
-  lineNodeIdxs.resize(3, TLineNodeVec(9) );
+  lineNodeIdxs.resize(3, TLineNodeVec(9));
 
   // Initialise for First Order elements
   // Line 0
@@ -525,25 +475,20 @@ void IWedge::InitLineNodeIndices( std::vector<TLineNodeVec>& lineNodeIdxs )
   lineNodeIdxs[2][8][3] = 15;
 }
 
-const IWedge::TIndexVec& IWedge::LineNodeIndices( int order, int nIndex )
-{
+const IWedge::TIndexVec &IWedge::LineNodeIndices(int order, int nIndex) {
   std::vector<TLineNodeVec> s_LineNodeIndices;
 
-  assert(nIndex >= 0 && nIndex < 9 );
-  if( s_LineNodeIndices.size() == 0 ) InitLineNodeIndices( s_LineNodeIndices );
+  assert(nIndex >= 0 && nIndex < 9);
+  if (s_LineNodeIndices.size() == 0)
+    InitLineNodeIndices(s_LineNodeIndices);
 
-  return s_LineNodeIndices[order-1][nIndex];
+  return s_LineNodeIndices[order - 1][nIndex];
 }
 
-const IWedge::TIndexVec& IWedge::LineNodeIndices( int nIndex ) const
-{
-  return LineNodeIndices( Order(), nIndex );
-}
+const IWedge::TIndexVec &IWedge::LineNodeIndices(int nIndex) const { return LineNodeIndices(Order(), nIndex); }
 
-IElement::TDoubleVec IWedge::ShapeFunction(const IElement::TDoubleVec& /*isocoords*/) const
-{
-  switch(Order())
-  {
+IElement::TDoubleVec IWedge::ShapeFunction(const IElement::TDoubleVec & /*isocoords*/) const {
+  switch (Order()) {
   case 1:
     break;
   case 2:
@@ -558,12 +503,11 @@ IElement::TDoubleVec IWedge::ShapeFunction(const IElement::TDoubleVec& /*isocoor
   return vcRet;
 }
 
-CMatrix IWedge::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const
-{
+CMatrix IWedge::ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const {
   assert(isocoords.size() == 3);
 
-  assert(isocoords[0] >=  0.0 && isocoords[0] <= 1.0);
-  assert(isocoords[1] >=  0.0 && isocoords[1] <= 1.0);
+  assert(isocoords[0] >= 0.0 && isocoords[0] <= 1.0);
+  assert(isocoords[1] >= 0.0 && isocoords[1] <= 1.0);
   assert(isocoords[2] >= -1.0 && isocoords[2] <= 1.0);
 
   // 3 rows, NrOfNodes() columns
@@ -571,9 +515,8 @@ CMatrix IWedge::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) cons
 
   double *p = new double[3 * NrOfNodes()];
 
-  switch(Order())
-  {
-  case 1: 
+  switch (Order()) {
+  case 1:
     assert(false); // not implemented yet
     break;
   case 2:
@@ -590,10 +533,8 @@ CMatrix IWedge::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) cons
 
   int i;
   int j;
-  for(j = 0; j < NrOfNodes(); j++)
-  {
-    for(i = 0; i < 3; i++)
-    {
+  for (j = 0; j < NrOfNodes(); j++) {
+    for (i = 0; i < 3; i++) {
       ret.Value(i, j, *(v++));
     }
   }
@@ -602,12 +543,10 @@ CMatrix IWedge::ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) cons
   return ret;
 }
 
-std::vector<IElement::TDoubleVec> IWedge::IsoCoordinates() const
-{
+std::vector<IElement::TDoubleVec> IWedge::IsoCoordinates() const {
   std::vector<IElement::TDoubleVec> ret;
 
-  switch(Order())
-  {
+  switch (Order()) {
   case 1:
     // node 1
     ret.push_back(MakeVec(1, 0, -1));
@@ -616,93 +555,93 @@ std::vector<IElement::TDoubleVec> IWedge::IsoCoordinates() const
     // node 3
     ret.push_back(MakeVec(0, 0, -1));
     // node 4
-    ret.push_back(MakeVec(1, 0,  1));
+    ret.push_back(MakeVec(1, 0, 1));
     // node 5
-    ret.push_back(MakeVec(0, 1,  1));
+    ret.push_back(MakeVec(0, 1, 1));
     // node 6
-    ret.push_back(MakeVec(0, 0,  1));
+    ret.push_back(MakeVec(0, 0, 1));
     break;
   case 2:
     // node 1
-    ret.push_back(MakeVec(1,   0,   -1));
+    ret.push_back(MakeVec(1, 0, -1));
     // node 2
     ret.push_back(MakeVec(0.5, 0.5, -1));
     // node 3
-    ret.push_back(MakeVec(0,   1,   -1));
+    ret.push_back(MakeVec(0, 1, -1));
     // node 4
-    ret.push_back(MakeVec(0,   0.5, -1));
+    ret.push_back(MakeVec(0, 0.5, -1));
     // node 5
-    ret.push_back(MakeVec(0,   0,   -1));
+    ret.push_back(MakeVec(0, 0, -1));
     // node 6
-    ret.push_back(MakeVec(0.5, 0,   -1));
+    ret.push_back(MakeVec(0.5, 0, -1));
     // node 7
-    ret.push_back(MakeVec(1,   0,    0));
+    ret.push_back(MakeVec(1, 0, 0));
     // node 8
-    ret.push_back(MakeVec(0,   1,    0));
+    ret.push_back(MakeVec(0, 1, 0));
     // node 9
-    ret.push_back(MakeVec(0,   0,    0));
+    ret.push_back(MakeVec(0, 0, 0));
     // node 10
-    ret.push_back(MakeVec(1,   0,    1));
+    ret.push_back(MakeVec(1, 0, 1));
     // node 11
-    ret.push_back(MakeVec(0.5, 0.5,  1));
+    ret.push_back(MakeVec(0.5, 0.5, 1));
     // node 12
-    ret.push_back(MakeVec(0,   1,    1));
+    ret.push_back(MakeVec(0, 1, 1));
     // node 13
-    ret.push_back(MakeVec(0,   0.5,  1));
+    ret.push_back(MakeVec(0, 0.5, 1));
     // node 14
-    ret.push_back(MakeVec(0,   0,    1));
+    ret.push_back(MakeVec(0, 0, 1));
     // node 15
-    ret.push_back(MakeVec(0.5, 0,    1));
+    ret.push_back(MakeVec(0.5, 0, 1));
     break;
   case 3:
     // node 1
-    ret.push_back(MakeVec(1,    0,    -1   ));
+    ret.push_back(MakeVec(1, 0, -1));
     // node 2
-    ret.push_back(MakeVec(2./3, 1./3, -1   ));
+    ret.push_back(MakeVec(2. / 3, 1. / 3, -1));
     // node 3
-    ret.push_back(MakeVec(1./3, 2./3, -1   ));
+    ret.push_back(MakeVec(1. / 3, 2. / 3, -1));
     // node 4
-    ret.push_back(MakeVec(0,    1,    -1   ));
+    ret.push_back(MakeVec(0, 1, -1));
     // node 5
-    ret.push_back(MakeVec(0,    2./3, -1   ));
+    ret.push_back(MakeVec(0, 2. / 3, -1));
     // node 6
-    ret.push_back(MakeVec(0,    1./3, -1   ));
+    ret.push_back(MakeVec(0, 1. / 3, -1));
     // node 7
-    ret.push_back(MakeVec(0,    0,    -1   ));
+    ret.push_back(MakeVec(0, 0, -1));
     // node 8
-    ret.push_back(MakeVec(1./3, 0,    -1   ));
+    ret.push_back(MakeVec(1. / 3, 0, -1));
     // node 9
-    ret.push_back(MakeVec(2./3, 0,    -1   ));
+    ret.push_back(MakeVec(2. / 3, 0, -1));
     // node 10
-    ret.push_back(MakeVec(1,    0,    -1./3));
+    ret.push_back(MakeVec(1, 0, -1. / 3));
     // node 11
-    ret.push_back(MakeVec(0,    1,    -1./3));
+    ret.push_back(MakeVec(0, 1, -1. / 3));
     // node 12
-    ret.push_back(MakeVec(0,    0,    -1./3));
+    ret.push_back(MakeVec(0, 0, -1. / 3));
     // node 13
-    ret.push_back(MakeVec(1,    0,     1./3));
+    ret.push_back(MakeVec(1, 0, 1. / 3));
     // node 14
-    ret.push_back(MakeVec(0,    1,     1./3));
+    ret.push_back(MakeVec(0, 1, 1. / 3));
     // node 15
-    ret.push_back(MakeVec(0,    0,     1./3));
+    ret.push_back(MakeVec(0, 0, 1. / 3));
     // node 16
-    ret.push_back(MakeVec(1,    0,     1   ));
+    ret.push_back(MakeVec(1, 0, 1));
     // node 17
-    ret.push_back(MakeVec(2./3, 1./3,  1   ));
+    ret.push_back(MakeVec(2. / 3, 1. / 3, 1));
     // node 18
-    ret.push_back(MakeVec(1./3, 2./3,  1   ));
+    ret.push_back(MakeVec(1. / 3, 2. / 3, 1));
     // node 19
-    ret.push_back(MakeVec(0,    1,     1   ));
+    ret.push_back(MakeVec(0, 1, 1));
     // node 20
-    ret.push_back(MakeVec(0,    2./3,  1   ));
+    ret.push_back(MakeVec(0, 2. / 3, 1));
     // node 21
-    ret.push_back(MakeVec(0,    1./3,  1   ));
+    ret.push_back(MakeVec(0, 1. / 3, 1));
     // node 22
-    ret.push_back(MakeVec(0,    0,     1   ));
+    ret.push_back(MakeVec(0, 0, 1));
     // node 23
-    ret.push_back(MakeVec(1./3, 0,     1   ));
+    ret.push_back(MakeVec(1. / 3, 0, 1));
     // node 24
-    ret.push_back(MakeVec(2./3, 0,     1   ));
+    ret.push_back(MakeVec(2. / 3, 0, 1));
     break;
   default:
     assert(false);
@@ -711,19 +650,14 @@ std::vector<IElement::TDoubleVec> IWedge::IsoCoordinates() const
   return ret;
 }
 
-int IWedge::IntegrationPointSize() const
-{
-  return (int)IntegrationPoints().size();
-}
+int IWedge::IntegrationPointSize() const { return (int)IntegrationPoints().size(); }
 
-const IElement::TDoubleVec& IWedge::IntegrationPointCoords(int nIndex) const
-{
+const IElement::TDoubleVec &IWedge::IntegrationPointCoords(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].first;
 }
 
-const double& IWedge::IntegrationPointWeight(int nIndex) const
-{
+const double &IWedge::IntegrationPointWeight(int nIndex) const {
   assert(nIndex >= 0 && nIndex < IntegrationPointSize());
   return IntegrationPoints()[nIndex].second;
 }

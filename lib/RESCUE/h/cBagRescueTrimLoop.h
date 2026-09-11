@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueTrimLoop_H
 #define cBagRescueTrimLoop_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueTrimLoop;
 
-class cBagRescueTrimLoop
-{
+class cBagRescueTrimLoop {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueTrimLoop();
   ~cBagRescueTrimLoop();
   void operator+=(RescueTrimLoop *newObject);
   RESCUEBOOL operator-=(RescueTrimLoop *existingObject);
   RescueTrimLoop *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueTrimLoop *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueTrimLoop *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

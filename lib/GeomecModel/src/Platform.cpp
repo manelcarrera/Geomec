@@ -1,23 +1,18 @@
 #include "Platform.h"
 
-#include <cassert>
 #include <QDebug>
+#include <cassert>
 
 #include "GlobalMessage.h"
 
-void CPlatform::init()
-{
+void CPlatform::init() {
   assert(!m_singleton);
   m_singleton = new CPlatform;
 }
 
-long CPlatform::processMemorySize() const
-{
-  return 0l;
-}
+long CPlatform::processMemorySize() const { return 0l; }
 
-void CPlatform::trace(const QString& message) const
-{
+void CPlatform::trace(const QString &message) const {
   // FIXME
 
   /*if(&outstream() != &std::cout)
@@ -25,9 +20,7 @@ void CPlatform::trace(const QString& message) const
   else
   qDebug() << message;*/
 
-  _m()->msg( message );
+  _m()->msg(message);
 }
 
-CPlatform::CPlatform()
-{
-}
+CPlatform::CPlatform() {}

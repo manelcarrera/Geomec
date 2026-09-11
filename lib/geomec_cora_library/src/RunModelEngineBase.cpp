@@ -1,16 +1,9 @@
 #include "RunModelEngineBase.h"
 
-namespace cora
-{
+namespace cora {
 
-CRunModelEngineBase::CRunModelEngineBase(
-  CAnalysisType::TAnalysisType analysisType)
-: m_analysisType(analysisType)
-{
-}
+CRunModelEngineBase::CRunModelEngineBase(CAnalysisType::TAnalysisType analysisType) : m_analysisType(analysisType) {}
 
-CRunModelEngineBase::~CRunModelEngineBase()
-{
-}
+CRunModelEngineBase::~CRunModelEngineBase() {}
 
 } // namespace cora

@@ -9,17 +9,16 @@
 // IDC_RADIO_MAXGRADIENT as in the dialogs IDD_ATTRI_FAULT_PRESSURE and
 // IDD_GLOBAL_FAULT_BEHAVIOUR.
 
-class CConvertModeType
-{
-  public:
+class CConvertModeType {
+public:
   CConvertModeType();
 
-  CFaultPressure::TModeType operator () (int index) const;
-  int operator () (CFaultPressure::TModeType modeType) const;
+  CFaultPressure::TModeType operator()(int index) const;
+  int operator()(CFaultPressure::TModeType modeType) const;
 
-  private:
-  CConvertModeType(const CConvertModeType& rhs);
-  CConvertModeType& operator = (const CConvertModeType& rhs);
+private:
+  CConvertModeType(const CConvertModeType &rhs);
+  CConvertModeType &operator=(const CConvertModeType &rhs);
 };
 
-#endif  // _ConvertModeType_h_
+#endif // _ConvertModeType_h_

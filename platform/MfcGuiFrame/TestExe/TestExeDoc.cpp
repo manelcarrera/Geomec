@@ -1,15 +1,17 @@
 // TestExeDoc.cpp : implementation of the CTestExeDoc class
 //
 
-#include "stdafx.h"
-#include "TestExe.h"
-#include "2DDocument.h"
 #include "TestExeDoc.h"
+#include "2DDocument.h"
+#include "TestExe.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
-#ifdef _MSC_VER#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;#endif  // _MSC_VER
+#ifdef _MSC_VER
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -18,28 +20,22 @@ static char THIS_FILE[] = __FILE__;#endif  // _MSC_VER
 IMPLEMENT_DYNCREATE(CTestExeDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CTestExeDoc, CDocument)
-  //{{AFX_MSG_MAP(CTestExeDoc)
-    // NOTE - the ClassWizard will add and remove mapping macros here.
-    //    DO NOT EDIT what you see in these blocks of generated code!
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CTestExeDoc)
+// NOTE - the ClassWizard will add and remove mapping macros here.
+//    DO NOT EDIT what you see in these blocks of generated code!
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CTestExeDoc construction/destruction
 
-CTestExeDoc::CTestExeDoc()
-: m_pModel(0)
-{
+CTestExeDoc::CTestExeDoc() : m_pModel(0) {
   // TODO: add one-time construction code here
-
 }
 
-CTestExeDoc::~CTestExeDoc()
-{
-}
+CTestExeDoc::~CTestExeDoc() {}
 
-BOOL CTestExeDoc::OnNewDocument()
-{
+BOOL CTestExeDoc::OnNewDocument() {
   if (!CDocument::OnNewDocument())
     return FALSE;
 
@@ -55,19 +51,13 @@ BOOL CTestExeDoc::OnNewDocument()
   return TRUE;
 }
 
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CTestExeDoc serialization
 
-void CTestExeDoc::Serialize(CArchive& ar)
-{
-  if (ar.IsStoring())
-  {
+void CTestExeDoc::Serialize(CArchive &ar) {
+  if (ar.IsStoring()) {
     // TODO: add storing code here
-  }
-  else
-  {
+  } else {
     // TODO: add loading code here
   }
 }
@@ -76,26 +66,19 @@ void CTestExeDoc::Serialize(CArchive& ar)
 // CTestExeDoc diagnostics
 
 #ifdef _DEBUG
-void CTestExeDoc::AssertValid() const
-{
-  CDocument::AssertValid();
-}
+void CTestExeDoc::AssertValid() const { CDocument::AssertValid(); }
 
-void CTestExeDoc::Dump(CDumpContext& dc) const
-{
-  CDocument::Dump(dc);
-}
+void CTestExeDoc::Dump(CDumpContext &dc) const { CDocument::Dump(dc); }
 #endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CTestExeDoc commands
 
-void CTestExeDoc::DeleteContents() 
-{
-  if(m_pModel)
+void CTestExeDoc::DeleteContents() {
+  if (m_pModel)
     m_pModel->closeDocument();
   delete m_pModel;
   m_pModel = 0;
-  
+
   CDocument::DeleteContents();
 }

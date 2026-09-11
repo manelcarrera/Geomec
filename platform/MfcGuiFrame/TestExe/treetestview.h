@@ -11,39 +11,36 @@
 // CTreeTestView view
 #include "TreeViewBase.h"
 
-class CTreeTestView : public CTreeViewBase
-{
+class CTreeTestView : public CTreeViewBase {
 protected:
-  CTreeTestView();           // protected constructor used by dynamic creation
+  CTreeTestView(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CTreeTestView)
 
-// Attributes
+  // Attributes
 public:
-
-// Operations
+  // Operations
 public:
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTreeTestView)
-  protected:
-  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-  public:
+protected:
+  virtual void OnDraw(CDC *pDC); // overridden to draw this view
+public:
   virtual void OnInitialUpdate();
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CTreeTestView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions
 protected:
   //{{AFX_MSG(CTreeTestView)
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

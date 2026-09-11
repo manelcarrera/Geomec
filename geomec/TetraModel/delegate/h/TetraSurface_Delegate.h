@@ -5,20 +5,19 @@ class CTetraSurface;
 
 #include "geoSurface_Delegate.h"
 
-class CTetraSurface_Delegate : public CSurfaceBase_Delegate
-{
+class CTetraSurface_Delegate : public CSurfaceBase_Delegate {
 public:
   typedef CSingleCommandTemplate<CTetraSurface_Delegate> TTetraSurfaceDelegateCommand;
 
-  CTetraSurface_Delegate(CTetraSurface* tetraSurface);
+  CTetraSurface_Delegate(CTetraSurface *tetraSurface);
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
 private:
-  CTetraSurface_Delegate(const CTetraSurface_Delegate& rhs);
-  CTetraSurface_Delegate& operator = (const CTetraSurface_Delegate& rhs);
+  CTetraSurface_Delegate(const CTetraSurface_Delegate &rhs);
+  CTetraSurface_Delegate &operator=(const CTetraSurface_Delegate &rhs);
 
-  CTetraSurface* m_tetraSurface;
+  CTetraSurface *m_tetraSurface;
 
   void CreateSideSurface();
   void CreateSuperHorizon();
@@ -28,4 +27,4 @@ private:
   REGISTER_DELEGATE(CTetraSurface, CTetraSurface_Delegate);
 };
 
-#endif  // _TetraSurface_Delegate_h_
+#endif // _TetraSurface_Delegate_h_

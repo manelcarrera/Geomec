@@ -4,12 +4,11 @@
 #include "AttributeTempl.h"
 #include "NonMeshedSurfaceParametersNode.h"
 
-class CNonMeshedSurfaceParametersDlg : public CAttributesTemplate<CNonMeshedSurfaceParametersNode>
-{
+class CNonMeshedSurfaceParametersDlg : public CAttributesTemplate<CNonMeshedSurfaceParametersNode> {
 public:
-  CNonMeshedSurfaceParametersDlg(CNonMeshedSurfaceParametersNode& parameters, CDialog* pParent = 0);
+  CNonMeshedSurfaceParametersDlg(CNonMeshedSurfaceParametersNode &parameters, CDialog *pParent = 0);
 
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 };
 
 #endif // _NONMESHEDSURFACEPARAMETERSDLG_H_

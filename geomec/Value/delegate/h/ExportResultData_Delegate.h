@@ -5,22 +5,21 @@ class CExportResultData;
 
 #include "ColorNode_Delegate.h"
 
-class CExportResultData_Delegate : public CColorNode_Delegate
-{
+class CExportResultData_Delegate : public CColorNode_Delegate {
 public:
-  CExportResultData_Delegate(CExportResultData* exportResultData);
+  CExportResultData_Delegate(CExportResultData *exportResultData);
 
   virtual bool Attributes();
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
 private:
-  CExportResultData_Delegate(const CExportResultData_Delegate& rhs);
-  CExportResultData_Delegate& operator = (const CExportResultData_Delegate& rhs);
+  CExportResultData_Delegate(const CExportResultData_Delegate &rhs);
+  CExportResultData_Delegate &operator=(const CExportResultData_Delegate &rhs);
 
-  CExportResultData* m_exportResultData;
+  CExportResultData *m_exportResultData;
 
   REGISTER_DELEGATE(CExportResultData, CExportResultData_Delegate);
 };
 
-#endif  // _ExportResultData_Delegate_h_
+#endif // _ExportResultData_Delegate_h_

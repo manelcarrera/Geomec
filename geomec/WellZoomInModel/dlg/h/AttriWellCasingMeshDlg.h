@@ -2,18 +2,17 @@
 #define _ATTRIWELLCASINGMESHDLG_H_
 
 #include "AttributesTemplate.h"
-//#include "WellCasingMesh.h"
+// #include "WellCasingMesh.h"
 class CWellCasingMesh;
 
-class CAttriWellCasingMeshDlg : public CAttributesTemplate<CWellCasingMesh>
-{
+class CAttriWellCasingMeshDlg : public CAttributesTemplate<CWellCasingMesh> {
 public:
-  CAttriWellCasingMeshDlg(CWellCasingMesh& mesh, CWnd* pParent = NULL);   // standard constructor
+  CAttriWellCasingMeshDlg(CWellCasingMesh &mesh, CWnd *pParent = NULL); // standard constructor
   virtual ~CAttriWellCasingMeshDlg();
 
 protected:
   virtual BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
 
   DECLARE_MESSAGE_MAP()
 

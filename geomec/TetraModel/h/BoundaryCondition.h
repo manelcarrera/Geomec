@@ -15,27 +15,26 @@ class CDisplacementSupportNode;
 class CTetraBoundary;
 
 namespace geo {
-  class CTetSurface;
+class CTetSurface;
 }
 
-class CBoundaryCondition  
-{
+class CBoundaryCondition {
 public:
-  class CSupport
-  {
+  class CSupport {
   public:
-    CSupport(int nStages); // generates full support, displacements need to be defined for each stage
+    CSupport(int nStages);                // generates full support, displacements need to be defined for each stage
     CSupport(const geo::IVector &vecDir); // generates normal support, no displacements defined
 
     // generates normal support, with displacements, vectors are projected on vecDir
     CSupport(const geo::IVector &vecDir, std::vector<geo::CVector> vcDisplacements);
     CSupport(const CSupport &first, int distfirst, const CSupport &second, int distsecond, bool bFull,
-      const geo::IVector &vecDir); // interpolated
+             const geo::IVector &vecDir); // interpolated
 
     CSupport(const CSupport &rhs);
 
     // derive displacement vector from global strain tensor and reference vector
-    void Displacement(const ITensor &GlobalTensor, const geo::IVector &vecReference, const double &dRefAzimuth, int nStage);
+    void Displacement(const ITensor &GlobalTensor, const geo::IVector &vecReference, const double &dRefAzimuth,
+                      int nStage);
     // direct displacement vector input
     void Displacement(const geo::IVector &vecDisplacement, int nStage);
     // get vector
@@ -56,8 +55,7 @@ public:
     // for operator+
     CSupport();
 
-    class CIndependentVectorSet
-    {
+    class CIndependentVectorSet {
     public:
       bool Insert(const geo::IVector &vector);
       int Size();
@@ -68,12 +66,11 @@ public:
     };
 
     std::vector<geo::CVector> m_vcDisplacements; // for each stage
-    bool m_bFull; // whether support is full or normal
-    std::vector<geo::CVector> m_vcDirections; // normal support directions (max. 2, otherwise full)
+    bool m_bFull;                                // whether support is full or normal
+    std::vector<geo::CVector> m_vcDirections;    // normal support directions (max. 2, otherwise full)
   };
 
-  class CPressure
-  {
+  class CPressure {
   public:
     CPressure(int nStages);
 
@@ -90,7 +87,7 @@ public:
   virtual ~CBoundaryCondition();
 
   typedef std::map<geo::CPoint, CSupport> TSupportMap;
-  typedef std::map<const geo::CBodyTriangle*, CPressure> TPressureMap;
+  typedef std::map<const geo::CBodyTriangle *, CPressure> TPressureMap;
 
   void AddSupports(TSupportMap &supportmap, TPressureMap &pressuremap);
 
@@ -105,13 +102,15 @@ private:
 
   const CTetraBoundary &Boundary();
   void InsertSupport(TSupportMap &supportmap, const geo::IPoint &pt, CSupport &support,
-    const CDisplacementSupportNode::CNodalSupportDef &NodeDef, const geo::IVector &vecReference);
+                     const CDisplacementSupportNode::CNodalSupportDef &NodeDef, const geo::IVector &vecReference);
   void InterpolateAndInsertEdgeNodes(TSupportMap &supportmap, TSupportMap &localmap, bool bFull);
   double Interpolate(double dVal1, double dFac1, double dVal2, double dFac2);
-  geo::CVector InterpolateVector(const geo::IPoint &pt, const geo::IVector &vec1, const geo::IPoint &pt1, const geo::IVector &vec2, const geo::IPoint &pt2);
+  geo::CVector InterpolateVector(const geo::IPoint &pt, const geo::IVector &vec1, const geo::IPoint &pt1,
+                                 const geo::IVector &vec2, const geo::IPoint &pt2);
   TLinePointPairPair GetBestEdgePoints(const geo::IPoint &pt, const std::vector<TLinePointPair> &vcEdgePoints);
   void InterpolateSurfaceNode(const geo::IPoint &pt,
-    const std::vector<std::pair<geo::CLine, geo::CPoint> > &vcEdgePoints, TSupportMap &supportmap);
+                              const std::vector<std::pair<geo::CLine, geo::CPoint>> &vcEdgePoints,
+                              TSupportMap &supportmap);
   void InterpolateSurfaceNodes(TSupportMap &supportmap, TSupportMap &localmap, bool bFull);
   void ProcessNormal(TSupportMap &supportmap);
   void ProcessFull(TSupportMap &supportmap);

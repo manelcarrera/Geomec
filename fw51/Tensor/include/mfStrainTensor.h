@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #if !defined(AFX_STRAINTENSOR_H__INCLUDED_)
 #define AFX_STRAINTENSOR_H__INCLUDED_
 
@@ -6,15 +6,13 @@
 
 #include "TensorExports.h"
 
-class TENSOR_EXPORT CStrainTensor : public CMechanicalTensor
-{
+class TENSOR_EXPORT CStrainTensor : public CMechanicalTensor {
 public:
   CStrainTensor();
-  CStrainTensor(const ITensor& tensor);
-  CStrainTensor(const double &xx, const double &yy, const double &zz,
-                  const double &xy, const double &yz, const double &xz);
+  CStrainTensor(const ITensor &tensor);
+  CStrainTensor(const double &xx, const double &yy, const double &zz, const double &xy, const double &yz,
+                const double &xz);
   virtual ~CStrainTensor();
-
 
   double EngineerXY() const;
   double EngineerYZ() const;

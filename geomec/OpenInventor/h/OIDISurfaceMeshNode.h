@@ -1,12 +1,12 @@
 #ifndef _OIDI_SURFACE_MESH_NODE_H__
 #define _OIDI_SURFACE_MESH_NODE_H__
 
-#include <MeshVizXLM/MbVec3.h>
-#include <Inventor/nodes/SoGroup.h>
-#include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/actions/SoAction.h>
 #include <Inventor/actions/SoHandleEventAction.h>
 #include <Inventor/actions/SoRayPickAction.h>
+#include <Inventor/nodes/SoGroup.h>
+#include <Inventor/nodes/SoSeparator.h>
+#include <MeshVizXLM/MbVec3.h>
 
 #include <map>
 
@@ -34,21 +34,18 @@ class MoCellFilter;
 class DecimatingCellFilterI;
 class MoMeshVector;
 
-template<class T>
-class MiDataSetI;
+template <class T> class MiDataSetI;
 
-
-class OIDISurfaceMeshNode : public OIDIMeshNode
-{
+class OIDISurfaceMeshNode : public OIDIMeshNode {
   // Cell shape members
-  SoSwitch*    m_surfaceSwitch;
-  SoSeparator* m_surfaceSeparator;
-  SoGroup*     m_surfaceAppearance;
-  MoDrawStyle* m_surfaceDrawStyle;
-  MoMaterial*  m_surfaceMaterial;
-  SoMaterial*  m_soSurfaceMaterial;
-  MoMeshSurface* m_surface;
-  SoSwitch *   m_isolineSwitch;
+  SoSwitch *m_surfaceSwitch;
+  SoSeparator *m_surfaceSeparator;
+  SoGroup *m_surfaceAppearance;
+  MoDrawStyle *m_surfaceDrawStyle;
+  MoMaterial *m_surfaceMaterial;
+  SoMaterial *m_soSurfaceMaterial;
+  MoMeshSurface *m_surface;
+  SoSwitch *m_isolineSwitch;
   MoMeshAnnotatedIsoline *m_isoline;
 
   void buildSurfaceAppearanceNode();
@@ -63,20 +60,17 @@ class OIDISurfaceMeshNode : public OIDIMeshNode
   void buildNodes();
 
 public:
-
-  OIDISurfaceMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
+  OIDISurfaceMeshNode(const OIDIMesh *meshData, OIDIMeshNodeManager *meshNodeManager);
 
   virtual void updateColorScalarSet();
 
   virtual void updateIsoScalarSet();
 
-
   virtual void setIsoValues(int isoCount, double min, double max);
   virtual void setIsoGap(double gap);
 
-  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
+  virtual void UpdateDisplaySettings(const MeshNodeSettings &meshNodeSettings, bool showColor);
   virtual void updateGeologyColors();
-
 };
 
 #endif

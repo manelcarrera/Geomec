@@ -14,8 +14,7 @@
 #include "StorageNode.h"
 #include "ivaluecomponent.h"
 
-class IColorScaleNode : public CStorageNode 
-{
+class IColorScaleNode : public CStorageNode {
 public:
   // Typedefs for values supplied by the value component
   typedef geo::CValue TValue;
@@ -25,22 +24,22 @@ public:
 
   IColorScaleNode(CFemAppModel &model);
   IColorScaleNode(const unsigned int uName, CFemAppModel &model);
-  IColorScaleNode(const QString& strName, CFemAppModel &model);
+  IColorScaleNode(const QString &strName, CFemAppModel &model);
   IColorScaleNode(const IColorScaleNode &rhs);
 
-  virtual TColor Color(const TValue& value, const TMinMax &MinMax) const = 0;
+  virtual TColor Color(const TValue &value, const TMinMax &MinMax) const = 0;
 
-  bool operator==(const IColorScaleNode& rhs) const;
-  IColorScaleNode& operator=(const IColorScaleNode& rhs);
+  bool operator==(const IColorScaleNode &rhs) const;
+  IColorScaleNode &operator=(const IColorScaleNode &rhs);
 
   void SetIndex(int nIndex);
 
-  virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitIColorScaleNode(*this); }
-  virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitIColorScaleNode(*this); }
+  virtual bool Accept(graphnode::IConstVisitor &visitor) const { return visitor.VisitIColorScaleNode(*this); }
+  virtual bool Accept(graphnode::IVisitor &visitor) { return visitor.VisitIColorScaleNode(*this); }
 
 protected:
-  TColor LoadColor(TSTREAM& stream);
-  void SaveColor(TSTREAM& stream, TColor color);
+  TColor LoadColor(TSTREAM &stream);
+  void SaveColor(TSTREAM &stream, TColor color);
 };
 
 #endif // !defined(AFX_ICOLORSCALENODE_H__7ED5861E_584D_4617_A353_2C9BBA94A472__INCLUDED_)

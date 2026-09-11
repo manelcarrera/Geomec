@@ -12,19 +12,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMudWeight wrapper class
 
-class CMudWeight : public COleDispatchDriver
-{
+class CMudWeight : public COleDispatchDriver {
 public:
-  CMudWeight() {}		// Calls COleDispatchDriver default constructor
+  CMudWeight() {} // Calls COleDispatchDriver default constructor
   CMudWeight(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-  CMudWeight(const CMudWeight& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CMudWeight(const CMudWeight &dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-// Attributes
+  // Attributes
 public:
   long GetCount();
   void SetCount(long);
 
-// Operations
+  // Operations
 public:
   double Item(long itemnr);
   void Remove(long itemnr);
@@ -32,8 +31,9 @@ public:
   long Add(double NewValue);
   void Sort();
   short OrderOfMudweights();
-  BOOL GetOptimumMudweightEx(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OptimumMudweight, BOOL* OptimumMudweightFound, short* Case);
-  BOOL SetDefaultEx(BOOL* IsDefaultSet);
+  BOOL GetOptimumMudweightEx(double CriticalPlasticStrain, VARIANT *EpeqResults, double *OptimumMudweight,
+                             BOOL *OptimumMudweightFound, short *Case);
+  BOOL SetDefaultEx(BOOL *IsDefaultSet);
 };
 
 //{{AFX_INSERT_LOCATION}}

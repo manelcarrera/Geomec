@@ -22,33 +22,33 @@ class IBox;
 class CLine;
 
 // Copyright (c) 2011 TNO DIANA BV                              Confidential
-// Description : The CBox bject represents an rectangular box in 3D space 
+// Description : The CBox bject represents an rectangular box in 3D space
 // Status      : Finished (100%)
 // Remarks     : See IBox
-// Last review : 27-03-2002 
-class GEOMETRY_EXPORT  CBox : public IBox
-{
+// Last review : 27-03-2002
+class GEOMETRY_EXPORT CBox : public IBox {
   CArray<CNode> m_Points;
+
 public:
   CBox();
   CBox(const IPoint &Pos, const IVector &Dir1, const IVector &Dir2, const IVector &Dir3);
   CBox(const IPoint &MinPoint, const IPoint &MaxPoint);
   CBox(const CBox &rhs);
-  CBox& operator=(const CBox& rhs);
+  CBox &operator=(const CBox &rhs);
 
   virtual ~CBox();
   CArray<CNode> GeneratePoints() const;
-  CArray<CLine>  GenerateLines() const;
+  CArray<CLine> GenerateLines() const;
 
   void AssertValid() const;
 
-  //IBox Interface
+  // IBox Interface
   virtual double Width() const;
   virtual double Depth() const;
   virtual double Height() const;
 
-  //IElement Interface
-  virtual const IPoint &Point( int nIndex ) const;
+  // IElement Interface
+  virtual const IPoint &Point(int nIndex) const;
   virtual void Point(int nIndex, const IPoint &pt);
   virtual int NrOfPoints() const;
 
@@ -60,12 +60,12 @@ public:
   virtual bool Contains(const IPoint &point, bool bIncludeEdge) const;
 
   virtual size_t Order() const;
-  virtual const char* FaceName(int /*nIndex*/) const { return 0; }
+  virtual const char *FaceName(int /*nIndex*/) const { return 0; }
 
   virtual size_t NrOfNodes() const;
-  virtual const INode& Node(int nIndex) const;
-  virtual void Node(int nIndex, const IPoint& point);
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &point);
 };
 
-}
+} // namespace geo
 #endif // !defined(AFX_BOX_H__B1A0C8A3_E9FD_4B6E_AB4C_D3C06934AB5F__INCLUDED_)

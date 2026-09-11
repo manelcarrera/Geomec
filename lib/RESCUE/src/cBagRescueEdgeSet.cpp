@@ -25,53 +25,28 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescueEdgeSet.h"
 #include "RescueEdgeSet.h"
 #include "RescueModel.h"
+#include "myHeaders.h"
 
-cBagRescueEdgeSet::cBagRescueEdgeSet()
-{
-  tree = new RescueTree();
-}
+cBagRescueEdgeSet::cBagRescueEdgeSet() { tree = new RescueTree(); }
 
-cBagRescueEdgeSet::~cBagRescueEdgeSet()
-{
-  delete tree;
-}
+cBagRescueEdgeSet::~cBagRescueEdgeSet() { delete tree; }
 
-void cBagRescueEdgeSet::operator+=(RescueEdgeSet *newObject)
-{
-  tree->Add(newObject);
-}
+void cBagRescueEdgeSet::operator+=(RescueEdgeSet *newObject) { tree->Add(newObject); }
 
-RESCUEBOOL cBagRescueEdgeSet::operator-=(RescueEdgeSet * existingObject)
-{
-  return tree->Delete(existingObject);
-}
+RESCUEBOOL cBagRescueEdgeSet::operator-=(RescueEdgeSet *existingObject) { return tree->Delete(existingObject); }
 
-RescueEdgeSet *cBagRescueEdgeSet::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescueEdgeSet *) tree->NthObject(ordinal);
-}
+RescueEdgeSet *cBagRescueEdgeSet::NthObject(RESCUEINT64 ordinal) { return (RescueEdgeSet *)tree->NthObject(ordinal); }
 
-RESCUEINT32 cBagRescueEdgeSet::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescueEdgeSet::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-
-

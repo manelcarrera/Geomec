@@ -3,14 +3,12 @@
 
 #include "OIV2DSceneWrapper.h"
 
-class OIV2DWellPathGraphSceneWrapper : public OIV2DSceneWrapper
-{
+class OIV2DWellPathGraphSceneWrapper : public OIV2DSceneWrapper {
 
 public:
-
-  explicit OIV2DWellPathGraphSceneWrapper(OIV2DScene& scene);
+  explicit OIV2DWellPathGraphSceneWrapper(OIV2DScene &scene);
 
   virtual bool IsOIV2DWellPathGraphScene() const;
 };
 
-#endif  // _OIV2DWellPathGraphSceneWrapper_h_
+#endif // _OIV2DWellPathGraphSceneWrapper_h_

@@ -5,7 +5,7 @@
 
 #include "TriaIntersecBox.h"
 
-//returns a nmae for the side
+// returns a nmae for the side
 std::string GetSideName(SIDE_ID SideID);
 
-#endif  // GetSideName_h
+#endif // GetSideName_h

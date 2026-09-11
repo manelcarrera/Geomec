@@ -11,8 +11,7 @@
 
 #include <QString>
 
-class ICtrlObjectBase  
-{
+class ICtrlObjectBase {
 protected:
   ICtrlObjectBase();
   virtual ~ICtrlObjectBase();
@@ -21,7 +20,7 @@ public:
   // Text
   virtual QString Text() const = 0;
   virtual BOOL CanEditText() const;
-  virtual BOOL EditText(const QString& strText);
+  virtual BOOL EditText(const QString &strText);
 
   // Less
   virtual BOOL operator<(const ICtrlObjectBase &object) const;

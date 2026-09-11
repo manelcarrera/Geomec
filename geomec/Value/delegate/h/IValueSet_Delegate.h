@@ -5,18 +5,17 @@ class IValueSet;
 
 #include "StorageNode_Delegate.h"
 
-class IValueSet_Delegate : public CStorageNode_Delegate
-{
+class IValueSet_Delegate : public CStorageNode_Delegate {
 public:
-  IValueSet_Delegate(IValueSet* valueSet);
+  IValueSet_Delegate(IValueSet *valueSet);
 
 private:
-  IValueSet_Delegate(const IValueSet_Delegate& rhs);
-  IValueSet_Delegate& operator = (const IValueSet_Delegate& rhs);
+  IValueSet_Delegate(const IValueSet_Delegate &rhs);
+  IValueSet_Delegate &operator=(const IValueSet_Delegate &rhs);
 
-  IValueSet* m_valueSet;
+  IValueSet *m_valueSet;
 
   REGISTER_DELEGATE(IValueSet, IValueSet_Delegate);
 };
 
-#endif  // _IValueSet_Delegate_h_
+#endif // _IValueSet_Delegate_h_

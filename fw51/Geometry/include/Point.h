@@ -21,23 +21,20 @@ class IPoint;
 // Description : Default implementation of the IPoint interface
 // Status      : Finished (100%)
 // Remarks     : See IPoint for definition
-// Last review : 27-03-2002 
-class GEOMETRY_EXPORT  CPoint : public IPoint
-{
+// Last review : 27-03-2002
+class GEOMETRY_EXPORT CPoint : public IPoint {
 public:
-  virtual bool Empty() const; 
+  virtual bool Empty() const;
   virtual void AssertValid() const;
 
-  // Constructors 
+  // Constructors
   CPoint();
   CPoint(const IVector &vec);
   CPoint(const IPoint &pt);
   CPoint(const CPoint &pt);
-  CPoint(const double &dX,
-         const double &dY,
-         const double &dZ = 0.0);
+  CPoint(const double &dX, const double &dY, const double &dZ = 0.0);
 
-  CPoint& operator=(const CPoint& rhs);
+  CPoint &operator=(const CPoint &rhs);
 
   // IPoint interface ...
   virtual const double &X() const;
@@ -50,12 +47,13 @@ public:
   virtual void Set(const double &dX, const double &dY, const double &dZ);
 
   static const CPoint NullPoint;
-  static bool CoLinear(const CPoint& p1,const CPoint& p2,const CPoint& p3);
+  static bool CoLinear(const CPoint &p1, const CPoint &p2, const CPoint &p3);
+
 private:
   double m_coor[3];
-  bool   m_empty;
+  bool m_empty;
 };
-  
-}
+
+} // namespace geo
 
 #endif // !defined(AFX_POINT_H__A767A583_D0B5_41A1_89BC_2DFB1AE27A26__INCLUDED_)

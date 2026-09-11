@@ -13,14 +13,8 @@
 
 namespace dia {
 
-CLoadCase::CLoadCase(CLoadManager &manager, int index)
-:	ICase(manager, index)
-{
-}
+CLoadCase::CLoadCase(CLoadManager &manager, int index) : ICase(manager, index) {}
 
-std::string CLoadCase::FilosDirName() const
-{
-  return "LOADS";
-}
+std::string CLoadCase::FilosDirName() const { return "LOADS"; }
 
 } // namespace dia

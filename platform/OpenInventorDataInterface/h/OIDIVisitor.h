@@ -3,20 +3,17 @@
 
 #include "DispatchVisitorBase.h"
 #include "DrawVisitorBase.h"
-#include "OIDISet.h"
 #include "OIDIMesh.h"
+#include "OIDISet.h"
 
-namespace geo
-{
-  class IMesh;
+namespace geo {
+class IMesh;
 }
 
-
-class OIDIVisitor : public CDrawVisitorBase
-{
+class OIDIVisitor : public CDrawVisitorBase {
 public:
-
-  OIDIVisitor(const COpenGLNode *openGLNode, OIDISet *set, OIDISet::Node *ifNode) : m_OpenGLNode(openGLNode), m_Set(set), m_Node(ifNode) {}
+  OIDIVisitor(const COpenGLNode *openGLNode, OIDISet *set, OIDISet::Node *ifNode)
+      : m_OpenGLNode(openGLNode), m_Set(set), m_Node(ifNode) {}
 
   virtual bool HandleElementSet(const geo::IElementSet &ElementSet);
   virtual bool HandleMesh(const geo::IMesh &Mesh);
@@ -31,50 +28,42 @@ public:
   virtual bool HandleSymbol(const ISymbol &Symbol);
 
 private:
-
-  class OIDIVolumeVisitor : public geo::CVisitorBase
-  {
+  class OIDIVolumeVisitor : public geo::CVisitorBase {
   public:
-  OIDIVolumeVisitor(std::vector<OIDIVolumeCell>& cells) : m_Cells(cells) {}
+    OIDIVolumeVisitor(std::vector<OIDIVolumeCell> &cells) : m_Cells(cells) {}
 
-  virtual bool HandleBody(const geo::IBody &body);
-
+    virtual bool HandleBody(const geo::IBody &body);
 
   private:
-  std::vector<OIDIVolumeCell> &m_Cells;
+    std::vector<OIDIVolumeCell> &m_Cells;
   };
 
-  class OIDISurfaceVisitor : public geo::CVisitorBase
-  {
+  class OIDISurfaceVisitor : public geo::CVisitorBase {
   public:
-  OIDISurfaceVisitor(std::vector<OIDISurfaceCell>& cells) : m_Cells(cells) {}
+    OIDISurfaceVisitor(std::vector<OIDISurfaceCell> &cells) : m_Cells(cells) {}
 
-  virtual bool HandleFace(const geo::IFace &face);
-  virtual bool HandleInterface(const geo::IInterfaceElement &element);
+    virtual bool HandleFace(const geo::IFace &face);
+    virtual bool HandleInterface(const geo::IInterfaceElement &element);
 
   private:
-  std::vector<OIDISurfaceCell> &m_Cells;
+    std::vector<OIDISurfaceCell> &m_Cells;
   };
 
-  class OIDILineVisitor : public geo::CVisitorBase
-  {
+  class OIDILineVisitor : public geo::CVisitorBase {
   public:
-  OIDILineVisitor(std::vector<OIDILineCell>& cells) : m_Cells(cells) {}
+    OIDILineVisitor(std::vector<OIDILineCell> &cells) : m_Cells(cells) {}
 
-  virtual bool HandleLine(const geo::ILine &line);
-
+    virtual bool HandleLine(const geo::ILine &line);
 
   private:
-  std::vector<OIDILineCell> &m_Cells;
+    std::vector<OIDILineCell> &m_Cells;
   };
-
 
   const COpenGLNode *m_OpenGLNode;
   OIDISet *m_Set;
   OIDISet::Node *m_Node;
-
 };
 
-geo::CPtrArray<geo::IPoint> * CreateArray( const geo::IPoint &Point );
+geo::CPtrArray<geo::IPoint> *CreateArray(const geo::IPoint &Point);
 
 #endif

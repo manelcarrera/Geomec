@@ -8,21 +8,15 @@
 
 namespace dia {
 
-CNodalTemperature::CNodalTemperature(CBoundaCase& boundacase, double size, const geo::INode& node)
-: IFlowLoad(boundacase, size),
-  m_Node(node)
-{
-}
+CNodalTemperature::CNodalTemperature(CBoundaCase &boundacase, double size, const geo::INode &node)
+    : IFlowLoad(boundacase, size), m_Node(node) {}
 
-const geo::INode& CNodalTemperature::Node() const
-{
-  return m_Node;
-}
+const geo::INode &CNodalTemperature::Node() const { return m_Node; }
 
-bool CNodalTemperature::WriteFilos() const
-{
+bool CNodalTemperature::WriteFilos() const {
   ftn_int_t idx = Inquire("NODAL", "DIM");
-  if(idx < 0) idx = 0;
+  if (idx < 0)
+    idx = 0;
   ++idx;
 
   assert(!XistIndexed("NODAL/", &idx));
@@ -43,4 +37,4 @@ bool CNodalTemperature::WriteFilos() const
   return true;
 }
 
-}
+} // namespace dia

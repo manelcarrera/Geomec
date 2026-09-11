@@ -1,47 +1,44 @@
 // newxsecdlg.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "geomec.h"
 #include "newxsecdlg.h"
-#include "modelbase.h"
 #include "boundarybase.h"
+#include "geomec.h"
+#include "modelbase.h"
+#include "stdafx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
-#ifdef _MSC_VER#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;#endif  // _MSC_VER
+#ifdef _MSC_VER
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif // _MSC_VER
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CNewXSecDlg dialog
 
-
-CNewXSecDlg::CNewXSecDlg(CGraphModel &model, CWnd* pParent /*=NULL*/)
-  : CDialog(CNewXSecDlg::IDD, pParent), m_model(model), m_dFirstNorth(0), m_dFirstEast(0), m_dSecondNorth(0), m_dSecondEast(0)
-{
+CNewXSecDlg::CNewXSecDlg(CGraphModel &model, CWnd *pParent /*=NULL*/)
+    : CDialog(CNewXSecDlg::IDD, pParent), m_model(model), m_dFirstNorth(0), m_dFirstEast(0), m_dSecondNorth(0),
+      m_dSecondEast(0) {
   //{{AFX_DATA_INIT(CNewXSecDlg)
-    // NOTE: the ClassWizard will add member initialization here
+  // NOTE: the ClassWizard will add member initialization here
   //}}AFX_DATA_INIT
 }
 
-const CUnitNode& CNewXSecDlg::UnitNode()
-{
-  CGeomecDoc& doc = ((CGeomecApp*)AfxGetApp())->GetDoc();
+const CUnitNode &CNewXSecDlg::UnitNode() {
+  CGeomecDoc &doc = ((CGeomecApp *)AfxGetApp())->GetDoc();
   return doc.UnitNode();
 }
 
-void CNewXSecDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CNewXSecDlg::DoDataExchange(CDataExchange *pDX) {
   CDialog::DoDataExchange(pDX);
   CString strUnit;
 
   CLengthQuantity qnLength;
 
-  if(!pDX->m_bSaveAndValidate)
-  {
-    switch(UnitNode().Unit())
-    {
+  if (!pDX->m_bSaveAndValidate) {
+    switch (UnitNode().Unit()) {
     case CQuantity::SI_UNIT:
       strUnit.Format("m");
       break;
@@ -49,10 +46,9 @@ void CNewXSecDlg::DoDataExchange(CDataExchange* pDX)
       strUnit.Format("ft");
       break;
     }
-
   }
   //{{AFX_DATA_MAP(CWellPathDlg)
-    // NOTE: the ClassWizard will add DDX and DDV calls here
+  // NOTE: the ClassWizard will add DDX and DDV calls here
   //}}AFX_DATA_MAP
 
   DDX_Text(pDX, IDC_FIRST_NORTH, m_dFirstNorth);
@@ -70,22 +66,19 @@ void CNewXSecDlg::DoDataExchange(CDataExchange* pDX)
   m_dSecondNorth = qnLength.Convert(m_dSecondNorth, CQuantity::SI_UNIT, UnitNode().Unit());
   m_dSecondEast = qnLength.Convert(m_dSecondEast, CQuantity::SI_UNIT, UnitNode().Unit());
 
-  if(pDX->m_bSaveAndValidate)
-  {
+  if (pDX->m_bSaveAndValidate) {
     // Validate your data
-    CModelBase *pModel = dynamic_cast<CModelBase*>(&(m_model));
+    CModelBase *pModel = dynamic_cast<CModelBase *>(&(m_model));
     ASSERT(pModel);
 
-    if(!((m_dFirstNorth >= pModel->Boundary().Min().X() && m_dFirstNorth <= pModel->Boundary().Max().X()) &&
-      (m_dFirstEast >= pModel->Boundary().Min().Y() && m_dFirstEast <= pModel->Boundary().Max().Y())))
-    {
+    if (!((m_dFirstNorth >= pModel->Boundary().Min().X() && m_dFirstNorth <= pModel->Boundary().Max().X()) &&
+          (m_dFirstEast >= pModel->Boundary().Min().Y() && m_dFirstEast <= pModel->Boundary().Max().Y()))) {
       AfxMessageBox("First reference point is outside the model");
       pDX->Fail();
       return;
     }
-    if(!((m_dSecondNorth >= pModel->Boundary().Min().X() && m_dSecondNorth <= pModel->Boundary().Max().X()) &&
-      (m_dSecondEast >= pModel->Boundary().Min().Y() && m_dSecondEast <= pModel->Boundary().Max().Y())))
-    {
+    if (!((m_dSecondNorth >= pModel->Boundary().Min().X() && m_dSecondNorth <= pModel->Boundary().Max().X()) &&
+          (m_dSecondEast >= pModel->Boundary().Min().Y() && m_dSecondEast <= pModel->Boundary().Max().Y()))) {
       AfxMessageBox("Second reference point is outside the model");
       pDX->Fail();
       return;
@@ -93,11 +86,10 @@ void CNewXSecDlg::DoDataExchange(CDataExchange* pDX)
   }
 }
 
-
 BEGIN_MESSAGE_MAP(CNewXSecDlg, CDialog)
-  //{{AFX_MSG_MAP(CNewXSecDlg)
-    // NOTE: the ClassWizard will add message map macros here
-  //}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CNewXSecDlg)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

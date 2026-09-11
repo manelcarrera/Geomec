@@ -3,17 +3,16 @@
 
 #include "ISaveModel.h"
 
-class CSaveModelGUI : public ISaveModel
-{
+class CSaveModelGUI : public ISaveModel {
 public:
   CSaveModelGUI();
   virtual ~CSaveModelGUI();
 
-  virtual bool saveModel(const QString& fileName, bool bSwitch);
+  virtual bool saveModel(const QString &fileName, bool bSwitch);
 
 private:
-  CSaveModelGUI(const CSaveModelGUI& rhs);
-  CSaveModelGUI& operator = (const CSaveModelGUI& rhs);
+  CSaveModelGUI(const CSaveModelGUI &rhs);
+  CSaveModelGUI &operator=(const CSaveModelGUI &rhs);
 };
 
-#endif  // _SaveModelGUI_h_
+#endif // _SaveModelGUI_h_

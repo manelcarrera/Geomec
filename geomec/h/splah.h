@@ -33,62 +33,62 @@
 //
 class CSplash : public CWinThread {
 public:
-   CSplash(unsigned int nIDRes,          // resource ID of bitmap
-      unsigned int duration,             // how long to show (minimum)
-      WORD flags=0,              // see below
-      CSplash** ppBackPtr=NULL); // pointer to NULL when destroyed
-   ~CSplash();
+  CSplash(unsigned int nIDRes,         // resource ID of bitmap
+          unsigned int duration,       // how long to show (minimum)
+          WORD flags = 0,              // see below
+          CSplash **ppBackPtr = NULL); // pointer to NULL when destroyed
+  ~CSplash();
 
-   enum { // flags
-      KillOnClick = 0x0001,      // any key/mouse dismisses splash
-      IgnoreCmdLine = 0x0002,    // need I say more?
-      NoWaitForMainWnd = 0x0004
-   };
+  enum {                    // flags
+    KillOnClick = 0x0001,   // any key/mouse dismisses splash
+    IgnoreCmdLine = 0x0002, // need I say more?
+    NoWaitForMainWnd = 0x0004
+  };
 
-   // override to create a different kind of splash window
-   virtual CWnd* OnCreateSplashWnd(unsigned int nIDRes, unsigned int duration, WORD flags);
-   void Kill();                  // kill the splash screen
+  // override to create a different kind of splash window
+  virtual CWnd *OnCreateSplashWnd(unsigned int nIDRes, unsigned int duration, WORD flags);
+  void Kill(); // kill the splash screen
 
 protected:
-   CSplash**   m_ppBackPtr;      // caller's back pointer to me
-   unsigned int        m_nIDRes;         // bitmap resource ID
-   unsigned int        m_duration;       // how long to display
-   WORD        m_flags;          // CSplashWnd creation flags
+  CSplash **m_ppBackPtr;   // caller's back pointer to me
+  unsigned int m_nIDRes;   // bitmap resource ID
+  unsigned int m_duration; // how long to display
+  WORD m_flags;            // CSplashWnd creation flags
 
-   virtual BOOL InitInstance();
-   DECLARE_DYNAMIC(CSplash)
+  virtual BOOL InitInstance();
+  DECLARE_DYNAMIC(CSplash)
 };
 
 //////////////////
 // Splash window. This class is private to CSplash--Don't use it unless
 // you are doing some hairy stuff to override the splash window, like
 // create animated effects, etc.
-// 
+//
 class CSplashWnd : public CWnd {
 protected:
-   friend class CSplash;
-   CSplashWnd();
-   ~CSplashWnd();
+  friend class CSplash;
+  CSplashWnd();
+  ~CSplashWnd();
 
 #ifdef NODIB
-   CBitmap  m_bitmap;      // ordinary MFC bitmap
+  CBitmap m_bitmap; // ordinary MFC bitmap
 #else
-   CDib     m_dib;         // Device independent bitmap
+  CDib m_dib; // Device independent bitmap
 #endif
-   unsigned int     m_duration;    // duration (msec)
-   WORD     m_flags;       // see below
+  unsigned int m_duration; // duration (msec)
+  WORD m_flags;            // see below
 
-   // override to do weird stuff
-   virtual BOOL Create(unsigned int nIDRes, unsigned int duration, WORD flags);
+  // override to do weird stuff
+  virtual BOOL Create(unsigned int nIDRes, unsigned int duration, WORD flags);
 
-   virtual BOOL PreTranslateMessage(MSG* pMsg);
-   virtual void PostNcDestroy();
+  virtual BOOL PreTranslateMessage(MSG *pMsg);
+  virtual void PostNcDestroy();
 
-   afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
-   afx_msg void OnClose();
-   afx_msg void OnPaint();
-   afx_msg void OnTimer(UINT_PTR nIDEvent);
-   DECLARE_MESSAGE_MAP()
-   DECLARE_DYNAMIC(CSplashWnd)
+  afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+  afx_msg void OnClose();
+  afx_msg void OnPaint();
+  afx_msg void OnTimer(UINT_PTR nIDEvent);
+  DECLARE_MESSAGE_MAP()
+  DECLARE_DYNAMIC(CSplashWnd)
 };
 #endif // !defined(AFX_SPLAH_H__56ED1D9B_5319_11D4_B3B6_00A0C941C60B__INCLUDED_)

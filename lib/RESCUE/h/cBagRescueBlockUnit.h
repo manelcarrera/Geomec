@@ -29,28 +29,24 @@ Software Product or documentation licensed under this agreement.
 #ifndef cBagRescueBlockUnit_H
 #define cBagRescueBlockUnit_H
 
-#include "boolSupport.h"
 #include "RescueTree.h"
+#include "boolSupport.h"
 class RescueBlockUnit;
 
-class cBagRescueBlockUnit
-{
+class cBagRescueBlockUnit {
 protected:
   RescueTree *tree;
+
 public:
   cBagRescueBlockUnit();
   ~cBagRescueBlockUnit();
   void operator+=(RescueBlockUnit *newObject);
   RESCUEBOOL operator-=(RescueBlockUnit *existingObject);
   RescueBlockUnit *NthObject(RESCUEINT64 ordinal);
-  RESCUEINT64 Count64(void) {return tree->Count();}
-  RESCUEINT32 Count(void) {return (RESCUEINT32) tree->Count();}
-  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);  
-  RescueBlockUnit *NthObject(RESCUEINT32 ordinal) {return NthObject((RESCUEINT64) ordinal);}
+  RESCUEINT64 Count64(void) { return tree->Count(); }
+  RESCUEINT32 Count(void) { return (RESCUEINT32)tree->Count(); }
+  RESCUEINT32 Count(RESCUEBOOL throwIfTooBig);
+  RescueBlockUnit *NthObject(RESCUEINT32 ordinal) { return NthObject((RESCUEINT64)ordinal); }
 };
 
 #endif
-
-
-
-

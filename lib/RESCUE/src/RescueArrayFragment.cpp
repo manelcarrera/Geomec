@@ -11,19 +11,14 @@
   Rod Hanks,  December 2000
 
 *********************************************************************/
-#include <string.h>
-#include "RescueModel.h"
 #include "RescueArrayFragment.h"
+#include "RescueModel.h"
+#include <string.h>
 
-RESCUEINT64 RescueArrayFragment::NodeCount64()
-{
+RESCUEINT64 RescueArrayFragment::NodeCount64() {
   RESCUEINT64 myReturn = iCount * jCount;
-  if (dimensions == 3)
-  {
-  myReturn *= kCount;
+  if (dimensions == 3) {
+    myReturn *= kCount;
   }
   return myReturn;
 }
-
-
-

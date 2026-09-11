@@ -6,14 +6,12 @@ class COpenGLSceneNode;
 #include "IDrawDef.h"
 #include "openglnode.h"
 
-class CSceneDrawDef : public IDrawDef
-{
+class CSceneDrawDef : public IDrawDef {
 public:
-  CSceneDrawDef(COpenGLSceneNode& openGLSceneNode,
-  COpenGLNode::CDrawDef& drawDef);
+  CSceneDrawDef(COpenGLSceneNode &openGLSceneNode, COpenGLNode::CDrawDef &drawDef);
   virtual ~CSceneDrawDef();
 
-  virtual std::vector <TColor> Color(const geo::IObject& object) const;
+  virtual std::vector<TColor> Color(const geo::IObject &object) const;
   virtual TColor TextColor() const;
   virtual bool Visible() const;
   virtual bool PolyFillFront() const;
@@ -44,14 +42,14 @@ public:
   virtual GLenum StencilOpZFail() const;
   virtual GLenum StencilOpZPass() const;
 
-  virtual bool IsSelectable(const geo::IObject& object) const;
+  virtual bool IsSelectable(const geo::IObject &object) const;
 
 private:
-  CSceneDrawDef(const CSceneDrawDef& rhs);
-  CSceneDrawDef& operator = (const CSceneDrawDef& rhs);
+  CSceneDrawDef(const CSceneDrawDef &rhs);
+  CSceneDrawDef &operator=(const CSceneDrawDef &rhs);
 
-  COpenGLSceneNode& m_openGLSceneNode;
-  COpenGLNode::CDrawDef& m_drawDef;
+  COpenGLSceneNode &m_openGLSceneNode;
+  COpenGLNode::CDrawDef &m_drawDef;
 };
 
-#endif  // _SceneDrawDef_h_
+#endif // _SceneDrawDef_h_

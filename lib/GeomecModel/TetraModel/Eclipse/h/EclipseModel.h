@@ -16,16 +16,15 @@ class CTetraSurface;
 class CEclipseReservoir;
 class CEclipseFile;
 
-class CEclipseModel : public CTetraModel 
-{
+class CEclipseModel : public CTetraModel {
   typedef std::vector<geo::CPoint> TRow;
   typedef std::vector<TRow> TEclipseHorizon;
-  typedef std::pair<TEclipseHorizon, CTetraSubHorizon*> THorizon;
+  typedef std::pair<TEclipseHorizon, CTetraSubHorizon *> THorizon;
   typedef std::pair<int, int> TEclipseReservoir;
-  
+
   std::vector<THorizon> m_vcHorizon;
   std::vector<TEclipseReservoir> m_vcReservoir;
-  std::vector<CEclipseReservoir*> m_vcOriginalData; // if we ever need it.....
+  std::vector<CEclipseReservoir *> m_vcOriginalData; // if we ever need it.....
 
   int m_nUpperHorizon; // indices to the upper and lower horizon selected by the user
   int m_nLowerHorizon;
@@ -34,23 +33,24 @@ class CEclipseModel : public CTetraModel
   CTetraSurface *m_pLeftSurface;
   CTetraSurface *m_pRightSurface;
   QString m_fileName;
-    
 
-  void ExtractCells(const CEclipseReservoir* pReservoir); // extracts the cells from a reservoir and builds the m_mpCellPoints map.
-//	void MergePoints(); // Merges all the points of the cells in the m_vcCell, making up the complete model.
+  void ExtractCells(
+      const CEclipseReservoir *pReservoir); // extracts the cells from a reservoir and builds the m_mpCellPoints map.
+  //	void MergePoints(); // Merges all the points of the cells in the m_vcCell, making up the complete model.
 public:
-  void InitFile(const CEclipseFile& file);
-//	std::vector<geo::CPoint> AdjacentPoints(const CEclipseFile& file, int Xp, int Yp, int Zp) const;
-//	void AddPoint(const CEclipseFile& file, std::vector<geo::CPoint>& vcPoint, int Xv, int Yv, int Zv, int px, int py, int pz) const;
-//	geo::CPoint MeanPoint(const CEclipseFile& file, int Xp, int Yp, int Zp) const;
+  void InitFile(const CEclipseFile &file);
+  //	std::vector<geo::CPoint> AdjacentPoints(const CEclipseFile& file, int Xp, int Yp, int Zp) const;
+  //	void AddPoint(const CEclipseFile& file, std::vector<geo::CPoint>& vcPoint, int Xv, int Yv, int Zv, int px, int py,
+  // int pz) const; 	geo::CPoint MeanPoint(const CEclipseFile& file, int Xp, int Yp, int Zp) const;
   void CreateSubBoundary();
+
 private:
   CTetraSurface *Surface(int nIndex);
 
   friend class IModelLifetimeFacade;
 
   // Construction ...
-  CEclipseModel(CAnalysisLogger& logger, const CVersionManager& versionManager);
+  CEclipseModel(CAnalysisLogger &logger, const CVersionManager &versionManager);
   virtual ~CEclipseModel();
 
 public:
@@ -62,14 +62,14 @@ public:
   int ReservoirSize() const;
   std::pair<int, int> Reservoir(int nReservoirIndex) const;
   int HorizonSize() const;
-  const CTetraSubHorizon* Horizon(int nHorizonIndex) const;
-  CTetraSubHorizon* Horizon(int nHorizonIndex);
+  const CTetraSubHorizon *Horizon(int nHorizonIndex) const;
+  CTetraSubHorizon *Horizon(int nHorizonIndex);
   void HorizonEnable(int nHorizonIndex, bool bHorizonEnable);
-  const geo::IPoint& HorizonPoint(int nHorizonIndex, int Xp, int Yp) const;
+  const geo::IPoint &HorizonPoint(int nHorizonIndex, int Xp, int Yp) const;
   int PointSizeX() const;
   int PointSizeY() const;
 
-  virtual void createContainers(); 
+  virtual void createContainers();
   virtual void OnCloseModel();
   virtual long SavedItems() const;
   virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
@@ -82,19 +82,20 @@ public:
   static QString staticDocumentType();
 
   virtual ModelType modelType() const;
-  void setFileName(const QString& fileName);
+  void setFileName(const QString &fileName);
 
   ACCEPT_GEOMECMODELVISITORS(VisitEclipseModel);
 };
 
-class CEclipseSubModelEntry : public TSubModelEntry
-{
+class CEclipseSubModelEntry : public TSubModelEntry {
 public:
   typedef CSingleCommandTemplate<CEclipseSubModelEntry> TEntryCommand;
+
 private:
   typedef CConstSingleCommandTemplate<CEclipseSubModelEntry> TConstEntryCommand;
+
 public:
-  CEclipseSubModelEntry(CEclipseModel& model);
+  CEclipseSubModelEntry(CEclipseModel &model);
 
   ACCEPT_GEOMECMODELVISITORS(VisitEclipseSubModelEntry);
 };

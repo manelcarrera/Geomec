@@ -5,10 +5,9 @@ class CSlotHandler;
 
 #include "DianaSignals.h"
 
-class CSlotHandlerDianaSignals : public CDianaSignals
-{
+class CSlotHandlerDianaSignals : public CDianaSignals {
 public:
-  CSlotHandlerDianaSignals(const QObject* sender, CSlotHandler* slotHandler);
+  CSlotHandlerDianaSignals(const QObject *sender, CSlotHandler *slotHandler);
   ~CSlotHandlerDianaSignals();
 
   virtual void onMessage(QString message);
@@ -19,10 +18,10 @@ public:
   virtual void onFinished();
 
 private:
-  CSlotHandlerDianaSignals(const CSlotHandlerDianaSignals& rhs);
-  CSlotHandlerDianaSignals& operator = (const CSlotHandlerDianaSignals& rhs);
+  CSlotHandlerDianaSignals(const CSlotHandlerDianaSignals &rhs);
+  CSlotHandlerDianaSignals &operator=(const CSlotHandlerDianaSignals &rhs);
 
-  CSlotHandler* m_slotHandler;
+  CSlotHandler *m_slotHandler;
 };
 
-#endif  // _SlotHandlerDianaSignals_h_
+#endif // _SlotHandlerDianaSignals_h_

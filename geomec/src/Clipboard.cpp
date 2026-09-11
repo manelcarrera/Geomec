@@ -11,8 +11,8 @@
 // And as always, please give credit where credit is
 // due. Don't remove my name from the source.
 
-#include "stdafx.h"
 #include "Clipboard.h"
+#include "stdafx.h"
 
 ////////////////////////////////////////////////////////////////////
 // GetText
@@ -30,11 +30,10 @@
 //
 ////////////////////////////////////////////////////////////////////
 
-BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
-{
-  HGLOBAL hGlobal;		// Global memory handle
-  LPSTR lpszData;			// Pointer to clipboard data
-  unsigned long nSize;	// Size of clipboard data
+BOOL CClipboardText::GetText(LPSTR lpszBuffer, int nBufSize, HWND hWnd) {
+  HGLOBAL hGlobal;     // Global memory handle
+  LPSTR lpszData;      // Pointer to clipboard data
+  unsigned long nSize; // Size of clipboard data
 
   // First, open the clipboard. OpenClipboard() takes one
   // parameter, the handle of the window that will temporarily
@@ -46,8 +45,9 @@ BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
   hGlobal = GetClipboardData(CF_TEXT);
 
   // If there was no text on the clipboard, we have
-  // been returned a NULL handle.	
-  if (hGlobal == NULL) return FALSE;
+  // been returned a NULL handle.
+  if (hGlobal == NULL)
+    return FALSE;
 
   // Now we have a global memory handle to the text
   // stored on the clipboard. We have to lock this global
@@ -59,7 +59,8 @@ BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
   // Make sure the text on the clipboard is not longer
   // that the buffer that was allocated for it. If it was
   // snip the text on the clipboard so that it fits.
-  if(nSize >= (unsigned int)nBufSize) nSize = nBufSize - 1;
+  if (nSize >= (unsigned int)nBufSize)
+    nSize = nBufSize - 1;
 
   // Now, copy the text into the return buffer. At the
   // end, we need to add a NULL string terminator.
@@ -93,11 +94,10 @@ BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
 //
 ////////////////////////////////////////////////////////////////////
 
-BOOL CClipboardText::GetTextLength (unsigned long *pnSize, HWND hWnd)
-{
-  HGLOBAL hGlobal;		// Global memory handle
-  unsigned long nSize;	// Size of clipboard data
-  LPSTR lpszData;			// Pointer to clipboard data
+BOOL CClipboardText::GetTextLength(unsigned long *pnSize, HWND hWnd) {
+  HGLOBAL hGlobal;     // Global memory handle
+  unsigned long nSize; // Size of clipboard data
+  LPSTR lpszData;      // Pointer to clipboard data
 
   // First, open the clipboard. OpenClipboard() takes one
   // parameter, the handle of the window that will temporarily
@@ -109,8 +109,9 @@ BOOL CClipboardText::GetTextLength (unsigned long *pnSize, HWND hWnd)
   hGlobal = GetClipboardData(CF_TEXT);
 
   // If there was no text on the clipboard, we have
-  // been returned a NULL handle.	
-  if (hGlobal == NULL) return FALSE;
+  // been returned a NULL handle.
+  if (hGlobal == NULL)
+    return FALSE;
 
   // Now we have a global memory handle to the text
   // stored on the clipboard. We have to lock this global
@@ -145,11 +146,10 @@ BOOL CClipboardText::GetTextLength (unsigned long *pnSize, HWND hWnd)
 //
 ////////////////////////////////////////////////////////////////////
 
-int CClipboardText::SetText (LPSTR lpszBuffer, HWND hWnd)
-{
-  HGLOBAL hGlobal;		// Global memory handle
-  LPSTR lpszData;			// Pointer to clipboard data
-  unsigned long nSize;	// Size of clipboard data
+int CClipboardText::SetText(LPSTR lpszBuffer, HWND hWnd) {
+  HGLOBAL hGlobal;     // Global memory handle
+  LPSTR lpszData;      // Pointer to clipboard data
+  unsigned long nSize; // Size of clipboard data
 
   // First, open the clipboard. OpenClipboard() takes one
   // parameter, the handle of the window that will temporarily
@@ -165,11 +165,12 @@ int CClipboardText::SetText (LPSTR lpszBuffer, HWND hWnd)
   nSize = lstrlen(lpszBuffer);
 
   // Allocate the memory for the string.
-  hGlobal = GlobalAlloc(GMEM_ZEROINIT, nSize+1);
-  
+  hGlobal = GlobalAlloc(GMEM_ZEROINIT, nSize + 1);
+
   // If we got any error during the memory allocation,
   // we have been returned a NULL handle.
-  if (hGlobal == NULL) return FALSE;
+  if (hGlobal == NULL)
+    return FALSE;
 
   // Now we have a global memory handle to the text
   // stored on the clipboard. We have to lock this global

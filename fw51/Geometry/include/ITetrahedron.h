@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // ITetrahedron.h: interface for the ITetrahedron class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -10,8 +10,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "IBody.h"
 #include "DispatchVisitorBase.h"
+#include "IBody.h"
 
 #include "GeometryExports.h"
 
@@ -20,11 +20,10 @@ namespace geo {
 class CBodyTriangle;
 class CBodyLine;
 
-class GEOMETRY_EXPORT  ITetrahedron : public IBody
-{
+class GEOMETRY_EXPORT ITetrahedron : public IBody {
 
 public:
-  // Construction / Destruction 
+  // Construction / Destruction
   ITetrahedron();
   virtual ~ITetrahedron();
 
@@ -36,38 +35,38 @@ public:
   virtual int NrOfFaces() const;
   enum eFaceName { L1 = 0, L2 = 1, L3 = 2, L4 = 3 };
   // face retrieval
-  virtual const IFace& Face(int nIndex) const;
+  virtual const IFace &Face(int nIndex) const;
 
-  using IBody::FacePointIndices;
   using IBody::FaceNodeIndices;
-  using IBody::LinePointIndices;
+  using IBody::FacePointIndices;
   using IBody::LineNodeIndices;
-  virtual const TIndexVec& FacePointIndices(int nIndex) const;
+  using IBody::LinePointIndices;
+  virtual const TIndexVec &FacePointIndices(int nIndex) const;
 
   virtual int NrOfLines() const;
   virtual const ILine &Line(int nIndex) const;
-  virtual const TIndexVec& LinePointIndices(int nIndex) const;
-  virtual const TIndexVec& LineNodeIndices(int nIndex) const;
+  virtual const TIndexVec &LinePointIndices(int nIndex) const;
+  virtual const TIndexVec &LineNodeIndices(int nIndex) const;
 
   // returns a vector of this body's local node indices that the face with the
   // given index is connected to
-  virtual const TIndexVec& FaceNodeIndices(int nIndex) const;
+  virtual const TIndexVec &FaceNodeIndices(int nIndex) const;
 
-  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const;
+  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec &isocoords) const;
   virtual std::vector<IElement::TDoubleVec> IsoCoordinates() const;
 
-  virtual IElement::TDoubleVec WorldToIso(const geo::IPoint& point) const;
+  virtual IElement::TDoubleVec WorldToIso(const geo::IPoint &point) const;
 
-  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec& isocoords) const;
+  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec &isocoords) const;
 
   // integration points
   virtual int IntegrationPointSize() const;
-  virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
-  virtual const double& IntegrationPointWeight(int nIndex) const;
+  virtual const TDoubleVec &IntegrationPointCoords(int nIndex) const;
+  virtual const double &IntegrationPointWeight(int nIndex) const;
 
   virtual double Size() const;
 
-  //implemented here
+  // implemented here
   virtual double SignedVolume() const;
 
   double InfluenceVolume(int nNode) const;
@@ -75,29 +74,29 @@ public:
 
   virtual bool Visit(IVisitor &visitor) { return visitor.HandleTetrahedron(*this); }
 
-  // This static function can be used before an ITetrahedron object has been constructed to check if the order in which the
-  // points are presented to the constructor wil result in a tetrahedron with a negative volume (false)
-  // or a tetrahedron with a positive volume (true). If the function returns false swap p2 and p3 around.
+  // This static function can be used before an ITetrahedron object has been constructed to check if the order in which
+  // the points are presented to the constructor wil result in a tetrahedron with a negative volume (false) or a
+  // tetrahedron with a positive volume (true). If the function returns false swap p2 and p3 around.
   static bool CheckOrientation(const IPoint &p0, const IPoint &p1, const IPoint &p2, const IPoint &p3);
   static void PrepareMapping();
 
 private:
   typedef std::vector<TIndexVec> TFaceNodeVec;
-  static void InitFaceNodeIndices( std::vector<TFaceNodeVec>& FaceNodeIdxs );
-  static const TIndexVec& FaceNodeIndices( int order, int nIndex );
+  static void InitFaceNodeIndices(std::vector<TFaceNodeVec> &FaceNodeIdxs);
+  static const TIndexVec &FaceNodeIndices(int order, int nIndex);
 
   typedef std::vector<TIndexVec> TLineNodeVec;
-  static void InitLineNodeIndices( std::vector<TLineNodeVec>& LineNodeIdxs );
-  static const TIndexVec& LineNodeIndices( int order, int nIndex );
+  static void InitLineNodeIndices(std::vector<TLineNodeVec> &LineNodeIdxs);
+  static const TIndexVec &LineNodeIndices(int order, int nIndex);
 
-  static void BuildIntegrationPoints( IElement::TIntPtVec& vec, int numint );
-  static const TIntPtVec& IntegrationPoints( int order );
-  const TIntPtVec& IntegrationPoints() const;
+  static void BuildIntegrationPoints(IElement::TIntPtVec &vec, int numint);
+  static const TIntPtVec &IntegrationPoints(int order);
+  const TIntPtVec &IntegrationPoints() const;
 
-  mutable std::vector<CBodyTriangle*> m_vcFaces;
-  mutable std::vector<CBodyLine*> m_vcLines;
+  mutable std::vector<CBodyTriangle *> m_vcFaces;
+  mutable std::vector<CBodyLine *> m_vcLines;
 
-  IElement::TDoubleVec WorldToIso1stOrder(const IPoint& point) const;
+  IElement::TDoubleVec WorldToIso1stOrder(const IPoint &point) const;
 };
 
 } // end namespace geo

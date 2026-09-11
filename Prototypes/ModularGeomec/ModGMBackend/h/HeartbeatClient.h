@@ -4,12 +4,11 @@
 
 // Client connector
 // It contains a heartbeat function that sends packages every so often to simulate work
-class HeartbeatClient : public ModGMLocalBusClient
-{
+class HeartbeatClient : public ModGMLocalBusClient {
   Q_OBJECT
 
 public:
-  HeartbeatClient(const QString& base, const QString& name, QObject *parent = nullptr);
+  HeartbeatClient(const QString &base, const QString &name, QObject *parent = nullptr);
   virtual ~HeartbeatClient();
 
 public slots:

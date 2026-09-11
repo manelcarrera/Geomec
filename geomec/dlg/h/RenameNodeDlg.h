@@ -12,20 +12,19 @@
 
 #include "resource.h"
 
-class CRenameNodeDlg : public CDialog
-{
+class CRenameNodeDlg : public CDialog {
 private:
   CString m_strName;
-  CGraphNode& m_node;
+  CGraphNode &m_node;
 
-// Construction
+  // Construction
 public:
-  CRenameNodeDlg(CGraphNode &node, CWnd* pParent = NULL);   // standard constructor
+  CRenameNodeDlg(CGraphNode &node, CWnd *pParent = NULL); // standard constructor
 
   enum { IDD = IDD_RENAME_NODE };
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual void OnOK();
 };
 

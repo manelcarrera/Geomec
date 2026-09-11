@@ -7,118 +7,94 @@
 // GammaView.h : header file
 //
 
-#include "ResultData.h"
 #include "ExperimentData.h"
 #include "Materials.h"
+#include "ResultData.h"
 
 #include <qwinwidget.h>
-#include <qwt_plot_curve.h>
-#include <qwt_plot_marker.h>
-#include <qwt_plot_grid.h>
-#include <qwt_plot.h>
 #include <qwt_legend.h>
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+#include <qwt_plot_grid.h>
+#include <qwt_plot_marker.h>
 #include <qwt_symbol.h>
 
-class CPlotGrid : public QwtPlotGrid
-{
+class CPlotGrid : public QwtPlotGrid {
 public:
-  CPlotGrid():QwtPlotGrid()
-  {
-  setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
-  setMinorPen(QPen(Qt::gray, 0, Qt::DotLine));
+  CPlotGrid() : QwtPlotGrid() {
+    setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
+    setMinorPen(QPen(Qt::gray, 0, Qt::DotLine));
   }
 };
 
-class CLegend : public QwtLegend
-{
+class CLegend : public QwtLegend {
 public:
-  CLegend():QwtLegend()
-  {
-  setDefaultItemMode(QwtLegendData::ReadOnly);
-  }
+  CLegend() : QwtLegend() { setDefaultItemMode(QwtLegendData::ReadOnly); }
 };
 
-class CPlot : public QwtPlot
-{
+class CPlot : public QwtPlot {
 public:
-  CPlot(QWidget *w):QwtPlot(w)
-  {
-  setCanvasBackground(QColor(Qt::white));
-  insertLegend(m_pLegend= new CLegend, QwtPlot::BottomLegend);
-  setAutoReplot(false); // instead, use replot()
+  CPlot(QWidget *w) : QwtPlot(w) {
+    setCanvasBackground(QColor(Qt::white));
+    insertLegend(m_pLegend = new CLegend, QwtPlot::BottomLegend);
+    setAutoReplot(false); // instead, use replot()
   }
-  CLegend *Legend() {return m_pLegend;}
+  CLegend *Legend() { return m_pLegend; }
 
 private:
   CLegend *m_pLegend;
 };
 
-class CCrossPlotCurve : public QwtPlotCurve
-{
+class CCrossPlotCurve : public QwtPlotCurve {
 public:
-  CCrossPlotCurve
-  (const QString &title
-  , const QColor &color
- ):QwtPlotCurve(title)
-  {
-  setYAxis(QwtPlot::yLeft);
-  setStyle(QwtPlotCurve::NoCurve);
-  QwtSymbol *pSym= new QwtSymbol;
-  pSym->setStyle(QwtSymbol::XCross);
-  pSym->setPen(color);
-  pSym->setSize(5);
-  setSymbol(pSym);
+  CCrossPlotCurve(const QString &title, const QColor &color) : QwtPlotCurve(title) {
+    setYAxis(QwtPlot::yLeft);
+    setStyle(QwtPlotCurve::NoCurve);
+    QwtSymbol *pSym = new QwtSymbol;
+    pSym->setStyle(QwtSymbol::XCross);
+    pSym->setPen(color);
+    pSym->setSize(5);
+    setSymbol(pSym);
   }
 };
 
-class CLinePlotCurve : public QwtPlotCurve
-{
+class CLinePlotCurve : public QwtPlotCurve {
 private:
 public:
-  CLinePlotCurve
-  (const QString &title
-  , const QColor &color
- ):QwtPlotCurve(title)
-  {
-  setYAxis(QwtPlot::yLeft);
-  setPen(color);
+  CLinePlotCurve(const QString &title, const QColor &color) : QwtPlotCurve(title) {
+    setYAxis(QwtPlot::yLeft);
+    setPen(color);
   }
 };
 
-class CDashedPlotCurve : public QwtPlotCurve
-{
+class CDashedPlotCurve : public QwtPlotCurve {
 private:
 public:
-  CDashedPlotCurve
-  (const QString &title
-  , const QColor &color
- ):QwtPlotCurve(title)
-  {
-  setYAxis(QwtPlot::yLeft);
-  QPen pen(color);
-  pen.setStyle(Qt::DashLine);
-  setPen(pen);
+  CDashedPlotCurve(const QString &title, const QColor &color) : QwtPlotCurve(title) {
+    setYAxis(QwtPlot::yLeft);
+    QPen pen(color);
+    pen.setStyle(Qt::DashLine);
+    setPen(pen);
   }
 };
 
 /////////////////////////////////////////////////////////////////////////////
 // CGammaView view
 
-class CGammaView : public CView
-{
+class CGammaView : public CView {
 protected:
-  CGammaView();           // protected constructor used by dynamic creation
-//	DECLARE_DYNCREATE(CGammaView)
+  CGammaView(); // protected constructor used by dynamic creation
+  //	DECLARE_DYNCREATE(CGammaView)
 
-// Attributes
+  // Attributes
 public:
 protected:
-
-// Operations
+  // Operations
 public:
-  BOOL PlotData(const CExperimentArray &aData, const CResultData *pResData, BOOL bIncludeYieldPoint, BOOL bIsTopGraph, mlUnitDef ud,
-    bool useInitialLowerLimit, const std::vector <int>& initialLowerLimit);
-  BOOL PlotPQ(const CExperimentArray &aData, const CResultData *pResData, BOOL bIsTopGraph, const CLibraryMaterial *pMat, mlUnitDef ud);
+  BOOL PlotData(const CExperimentArray &aData, const CResultData *pResData, BOOL bIncludeYieldPoint, BOOL bIsTopGraph,
+                mlUnitDef ud, bool useInitialLowerLimit, const std::vector<int> &initialLowerLimit);
+  BOOL PlotPQ(const CExperimentArray &aData, const CResultData *pResData, BOOL bIsTopGraph,
+              const CLibraryMaterial *pMat, mlUnitDef ud);
 
 protected:
   // wjrx mantis 3167
@@ -132,20 +108,20 @@ protected:
   QWinWidget *m_pWinWidget;
   CPlot *m_pPlot;
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CGammaView)
-  protected:
-  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-  virtual void OnInitialUpdate();     // first time after construct
+protected:
+  virtual void OnDraw(CDC *pDC);  // overridden to draw this view
+  virtual void OnInitialUpdate(); // first time after construct
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CGammaView();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions

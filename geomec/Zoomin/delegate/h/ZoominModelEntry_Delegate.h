@@ -6,21 +6,20 @@
 
 class CZoominModelEntry;
 
-class CZoominModelEntry_Delegate : public CGraphEntryTemp_Delegate<CZoominModelPlaceHolder>
-{
+class CZoominModelEntry_Delegate : public CGraphEntryTemp_Delegate<CZoominModelPlaceHolder> {
 public:
-  CZoominModelEntry_Delegate(CZoominModelEntry* zoominModelEntry);
+  CZoominModelEntry_Delegate(CZoominModelEntry *zoominModelEntry);
 
-  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
 private:
-  CZoominModelEntry_Delegate(const CZoominModelEntry_Delegate&);
-  CZoominModelEntry_Delegate& operator=(const CZoominModelEntry_Delegate&);
+  CZoominModelEntry_Delegate(const CZoominModelEntry_Delegate &);
+  CZoominModelEntry_Delegate &operator=(const CZoominModelEntry_Delegate &);
 
   void NewZoominModel();
   void Import();
 
-  CZoominModelEntry* m_zoominModelEntry;
+  CZoominModelEntry *m_zoominModelEntry;
 
   REGISTER_DELEGATE(CZoominModelEntry, CZoominModelEntry_Delegate);
 };

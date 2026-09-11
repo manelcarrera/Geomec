@@ -25,52 +25,30 @@ Software Product or documentation licensed under this agreement.
     Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
-#include "myHeaders.h"
 #include "cBagRescuePolyLine.h"
-#include "RescuePolyLine.h"
 #include "RescueModel.h"
+#include "RescuePolyLine.h"
+#include "myHeaders.h"
 
-cBagRescuePolyLine::cBagRescuePolyLine()
-{
-  tree = new RescueTree();
+cBagRescuePolyLine::cBagRescuePolyLine() { tree = new RescueTree(); }
+
+cBagRescuePolyLine::~cBagRescuePolyLine() { delete tree; }
+
+void cBagRescuePolyLine::operator+=(RescuePolyLine *newObject) { tree->Add(newObject); }
+
+RESCUEBOOL cBagRescuePolyLine::operator-=(RescuePolyLine *existingObject) { return tree->Delete(existingObject); }
+
+RescuePolyLine *cBagRescuePolyLine::NthObject(RESCUEINT64 ordinal) {
+  return (RescuePolyLine *)tree->NthObject(ordinal);
 }
 
-cBagRescuePolyLine::~cBagRescuePolyLine()
-{
-  delete tree;
-}
-
-void cBagRescuePolyLine::operator+=(RescuePolyLine *newObject)
-{
-  tree->Add(newObject);
-}
-
-RESCUEBOOL cBagRescuePolyLine::operator-=(RescuePolyLine * existingObject)
-{
-  return tree->Delete(existingObject);
-}
-
-RescuePolyLine *cBagRescuePolyLine::NthObject(RESCUEINT64 ordinal)
-{
-  return (RescuePolyLine *) tree->NthObject(ordinal);
-}
-
-RESCUEINT32 cBagRescuePolyLine::Count(RESCUEBOOL throwIfTrue)
-{
-  if (tree->Count() > 2147483647)
-  {
-  if (throwIfTrue)
-  {
+RESCUEINT32 cBagRescuePolyLine::Count(RESCUEBOOL throwIfTrue) {
+  if (tree->Count() > 2147483647) {
+    if (throwIfTrue) {
       throw "Model is too large to be accessed in 32 bit mode.";
-  }
-  return 0;
-  }
-  else
-  {
-  return (RESCUEINT32) tree->Count();
+    }
+    return 0;
+  } else {
+    return (RESCUEINT32)tree->Count();
   }
 }
-
-
-
-

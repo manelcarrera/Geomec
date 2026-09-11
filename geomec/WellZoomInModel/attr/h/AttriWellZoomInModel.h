@@ -4,13 +4,12 @@
 #include "AttributesTemplate.h"
 #include "IWellModel.h"
 
-class CAttriWellZoomInModelDlg : public CDialog
-{
+class CAttriWellZoomInModelDlg : public CDialog {
 public:
-  CAttriWellZoomInModelDlg(IWellModel& model, const CString& strCaption, CWnd* pParent = 0);
+  CAttriWellZoomInModelDlg(IWellModel &model, const CString &strCaption, CWnd *pParent = 0);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual BOOL OnInitDialog();
   virtual void OnOK();
   virtual void PostNcDestroy();
@@ -25,12 +24,12 @@ protected:
   afx_msg void OnSelChangeEndFormation();
   afx_msg void OnChangeStartAHD();
   afx_msg void OnChangeEndAHD();
- 	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
 private:
-  IWellModel& m_model;
-  IWellModel::CPositionDef* m_pStartPosition;
-  IWellModel::CPositionDef* m_pEndPosition;
+  IWellModel &m_model;
+  IWellModel::CPositionDef *m_pStartPosition;
+  IWellModel::CPositionDef *m_pEndPosition;
   double m_dRadius;
   CString m_strCaption;
 };

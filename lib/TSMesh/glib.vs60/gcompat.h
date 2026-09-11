@@ -26,17 +26,17 @@ G_BEGIN_DECLS
 
 #ifndef G_DISABLE_COMPAT_H
 
-#define g_date_weekday 			g_date_get_weekday
-#define g_date_month 			g_date_get_month
-#define g_date_year 			g_date_get_year
-#define g_date_day 			g_date_get_day
-#define g_date_julian 			g_date_get_julian
-#define g_date_day_of_year 		g_date_get_day_of_year
-#define g_date_monday_week_of_year 	g_date_get_monday_week_of_year
-#define g_date_sunday_week_of_year 	g_date_get_sunday_week_of_year
-#define g_date_days_in_month 		g_date_get_days_in_month
-#define g_date_monday_weeks_in_year 	g_date_get_monday_weeks_in_year
-#define g_date_sunday_weeks_in_year	g_date_get_sunday_weeks_in_year
+#define g_date_weekday g_date_get_weekday
+#define g_date_month g_date_get_month
+#define g_date_year g_date_get_year
+#define g_date_day g_date_get_day
+#define g_date_julian g_date_get_julian
+#define g_date_day_of_year g_date_get_day_of_year
+#define g_date_monday_week_of_year g_date_get_monday_week_of_year
+#define g_date_sunday_week_of_year g_date_get_sunday_week_of_year
+#define g_date_days_in_month g_date_get_days_in_month
+#define g_date_monday_weeks_in_year g_date_get_monday_weeks_in_year
+#define g_date_sunday_weeks_in_year g_date_get_sunday_weeks_in_year
 
 #endif /* G_DISABLE_COMPAT_H */
 

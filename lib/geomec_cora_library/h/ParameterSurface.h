@@ -3,20 +3,18 @@
 
 #include "ParameterLimit.h"
 
-namespace cora
-{
+namespace cora {
 
-class CParameterSurface : public CParameterLimit
-{
-  public:
+class CParameterSurface : public CParameterLimit {
+public:
   CParameterSurface();
   virtual ~CParameterSurface();
 
-  private:
-  CParameterSurface(const CParameterSurface& rhs);
-  CParameterSurface& operator = (const CParameterSurface& rhs);
+private:
+  CParameterSurface(const CParameterSurface &rhs);
+  CParameterSurface &operator=(const CParameterSurface &rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_ParameterSurface_h_
+#endif // _cora_ParameterSurface_h_

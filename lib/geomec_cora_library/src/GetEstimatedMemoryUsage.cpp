@@ -2,22 +2,17 @@
 
 #include "GetEstimatedMemoryUsage.h"
 
-namespace cora
-{
+namespace cora {
 
-CGetEstimatedMemoryUsage::CGetEstimatedMemoryUsage()
-{
-}
+CGetEstimatedMemoryUsage::CGetEstimatedMemoryUsage() {}
 
-namespace
-{
+namespace {
 
 const QString MEMORY_USAGE = "1Gb";
 
 } // anonymous namespaCE
 
-std::ostream& CGetEstimatedMemoryUsage::operator () (std::ostream& os) const
-{
+std::ostream &CGetEstimatedMemoryUsage::operator()(std::ostream &os) const {
   os << MEMORY_USAGE.toStdString() << std::endl;
 
   return os;

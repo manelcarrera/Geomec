@@ -5,10 +5,9 @@
 
 // Copy a file with a progress dialog and cancel button
 
-class CFileCopier
-{
+class CFileCopier {
 public:
-  CFileCopier(const QString& strSourcePath, const QString& strTargetPath, const QString& strTitle);
+  CFileCopier(const QString &strSourcePath, const QString &strTargetPath, const QString &strTitle);
   bool Copy();
 
 private:
@@ -17,4 +16,4 @@ private:
   QString m_strTitle;
 };
 
-#endif  // _FileCopier_h
+#endif // _FileCopier_h

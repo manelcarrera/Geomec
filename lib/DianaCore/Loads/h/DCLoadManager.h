@@ -22,8 +22,7 @@ class IDianaRunner;
 
 #include "DCInitialNodalPotential.h"
 
-class CLoadManager  
-{
+class CLoadManager {
   friend class ILoad;
   friend class dia::CInitialNodalPotential;
 
@@ -31,16 +30,16 @@ class CLoadManager
   IDianaRunner &m_Runner;
 
   std::vector<CLoadCase *> m_vcLoadCases;
-  std::vector<CBoundaCase*> m_vcBoundaCases;
+  std::vector<CBoundaCase *> m_vcBoundaCases;
   std::vector<CLoadCombination *> m_vcLoadCombinations;
   std::set<ILoad *> m_stLoads;
-  std::vector<dia::CInitialNodalPotential*> m_vcInitialNodalPotentials;
+  std::vector<dia::CInitialNodalPotential *> m_vcInitialNodalPotentials;
 
   // called by constructor of (friend) ILoad
   bool InsertLoad(ILoad &load);
 
   // called by constructor of (friend) CInitialNodalPotential, returns the index
-  int InsertInitialNodalPotential(dia::CInitialNodalPotential& potential);
+  int InsertInitialNodalPotential(dia::CInitialNodalPotential &potential);
 
 public:
   CLoadManager(const geo::IMesh &mesh, IDianaRunner &runner);
@@ -61,8 +60,8 @@ public:
   CBoundaCase &NewBoundaCase();
 
   int CaseSize() const;
-  const ICase& Case(int nCase) const;
-  ICase& Case(int nCase);
+  const ICase &Case(int nCase) const;
+  ICase &Case(int nCase);
 
   int LoadCombinationSize() const;
   const CLoadCombination &LoadCombination(int nCombination) const;
@@ -78,6 +77,6 @@ public:
   IDianaRunner &Runner();
 };
 
-}
+} // namespace dia
 
 #endif // !defined(AFX_DCLOADMANAGER_H__D27A86C2_599B_421A_BC7F_DAD45262CFB3__INCLUDED_)

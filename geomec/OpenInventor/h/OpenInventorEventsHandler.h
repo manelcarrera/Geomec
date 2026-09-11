@@ -36,16 +36,15 @@ class MeshRefinementDlg;
 
 #include "Deformation.h"
 
-class COpenInventorEventsHandler
-{
+class COpenInventorEventsHandler {
 public:
   static Qt::CursorShape s_cursorShape;
-  static void SetCursor (Qt::CursorShape shape);
+  static void SetCursor(Qt::CursorShape shape);
   static void RefreshCursor();
 
-  	typedef IValueDomainScalar::TMinMax TMinMax;
+  typedef IValueDomainScalar::TMinMax TMinMax;
 
-  COpenInventorEventsHandler(COpenInventorSceneNode& sceneNode);
+  COpenInventorEventsHandler(COpenInventorSceneNode &sceneNode);
   ~COpenInventorEventsHandler();
 
   // input events
@@ -53,26 +52,25 @@ public:
   typedef Qt::MouseButton TMouseButton;
   typedef Qt::KeyboardModifiers TKeyboardModifiers;
   typedef Qt::Key TKey;
-  bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
 
-  bool HandleSceneMousePressEvent( SbVec2s & locator );
+  bool HandleSceneMousePressEvent(SbVec2s &locator);
 
-  bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
 
-  bool HandleSceneMouseReleaseEvent( SbVec2s & locator );
-  bool HandleSceneMouseDblClkEvent( SbVec2s & locator );
+  bool HandleSceneMouseReleaseEvent(SbVec2s &locator);
+  bool HandleSceneMouseDblClkEvent(SbVec2s &locator);
 
-  void ActivatePolygonScreenDrawer( CWorldAction * action, GeomecPolygonScreenDrawer::PolygonMode mode, std::vector<geo::CPoint> * points = 0 );
+  void ActivatePolygonScreenDrawer(CWorldAction *action, GeomecPolygonScreenDrawer::PolygonMode mode,
+                                   std::vector<geo::CPoint> *points = 0);
 
-  
+  void PerformWorldActionOnPolygon(SoPolyLineScreenDrawer *drawer);
 
-  void PerformWorldActionOnPolygon( SoPolyLineScreenDrawer * drawer );
+  SbVec2f ScreenDrawerToWorldPoint(const SbVec2f &pt);
+  SbVec2f WorldToScreenDrawerPoint(const SbVec2f &worldPoint);
 
-  SbVec2f ScreenDrawerToWorldPoint( const SbVec2f & pt );
-  SbVec2f WorldToScreenDrawerPoint( const SbVec2f & worldPoint );
-
-  bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-  bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
+  bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
 
   void EnterView();
   void LeaveView();
@@ -80,43 +78,43 @@ public:
   int LockedSpinDirection();
 
   void TimerCalled();
-  void ResetTimer(const SbVec2s & locator);
+  void ResetTimer(const SbVec2s &locator);
 
-  bool HandleSceneMouseMoveEvent( SbVec2s & locator, bool button1Down );
+  bool HandleSceneMouseMoveEvent(SbVec2s &locator, bool button1Down);
 
-  bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint& point);
+  bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint &point);
   bool KeyPress(TKeyboardModifiers state, int nChar, TKey key, int nRepCount);
   bool KeyRelease(TKeyboardModifiers state, int nChar, TKey key, int nRepCount);
 
-  bool KeyAction( int nChar, SoButtonEvent::State state );
-
+  bool KeyAction(int nChar, SoButtonEvent::State state);
 
   // Cross section events
-  void OnShowCrossSection(const CCrossSection& xsec);
-  void OnHideCrossSection(const CCrossSection& xsec);
-  void OnCrossSectionChanged(const CCrossSection& xsec);
+  void OnShowCrossSection(const CCrossSection &xsec);
+  void OnHideCrossSection(const CCrossSection &xsec);
+  void OnCrossSectionChanged(const CCrossSection &xsec);
 
   // Well path events
-  void OnShowWellPath(const CNewWellPath& wellPath);
-  void OnHideWellPath(const CNewWellPath& wellPath);
-  void OnWellPathChanged(const CNewWellPath& wellPath);
+  void OnShowWellPath(const CNewWellPath &wellPath);
+  void OnHideWellPath(const CNewWellPath &wellPath);
+  void OnWellPathChanged(const CNewWellPath &wellPath);
 
   // viewer events
-  void OnNewFormationNode(const CFormationBase& node);
-  void OnFormationNodeModified(const CFormationBase& node, ModifiedHint hint);
-  void OnFormationNodeDeleted(const CFormationBase& node);
-  void OnNewOpenGLNode(const COpenGLNode& node);
-  void OnOpenGLNodeModified(const COpenGLNode& node, enum ModifiedHint uHint = Default);
-  void OnOpenGLNodeDeleted(const COpenGLNode& node);
+  void OnNewFormationNode(const CFormationBase &node);
+  void OnFormationNodeModified(const CFormationBase &node, ModifiedHint hint);
+  void OnFormationNodeDeleted(const CFormationBase &node);
+  void OnNewOpenGLNode(const COpenGLNode &node);
+  void OnOpenGLNodeModified(const COpenGLNode &node, enum ModifiedHint uHint = Default);
+  void OnOpenGLNodeDeleted(const COpenGLNode &node);
   void OnColorScaleChanged();
-  void OnValueComponentChanged(const IValueComponentBase *pValueComponent, CDoubleQuantity::UNIT unit, bool settingsChanged = false);
+  void OnValueComponentChanged(const IValueComponentBase *pValueComponent, CDoubleQuantity::UNIT unit,
+                               bool settingsChanged = false);
 
   void OnUnitChanged();
   void OnViewModeChanged();
   void OnViewportSizeChanged(int cx, int cy);
 
   void UpdateLegend(bool bForceColor = false, bool bUpdatedColorScale = false);
-  void UpdateValuesLegend(const IValueComponentBase * valueComponent);
+  void UpdateValuesLegend(const IValueComponentBase *valueComponent);
 
   void OnZoomRectangle();
   bool CanZoomWindow() const;
@@ -124,7 +122,7 @@ public:
   void SetCamera(bool bPerspective);
   void CheckCamera();
   void DisplayPerspective(bool bPerspective);
-  void OnDeformation( Deformation::Data::Input deformation );
+  void OnDeformation(Deformation::Data::Input deformation);
   Deformation::Data::Input Deformation();
   bool DisplayPerspective() const;
   bool CanDisplayPerspective() const;
@@ -143,8 +141,8 @@ public:
   void DisplayCoordinateAxis(bool bDisplay);
   bool DisplayCoordinateAxis() const;
   bool CanDisplayCoordinateAxis() const;
-  void SelectMeshMode( MeshMode mode );
-  MeshMode  MeshModeSelected() const;
+  void SelectMeshMode(MeshMode mode);
+  MeshMode MeshModeSelected() const;
   bool CanSelectMeshMode() const;
   bool DraggerTrackerSelected() const;
   bool CanSelectDraggerTracker() const;
@@ -191,17 +189,17 @@ public:
   void ZoomIn();
   void ZoomOut();
   void ZoomReset();
-  void ZoomRectangle( SoPolyLineScreenDrawer * drawer );
+  void ZoomRectangle(SoPolyLineScreenDrawer *drawer);
 
   void ShowInFull();
   bool ShowTopView() const;
   void ShowTopView(bool show);
 
   bool PointSetSelected() const;
-  void LockRotationVector(const geo::IVector& vector);
-  const geo::IVector& LockRotationVector() const;
+  void LockRotationVector(const geo::IVector &vector);
+  const geo::IVector &LockRotationVector() const;
   bool CanLockRotationVector() const;
-  void ViewTensorVector( TensorVectorMode mode );
+  void ViewTensorVector(TensorVectorMode mode);
   TensorVectorMode ViewTensorVector();
 
   bool CanRefreshVectorBaseScale();
@@ -236,24 +234,24 @@ public:
   int Height() const;
 
   // value/coloring information
-  const IColorScaleNode* ColorScale() const;
+  const IColorScaleNode *ColorScale() const;
 
   // display color or property values
   bool ShowColor() const;
   bool ShowValue() const;
-  void ShowColor (bool show);
+  void ShowColor(bool show);
   bool CanShowValue();
 
-  bool CanDisplay( const COpenGLNode* pOpenGLNode );
+  bool CanDisplay(const COpenGLNode *pOpenGLNode);
 
-  void SetCoordinateAxisColor( float * rgb );
-  void GetCoordinateAxisColor(float * rgb) const;
+  void SetCoordinateAxisColor(float *rgb);
+  void GetCoordinateAxisColor(float *rgb) const;
 
-  void SetBackgroundColor( float * rgb );
-  void GetBackgroundColor(float * rgb) const;
+  void SetBackgroundColor(float *rgb);
+  void GetBackgroundColor(float *rgb) const;
 
-  void SetBackgroundColor2( float * rgb );
-  void GetBackgroundColor2(float * rgb) const;
+  void SetBackgroundColor2(float *rgb);
+  void GetBackgroundColor2(float *rgb) const;
 
   void ResetSceneEnclosureNodes();
 
@@ -261,63 +259,62 @@ public:
   void unlinkValueComponent();
   void RemoveAllMeshes();
 
-  void OnIsoValueComponentChanged( IValueComponentBase * pComponent, CDoubleQuantity::UNIT unit );
+  void OnIsoValueComponentChanged(IValueComponentBase *pComponent, CDoubleQuantity::UNIT unit);
 
   const double MinValue();
   const double MaxValue();
 
-  const CColorScaleEntry * GetColorScaleEntry() const;
+  const CColorScaleEntry *GetColorScaleEntry() const;
 
   void ShowGeologyLegend();
 
-  void SetTextColor( float * rgb );
-  void GetTextColor( float * rgb ) const;
+  void SetTextColor(float *rgb);
+  void GetTextColor(float *rgb) const;
 
-  void PointSize( const double & size );
-  const double & PointSize() const;
+  void PointSize(const double &size);
+  const double &PointSize() const;
 
   int IsoCount() const;
-  void IsoCount (int count);
+  void IsoCount(int count);
 
   double IsoGap() const;
-  void IsoGap (double gap);
+  void IsoGap(double gap);
 
-  int  Transparency() const;
+  int Transparency() const;
   void Transparency(int transparency);
 
-  int  DraggerTimeOut() const;
+  int DraggerTimeOut() const;
   void DraggerTimeOut(int timeOut);
 
-  void removeFromGeologyLegend( const COpenGLNode * pOpenGLNode );
-  void addToGeologyLegend( const COpenGLNode * pOpenGLNode );
-  void ModifyGeologyLegend( const COpenGLNode * oglNode );
+  void removeFromGeologyLegend(const COpenGLNode *pOpenGLNode);
+  void addToGeologyLegend(const COpenGLNode *pOpenGLNode);
+  void ModifyGeologyLegend(const COpenGLNode *oglNode);
 
-  bool IsVisible( COpenGLNode* pOpenGLNode );
+  bool IsVisible(COpenGLNode *pOpenGLNode);
 
   void ResetRenderAction();
-  void RestoreValueComponent( IValueComponentBase* pValueComponent );
+  void RestoreValueComponent(IValueComponentBase *pValueComponent);
   int NumberOfOpenGLNodesLinked();
 
   void dehighlightMesh();
   void clearValueTrackerCellFacetSet();
 
   void show_refinement_box_dlg();
-  void on_zoom_to_box_cb( const QString& box_name );
-
+  void on_zoom_to_box_cb(const QString &box_name);
 
 private:
   void OnUpdateLegend(bool bForceColor);
   void OnUpdateValueLegend();
-  typedef std::set<const COpenGLNode*> TOpenGLNodeSet;
-  bool OnInsertNodeInLegend(const COpenGLNode& node) const;
+  typedef std::set<const COpenGLNode *> TOpenGLNodeSet;
+  bool OnInsertNodeInLegend(const COpenGLNode &node) const;
   TOpenGLNodeSet NodesInSceneForLegend() const;
-  void AddResultPath(const IResultComponent& result_component);
+  void AddResultPath(const IResultComponent &result_component);
   TOpenGLNodeSet NodesInScene() const;
   int InsertLinkedNodesInLegend();
   TMinMax MinMaxValue();
 
-  void ScalePerspectiveCameraAngle (float scale);
-  static void renderCallback(void* userData, SoSceneManager* mgr);
+  void ScalePerspectiveCameraAngle(float scale);
+  static void renderCallback(void *userData, SoSceneManager *mgr);
 
   void initOIV();
 
@@ -329,30 +326,30 @@ private:
 
   void InitScreenDrawing();
   void InitBoundingBox();
-  void ResetSceneBoundingBox( SbBox3f &bbox );
+  void ResetSceneBoundingBox(SbBox3f &bbox);
 
-  void ResetCoordAxis( const SbBox3f & bbox );
+  void ResetCoordAxis(const SbBox3f &bbox);
 
-  template <class ScreenDrawerClass>
-  ScreenDrawerClass * getNewScreenDrawer();
+  template <class ScreenDrawerClass> ScreenDrawerClass *getNewScreenDrawer();
 
   void InitCamera();
   void setViewport(int width, int height);
   void SetCameraOrientation(float x, float y, float z, float w);
-  void RetraceMeshInfo( );
-  void TraceMeshInfo( SbVec2s & point );
+  void RetraceMeshInfo();
+  void TraceMeshInfo(SbVec2s &point);
 
-  void GetScreenToWorldConversion (SbVec3f & screenMin, SbVec3f & worldMin, SbVec3f & scaleScreenToWorld);
+  void GetScreenToWorldConversion(SbVec3f &screenMin, SbVec3f &worldMin, SbVec3f &scaleScreenToWorld);
 
-  SbVec2f GetWorldCoordinates(const SbVec2f & normalizedScreen);
-  SbVec2f GetScreenNormalizedCoordinates(const SbVec2f & world);
-  void HandleContextMenu( SbVec2s & point, bool bSuppressMenu = false );
-  SoSwitch * const & gnomonSwitch() const;
+  SbVec2f GetWorldCoordinates(const SbVec2f &normalizedScreen);
+  SbVec2f GetScreenNormalizedCoordinates(const SbVec2f &world);
+  void HandleContextMenu(SbVec2s &point, bool bSuppressMenu = false);
+  SoSwitch *const &gnomonSwitch() const;
 
 public: // FIXME:
-  COpenInventorSceneNode& m_sceneNode;
+  COpenInventorSceneNode &m_sceneNode;
+
 private:
-  CLegendFrame& LegendFrame();
+  CLegendFrame &LegendFrame();
 
   int m_draggerTimeOut;
   int m_secondsToTimeOut;
@@ -366,46 +363,45 @@ private:
   bool m_dynamicRotate;
   bool m_phongLighting;
   bool m_displayPerspective;
-  //bool m_deformation;
+  // bool m_deformation;
   int m_lockedSpinDirection;
   double m_pointSize;
 
   SbVec2s m_meshInfoScreenPoint;
 
-  CWorldAction *            m_worldAction;
+  CWorldAction *m_worldAction;
 
-  SoGuiAlgoViewers *        m_viewerAlgos;
+  SoGuiAlgoViewers *m_viewerAlgos;
 
-  SoSwitch*                 m_cameraSwitch;
-  SoPerspectiveCamera*      m_perspectiveCamera;
-  SoOrthographicCamera*     m_orthoCamera;
-  SoCamera*                 m_currentCamera;
+  SoSwitch *m_cameraSwitch;
+  SoPerspectiveCamera *m_perspectiveCamera;
+  SoOrthographicCamera *m_orthoCamera;
+  SoCamera *m_currentCamera;
 
-  SoSeparator*              m_rootSceneGraph;
-  SoScale *                 m_scale;
+  SoSeparator *m_rootSceneGraph;
+  SoScale *m_scale;
 
-public: //FIXME
-  OIDIMeshNodeManager *     m_meshNodeManager;
-  MeshRefinementDlg*		  m_refinement_box_dlg;
+public: // FIXME
+  OIDIMeshNodeManager *m_meshNodeManager;
+  MeshRefinementDlg *m_refinement_box_dlg;
 
 private:
+  SoSwitch *m_gnomonSwitch;
 
-  SoSwitch*                 m_gnomonSwitch;
+  SoSwitch *m_bboxSwitch;
+  SoTranslation *m_bboxTranslation;
+  SoScale *m_bboxScale;
 
-  SoSwitch*                 m_bboxSwitch;
-  SoTranslation*	          m_bboxTranslation;
-  SoScale*			            m_bboxScale;
+  SoGradientBackground *m_background;
 
-  SoGradientBackground *    m_background;
+  CoordinateAxis *m_coordinateAxis;
 
-  CoordinateAxis *          m_coordinateAxis;
+  SoSeparator *m_screenDrawerGroup;
+  SoPolyLineScreenDrawer *m_screenDrawer;
 
-  SoSeparator *			        m_screenDrawerGroup;
-  SoPolyLineScreenDrawer *          m_screenDrawer;
+  SoGLContext *m_oglContext;
 
-  SoGLContext*              m_oglContext;
-
-  CMeshRefinementBoxesHandler* m_boxes;
+  CMeshRefinementBoxesHandler *m_boxes;
 };
 
 #endif // _OPENINVENTOREVENTSHANDLER_H_

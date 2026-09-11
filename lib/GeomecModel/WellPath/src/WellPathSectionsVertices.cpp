@@ -1,26 +1,16 @@
 #include "WellPathSectionsVertices.h"
-#include "WellPathSections.h"
-#include "IElement.h"
 #include "ElementFaces.h"
+#include "IElement.h"
+#include "WellPathSections.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
-CWellPathSectionsVertices::CWellPathSectionsVertices(
-  const CWellPathSections& wellPathSections)
-: m_wellPathSectionsVertices(createElementVertices(wellPathSections))
-{
-}
+CWellPathSectionsVertices::CWellPathSectionsVertices(const CWellPathSections &wellPathSections)
+    : m_wellPathSectionsVertices(createElementVertices(wellPathSections)) {}
 
-TWellPathSectionsVertices&
-  CWellPathSectionsVertices::wellPathSectionsVertices()
-{
-  return m_wellPathSectionsVertices;
-}
+TWellPathSectionsVertices &CWellPathSectionsVertices::wellPathSectionsVertices() { return m_wellPathSectionsVertices; }
 
-const TWellPathSectionsVertices&
-  CWellPathSectionsVertices::wellPathSectionsVertices() const
-{
+const TWellPathSectionsVertices &CWellPathSectionsVertices::wellPathSectionsVertices() const {
   return m_wellPathSectionsVertices;
 }
 
@@ -28,41 +18,32 @@ const TWellPathSectionsVertices&
 
 // static
 
-TWellPathSectionsVertices CWellPathSectionsVertices::createElementVertices(
-  const CWellPathSections& wellPathSections)
-{
+TWellPathSectionsVertices CWellPathSectionsVertices::createElementVertices(const CWellPathSections &wellPathSections) {
   TWellPathSectionsVertices wellPathSectionsVertices;
 
-  for (TWellPathSections::const_iterator
-  wellPathSection = wellPathSections.wellPathSections().begin();
-  wellPathSection != wellPathSections.wellPathSections().end();
-  ++wellPathSection)
-  {
-  TWellPathSectionVertices wellPathSectionVertices;
+  for (TWellPathSections::const_iterator wellPathSection = wellPathSections.wellPathSections().begin();
+       wellPathSection != wellPathSections.wellPathSections().end(); ++wellPathSection) {
+    TWellPathSectionVertices wellPathSectionVertices;
 
-  for (TWellPathSection::const_iterator element = (*wellPathSection).begin();
-      element != (*wellPathSection).end(); ++element)
-  {
+    for (TWellPathSection::const_iterator element = (*wellPathSection).begin(); element != (*wellPathSection).end();
+         ++element) {
       createElementVertex(wellPathSectionVertices, (*element)->element());
-  }
+    }
 
-  wellPathSectionsVertices.push_back(wellPathSectionVertices);
+    wellPathSectionsVertices.push_back(wellPathSectionVertices);
   }
 
   return wellPathSectionsVertices;
 }
 
-namespace
-{
+namespace {
 
-std::pair <TWellPathSectionVertices::iterator, bool> localCreateElementVertex(
-  TWellPathSectionVertices& wellPathSectionVertices,
-  const geo::IElement& element, size_t index0, size_t index1)
-{
-  QSharedPointer <CElementVertex> elementVertex(new CElementVertex(element,
-  element.PointIndex(index0), element.PointIndex(index1)));
-  std::pair <TWellPathSectionVertices::iterator, bool> inserted =
-  wellPathSectionVertices.insert(elementVertex);
+std::pair<TWellPathSectionVertices::iterator, bool>
+localCreateElementVertex(TWellPathSectionVertices &wellPathSectionVertices, const geo::IElement &element, size_t index0,
+                         size_t index1) {
+  QSharedPointer<CElementVertex> elementVertex(
+      new CElementVertex(element, element.PointIndex(index0), element.PointIndex(index1)));
+  std::pair<TWellPathSectionVertices::iterator, bool> inserted = wellPathSectionVertices.insert(elementVertex);
 
   return inserted;
 }
@@ -71,22 +52,16 @@ const int INDEX_OF_OPPOSITE_POINT = 4;
 
 } // anonymous namespace
 
-void CWellPathSectionsVertices::createElementVertex(
-  TWellPathSectionVertices& wellPathSectionVertices,
-  const geo::IElement& element)
-{
-  std::pair <TWellPathSectionVertices::iterator, bool> elementVertex0 =
-  localCreateElementVertex(wellPathSectionVertices, element,
-      0, 0 + INDEX_OF_OPPOSITE_POINT);
-  std::pair <TWellPathSectionVertices::iterator, bool> elementVertex1 =
-  localCreateElementVertex(wellPathSectionVertices, element,
-      1, 1 + INDEX_OF_OPPOSITE_POINT);
-  std::pair <TWellPathSectionVertices::iterator, bool> elementVertex2 =
-  localCreateElementVertex(wellPathSectionVertices, element,
-      2, 2 + INDEX_OF_OPPOSITE_POINT);
-  std::pair <TWellPathSectionVertices::iterator, bool> elementVertex3 =
-  localCreateElementVertex(wellPathSectionVertices, element,
-      3, 3 + INDEX_OF_OPPOSITE_POINT);
+void CWellPathSectionsVertices::createElementVertex(TWellPathSectionVertices &wellPathSectionVertices,
+                                                    const geo::IElement &element) {
+  std::pair<TWellPathSectionVertices::iterator, bool> elementVertex0 =
+      localCreateElementVertex(wellPathSectionVertices, element, 0, 0 + INDEX_OF_OPPOSITE_POINT);
+  std::pair<TWellPathSectionVertices::iterator, bool> elementVertex1 =
+      localCreateElementVertex(wellPathSectionVertices, element, 1, 1 + INDEX_OF_OPPOSITE_POINT);
+  std::pair<TWellPathSectionVertices::iterator, bool> elementVertex2 =
+      localCreateElementVertex(wellPathSectionVertices, element, 2, 2 + INDEX_OF_OPPOSITE_POINT);
+  std::pair<TWellPathSectionVertices::iterator, bool> elementVertex3 =
+      localCreateElementVertex(wellPathSectionVertices, element, 3, 3 + INDEX_OF_OPPOSITE_POINT);
 
   // link
 

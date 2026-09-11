@@ -2,5 +2,5 @@
 #define _Gnomon_h
 
 class SoSeparator;
-extern SoSeparator * makeGnomon();
+extern SoSeparator *makeGnomon();
 #endif

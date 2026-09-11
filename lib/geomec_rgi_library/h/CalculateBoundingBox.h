@@ -6,25 +6,17 @@
 #include "BodyTriangle.h"
 #include "CalculateBoundingSurfaces.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-struct TCompareCBodyTriangle
-{
-  bool operator () (
-  const geo::CBodyTriangle* lhs, const geo::CBodyTriangle* rhs) const
-  {
-  return *lhs < *rhs;
-  }
+struct TCompareCBodyTriangle {
+  bool operator()(const geo::CBodyTriangle *lhs, const geo::CBodyTriangle *rhs) const { return *lhs < *rhs; }
 };
 
-typedef std::map <const geo::CBodyTriangle*, size_t, TCompareCBodyTriangle>
-  TTriangleMap;
-typedef std::vector <const geo::CBodyTriangle*> TTriangles;
-typedef std::vector <TTriangles> TTriangleSurfaces;
+typedef std::map<const geo::CBodyTriangle *, size_t, TCompareCBodyTriangle> TTriangleMap;
+typedef std::vector<const geo::CBodyTriangle *> TTriangles;
+typedef std::vector<TTriangles> TTriangleSurfaces;
 
-struct TBoundingBox
-{
+struct TBoundingBox {
   double front;
   double back;
   double right;
@@ -33,18 +25,15 @@ struct TBoundingBox
   double bottom;
 };
 
-class CCalculateBoundingBox : public CCalculateBoundingSurfaces
-{
-  public:
-  CCalculateBoundingBox(geo::IElementSet& elementSet);
+class CCalculateBoundingBox : public CCalculateBoundingSurfaces {
+public:
+  CCalculateBoundingBox(geo::IElementSet &elementSet);
 
-  TTriangleSurfaces
-      collectTriangleSurfaces();
+  TTriangleSurfaces collectTriangleSurfaces();
 
-  private:
-  CCalculateBoundingBox(const CCalculateBoundingBox& rhs);
-  CCalculateBoundingBox& operator = (
-      const CCalculateBoundingBox& rhs);
+private:
+  CCalculateBoundingBox(const CCalculateBoundingBox &rhs);
+  CCalculateBoundingBox &operator=(const CCalculateBoundingBox &rhs);
 
   TTriangleMap getTriangleMap() const;
 
@@ -53,4 +42,4 @@ class CCalculateBoundingBox : public CCalculateBoundingSurfaces
 
 } // namespace GeomecRGI
 
-#endif  // _CalculateBoundingBox_h_
+#endif // _CalculateBoundingBox_h_

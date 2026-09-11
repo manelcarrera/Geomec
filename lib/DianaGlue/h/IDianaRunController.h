@@ -8,35 +8,23 @@ class IDianaXWrapper;
 class ISaveModel;
 class IRetrieveDianaFileNames;
 
-namespace dia
-{
-  class IAnalysisStatusContainer;
+namespace dia {
+class IAnalysisStatusContainer;
 }
-
 
 #include <QString>
 
-class IDianaRunController
-{
+class IDianaRunController {
 public:
-  IDianaRunController(CModelBase& model,
-    const CAnalysisType& antype,
-    bool bWriteInputFiles,
-    bool bWriteQuadDat,
-    bool bWriteOutputStreamFile,
-    const QString& strTempPath) {};
+  IDianaRunController(CModelBase &model, const CAnalysisType &antype, bool bWriteInputFiles, bool bWriteQuadDat,
+                      bool bWriteOutputStreamFile, const QString &strTempPath) {};
 
-
-  virtual void CleanUpAfterRun(const QString& getPathName,
-    IDianaXWrapper* dianaXWrapper,
-    const std::string &title,
-    ISaveModel& saveModel,
-    IRetrieveDianaFileNames& retrieveDianaFileNames) = 0;
-
+  virtual void CleanUpAfterRun(const QString &getPathName, IDianaXWrapper *dianaXWrapper, const std::string &title,
+                               ISaveModel &saveModel, IRetrieveDianaFileNames &retrieveDianaFileNames) = 0;
 
   //
   // TODO: virtual params()
   //
 
-  virtual bool run(eRunStep step)=0;
+  virtual bool run(eRunStep step) = 0;
 };

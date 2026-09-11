@@ -10,34 +10,33 @@
 /////////////////////////////////////////////////////////////////////////////
 // CTreeViewBase view
 
-#include <afxcview.h>
 #include "treectrlbase.h"
+#include <afxcview.h>
 
-class CTreeViewBase : public CView
-{
-  CTreeCtrlBase* m_pCtrl;
+class CTreeViewBase : public CView {
+  CTreeCtrlBase *m_pCtrl;
 
 protected:
-  CTreeViewBase();           // protected constructor used by dynamic creation
+  CTreeViewBase(); // protected constructor used by dynamic creation
   DECLARE_DYNCREATE(CTreeViewBase)
 
 public:
-  CTreeCtrlBase& GetTreeCtrl() const;
+  CTreeCtrlBase &GetTreeCtrl() const;
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTreeViewBase)
-  protected:
-  virtual void OnDraw(CDC* pDC);
+protected:
+  virtual void OnDraw(CDC *pDC);
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   virtual ~CTreeViewBase();
-  virtual CTreeCtrlBase* OnCreateCtrl();
+  virtual CTreeCtrlBase *OnCreateCtrl();
 #ifdef _DEBUG
   virtual void AssertValid() const;
-  virtual void Dump(CDumpContext& dc) const;
+  virtual void Dump(CDumpContext &dc) const;
 #endif
 
   // Generated message map functions

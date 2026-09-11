@@ -5,16 +5,15 @@
 
 class CTetraModel;
 
-class CTetraModel_Delegate : public C3DModel_Delegate
-{
+class CTetraModel_Delegate : public C3DModel_Delegate {
 public:
-  CTetraModel_Delegate(CTetraModel* aTetraModel);
+  CTetraModel_Delegate(CTetraModel *aTetraModel);
 
 private:
-  CTetraModel_Delegate(const CTetraModel_Delegate& rhs);
-  CTetraModel_Delegate& operator = (const CTetraModel_Delegate& rhs);
+  CTetraModel_Delegate(const CTetraModel_Delegate &rhs);
+  CTetraModel_Delegate &operator=(const CTetraModel_Delegate &rhs);
 
-  CTetraModel* m_TetraModel;
+  CTetraModel *m_TetraModel;
 
   REGISTER_DELEGATE(CTetraModel, CTetraModel_Delegate);
 };

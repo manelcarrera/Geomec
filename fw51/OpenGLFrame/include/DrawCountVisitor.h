@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 // DrawCountVisitor.h: interface for the CDrawCountVisitor class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -17,8 +17,7 @@ class IDrawDef;
 
 #include "OpenGLFrameExports.h"
 
-class OPENGLFRAME_EXPORT CDrawCountVisitor : public CDrawVisitorBase
-{
+class OPENGLFRAME_EXPORT CDrawCountVisitor : public CDrawVisitorBase {
   const COpenGLDraw &m_draw;
   const IDrawDef &m_drawdef;
   int m_iCount;

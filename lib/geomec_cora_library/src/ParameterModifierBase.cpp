@@ -1,42 +1,27 @@
 #include "ParameterModifierBase.h"
 #include "Value.h"
 
-namespace cora
-{
+namespace cora {
 
-CParameterModifierBase::CParameterModifierBase()
-{
-}
+CParameterModifierBase::CParameterModifierBase() {}
 
-CParameterModifierBase::~CParameterModifierBase()
-{
-}
+CParameterModifierBase::~CParameterModifierBase() {}
 
-namespace
-{
+namespace {
 
-class TModify
-{
+class TModify {
 public:
-  TModify(CParameterModifierBase& parameterModifierBase)
-  : m_parameterModifierBase(parameterModifierBase)
-  {
-  }
+  TModify(CParameterModifierBase &parameterModifierBase) : m_parameterModifierBase(parameterModifierBase) {}
 
-  void operator () (geo::CValue& rhs)
-  {
-  rhs = m_parameterModifierBase.modify(rhs);
-  }
+  void operator()(geo::CValue &rhs) { rhs = m_parameterModifierBase.modify(rhs); }
 
 private:
-  CParameterModifierBase& m_parameterModifierBase;
+  CParameterModifierBase &m_parameterModifierBase;
 };
 
 } // anonymous namespace
 
-CParameterModifierBase::TValueVec CParameterModifierBase::modify(
-  TValueVec& valueVec)
-{
+CParameterModifierBase::TValueVec CParameterModifierBase::modify(TValueVec &valueVec) {
   TValueVec newValueVec = valueVec;
   TModify modify(*this);
 
@@ -47,38 +32,33 @@ CParameterModifierBase::TValueVec CParameterModifierBase::modify(
 
 // protected
 
-namespace
-{
+namespace {
 
 size_t SINGLE_VALUE = 1;
 size_t FIRST_VALUE = 0;
 
 } // anonymous namespace
 
-double CParameterModifierBase::assignSingleValue(std::vector <double>& value)
-{
+double CParameterModifierBase::assignSingleValue(std::vector<double> &value) {
   assert(value.size() == SINGLE_VALUE);
 
   return value[FIRST_VALUE];
 }
 
-namespace
-{
+namespace {
 
 size_t TWO_VALUES = 2;
 size_t SECOND_VALUE = 1;
 
 } // anonymous namespace
 
-double CParameterModifierBase::assignFirstValue(std::vector <double>& value)
-{
+double CParameterModifierBase::assignFirstValue(std::vector<double> &value) {
   assert(value.size() == TWO_VALUES);
 
   return value[FIRST_VALUE];
 }
 
-double CParameterModifierBase::assignSecondValue(std::vector <double>& value)
-{
+double CParameterModifierBase::assignSecondValue(std::vector<double> &value) {
   assert(value.size() == TWO_VALUES);
 
   return value[SECOND_VALUE];

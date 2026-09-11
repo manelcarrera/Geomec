@@ -4,45 +4,25 @@ class CDianaRunner;
 
 #include "IDianaRunController.h"
 
-
-class CDianaRunController : public IDianaRunController
-{
-  CDianaRunner* m_pRunner;
+class CDianaRunController : public IDianaRunController {
+  CDianaRunner *m_pRunner;
 
 public:
-  CDianaRunController(	CModelBase& model,
-              const CAnalysisType& antype, 
-              bool bWriteInputFiles, 
-              bool bWriteQuadDat,
-              bool bWriteOutputStreamFile,
-              const QString& strTempPath );
+  CDianaRunController(CModelBase &model, const CAnalysisType &antype, bool bWriteInputFiles, bool bWriteQuadDat,
+                      bool bWriteOutputStreamFile, const QString &strTempPath);
 
-  bool RunFirst(	const QString& getPathName, 
-          IDianaXWrapper* dianaXWrapper,
-          const std::string &title, 
-          ISaveModel& saveModel,
-          IRetrieveDianaFileNames& retrieveDianaFileNames );
+  bool RunFirst(const QString &getPathName, IDianaXWrapper *dianaXWrapper, const std::string &title,
+                ISaveModel &saveModel, IRetrieveDianaFileNames &retrieveDianaFileNames);
 
-  bool RunNext( const QString& getPathName, 
-        IDianaXWrapper* dianaXWrapper,
-        const std::string &title, 
-        ISaveModel& saveModel,
-        IRetrieveDianaFileNames& retrieveDianaFileNames );
+  bool RunNext(const QString &getPathName, IDianaXWrapper *dianaXWrapper, const std::string &title,
+               ISaveModel &saveModel, IRetrieveDianaFileNames &retrieveDianaFileNames);
 
-  void CleanUpAfterRun(	const QString& getPathName, 
-            IDianaXWrapper* dianaXWrapper,
-            const std::string &title, 
-            ISaveModel& saveModel,
-            IRetrieveDianaFileNames& retrieveDianaFileNames );
-  
+  void CleanUpAfterRun(const QString &getPathName, IDianaXWrapper *dianaXWrapper, const std::string &title,
+                       ISaveModel &saveModel, IRetrieveDianaFileNames &retrieveDianaFileNames);
 
-  bool Run(	const QString& getPathName, 
-        IDianaXWrapper* dianaXWrapper,
-        const std::string &title, 
-        ISaveModel& saveModel,
-        IRetrieveDianaFileNames& retrieveDianaFileNames, 
-        dia::IAnalysisStatusContainer *pAnalysisStatusContainer = 0, 
-        bool bSilent = false);
+  bool Run(const QString &getPathName, IDianaXWrapper *dianaXWrapper, const std::string &title, ISaveModel &saveModel,
+           IRetrieveDianaFileNames &retrieveDianaFileNames, dia::IAnalysisStatusContainer *pAnalysisStatusContainer = 0,
+           bool bSilent = false);
 
   /*
   void SetLicenseRetry(int nLicenseRetry);

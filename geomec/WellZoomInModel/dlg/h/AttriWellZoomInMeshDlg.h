@@ -4,14 +4,13 @@
 #include "AttributesTemplate.h"
 #include "WellZoomInMesh.h"
 
-class CAttriWellZoomInMeshDlg : public CAttributesTemplate<CWellZoomInMesh>
-{
+class CAttriWellZoomInMeshDlg : public CAttributesTemplate<CWellZoomInMesh> {
 public:
-  CAttriWellZoomInMeshDlg(CWellZoomInMesh& src, CWnd* pParent = 0);
+  CAttriWellZoomInMeshDlg(CWellZoomInMesh &src, CWnd *pParent = 0);
 
 protected:
   virtual BOOL OnInitDialog();
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 
   afx_msg void OnMeshTypeHexa();
   afx_msg void OnMeshTypeTetra();

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 
 #ifndef BODYTRIANGLE_H
 #define BODYTRIANGLE_H
@@ -10,21 +10,20 @@
 namespace geo {
 class IBody;
 
-class GEOMETRY_EXPORT  CBodyTriangle : public ITriangle
-{
-  IBody &m_parent;  // the parent body
-  int    m_nIndex;  // the index of this face in the parent body
+class GEOMETRY_EXPORT CBodyTriangle : public ITriangle {
+  IBody &m_parent; // the parent body
+  int m_nIndex;    // the index of this face in the parent body
 
-public: 
+public:
   CBodyTriangle(IBody &parent, int nIndex);
   ~CBodyTriangle();
 
-  const IBody* Parent() const;
+  const IBody *Parent() const;
 
   virtual int PointIndex(int nIndex) const;
   virtual size_t NrOfNodes() const;
-  virtual const INode& Node(int nIndex) const;
-  virtual void Node(int nIndex, const IPoint& point);
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &point);
   virtual int Index() const;
 
   virtual size_t Order() const;

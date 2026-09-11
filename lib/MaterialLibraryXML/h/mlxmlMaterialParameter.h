@@ -11,20 +11,19 @@ class CMatParam;
 
 namespace mlxml {
 
-class CMaterialParameterXML
-{
+class CMaterialParameterXML {
 public:
-  CMaterialParameterXML(ml::CMatParam& matparam);
+  CMaterialParameterXML(ml::CMatParam &matparam);
   virtual ~CMaterialParameterXML();
 
-  virtual ml::CMatParam& MaterialParameter();
+  virtual ml::CMatParam &MaterialParameter();
 
   // these functions throw an mlxml::CException on failure
-  virtual void Load(QDomElement& domElement);
-  virtual void Save(QDomElement& domElement);
+  virtual void Load(QDomElement &domElement);
+  virtual void Save(QDomElement &domElement);
 
 private:
-  ml::CMatParam& m_matparam;
+  ml::CMatParam &m_matparam;
 };
 
 } // namespace mlxml

@@ -3,22 +3,19 @@
 
 #include "LimitStateFunctionBase.h"
 
-namespace cora
-{
+namespace cora {
 
-class CLimitStateFunctionFault : public CLimitStateFunctionBase
-{
-  public:
-  CLimitStateFunctionFault(CSummaryResultFile& summaryResultFile,
-      std::vector <QString>& function, CGetModelInfo& modelInfo,
-      const QString& versionNumber);
+class CLimitStateFunctionFault : public CLimitStateFunctionBase {
+public:
+  CLimitStateFunctionFault(CSummaryResultFile &summaryResultFile, std::vector<QString> &function,
+                           CGetModelInfo &modelInfo, const QString &versionNumber);
   virtual ~CLimitStateFunctionFault();
 
-  private:
-  CLimitStateFunctionFault(const CLimitStateFunctionFault& rhs);
-  CLimitStateFunctionFault& operator = (CLimitStateFunctionFault rhs);
+private:
+  CLimitStateFunctionFault(const CLimitStateFunctionFault &rhs);
+  CLimitStateFunctionFault &operator=(CLimitStateFunctionFault rhs);
 };
 
 } // namespace cora
 
-#endif  // _cora_LimitStateFunctionFault_h_
+#endif // _cora_LimitStateFunctionFault_h_

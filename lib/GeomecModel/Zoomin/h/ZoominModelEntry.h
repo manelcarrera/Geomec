@@ -1,19 +1,18 @@
 #ifndef _ZOOMINMODELENTRY_H_
 #define _ZOOMINMODELENTRY_H_
 
-#include "StorageNode.h"
 #include "GeomecModelVisitor.h"
+#include "StorageNode.h"
 
 class CZoominModelPlaceHolder;
 class CModelBase;
 
-class CZoominModelEntry : public CStorageNodeEntry<CZoominModelPlaceHolder>
-{
+class CZoominModelEntry : public CStorageNodeEntry<CZoominModelPlaceHolder> {
 public:
-  CZoominModelEntry(CModelBase& model);
+  CZoominModelEntry(CModelBase &model);
   virtual ~CZoominModelEntry();
 
-  bool AddChildModel(CModelBase& childModel);
+  bool AddChildModel(CModelBase &childModel);
 
   ACCEPT_GEOMECMODELVISITORS(VisitZoominModelEntry);
 };

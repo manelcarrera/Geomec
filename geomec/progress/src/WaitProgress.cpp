@@ -2,12 +2,6 @@
 
 #include "WaitProgress.h"
 
-CWaitProgress::CWaitProgress()
-: CProgressBase()
-, m_waitCursor()
-{
-}
+CWaitProgress::CWaitProgress() : CProgressBase(), m_waitCursor() {}
 
-CWaitProgress::~CWaitProgress()
-{
-}
+CWaitProgress::~CWaitProgress() {}

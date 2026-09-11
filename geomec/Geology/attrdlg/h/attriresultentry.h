@@ -10,33 +10,31 @@
 /////////////////////////////////////////////////////////////////////////////
 // CAttriResultEntry dialog
 class CResultEntry;
-class CAttriResultEntry : public CDialog
-{
-// Construction
-  CResultEntry& m_entry;
-public:
-  CAttriResultEntry(CResultEntry &entry, CWnd* pParent = NULL);   // standard constructor
+class CAttriResultEntry : public CDialog {
+  // Construction
+  CResultEntry &m_entry;
 
-// Dialog Data
+public:
+  CAttriResultEntry(CResultEntry &entry, CWnd *pParent = NULL); // standard constructor
+
+  // Dialog Data
   //{{AFX_DATA(CAttriResultEntry)
   enum { IDD = IDD_ATTRI_RESULT_ENTRY };
 
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CAttriResultEntry)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CAttriResultEntry)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

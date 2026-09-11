@@ -3,51 +3,49 @@
 
 #include "ISceneWrapper.h"
 
-class OIV2DSceneWrapper : public ISceneWrapper
-{
-  OIV2DScene& m_scene;
+class OIV2DSceneWrapper : public ISceneWrapper {
+  OIV2DScene &m_scene;
 
   geo::CVector m_dummyVector;
 
 public:
-
-  OIV2DSceneWrapper(OIV2DScene& scene);
+  OIV2DSceneWrapper(OIV2DScene &scene);
 
   virtual void Activate();
   virtual void Deactivate();
 
   virtual bool IsOpenInventorScene() const;
-  virtual OIV2DScene* getOIV2DScene() const;
+  virtual OIV2DScene *getOIV2DScene() const;
 
-  virtual bool ReParent(IOpenGLFrame* pParent);
-  virtual bool IsLinkedTo(const CGraphNode& node);
-  virtual bool CanConnectItem(const CGraphNode& node);
-  virtual bool CanConnectToMultipleItems(const CGraphNode& node);
-   
-  virtual bool ConnectItem(const CGraphNode& node);
-  virtual void LinkTo(const CGraphNode& node);
-  virtual void UnLink(const CGraphNode& node);
-  
-  virtual CFemAppModel& Model();
-  virtual IValueComponentBase* ValueComponent() const;
+  virtual bool ReParent(IOpenGLFrame *pParent);
+  virtual bool IsLinkedTo(const CGraphNode &node);
+  virtual bool CanConnectItem(const CGraphNode &node);
+  virtual bool CanConnectToMultipleItems(const CGraphNode &node);
+
+  virtual bool ConnectItem(const CGraphNode &node);
+  virtual void LinkTo(const CGraphNode &node);
+  virtual void UnLink(const CGraphNode &node);
+
+  virtual CFemAppModel &Model();
+  virtual IValueComponentBase *ValueComponent() const;
   virtual bool MultipleValueComponentsAllowed() const;
   virtual bool MultipleStagesAllowed() const;
 
   virtual size_t NumberOfValueComponents() const;
-   
-  virtual IValueComponentBase* ValueComponent(size_t index) const;
-   
+
+  virtual IValueComponentBase *ValueComponent(size_t index) const;
+
   virtual std::pair<geo::CValue, geo::CValue> MinMaxValue();
   virtual const double MinValue();
   virtual const double MaxValue();
 
   virtual int SelectMode();
 
-  virtual void OnSelect(CGraphNode& node);
+  virtual void OnSelect(CGraphNode &node);
   virtual void invalidate(const geo::IObject &list, bool bUpdate = true);
 
   virtual void Clear();
-  virtual int  Dimension();
+  virtual int Dimension();
   virtual void ResetPan();
   virtual void ResetScale();
 
@@ -77,7 +75,7 @@ public:
   virtual void DisplayCoordinateAxis(bool bDisplay);
   virtual bool DisplayCoordinateAxis() const;
   virtual bool CanDisplayCoordinateAxis() const;
-  virtual void SelectMeshMode( MeshMode mode );
+  virtual void SelectMeshMode(MeshMode mode);
   virtual MeshMode MeshModeSelected() const;
   virtual bool CanSelectMeshMode() const;
   virtual void SelectValueTracker(bool yesOrNo);
@@ -121,7 +119,7 @@ public:
   virtual void Fill(bool bFill);
   virtual bool Fill() const;
   virtual bool CanFill() const;
-  virtual void TimerCalled ();
+  virtual void TimerCalled();
   virtual void ZoomIn();
   virtual void ZoomOut();
   virtual void ZoomReset();
@@ -136,11 +134,11 @@ public:
   virtual const geo::CVector &ScaleVector() const;
   virtual void ScaleVector(const geo::CVector &newVal);
   virtual const geo::CVector &RotateLockVector() const;
-  virtual void RotateLockVector(const geo::CVector& vec);
-  virtual void LockRotationVector(const geo::IVector& vector);
-  virtual const geo::IVector& LockRotationVector() const;
+  virtual void RotateLockVector(const geo::CVector &vec);
+  virtual void LockRotationVector(const geo::IVector &vector);
+  virtual const geo::IVector &LockRotationVector() const;
   virtual bool CanLockRotationVector() const;
-  
+
   virtual void ViewEDirection();
   virtual void ViewNDirection();
   virtual void ViewZDirection();
@@ -159,12 +157,12 @@ public:
   virtual void SetVectorScale(float scale);
   virtual void SetVectorVisibleFraction(float factor);
 
-  virtual void ViewTensorVector( TensorVectorMode mode );
+  virtual void ViewTensorVector(TensorVectorMode mode);
   virtual TensorVectorMode ViewTensorVector();
   virtual bool CanViewTensorVector();
 
-  virtual void RefreshVectorBaseScale(); 
+  virtual void RefreshVectorBaseScale();
   virtual bool CanRefreshVectorBaseScale();
 };
 
-#endif  // _OIV2DSceneWrapper_h_
+#endif // _OIV2DSceneWrapper_h_

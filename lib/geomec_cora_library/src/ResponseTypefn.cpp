@@ -1,42 +1,32 @@
 #include <limits>
 
 #include "ResponseTypefn.h"
-#include "Utilities4ValueVector.h"
 #include "Result.h"
+#include "Utilities4ValueVector.h"
 
-namespace cora
-{
+namespace cora {
 
-CResponseTypefn::CResponseTypefn(CSummaryResultFile& summaryResultFile,
-  const std::vector <QString>& function)
-: CResponseTypeBase(summaryResultFile, function)
-{
-}
+CResponseTypefn::CResponseTypefn(CSummaryResultFile &summaryResultFile, const std::vector<QString> &function)
+    : CResponseTypeBase(summaryResultFile, function) {}
 
-CResponseTypefn::~CResponseTypefn()
-{
-}
+CResponseTypefn::~CResponseTypefn() {}
 
-namespace
-{
+namespace {
 
 const double HUNDRED = 100.0;
 
-double determineBoundaryValue(const std::map <double, double>& contribution,
-  const QString& responseType, double totalSize)
-{
+double determineBoundaryValue(const std::map<double, double> &contribution, const QString &responseType,
+                              double totalSize) {
   double boundary = (responseType.mid(1).toDouble() / HUNDRED) * totalSize;
   double size = 0;
-  std::map <double, double>::const_iterator pair = contribution.begin();
+  std::map<double, double>::const_iterator pair = contribution.begin();
 
-  for (; pair != contribution.end(); ++pair)
-  {
-  size += (*pair).second;
+  for (; pair != contribution.end(); ++pair) {
+    size += (*pair).second;
 
-  if (size > boundary)
-  {
+    if (size > boundary) {
       return (*pair).first;
-  }
+    }
   }
 
   assert(pair == contribution.end());
@@ -47,25 +37,20 @@ double determineBoundaryValue(const std::map <double, double>& contribution,
 
 } // anonymous namespace
 
-double CResponseTypefn::calculate(const TObject& object,
-  const TFailureMode& failureMode)
-{
-  const geo::IElement* element = object->getFirstElement();
+double CResponseTypefn::calculate(const TObject &object, const TFailureMode &failureMode) {
+  const geo::IElement *element = object->getFirstElement();
   double p = UNDEFINED_OR_INVALID_RESPONSE_TYPE;
 
   // The only time that the 'Defined()' function is necessary, why?
 
-  if ((element != 0) && (failureMode->getResultComponent()->Defined()))
-  {
-  typedef std::map <double, double> TDoublesMap;
+  if ((element != 0) && (failureMode->getResultComponent()->Defined())) {
+    typedef std::map<double, double> TDoublesMap;
 
-  TDoublesMap contribution;
-  double totalSize = 0;
+    TDoublesMap contribution;
+    double totalSize = 0;
 
-  while (element != 0)
-  {
-      const IValueDomainScalar::TValueVec valueVec =
-    failureMode->getResultComponent()->ValueElement(*element);
+    while (element != 0) {
+      const IValueDomainScalar::TValueVec valueVec = failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
@@ -76,9 +61,9 @@ double CResponseTypefn::calculate(const TObject& object,
       totalSize += valueTimesSize;
 
       element = object->getNextElement();
-  }
+    }
 
-  p = determineBoundaryValue(contribution, getResponseType(), totalSize);
+    p = determineBoundaryValue(contribution, getResponseType(), totalSize);
   }
 
   return p;

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __MODEL_LOCATION_H
 #define __MODEL_LOCATION_H
 
@@ -10,18 +10,17 @@
 class IModelObject;
 class CDocumentBase;
 
-class MODELFRAME_EXPORT CModelLocation
-{
+class MODELFRAME_EXPORT CModelLocation {
 public:
   CModelLocation();
-  CModelLocation( const IModelObject& object );
+  CModelLocation(const IModelObject &object);
   virtual ~CModelLocation();
 
-  IModelObject* getObject( CDocumentBase& document );
+  IModelObject *getObject(CDocumentBase &document);
 
   typedef IModelObject::TStream TStream;
-  void store( TStream& stream ) const;
-  void restore( TStream& stream, const CStreamVersion& streamVersion );
+  void store(TStream &stream) const;
+  void restore(TStream &stream, const CStreamVersion &streamVersion);
 
 private:
   QStack<int> m_positions;

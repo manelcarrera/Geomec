@@ -13,10 +13,9 @@
 #include "AttriGlobalFormationLoadDlg.h"
 #include "GlobalPressure.h"
 
-class CAttriGlobalPressureDlg : public CAttriGlobalFormationLoadDlg<CGlobalPressure>
-{
+class CAttriGlobalPressureDlg : public CAttriGlobalFormationLoadDlg<CGlobalPressure> {
 public:
-  CAttriGlobalPressureDlg(CGlobalPressure& pressure, CWnd* pParent = 0);
+  CAttriGlobalPressureDlg(CGlobalPressure &pressure, CWnd *pParent = 0);
 
 protected:
   DECLARE_MESSAGE_MAP()

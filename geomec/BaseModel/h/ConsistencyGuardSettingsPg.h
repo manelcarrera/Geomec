@@ -1,16 +1,13 @@
 #ifndef _CONSISTENCY_GUARD_SETTINGS_PG_H_
 #define _CONSISTENCY_GUARD_SETTINGS_PG_H_
 
-
-#include "afxwin.h"
 #include "afxdlgs.h"
+#include "afxwin.h"
 
 class CModelBase;
 #include "ConsistencyGuard.h"
 
-
-class CConsistencyGuardSettingsPg : public CPropertyPage
-{
+class CConsistencyGuardSettingsPg : public CPropertyPage {
   CModelBase *m_pModel;
 
   CConsistencyGuardOptions m_options;
@@ -19,7 +16,7 @@ public:
   CConsistencyGuardSettingsPg(CModelBase *pModel);
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
   virtual BOOL OnInitDialog();
   virtual void OnOK();
 
@@ -27,9 +24,5 @@ protected:
 
   DECLARE_MESSAGE_MAP()
 };
-
-
-
-
 
 #endif

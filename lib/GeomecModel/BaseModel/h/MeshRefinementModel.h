@@ -7,22 +7,21 @@ class CArchiveInterface;
 #include <QMap>
 #include <QString>
 
-class CMeshRefinementModel
-{
+class CMeshRefinementModel {
   TBoxMap m_data_m;
-  //QMap< QString, bool > m_visible_m;
+  // QMap< QString, bool > m_visible_m;
 
 public:
   CMeshRefinementModel();
 
-  void to_stream( CArchiveInterface& stream );
-  void from_stream( CArchiveInterface& stream );
+  void to_stream(CArchiveInterface &stream);
+  void from_stream(CArchiveInterface &stream);
 
-  TBoxMap& data(){ return m_data_m; };
-  void data( TBoxMap data_ ){ m_data_m = data_; };
+  TBoxMap &data() { return m_data_m; };
+  void data(TBoxMap data_) { m_data_m = data_; };
 
   TBoxV data_v();
 
   void print();
-  void print( const RefinementBox& box );
+  void print(const RefinementBox &box);
 };

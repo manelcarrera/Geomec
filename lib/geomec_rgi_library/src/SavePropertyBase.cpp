@@ -1,16 +1,10 @@
 
 #include "SavePropertyBase.h"
 
-namespace GeomecRGI
-{
+namespace GeomecRGI {
 
-CSavePropertyBase::CSavePropertyBase(const RGProperty& rgProperty)
-: m_RGProperty(rgProperty)
-{
-}
+CSavePropertyBase::CSavePropertyBase(const RGProperty &rgProperty) : m_RGProperty(rgProperty) {}
 
-CSavePropertyBase::~CSavePropertyBase()
-{
-}
+CSavePropertyBase::~CSavePropertyBase() {}
 
 } // namespace GeomecRGI

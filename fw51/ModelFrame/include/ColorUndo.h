@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __COLOR_UNDO_H
 #define __COLOR_UNDO_H
 
@@ -7,13 +7,12 @@
 
 #include "ModelFrameExports.h"
 
-class MODELFRAME_EXPORT  CColorUndo : public CLocalUndo
-{
+class MODELFRAME_EXPORT CColorUndo : public CLocalUndo {
 public:
-  CColorUndo( IModelObject& location, const QRgb& previous, const QString& text );
+  CColorUndo(IModelObject &location, const QRgb &previous, const QString &text);
   virtual ~CColorUndo();
 
-  virtual void undo( CDocumentBase& document );
+  virtual void undo(CDocumentBase &document);
 
 private:
   QRgb m_previous;

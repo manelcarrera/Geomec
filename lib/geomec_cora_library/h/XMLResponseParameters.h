@@ -5,8 +5,7 @@
 
 class CModelData;
 
-namespace cora
-{
+namespace cora {
 
 class CFilterResults;
 class CFilterOutputProperty;
@@ -16,22 +15,19 @@ class CFilterOutputProperty;
 #include "Object.h"
 #include "XMLResponseParameter.h"
 
-namespace cora
-{
+namespace cora {
 
-class CXMLResponseParameters
-{
-  public:
-  CXMLResponseParameters(CModelData& modelData, TObject object);
+class CXMLResponseParameters {
+public:
+  CXMLResponseParameters(CModelData &modelData, TObject object);
 
-  std::ostream& operator () (std::ostream& stream) const;
+  std::ostream &operator()(std::ostream &stream) const;
 
-  private:
-  CXMLResponseParameters(const CXMLResponseParameters& rhs);
-  CXMLResponseParameters& operator = (CXMLResponseParameters rhs);
+private:
+  CXMLResponseParameters(const CXMLResponseParameters &rhs);
+  CXMLResponseParameters &operator=(CXMLResponseParameters rhs);
 
-  static TXMLResponseParameters
-      createResponseParameters(CModelData& modelData, TObject object);
+  static TXMLResponseParameters createResponseParameters(CModelData &modelData, TObject object);
 
   TXMLResponseParameters m_responseParameters;
 };
@@ -40,7 +36,6 @@ class CXMLResponseParameters
 
 // global
 
-std::ostream& operator << (std::ostream& stream,
-  const cora::CXMLResponseParameters& rhs);
+std::ostream &operator<<(std::ostream &stream, const cora::CXMLResponseParameters &rhs);
 
-#endif  // _cora_XMLResponseParameters_h_
+#endif // _cora_XMLResponseParameters_h_

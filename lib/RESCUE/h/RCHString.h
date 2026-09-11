@@ -13,12 +13,11 @@
 #include <malloc.h>
 #include <stdio.h>
 
-#include "myHeaders.h"
 #include "boolSupport.h"
+#include "myHeaders.h"
 class RescueContext;
 
-class RCHString
-{
+class RCHString {
   RESCUECHAR *stringValue;
   unsigned RESCUEINT64 allocated;
   RESCUECHAR *delimiters;
@@ -34,7 +33,7 @@ public:
   RCHString(RescueContext *context, FILE *archiveFile);
   ~RCHString();
   void Archive(RescueContext *context, FILE *archiveFile);
-  RESCUECHAR *String() {return stringValue;}
+  RESCUECHAR *String() { return stringValue; }
   RESCUECHAR *NonNullString();
   void Accept(RESCUECHAR *value);
   void AddTo(RCHString &more);
@@ -72,12 +71,11 @@ public:
   RCHString &operator<<(RESCUEINT32 more);
   RCHString &operator<<(RESCUECHAR more);
   RCHString &operator<<(RESCUEDOUBLE more);
-  void tokenize(const RESCUECHAR *delimiters=0, RESCUEBOOL eachIn=FALSE, 
-                  RESCUEBOOL respectQuotes=FALSE);
+  void tokenize(const RESCUECHAR *delimiters = 0, RESCUEBOOL eachIn = FALSE, RESCUEBOOL respectQuotes = FALSE);
   RESCUEBOOL operator>>(RESCUECHAR *buffer);
   RESCUEBOOL operator>>(RCHString &buffer);
   RESCUEINT64 length64();
-  RESCUEINT32 length() {return (RESCUEINT32) length64();}
+  RESCUEINT32 length() { return (RESCUEINT32)length64(); }
   RESCUEINT32 length(RESCUEBOOL throwIfTooBig);
   void doubleApostrophe();
   void cgiEncode();
@@ -85,5 +83,3 @@ public:
 };
 
 #endif
-
-

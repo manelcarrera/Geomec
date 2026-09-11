@@ -12,32 +12,32 @@
 #include "3DHorizon.h"
 
 namespace geo {
-  class CSurfaceDesc;
+class CSurfaceDesc;
 }
 
-class CTetraHorizonBase : public C3DHorizon
-{
+class CTetraHorizonBase : public C3DHorizon {
 private:
   bool m_bFlip;
   // Display Surfaces
-  std::vector<const geo::ISurface*> DisplaySurfaces() const;
-  mutable geo::CElementGroup* m_pInterfaceElements;
+  std::vector<const geo::ISurface *> DisplaySurfaces() const;
+  mutable geo::CElementGroup *m_pInterfaceElements;
 
 public:
   // Construction
-  CTetraHorizonBase(CFemAppModel& model);
-  CTetraHorizonBase(CSurfaceBase &surface, CFemAppModel& model, const bool bSlip = false, bool bAttachToEntry = true);
-  CTetraHorizonBase(const QString& strInstanceName, const double dDepth, CFemAppModel& model, bool bAttachToEntry = true);
-  CTetraHorizonBase(const QString& strInstanceName, CFemAppModel& model, bool bAttachToEntry = true);
+  CTetraHorizonBase(CFemAppModel &model);
+  CTetraHorizonBase(CSurfaceBase &surface, CFemAppModel &model, const bool bSlip = false, bool bAttachToEntry = true);
+  CTetraHorizonBase(const QString &strInstanceName, const double dDepth, CFemAppModel &model,
+                    bool bAttachToEntry = true);
+  CTetraHorizonBase(const QString &strInstanceName, CFemAppModel &model, bool bAttachToEntry = true);
   CTetraHorizonBase(const C3DHorizon &rhs);
   virtual ~CTetraHorizonBase();
 
   void init();
 
-  bool operator==(const CTetraHorizonBase& rhs) const;
-  CTetraHorizonBase& operator=(const CTetraHorizonBase& rhs);
+  bool operator==(const CTetraHorizonBase &rhs) const;
+  CTetraHorizonBase &operator=(const CTetraHorizonBase &rhs);
 
-  virtual const geo::CElementGroup* InterfaceElementGroup() const;
+  virtual const geo::CElementGroup *InterfaceElementGroup() const;
 
   // Flip or not
   bool Flip() const;
@@ -45,27 +45,27 @@ public:
 
   // Output Surfaces
   int OutputSurfaceSize() const;
-  const geo::CSurfaceDesc& OutputSurface(int nIndex) const;
+  const geo::CSurfaceDesc &OutputSurface(int nIndex) const;
 
   virtual int MeshedSurfaceSize() const;
-  virtual const geo::ISurface& MeshedSurface(int nIndex) const;
+  virtual const geo::ISurface &MeshedSurface(int nIndex) const;
 
   // Display list output
-  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject &DisplayList(int nIndex) const;
   virtual int DisplayListSize() const;
 
   // Messaging from mesh
-  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
 
-//	virtual int MeshFaceSize() const;
-//	virtual const geo::IFace &MeshFace(int nIndex) const;
-  
+  //	virtual int MeshFaceSize() const;
+  //	virtual const geo::IFace &MeshFace(int nIndex) const;
+
   virtual int BodyFaceSize() const;
   virtual const geo::IFace &BodyFace(int nIndex) const;
 
-  virtual bool CanDisconnectItem(const CGraphNode& item) const;
+  virtual bool CanDisconnectItem(const CGraphNode &item) const;
   virtual bool Destroy();
 
   ACCEPT_GEOMECMODELVISITORS(VisitTetraHorizonBase);

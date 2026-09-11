@@ -15,12 +15,11 @@
 class CModelBase;
 class CResultGroup;
 
-class CGocadExportWrapper  
-{
+class CGocadExportWrapper {
 public:
   CGocadExportWrapper();
 
-  void Export(CModelBase& model, const CResultGroup* pResultGroup = 0);
+  void Export(CModelBase &model, const CResultGroup *pResultGroup = 0);
 };
 
 #endif // !defined(AFX_GOCADEXPORTWRAPPER_H__7E08C775_2D65_4A9F_B1AC_CE41B59ED8F7__INCLUDED_)

@@ -10,8 +10,7 @@ class CGraphNode;
 
 #include "GraphNode.h"
 
-class CDelegate
-{
+class CDelegate {
 public:
   // make sure all delegates are polymorphic
 
@@ -20,50 +19,43 @@ public:
   // instances of this method are registered in the factory for creation of
   // specific delegate types
 
-  template <class NODE_TYPE, class DELEGATE_TYPE>
-  static CDelegate* Create(CGraphNode* node)
-  {
-  assert(dynamic_cast <NODE_TYPE*> (node));
+  template <class NODE_TYPE, class DELEGATE_TYPE> static CDelegate *Create(CGraphNode *node) {
+    assert(dynamic_cast<NODE_TYPE *>(node));
 
-  NODE_TYPE* pNode;
+    NODE_TYPE *pNode;
 
-  try
-  {
-      pNode = static_cast <NODE_TYPE*> (node);
-  }
+    try {
+      pNode = static_cast<NODE_TYPE *>(node);
+    }
 
-  catch (std::bad_cast&)
-  {
-      assert(false);  // NODE_TYPE is not derived from CGraphNode
+    catch (std::bad_cast &) {
+      assert(false); // NODE_TYPE is not derived from CGraphNode
       throw;
-  }
-  return new DELEGATE_TYPE(pNode);
+    }
+    return new DELEGATE_TYPE(pNode);
   }
 
 protected:
   CDelegate();
 
 public:
-  template <class NODE_TYPE, class DELEGATE_TYPE>
-  class CDelegateTypeInfo
-  {
+  template <class NODE_TYPE, class DELEGATE_TYPE> class CDelegateTypeInfo {
   public:
-  CDelegateTypeInfo()
-  {
+    CDelegateTypeInfo() {
       // initialization of the static variable appears to be necessary,
       // otherwise the variable is not instantiated and the type info not
       // registered in the factory...
 
       NodeTypeName = std::string();
-  }
+    }
 
   public:
-  static std::string NodeTypeName;
+    static std::string NodeTypeName;
   };
 
 private:
-  CDelegate(const CDelegate& rhs);
-  CDelegate& operator = (const CDelegate& rhs);
+  CDelegate(const CDelegate &rhs);
+  CDelegate &operator=(const CDelegate &rhs);
 };
 
 // instantiation of the static CDelegate::CDelegateTypeInfo::NodeTypeName
@@ -71,20 +63,17 @@ private:
 // registered in the factory
 
 template <class NODE_TYPE, class DELEGATE_TYPE>
-  std::string CDelegate::CDelegateTypeInfo <NODE_TYPE, DELEGATE_TYPE> ::
-  NodeTypeName = CGraphNode::Register(typeid(NODE_TYPE),
-      &CDelegate::Create <NODE_TYPE, DELEGATE_TYPE>);
+std::string CDelegate::CDelegateTypeInfo<NODE_TYPE, DELEGATE_TYPE>::NodeTypeName =
+    CGraphNode::Register(typeid(NODE_TYPE), &CDelegate::Create<NODE_TYPE, DELEGATE_TYPE>);
 
 /*!
  * Use this macro for every delegate type so it will be registered in the
  * factory.
  * Must be put in the private section of the delegate class
  */
-#define REGISTER_DELEGATE(node_type, delegate_type)                           \
-  class CMyDelegateTypeInfo : public CDelegate::CDelegateTypeInfo <node_type, \
-  delegate_type>                                                            \
-  {                                                                           \
-  CMyDelegateTypeInfo(){}                                                   \
+#define REGISTER_DELEGATE(node_type, delegate_type)                                                                    \
+  class CMyDelegateTypeInfo : public CDelegate::CDelegateTypeInfo<node_type, delegate_type> {                          \
+    CMyDelegateTypeInfo() {}                                                                                           \
   }
 
 /*!
@@ -103,11 +92,9 @@ template <class NODE_TYPE, class DELEGATE_TYPE>
  * Must be put in the constructor of the delegate class or in the constructor
  * of selected classes when necessary.
  */
-#define ACTIVATE_TEMPLATE_DELEGATE(node_type, delegate_type)      \
-  if (CDelegate::CDelegateTypeInfo <node_type, delegate_type > :: \
-  NodeTypeName == "")                                           \
-  {                                                               \
-  throw("Template not registered");                             \
+#define ACTIVATE_TEMPLATE_DELEGATE(node_type, delegate_type)                                                           \
+  if (CDelegate::CDelegateTypeInfo<node_type, delegate_type>::NodeTypeName == "") {                                    \
+    throw("Template not registered");                                                                                  \
   }
 
 #endif // _Delegate_h_

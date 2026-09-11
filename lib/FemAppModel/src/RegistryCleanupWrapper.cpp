@@ -1,14 +1,9 @@
 
 #include <memory>
 
-#include "RegistryCleanupWrapper.h"
 #include "ISettings.h"
+#include "RegistryCleanupWrapper.h"
 
-CRegistryCleanupWrapper::CRegistryCleanupWrapper()
-{
-}
+CRegistryCleanupWrapper::CRegistryCleanupWrapper() {}
 
-CRegistryCleanupWrapper::~CRegistryCleanupWrapper()
-{
-  ISettings::cleanup();
-}
+CRegistryCleanupWrapper::~CRegistryCleanupWrapper() { ISettings::cleanup(); }

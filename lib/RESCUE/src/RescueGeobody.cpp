@@ -8,31 +8,25 @@
 
 *********************************************************************/
 #include "RescueGeobody.h"
-#include "RescueModel.h"
-#include "RescueGeobodyPart.h"
 #include "RescueBuffer.h"
+#include "RescueGeobodyPart.h"
+#include "RescueModel.h"
 #include <string.h>
 
-RESCUEBOOL RescueGeobody::AnyFileTruncated()
-{
-  return bodyParts->AnyFileTruncated();
-}
+RESCUEBOOL RescueGeobody::AnyFileTruncated() { return bodyParts->AnyFileTruncated(); }
 
-void RescueGeobody::Archive(FILE *archiveFile)
-{
+void RescueGeobody::Archive(FILE *archiveFile) {
   myfprintf(parentModel->Context(), archiveFile, "; RescueGeobody");
   myfprintf(parentModel->Context(), archiveFile, Identifier());
   bodyName->Archive(parentModel->Context(), archiveFile);
   groups->Archive(parentModel->Context(), archiveFile);
   bodyParts->Archive(parentModel->Context(), archiveFile);
-  if (parentModel->Context()->FileVersion() >= 37)
-  {
-  myfprintf(parentModel->Context(), archiveFile, "EOD");
+  if (parentModel->Context()->FileVersion() >= 37) {
+    myfprintf(parentModel->Context(), archiveFile, "EOD");
   }
 }
 
-RescueGeobody::RescueGeobody(RescueContext *contextIn, FILE *archiveFile):RescueWireframeOwner(contextIn)
-{
+RescueGeobody::RescueGeobody(RescueContext *contextIn, FILE *archiveFile) : RescueWireframeOwner(contextIn) {
   isA = R_RescueGeobody;
   ReadId(contextIn, archiveFile);
   bodyName = new RCHString(contextIn, archiveFile);
@@ -40,77 +34,64 @@ RescueGeobody::RescueGeobody(RescueContext *contextIn, FILE *archiveFile):Rescue
   groups->UnArchive(contextIn, archiveFile);
   bodyParts = new cSetRescueGeobodyPart();
   bodyParts->UnArchive(contextIn, archiveFile);
-  if (contextIn->ReadFileVersion() >= 37)
-  {
-  RESCUECHAR myString[255];
+  if (contextIn->ReadFileVersion() >= 37) {
+    RESCUECHAR myString[255];
 
-  myfgets(contextIn, myString, 255, archiveFile);
-  while (strcmp(myString, "EOD") != 0)
-  {
+    myfgets(contextIn, myString, 255, archiveFile);
+    while (strcmp(myString, "EOD") != 0) {
       RescueBuffer buf(contextIn, archiveFile);
       myfgets(contextIn, myString, 255, archiveFile);
-  }
+    }
   }
 }
 
-RescueProperty *RescueGeobody::PropertyIdentifiedBy(RESCUEINT64 id)
-{
+RescueProperty *RescueGeobody::PropertyIdentifiedBy(RESCUEINT64 id) {
   RescueProperty *myReturn = 0;
   RESCUEINT64 ndx = 0;
   RescueGeobodyPart *part = bodyParts->NthObject(ndx++);
-  while (myReturn == 0 && part != 0)
-  {
-  myReturn = part->PropertyIdentifiedBy(id);
-  if (myReturn == 0)
-  {
+  while (myReturn == 0 && part != 0) {
+    myReturn = part->PropertyIdentifiedBy(id);
+    if (myReturn == 0) {
       part = bodyParts->NthObject(ndx++);
-  }
+    }
   }
   return myReturn;
 }
 
-RescueGeobodyVolume *RescueGeobody::GeobodyVolumeIdentifiedBy(RESCUEINT64 id)
-{
+RescueGeobodyVolume *RescueGeobody::GeobodyVolumeIdentifiedBy(RESCUEINT64 id) {
   RescueGeobodyVolume *myReturn = 0;
   RESCUEINT64 ndx = 0;
   RescueGeobodyPart *part = bodyParts->NthObject(ndx++);
-  while (myReturn == 0 && part != 0)
-  {
-  myReturn = part->GeobodyVolumeIdentifiedBy(id);
-  if (myReturn == 0)
-  {
+  while (myReturn == 0 && part != 0) {
+    myReturn = part->GeobodyVolumeIdentifiedBy(id);
+    if (myReturn == 0) {
       part = bodyParts->NthObject(ndx++);
-  }
+    }
   }
   return myReturn;
 }
 
-RescueGeobodySurface *RescueGeobody::GeobodySurfaceIdentifiedBy(RESCUEINT64 id)
-{
+RescueGeobodySurface *RescueGeobody::GeobodySurfaceIdentifiedBy(RESCUEINT64 id) {
   RescueGeobodySurface *myReturn = 0;
   RESCUEINT64 ndx = 0;
   RescueGeobodyPart *part = bodyParts->NthObject(ndx++);
-  while (myReturn == 0 && part != 0)
-  {
-  myReturn = part->GeobodySurfaceIdentifiedBy(id);
-  if (myReturn == 0)
-  {
+  while (myReturn == 0 && part != 0) {
+    myReturn = part->GeobodySurfaceIdentifiedBy(id);
+    if (myReturn == 0) {
       part = bodyParts->NthObject(ndx++);
-  }
+    }
   }
   return myReturn;
 }
 
-void RescueGeobody::Relink(RescueObject *parentModelIn)
-{
-  parentModel = (RescueModel *) parentModelIn;
+void RescueGeobody::Relink(RescueObject *parentModelIn) {
+  parentModel = (RescueModel *)parentModelIn;
   groups->Relink(this);
   bodyParts->Relink(this);
 }
 
 RescueGeobody::RescueGeobody(RESCUECHAR *newBodyName, RescueModel *newParentModel)
-    :RescueWireframeOwner(newParentModel->Context())
-{
+    : RescueWireframeOwner(newParentModel->Context()) {
   bodyName = new RCHString(newBodyName);
   parentModel = newParentModel;
   (*parentModel->geoBodies) += this;
@@ -119,90 +100,64 @@ RescueGeobody::RescueGeobody(RESCUECHAR *newBodyName, RescueModel *newParentMode
   bodyParts = new cSetRescueGeobodyPart();
 }
 
-RescueGeobody::~RescueGeobody()
-{
+RescueGeobody::~RescueGeobody() {
   delete bodyName;
   delete groups;
   delete bodyParts;
 }
 
-void RescueGeobody::Dispose()
-{
-  if (bodyParts != 0)
-  {
-  RESCUEINT64 howMany = bodyParts->Count64();
-  RESCUEINT64 loop;
-  for (loop = 0; loop < howMany; loop++)
-  {
+void RescueGeobody::Dispose() {
+  if (bodyParts != 0) {
+    RESCUEINT64 howMany = bodyParts->Count64();
+    RESCUEINT64 loop;
+    for (loop = 0; loop < howMany; loop++) {
       bodyParts->NthObject(loop)->Dispose();
-  }
+    }
   }
 }
 
-RESCUEBOOL RescueGeobody::DeleteBodyPart(RescueGeobodyPart *existingBodyPart)
-{
-  if (existingBodyPart != 0)
-  {
-  existingBodyPart->Dispose();
+RESCUEBOOL RescueGeobody::DeleteBodyPart(RescueGeobodyPart *existingBodyPart) {
+  if (existingBodyPart != 0) {
+    existingBodyPart->Dispose();
   }
   return ((*bodyParts) -= existingBodyPart);
 }
 
-RESCUEBOOL RescueGeobody::IsNamed(const RESCUECHAR *possibleName)
-{
+RESCUEBOOL RescueGeobody::IsNamed(const RESCUECHAR *possibleName) {
   RESCUEBOOL myReturn = FALSE;
-  if (bodyName != 0)
-  {
-  if ((*bodyName) == possibleName)
-  {
+  if (bodyName != 0) {
+    if ((*bodyName) == possibleName) {
       myReturn = TRUE;
-  }
+    }
   }
   return myReturn;
 }
 
-RESCUEBOOL RescueGeobody::IsOfType(_RescueObjectType thisType)
-{
-  if (thisType == R_RescueGeobody)
-  {
-  return TRUE;
-  }
-  else
-  {
-  return RescueWireframeOwner::IsOfType(thisType);
+RESCUEBOOL RescueGeobody::IsOfType(_RescueObjectType thisType) {
+  if (thisType == R_RescueGeobody) {
+    return TRUE;
+  } else {
+    return RescueWireframeOwner::IsOfType(thisType);
   }
 }
 
-void RescueGeobody::SetOrientation(RescueOrientationLedger *ledger, 
-                                   RescueCoordinateSystem::Orientation orientation)
-{
+void RescueGeobody::SetOrientation(RescueOrientationLedger *ledger, RescueCoordinateSystem::Orientation orientation) {
   RESCUEINT64 ndx = 0;
   RescueGeobodyPart *part = bodyParts->NthObject(ndx++);
-  while (part != 0)
-  {
-  part->SetOrientation(ledger, orientation);
-  part = bodyParts->NthObject(ndx++);
+  while (part != 0) {
+    part->SetOrientation(ledger, orientation);
+    part = bodyParts->NthObject(ndx++);
   }
 }
 
-void RescueGeobody::FindUniquePropertyNames(cSetString *container)
-{
-  bodyParts->FindUniquePropertyNames(container); 
-}
+void RescueGeobody::FindUniquePropertyNames(cSetString *container) { bodyParts->FindUniquePropertyNames(container); }
 
-RESCUEINT32 RescueGeobody::GeobodyPartCount(RESCUEBOOL throwIfTooBig)
-{
+RESCUEINT32 RescueGeobody::GeobodyPartCount(RESCUEBOOL throwIfTooBig) {
   RESCUEINT64 output = GeobodyPartCount64();
-  if (throwIfTooBig)
-  {
-  if (output > 2147483647 || output < -2147483647)
-  {
+  if (throwIfTooBig) {
+    if (output > 2147483647 || output < -2147483647) {
       throw "Model is too large to be read in 32 bit mode.";
+    }
   }
-  }
-  return (RESCUEINT32) output;
+  return (RESCUEINT32)output;
 }
-
-
-
-

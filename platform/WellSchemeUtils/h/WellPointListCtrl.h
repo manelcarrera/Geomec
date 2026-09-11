@@ -15,45 +15,31 @@
 // CWellPointListCtrl window
 
 class CNewWellPathBase;
-namespace well
-{
-  class CWellPathBase;
+namespace well {
+class CWellPathBase;
 };
 
-typedef std::map<int, well::CWellPoint*> IndexPointMap;
-typedef std::pair<int, well::CWellPoint*> IndexPointPair;
-typedef std::map<int, CNewWellPoint*> NewIndexPointMap;
-typedef std::pair<int, CNewWellPoint*> NewIndexPointPair;
+typedef std::map<int, well::CWellPoint *> IndexPointMap;
+typedef std::pair<int, well::CWellPoint *> IndexPointPair;
+typedef std::map<int, CNewWellPoint *> NewIndexPointMap;
+typedef std::pair<int, CNewWellPoint *> NewIndexPointPair;
 
-class AFX_EXT_CLASS CWellPointListCtrl : public CListCtrl
-{
-// Construction
+class AFX_EXT_CLASS CWellPointListCtrl : public CListCtrl {
+  // Construction
 public:
   CWellPointListCtrl(well::CWellPathBase &wellpath);
   CWellPointListCtrl(CNewWellPathBase &wellpath);
 
   void UpdateList();
-  void OnInitList
-  (well::CWellPointList* pList
-  , CDoubleQuantity::UNIT unit=CDoubleQuantity::SI_UNIT
-  );
+  void OnInitList(well::CWellPointList *pList, CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT);
 
-  void OnInitList
-  ( std::list<CNewWellPoint> & List
-  , CDoubleQuantity::UNIT unit=CDoubleQuantity::SI_UNIT
-  );
+  void OnInitList(std::list<CNewWellPoint> &List, CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT);
 
-  void OnInitList
-  ( well::CWellPointList* pList
-  , QVector<well::CWellSectionList*> Sections
-  , CDoubleQuantity::UNIT unit=CDoubleQuantity::SI_UNIT
-  );
+  void OnInitList(well::CWellPointList *pList, QVector<well::CWellSectionList *> Sections,
+                  CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT);
 
   void OnInitList // wjrx mantis 3564
-  ( std::list<CNewWellPoint> &List
-  , std::list<std::list<INewWellSection *> > &Sections
-  , CDoubleQuantity::UNIT unit
-  );
+      (std::list<CNewWellPoint> &List, std::list<std::list<INewWellSection *>> &Sections, CDoubleQuantity::UNIT unit);
   std::list<CNewWellPoint> GetSelectedPoints();
 
   void ShowPosition(bool show);
@@ -62,38 +48,38 @@ public:
   void ShowNumbering(bool show);
   void ShowTMDOnly();
 
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CWellPointListCtrl)
   //}}AFX_VIRTUAL
 
   virtual ~CWellPointListCtrl();
-  void RemoveSelectedPoints(const bool bNewWellPath= false);
+  void RemoveSelectedPoints(const bool bNewWellPath = false);
   well::CWellPointList GetSelecetedPoints();
   // Generated message map functions
 protected:
   //{{AFX_MSG(CWellPointListCtrl)
-    // NOTE - the ClassWizard will add and remove member functions here.
+  // NOTE - the ClassWizard will add and remove member functions here.
   //}}AFX_MSG
 
   DECLARE_MESSAGE_MAP()
 
 private:
-  IndexPointMap& IndexPoints(){return m_IndexPoints;}
-  NewIndexPointMap& NewIndexPoints(){return m_NewIndexPoints;}
+  IndexPointMap &IndexPoints() { return m_IndexPoints; }
+  NewIndexPointMap &NewIndexPoints() { return m_NewIndexPoints; }
 
   bool m_ShowCoordinates;
   bool m_ShowDirections;
   bool m_ShowPosition;
   bool m_ShowNumbering;
 
-  well::CWellPointList* m_pList;
+  well::CWellPointList *m_pList;
   std::list<CNewWellPoint> *m_pNewList;
   IndexPointMap m_IndexPoints;
   NewIndexPointMap m_NewIndexPoints;
   CDoubleQuantity::UNIT m_Unit;
-  QVector<well::CWellSectionList*> m_Sections;
-  std::list<std::list<INewWellSection *> > m_NewSections;
+  QVector<well::CWellSectionList *> m_Sections;
+  std::list<std::list<INewWellSection *>> m_NewSections;
 
   well::CWellPathBase *m_pWellPath;
   CNewWellPathBase *m_pNewWellPath;

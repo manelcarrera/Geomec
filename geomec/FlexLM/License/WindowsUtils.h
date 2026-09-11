@@ -3,17 +3,10 @@
 
 #include <QString>
 
-
-
-namespace gm_windows_utils
-{
+namespace gm_windows_utils {
 
 QString Execute(const char *command);
 
 }
-
-
-
-
 
 #endif

@@ -1,4 +1,4 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef __I_COMMAND_INVOKER_H
 #define __I_COMMAND_INVOKER_H
 
@@ -6,10 +6,9 @@
 
 class IGuiCommand;
 
-class GUIFRAME_EXPORT ICommandInvoker
-{
+class GUIFRAME_EXPORT ICommandInvoker {
 public:
-  virtual void append( IGuiCommand* cmd ) = 0; //!< ownership is transferred
+  virtual void append(IGuiCommand *cmd) = 0; //!< ownership is transferred
   virtual void appendSeparator() = 0;
 };
 

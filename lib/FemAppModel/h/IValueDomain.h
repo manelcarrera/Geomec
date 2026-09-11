@@ -1,18 +1,15 @@
 #ifndef _I_VALUE_DOMAIN_H_
 #define _I_VALUE_DOMAIN_H_
 
-namespace geo
-{
-  class CValue;
-  class CVector;
-}
+namespace geo {
+class CValue;
+class CVector;
+} // namespace geo
 class CTensor;
 
 #include <vector>
 
-template<class VALUE_TYPE>
-class IValueDomain
-{
+template <class VALUE_TYPE> class IValueDomain {
 public:
   typedef std::pair<VALUE_TYPE, VALUE_TYPE> TMinMax;
   typedef VALUE_TYPE TValue;
@@ -22,9 +19,5 @@ public:
 typedef IValueDomain<geo::CValue> IValueDomainScalar;
 typedef IValueDomain<geo::CVector> IValueDomainVector;
 typedef IValueDomain<CTensor> IValueDomainTensor;
-
-
-
-
 
 #endif

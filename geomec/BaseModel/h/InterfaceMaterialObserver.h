@@ -10,10 +10,14 @@ class CInterfaceMaterial_Delegate;
 class CInterfaceMaterialEntry;
 
 #include "DeletableNodeObserver_Delegate.h"
-#include "StateBranch_Delegate.h"
 #include "Geomec.h"
+#include "StateBranch_Delegate.h"
 
-typedef CDeletableNodeObserver_Delegate<CInterfaceMaterial, CInterfaceMaterial_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TInterfaceMaterialObserver;
-typedef CStateBranch_Delegate<CInterfaceMaterialEntry, CInterfaceMaterialEntry_Delegate, CInterfaceMaterial, TInterfaceMaterialObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM> TInterfaceMaterialEntryObserver;
+typedef CDeletableNodeObserver_Delegate<CInterfaceMaterial, CInterfaceMaterial_Delegate, CDummyNode, CDummyObserver,
+                                        FALSE, FIXED_ITEM>
+    TInterfaceMaterialObserver;
+typedef CStateBranch_Delegate<CInterfaceMaterialEntry, CInterfaceMaterialEntry_Delegate, CInterfaceMaterial,
+                              TInterfaceMaterialObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM>
+    TInterfaceMaterialEntryObserver;
 
 #endif // _INTERFACEMATERIALOBSERVER_H_

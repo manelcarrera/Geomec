@@ -17,16 +17,15 @@ class OIV2DLegend;
 /**
  * Base class for all OIV 2D scenes
  */
-class OIV2DScene : public COIVSceneBase
-{
+class OIV2DScene : public COIVSceneBase {
   static Qt::CursorShape s_cursorShape;
 
-  SoGLContext*          m_oglContext;
-  SoGuiAlgoViewers*     m_viewerAlgos;
-  SoGroup*              m_sceneGraph;
-  SoOrthographicCamera* m_camera;
+  SoGLContext *m_oglContext;
+  SoGuiAlgoViewers *m_viewerAlgos;
+  SoGroup *m_sceneGraph;
+  SoOrthographicCamera *m_camera;
 
-  SoGradientBackground* m_background;
+  SoGradientBackground *m_background;
   float m_foregroundColor[3];
   int m_lineThickness;
   bool m_markersVisible;
@@ -38,28 +37,23 @@ class OIV2DScene : public COIVSceneBase
 
   void init();
 
-  enum ViewerMode
-  {
-    ViewingMode,
-    PanningMode,
-    ZoomingMode
-  };
+  enum ViewerMode { ViewingMode, PanningMode, ZoomingMode };
 
   ViewerMode m_viewerMode;
 
 protected:
-  OIV2DGraph* m_graph;
-  OIV2DLegend* m_legend;
+  OIV2DGraph *m_graph;
+  OIV2DLegend *m_legend;
 
   int m_preferredCurveGroup;
 
-  static void SetCursor (Qt::CursorShape shape);
+  static void SetCursor(Qt::CursorShape shape);
   static void RefreshCursor();
 
 public:
-  OIV2DScene(CFemAppModel& model);
-  OIV2DScene(const QString& name, CFemAppModel& model);
-  OIV2DScene(unsigned int name, CFemAppModel& model);
+  OIV2DScene(CFemAppModel &model);
+  OIV2DScene(const QString &name, CFemAppModel &model);
+  OIV2DScene(unsigned int name, CFemAppModel &model);
 
   virtual void Activate();
   virtual void Deactivate();
@@ -69,16 +63,14 @@ public:
   int getHeight() const;
 
   virtual size_t NumberOfValueComponents() const = 0;
-  virtual IValueComponentBase* ValueComponent(size_t index) const = 0;
+  virtual IValueComponentBase *ValueComponent(size_t index) const = 0;
   virtual bool MultipleValueComponentsAllowed() const = 0;
   virtual bool MultipleStagesAllowed() const = 0;
 
+  virtual bool CanConnectToMultipleItems(const CGraphNode &node) const = 0;
 
-  virtual bool CanConnectToMultipleItems(const CGraphNode& node) const = 0;
-
-
-  void setSceneGraph(SoGroup* root, SoOrthographicCamera* camera);
-  SoGroup* getSceneGraph() const;
+  void setSceneGraph(SoGroup *root, SoOrthographicCamera *camera);
+  SoGroup *getSceneGraph() const;
   void createSceneGraph();
 
   void updateDomains();
@@ -98,16 +90,16 @@ public:
   typedef Qt::KeyboardModifiers TKeyboardModifiers;
   typedef Qt::Key TKey;
 
-  virtual bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-  virtual bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint& point);
+  virtual bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint &point);
+  virtual bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint &point);
   virtual bool KeyPress(TKeyboardModifiers state, int nChar, TKey key, int nRepCount);
   virtual bool KeyRelease(TKeyboardModifiers state, int nChar, TKey key, int nRepCount);
-  void UpdateAllViews ();
+  void UpdateAllViews();
 
-  bool UpdateLabel( const TScreenPoint &point );
+  bool UpdateLabel(const TScreenPoint &point);
 
   QRgb ForegroundColor() const;
   QRgb BackgroundColor() const;
@@ -117,7 +109,7 @@ public:
   void BackgroundColor(QRgb color);
   void BackgroundColor2(QRgb color);
 
-  void setLineThickness( int t );
+  void setLineThickness(int t);
   int getLineThickness() const;
 
   void preferBottomOrRightAxis();
@@ -134,49 +126,39 @@ public:
 
   void SetGraphRanges();
 
-  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM &stream, TPROGRESS &progress);
+  virtual void LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress);
 
   virtual int SelectMode() const = 0;
   virtual void updateLegend() = 0;
 
-  float getAspect ();
+  float getAspect();
   virtual void updateGraph();
-  
-  void SaveColorToStream (QRgb (OIV2DScene::*func_ptr)() const, TSTREAM& stream);
-  void RestoreColorFromStream (void (OIV2DScene::*func_ptr)(QRgb), TSTREAM& stream);
 
-  template < class T> 
-  void SaveValueToStream (T (OIV2DScene::*func_ptr)() const, TSTREAM& stream)
-  {
-    stream << (this->* func_ptr)();
+  void SaveColorToStream(QRgb (OIV2DScene::*func_ptr)() const, TSTREAM &stream);
+  void RestoreColorFromStream(void (OIV2DScene::*func_ptr)(QRgb), TSTREAM &stream);
+
+  template <class T> void SaveValueToStream(T (OIV2DScene::*func_ptr)() const, TSTREAM &stream) {
+    stream << (this->*func_ptr)();
   }
 
   // specialization to account for that we cannot stream to a bool
-  template <>
-  void SaveValueToStream(bool (OIV2DScene::*func_ptr)() const, TSTREAM& stream)
-  {
-      stream << int((this->*func_ptr)());
+  template <> void SaveValueToStream(bool (OIV2DScene::*func_ptr)() const, TSTREAM &stream) {
+    stream << int((this->*func_ptr)());
   }
 
-  template < class T >
-  void RestoreValueFromStream (void (OIV2DScene::*func_ptr)(T), TSTREAM& stream)
-  {
+  template <class T> void RestoreValueFromStream(void (OIV2DScene::*func_ptr)(T), TSTREAM &stream) {
     T value;
     stream >> value;
-    (this->* func_ptr) (value);
+    (this->*func_ptr)(value);
   }
 
   // specialization to account for that we cannot stream to a bool
-  template <>
-  void RestoreValueFromStream (void (OIV2DScene::*func_ptr)(bool), TSTREAM& stream)
-  {
+  template <> void RestoreValueFromStream(void (OIV2DScene::*func_ptr)(bool), TSTREAM &stream) {
     int value;
     stream >> value;
-    (this->* func_ptr) (value);
+    (this->*func_ptr)(value);
   }
 };
 
 #endif
-
-

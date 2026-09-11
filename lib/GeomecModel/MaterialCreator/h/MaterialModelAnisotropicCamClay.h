@@ -4,11 +4,10 @@
 #include "MaterialCreator.h"
 #include "MaterialModelAnisotropy.h"
 
-class CMaterialAnisotropicCamClayCreatorDEPRECATED : public CMaterialCreator
-{
+class CMaterialAnisotropicCamClayCreatorDEPRECATED : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -16,11 +15,10 @@ protected:
   virtual bool CanCalibratePlastic() const { return true; }
 };
 
-class CMaterialAnisotropicCamClayCreatorV2 : public CMaterialCreator
-{
+class CMaterialAnisotropicCamClayCreatorV2 : public CMaterialCreator {
 protected:
-  virtual void OnCreateLibrary(CLibraryMaterial& m);
-  virtual void OnCreateLibraryParameters(CLibraryMaterial& m);
+  virtual void OnCreateLibrary(CLibraryMaterial &m);
+  virtual void OnCreateLibraryParameters(CLibraryMaterial &m);
   virtual int MaterialModel();
   virtual QString MaterialModelName();
   virtual QString CalibrationPath() const;
@@ -29,6 +27,5 @@ protected:
 };
 
 typedef CMaterialAnisotropicCamClayCreatorV2 CMaterialAnisotropicCamClayCreator;
-
 
 #endif // _MATERIALMODELANISOTROPICCAMCLAY_H_

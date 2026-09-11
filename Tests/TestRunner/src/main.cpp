@@ -1,42 +1,37 @@
 // Simple wrapper for starting Tests.exe, as GoogleTestRunner/Microsoft's framework
 // can't use the project's environment settings.
 
-#include <direct.h>
 #include <cstdlib>
-#include <sstream>
+#include <direct.h>
 #include <iostream>
+#include <sstream>
 
 // all three in QUtil lib
-#include "SettingsIni.h"
 #include "Printer.h"
 #include "QUtil.h"
+#include "SettingsIni.h"
 
-
-
-const char *getExePath(const char *exe)
-{
+const char *getExePath(const char *exe) {
   static char *s = 0;
-  
-  if (!s)
-  {
-  s = _strdup(exe);
-  for (size_t i = strlen(s) - 1; i >= 0; --i)
+
+  if (!s) {
+    s = _strdup(exe);
+    for (size_t i = strlen(s) - 1; i >= 0; --i)
       if (*(s + i) != '\\' && *(s + i) != '/')
-    *(s + i) = 0;
+        *(s + i) = 0;
       else
-    break;
+        break;
   }
 
   return s;
 }
 
-void buildPath(const char *cwd)
-{
+void buildPath(const char *cwd) {
   const char *oldPath = getenv("PATH");
-  const char *qtDir   = getenv("QTDIR");
-  const char *qwtDir  = getenv("QWTDIR");
+  const char *qtDir = getenv("QTDIR");
+  const char *qwtDir = getenv("QWTDIR");
   const char *diaRoot = getenv("DIAROOT");
-  const char *intel   = getenv("INTEL");
+  const char *intel = getenv("INTEL");
 
   std::ostringstream newPath;
   newPath << "PATH=";
@@ -54,8 +49,9 @@ void buildPath(const char *cwd)
   newPath << "..\\src\\lib\\tbb\\windows\\bin\\intel64\\vc12;";
   newPath << "E:\\DevEnv\\Intel\\mkl;";
 #else
-  // in VS2013 our cwd is "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow"
-  // and GoogleTestRunner (or the MS API) doesn't pick up the debugging settings for environment
+  // in VS2013 our cwd is "C:\Program Files (x86)\Microsoft Visual
+  // Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow" and GoogleTestRunner (or the MS API) doesn't pick up
+  // the debugging settings for environment
   newPath << cwd << "..\\..\\..\\lib\\tbb\\windows\\bin\\intel64\\vc12;";
   newPath << intel << "\\..\\mkl;";
 #endif
@@ -64,22 +60,19 @@ void buildPath(const char *cwd)
   _putenv(newPath.str().c_str());
 }
 
-
 #define GM_MODEL_PATH "--gm-model-path="
 
-const char *buildCommand(int argc, char *argv[])
-{
+const char *buildCommand(int argc, char *argv[]) {
   std::ostringstream command;
 
-  command  << "RunTsts.exe";
+  command << "RunTsts.exe";
 
   bool sawModelPath = false;
 
-  for (int i = 1; i < argc; ++i)
-  {
-  if (!strncmp(argv[i], GM_MODEL_PATH, strlen(GM_MODEL_PATH)))
+  for (int i = 1; i < argc; ++i) {
+    if (!strncmp(argv[i], GM_MODEL_PATH, strlen(GM_MODEL_PATH)))
       sawModelPath = true;
-  command << " " << argv[i];
+    command << " " << argv[i];
   }
 
   if (!sawModelPath)
@@ -92,14 +85,11 @@ const char *buildCommand(int argc, char *argv[])
   return _strdup(command.str().c_str());
 }
 
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   std::string ver = CSettingsIni::instance()->version_str().toStdString();
   std::string url = QUtil::url(QUtil::eUsrDir::Goemec, "gm_" + ver + ".log");
   for (int i = 0; i < Printer::ModulesNum; i++)
     Printer::instance((Printer::eModule)i)->url(url);
-
 
 #if defined(GM_BUILD_TYPE_RELEASE_NIGHTLY) || defined(GM_BUILD_TYPE_RELEASE)
   _chdir("E:");
@@ -111,7 +101,7 @@ int main(int argc, char *argv[])
 
   const char *command = buildCommand(argc, argv);
 
-  //std::cout << command << std::endl;
+  // std::cout << command << std::endl;
 
   system(command);
 

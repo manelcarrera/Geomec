@@ -12,28 +12,29 @@
 /////////////////////////////////////////////////////////////////////////////
 // CTreeCtrlBase window
 class CGraphTreeView;
-class CGraphTreeCtrl : public CTreeCtrlBase
-{
-  CGraphTreeView& m_view;
+class CGraphTreeCtrl : public CTreeCtrlBase {
+  CGraphTreeView &m_view;
+
 public:
-  CGraphTreeCtrl(CGraphTreeView& view);
+  CGraphTreeCtrl(CGraphTreeView &view);
 
 protected:
-  virtual void OnSelect(ITreeObject* pOld, ITreeObject* pNew);
+  virtual void OnSelect(ITreeObject *pOld, ITreeObject *pNew);
   virtual void OnContext(const TTreeObjectVec &vcContext);
-public:
-  CGraphTreeView& TreeView();
-  const CGraphTreeView& TreeView() const;
 
-// Overrides
-  virtual CWnd& GetContextWnd() const; 
+public:
+  CGraphTreeView &TreeView();
+  const CGraphTreeView &TreeView() const;
+
+  // Overrides
+  virtual CWnd &GetContextWnd() const;
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CTreeCtrlBase)
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 public:
-//	virtual ~CGraphTreeCtrl();
+  //	virtual ~CGraphTreeCtrl();
 
   // Generated message map functions
 protected:

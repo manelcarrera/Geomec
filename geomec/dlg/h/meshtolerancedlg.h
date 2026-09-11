@@ -11,34 +11,31 @@
 // CMeshToleranceDlg dialog
 
 namespace geo {
-  class CTetMeshBase;
+class CTetMeshBase;
 }
 
-class CMeshToleranceDlg : public CDialog
-{
+class CMeshToleranceDlg : public CDialog {
   double m_dTolerance;
   geo::CTetMeshBase &m_mesh;
-// Construction
+  // Construction
 public:
-  CMeshToleranceDlg(geo::CTetMeshBase &mesh, CWnd* pParent = NULL);   // standard constructor
+  CMeshToleranceDlg(geo::CTetMeshBase &mesh, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CMeshToleranceDlg)
   enum { IDD = IDD_MESH_TOLERANCE_DLG };
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CMeshToleranceDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CMeshToleranceDlg)
   virtual void OnOK();

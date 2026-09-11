@@ -1,26 +1,26 @@
 #include "headers.h"
 
-//boost
-#include <boost/interprocess/shared_memory_object.hpp>
+// boost
 #include <boost/interprocess/mapped_region.hpp>
+#include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/sync/scoped_lock.hpp>
-#include <iostream>
 #include <cstdio>
-//#include "doc_anonymous_condition_shared_data.hpp"
+#include <iostream>
+// #include "doc_anonymous_condition_shared_data.hpp"
 #include <libs/interprocess/example/doc_anonymous_condition_shared_data.hpp>
 
 using namespace boost::interprocess;
 
-//own
+// own
 #include "Printer.h"
 #include "SafeQueue.h"
-//qt
-#include <QString> 
-#include <QProcess> 
+// qt
+#include <QProcess>
+#include <QString>
 #include <QStringList>
-//std
-#include <thread>
+// std
 #include <chrono>
+#include <thread>
 
 /////////////////////////////////////////////////
 //
@@ -28,17 +28,17 @@ using namespace boost::interprocess;
 //
 /////////////////////////////////////////////////
 
-//own
-#include "DianaStartUp.h"
-#include "Global.h"
-#include "Events.h"
+// own
 #include "DianaInterface.h"
-#include "SettingsIni.h"
+#include "DianaStartUp.h"
+#include "Events.h"
+#include "Global.h"
 #include "QUtil.h"
-//qt
+#include "SettingsIni.h"
+// qt
 #include <QFile>
 
-//defines
+// defines
 static const QString BASE = "C:\\aWork\\aTmp";
 static const QString TRIGGER = BASE + "\\trigger";
 static const QString FFDIR = BASE + "\\drb26312";
@@ -46,53 +46,41 @@ static const QString FFDIR = BASE + "\\drb26312";
 //
 // GUI emulator, replaces Geomec app
 //
-class CGUI
-{
-  std::thread* m_thread;
-  SafeQueue< Cmd > m_queue;
+class CGUI {
+  std::thread *m_thread;
+  SafeQueue<Cmd> m_queue;
 
 private:
-
 public:
-  CGUI()
-  {
-    m_thread =  new std::thread( &CGUI::exe, this );
-  }
+  CGUI() { m_thread = new std::thread(&CGUI::exe, this); }
 
-  ~CGUI()
-  {
-    if( m_thread->joinable() )
+  ~CGUI() {
+    if (m_thread->joinable())
       m_thread->join();
     delete m_thread;
   }
 
-  void push( Cmd cmd )
-  { 
-    Printer::instance()->info("[GUI] push : cmd: %s", g_cmd_s[ cmd.first ].c_str() );
-    m_queue.enqueue( cmd ); 
+  void push(Cmd cmd) {
+    Printer::instance()->info("[GUI] push : cmd: %s", g_cmd_s[cmd.first].c_str());
+    m_queue.enqueue(cmd);
   }
 
-  Cmd pop()
-  {
+  Cmd pop() {
     Cmd cmd = m_queue.dequeue();
-    Printer::instance()->debug("[GUI] pop :'%s'", g_cmd_s[ cmd.first ].c_str() );
+    Printer::instance()->debug("[GUI] pop :'%s'", g_cmd_s[cmd.first].c_str());
     return cmd;
   }
 
-
 private:
+  void exe() {
+    CDianaStartUp *dsu = CDianaStartUp::instance();
 
-  void exe()
-  {
-    CDianaStartUp* dsu = CDianaStartUp::instance();
-
-    for(;;)
-    {
+    for (;;) {
       Cmd cmd = pop();
 
       static int count = 1;
 
-      Printer::instance()->info("[GUI] exe : pop: %s", g_cmd_s[ cmd.first ].c_str() );
+      Printer::instance()->info("[GUI] exe : pop: %s", g_cmd_s[cmd.first].c_str());
 
       //
       //
@@ -109,36 +97,33 @@ private:
       delete thread;
       thread = nullptr;*/
 
-      //Printer::instance()->info("[GUI] exe thread : deleted" );
+      // Printer::instance()->info("[GUI] exe thread : deleted" );
 
       // FIXME
       /*if( true )
         return;
       else*/
 
-      //Printer::instance()->info("[GUI] exe : count: %d", count );
-      if( count > 1 )
+      // Printer::instance()->info("[GUI] exe : count: %d", count );
+      if (count > 1)
         break;
 
-      switch( cmd.first )
-      {
-        case QuitDiana_Ack:
-        case HeartBeat_Error:
-        {
-          Printer::instance()->info( "GUI : execution : res : %s", cmd.first == QuitDiana_Ack ? "Ok" : "ERROR" );
+      switch (cmd.first) {
+      case QuitDiana_Ack:
+      case HeartBeat_Error: {
+        Printer::instance()->info("GUI : execution : res : %s", cmd.first == QuitDiana_Ack ? "Ok" : "ERROR");
 
-          std::this_thread::sleep_for(std::chrono::milliseconds( 1*1000 ));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
 
-          QFile file( TRIGGER );
-          file.open(QIODevice::WriteOnly); // Or QIODevice::ReadWrite
+        QFile file(TRIGGER);
+        file.open(QIODevice::WriteOnly); // Or QIODevice::ReadWrite
 
-          count++;
-          break;
-        }
-        default:
-        {
-          break;
-        }
+        count++;
+        break;
+      }
+      default: {
+        break;
+      }
       }
     } // loop
   } // exe
@@ -154,7 +139,7 @@ private:
 // taskkill /IM "diana_app_new.exe" /F
 //
 // 2020-03-19 - conclusions:
-// 
+//
 // so far the implementation that works best is:
 //
 // - launch and end diana for each execution
@@ -169,7 +154,7 @@ private:
 //
 // - keep both alive: DI and DE
 // - keep only DI alive
-// 
+//
 // second executions end up in dead locks, in one or other side
 //
 // timed_wait doesn't solve issue with short times
@@ -178,8 +163,7 @@ private:
 //
 // guard: 0 (no need) / hb: 10 -> works fine, 2020-03-23
 //
-static const int TIME_GUARD = 0;//1*1000;
-
+static const int TIME_GUARD = 0; // 1*1000;
 
 //
 // ERROR: doing this safe queue std mutex crashes!!!!!
@@ -215,16 +199,15 @@ static const int TIME_GUARD = 0;//1*1000;
 //
 //
 //
-void Class_01::start()
-{
+void Class_01::start() {
   CSettingsIni::instance()->init();
 
-  //Printer::multiprocess( true );
+  // Printer::multiprocess( true );
   std::string filename = "gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log";
-  Printer::instance()->url( QUtil::url( QUtil::eUsrDir::Goemec, filename ) );
-  Printer::instance()->info( "" );
-  Printer::instance()->info( " main_app_qt >>>>>>" );
-  Printer::instance()->info( "" );
+  Printer::instance()->url(QUtil::url(QUtil::eUsrDir::Goemec, filename));
+  Printer::instance()->info("");
+  Printer::instance()->info(" main_app_qt >>>>>>");
+  Printer::instance()->info("");
 
   /*
   QString result;
@@ -246,42 +229,39 @@ void Class_01::start()
   //
   // dsu
   //
-  CDianaStartUp* dsu = CDianaStartUp::instance();
-  CEvents::TFunction_push push_cb = std::bind( &CGUI::push, &gui, std::placeholders::_1 );
+  CDianaStartUp *dsu = CDianaStartUp::instance();
+  CEvents::TFunction_push push_cb = std::bind(&CGUI::push, &gui, std::placeholders::_1);
   //
   // FIXME: nneds to be adapted to new events handler
   //
-  //dsu->register_push_cb( push_cb );	
+  // dsu->register_push_cb( push_cb );
 
-  dsu->SetDianaEnv(); 
+  dsu->SetDianaEnv();
   dsu->Print_DianaEnv();
   _g->dsa(true);
-  //dsu->dsa( true );
-  dsu->SetDianaEnv( CDianaStartUp::FFDIR, FFDIR );
+  // dsu->dsa( true );
+  dsu->SetDianaEnv(CDianaStartUp::FFDIR, FFDIR);
   //
-  dsu->di( nullptr );
-  //DI* di = nullptr;
+  dsu->di(nullptr);
+  // DI* di = nullptr;
   //
-  QFile file( TRIGGER );
+  QFile file(TRIGGER);
   //
   //
   //
 
-  for(;;)
-  {
-    if( file.exists() )
-    {
-      Printer::instance()->info( "" );
-      Printer::instance()->info( "" );
-      Printer::instance()->info( "" );
-      Printer::instance()->info( "execution : request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+  for (;;) {
+    if (file.exists()) {
+      Printer::instance()->info("");
+      Printer::instance()->info("");
+      Printer::instance()->info("");
+      Printer::instance()->info("execution : request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
       bool res = file.remove();
-      Printer::instance()->debug( "minimal_app_qt : trigger : removed" );
+      Printer::instance()->debug("minimal_app_qt : trigger : removed");
 
-      if( dsu->di() )
-      {
-        //remove( di );
+      if (dsu->di()) {
+        // remove( di );
 
         //
         // no need, doien in 1)the GUI or in 2)DI destructor
@@ -289,41 +269,37 @@ void Class_01::start()
         /*dsu->di()->m_thread_exe->join();
         Printer::instance()->info( "minimal_app_qt : exe : after join" );*/
 
-        //delete di;
-        //di = nullptr;
-
+        // delete di;
+        // di = nullptr;
 
         //
         // FIXME: A
         //
         delete dsu->di();
-        dsu->di( nullptr );
+        dsu->di(nullptr);
 
-        Printer::instance()->info( "minimal_app_qt : di : after delete" );
+        Printer::instance()->info("minimal_app_qt : di : after delete");
       }
 
-      std::this_thread::sleep_for(std::chrono::milliseconds( TIME_GUARD ));
+      std::this_thread::sleep_for(std::chrono::milliseconds(TIME_GUARD));
 
-      if( !dsu->di() )
-      {
-        dsu->di( new DI() );
-        //di = new DI();
-        //Printer::instance()->info( "minimal_app_qt : di : after new" );*/
+      if (!dsu->di()) {
+        dsu->di(new DI());
+        // di = new DI();
+        // Printer::instance()->info( "minimal_app_qt : di : after new" );*/
 
-        //di = create( di );
+        // di = create( di );
       }
 
       // needs to wait for the threads to be started
-      std::this_thread::sleep_for(std::chrono::milliseconds( TIME_GUARD ));
+      std::this_thread::sleep_for(std::chrono::milliseconds(TIME_GUARD));
 
       //
       // FIXME: needs to be adxapted to new events handler
       //
-      //dsu->di()->push( cmd_f( eCmd::LaunchDiana ) );
-    }
-    else
-    {
-      std::this_thread::sleep_for(std::chrono::milliseconds( TIME_GUARD ));
+      // dsu->di()->push( cmd_f( eCmd::LaunchDiana ) );
+    } else {
+      std::this_thread::sleep_for(std::chrono::milliseconds(TIME_GUARD));
     }
   }
 }

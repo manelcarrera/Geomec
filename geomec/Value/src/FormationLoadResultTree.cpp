@@ -1,4 +1,4 @@
-#include "stdafx.h"
 #include "geomec.h"
+#include "stdafx.h"
 
 #include "FormationLoadResultTree.h"

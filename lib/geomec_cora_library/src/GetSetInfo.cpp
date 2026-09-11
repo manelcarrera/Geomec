@@ -1,24 +1,18 @@
 #include "GetSetInfo.h"
 #include "ElementSet.h"
 
-namespace cora
-{
+namespace cora {
 
-CGetSetInfo::CGetSetInfo()
-{
-}
+CGetSetInfo::CGetSetInfo() {}
 
-bool CGetSetInfo::isElementSet(const IPointSet& pointSet) const
-{
-  try
-  {
-  dynamic_cast <const CElementSet&> (pointSet);
+bool CGetSetInfo::isElementSet(const IPointSet &pointSet) const {
+  try {
+    dynamic_cast<const CElementSet &>(pointSet);
 
-  return true;
+    return true;
   }
 
-  catch (const std::bad_cast&)
-  {
+  catch (const std::bad_cast &) {
   }
 
   return false;

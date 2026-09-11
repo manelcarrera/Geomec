@@ -3,8 +3,8 @@
 
 #include <qstring.h>
 
-int findOneOf(const QString& target, const QString& characterSet);
-QString spanExcluding(const QString& target, const QString& characterSet);
-QString trimRight(const QString& target);
+int findOneOf(const QString &target, const QString &characterSet);
+QString spanExcluding(const QString &target, const QString &characterSet);
+QString trimRight(const QString &target);
 
-#endif  // _StringUtils_h_
+#endif // _StringUtils_h_

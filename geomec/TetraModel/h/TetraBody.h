@@ -9,12 +9,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-class CTetraBody : public CColorNode  
-{
+class CTetraBody : public CColorNode {
 public:
-  CTetraBody(CFemAppModel& model);
+  CTetraBody(CFemAppModel &model);
   virtual ~CTetraBody();
-
 };
 
 typedef CGraphEntryTemp<CTetraBody> TTetraBodyEntry;

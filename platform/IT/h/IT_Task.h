@@ -2,13 +2,12 @@
 
 #include <tbb/tbb.h>
 
-class IT_Task : public tbb::task 
-{
+class IT_Task : public tbb::task {
   HWND hWnd;
-  tbb::task* execute();
+  tbb::task *execute();
+
 public:
-  IT_Task( HWND hWnd_ );
+  IT_Task(HWND hWnd_);
 };
 
-void Launch_IT_Task( HWND hWnd );
-
+void Launch_IT_Task(HWND hWnd);

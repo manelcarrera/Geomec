@@ -13,23 +13,22 @@ class SoTranslation;
 
 class OIDIMeshNodeManager;
 
-class CoordinateAxis : public SoSwitch
-{
+class CoordinateAxis : public SoSwitch {
 public:
-  CoordinateAxis (OIDIMeshNodeManager * meshNodeManager);
-  void reset(const SbBox3f & bbox, const SbVec3d& translation);
+  CoordinateAxis(OIDIMeshNodeManager *meshNodeManager);
+  void reset(const SbBox3f &bbox, const SbVec3d &translation);
 
-  void adjustAxis( PoLinearAxis * axis, float &size, float &origin );
+  void adjustAxis(PoLinearAxis *axis, float &size, float &origin);
 
-  void SetAxisColor( float * rgb );
-  void GetAxisColor( float * rgb ) const;
-  void PointSize( const double & size );
+  void SetAxisColor(float *rgb);
+  void GetAxisColor(float *rgb) const;
+  void PointSize(const double &size);
 
 private:
-  PoGroup3Axis3*         m_coordAxisGroup;
-  SoMaterial *           m_coordAxisMaterial;
-  SoAnnoText3Property *  m_textProperty;
-  SoTranslation *        m_translation;
+  PoGroup3Axis3 *m_coordAxisGroup;
+  SoMaterial *m_coordAxisMaterial;
+  SoAnnoText3Property *m_textProperty;
+  SoTranslation *m_translation;
 };
 
 #endif

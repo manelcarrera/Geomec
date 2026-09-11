@@ -9,11 +9,10 @@
 
 class IValueComposite;
 
-typedef std::pair<const IValueComposite*, int> TResultComponent;	// The integer represents the index component
+typedef std::pair<const IValueComposite *, int> TResultComponent; // The integer represents the index component
 
 // The less operator of the TResultComponents
-class CResultComponentLess
-{
+class CResultComponentLess {
 public:
   bool operator()(const TResultComponent &c1, const TResultComponent &c2) const;
 };

@@ -8,12 +8,6 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CRpnMaterialParameterProxy::CRpnMaterialParameterProxy()
-{
+CRpnMaterialParameterProxy::CRpnMaterialParameterProxy() {}
 
-}
-
-CRpnMaterialParameterProxy::~CRpnMaterialParameterProxy()
-{
-
-}
+CRpnMaterialParameterProxy::~CRpnMaterialParameterProxy() {}

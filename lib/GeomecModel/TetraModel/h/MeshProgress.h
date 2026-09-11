@@ -11,18 +11,18 @@
 
 #include "TetMeshBase.h"
 
-//#define MESH_LOADED	350
+// #define MESH_LOADED	350
 
 class IProgressBase;
 
 // Class for progress indication
-class CMeshProgress : public geo::CTetMeshProgress
-{
+class CMeshProgress : public geo::CTetMeshProgress {
   int m_nTotalSteps;
   int m_nCurrentStep;
-  IProgressBase& m_dlg;
+  IProgressBase &m_dlg;
+
 public:
-  CMeshProgress(IProgressBase& dlg);
+  CMeshProgress(IProgressBase &dlg);
   virtual void StartMesh(int nJobs);
   virtual void NewJob(std::string sJobName);
   virtual void StopMesh();

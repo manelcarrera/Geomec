@@ -12,30 +12,27 @@
 
 class CModelBase;
 
-class CLinstaParamsDlg : public CDialog
-{
-// Construction
+class CLinstaParamsDlg : public CDialog {
+  // Construction
 public:
-  CLinstaParamsDlg(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  CLinstaParamsDlg(CModelBase &model, CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CLinstaParamsDlg)
   enum { IDD = IDD_LINSTA_PARAMS };
-  int		m_iMaxIter;
-  double	m_dTolcon;
+  int m_iMaxIter;
+  double m_dTolcon;
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CLinstaParamsDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CLinstaParamsDlg)
   virtual void OnOK();
@@ -43,7 +40,7 @@ protected:
   DECLARE_MESSAGE_MAP()
 
 private:
-  CModelBase& m_model;
+  CModelBase &m_model;
 };
 
 //{{AFX_INSERT_LOCATION}}

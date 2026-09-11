@@ -11,18 +11,14 @@
 #include "RescuePoint.h"
 #include "RescueModel.h"
 
-void RescuePoint::Archive(RescueContext *context, FILE *archiveFile)
-{
+void RescuePoint::Archive(RescueContext *context, FILE *archiveFile) {
   myfprintf(context, archiveFile, x);
   myfprintf(context, archiveFile, y);
   myfprintf(context, archiveFile, z);
 }
 
-RescuePoint::RescuePoint(RescueContext *context, FILE *archiveFile)
-{
+RescuePoint::RescuePoint(RescueContext *context, FILE *archiveFile) {
   myfscanf(context, archiveFile, &x);
   myfscanf(context, archiveFile, &y);
   myfscanf(context, archiveFile, &z);
 }
-
-

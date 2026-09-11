@@ -2,8 +2,7 @@
 
 #include <QObject>
 
-class CDianaExecuterSignalHandler : public QObject
-{
+class CDianaExecuterSignalHandler : public QObject {
   Q_OBJECT
 
 public:

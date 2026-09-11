@@ -5,13 +5,11 @@
 
 #include "SetGlobalFaultBehaviour.h"
 
-class CSetGlobalFaultBehaviourDialog : public CDialogEx
-{
+class CSetGlobalFaultBehaviourDialog : public CDialogEx {
   DECLARE_DYNAMIC(CSetGlobalFaultBehaviourDialog)
 
 public:
-  CSetGlobalFaultBehaviourDialog(CFemAppModel* femAppModel,
-  CWnd* pParent = NULL);
+  CSetGlobalFaultBehaviourDialog(CFemAppModel *femAppModel, CWnd *pParent = NULL);
   virtual ~CSetGlobalFaultBehaviourDialog();
 
   virtual BOOL OnInitDialog();
@@ -21,7 +19,7 @@ public:
   enum { IDD = IDD_GLOBAL_FAULT_BEHAVIOUR };
 
 protected:
-  virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange *pDX);
 
   DECLARE_MESSAGE_MAP()
 
@@ -29,11 +27,11 @@ private:
   virtual void OnOK();
 
   void enableControls();
-  void setUnitNames(CDataExchange* pDX) const;
-  std::vector <double> getValues() const;
+  void setUnitNames(CDataExchange *pDX) const;
+  std::vector<double> getValues() const;
 
-  void DoDataExchangeModeType(CDataExchange* pDX);
-  void DoDataExchangeGradient(CDataExchange* pDX);
+  void DoDataExchangeModeType(CDataExchange *pDX);
+  void DoDataExchangeGradient(CDataExchange *pDX);
 
   CSetGlobalFaultBehaviour m_setGlobalFaultBehaviour;
   CButton m_maximum;
@@ -47,4 +45,4 @@ private:
   int m_valueGlobalFaultBehaviour;
 };
 
-#endif  // _SetGlobalFaultBehaviourDialog_h_
+#endif // _SetGlobalFaultBehaviourDialog_h_

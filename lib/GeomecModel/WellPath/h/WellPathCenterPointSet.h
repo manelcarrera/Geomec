@@ -3,25 +3,19 @@
 
 #include "PointSet.h"
 
-namespace WellPath
-{
+namespace WellPath {
 
-class CWellPathCenterPointSet : public CPointSet
-{
-  public:
-  CWellPathCenterPointSet(
-      const std::vector <const CFormationBase*>& formations,
-      CModelBase& modelBase);
+class CWellPathCenterPointSet : public CPointSet {
+public:
+  CWellPathCenterPointSet(const std::vector<const CFormationBase *> &formations, CModelBase &modelBase);
 
-  private:
-  CWellPathCenterPointSet(const CWellPathCenterPointSet& rhs);
-  CWellPathCenterPointSet& operator = (const CWellPathCenterPointSet& rhs);
+private:
+  CWellPathCenterPointSet(const CWellPathCenterPointSet &rhs);
+  CWellPathCenterPointSet &operator=(const CWellPathCenterPointSet &rhs);
 
-  void populatePointSet(
-      const std::vector <const CFormationBase*>& formations,
-      CModelBase& modelBase);
+  void populatePointSet(const std::vector<const CFormationBase *> &formations, CModelBase &modelBase);
 };
 
 } // namespace WellPath
 
-#endif  // _WellPathCenterPointSet_h_
+#endif // _WellPathCenterPointSet_h_

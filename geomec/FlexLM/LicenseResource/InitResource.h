@@ -5,7 +5,7 @@
  * PURPOSE:
  *   This file defines datamanager specific items
  *
- * COPYRIGHT 2010 Shell International Exploration and Production 
+ * COPYRIGHT 2010 Shell International Exploration and Production
  * bv Rijswijk, The Netherlands.
  *
  * CONFIDENTIALITY:
@@ -33,4 +33,3 @@
 
 // This function should be called from the application to ensure that the LicenseResource dll is loaded.
 void AFX_EXT_CLASS_LICENSERESOURCE InitResource();
-

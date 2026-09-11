@@ -1,9 +1,9 @@
- /* Copyright (c) 2011 TNO DIANA BV                              Confidential */
+/* Copyright (c) 2011 TNO DIANA BV                              Confidential */
 #ifndef _SURFACEDESC_H_
 #define _SURFACEDESC_H_
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "TetMeshExports.h"
 
@@ -23,35 +23,36 @@ class CTetSurface;
 class CInterfaceElement;
 class CTetMeshBase;
 class CElementGroup;
-class TETMESH_EXPORT CSurfaceDesc
-{
+class TETMESH_EXPORT CSurfaceDesc {
   friend class CTetSurface;
-  CTetMeshBase& m_mesh;
-  std::vector<const CTetSurface*> m_vcTetSurface;
+  CTetMeshBase &m_mesh;
+  std::vector<const CTetSurface *> m_vcTetSurface;
+
 protected:
-  CElementGroup     *m_pElementGroup;
+  CElementGroup *m_pElementGroup;
   const ISurface &m_surface;
-  std::string     m_name;
+  std::string m_name;
+
 public:
-  CSurfaceDesc(CTetMeshBase& mesh, const ISurface &surface, const std::string& sName, bool bSlip);
+  CSurfaceDesc(CTetMeshBase &mesh, const ISurface &surface, const std::string &sName, bool bSlip);
 
   bool Slip() const;
   void Slip(bool bSlip);
 
-  const CElementGroup& interfaceElements() const;
+  const CElementGroup &interfaceElements() const;
 
-  void AddInterfaceElement(CInterfaceElement& element);
+  void AddInterfaceElement(CInterfaceElement &element);
 
   bool Flip() const;
 
   const ISurface &Surface() const;
 
   int TetSurfaceSize() const;
-  const CTetSurface& TetSurface(int nIndex) const;
+  const CTetSurface &TetSurface(int nIndex) const;
 
-  const std::string& Name() const;
+  const std::string &Name() const;
 };
 
-}
+} // namespace geo
 
 #endif

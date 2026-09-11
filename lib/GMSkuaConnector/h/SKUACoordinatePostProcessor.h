@@ -2,12 +2,9 @@
 
 #include "SKUAIPostProcessor.h"
 
+namespace gm_skua {
 
-namespace gm_skua
-{
-
-class INTERFACE_GMSKUACONNECTOR SKUACoordinatePostProcessor : public SKUAIPostProcessor
-{
+class INTERFACE_GMSKUACONNECTOR SKUACoordinatePostProcessor : public SKUAIPostProcessor {
 public:
   using SKUAIPostProcessor::SKUAIPostProcessor;
 
@@ -17,5 +14,4 @@ private:
   void FixCoordinates();
 };
 
-}
-
+} // namespace gm_skua

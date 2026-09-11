@@ -1,19 +1,15 @@
 #pragma once
 
-#include <vector>
 #include "Point.h"
+#include <vector>
 
+namespace gm_dsf {
 
-namespace gm_dsf
-{
-
-struct IntermediateSurfaceInfo
-{
+struct IntermediateSurfaceInfo {
   std::vector<geo::CPoint> points;
-  std::vector<std::vector<int> > triangles;
+  std::vector<std::vector<int>> triangles;
 
-  IntermediateSurfaceInfo& operator=(const IntermediateSurfaceInfo& rhs);
+  IntermediateSurfaceInfo &operator=(const IntermediateSurfaceInfo &rhs);
 };
 
-}
-
+} // namespace gm_dsf

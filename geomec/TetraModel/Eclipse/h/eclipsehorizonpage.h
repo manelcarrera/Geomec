@@ -9,36 +9,33 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CEclipseHorizonPage dialog
-#include "WizzardPageBase.h"
 #include "EclipseModel.h"
+#include "WizzardPageBase.h"
 
-class CEclipseHorizonPage : public CWizzardPageBase
-{
+class CEclipseHorizonPage : public CWizzardPageBase {
   DECLARE_DYNCREATE(CEclipseHorizonPage)
-// Construction
+  // Construction
 public:
   CEclipseHorizonPage();
-  CEclipseHorizonPage(CEclipseModel& model);   // standard constructor
+  CEclipseHorizonPage(CEclipseModel &model); // standard constructor
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CEclipseHorizonPage)
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CEclipseHorizonPage)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
-
   // Generated message map functions
   //{{AFX_MSG(CEclipseHorizonPage)
-    // NOTE: the ClassWizard will add member functions here
+  // NOTE: the ClassWizard will add member functions here
   //}}AFX_MSG
   DECLARE_MESSAGE_MAP()
 };

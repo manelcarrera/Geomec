@@ -1,16 +1,14 @@
 #include "stdafx.h"
 
-#include "OIV2DLegendSection.h"
-#include "Inventor\nodes\SoTranslation.h"
-#include "Inventor\nodes\SoText2.h"
-#include "Inventor\nodes\SoMaterialBinding.h"
-#include "Inventor\nodes\SoMaterial.h"
 #include "Inventor\nodes\SoMarkerSet.h"
+#include "Inventor\nodes\SoMaterial.h"
+#include "Inventor\nodes\SoMaterialBinding.h"
+#include "Inventor\nodes\SoText2.h"
+#include "Inventor\nodes\SoTranslation.h"
 #include "OIV2DLegend.h"
+#include "OIV2DLegendSection.h"
 
-OIV2DLegendSection::OIV2DLegendSection()
-  : m_textSpacing(1.5f)
-{
+OIV2DLegendSection::OIV2DLegendSection() : m_textSpacing(1.5f) {
   m_translation = new SoTranslation;
   m_translation->translation = SbVec3f(0.0f, 0.0f, 0.0f);
   addChild(m_translation);
@@ -21,17 +19,16 @@ OIV2DLegendSection::OIV2DLegendSection()
   m_leadersText->spacing = m_textSpacing;
   addChild(m_leadersText);
 
-
   m_colorItemsTranslation = new SoTranslation();
   m_colorItemsTranslation->setName("colorItemsTranslation");
-  m_colorItemsTranslation->translation = SbVec3f( 50, 0, 0 ); 
-  addChild( m_colorItemsTranslation );
+  m_colorItemsTranslation->translation = SbVec3f(50, 0, 0);
+  addChild(m_colorItemsTranslation);
 
-  SoSeparator * colorTextSeparator = new SoSeparator;
+  SoSeparator *colorTextSeparator = new SoSeparator;
   addChild(colorTextSeparator);
 
-  SoTranslation * colorTextTranslation = new SoTranslation;
-  colorTextTranslation->translation = SbVec3f( 50, 0, 0 );
+  SoTranslation *colorTextTranslation = new SoTranslation;
+  colorTextTranslation->translation = SbVec3f(50, 0, 0);
   colorTextSeparator->addChild(colorTextTranslation);
 
   m_colorItemsText = new SoText2();
@@ -41,7 +38,7 @@ OIV2DLegendSection::OIV2DLegendSection()
 
   colorTextSeparator->addChild(m_colorItemsText);
 
-  SoSeparator * colorMarkersSeparator = new SoSeparator;
+  SoSeparator *colorMarkersSeparator = new SoSeparator;
   addChild(colorMarkersSeparator);
 
   m_colorMarkersMaterialBinding = new SoMaterialBinding;
@@ -66,8 +63,7 @@ OIV2DLegendSection::OIV2DLegendSection()
   colorMarkersSeparator->addChild(m_colorMarkersSet);
 }
 
-void OIV2DLegendSection::clear()
-{
+void OIV2DLegendSection::clear() {
   m_leadersText->string.deleteValues(0, -1);
   m_colorItemsText->string.deleteValues(0, -1);
   m_colorMarkersCoordinates->vertex.deleteValues(0, -1);
@@ -79,11 +75,10 @@ void OIV2DLegendSection::clear()
 #endif
 
   int num = m_colorItemsText->string.getNum();
-  assert (num == 0);
+  assert(num == 0);
 }
 
-void OIV2DLegendSection::addItem( const std::string & name, float red, float green, float blue )
-{
+void OIV2DLegendSection::addItem(const std::string &name, float red, float green, float blue) {
   m_colorMarkersMaterialBinding->value = SoMaterialBinding::PER_VERTEX;
 
   int num = m_colorItemsText->string.getNum();
@@ -99,21 +94,16 @@ void OIV2DLegendSection::addItem( const std::string & name, float red, float gre
   num = m_colorItemsText->string.getNum();
 }
 
-void OIV2DLegendSection::addLeader( const std::string & leader)
-{
+void OIV2DLegendSection::addLeader(const std::string &leader) {
   int num = m_leadersText->string.getNum();
   m_leadersText->string.set1Value(num, leader);
-  m_colorItemsTranslation->translation = SbVec3f( 0, -(num + 1) * 18.0f, 0.0f );
+  m_colorItemsTranslation->translation = SbVec3f(0, -(num + 1) * 18.0f, 0.0f);
 
   num = m_leadersText->string.getNum();
 }
 
-int OIV2DLegendSection::getNumLines()
-{
-  return m_leadersText->string.getNum() + m_colorItemsText->string.getNum();
-}
+int OIV2DLegendSection::getNumLines() { return m_leadersText->string.getNum() + m_colorItemsText->string.getNum(); }
 
-void OIV2DLegendSection::setOffset( int numberOfLines )
-{
+void OIV2DLegendSection::setOffset(int numberOfLines) {
   m_translation->translation = SbVec3f(0.0f, -numberOfLines * 18.0f, 0.0f);
 }

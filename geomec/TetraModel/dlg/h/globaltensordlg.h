@@ -12,28 +12,26 @@
 /////////////////////////////////////////////////////////////////////////////
 // CGlobalTensorDlg dialog
 
-class CGlobalTensorDlg : public CAttributesTemplate<C3DSupportNode>
-{
-// Construction
+class CGlobalTensorDlg : public CAttributesTemplate<C3DSupportNode> {
+  // Construction
 public:
-  CGlobalTensorDlg(C3DSupportNode &supnode, CWnd* pParent = NULL);
+  CGlobalTensorDlg(C3DSupportNode &supnode, CWnd *pParent = NULL);
 
   void SetInitialDepletionStage(int nStage);
 
-// Dialog Data
+  // Dialog Data
   //{{AFX_DATA(CGlobalTensorDlg)
-    // NOTE: the ClassWizard will add data members here
+  // NOTE: the ClassWizard will add data members here
   //}}AFX_DATA
 
-
-// Overrides
+  // Overrides
   // ClassWizard generated virtual function overrides
   //{{AFX_VIRTUAL(CGlobalTensorDlg)
-  protected:
-  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+  virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
   //}}AFX_VIRTUAL
 
-// Implementation
+  // Implementation
 protected:
   // Generated message map functions
   //{{AFX_MSG(CGlobalTensorDlg)
@@ -50,7 +48,7 @@ private:
   int m_nDeplStage;
   bool m_bInitialized;
   C3DSupportNode &m_SourceNode;
-  std::vector<const CDepletionStage*> m_vcDepletionStages;
+  std::vector<const CDepletionStage *> m_vcDepletionStages;
 
   void UpdateControls();
   void EmptyEditBoxes();
