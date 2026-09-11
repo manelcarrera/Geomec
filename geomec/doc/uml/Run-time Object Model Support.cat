@@ -1,0 +1,86 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Run-time Object Model Support"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C70161"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CArchive"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C7016C"
+	    documentation 	
+|The CArchive class allows you to save a complex network of objects in a permanent binary form (usually disk storage) that persists after those objects are deleted. Later you can load the objects from persistent storage, reconstituting them in memory. This process of making data persistent is called 'serialization.'
+|
+|You can think of an archive object as a kind of binary stream. 
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDumpContext"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C701B1"
+	    documentation 	"The CDumpContext class supports stream-oriented diagnostic output in the form of human-readable text. You can use afxDump, a predeclared CDumpContext object, for most of your dumping. The afxDump object is available only in the Debug version of the Microsoft Foundation Class Library. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRuntimeClass"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C70201"
+	    documentation 	"Each class derived from CObject is associated with a CRuntimeClass structure that you can use to obtain information about an object or its base class at run time. The ability to determine the class of an object at run time is useful when extra type checking of function arguments is needed, or when you must write special-purpose code based on the class of an object. Run-time class information is not supported directly by the C++ language."
+	    stereotype 	"struct"
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

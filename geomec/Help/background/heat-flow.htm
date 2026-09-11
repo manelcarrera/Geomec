@@ -1,0 +1,204 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Heat flow</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Tahoma;}
+p.Body, li.Body, div.Body
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:13.0pt;
+	font-size:10.5pt;
+	font-family:"Times New Roman";}
+span.EmailStyle20
+	{font-family:Arial;
+	color:windowtext;}
+span.msoIns
+	{text-decoration:underline;
+	color:teal;}
+span.msoDel
+	{text-decoration:line-through;
+	color:red;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+<meta http-equiv=Content-Language content=en-us>
+</head>
+
+<body lang=NL link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1><span lang=EN-US>Heat-flow analysis</span></h1>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Arial'>In a heat-flow
+analysis the temperature in over and underburden are calculated using the
+reservoir conditions and far-field temperatures as boundary conditions. This
+approach should result in more realistic temperature modeling in the formations
+located close to the reservoir, as input for a nonlinear stress-analysis.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Arial'>&nbsp;</span></p>
+
+<p class=Body><span lang=EN-GB style='font-size:12.0pt;font-family:Arial'>You
+can run the transient heat-flow analysis by selecting <b>Heat flow</b> in the <b>Analysis
+Menu</b>.</span></p>
+
+<p class=Body><span lang=EN-GB style='font-size:12.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<h2><span lang=EN-US style='font-size:18.0pt;font-style:normal'>Preconditions</span></h2>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;font-family:
+Arial'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-family:Arial'>In this analysis the following preconditions are
+made: </span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal><span lang=EN-US style='font-family:Arial'>The definition
+     of the reservoir is based on formation level (not on element-level)</span></li>
+ <li class=MsoNormal><span lang=EN-US style='font-family:Arial'>Geomec will
+     depict the Formation as being a reservoir, if a pressure is changed
+     (manually)&nbsp;in one of the depletion stages. Also for the heat flow
+     analysis it is the pressure change that defines the reservoir (not the
+     temperature change).</span></li>
+ <li class=MsoNormal><span lang=EN-US style='font-family:Arial'>The temperatures
+     in all the nodes of the reservoir formations will be set as boundary
+     conditions in every depletion stage. As a result there is no heat transfer
+     in the reservoir. Also no heat transfer in horizontal direction in the
+     reservoir formation can occur although part of the reservoir (elements)
+     might not see any pressure or temperature changes.</span></li>
+ <li class=MsoNormal><span lang=EN-US style='font-family:Arial'>The temperatures
+     on the outer faces of the model (top, bottom and side faces) will be set
+     as boundary conditions.</span></li>
+</ul>
+
+<p class=MsoCommentText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-size:12.0pt;font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:12.0pt;font-family:Arial'>The temperature
+in the reservoir will not affect the temperature on the boundary of the model. So
+be careful with running a heat flow analysis on a zoom-in model. </span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal><span lang=EN-US style='font-family:Arial'>The heat-flow
+     analysis starts in the initial stage with temperatures as calculated in a
+     steady-state analysis.</span></li>
+</ul>
+
+<p class=MsoCommentText><span lang=EN-US style='font-size:12.0pt;font-family:
+Arial'>&nbsp;</span></p>
+
+<h2><span lang=EN-US style='font-size:18.0pt;font-style:normal'>Procedure Boundary
+conditions</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Arial'>The temperature
+in reservoir and outer faces of the model are used as boundary conditions. First
+the formations which are reservoir will be identify. These formations contain
+at least one element with pore pressure change in depletion stages. Then a node
+group will be created consisting of all the nodes in reservoir formations and
+on the boundary model. There should be no duplicated nodes in this group.
+Duplicated nodes can occur in this node group when reservoir formations using
+the same surfaces/horizons or when reservoir formations cut trough the outer
+faces of the model. In this case the temperature/pressures can be not unique
+per node. The following procedure will be used to define the temperature and
+pore pressure in the nodes with non-unique values:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><img width=730 height=559 src="heatflow001.gif"></p>
+
+<h2><span lang=EN-US style='font-size:18.0pt;font-style:normal'>&nbsp;</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoCommentText><span lang=EN-US style='font-size:12.0pt;font-family:
+Arial'>&nbsp;</span></p>
+
+<p class=MsoCommentText><span lang=EN-US style='font-size:12.0pt;font-family:
+Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Arial'>&nbsp;</span></p>
+
+<p><span lang=EN-GB>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Far Field</title>
+<style>
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Interface attributes</h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The Interface 
+attributes dialog appears by right-clicking on Boundary in the
+<a href="../../tree/Model/model_tree.htm"> model
+tree</a> and selecting Interface attributes. This context sensitive menu is only 
+available when the model is meshed.</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The dialog provides 
+information about the interface stiffness representing the surrounding rock. For
+<a href="../../background/zoom-in-technique.htm">zoom-in analysis</a> the 
+boundary of the zoom-in model is lined with interface elements.
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">These attributes
+consist of the following items:
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt" id="table1">
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">On</p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">To toggle on or off interface elements on the 
+		boundary
+    </td>
+  </tr>
+  </table>
+<p class="MsoNormal">When interface elements are activated, two options becomes 
+available to define the interface stiffness:</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt" id="table2">
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Default</p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">To use numerically infinite stiffness to the 
+		interface.</td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      User defined</td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      To define the interface stiffness by the user.<p>There are two option:</p>
+		<ul>
+			<li>Shear modulus</li>
+		</ul>
+		<blockquote>
+			<p>This option is the corrected sphere approach which is based on an 
+			equivalent average stiffness:</p>
+			<p>
+			<img border="0" src="../../background/Krad.GIF" width="122" height="53"><img border="0" src="../../background/Ktan.GIF" width="120" height="44"></p>
+			<p>With,</p>
+			<p>G = Homogenized shear modulus</p>
+			<p>R = half dimension zoom-in box</p>
+			<p>This option gives the best results in a
+			<a href="../../background/zoom-in-technique.htm">zoom-in analysis.
+			</a></p>
+		</blockquote>
+		<ul>
+			<li>K-values</li>
+		</ul>
+		<blockquote>
+			<p>With this option the user defines the normal and shear stiffness 
+			of the interface elements by typing in the values.</p>
+		</blockquote>
+    </td>
+  </tr>
+  </table>
+
+</body>
+
+</html>

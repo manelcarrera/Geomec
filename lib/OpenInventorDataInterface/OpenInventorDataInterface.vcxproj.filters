@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\MeshMode.h" />
+    <ClInclude Include="h\OIDICell.h" />
+    <ClInclude Include="h\OIDIDataSetI.h" />
+    <ClInclude Include="h\OIDIGeometry.h" />
+    <ClInclude Include="h\OIDIMesh.h" />
+    <ClInclude Include="h\OIDISet.h" />
+    <ClInclude Include="h\OIDITaskCollector.h" />
+    <ClInclude Include="h\OIDITopology.h" />
+    <ClInclude Include="h\OIDIVisitor.h" />
+    <ClInclude Include="h\OpenInventorDataInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\OIDIDataSetI.cpp" />
+    <ClCompile Include="src\OIDIMesh.cpp" />
+    <ClCompile Include="src\OIDISet.cpp" />
+    <ClCompile Include="src\OIDIVisitor.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ///////////////////////////////// [1] defines ////////////////////////////////// -->
+
+<!-- chicken and egg (and local) -->
+
+<?define DevelopRoot="$(var.Geomec.ProjectDir)\.." ?>
+<?define WixInclude="$(var.DevelopRoot)\Wix\WixInclude" ?>
+<?define plugins="$(var.DevelopRoot)\plugins" ?>
+<?define changelog="$(var.DevelopRoot)\changelog" ?>
+<?define img="$(var.DevelopRoot)\img" ?>
+
+<!-- version number -->
+<?include $(var.WixInclude)\GeomecVersion.wxi ?> <!-- INCLUDE -->
+
+<!-- configuration -->
+
+<!-- forcing 64 bits; TODO: remove 32 bits altogether -->
+<?if $(var.Platform)!="x64" ?>
+  <?define Platform="x64" ?>
+<?endif?>
+
+<!-- paths -->
+<?include $(var.WixInclude)\Paths.wxi ?> <!-- INCLUDE -->
+
+<!-- merge modules for x64 with VS2013 -->
+<?define Microsoft_VC140_CRT="$(var.MergeModules)\Microsoft_VC140_CRT_x64.msm"?>
+<?define Microsoft_VC140_MFC="$(var.MergeModules)\Microsoft_VC140_MFC_x64.msm" ?>
+<?define Microsoft_VC140_OpenMP="$(var.MergeModules)\Microsoft_VC140_OpenMP_x64.msm" ?>
+
+<!-- application files -->
+<?define Geomec_exe="$(var.Geomec.TargetPath)" ?>
+<!-- <?define Geomec_rgi_exe="$(var.geomec_rgi.TargetPath)" ?> -->
+<?define Geomec_cora_exe="$(var.geomec_cora_wrapper.TargetPath)" ?>
+<?define Geomec_shell_exe="$(var.geomec_shell.TargetPath)" ?>
+<!-- <?define Geomec_launcher_exe="$(var.geomec_launcher.TargetPath)" ?> -->
+<?define gm_diana_app_exe="$(var.gm_diana_app.TargetPath)" ?>
+<?define CutSurfaceUtil_dll="$(var.CutSurfaceUtil.TargetPath)" ?>
+<?define WellSchemeUtils_dll="$(var.WellSchemeUtils.TargetPath)" ?>
+<?define blosc_shared_dll="$(var.blosc_shared.TargetPath)" ?>
+<?define GMSkuaConnector_dll="$(var.GMSkuaConnector.TargetPath)" ?>
+<?define DianaX_ocx="$(var.DevelopRoot)\controls\dianax\x64\Release\DianaX.ocx" ?>
+
+<?define FlexLM_dll="$(var.GeomecRoot)\FlexLM\lib64\lmgr11.dll" ?>
+
+<?define RGInterface_dll="$(var.RGInterface.TargetPath)" ?>
+<?define zlibwapi_dll="$(var.zlibvc.TargetPath)" ?>
+<?define ModGMBus_dll="$(var.ModGMBus.TargetPath)" ?>
+<?define selector_exe="$(var.geomec_selector.TargetPath)" ?>
+<?define unzip="$(var.WixInclude)\7za.exe" ?>
+
+<?include $(var.WixInclude)\Cora.wxi ?> <!-- INCLUDE -->
+
+<!-- GVT (x64 only) -->
+
+<!-- disable the installation of GVT
+<?define GVT="$(var.3rdPartyRoot)\GVT" ?>
+ -->
+
+<?ifdef GVT ?>
+  <?include $(var.WixInclude)\inc_def_gvt.wxi ?> <!-- INCLUDE -->
+<?endif?>
+
+<?define Geomec_chm="$(var.GeomecRoot)\Help\Geomec.chm" ?>
+<?define Matlib_chm="$(var.DevelopRoot)\lib\matlib\hlp\matlib.chm" ?>
+<?define zoominwell_pdf="$(var.GeomecRoot)\Help\zoominwell.pdf" ?>
+<?define mesh_refinement_pdf="$(var.GeomecRoot)\Help\Mesh refinement guide.pdf" ?>
+<?define selector_pdf="$(var.GeomecRoot)\Help\Geomec selector guide.pdf" ?>
+<?define KeyFile="$(var.GeomecRoot)\keyfile" ?>
+
+<!-- SVS -->
+<?define SVS="$(var.3rdPartyRoot)\SVS" ?>
+<?define SVS_exe="$(var.SVS)\SVS64.exe" ?>
+
+<!-- Component IDs -->
+<?include $(var.WixInclude)\GuidsDefault580.wxi ?> <!-- INCLUDE -->
+
+<?define GeomecName="Geomec" ?>
+<!-- <?define GeomecName="GEOMEC $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)" ?> -->
+
+<!-- FIXME: HC -->
+<!-- <?define GeomecVersion="$(env.GM_VERSION_EXT)_build_$(env.GM_BUILD)" ?> -->
+<?define GeomecVersion="$(var.VersionMajor).$(var.VersionMinor).$(var.VersionBuild).$(var.VersionRevision)_$(var.GeomecBuildType)_$(var.GeomecBuildNumber)" ?>
+
+<?define SVSName="SVS" ?>
+
+<!-- FIXME: HC -->
+<!-- <?define ProductName="$(var.GeomecName) $(env.GM_VERSION) - $(var.SVSName) ($(env.GM_VERSION_EXT) Build $(env.GM_BUILD))" ?> -->
+<?define ProductName="$(var.GeomecName) $(var.VersionMajor).$(var.VersionMinor) - $(var.SVSName) ($(var.VersionMajor).$(var.VersionMinor).$(var.VersionBuild).$(var.VersionRevision))" ?>
+
+<?define VersionsFolder="$(var.GeomecName) - $(var.SVSName)" ?>
+<!-- <?define GeomecVersion_HARD_CODED="$(var.VersionMajor).$(var.VersionMinor).0.3_build_19216.9" ?> -->
+
+<!-- diana defines -->
+<?include $(var.WixInclude)\DianaEnv.wxi ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  
+  <Product Id="$(var.ProductID)" 
+           Name="$(var.ProductName)" 
+           Language="1033" 
+           Version="$(var.VersionMajor).$(var.VersionMinor).$(var.VersionBuild).$(var.VersionRevision)" 
+           Manufacturer="Shell International Ltd." 
+           UpgradeCode="$(var.UpgradeCodeID)">
+    
+    <!-- See http://msdn.microsoft.com/en-us/library/aa370570(VS.85).aspx:
+    Windows Installer 5.0 on Windows Server 2012, Windows 8, Windows Server 2008 R2 or Windows 7.
+    Windows Installer 4.0 or Windows Installer 4.5 on Windows Server 2008 or Windows Vista.
+    Windows Installer on Windows Server 2003 or Windows XP -->
+    
+    <Package InstallerVersion="405" Compressed="yes" Platform="$(var.Platform)" />
+
+    <?include UI.wxi ?> <!-- INCLUDE -->
+
+    <Icon Id="Geomec.exe" SourceFile="$(var.Geomec_exe)"/>
+    <Icon Id="SVS.exe" SourceFile="$(var.SVS_exe)"/>
+
+    <Property Id="ARPPRODUCTICON" Value="Geomec.exe" />
+
+    <Media Id="1" Cabinet="WixInstall.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <!-- VS2015 -->
+      <Merge Id="Microsoft_VC140_CRT" Language="1033" SourceFile="$(var.Microsoft_VC140_CRT)" DiskId="1" />
+      <Merge Id="Microsoft_VC140_MFC" Language="1033" SourceFile="$(var.Microsoft_VC140_MFC)" DiskId="1" />
+      <Merge Id="Microsoft_VC140_OpenMP" Language="1033" SourceFile="$(var.Microsoft_VC140_OpenMP)" DiskId="1" />
+
+      <!-- ///////////////////////////////// [2] directories, (files and components) ////////////////////////////////// -->
+      
+      <Directory Id="ProgramMenuFolder">
+        
+        <Directory Id="GeomecShortcutFolder" Name="$(var.GeomecName) $(var.VersionMajor).$(var.VersionMinor)">
+          <Directory Id="GeomecDocumentsShortcutFolder" Name="Documents"/>
+        </Directory>
+        
+        <Directory Id="SVSShortcutFolder" Name="$(var.SVSName)" />
+        
+        <Directory Id="CORAShortcutFolder" Name="$(var.CORAName)">
+          <Directory Id="CORADocumentsShortcutFolder" Name="Documents">
+            <Directory Id="CORABackgroundInformationShortcutFolder" Name="BackgroundInformation"/>
+          </Directory>
+        </Directory>
+        
+      </Directory> <!-- ProgramMenuFolder -->
+      
+      
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      
+      <Directory Id="$(var.ProgramFilesFolder)">
+        
+        <!-- 'Geomec' folder --> 
+        <Directory Id="INST_Geomec" Name="$(var.VersionsFolder)">
+
+            
+           
+
+          <!-- Example: 5.7.0.3.19216.9 -->
+          <Directory Id="INSTALLDIR" Name="$(var.GeomecVersion)">
+
+            <!-- registry --> <!-- only link between '*.gm5' and '*.gm4' files and to 'geomec_selector.exe'  -->
+            <?include $(var.WixInclude)\inc_registry.wxi ?>
+
+            <!-- dlls -->
+            <!-- all dlls together -->
+            <?include $(var.WixInclude)\inc_dll_all_together.wxi ?>
+            <?include $(var.WixInclude)\inc_oiv.wxi ?>
+
+            <!-- dlls separated -->
+            <!-- <Directory Id="dll" Name="dll"> -->
+              <!-- all dlls but OIV ones -->
+              <!-- <?include $(var.WixInclude)\inc_dll.wxi ?> -->
+              <!-- OIV -->
+            <!-- <?include $(var.WixInclude)\inc_oiv.wxi ?> -->
+            <!-- </Directory> -->
+
+            <!-- needed by geomec_selector.exe : 'platforms\qwindows.dll' -->
+            <Directory Id="qt_platforms_01" Name="platforms">
+              <Component Id="c_qt_platforms_01" Guid="$(var.cid_qt_platforms_01)" Win64="yes">
+                <File Id="selector_qwindows.dll" Name="qwindows.dll" Source="$(var.QTDIR)\plugins\platforms\qwindows.dll" />
+              </Component>
+            </Directory>
+            
+            <!-- geomec folder files -->
+            <?include $(var.WixInclude)\inc_geomec_folder.wxi ?>
+          
+            <!-- 'packages' dir -->
+            <?include $(var.WixInclude)\inc_packages.wxi ?>
+          
+            <!-- 'changelog' dir  -->
+            <?include $(var.WixInclude)\inc_changelog.wxi ?>
+
+            <!-- 'img' dir -->
+            <?include $(var.WixInclude)\inc_img.wxi ?>
+            
+            <!-- 'scripts' dir -->
+            <?include $(var.WixInclude)\inc_scripts.wxi ?>
+
+            <!-- 'fixInstallation' dir -->
+            <?include $(var.WixInclude)\inc_fix_installation.wxi ?>
+          
+            <!-- GVT -->
+            <?ifdef GVT ?>
+              <?include $(var.WixInclude)\inc_gvt.wxi ?>
+            <?endif?>
+
+            <!-- diana -->
+            <?include $(var.WixInclude)\inc_diana.wxi ?>
+
+            <!-- SVS -->
+            <?include $(var.WixInclude)\inc_svs.wxi ?>
+
+            <!-- CORA -->
+            <Directory Id="CORA_PATH" Name="$(var.CoraTargetDir)" />
+
+          </Directory><!-- INSTALLDIR --> <!-- HARD CODED !! -->
+        </Directory> <!-- INST_Geomec -->
+      </Directory> <!-- ProgramFilesFolder -->
+		</Directory> <!-- TARGETDIR -->
+    
+    <!-- //////////////////////////// [3] Features /////////////////////////// -->
+
+		<Feature Id="ProductFeature" Title="Application Files" Level="1" Absent="disallow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR">
+			<ComponentRef Id="Component_Geomec_exe" Primary="yes" />
+
+      <!-- <ComponentRef Id="c_selector"/> -->
+      <ComponentRef Id="c_dll_all_together"/>
+      <!--
+      <ComponentRef Id="c_dll_usr"/>
+      <ComponentRef Id="c_dll_qt"/>
+      <ComponentRef Id="c_dll_qwt"/>
+      <ComponentRef Id="c_dll_other"/>
+      <ComponentRef Id="c_dll_tbb"/>
+      <ComponentRef Id="c_dll_license"/>
+      <ComponentRef Id="c_dll_flex"/>
+      -->
+        
+      <ComponentRef Id="c_qt_platforms_01" />
+      <!-- <ComponentRef Id="c_qt_platforms_02" /> -->
+      <ComponentRef Id="Component_System_Files" />
+      <ComponentRef Id="Component_Registry_keys" />
+      <ComponentRef Id="Component_OIV_bin" />
+      <ComponentRef Id="Component_fixInstallation" />
+      <ComponentRef Id="Component_fixInstallation_resources" />
+      <ComponentRef Id="Component_packages"/>
+      <ComponentRef Id="Component_Changelog55"/>
+      <ComponentRef Id="Component_Changelog56"/>
+      <ComponentRef Id="Component_Changelog57"/>
+      <ComponentRef Id="Component_Changelog58"/>
+      <ComponentRef Id="Component_img"/>
+      <ComponentRef Id="Component_scripts"/>
+
+      <!-- VS2015 -->
+      <MergeRef Id="Microsoft_VC140_CRT" />
+      <MergeRef Id="Microsoft_VC140_MFC" />
+      <MergeRef Id="Microsoft_VC140_OpenMP" />
+      
+    </Feature> <!-- ProductFeature -->
+    
+    <!-- GVT 'feature' -->
+    <?ifdef GVT ?>
+      <Feature Id="GVTFeature" Title="GVT Files" Level="1" Absent="disallow" AllowAdvertise="no">
+        <ComponentRef Id="Component_GVT" Primary="yes"/>
+      </Feature>
+    <?endif?>
+
+    <!-- Diana 'feature' -->
+    <Feature Id="DianaFeature" Title="DIANA Files" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentRef Id="Component_Diana_binseg_ap_geomec" Primary="yes" />
+      <ComponentRef Id="Component_Diana_bin_geomec" />
+      <ComponentRef Id="Component_SafeNet_bin_geomec" />
+      <?include $(var.WixInclude)\DianaComponentRef.wxi ?>
+    </Feature>
+
+    <!-- SVS 'feature' -->
+    <Feature Id="SVSFeature" Title="SVS Files" Level="1" Absent="allow" AllowAdvertise="no">
+      <ComponentRef Id="Component_SVS" Primary="yes"/>
+    </Feature>
+
+    <!-- CORA 'feature' -->
+    <Feature Id="CORAFeature" Title="CORA Application" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentGroupRef Id="CoraComponentGroup" />
+    </Feature>
+
+    <!-- //////////////////////////// [4] Custom actions /////////////////////////// -->
+
+    <Binary Id="HaspDriverInstallerBinary" SourceFile="$(var.WixInclude)\haspdinst.exe" />
+    <Binary Id="HaspDriverIniUpdateBinary" SourceFile="$(var.WixHaspPostInstall.TargetPath)" />
+    <Binary Id="ChangelogInstallBinary" SourceFile="$(var.WixPostInstallChangelog.TargetPath)" />
+
+    <CustomAction Id="HaspDriverInstall" BinaryKey="HaspDriverInstallerBinary" ExeCommand="-install -fi" Execute="deferred" Impersonate="no" Return="ignore" />
+    <CustomAction Id="HaspDriverIniUpdate" BinaryKey="HaspDriverIniUpdateBinary" ExeCommand="" Execute="deferred" Impersonate="no" Return="ignore" />
+    <!--
+    <CustomAction Id="ChangelogInstall" BinaryKey="ChangelogInstallBinary" ExeCommand="" Execute="deferred" Impersonate="no" Return="check" />
+    <CustomAction Id="ChangelogUninstall" BinaryKey="ChangelogInstallBinary" ExeCommand="uninstall" Execute="deferred" Impersonate="no" Return="check" />
+    -->
+
+    <InstallExecuteSequence>
+      <Custom Action="HaspDriverInstall" Before="InstallFinalize">NOT Installed</Custom>
+      <Custom Action="HaspDriverIniUpdate" After="HaspDriverInstall">NOT Installed</Custom>
+      <!--<Custom Action="ChangelogInstall" After="HaspDriverIniUpdate">NOT Installed</Custom>
+      <Custom Action="ChangelogUninstall" After="InstallInitialize">REMOVE="ALL"</Custom>-->
+    </InstallExecuteSequence>
+
+	</Product>
+</Wix>

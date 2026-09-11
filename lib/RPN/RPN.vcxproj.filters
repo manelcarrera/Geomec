@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\ProxyPersistant.h" />
+    <ClInclude Include="h\rpnbinaryoperation.h" />
+    <ClInclude Include="h\RpnConstant.h" />
+    <ClInclude Include="h\rpnconstantoperand.h" />
+    <ClInclude Include="h\rpnobject.h" />
+    <ClInclude Include="h\RpnOperand.h" />
+    <ClInclude Include="h\rpnstack.h" />
+    <ClInclude Include="h\RpnTernaryOperation.h" />
+    <ClInclude Include="h\Rpntoken.h" />
+    <ClInclude Include="h\rpnunaryoperation.h" />
+    <ClInclude Include="h\RpnUnitConverter.h" />
+    <ClInclude Include="h\RPN_INC.h" />
+    <ClInclude Include="h\shunt.h" />
+    <ClInclude Include="h\ValueComponentProxyWrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\rpnbinaryoperation.cpp" />
+    <ClCompile Include="src\RpnConstant.cpp" />
+    <ClCompile Include="src\rpnconstantoperand.cpp" />
+    <ClCompile Include="src\rpnobject.cpp" />
+    <ClCompile Include="src\RpnOperand.cpp" />
+    <ClCompile Include="src\rpnstack.cpp" />
+    <ClCompile Include="src\RpnTernaryOperation.cpp" />
+    <ClCompile Include="src\RpnToken.cpp" />
+    <ClCompile Include="src\rpnunaryoperation.cpp" />
+    <ClCompile Include="src\RpnUnitConverter.cpp" />
+    <ClCompile Include="src\shunt.cpp" />
+  </ItemGroup>
+</Project>

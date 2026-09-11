@@ -1,0 +1,30 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "MFC 6.0"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A103E7"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "CObject Classes"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\CObject Classes.cat"
+	    quid       	"3A07D0A2003B")
+	(object Class_Category "Non-CObject Classes"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Non-CObject Classes.cat"
+	    quid       	"3A07D0C50353"))
+    logical_presentations 	(list unit_reference_list))

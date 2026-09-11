@@ -1,0 +1,135 @@
+ '=====================================================================
+' TEST CASE NAME:
+'
+' GENERAL DESCRIPTION OF WHAT IS VERIFIED:
+'
+'
+' SPECIFIC AREA ADDRESSED BY THIS TEST CASE:
+'
+'
+' NAME OF APPLICATION UNDER TEST:
+'
+'=====================================================================
+' TEST CASE PURPOSE:
+'
+'
+' TEST CASE ABSTRACT OF TECHNIQUES USED TO TEST THE FEATURE:
+'
+'
+' SCENARIOS:    1.
+'               2.
+'               3.
+'               4.
+'               5.
+'               6.
+'               7.
+'               8.
+'               9.
+'              10.
+'
+'---------------------------------------------------------------------------
+' OTHER FILES REQUIRED TO RUN TEST CASE:
+'
+'
+'
+'---------------------------------------------------------------------------
+' REVISION HISTORY:
+'
+'	[ 0]	<DD-MM-YY>		<NAME>	: <CHANGES MADE>
+'	[ 1]	  -  -			<????>	: Created test.
+'---------------------------------------------------------------------------
+
+
+' '$DEFINE and '$INCLUDE metacommands for test case
+'-------------------------------------------------------------------
+'$include 'Recorder.inc'
+'$include '..\TestSuite.inc'
+
+
+' DIM statements, TYPE declarations, global variables,
+' constants, and so on for test case
+'-------------------------------------------------------------------
+
+
+' *************************
+' **** BEGIN TEST CASE ****
+' *************************
+
+'******* Test Case INITIALIZATION/SETUP *********
+Viewport Clear
+
+'******* SCENARIO SECTION ***********************
+
+'*** Scenario 1:
+Scenario ("Version 2.1.0")
+StartApp
+Gm3Test(CurDir$ + "\Version2.1.0")
+Scenario Cleanup 'and handling of scenario failure
+ExitNoSave
+KillApp
+End Scenario
+
+'*** Scenario 2:
+Scenario ("Version 2.2")
+StartApp
+Gm3Test(CurDir$ + "\Version2.2")
+Scenario Cleanup 'and handling of scenario failure
+ExitNoSave
+KillApp
+End Scenario
+
+'*** Scenario 3:
+Scenario ("Version 2.5.1")
+StartApp
+Gm3Test(CurDir$ + "\Version2.5.1")
+Scenario Cleanup 'and handling of scenario failure
+ExitNoSave
+KillApp
+End Scenario
+
+'*** Scenario 4:
+Scenario ("Version 2.5.2")
+StartApp
+Gm3Test(CurDir$ + "\Version2.5.2")
+Scenario Cleanup 'and handling of scenario failure
+ExitNoSave
+KillApp
+End Scenario
+
+'******* Test Case CLEANUP **********************
+
+
+
+
+
+' *************************
+' ***** END TEST CASE *****
+' *************************
+End
+
+
+
+'*****************************************************************************
+'                          LOCAL SCRIPT SUBS/FUNCTIONS
+'*****************************************************************************
+SUB Gm3Test(sDirectory As STRING)
+
+FILELIST CLEAR
+FILELIST ADD sDirectory + "\*.gm3"
+FOR TestFile$ IN FILELIST SORTED BY NAME
+	ImportGM3Model(GetPathName(TestFile), GetFileName(TestFile))
+	'Compare the files
+	IF RESULT_RECORD THEN
+		DumpModel(sDirectory + "\" + GetFileNameNoExt(TestFile) + ".res")
+	ELSE
+		DumpModel(sDirectory + "\" + GetFileNameNoExt(TestFile) + ".new")
+		IF COMPARE (sDirectory + "\" + GetFileNameNoExt(TestFile) + ".new", sDirectory + "\" + GetFileNameNoExt(TestFile) + ".res" ) = 0 THEN
+			'Test ok
+		ELSE
+			Fail("Contents of " + GetFileNameNoExt(TestFile) + " not OK")
+		END IF
+	END IF
+
+NEXT
+
+END SUB

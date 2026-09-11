@@ -1,0 +1,3 @@
+attrib -r test2.ff
+vtrun lt=600 Save_and_exit
+attrib +r test2.ff

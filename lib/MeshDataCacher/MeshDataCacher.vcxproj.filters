@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\Cache.h" />
+    <ClInclude Include="h\Checksum.h" />
+    <ClInclude Include="h\City.h" />
+    <ClInclude Include="h\DataCell.h" />
+    <ClInclude Include="h\MeshDataCacher.h" />
+    <ClInclude Include="h\StorageInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Cache.cpp" />
+    <ClCompile Include="src\Checksum.cpp" />
+    <ClCompile Include="src\City.cpp" />
+    <ClCompile Include="src\DataCell.cpp" />
+    <ClCompile Include="src\MeshDataCacher.cpp" />
+    <ClCompile Include="src\StorageInterface.cpp" />
+  </ItemGroup>
+</Project>

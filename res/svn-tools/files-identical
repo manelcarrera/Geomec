@@ -1,0 +1,53 @@
+#! /bin/sh
+#
+# This scripts tells if two files are indentical
+#
+
+# Print usage info and exit
+#
+usage()
+{
+	cat >&2 <<EOF
+usage: $0 <mode> <file1> <file2>
+tells if two files are the same
+modes are:
+  binary
+  dos
+	native
+	unix
+	unknown
+EOF
+	exit 1
+}
+
+#
+# Main program
+#
+
+# Check command line
+#
+while getopts ":" option ; do
+case "$option" in
+	*)
+		usage
+		;;
+	esac
+done
+shift $(expr $OPTIND - 1)
+
+[ $# -eq 3 ] || usage 
+mode=$1
+file1=$2
+file2=$3
+
+case "$mode" in
+native)
+	diff --brief --strip-trailing-cr -- "$file1" "$file2" >/dev/null
+	;;
+binary|dos|unix|unknown)
+	diff --brief "$file1" "$file2" >/dev/null
+	;;
+*)
+	usage
+	;;
+esac

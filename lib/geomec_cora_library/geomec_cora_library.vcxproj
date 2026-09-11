@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B864E7D0-C3B5-4C34-A1E4-03F62B610709}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>geomec_cora_library</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GEOMECCORALIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GEOMECCORALIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GEOMECCORALIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\CohesionValueTypeWrapper.h" />
+    <ClInclude Include="h\CreateElementValueSet.h" />
+    <ClInclude Include="h\DepletionStageAnalysisType.h" />
+    <ClInclude Include="h\FailureMode.h" />
+    <ClInclude Include="h\FailureModePatternMismatch.h" />
+    <ClInclude Include="h\FailureTypeParameter.h" />
+    <ClInclude Include="h\FailureTypeParameterBase.h" />
+    <ClInclude Include="h\FailureTypeParameterFault.h" />
+    <ClInclude Include="h\FailureTypeParameterFormation.h" />
+    <ClInclude Include="h\FailureTypeParameterFormation4Material.h" />
+    <ClInclude Include="h\FailureTypeParameterFormation4Pressure.h" />
+    <ClInclude Include="h\FailureTypeParameterFormation4PressureChange.h" />
+    <ClInclude Include="h\FailureTypeParameterSurface.h" />
+    <ClInclude Include="h\FailureTypeParameterWell.h" />
+    <ClInclude Include="h\FaultParameters.h" />
+    <ClInclude Include="h\FilterOutputProperty.h" />
+    <ClInclude Include="h\FilterResults.h" />
+    <ClInclude Include="h\FilterValueTypes.h" />
+    <ClInclude Include="h\FrictionAngleValueTypeWrapper.h" />
+    <ClInclude Include="h\GetElementSetInfo.h" />
+    <ClInclude Include="h\GetEstimatedMemoryUsage.h" />
+    <ClInclude Include="h\GetFailureModeInfo.h" />
+    <ClInclude Include="h\GetFaultInfo.h" />
+    <ClInclude Include="h\GetFormationInfo.h" />
+    <ClInclude Include="h\GetFormationParameterInfo.h" />
+    <ClInclude Include="h\GetHorizonInfo.h" />
+    <ClInclude Include="h\GetModelInfo.h" />
+    <ClInclude Include="h\GetModelInfoData.h" />
+    <ClInclude Include="h\GetNonMeshedSurfaceInfo.h" />
+    <ClInclude Include="h\GetPointSetInfo.h" />
+    <ClInclude Include="h\getPressureParameters.h" />
+    <ClInclude Include="h\GetSetInfo.h" />
+    <ClInclude Include="h\GetSurfaceInfo.h" />
+    <ClInclude Include="h\GetValueTypeInfo.h" />
+    <ClInclude Include="h\GetWellPathInfo.h" />
+    <ClInclude Include="h\ICreateElementValueSet.h" />
+    <ClInclude Include="h\IncompleteLimitStateFunction.h" />
+    <ClInclude Include="h\IValueTypeWrapper.h" />
+    <ClInclude Include="h\LimitStateFunction.h" />
+    <ClInclude Include="h\LimitStateFunctionBase.h" />
+    <ClInclude Include="h\LimitStateFunctionFault.h" />
+    <ClInclude Include="h\LimitStateFunctionFormation.h" />
+    <ClInclude Include="h\LimitStateFunctionSurface.h" />
+    <ClInclude Include="h\LimitStateFunctionWell.h" />
+    <ClInclude Include="h\MapInterfaceElement2ElementValues.h" />
+    <ClInclude Include="h\MapSingleValue2ElementValues.h" />
+    <ClInclude Include="h\Object.h" />
+    <ClInclude Include="h\ObjectBase.h" />
+    <ClInclude Include="h\ObjectFault.h" />
+    <ClInclude Include="h\ObjectFormation.h" />
+    <ClInclude Include="h\ObjectHorizon.h" />
+    <ClInclude Include="h\ObjectNonMeshedSurface.h" />
+    <ClInclude Include="h\ObjectParametersNodeValue.h" />
+    <ClInclude Include="h\ObjectSurface.h" />
+    <ClInclude Include="h\ObjectWell.h" />
+    <ClInclude Include="h\Parameter.h" />
+    <ClInclude Include="h\ParameterBase.h" />
+    <ClInclude Include="h\ParameterFault.h" />
+    <ClInclude Include="h\ParameterFile.h" />
+    <ClInclude Include="h\ParameterFormation.h" />
+    <ClInclude Include="h\ParameterFormation4Material.h" />
+    <ClInclude Include="h\ParameterFormation4Pressure.h" />
+    <ClInclude Include="h\ParameterFormation4PressureChange.h" />
+    <ClInclude Include="h\ParameterHorizon.h" />
+    <ClInclude Include="h\ParameterLimit.h" />
+    <ClInclude Include="h\ParameterModifier.h" />
+    <ClInclude Include="h\ParameterModifierAbsolute.h" />
+    <ClInclude Include="h\ParameterModifierBase.h" />
+    <ClInclude Include="h\ParameterModifierFactor.h" />
+    <ClInclude Include="h\ParameterModifierFactorShift.h" />
+    <ClInclude Include="h\ParameterModifierShift.h" />
+    <ClInclude Include="h\ParameterModifierShiftFactor.h" />
+    <ClInclude Include="h\ParameterNonMeshedSurface.h" />
+    <ClInclude Include="h\ParameterSurface.h" />
+    <ClInclude Include="h\ParameterWell.h" />
+    <ClInclude Include="h\ParseCSV.h" />
+    <ClInclude Include="h\Pre.2.0.ResponseTypeBaseWithValue.h" />
+    <ClInclude Include="h\Pre.2.0.ResponseTypeFailureAreaMax.h" />
+    <ClInclude Include="h\Pre.2.0.ResponseTypeFailureAreaMin.h" />
+    <ClInclude Include="h\Pre.2.0.ResponseTypeFailureAreaPercMax.h" />
+    <ClInclude Include="h\Pre.2.0.ResponseTypeFailureAreaPercMin.h" />
+    <ClInclude Include="h\ResponseParameterFile.h" />
+    <ClInclude Include="h\ResponseType.h" />
+    <ClInclude Include="h\ResponseTypeBase.h" />
+    <ClInclude Include="h\ResponseTypeBaseValidate.h" />
+    <ClInclude Include="h\ResponseTypeBaseWithValue.h" />
+    <ClInclude Include="h\ResponseTypeFailureAreaMax.h" />
+    <ClInclude Include="h\ResponseTypeFailureAreaMin.h" />
+    <ClInclude Include="h\ResponseTypeFailureAreaPercMax.h" />
+    <ClInclude Include="h\ResponseTypeFailureAreaPercMin.h" />
+    <ClInclude Include="h\ResponseTypefn.h" />
+    <ClInclude Include="h\ResponseTypeMax.h" />
+    <ClInclude Include="h\ResponseTypeMean.h" />
+    <ClInclude Include="h\ResponseTypeMin.h" />
+    <ClInclude Include="h\RunModel.h" />
+    <ClInclude Include="h\RunModelData.h" />
+    <ClInclude Include="h\RunModelEngine.h" />
+    <ClInclude Include="h\RunModelEngineBase.h" />
+    <ClInclude Include="h\RunModelSingleRunEngine.h" />
+    <ClInclude Include="h\RunModelStagedRunEngine.h" />
+    <ClInclude Include="h\safeQSharedPointer.h" />
+    <ClInclude Include="h\SelectedLSFs.h" />
+    <ClInclude Include="h\SummaryResultFile.h" />
+    <ClInclude Include="h\UndefinedOrInvalidValueVector.h" />
+    <ClInclude Include="h\Utilities4ValueVector.h" />
+    <ClInclude Include="h\ValueTypeWrapper.h" />
+    <ClInclude Include="h\ValueVectorContainsInvalidValues.h" />
+    <ClInclude Include="h\VersionNumber.h" />
+    <ClInclude Include="h\XMLComponent.h" />
+    <ClInclude Include="h\XMLComponents.h" />
+    <ClInclude Include="h\XMLInputParameter.h" />
+    <ClInclude Include="h\XMLInputParameters.h" />
+    <ClInclude Include="h\XMLModelInfo.h" />
+    <ClInclude Include="h\XMLResponseParameter.h" />
+    <ClInclude Include="h\XMLResponseParameters.h" />
+    <ClInclude Include="h\XMLResponseValueType.h" />
+    <ClInclude Include="h\XMLResponseValueTypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CreateElementValueSet.cpp" />
+    <ClCompile Include="src\DepletionStageAnalysisType.cpp" />
+    <ClCompile Include="src\FailureMode.cpp" />
+    <ClCompile Include="src\FailureModePatternMismatch.cpp" />
+    <ClCompile Include="src\FailureTypeParameter.cpp" />
+    <ClCompile Include="src\FailureTypeParameterBase.cpp" />
+    <ClCompile Include="src\FailureTypeParameterFault.cpp" />
+    <ClCompile Include="src\FailureTypeParameterFormation.cpp" />
+    <ClCompile Include="src\FailureTypeParameterFormation4Material.cpp" />
+    <ClCompile Include="src\FailureTypeParameterFormation4Pressure.cpp" />
+    <ClCompile Include="src\FailureTypeParameterFormation4PressureChange.cpp" />
+    <ClCompile Include="src\FailureTypeParameterSurface.cpp" />
+    <ClCompile Include="src\FailureTypeParameterWell.cpp" />
+    <ClCompile Include="src\FaultParameters.cpp" />
+    <ClCompile Include="src\FilterOutputProperty.cpp" />
+    <ClCompile Include="src\FilterResults.cpp" />
+    <ClCompile Include="src\FilterValueTypes.cpp" />
+    <ClCompile Include="src\GetElementSetInfo.cpp" />
+    <ClCompile Include="src\GetEstimatedMemoryUsage.cpp" />
+    <ClCompile Include="src\GetFailureModeInfo.cpp" />
+    <ClCompile Include="src\GetFaultInfo.cpp" />
+    <ClCompile Include="src\GetFormationInfo.cpp" />
+    <ClCompile Include="src\GetFormationParameterInfo.cpp" />
+    <ClCompile Include="src\GetHorizonInfo.cpp" />
+    <ClCompile Include="src\GetModelInfo.cpp" />
+    <ClCompile Include="src\GetModelInfoData.cpp" />
+    <ClCompile Include="src\GetNonMeshedSurfaceInfo.cpp" />
+    <ClCompile Include="src\GetPointSetInfo.cpp" />
+    <ClCompile Include="src\getPressureParameters.cpp" />
+    <ClCompile Include="src\GetSetInfo.cpp" />
+    <ClCompile Include="src\GetSurfaceInfo.cpp" />
+    <ClCompile Include="src\GetValueTypeInfo.cpp" />
+    <ClCompile Include="src\GetWellPathInfo.cpp" />
+    <ClCompile Include="src\ICreateElementValueSet.cpp" />
+    <ClCompile Include="src\IncompleteLimitStateFunction.cpp" />
+    <ClCompile Include="src\IValueTypeWrapper.cpp" />
+    <ClCompile Include="src\LimitStateFunction.cpp" />
+    <ClCompile Include="src\LimitStateFunctionBase.cpp" />
+    <ClCompile Include="src\LimitStateFunctionFault.cpp" />
+    <ClCompile Include="src\LimitStateFunctionFormation.cpp" />
+    <ClCompile Include="src\LimitStateFunctionSurface.cpp" />
+    <ClCompile Include="src\LimitStateFunctionWell.cpp" />
+    <ClCompile Include="src\MapInterfaceElement2ElementValues.cpp" />
+    <ClCompile Include="src\MapSingleValue2ElementValues.cpp" />
+    <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\ObjectBase.cpp" />
+    <ClCompile Include="src\ObjectFault.cpp" />
+    <ClCompile Include="src\ObjectFormation.cpp" />
+    <ClCompile Include="src\ObjectHorizon.cpp" />
+    <ClCompile Include="src\ObjectNonMeshedSurface.cpp" />
+    <ClCompile Include="src\ObjectParametersNodeValue.cpp" />
+    <ClCompile Include="src\ObjectSurface.cpp" />
+    <ClCompile Include="src\ObjectWell.cpp" />
+    <ClCompile Include="src\Parameter.cpp" />
+    <ClCompile Include="src\ParameterBase.cpp" />
+    <ClCompile Include="src\ParameterFault.cpp" />
+    <ClCompile Include="src\ParameterFile.cpp" />
+    <ClCompile Include="src\ParameterFormation.cpp" />
+    <ClCompile Include="src\ParameterFormation4Material.cpp" />
+    <ClCompile Include="src\ParameterFormation4Pressure.cpp" />
+    <ClCompile Include="src\ParameterFormation4PressureChange.cpp" />
+    <ClCompile Include="src\ParameterHorizon.cpp" />
+    <ClCompile Include="src\ParameterLimit.cpp" />
+    <ClCompile Include="src\ParameterModifier.cpp" />
+    <ClCompile Include="src\ParameterModifierAbsolute.cpp" />
+    <ClCompile Include="src\ParameterModifierBase.cpp" />
+    <ClCompile Include="src\ParameterModifierFactor.cpp" />
+    <ClCompile Include="src\ParameterModifierFactorShift.cpp" />
+    <ClCompile Include="src\ParameterModifierShift.cpp" />
+    <ClCompile Include="src\ParameterModifierShiftFactor.cpp" />
+    <ClCompile Include="src\ParameterNonMeshedSurface.cpp" />
+    <ClCompile Include="src\ParameterSurface.cpp" />
+    <ClCompile Include="src\ParameterWell.cpp" />
+    <ClCompile Include="src\ParseCSV.cpp" />
+    <ClCompile Include="src\Pre.2.0.ResponseTypeBaseWithValue.cpp" />
+    <ClCompile Include="src\Pre.2.0.ResponseTypeFailureAreaMax.cpp" />
+    <ClCompile Include="src\Pre.2.0.ResponseTypeFailureAreaMin.cpp" />
+    <ClCompile Include="src\Pre.2.0.ResponseTypeFailureAreaPercMax.cpp" />
+    <ClCompile Include="src\Pre.2.0.ResponseTypeFailureAreaPercMin.cpp" />
+    <ClCompile Include="src\ResponseParameterFile.cpp" />
+    <ClCompile Include="src\ResponseType.cpp" />
+    <ClCompile Include="src\ResponseTypeBase.cpp" />
+    <ClCompile Include="src\ResponseTypeBaseValidate.cpp" />
+    <ClCompile Include="src\ResponseTypeBaseWithValue.cpp" />
+    <ClCompile Include="src\ResponseTypeFailureAreaMax.cpp" />
+    <ClCompile Include="src\ResponseTypeFailureAreaMin.cpp" />
+    <ClCompile Include="src\ResponseTypeFailureAreaPercMax.cpp" />
+    <ClCompile Include="src\ResponseTypeFailureAreaPercMin.cpp" />
+    <ClCompile Include="src\ResponseTypefn.cpp" />
+    <ClCompile Include="src\ResponseTypeMax.cpp" />
+    <ClCompile Include="src\ResponseTypeMean.cpp" />
+    <ClCompile Include="src\ResponseTypeMin.cpp" />
+    <ClCompile Include="src\RunModel.cpp" />
+    <ClCompile Include="src\RunModelData.cpp" />
+    <ClCompile Include="src\RunModelEngine.cpp" />
+    <ClCompile Include="src\RunModelEngineBase.cpp" />
+    <ClCompile Include="src\RunModelSingleRunEngine.cpp" />
+    <ClCompile Include="src\RunModelStagedRunEngine.cpp" />
+    <ClCompile Include="src\SelectedLSFs.cpp" />
+    <ClCompile Include="src\SummaryResultFile.cpp" />
+    <ClCompile Include="src\UndefinedOrInvalidValueVector.cpp" />
+    <ClCompile Include="src\Utilities4ValueVector.cpp" />
+    <ClCompile Include="src\ValueVectorContainsInvalidValues.cpp" />
+    <ClCompile Include="src\XMLComponent.cpp" />
+    <ClCompile Include="src\XMLComponents.cpp" />
+    <ClCompile Include="src\XMLInputParameter.cpp" />
+    <ClCompile Include="src\XMLInputParameters.cpp" />
+    <ClCompile Include="src\XMLModelInfo.cpp" />
+    <ClCompile Include="src\XMLResponseParameter.cpp" />
+    <ClCompile Include="src\XMLResponseParameters.cpp" />
+    <ClCompile Include="src\XMLResponseValueType.cpp" />
+    <ClCompile Include="src\XMLResponseValueTypes.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

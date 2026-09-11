@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- //////////////////////////////////// Diana bin ///////////////////////////////////////////////////// -->
+  <Directory Id="DIAPATH" Name="diana">
+    <Directory Id="Diana_bin" Name="bin">
+      <Component Id="Component_Diana_bin_geomec" Guid="$(var.ComponentID_Diana_bin_geomec)" Win64="yes">
+        <File Id="fgv4gm.exe" KeyPath="yes" Source="$(var.DIAPATH)\bin\fgv4gm.exe" />
+      </Component>
+      <?include $(var.WixInclude)\DianaBin.wxi ?>
+      <?include $(var.WixInclude)\SystemFiles64.wxi ?>
+    </Directory>
+    <Directory Id="SafeNet_bin" Name="bin">
+      <Component Id="Component_SafeNet_bin_geomec" Guid="$(var.ComponentID_SafeNet_bin_geomec)" Win64="yes">
+        <File Id="hasp_windows_x64_3659.dll" KeyPath="yes" Source="$(var.SafeNet)\hasp_windows_x64_3659.dll" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_binseg" Name="binseg">
+      <Directory Id="Diana_binseg_ap" Name="ap">
+        <Component Id="Component_Diana_binseg_ap_geomec" Guid="$(var.ComponentID_Diana_binseg_ap_geomec)" Win64="yes">
+          <File Id="gm42.exe" Source="$(var.DIAPATH)\binseg\ap\gm42.exe" KeyPath="yes" />
+          <File Id="ca40.exe" Source="$(var.DIAPATH)\binseg\ap\ca40.exe" />
+          <File Id="ho40.exe" Source="$(var.DIAPATH)\binseg\ap\ho40.exe" />
+          <File Id="in51.exe" Source="$(var.DIAPATH)\binseg\ap\in51.exe" />
+          <File Id="mc41.exe" Source="$(var.DIAPATH)\binseg\ap\mc41.exe" />
+          <File Id="bo40.exe" Source="$(var.DIAPATH)\binseg\ap\bo40.exe" />
+          <!--
+          <File Id="se51.exe" Source="$(var.DIAPATH)\binseg\ap\se51.exe" />
+          <File Id="QtCore4.dll_temporary" Name="QtCore4.dll" Source="$(var.WixInclude)\QtCore4.dll" />
+          <File Id="QtGui4.dll_temporary" Name="QtGui4.dll" Source="$(var.WixInclude)\QtGui4.dll" />
+          <File Id="QtNetwork4.dll_temporary" Name="QtNetwork4.dll" Source="$(var.WixInclude)\QtNetwork4.dll" />
+          <File Id="QtOpenGL4.dll_temporary" Name="QtOpenGL4.dll" Source="$(var.WixInclude)\QtOpenGL4.dll" />
+          -->
+        </Component>
+      </Directory>
+    </Directory>
+    <!-- //////////////////////////////////// Diana lib ///////////////////////////////////////////////////// -->
+    <Directory Id="Diana_lib" Name="lib">
+      <?include $(var.WixInclude)\DianaLib.wxi ?>
+    </Directory>
+    <!-- //////////////////////////////////// Diana share ///////////////////////////////////////////////////// -->
+    <Directory Id="DIASHARE" Name="share">
+      <?include $(var.WixInclude)\DiaShare.wxi ?>
+    </Directory>
+  </Directory>
+  
+</Include>

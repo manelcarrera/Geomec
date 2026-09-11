@@ -1,0 +1,532 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Homogenise Material"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2CE72302F7"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Homegenise Material"
+	    quid       	"3A2CE6C50324")
+	(object UseCase "Define Homogenisation Blocks"
+	    quid       	"3A2CE7E40196")
+	(object UseCase "Choose Material Properties"
+	    quid       	"3A2CE8E203CC")
+	(object UseCase "Choose homogeneous material for formation"
+	    quid       	"3A2CE91A037C"
+	    documentation 	"Allows User to choose the new material created in Homgenise Material to assign to the formation")
+	(object UseCase "Choose New"
+	    quid       	"3A2CE958032B")
+	(object UseCase "Asign Material to formation"
+	    quid       	"3A2CEA1001E5")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2CE7E003B7"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2CE7E1039A"
+		    supplier   	"Use Case View::Model Use Cases::Formation::Start Homgenisation Wizard"
+		    quidu      	"3A2CE7D30318"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2CE7E103A4"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A2CE80A0032"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A2CE80A0371"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Define Homogenisation Blocks"
+		    quidu      	"3A2CE7E40196"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A2CE80A037B"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2CE83B0263"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2CE83B03D6"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Define Homogenisation Blocks"
+		    quidu      	"3A2CE7E40196"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2CE83B03E0"
+		    supplier   	"Use Case View::Model Use Cases::Formation::Start Homgenisation Wizard"
+		    quidu      	"3A2CE7D30318")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A2CE883031B"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A2CE8840114"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Homegenise Material"
+		    quidu      	"3A2CE6C50324"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A2CE884011E"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Define Homogenisation Blocks"
+		    quidu      	"3A2CE7E40196")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A2CE8FF039B"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3A2CE90001EE"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Choose Material Properties"
+		    quidu      	"3A2CE8E203CC"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A2CE90001F8"
+		    supplier   	"Use Case View::Model Use Cases::Formation::Start Homgenisation Wizard"
+		    quidu      	"3A2CE7D30318")))
+	(object Association "$UNNAMED$15"
+	    quid       	"3A2CE9090165"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$16"
+		    quid       	"3A2CE909035A"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Define Homogenisation Blocks"
+		    quidu      	"3A2CE7E40196"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"3A2CE9090378"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Choose Material Properties"
+		    quidu      	"3A2CE8E203CC")))
+	(object Association "$UNNAMED$18"
+	    quid       	"3A2CE9770005"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"3A2CE977022B"
+		    supplier   	"Use Case View::Model Use Cases::Material::Insert Material"
+		    quidu      	"3A236845035E"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$20"
+		    quid       	"3A2CE9770235"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Homegenise Material"
+		    quidu      	"3A2CE6C50324")))
+	(object Association "$UNNAMED$21"
+	    quid       	"3A2CE99603CB"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$22"
+		    quid       	"3A2CE99702E6"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Choose homogeneous material for formation"
+		    quidu      	"3A2CE91A037C"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$23"
+		    quid       	"3A2CE99702F0"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Homegenise Material"
+		    quidu      	"3A2CE6C50324")))
+	(object Association "$UNNAMED$24"
+	    quid       	"3A2CEA1302BC"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$25"
+		    quid       	"3A2CEA140078"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Asign Material to formation"
+		    quidu      	"3A2CEA1001E5"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$26"
+		    quid       	"3A2CEA140082"
+		    supplier   	"Use Case View::Model Use Cases::Material::Homogenise Material::Choose homogeneous material for formation"
+		    quidu      	"3A2CE91A037C"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Homogenisation"
+	    quid       	"3A2CE7A30297"
+	    title      	"Homogenisation"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Use Case View::Geomec User" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(192, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(192, 544)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	331
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UseCaseView "Use Case View::Model Use Cases::Formation::Start Homgenisation Wizard" @2
+		    location   	(912, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(912, 528)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Start Homgenisation Wizard")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CE7D30318"
+		    height     	118)
+		(object AssociationViewNew "$UNNAMED$0" @3
+		    location   	(525, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CE7E003B7"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @4
+			    Parent_View 	@3
+			    location   	(349, 208)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE7E1039A"
+			    client     	@3
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @5
+			    Parent_View 	@3
+			    location   	(349, 208)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE7E103A4"
+			    client     	@3
+			    supplier   	@1
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Material::Homogenise Material::Choose Material Properties" @6
+		    location   	(1568, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(1568, 528)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Choose Material Properties")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CE8E203CC"
+		    height     	118)
+		(object AssociationViewNew "$UNNAMED$12" @7
+		    location   	(1232, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CE8FF039B"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @8
+			    Parent_View 	@7
+			    location   	(592, 224)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE90001EE"
+			    client     	@7
+			    supplier   	@6
+			    line_style 	0)
+			(object RoleView "$UNNAMED$14" @9
+			    Parent_View 	@7
+			    location   	(592, 224)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE90001F8"
+			    client     	@7
+			    supplier   	@2
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Material::Homogenise Material::Define Homogenisation Blocks" @10
+		    location   	(1568, 816)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1568, 960)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Define Homogenisation Blocks")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CE7E40196"
+		    height     	118)
+		(object AssociationViewNew "$UNNAMED$15" @11
+		    location   	(1568, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CE9090165"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$16" @12
+			    Parent_View 	@11
+			    location   	(496, 48)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE909035A"
+			    client     	@11
+			    supplier   	@10
+			    line_style 	0)
+			(object RoleView "$UNNAMED$17" @13
+			    Parent_View 	@11
+			    location   	(496, 48)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE9090378"
+			    client     	@11
+			    supplier   	@6
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Material::Homogenise Material::Homegenise Material" @14
+		    location   	(1568, 1232)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(1568, 1376)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Homegenise Material")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CE6C50324")
+		(object AssociationViewNew "$UNNAMED$9" @15
+		    location   	(1568, 1072)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CE883031B"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @16
+			    Parent_View 	@15
+			    location   	(480, 144)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE8840114"
+			    client     	@15
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @17
+			    Parent_View 	@15
+			    location   	(480, 144)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE884011E"
+			    client     	@15
+			    supplier   	@10
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Material::Homogenise Material::Asign Material to formation" @18
+		    location   	(1568, 2160)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@18
+			location   	(1568, 2304)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Asign Material to formation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CEA1001E5"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Material::Homogenise Material::Choose homogeneous material for formation" @19
+		    location   	(1568, 1728)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@19
+			location   	(1568, 1872)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Choose homogeneous material for formation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2CE91A037C")
+		(object AssociationViewNew "$UNNAMED$21" @20
+		    location   	(1568, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CE99603CB"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$22" @21
+			    Parent_View 	@20
+			    location   	(784, 320)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE99702E6"
+			    client     	@20
+			    supplier   	@19
+			    line_style 	0)
+			(object RoleView "$UNNAMED$23" @22
+			    Parent_View 	@20
+			    location   	(784, 320)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CE99702F0"
+			    client     	@20
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$24" @23
+		    location   	(1568, 2016)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2CEA1302BC"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$25" @24
+			    Parent_View 	@23
+			    location   	(1136, 1152)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CEA140078"
+			    client     	@23
+			    supplier   	@18
+			    line_style 	0)
+			(object RoleView "$UNNAMED$26" @25
+			    Parent_View 	@23
+			    location   	(1136, 1152)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2CEA140082"
+			    client     	@23
+			    supplier   	@19
+			    line_style 	0)))
+		(object Label @26
+		    location   	(80, 64)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	1
+		    max_width  	836
+		    label      	"Use Cases for Homogenisation")))))

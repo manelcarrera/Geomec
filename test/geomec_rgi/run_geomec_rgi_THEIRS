@@ -1,0 +1,81 @@
+#!/bin/bash
+#set -x
+
+#Let's assign the pf_ncat.log file name. We will store all port forwarding related logs here in this file
+NCAT_LOGFILE=/tmp/pf_ncat.log
+
+#Create a LOG file or append the content to it depending on the existance.
+if [ -f $NCAT_LOGFILE ]
+then
+	echo "Port Forwarding Creation script" >> $NCAT_LOGFILE 2>&1
+else
+	echo "Port Forwarding Creation script" > $NCAT_LOGFILE 2>&1
+fi
+
+#this line must point to the location where geomec_shell is installed
+GEMHOME=$(cd $(dirname $0); pwd -P)
+
+#Let's Check whether coordinate server has been set by SRMS.ini
+if [ ! -z $HASP_LICENSE_IP ]
+then
+	HASP_REMOTE_HOST=${HASP_LICENSE_IP}
+else
+	#Get the hostname of the box
+	HOSTNAME=`hostname`
+
+	#Set HASP_REMOTE HOST depending on the hostname where the script is running
+	if [[ $HOSTNAME =~ hou* ]] ;
+	then
+	    HASP_REMOTE_HOST="houcy1-s-07026.americas.shell.com"
+	else
+	    HASP_REMOTE_HOST="amsdc1-s-90588.europe.shell.com"
+	    #HASP_REMOTE_HOST="amsdc1-s-47942.europe.shell.com"
+	fi
+fi
+############################################################################
+# NCAT PORT FORWARDING LOGIC IMPLEMENTED BELOW
+############################################################################
+
+echo "Coordinator Server used to download DIANA License = $HASP_REMOTE_HOST" >> $NCAT_LOGFILE 2>&1
+
+HASP_LOCAL_PORT=1947
+HASP_REMOTE_PORT=1947
+HASP_CREATE_PORT_FWD="$GEMHOME/createPortForwarding"
+HASP_RELEASE_PORT_FWD="$GEMHOME/releasePortForwarding"
+
+if [ ! -f $HASP_CREATE_PORT_FWD ]
+then
+   echo "Unable to locate $HASP_CREATE_PORT_FWD" >> $NCAT_LOGFILE 2>&1
+   echo "Aborting!" >> $NCAT_LOGFILE 2>&1
+   exit 1 
+fi
+
+. $HASP_CREATE_PORT_FWD $HASP_LOCAL_PORT $HASP_REMOTE_HOST $HASP_REMOTE_PORT $NCAT_LOGFILE 
+
+PF_PID=`echo $PID_PF | cut -d'=' -f2`
+
+if [ -z $PF_PID ];
+then
+	echo "One or more required parameters were not supplied correctly. Port Forwarding Creation Failed" >> $NCAT_LOGFILE 2>&1
+#	exit 1
+fi
+
+#env -i LD_LIBRARY_PATH=$GEMHOME/GCC:$GEMHOME/Qt:$GEMHOME/UserDLLs:$GEMHOME/intel:$GEMHOME/diana/lib:$LD_LIBRARY_PATH DIAPATH=$GEMHOME/diana DianaExeName=gm42 $GEMHOME/geomec_shell "$@" 
+env -i LD_LIBRARY_PATH=$GEMHOME/gcc:$GEMHOME/Qt:$GEMHOME/UserDLLs:$GEMHOME/intel:$GEMHOME/hasp:$GEMHOME/diana/lib:$GEMHOME/gcc/lib64:$GEMHOME/glib:$GEMHOME/png:$GEMHOME/zlib:$LD_LIBRARY_PATH DIAPATH=$GEMHOME/diana DianaExeName=gm42 $GEMHOME/geomec_shell "$@" 
+
+############################################################################
+#CLEAR ALL RESOURCES ACQUIRED BY PORT FORWARDING PROCESS
+############################################################################
+#Here we are assuming that the script releasePortForward is located in the current working directory. This script path needs to be modified depending on the new script location.
+if [ ! -f $HASP_RELEASE_PORT_FWD ]
+then
+   echo "Unable to locate $HASP_RELEASE_PORT_FWD" >> $NCAT_LOGFILE 2>&1
+   echo "Aborting!" >> $NCAT_LOGFILE 2>&1
+   exit 1 
+fi
+
+if [ ! -z $PF_PID ];
+then
+	#${HASP_RELEASE_PORT_FWD} $PF_PID $HASP_LOCAL_PORT $NCAT_LOGFILE
+	${HASP_RELEASE_PORT_FWD} $PF_PID $HASP_LOCAL_PORT $HASP_REMOTE_HOST $HASP_REMOTE_PORT $NCAT_LOGFILE
+fi

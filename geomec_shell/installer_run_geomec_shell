@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#this line must point to the location where geomec_shell is installed
+GEMHOME=$(cd $(dirname $0); pwd -P)
+
+env -i LD_LIBRARY_PATH=$GEMHOME/lib:$GEMHOME/diana/lib:$LD_LIBRARY_PATH DIAPATH=$GEMHOME/diana DianaExeName=gm42 $GEMHOME/geomec_shell "$@" 
+

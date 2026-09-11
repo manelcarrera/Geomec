@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Regular Newton</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="iteration methods">
+	<param name="Keyword" value="regular newton">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">Regular Newton-Raphson<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:339.75pt;
+ height:241.5pt'>
+ <v:imagedata src="newton3.gif"
+  o:title="Regular"/>
+</v:shape><![endif]-->
+<img src="newton3.gif" v:shapes="_x0000_i1025" width="453" height="322"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">regular Newton
+Raphson iteration<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">In the Regular
+Newton-Raphson iteration the stiffness relation is evaluated every iteration.
+This means that the prediction of is based on the last known or predicted
+situation, even if this is not an equilibrium state. The Regular Newton-Raphson
+method yields a quadratic convergence characteristic, which means that the
+method converges to the final solution within only a few iterations.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><o:p>A disadvantage of the
+method is that the stiffness matrix has to be set up at every iteration and, if
+a direct solver is used the linear set of equations, the time consuming
+decomposition of the matrix has to be performed every iteration as well.
+Moreover, the quadratic convergence is only guaranteed if a correct stiffness
+matrix is used and if the prediction is already in the neighborhood of the final
+solution. If the initial prediction is far from the final solution the method
+easily fails because of divergence.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

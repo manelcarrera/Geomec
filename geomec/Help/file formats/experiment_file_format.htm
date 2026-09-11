@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The experiment file format</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="calibration">
+	<param name="Keyword" value="experiment file format">
+	<param name="Keyword" value="file formats">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+</OBJECT>
+<h1><a name="_Toc49063307"><span style="mso-ansi-language:EN-GB">The experiment
+file format</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Experiment files are
+Excel format files (or txt file formats). The Material Library can read an Excel file containing
+multiple sheets. If more than one sheet is found in a file, the Select sheet
+dialog is shown where the sheets can be selected that should be loaded.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The following data 
+are required for each step, including the allowed units as Header:<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Time (days, hrs, min, s). If column is empty time=0 will be assumed. 
+Plasticity models do not apply time for calibration.</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Axial stress (Pa, kPa, MPa, psi, bar)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Radial stress (Pa, kPa, MPa, psi, bar)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Pore pressure (Pa, kPa, MPa, psi, bar)<o:p>.
+</o:p>
+</span><span style="mso-ansi-language:EN-GB">If column is empty, pore pressure=0 
+will be assumed.
+</span><span style="mso-ansi-language:EN-GB">
+<o:p>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Axial strain (-)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">·<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Radial strain (-)<o:p>
+</o:p>&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">Exa<span style="mso-ansi-language:EN-GB"><o:p>mple:</o:p></span></p>
+<table border="1" width="100%" id="table1">
+	<tr>
+		<td>Time</td>
+		<td>Axial Stress</td>
+		<td>Radial Stress</td>
+		<td>Pore Pressure</td>
+		<td>Axial Strain</td>
+		<td>Radial Strain</td>
+		<td>Any text</td>
+	</tr>
+	<tr>
+		<td>s</td>
+		<td>MPa</td>
+		<td>MPa</td>
+		<td>MPa</td>
+		<td>strain</td>
+		<td>strain</td>
+		<td>or formula</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>10</td>
+		<td>10</td>
+		<td>&nbsp;</td>
+		<td>0</td>
+		<td>0</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>15</td>
+		<td>10</td>
+		<td>&nbsp;</td>
+		<td>0.002</td>
+		<td>-0.0002</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>20</td>
+		<td>10</td>
+		<td>&nbsp;</td>
+		<td>0.005</td>
+		<td>-0.001</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>30</td>
+		<td>10</td>
+		<td>&nbsp;</td>
+		<td>0.01</td>
+		<td>-0.0049</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">
+<o:p>
+&nbsp;Column 7 (Column F) and higher are not read in and can be used for 
+calculations or can contain the original data from the test. If one puts axial 
+strain in column K in millistrain, one can feed column E with a formula, 
+(E7=K7/1000) to match the required format.</o:p></span></p>
+<p class="MsoNormal">It is wise to start the strain levels at 0 and reset all 
+original data to this nullification.</p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+# Many extra points needed in fault
+GOCAD TSurf
+HEADER {
+name:test1_back.ts
+}
+VRTX 0 1  0  0
+VRTX 1 1  0.5  0
+VRTX 2 1  1  0
+VRTX 3 1  0  0.5
+VRTX 4 1  0.5  0.5
+VRTX 5 1  1  0.5
+VRTX 6 1  0  1
+VRTX 7 1  0.5  1
+VRTX 8 1  1  1
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:test1_bottom.ts
+}
+VRTX 0 0  0  1
+VRTX 1 0.5  0  1
+VRTX 2 1  0  1
+VRTX 3 0  0.5  1
+VRTX 4 0.5  0.5  1
+VRTX 5 1  0.5  1
+VRTX 6 0  1  1
+VRTX 7 0.5  1  1
+VRTX 8 1  1  1
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:test1_front.ts
+}
+VRTX 0 0  0  0
+VRTX 1 0  0.5  0
+VRTX 2 0  1  0
+VRTX 3 0  0  0.5
+VRTX 4 0  0.5  0.5
+VRTX 5 0  1  0.5
+VRTX 6 0  0  1
+VRTX 7 0  0.5  1
+VRTX 8 0  1  1
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:test1_left.ts
+}
+VRTX 0 0  1  0
+VRTX 1 0.5  1  0
+VRTX 2 1  1  0
+VRTX 3 0  1  0.5
+VRTX 4 0.5  1  0.5
+VRTX 5 1  1  0.5
+VRTX 6 0  1  1
+VRTX 7 0.5  1  1
+VRTX 8 1  1  1
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:test1_right.ts
+}
+VRTX 0 0  0  0
+VRTX 1 0.5  0  0
+VRTX 2 1  0  0
+VRTX 3 0  0  0.5
+VRTX 4 0.5  0  0.5
+VRTX 5 1  0  0.5
+VRTX 6 0  0  1
+VRTX 7 0.5  0  1
+VRTX 8 1  0  1
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:test1_top.ts
+}
+VRTX 0 0  0  0
+VRTX 1 0.5  0  0
+VRTX 2 1  0  0
+VRTX 3 0  0.5  0
+VRTX 4 0.5  0.5  0
+VRTX 5 1  0.5  0
+VRTX 6 0  1  0
+VRTX 7 0.5  1  0
+VRTX 8 1  1  0
+TRGL 0 1 4
+TRGL 0 4 3
+TRGL 1 2 5
+TRGL 1 5 4
+TRGL 3 4 7
+TRGL 3 7 6
+TRGL 4 5 8
+TRGL 4 8 7
+END
+GOCAD TSurf
+HEADER {
+name:f_test1_fault93.ts
+}
+VRTX 1 0.4 0.5 0.5
+VRTX 2 0.5 0.4 0.5
+VRTX 3 0.5 0.6 0.5
+VRTX 4 0.6 0.4 0.5
+VRTX 5 0.6 0.6 0.5
+VRTX 6 0.7 0.4 0.5
+VRTX 7 0.7 0.6 0.5
+TRGL 1 2 3
+TRGL 4 2 3
+TRGL 4 5 3
+TRGL 4 5 7
+TRGL 4 6 7
+END
+GOCAD TSurf
+HEADER {
+name:b_test1_fault93.ts
+}
+VRTX 1 0.4 0.5 0.5
+VRTX 2 0.5 0.4 0.5
+VRTX 3 0.5 0.6 0.5
+VRTX 4 0.6 0.4 0.5
+VRTX 5 0.6 0.6 0.5
+VRTX 6 0.7 0.4 0.5
+VRTX 7 0.7 0.6 0.5
+TRGL 1 2 3
+TRGL 4 2 3
+TRGL 4 5 3
+TRGL 4 5 7
+TRGL 4 6 7
+END

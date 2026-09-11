@@ -1,0 +1,230 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Arrays"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A7001B"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CWordArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A70025"
+	    documentation 	"The CWordArray class supports arrays of 16-bit words. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A70042"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Parameterized_Class "CArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxtempl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A7004C"
+	    documentation 	
+|The CArray class supports arrays that are are similar to C arrays, but can dynamically shrink and grow as necessary. 
+|
+|Array indexes always start at position 0. You can decide whether to fix the upper bound or allow the array to expand when you add elements past the current bound. Memory is allocated contiguously to the upper bound, even if some elements are null.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A70075"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "TYPE"
+		    quid       	"3A07D0A70056"
+		    type       	"class")
+		(object Parameter "ARG_TYPE"
+		    quid       	"3A07D0A70057"
+		    type       	"class")))
+	(object Class "CByteArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A70089"
+	    documentation 	"The CByteArray class supports dynamic arrays of bytes. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A700A7"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDWordArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A700A8"
+	    documentation 	"The CDWordArray class supports arrays of 32-bit doublewords. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A700C5"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CObArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A700CF"
+	    documentation 	
+|The CObArray class supports arrays of CObject pointers. These object arrays are similar to C arrays, but they can dynamically shrink and grow as necessary. 
+|
+|Array indexes always start at position 0. You can decide whether to fix the upper bound or allow the array to expand when you add elements past the current bound. Memory is allocated contiguously to the upper bound, even if some elements are null.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A700E3"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPtrArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A700ED"
+	    documentation 	"The CPtrArray class supports arrays of void pointers."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A7010B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CStringArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A7010C"
+	    documentation 	
+|The CStringArray class supports arrays of CString objects. 
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A70129"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CUIntArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A70133"
+	    documentation 	"The CUIntArray class supports arrays of unsigned integers. An unsigned integer, or UINT, differs from words and doublewords in that the physical size of a UINT can change depending on the target operating environment. Under Windows version 3.1, a UINT is the same size as a WORD. Under Windows NT and Windows 95, a UINT is the same size as a doubleword. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A70151"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

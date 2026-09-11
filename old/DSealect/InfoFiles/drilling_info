@@ -1,0 +1,20 @@
+The set of input forms grouped under Drilling and Completion allows 
+you to define the details of the well construction operations, from 
+drilling to completion.
+ 
+Use the form Drilling Operation to specifiy the topology of the 
+borehole and to define the mud weight.
+ 
+Use the form Casing Operation to enter data related to casing 
+operation:
+- define casing placement
+- define casing material and dimensions
+ 
+Use the form Casing Stresses to specify the initial stresses in the 
+casing during Waiting On Cement phase:
+- assess axial stress distribution
+- assess cross-sectional stresses
+ 
+Use the form Cementing Operation to define the fluid weights and 
+placement during Waiting On Cement phase.
+  

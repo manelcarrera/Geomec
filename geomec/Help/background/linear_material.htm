@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Linear</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="linear material model">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+	<param name="Keyword" value="Poisson's ratio">
+	<param name="Keyword" value="Young's modulus">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">Linear-elastic<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span style="mso-bidi-font-size:10.0pt;
+mso-ansi-language:EN-GB"><font size="3">A linear isotropic relationship between
+effective stresses </font></span><font size="3"><i><span lang="NL" style="font-family:Symbol">s</span></i><span style="mso-bidi-font-size:10.0pt;mso-ansi-language:EN-GB">
+and strains </span><i><span lang="NL" style="font-family:Symbol">e</span></i><span style="mso-bidi-font-size:
+10.0pt;mso-ansi-language:EN-GB"> applies according to Hooke's law. In elastic models the deformation
+history is not taken into account. Two parameters should be defined in this
+model: The Young’s modulus </span><i><span style="mso-ansi-language:EN-GB">E</span></i><span style="mso-bidi-font-size:10.0pt;mso-ansi-language:EN-GB">
+for the material stiffness and the Poisson’s ratio </span><i><span lang="NL" style="font-family:
+Symbol">n</span></i></font><span style="mso-bidi-font-size:10.0pt;mso-ansi-language:
+EN-GB"><font size="3"> for the contraction ratio of the material.</font></span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">
+<span style="mso-bidi-font-size:10.0pt;mso-ansi-language:
+EN-GB"><font size="3"> The subscripts
+E, N and D represent East, North and depth respectively.</font></span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">If temperature changes during the analysis the 
+expansion (or contraction) due to the temperature change can be taken into 
+account. The user must supply the Volumetric Thermal Expansion Coefficient
+<font face="Symbol">a</font><sub>v</sub>, which is defined as the change in 
+volume per unit volume per temperature change: (<font face="Symbol">D</font>V/V)/<font face="symbol">D</font>T 
+with units [m<sup>3</sup>/m<sup>3</sup>/°C] or [°C<sup>-1</sup>] or [K<sup>-1</sup>],</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">The Volumetric Thermal Expansion is three 
+times the Linear (1D) Thermal Expansion Coefficient <font face="Symbol">a</font><sup>1</sup> 
+in [m/m/°C].</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">&nbsp;</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span style="mso-tab-count: 1; mso-bidi-font-size: 10.0pt; font-family: Arial; mso-ansi-language: EN-GB"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img border="0" src="linear40.jpg" width="512" height="148"></font></span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">&nbsp;</p>
+<h2 style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">General input parameters (elastic)</h2>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><u>SHtot/Svtot; Shtot/Svtot, SHtot-azimuth</u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;">Initial stress field (after gravity loading). SHtot/Svtot [-] 
+is the highest horizontal/vertical stress ratio. SHtot-azimuth [degrees] is the 
+clockwise angle (degrees) between the SHtot direction and the Northing. Shtot/Svtot 
+is the lower minimal stress ratio [-], perpendicular to the SHtot direction.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">&nbsp;</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><u><font face="symbol">r</font> (density [kg/m<sup>3</sup>])</u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Bulk density for gravitational calculations.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">&nbsp;</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><u><font face="symbol">a</font><sub>v</sub> 
+(Volumetric Thermal Expansion Coefficient [°C<sup>-1</sup> or K<sup>-1</sup>]</u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Relative volumetric expansion per degree 
+temperature change. The value is three times the linear expansion coefficient, 
+sometimes provided for solids.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">&nbsp;</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">See <a href="nonlinear_material.htm">Nonlinear
+material</a> for background theory of nonlinear materials<span lang="NL" style="mso-bidi-font-size:10.0pt;font-family:Arial"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1125832108">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+
+</body>
+
+</html>

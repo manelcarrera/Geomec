@@ -1,0 +1,99 @@
+// DianaX.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (DianaX.tlb) that will become a resource in
+// DianaX.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(3A01BC14-BA9F-11D2-B3B4-00104B2556D9), version(2.3),
+  helpfile("DianaX.hlp"),
+  helpstring("DianaX ActiveX Control module"),
+  control ]
+library DIANAXLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CDianaXCtrl
+
+	[ uuid(3A01BC15-BA9F-11D2-B3B4-00104B2556D9),
+	  helpstring("Dispatch interface for DianaX Control"), hidden ]
+	dispinterface _DDianaX
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CDianaXCtrl)
+			//}}AFX_ODL_PROP
+			// version 1.0
+			[id(1)] boolean ShowDialog;
+			[id(2)] BSTR SuccessMessageString;
+			[id(3)] long NumberOfMessages;
+			[id(4)] boolean DisplayStopMessage;
+			[id(5)] boolean ShowDefaultMessages;
+
+			// version 1.1
+			[id(10)] BSTR DialogCaption;
+			[id(11)] boolean AutoCloseDialog;
+
+			// version 2.1
+			[id(12)] boolean ProgressIsLifesign;
+
+			// version 2.2
+			[id(13)] long NumberOfAppSpcMessages;
+
+			//version 2.3
+			[id(14)] boolean AlwaysAutoCloseDialog;
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CDianaXCtrl)
+			//}}AFX_ODL_METHOD
+			// version 1.0
+			[id(6)] boolean SetEnvironmentVar(BSTR VarName, BSTR Value);
+			[id(7)] short ExecuteDiana(BSTR ExeName, BSTR WorkingDir, BSTR ComFile, BSTR DatFile, BSTR FilosFile, BSTR BaseName);
+			[id(8)] boolean GetCalculationResult();
+			[id(9)] boolean SetUserMagic(BSTR Leader, BSTR Trailer);
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CDianaXCtrl
+
+	[ uuid(3A01BC16-BA9F-11D2-B3B4-00104B2556D9),
+	  helpstring("Event interface for DianaX Control") ]
+	dispinterface _DDianaXEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CDianaXCtrl)
+			//}}AFX_ODL_EVENT
+			// version 1.0
+			[id(1)] void OnDiaMessage(BSTR Message);
+			[id(2)] void OnDiaWarning(BSTR Warning);
+			[id(3)] void OnDiaError(BSTR Error);
+			[id(4)] void OnCallback(boolean* StopExecution);
+			[id(5)] void OnStopButton(boolean* ReallyStop);
+			[id(6)] void OnCloseDialog();
+	};
+
+	//  Class information for CDianaXCtrl
+
+	[ uuid(3A01BC17-BA9F-11D2-B3B4-00104B2556D9),
+	  helpstring("DianaX Control"), control ]
+	coclass DianaX
+	{
+		[default] dispinterface _DDianaX;
+		[default, source] dispinterface _DDianaXEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

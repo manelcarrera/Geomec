@@ -1,0 +1,318 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Inverse volume based mapping</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="element to element mapping">
+	<param name="Keyword" value="inverse volume-weighted">
+	<param name="Keyword" value="mapping">
+	<param name="Keyword" value="Reuss">
+</OBJECT>
+<h1><a name="_Toc49063295"><span style="mso-bookmark:
+_Toc24265385">Inverse volume based mapping</span></a></h1>
+<p class="Body">The function to be used for the least squares method is called R<sup>2</sup>
+and is defined as follows:</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-32.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1031" type="#_x0000_t75" style='width:156pt;height:51pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image013.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers20.gif" v:shapes="_x0000_i1031" width="208" height="68"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1031"
+  DrawAspect="Content" ObjectID="_1122805471">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">u<sub>1</sub> through u<sub>m</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">are the desired nodal values of the target element<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">v<sub>i</sub><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">is the input
+      value i (from the source mesh)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">L<sub>1</sub> through L<sub>m</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">are the shape function values of the target element for
+      input value i<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">w<sub>i</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">is the weight factor for input value i, the volume
+      fraction of the source element within the target element<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+</table>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="Body">The derivatives of this function to all desired values (u<sub>1</sub>
+through u<sub>m</sub>) are set to zero.</p>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-81.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1032" type="#_x0000_t75" style='width:258.75pt;height:102pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image015.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers21.gif" v:shapes="_x0000_i1032" width="345" height="136"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1032"
+  DrawAspect="Content" ObjectID="_1122805472">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-81.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1033" type="#_x0000_t75" style='width:258.75pt;height:102pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image017.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers22.gif" v:shapes="_x0000_i1033" width="345" height="136"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1033"
+  DrawAspect="Content" ObjectID="_1122805473">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">etc. until</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-81.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1034" type="#_x0000_t75" style='width:258.75pt;height:102pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image019.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers23.gif" v:shapes="_x0000_i1034" width="345" height="136"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1034"
+  DrawAspect="Content" ObjectID="_1122805474">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">The solution to these equations have to be found numerically. We
+assume we have an initial guess<span style="mso-text-raise:-6.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1035" type="#_x0000_t75" style='width:12.75pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image021.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers24.gif" v:shapes="_x0000_i1035" width="17" height="24"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1035"
+  DrawAspect="Content" ObjectID="_1122805475">
+ </o:OLEObject>
+</xml><![endif]-->
+for the values. Using this vector we create the Jacobian matrix:</p>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-55.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1036" type="#_x0000_t75" style='width:186pt;height:116.25pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image023.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers25.gif" v:shapes="_x0000_i1036" width="248" height="155"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1036"
+  DrawAspect="Content" ObjectID="_1122805476">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Instead of
+calculating the second derivative of the function <i>R<sup>2</sup></i>, the
+values are estimated:<o:p>
+</o:p>
+</span></p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-16.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1037" type="#_x0000_t75" style='width:93.75pt;height:36.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image025.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers26.gif" v:shapes="_x0000_i1037" width="125" height="49"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1037"
+  DrawAspect="Content" ObjectID="_1122805477">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">where <i>F<sub>i</sub></i>
+is</span><span lang="NL"><span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1038" type="#_x0000_t75" style='width:32.25pt;height:36pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image027.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers27.gif" v:shapes="_x0000_i1038" width="43" height="48"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1038"
+  DrawAspect="Content" ObjectID="_1122805478">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span style="mso-ansi-language:EN-GB">.<o:p>
+</o:p>
+</span></p>
+<p class="Body">For the equations it holds that</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1039" type="#_x0000_t75" style='width:159.75pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image029.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers28.gif" v:shapes="_x0000_i1039" width="213" height="24"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1039"
+  DrawAspect="Content" ObjectID="_1122805479">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">The terms of order<span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1040" type="#_x0000_t75" style='width:20.25pt;height:15.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image031.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers29.gif" v:shapes="_x0000_i1040" width="27" height="21"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1040"
+  DrawAspect="Content" ObjectID="_1122805480">
+ </o:OLEObject>
+</xml><![endif]-->
+are neglected, and <span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1041" type="#_x0000_t75" style='width:47.25pt;height:17.25pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image033.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers30.gif" v:shapes="_x0000_i1041" width="63" height="23"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1041"
+  DrawAspect="Content" ObjectID="_1122805481">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span>is set to zero. This leads to:</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1042" type="#_x0000_t75" style='width:69.75pt;height:17.25pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image035.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers31.gif" v:shapes="_x0000_i1042" width="93" height="23"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1042"
+  DrawAspect="Content" ObjectID="_1122805482">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">which can be solved by inverting matrix <i>J</i>. The
+corrections<span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1043"
+ type="#_x0000_t75" style='width:15.75pt;height:14.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image037.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers32.gif" v:shapes="_x0000_i1043" width="21" height="19"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1043"
+  DrawAspect="Content" ObjectID="_1122805483">
+ </o:OLEObject>
+</xml><![endif]-->
+move each function closer to zero simultaneously.</p>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="Body">The vector<span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1044" type="#_x0000_t75" style='width:15.75pt;height:14.25pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image039.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers33.gif" v:shapes="_x0000_i1044" width="21" height="19"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1044"
+  DrawAspect="Content" ObjectID="_1122805485">
+ </o:OLEObject>
+</xml><![endif]-->
+can now be added to the initial guess<span style="mso-text-raise:
+-6.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1045" type="#_x0000_t75"
+ style='width:12.75pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image021.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers34.gif" v:shapes="_x0000_i1045" width="17" height="24"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1045"
+  DrawAspect="Content" ObjectID="_1122805486">
+ </o:OLEObject>
+</xml><![endif]-->
+, which leads to the vector<span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1046" type="#_x0000_t75" style='width:12pt;height:17.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image042.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers35.gif" v:shapes="_x0000_i1046" width="16" height="23"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1046"
+  DrawAspect="Content" ObjectID="_1122805487">
+ </o:OLEObject>
+</xml><![endif]-->
+. This new vector<span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1047" type="#_x0000_t75" style='width:12pt;height:17.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image042.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers36.gif" v:shapes="_x0000_i1047" width="16" height="23"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1047"
+  DrawAspect="Content" ObjectID="_1122805488">
+ </o:OLEObject>
+</xml><![endif]-->
+can be used in the next iteration. If the items in the vector<span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1048"
+ type="#_x0000_t75" style='width:15.75pt;height:14.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image045.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers37.gif" v:shapes="_x0000_i1048" width="21" height="19"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1048"
+  DrawAspect="Content" ObjectID="_1122805489">
+ </o:OLEObject>
+</xml><![endif]-->
+reach a prescribed limit, the iteration can be stopped, and the vector<span style="mso-text-raise:-6.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1049"
+ type="#_x0000_t75" style='width:14.25pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image047.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="invers38.gif" v:shapes="_x0000_i1049" width="19" height="24"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1049"
+  DrawAspect="Content" ObjectID="_1122805490">
+ </o:OLEObject>
+</xml><![endif]-->
+(after <i>k</i> iterations) contains the desired values.</p>
+
+</body>
+
+</html>

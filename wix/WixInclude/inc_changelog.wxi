@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="changelog" Name="changelog">
+    <Directory Id="changelog_gm55" Name="Geomec 5.5">
+      <Component Id="Component_Changelog55" Guid="$(var.ComponentID_Changelog55)" Win64="yes">
+        <File Id="index55.html" Name="index.html" Source="$(var.changelog)\Geomec 5.5\index.html" />
+        <File Id="casing_visualization.png" Name="casing_visualization.png" Source="$(var.changelog)\Geomec 5.5\casing_visualization.png" />
+        <File Id="inversion_tool.png" Name="inversion_tool.png" Source="$(var.changelog)\Geomec 5.5\inversion_tool.png" />
+        <File Id="mesh_refinement.png" Name="mesh_refinement.png" Source="$(var.changelog)\Geomec 5.5\mesh_refinement.png" />
+      </Component>
+    </Directory>
+
+    <Directory Id="changelog_gm56" Name="Geomec 5.6">
+      <Component Id="Component_Changelog56" Guid="$(var.ComponentID_Changelog56)" Win64="yes">
+        <File Id="index56.html" Name="index.html" Source="$(var.changelog)\Geomec 5.6\index.html" />
+        <File Id="windows_10_stability.png" Name="windows_10_stability.png" Source="$(var.changelog)\Geomec 5.6\windows_10_stability.png" />
+        <File Id="inversion_tool_v2.png" Name="inversion_tool_v2.png" Source="$(var.changelog)\Geomec 5.6\inversion_tool_v2.png" />
+        <File Id="help_visualization.png" Name="help_visualization.png" Source="$(var.changelog)\Geomec 5.6\help_visualization.png" />
+        <File Id="mesh_converter.png" Name="mesh_converter.png" Source="$(var.changelog)\Geomec 5.6\mesh_converter.png" />
+      </Component>
+    </Directory>
+    
+    <Directory Id="changelog_gm57" Name="Geomec 5.7">
+      <Component Id="Component_Changelog57" Guid="$(var.ComponentID_Changelog57)" Win64="yes">
+        <File Id="index57.html" Name="index.html" Source="$(var.changelog)\Geomec 5.7\index.html" />
+        <File Id="DSF.png" Name="DSF.png" Source="$(var.changelog)\Geomec 5.7\DSF.png" />
+        <File Id="tetra_mesh_refinement.png" Name="mesh_refinement.png" Source="$(var.changelog)\Geomec 5.7\mesh_refinement.png" />
+        <File Id="multiple_installations.png" Name="multiple_installations.png" Source="$(var.changelog)\Geomec 5.7\multiple_installations.png" />
+        <File Id="wells_parent_values.png" Name="wells_parent_values.png" Source="$(var.changelog)\Geomec 5.7\wells_parent_values.png" />
+      </Component>
+    </Directory>
+
+    <Directory Id="changelog_gm58" Name="Geomec 5.8">
+      <Component Id="Component_Changelog58" Guid="$(var.ComponentID_Changelog58)" Win64="yes">
+        <File Id="index58.html" Name="index.html" Source="$(var.changelog)\Geomec 5.8\index.html" />
+        <File Id="grouping.png" Name="grouping.png" Source="$(var.changelog)\Geomec 5.8\grouping.png" />
+        <File Id="split_processes.png" Name="split_processes.png" Source="$(var.changelog)\Geomec 5.8\split_processes.png" />
+        <File Id="tetra_well.png" Name="tetra_well.png" Source="$(var.changelog)\Geomec 5.8\tetra_well.png" />
+        <File Id="workflow.png" Name="workflow.png" Source="$(var.changelog)\Geomec 5.8\workflow.png" />
+      </Component>
+    </Directory>
+  </Directory>
+
+</Include>

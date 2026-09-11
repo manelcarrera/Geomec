@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Homogenization</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="constant stiffness">
+	<param name="Keyword" value="iteration methods">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">
+<o:p>
+Homogenization
+</o:p>
+</span></h1>
+<p class="MsoNormal">
+<span style="font-size: 12.0pt; font-family: Times New Roman">During 
+homogenization, an equivalent homogeneous coarse-scale rigidity tensor for 
+general anisotropic elasticity is determined from a spatially heterogeneous 
+fine-scale isotropic elastic stiffness distribution. For this reason 
+homogenization is termed a scaling up technique. The general procedure of homogenization is visualized in the table below. Distributed values of Young’s 
+modulus and Poisson’s ratio are needed for input and homogenization leads to a 
+symmetric rigidity tensor, which has a matrix with 21 independent stiffness 
+components. For this purpose a separate finite element model with a structured 
+mesh is required.</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt" id="table1">
+  <tr>
+    <td valign="top" style="width:245px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" bgcolor="#C0C0C0">
+      <span style="font-size: 12.0pt; font-family: Times New Roman">
+		Input&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="font-size: 12.0pt; font-family: Symbol">Þ</span></td>
+    <td valign="top" style="width:323px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" bgcolor="#C0C0C0">
+      <span style="font-size: 12.0pt; font-family: Times New Roman">
+		Homogenization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<span style="font-size: 12.0pt; font-family: Symbol">Þ</span></td>
+    <td valign="top" style="width:323px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" bgcolor="#C0C0C0">
+      <span style="font-size: 12.0pt; font-family: Times New Roman">Output</span></td>
+  </tr>
+  <tr>
+    <td valign="top" style="width:245px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal">Distributed E</p>
+		<span style="font-size: 12.0pt; font-family: Times New Roman">
+		Distributed </span><span style="font-size: 12.0pt; font-family: Symbol">
+		n</span><p>&nbsp;</td>
+    <td valign="top" style="width:323px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal">Finite Element Analysis</p>
+		<p class="MsoNormal" align="center">
+		<img border="0" src="homog1.GIF" width="160" height="166">&nbsp;</p>
+		<ul>
+			<li>
+			<p class="MsoNormal" style="text-indent: -14.2pt; margin-left: 21.05pt">
+			Cubic FE-model</li>
+			<li>
+			<p class="MsoNormal" style="text-indent: -14.2pt; margin-left: 21.05pt">
+			<span style="font-size: 12.0pt; font-family: Times New Roman">
+			Regular mesh</span></li>
+		</ul>
+		<p>&nbsp;</td>
+    <td valign="top" style="width:323px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <span style="font-size: 12.0pt; font-family: Times New Roman">21 stiffness 
+		parameters to feed general anisotropy</span></td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">A cubic-shaped volume-model is considered. For 
+homogenization this volume is assumed periodic. This means that the block-shaped 
+volume repeats itself at multiples of a distance equal to the edge length of 
+this volume. </p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">For this 3D model the six faces of the block-shaped volume 
+are denoted with S<sub>x1</sub>, S<sub>x2</sub>, S<sub>y1</sub>, S<sub>y2</sub>, 
+S<sub>z1</sub>, S<sub>z2</sub>. Face S<sub>x1</sub> denotes a face with its 
+normal in x-direction with x=x<sub>1</sub>. These mean that for example S<sub>x1</sub> 
+and S<sub>x2</sub> are two opposite faces. The dimensions of the block are:</p>
+<p class="MsoNormal"><span style="font-family:Symbol">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-family:Symbol">D</span>x = x<sub>2</sub> 
+– x<sub>1</sub> </p>
+<p class="MsoNormal"><span style="font-family:Symbol">D</span>y = y<sub>2</sub> 
+– y<sub>1</sub> </p>
+<p class="MsoNormal"><span style="font-family:Symbol">D</span>z = z<sub>2</sub> 
+– z<sub>1</sub> </p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Since we consider a cubic model, note that
+<span style="font-family:Symbol">D</span>x = <span style="font-family:Symbol">D</span>y 
+= <span style="font-family:Symbol">D</span>z. </p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">The homogenization approach comprises nine different load 
+sets. These load sets are denoted as (AB=) <i>xx, yx, zx, xy, yy, zy, xz, yz </i>
+and<i> zz</i>. In each load set displacement differences between opposite edges 
+are applied. These are so-called generalized periodic boundary conditions. The 
+reasoning is that a periodic material will also show periodic displacement 
+fields. All displacement components of pairs of opposite points are set equal. 
+So, for instance the <i>x-, y-</i> and <i>z-</i>displacements of each point of 
+face S<sub>x1</sub> are set equal to the displacements of the corresponding 
+points of face S<sub>x2</sub>. For each load set there is one exception: the 
+constant displacement differs.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Set XX:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>x</sub>(S<sub>x1</sub>) = d<sub>x</sub>(S<sub>x2</sub>) 
+- <span style="font-family:Symbol">D</span>x</p>
+<p class="MsoNormal">Set YX:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>x</sub>(S<sub>y1</sub>) = d<sub>x</sub>(S<sub>y2</sub>) 
+- <span style="font-family:Symbol">D</span>y</p>
+<p class="MsoNormal">Set ZX:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>x</sub>(S<sub>z1</sub>) = d<sub>x</sub>(S<sub>z2</sub>) 
+- <span style="font-family:Symbol">D</span>z</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Set XY:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>y</sub>(S<sub>x1</sub>) = d<sub>y</sub>(S<sub>x2</sub>) 
+- <span style="font-family:Symbol">D</span>x</p>
+<p class="MsoNormal">Set YY:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>y</sub>(S<sub>y1</sub>) = d<sub>y</sub>(S<sub>y2</sub>) 
+- <span style="font-family:Symbol">D</span>y</p>
+<p class="MsoNormal">Set ZY:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>y</sub>(S<sub>z1</sub>) = d<sub>y</sub>(S<sub>z2</sub>) 
+- <span style="font-family:Symbol">D</span>z</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Set XZ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>z</sub>(S<sub>x1</sub>) = d<sub>z</sub>(S<sub>x2</sub>) 
+- <span style="font-family:Symbol">D</span>x</p>
+<p class="MsoNormal">Set YZ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d<sub>z</sub>(S<sub>y1</sub>) = d<sub>z</sub>(S<sub>y2</sub>) 
+- <span style="font-family:Symbol">D</span>y</p>
+<p class="MsoNormal">Set ZZ: d<sub>z</sub>(S<sub>z1</sub>) = d<sub>z</sub>(S<sub>z2</sub>) 
+- <span style="font-family:Symbol">D</span>z</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">d<sub>x</sub>(S<sub>x1</sub>) is the displacement of face S<sub>x1</sub> 
+in direction x.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Note that we are not prescribing displacements, but just 
+displacement differences. This means that load set XX results on average in a 
+strain <span style="font-family:Symbol">e</span><sub>xx</sub> equal to 1.0.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">The goal of the homogenization approach is to find the 
+effective stiffness. The resulting stiffness is denoted as a 6x6-rigidity 
+matrix:</p>
+<p class="MsoNormal" align="center">&nbsp;<img border="0" src="homog2.GIF" width="343" height="138"></p>
+<p class="MsoNormal">&nbsp;The advantage of the generalized periodic boundary 
+conditions is that the 36 components of this matrix are obtained by using the 
+displacement-energy method:</p>
+<p class="MsoNormal">&nbsp;<img border="0" src="homog3.GIF" width="148" height="34">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<p class="MsoNormal">The displacement-Energy averaging (DE) is used because it 
+always provides a symmetric and positive definite rigidity tensor.&nbsp; </p>
+<p class="MsoNormal">&nbsp;</p>
+
+</body>
+
+</html>

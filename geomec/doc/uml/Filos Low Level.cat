@@ -1,0 +1,125 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Filos Low Level"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A5C280901E5"
+    documentation 	
+|This Package Fixes basic FILOS Functionality and it also delivers an C++ interface into a filos file.
+|
+|Heavily based on STL iterators
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "FilosDirectory"
+	    quid       	"3A5D70BD0285"
+	    documentation 	
+|This is ta directory in a filos file
+|it acts as an stl container
+|an as such allows for the use of iterators
+|
+|recursion is still a problem;
+	    
+	    operations 	(list Operations
+		(object Operation "FilosDirectory"
+		    quid       	"3A5DA418039E"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "begin"
+		    quid       	"3A5DA43201BA"
+		    result     	"FilosDirectoryIterator"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A5DA3DF018B")
+		(object Operation "end"
+		    quid       	"3A5DA4400014"
+		    result     	"FilosDirectoryIterator"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A5DA3DF018B")))
+	(object Class "FilosDirectoryIterator"
+	    quid       	"3A5DA3DF018B"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Main"
+	    quid       	"3A5D800C02F2"
+	    title      	"Main"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Filos::Filos Low Level::FilosDirectory" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1200, 592)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1036, 461)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	328
+			justify    	0
+			label      	"FilosDirectory")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A5D70BD0285"
+		    width      	346
+		    height     	286
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Filos::Filos Low Level::FilosDirectoryIterator" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(416, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(301, 420)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	230
+			justify    	0
+			label      	"FilosDirectoryIterator")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A5DA3DF018B"
+		    width      	248
+		    height     	176
+		    annotation 	8
+		    autoResize 	TRUE)))))

@@ -1,0 +1,352 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Calibration algorithm</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="calibration">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+</OBJECT>
+<h1><a name="_Toc48442886"><span style="mso-ansi-language:EN-GB">Calibration
+algorithm</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<h2><span lang="EN-US" style="font-size:10.0pt"><b>Experimental data</b><o:p>
+</o:p>
+</span></h2>
+<p><span lang="EN-US" style="font-size:10.0pt">&nbsp;The total set of
+experimental data consists of stresses and strains, gathered in two columns <!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:12.75pt;
+ height:12.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr1.gif" v:shapes="_x0000_i1025" width="17" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1125827771">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span>and <!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:11.25pt;height:12.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr2.gif" v:shapes="_x0000_i1026" width="15" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1026"
+  DrawAspect="Content" ObjectID="_1125827772">
+ </o:OLEObject>
+</xml><![endif]-->
+. Both columns comprise data belonging to different loading curves C:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:138pt;height:38.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image005.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr3.gif" v:shapes="_x0000_i1027" width="184" height="51"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1027"
+  DrawAspect="Content" ObjectID="_1125827773">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">The stress and
+strain data of a particular loading curve comprises data of different points t
+in (pseudo-)time. T(c) is the number of discrete time points for this curve:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:171.75pt;height:42pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image007.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr4.gif" v:shapes="_x0000_i1028" width="229" height="56"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1028"
+  DrawAspect="Content" ObjectID="_1125827774">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">The stress and
+strain data of a certain curve and a certain point in time comprise 2
+components:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:125.25pt;height:39.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image009.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr5.gif" v:shapes="_x0000_i1029" width="167" height="53"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1029"
+  DrawAspect="Content" ObjectID="_1125827775">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">We thus have
+defined a column </span><span lang="EN-US" style="font-size:10.0pt;font-family:
+Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1030" type="#_x0000_t75"
+ style='width:12.75pt;height:12.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr6.gif" v:shapes="_x0000_i1030" width="17" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1030"
+  DrawAspect="Content" ObjectID="_1125827776">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><span style="mso-spacerun: yes">&nbsp;</span>and
+</span><span lang="EN-US" style="font-size:
+10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1031" type="#_x0000_t75"
+ style='width:11.25pt;height:12.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr7.gif" v:shapes="_x0000_i1031" width="15" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1031"
+  DrawAspect="Content" ObjectID="_1125827777">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><span style="mso-spacerun: yes">&nbsp;</span>each
+of length:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[if gte vml 1]><v:shape
+ id="_x0000_i1032" type="#_x0000_t75" style='width:45.75pt;height:33.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image013.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr8.gif" v:shapes="_x0000_i1032" width="61" height="45"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1032"
+  DrawAspect="Content" ObjectID="_1125827778">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt"><b>Model</b><u><o:p>
+</o:p>
+</u></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;DIANA's
+constitutive models for linear elastic behavior, ideal plastic Mohr-Coulomb,
+Cam-clay and Modified Mohr-Coulomb with cap-hardening are used to calculate </span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1033" type="#_x0000_t75" style='width:33pt;height:15.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image015.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr9.gif" v:shapes="_x0000_i1033" width="44" height="21"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1033"
+  DrawAspect="Content" ObjectID="_1125827779">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><span style="mso-spacerun: yes">&nbsp;</span>for
+a given </span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1034"
+ type="#_x0000_t75" style='width:11.25pt;height:12.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr10.gif" v:shapes="_x0000_i1034" width="15" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1034"
+  DrawAspect="Content" ObjectID="_1125827780">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><span style="mso-spacerun: yes">&nbsp;</span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span style="mso-tab-count: 1; font-size: 10.0pt" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1035"
+ type="#_x0000_t75" style='width:102pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image018.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr11.gif" v:shapes="_x0000_i1035" width="136" height="24"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1035"
+  DrawAspect="Content" ObjectID="_1125827781">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span lang="EN-US" style="font-size:10.0pt">with
+</span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1036" type="#_x0000_t75" style='width:84pt;height:20.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image020.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr12.gif" v:shapes="_x0000_i1036" width="112" height="27"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1036"
+  DrawAspect="Content" ObjectID="_1125827782">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt">a set of unknown material
+parameters for the given model and </span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1037"
+ type="#_x0000_t75" style='width:9.75pt;height:12.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image022.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr13.gif" v:shapes="_x0000_i1037" width="13" height="17"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1037"
+  DrawAspect="Content" ObjectID="_1125827783">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt">the errors which should be
+minimized in a least square sense. As </span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1038"
+ type="#_x0000_t75" style='width:12pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image024.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr14.gif" v:shapes="_x0000_i1038" width="16" height="20"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1038"
+  DrawAspect="Content" ObjectID="_1125827784">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt">is known as the argument of
+interest we write equation above shortly as<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span style="mso-tab-count: 1; font-size: 10.0pt" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte vml 1]><v:shape id="_x0000_i1039"
+ type="#_x0000_t75" style='width:77.25pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image026.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr15.gif" v:shapes="_x0000_i1039" width="103" height="24"></span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%"><span lang="EN-US" style="font-size:10.0pt;font-family:Arial"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1039"
+  DrawAspect="Content" ObjectID="_1125827785">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span lang="EN-US" style="font-size:10.0pt"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt"><b>Generalized
+Least Squares Fit</b><u><o:p>
+</o:p>
+</u></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;Given the
+sum of weighted squares <!--[if gte vml 1]><v:shape id="_x0000_i1040" type="#_x0000_t75"
+ style='width:165pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image028.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr16.gif" v:shapes="_x0000_i1040" width="220" height="24"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1040"
+  DrawAspect="Content" ObjectID="_1125827786">
+ </o:OLEObject>
+</xml><![endif]-->
+with </span><i><span lang="EN-US" style="font-size:10.0pt;
+mso-bidi-font-size:12.0pt">W </span></i><span lang="EN-US" style="font-size:10.0pt">a
+positive definite diagonal weighting matrix, minimize </span><i><span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:12.0pt">S
+</span></i><span lang="EN-US" style="font-size:10.0pt">with respect to <!--[if gte vml 1]><v:shape
+ id="_x0000_i1041" type="#_x0000_t75" style='width:12pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image024.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr17.gif" v:shapes="_x0000_i1041" width="16" height="20"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1041"
+  DrawAspect="Content" ObjectID="_1125827787">
+ </o:OLEObject>
+</xml><![endif]-->
+. An iterative solution for this problem is as follows. Given an initial guess <!--[if gte vml 1]><v:shape id="_x0000_i1042" type="#_x0000_t75"
+ style='width:15pt;height:18pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image031.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr18.gif" v:shapes="_x0000_i1042" width="20" height="24"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1042"
+  DrawAspect="Content" ObjectID="_1125827788">
+ </o:OLEObject>
+</xml><![endif]-->
+for <!--[if gte vml 1]><v:shape id="_x0000_i1043" type="#_x0000_t75"
+ style='width:12pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image024.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr19.gif" v:shapes="_x0000_i1043" width="16" height="20"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1043"
+  DrawAspect="Content" ObjectID="_1125827789">
+ </o:OLEObject>
+</xml><![endif]-->
+:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><!--[if gte vml 1]><v:shape
+ id="_x0000_i1044" type="#_x0000_t75" style='width:231.75pt;height:201.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image034.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="calibr20.gif" v:shapes="_x0000_i1044" width="309" height="269"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">&nbsp;<o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-size:10.0pt">with <i>imax</i>
+is the maximum number of iterations and <i>eps</i> is the convergence norm.</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"></o:p>
+</span></p>
+
+</body>
+
+</html>

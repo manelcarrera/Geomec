@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>General anisotropy</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="anisotropy">
+	<param name="Keyword" value="fracture">
+</OBJECT>
+<h1><span lang="nl">General anisotropy</span></h1>
+<p class="Notes"><span style="font-size: 12.0pt; font-family: Times New Roman">
+This model is mainly used for scientific use. Anisotropy from lamination, 
+usually transverse anisotropy, can be best modeled with the specific “<a href="frac_and_transv_anisotropy.htm">fracture 
+anisotropy</a>”, that also allows <a href="frac_and_transv_anisotropy.htm">transverse isotropy</a>. </span></p>
+<p class="Notes"><span style="font-size: 12.0pt; font-style: normal">In 3D, the 
+most general expression of anisotropic linear elasticity writes:</span></p>
+<p class="MsoNormal"><font face="Symbol">s</font> = K<font face="Symbol">e</font></p>
+<p class="MsoNormal"><span style="font-size: 12.0pt; font-style: normal">where 
+the rigidity matrix K 
+is a full 6x6 symmetric matrix:</span></p>
+<p class="MsoNormal">
+<img border="0" src="anisotr2.gif" width="334" height="145"></p>
+<p class="notes" style="margin:0in;margin-bottom:.0001pt">General
+<span style="color: white; background: #0A246A">anisotropy</span> is hence 
+described by 21 independent material parameters, that also include the 
+orientation of the material’s principal axes of anisotropy towards the model 
+axes, N,E,D. However, in most cases it will be impossible or impractical to 
+derive 21 parameters from a lab test. Full orthogonal anisotropy has 9 material 
+parameters (3 Young’s moduli, 3 Poisson’s ratios, 3 Shear moduli) and 3 
+direction parameters (and hence 9 dependent parameters). Transverse isotropic 
+anisotropy, the most common encountered effect of lamination, only has 5 
+material parameters (two Young’s moduli, two Poisson’s ratio’s and one Shear 
+Modulus) and 2 direction parameters (<a name="OLE_LINK1">dip and azimuth </a>of 
+the plane of symmetry), hence having 14 dependent parameters. </p>
+<p class="notes" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="notes" style="margin:0in;margin-bottom:.0001pt">Geomec has a specific 
+<a href="frac_and_transv_anisotropy.htm">transverse anisotropic</a> model that allows the input of the two Young’s moduli, 
+two Poisson’s ratio’s and one Shear Modulus and the dip and azimuth. Geomec 
+computes the Rigidity matrix from this. This model also allows the 
+implementation of anisotropy from fracture compressibility.</p>
+<p class="notes" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="notes" style="margin:0in;margin-bottom:.0001pt">The most likely 
+anisotropy is the case of laminated materials, for instance thin sand-shale 
+layers, or preferential compaction, giving preferential orientation of clay 
+particles. </p>
+<p class="Notes">&nbsp;</p>
+<h2>Simple anisotropy</h2>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">The 
+most likely case is the situation where the vertical (z) stiffness is different 
+from the horizontal (t) stiffness. For laminated materials, the vertical 
+stiffness is usually less than the horizontal stiffness (where the thin stiff 
+layers will carry the horizontal load). For consolidated materials with high 
+vertical stress, the opposite might occur, that the vertical stiffness is higher 
+than the horizontal stiffness, since the initial vertical stress has been 
+higher.</span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">&nbsp;</span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">
+Stiffness parameters for simple anisotropy can be expressed in 2 Young’s moduli 
+and 2 Poisson’s ratio’s. For x=East, y=North, z=Depth and t=North or East (or 
+radial direction for triaxial cases), we can derive a stiffness matrix.&nbsp; We 
+assume a vertical Young’s modulus (E<sub>z</sub>), a vertical to horizontal 
+Poisson’s ratio </span><span lang="EN-US" style="font-family: Symbol">n</span><sub><span lang="EN-US">z</span></sub><span lang="EN-US">, 
+a horizontal (transverse) modulus (E<sub>t</sub>) and a horizontal to horizontal 
+Poisson’s ratio </span><span lang="EN-US" style="font-family: Symbol">n</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US">
+</span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-family: Symbol">e</span><span lang="EN-US"> 
+= C&nbsp;</span><span lang="EN-US" style="font-family: Symbol">s</span><span lang="EN-US">&nbsp; 
+= K<sup>-1 </sup></span><span lang="EN-US" style="font-family: Symbol">s</span></p>
+<img border="0" src="anisotr3.gif" width="434" height="148"><p class="notes" style="margin:0cm;margin-bottom:.0001pt">&nbsp;</p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">
+These are the stiffness relations that can be derived from one dimensional 
+loading in a triaxial apparatus: <br>
+E<sub>z</sub>&nbsp; = </span><span lang="EN-US" style="font-family: Symbol">Ds</span><sub><span lang="EN-US">z</span></sub><span lang="EN-US"> 
+/&nbsp; </span><span lang="EN-US" style="font-family: Symbol">e</span><sub><span lang="EN-US">z&nbsp;&nbsp;
+</span></sub><span lang="EN-US">(vertical loading at constant radial stress)
+</span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">E<sub>t</sub> 
+= (1-</span><span lang="EN-US" style="font-family: Symbol">n</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US">)
+</span><span lang="EN-US" style="font-family: Symbol">Ds</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US"> 
+/ </span><span lang="EN-US" style="font-family: Symbol">e</span><sub><span lang="EN-US">t&nbsp;&nbsp;
+</span></sub><span lang="EN-US">(radial loading at constant vertical stress) or&nbsp;
+</span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">E<sub>t</sub>= 
+2 (1-</span><span lang="EN-US" style="font-family: Symbol">n</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US">)
+</span><span lang="EN-US" style="font-family: Symbol">Ds</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US"> 
+/ </span><span lang="EN-US" style="font-family: Symbol">e</span><sub><span lang="EN-US">v</span></sub><span lang="EN-US">&nbsp;&nbsp; 
+(</span><span lang="EN-US" style="font-family: Symbol">e</span><sub><span lang="EN-US">v</span></sub><span lang="EN-US"> 
+being volume strain at radial loading) </span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">&nbsp;</span></p>
+<p class="notes" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US">The 
+Poisson’s ratio that governs the horizontal strain (at constant horizontal 
+stress) resulting from vertical stress changes is:&nbsp; <br>
+</span><span lang="EN-US" style="font-family: Symbol">n</span><sub><span lang="EN-US">z</span></sub><span lang="EN-US"> 
+= - </span><span lang="EN-US" style="font-family: Symbol">e</span><sub><span lang="EN-US">t</span></sub><span lang="EN-US"> 
+E<sub>z</sub>&nbsp;/ </span><span lang="EN-US" style="font-family: Symbol">Ds</span><sub><span lang="EN-US">z</span></sub><span lang="EN-US">&nbsp; 
+(vertical loading at constant radial stress)</span></p>
+<p class="MsoNormal"><font face="Times New Roman"><span lang="EN-US">The 
+Poisson’s ratio</span></font><span lang="EN-US" style="font-family:&quot;Arial Unicode MS&quot;">
+</span><span lang="EN-US" style="font-family: Symbol">n</span><sub><font face="Times New Roman"><span lang="EN-US">t</span></font><span lang="EN-US" style="font-family: Times New Roman">
+</span></sub><span lang="EN-US" style="font-family: Times New Roman">is usually<sub>
+</sub>estimated in absence of true triaxial (or polyaxial) data.&nbsp;&nbsp; </span></p>
+<p class="MsoNormal"><span lang="EN-US" style="font-family: Times New Roman">The 
+K (inverted C-matrix) for simple anisotropy has 6 different components only, 
+which can be derived from the 4 stiffness parameters. </span></p>
+<p class="MsoNormal">
+<img border="0" src="anisotr4.gif" width="362" height="145"></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">
+<img border="0" src="anisotr5.gif" width="230" height="189"></p>
+<p class="MsoNormal">
+<a name="OLE_LINK2">
+<span style="font-size: 12.0pt; font-family: Times New Roman">The Shear 
+component K<sub>ndnd</sub> (G’) does not follow directly from the Young’s moduli 
+and Poisson’s ratios. It can be derived from upscaling routines though where 
+upscaled layer thicknesses are part of the equation. Its value ranges from close 
+to zero (high Poisson’s ratios and high Young’s moduli contrast) to the Shear 
+Modulus from normal elastic parameters, for zero Poisson’s ratios. </span></a></p>
+<p class="MsoNormal">All other K-values are 0.</p>
+<p class="MsoNormal">&nbsp;</p>
+
+</body>
+
+</html>

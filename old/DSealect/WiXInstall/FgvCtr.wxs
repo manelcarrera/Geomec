@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="RegisterFgvCtrOCX" Guid="{58509F69-1D2A-47b8-9966-E06902F9C607}">
+                <Class Id="{D5DE8D20-5BB8-11D1-A1E3-00A0C90F2731}" Context="InprocServer32" Description="VBPropertyBag" ThreadingModel="apartment" ForeignServer="msvbvm60.dll" />
+                <File Id="filD7F5B01AFC61B0846530B9A74A83A002" KeyPath="yes" Source="$(var.WiXInstall)\FgvCtr.ocx">
+                    <TypeLib Id="{74CFA974-760E-4284-9F5E-9206AEC7A35B}" Control="yes" Description="FgvCtr" HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="2" MinorVersion="5">
+                        <Class Id="{0575B1A9-7631-4484-94D5-7EBA922B1CBA}" Context="InprocServer32" Description="FgvCtr.FgvRunCtr" ThreadingModel="apartment" Version="2.5" Control="yes">
+                            <ProgId Id="FgvCtr.FgvRunCtr" Description="FgvCtr.FgvRunCtr" />
+                        </Class>
+                        <Interface Id="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                    </TypeLib>
+                </File>
+                <Interface Id="{159FFB45-0DBA-4868-9DD2-4981472538E9}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <Interface Id="{2D744832-3D14-4098-99D0-6E94820D2080}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <Interface Id="{404DF0F8-C879-45FC-8C14-BA84623CC7F7}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <Interface Id="{45378EDF-B301-4489-9086-D7939350F852}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <Interface Id="{54953698-DBA4-44DC-806B-1AEE190595F4}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <Interface Id="{5ECE0AB6-B52E-499D-8034-B5E0CD22746F}" Name="FgvRunCtr" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <Interface Id="{820CF730-F180-4C21-832F-947C84FA7F29}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <Interface Id="{A6BB538F-F547-4CA6-B5F6-A66A40DCA6A3}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <Interface Id="{C391DFB1-E7FF-40D5-AB79-F5894FBA5E9E}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <Interface Id="{F9F98A5A-40F8-422D-80F9-51EEDB59E04B}" Name="FgvRunCtr" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\Implemented Categories\{0DE86A52-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\Implemented Categories\{0DE86A53-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\Implemented Categories\{0DE86A57-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\Implemented Categories\{40FC6ED4-2438-11CF-A3DB-080036F12502}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\MiscStatus\1" Value="132497" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\MiscStatus" Value="0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0575B1A9-7631-4484-94D5-7EBA922B1CBA}\ToolboxBitmap32" Value="[#filD7F5B01AFC61B0846530B9A74A83A002], 30000" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{159FFB45-0DBA-4868-9DD2-4981472538E9}\Forward" Value="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{2D744832-3D14-4098-99D0-6E94820D2080}\Forward" Value="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{404DF0F8-C879-45FC-8C14-BA84623CC7F7}\Forward" Value="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{45378EDF-B301-4489-9086-D7939350F852}\Forward" Value="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{54953698-DBA4-44DC-806B-1AEE190595F4}\Forward" Value="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{5ECE0AB6-B52E-499D-8034-B5E0CD22746F}\Forward" Value="{AB61564B-C15D-4835-9ED6-BDD5456DE0B5}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{820CF730-F180-4C21-832F-947C84FA7F29}\Forward" Value="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{A6BB538F-F547-4CA6-B5F6-A66A40DCA6A3}\Forward" Value="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{C391DFB1-E7FF-40D5-AB79-F5894FBA5E9E}\Forward" Value="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{F9F98A5A-40F8-422D-80F9-51EEDB59E04B}\Forward" Value="{22E23E3A-F3F9-425F-AEFE-28CC3462FF30}" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

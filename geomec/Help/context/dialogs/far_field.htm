@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Far Field</title>
+<style>
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Far Field</h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The Far Field dialog appears by right-clicking on a<b>  </b>
+Scaling box name in the
+<a href="../../tree/Model/model_tree.htm"> model
+tree</a> and selecting Create Zoom-in model.</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The dialog provides information about the 
+shearmodulus of the surrounding rock required in a zoom-in analysis. This shear 
+modulus is used to define the stiffness of the interface elements
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">There are two options 
+to define the shearmodulus:</span></p>
+<ul>
+	<li>
+	<p class="MsoNormal">Type in the value of the shearmodulus<span style="mso-ansi-language:EN-GB">
+	</span></p></li>
+	<li>
+	<p class="MsoNormal">Use the Calculate button</p></li>
+</ul>
+<blockquote>
+	<p class="MsoNormal">This button is only available when the distance from 
+	the boundary of the large scale model to the boundary of the scalingbox is 
+	at least the edge length of the scaling box.</p>
+	<p class="MsoNormal">Pressing the Calculate button, a homogenization 
+	analysis is started with edge length 3 times the length of the scaling box. 
+	This is visualized in the figure below.</p>
+	<p class="MsoNormal">
+	<img border="0" src="far-field.GIF" width="619" height="331"></p>
+	<p class="MsoNormal">The mesh division equals 10. The Young's modulus and 
+	poisson's ration are retrieved from the large scale model.</p>
+	<div class="Section1">
+		<p class="MsoNormal"><font face="Arial">
+		<span lang="NL" style="font-family: Times New Roman">The shearmodulus G 
+		is defined with values of the Rigidity matrix (=anisotropic material 
+		model):</span></font></p>
+		<p class="MsoNormal"><font face="Arial">
+		<span lang="NL" style="font-family: Times New Roman">&nbsp;G = (kxyxy + kyzyz 
+		+ kzxzx) / 3</span></font></div>
+	<p class="MsoNormal">&nbsp;</p>
+</blockquote>
+
+</body>
+
+</html>

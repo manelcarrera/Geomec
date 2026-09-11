@@ -1,0 +1,154 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>List of names Horizons</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="horizon">
+	<param name="Keyword" value="model">
+</OBJECT>
+<h1>Horizon</h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">All the
+created horizons are listed as sub-branches of the <a href="horizon_tree.htm"> Horizons branch</a> in the
+<a href="../model_tree.htm"> model tree</a>. New Horizon is
+the default name of a horizon with constant depth. <o:p>
+</o:p>
+</span><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Right-clicking on a
+created horizon displays the following context sensitive menu:<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="121" valign="top" style="width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="../../../context/attributes/horizon_attributes.htm">Attributes<o:p>
+      </a>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="448" valign="top" style="width:335.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">To view or change
+      the horizon attributes like color, depth or name<o:p></o:p>.</span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="121" valign="top" style="width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="../../../context/Delete_horizon.htm">Delete</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="448" valign="top" style="width:335.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Deletes the horizon<o:p></o:p>.
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="121" valign="top" style="width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="../../../context/Move_Horizon.htm">Move
+      down/up</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="448" valign="top" style="width:335.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">To change the
+      sequence of the horizons in the tree<o:p></o:p>.
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="121" valign="top" style="width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; mso-ansi-language: EN-GB; background-position: 0%">Copy</span><span lang="NL" style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; background-position: 0%"><o:p>
+      </span><span lang="NL" style="background:yellow;
+  mso-highlight:yellow">
+      </o:p>
+      </span></p>
+    </td>
+    <td width="448" valign="top" style="width:335.65pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; mso-ansi-language: EN-GB; background-position: 0%">To
+      copy the horizon (not supported yet).</span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">There are a few methods to introduce Horizons into Geomec. 
+Horizons are 2D surfaces which usually reflect interfaces between two material 
+types or a change in other properties such as pressure. Also the upper mesh 
+surface (usually the top surface, ie open air contact bottom of sea) and lower 
+mesh boundary surface need be defined.</p>
+<p class="MsoNormal">The lower surface is chosen such that the deformation of 
+the rocks beneath this surface can be regarded negligible, due to depletion. The 
+rocks should hence either have a very high stiffness K (for instance basalt or 
+dolomite) compared to the overburden stiffness or be at sufficient depth beneath 
+the reservoir or other depletion sensitive layers. Usually the lower boundary is 
+chosen at 2-3 km beneath the lowest producing layer or at a convenient natural 
+stratification.</p>
+<p class="MsoNormal">A few methods to input Horizons exist:</p>
+<ul>
+	<li>
+	<p class="MsoNormal">constant Depth</li>
+	<li>
+	<p class="MsoNormal">input via an imported X, Y, Depth file</li>
+	<li>
+	<p class="MsoNormal">input via a GoCad or other predefined surface file</li>
+</ul>
+<p class="MsoNormal">Procedure:</p>
+<ol>
+	<li>
+	<p class="MsoNormal">Import external depth files via the DATA STORAGE menu.</li>
+	<li>
+	<p class="MsoNormal">Create a horizon, preferably starting with the top 
+	horizon and work your way down. By right-clicking on the Horizon map, an 
+	option Box with &quot; Create Horizon&quot; appears. A new Horizon appears, called New 
+	Horizon #.&nbsp; </li>
+	<li>
+	<p class="MsoNormal">Click at the New Horizon and right-click to reach the 
+	Attributes button.</li>
+	<li>
+	<p class="MsoNormal">Rename the horizon (for instance as Top Surface, Top 
+	Salt, Top reservoir) with a logical name.</li>
+	<li>
+	<p class="MsoNormal">Attach a constant depth (in meters below top surface) 
+	or select one of the predefined layers in the lower box. If the desired 
+	layer is not in the box, the imported layer is not yet recognized as a 
+	layer. You should again reenter the DATA STORAGE module to fix this issue.</li>
+	<li>
+	<p class="MsoNormal">You may want to change the color of the layer for 
+	visualization of the stratification afterwards.</li>
+	<li>
+	<p class="MsoNormal">Proceed at 2 for the next deeper layer until you 
+	reached the lower mesh boundary</li>
+	<li>
+	<p class="MsoNormal">If the layers do accidentally not line up from top to 
+	bottom:&nbsp; use the Move up or Move down menu to fix this.</li>
+	<li>
+	<p class="MsoNormal">Delete horizons which were entered incorrectly (or 
+	contain wrong imported values after visual inspection) or horizons which 
+	need to be removed to simplify the FE-model in hindsight (for instance to 
+	remove a thin layer or to average out two near identical material layers.</li>
+</ol>
+<p class="MsoNormal">The Deletion of a horizon will result in the deletion of a
+<a href="../list_formations_tree.htm">formation</a>. As 
+a result the user will have to decide which formation should be deleted, 
+especially when Material properties or Pressures were already assigned to a 
+formation or layer (defined as the space in between two surfaces). User should 
+always check the formation properties of the former upper and lower formation of 
+the deleted layer, if these were assigned yet.&nbsp; <O:P>&nbsp;</O:P><O:P></O:P></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

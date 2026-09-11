@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Hotspot file format</title>
+</head>
+
+<body>
+
+<h1>The Hotspot file format</h1>
+
+<p>Results can be exported in the hotspot file format. See <a href="../context/dialogs/color_scale.htm">Color
+scales</a> to read about how you can create a hotspot definition. See <a href="../context/export_results.htm">Results
+export</a> on exporting results.</p>
+<p>Hotspot definitions can be created in two ways (see figure)</p>
+<p><img border="0" src="hotspot.gif" width="508" height="221"></p>
+<p>The first option contains two hot sides (MIN_HOT and MAX_HOT), and a cold
+area in the middle (COLD).</p>
+<p>The second option contains a cold side on the left (COLD), a transition area
+in the middle (percentage), and a hot side on the right (HOT).</p>
+<p>When a hotspot is exported to a file, first the two boundary values are
+written:</p>
+<p>In shown example:</p>
+<p><font face="Courier New">MIN_VALUE 0</font></p>
+<p><font face="Courier New">MAX_VALUE 100</font></p>
+<p>For each node the flag (COLD/HOT&nbsp;
+or MIN_HOT/COLD/MAX_HOT) or percentage { (Value - Min_Value) / (Max_Value - 
+Min_Value) * 100% }</p>
+
+</body>
+
+</html>

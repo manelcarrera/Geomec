@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_share_lib="10efc646-d858-4474-adaa-e195aa779e96" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="ce51bb98-f6fb-49fe-b206-ede3401a3b0f" ?>
+  <?define ComponentID_Diana_lib="7b96a336-1a0b-437d-9781-774b68adc817" ?>
+  <?define ComponentID_Diana_bin="8b6cdecd-0fc4-4ab4-8243-79d2d1d3eecb" ?>
+  <?define ComponentID_Diana_bin_Qt="daf88932-01ec-4991-a8dd-ef104610b194" ?>
+  <?define ComponentID_Diana_share_src_ap="d18c4c39-f9f9-4f37-af61-74d02918c671" ?>
+  <?define ComponentID_Diana_share_src_dc="7a381daa-9bef-407b-aa9a-350b9a0290ee" ?>
+  <?define ComponentID_Diana_share_src_in="5f1741c8-2dd0-4fc5-af42-5bc271d51078" ?>
+  <?define ComponentID_Diana_share_src_lb="69245923-80b0-4ec7-8065-106576b69f0f" ?>
+  <?define ComponentID_Diana_share_src_ls="2e3c605a-9cc7-47d8-ae69-b536b096d283" ?>
+  <?define ComponentID_Diana_share_src_nl="890158a9-129a-4d9d-bddc-737baed707de" ?>
+  <?define ComponentID_Diana_share_src_pf="2b072582-9e6b-4f30-877b-54a8e34242f0" ?>
+  <?define ComponentID_Diana_share_src_po="a06fa2f2-4705-4d9e-8b6b-c9415dbdb199" ?>
+  <?define ComponentID_Diana_share_src_so="1d0110eb-b60f-4762-ba9f-5765de20491f" ?>
+  
+  <?define ComponentID_System_Files="82ddb7e0-4341-4943-bde1-618b0ff49a72" ?>
+  <?define ComponentID_Math_Kernel_Library="d63b7abc-8b4a-4356-866d-1229b72565f5" ?>
+  
+  <?define ProductID="281239e2-6b6a-4d4b-b2ff-e89345de77bf" ?>
+  <!-- <?define ProductID="$(env.GM_GUID)" ?> -->
+
+  <?define UpgradeCodeID="f42c8fd2-2e33-4635-ae39-fd5059836f2b" ?>
+  
+  <?define ComponentID_Registry_keys="39a5a624-0f85-4555-93c5-0d52d6f3d353" ?>
+  
+  <?define ComponentID_Geomec_exe="3ab23334-d582-40ed-a1d1-7cc55123fa4e" ?>
+  
+  <?define ComponentID_EditX_ocx="957781ff-dabe-41d2-b6f4-aea27a71f949" ?>
+  
+  <?define ComponentID_GVT="2c65154b-3b16-41f5-939b-43f4d23109f5" ?>
+  
+  <?define ComponentID_Diana_bin_geomec="83b2307a-2182-496b-9300-2652acfe7f9a" ?>
+  
+  <?define ComponentID_SafeNet_bin_geomec="1ca97d64-28de-49f6-9cd9-d5ce34d29226" ?>
+  
+  <?define ComponentID_Diana_binseg_ap_geomec="989a6c44-a7fc-45c7-b324-3c3bffdd2ecd" ?>
+  
+  <?define ComponentID_SVS="3d2f44e9-cb53-4837-93c0-30bc93833b7a" ?>
+  
+  <?define ComponentID_OIVBin="11d795c5-6fe1-47cb-8976-361afdfbd0a2" ?>
+
+  <?define ComponentID_fixInstallation="a62792ad-5319-49cf-9962-7d4611d2b1cf" ?>
+  <?define ComponentID_fixInstallation_resources="96f9be19-e936-4180-9618-8aa5a616c96c" ?>
+  
+  <?define ComponentID_packages="dc6f9072-672a-40f8-91d5-20c21cde2c2f" ?>
+
+  <?define ComponentID_Changelog55="e26c67e0-589a-4160-964b-1d250819bcd7" ?>
+  <?define ComponentID_Changelog56="5ad0241c-15a9-4dd0-9200-443ff38dee7a" ?>
+  <?define ComponentID_Changelog57="a941a1e3-42db-444e-bf42-bb50d0c26437" ?>
+
+  <?define ComponentID_img="b614cd46-d880-43c2-9069-127cb5f113cd" ?>
+
+  <!-- dll -->
+
+  <?define cid_qt_platforms_01="662462F6-B2B4-48DE-B744-16661EE72920" ?>
+
+  <!--
+  <?define cid_qt_platforms_02="907203D5-2D01-4C05-B915-0306F114BA0F" ?>
+
+  <?define cid_dll_usr="b614cd46-d880-43c2-9069-127cb5f113c1" ?>
+  <?define cid_dll_qt="b614cd46-d880-43c2-9069-127cb5f113c2" ?>
+  <?define cid_dll_qwt="b614cd46-d880-43c2-9069-127cb5f113c3" ?>
+  <?define cid_dll_other="b614cd46-d880-43c2-9069-127cb5f113c4" ?>
+  <?define cid_dll_tbb="b614cd46-d880-43c2-9069-127cb5f113c5" ?>
+  <?define cid_dll_license="b614cd46-d880-43c2-9069-127cb5f113c6" ?>
+  <?define cid_dll_flex="b614cd46-d880-43c2-9069-127cb5f113c7" ?>
+  -->
+
+  <?define cid_dll_all_together="610b0fa5-8982-41c4-a3fe-477cdca341f0" ?>
+
+</Include>

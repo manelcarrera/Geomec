@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\FieldValueFileExports.h" />
+    <ClInclude Include="include\FvArrayTemp.h" />
+    <ClInclude Include="include\FvEclipseCell.h" />
+    <ClInclude Include="include\FvEclipseFile.h" />
+    <ClInclude Include="include\FvEclipseReservoir.h" />
+    <ClInclude Include="include\FvGocadFile.h" />
+    <ClInclude Include="include\FvGocadHeader.h" />
+    <ClInclude Include="include\FvGocadSurface.h" />
+    <ClInclude Include="include\FvGocadVolume.h" />
+    <ClInclude Include="include\FvGocadWellFile.h" />
+    <ClInclude Include="include\FvInputStream.h" />
+    <ClInclude Include="include\FvProperty.h" />
+    <ClInclude Include="include\FvSpreadFile.h" />
+    <ClInclude Include="include\FvTextFile.h" />
+    <ClInclude Include="include\FvToken.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Base\FvEclipseCell.cpp" />
+    <ClCompile Include="Base\FvEclipseFile.cpp" />
+    <ClCompile Include="Base\FvEclipseReservoir.cpp" />
+    <ClCompile Include="Base\FvGocadFile.cpp" />
+    <ClCompile Include="Base\FvGocadHeader.cpp" />
+    <ClCompile Include="Base\FvGocadSurface.cpp" />
+    <ClCompile Include="Base\FvGocadVolume.cpp" />
+    <ClCompile Include="Base\FvGocadWellFile.cpp" />
+    <ClCompile Include="Base\FvInputStream.cpp" />
+    <ClCompile Include="Base\FvProperty.cpp" />
+    <ClCompile Include="Base\FvTextFile.cpp" />
+    <ClCompile Include="Base\FvToken.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Main mesh attributes</title>
+</head>
+
+<body>
+
+<h1>Main mesh attributes</h1>
+<p>This dialog contains information about the main mesh region of the model. A
+model always contains a main mesh region, and optionally one or more sub mesh
+regions. The attributes for a sub mesh region can be viewed in the <a href="mesh_region_attributes.htm">mesh
+region attributes</a> dialog.</p>
+<p>The main mesh region always encloses the entire model. The model's size is
+determined in the <a href="boundary_attributes.htm">boundary attributes</a>
+dialog. The main mesh region determines the grid size that can be used by sub
+mesh regions for mesh refinement sizes. Any elements in the main mesh region
+(and not in sub mesh regions) will be generated with this grid size. Elements
+generated in the sub mesh regions can be refined using powers of 2.</p>
+<table border="0" width="100%">
+  <tr>
+    <td width="17%">Grid size northing</td>
+    <td width="83%">The size of the grid spacing in northing direction</td>
+  </tr>
+  <tr>
+    <td width="17%">Grid size easting</td>
+    <td width="83%">The size of the grid spacing in easting direction</td>
+  </tr>
+  <tr>
+    <td width="17%">Colour</td>
+    <td width="83%">The colour with which the main mesh region will be drawn</td>
+  </tr>
+</table>
+<p>The grid size values will be rounded to the nearest value such that the model
+will always be meshed with equally sized elements.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+dia_add_sources(
+  MF.cpp                 mfITensor.cpp          mfMechanicalTensor.cpp 
+  mfStrainTensor.cpp     mfStressTensor.cpp     mfTensor.cpp           
+)
+

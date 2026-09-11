@@ -1,0 +1,47 @@
+#!/bin/sh
+
+if [ $# -ne 1 ] ; then
+	echo "usage: install path" >&2
+	exit 1
+fi
+
+DESTINATION=$(pwd)
+
+if [ ${1:0:1} = '/' ]
+then
+	DESTINATION=$1
+else
+	DESTINATION="$DESTINATION"/$1
+fi
+
+DESTINATION=${DESTINATION%/}
+
+if [ ! -d "$DESTINATION" ]
+then
+	echo "directory '$DESTINATION' does not exist!"
+	exit 1
+fi
+
+if [ "'$DESTINATION'" != "'${DESTINATION% *}'" ]
+then
+	PREFIX=${DESTINATION%% *}
+	POSTFIX=${DESTINATION#* }
+	NEW_DESTINATION=$PREFIX"_"${POSTFIX//\//_}
+	NEW_DESTINATION=${NEW_DESTINATION// /_}
+
+	if [ -e "$NEW_DESTINATION" ]
+	then
+		echo "'$NEW_DESTINATION' does already exist!"
+		exit 1
+	else
+		ln -s "$DESTINATION" $NEW_DESTINATION || exit 1
+	fi
+else
+	NEW_DESTINATION="$DESTINATION"
+fi
+
+tar -xjf geomec_rgi.tar.bz2 -C "$NEW_DESTINATION"
+
+#chmod +wx "$NEW_DESTINATION"/test_geomec_rgi
+#chmod +wx "$NEW_DESTINATION"/run_geomec_rgi
+

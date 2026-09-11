@@ -1,0 +1,3125 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Controls"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C003A6"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CAnimateCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C003B1"
+	    documentation 	
+|The CAnimateCtrl class provides the functionality of the Windows common animation control. This control (and therefore the CAnimateCtrl class) is available only to programs running under Windows 95 and Windows NT version 3.51 and later.
+|
+|An animation control is a rectangular window that displays a clip in AVI (Audio Video Interleaved) format - the standard Windows video/audio format. An AVI clip is a series of bitmap frames, like a movie.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C10004"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CAnimateCtrl"
+		    quid       	"3A07D0C10005"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CButton"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C10018"
+	    documentation 	"The CButton class provides the functionality of Windows button controls. A button control is a small, rectangular child window that can be clicked on and off. Buttons can be used alone or in groups and can either be labeled or appear without text. A button typically changes appearance when the user clicks it. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C1004A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CButton"
+		    quid       	"3A07D0C1004B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C1005E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C1005F"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C10072"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C10073"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C1007C"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C1007D"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C10086"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CBitmapButton"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxext.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C1009A"
+	    documentation 	"Use the CBitmapButton class to create pushbutton controls labeled with bitmapped images instead of text. CBitmapButton objects contain up to four bitmaps, which contain images for the different states a button can assume: up (or normal), down (or selected), focused, and disabled. Only the first bitmap is required; the others are optional."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C100CC"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CButton"
+		    quidu      	"3A07D0C10018"))
+	    operations 	(list Operations
+		(object Operation "AssertValid"
+		    quid       	"3A07D0C100CD"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0C100E0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0C100E1"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C100EB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C100F4"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CComboBox"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C10108"
+	    documentation 	
+|The CComboBox class provides the functionality of a Windows combo box. 
+|
+|A combo box consists of a list box combined with either a static control or edit control. The list-box portion of the control may be displayed at all times or may only drop down when the user selects the drop-down arrow next to the control.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C1013A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CComboBox"
+		    quid       	"3A07D0C1013B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C1014E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C1014F"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "MeasureItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to determine the size of specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C10162"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMeasureItemStruct"
+			    quid       	"3A07D0C10163"
+			    type       	"LPMEASUREITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C10176"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C10177"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C10180"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C10181"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C1018A"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CompareItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to determine the sorting order of the specified items
+|// return -1 = item 1 sorts before item 2
+|// return 0 = item 1 and item 2 sort the same
+|// return 1 = item 1 sorts after item 2
+| 
+|return 0;
+|
+			    )))
+		    quid       	"3A07D0C10195"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpCompareItemStruct"
+			    quid       	"3A07D0C1019E"
+			    type       	"LPCOMPAREITEMSTRUCT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpDeleteItemStruct);
+|
+			    )))
+		    quid       	"3A07D0C101A9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDeleteItemStruct"
+			    quid       	"3A07D0C101B2"
+			    type       	"LPDELETEITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CEdit"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C101C6"
+	    documentation 	"The CEdit class provides the functionality of a Windows edit control. An edit control is a rectangular child window in which the user can enter text."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C101F8"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CEdit"
+		    quid       	"3A07D0C10202"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHeaderCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C1020C"
+	    documentation 	"A 'header control' is a window usually positioned above columns of text or numbers. It contains a title for each column, and it can be divided into parts. The user can drag the dividers that separate the parts to set the width of each column. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C10249"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CHeaderCtrl"
+		    quid       	"3A07D0C1024A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C10254"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C1025D"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C10267"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C10268"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C10271"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C1027B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C10285"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHotKeyCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C1028F"
+	    documentation 	"A 'hot key control' is a window that enables the user to create a hot key. A 'hot key' is a key combination that the user can press to perform an action quickly. (For example, a user can create a hot key that activates a given window and brings it to the top of the Z order.) The hot key control displays the user's choices and ensures that the user selects a valid key combination."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C102CB"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CHotKeyCtrl"
+		    quid       	"3A07D0C102CC"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CListBox"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C102D6"
+	    documentation 	
+|The CListBox class provides the functionality of a Windows list box. A list box displays a list of items, such as filenames, that the user can view and select. 
+|
+|In a single-selection list box, the user can select only one item. In a multiple-selection list box, a range of items can be selected. When the user selects an item, it is highlighted and the list box sends a notification message to the parent window.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C10311"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CListBox"
+		    quid       	"3A07D0C10312"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C1031C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C10325"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "MeasureItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to determine the size of specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C10330"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMeasureItemStruct"
+			    quid       	"3A07D0C10339"
+			    type       	"LPMEASUREITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C10344"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C1034D"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C1034E"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C10357"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C10361"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CompareItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to determine the sorting order of the specified items
+|// return -1 = item 1 sorts before item 2
+|// return 0 = item 1 and item 2 sort the same
+|// return 1 = item 1 sorts after item 2
+| 
+|return 0;
+|
+			    )))
+		    quid       	"3A07D0C1036B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpCompareItemStruct"
+			    quid       	"3A07D0C10375"
+			    type       	"LPCOMPAREITEMSTRUCT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpDeleteItemStruct);
+|
+			    )))
+		    quid       	"3A07D0C1037F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDeleteItemStruct"
+			    quid       	"3A07D0C10380"
+			    type       	"LPDELETEITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "VKeyToItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to handle a particular virtual key
+|// return -1 = default action
+|// return -2 = no further action
+|// return index = perform default action for keystroke on
+|//                item specified by index
+| 
+|return -1;
+|
+			    )))
+		    quid       	"3A07D0C10393"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nKey"
+			    quid       	"3A07D0C10394"
+			    type       	"UINT")
+			(object Parameter "nIndex"
+			    quid       	"3A07D0C1039D"
+			    type       	"UINT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CharToItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to handle a particular character
+|// return -1 or -2 = no further action
+|// return index = perform default action for keystroke on
+|//                item specified by index
+| 
+|return -1;
+|
+			    )))
+		    quid       	"3A07D0C103A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nKey"
+			    quid       	"3A07D0C103B1"
+			    type       	"UINT")
+			(object Parameter "nIndex"
+			    quid       	"3A07D0C103BB"
+			    type       	"UINT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CCheckListBox"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C103C6"
+	    documentation 	"The CCheckListBox class provides the functionality of a Windows checklist box. A 'checklist box' displays a list of items, such as filenames. Each item in the list has a check box next to it that the user can check or clear."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C20019"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CListBox"
+		    quidu      	"3A07D0C102D6"))
+	    operations 	(list Operations
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C2001A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C20023"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "MeasureItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to determine the size of specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C2002E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMeasureItemStruct"
+			    quid       	"3A07D0C20037"
+			    type       	"LPMEASUREITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreSubclassWindow"
+		    quid       	"3A07D0C20042"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C2004C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C20055"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C2005F"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C20060"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C20069"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetCheckPosition"
+		    quid       	"3A07D0C20073"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rectItem"
+			    quid       	"3A07D0C2007D"
+			    type       	"CRect"
+			    quidu      	"3A07D0C702AB")
+			(object Parameter "rectCheckBox"
+			    quid       	"3A07D0C2007E"
+			    type       	"CRect"
+			    quidu      	"3A07D0C702AB"))
+		    result     	"CRect"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702AB"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDragListBox"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C2009B"
+	    documentation 	
+|In addition to providing the functionality of a Windows list box, the CDragListBox class allows the user to move list box items within the list box. List boxes with this capability allow users to order the items in a list in whatever manner is most useful to them. By default, the list box will move the item to the new location in the list. However, CDragListBox objects can be customized to copy items instead of moving them.
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C200CD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CListBox"
+		    quidu      	"3A07D0C102D6"))
+	    operations 	(list Operations
+		(object Operation "DrawInsert"
+		    quid       	"3A07D0C200D7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nItem"
+			    quid       	"3A07D0C200E1"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BeginDrag"
+		    quid       	"3A07D0C200EC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pt"
+			    quid       	"3A07D0C200ED"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CancelDrag"
+		    quid       	"3A07D0C200F7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pt"
+			    quid       	"3A07D0C20100"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dragging"
+		    quid       	"3A07D0C2010B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pt"
+			    quid       	"3A07D0C20114"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dropped"
+		    quid       	"3A07D0C2011F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nSrcIndex"
+			    quid       	"3A07D0C20128"
+			    type       	"int")
+			(object Parameter "pt"
+			    quid       	"3A07D0C20129"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreSubclassWindow"
+		    quid       	"3A07D0C2013C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDragListBox"
+		    quid       	"3A07D0C20146"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C20150"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C2015A"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C2015B"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C20164"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C20165"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CListCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C20178"
+	    documentation 	"The CListCtrl class encapsulates the functionality of a 'list view control,' which displays a collection of items each consisting of an icon and a label. List views provide several ways of arranging items and displaying individual items. For example, additional information about each item can be displayed in colums to the right of the icon and label."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C201AA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CListCtrl"
+		    quid       	"3A07D0C201B4"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C201BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C201C8"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C201C9"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C201D2"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C201D3"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C201E6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C201E7"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleControl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C201FA"
+	    documentation 	"The COleControl class is a powerful base class for developing OLE controls. Derived from CWnd, this class inherits all the functionality of a Windows window object plus additional functionality specific to OLE, such as event firing and the ability to support methods and properties."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C2022C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "GetClassID"
+		    quid       	"3A07D0C20236"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pclsid"
+			    quid       	"3A07D0C20237"
+			    type       	"LPCLSID"))
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetUserTypeNameID"
+		    quid       	"3A07D0C2024A"
+		    stereotype 	"abstract"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMiscStatus"
+		    quid       	"3A07D0C20254"
+		    stereotype 	"abstract"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPropPageIDs"
+		    quid       	"3A07D0C2025F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cPropPages"
+			    quid       	"3A07D0C20268"
+			    type       	"ULONG&"))
+		    result     	"LPCLSID"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetClientRect"
+		    quid       	"3A07D0C20272"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C2027C"
+			    type       	"LPRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoPropExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2();
+|
+			    )))
+		    quid       	"3A07D0C20286"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pPX"
+			    quid       	"3A07D0C20287"
+			    type       	"CPropExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnResetState"
+		    quid       	"3A07D0C2029A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pDC, rcBounds, rcInvalid);
+|
+			    )))
+		    quid       	"3A07D0C202A4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0C202AE"
+			    type       	"CDC*")
+			(object Parameter "rcBounds"
+			    quid       	"3A07D0C202AF"
+			    type       	"const CRect&")
+			(object Parameter "rcInvalid"
+			    quid       	"3A07D0C202B8"
+			    type       	"const CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDrawMetafile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pDC, rcBounds);
+|
+			    )))
+		    quid       	"3A07D0C202C2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0C202CC"
+			    type       	"CDC*")
+			(object Parameter "rcBounds"
+			    quid       	"3A07D0C202CD"
+			    type       	"const CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMessageString"
+		    quid       	"3A07D0C202E0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0C202E1"
+			    type       	"UINT")
+			(object Parameter "rMessage"
+			    quid       	"3A07D0C202EA"
+			    type       	"CString&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DisplayError"
+		    quid       	"3A07D0C202F4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "scode"
+			    quid       	"3A07D0C202FE"
+			    type       	"SCODE")
+			(object Parameter "lpszDescription"
+			    quid       	"3A07D0C202FF"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszSource"
+			    quid       	"3A07D0C20308"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszHelpFile"
+			    quid       	"3A07D0C20309"
+			    type       	"LPCTSTR")
+			(object Parameter "nHelpID"
+			    quid       	"3A07D0C20312"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetClientSite"
+		    quid       	"3A07D0C2031D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetExtent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpSizeL);
+|
+			    )))
+		    quid       	"3A07D0C20327"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpSizeL"
+			    quid       	"3A07D0C20330"
+			    type       	"LPSIZEL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnClose"
+		    quid       	"3A07D0C2033B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwSaveOption"
+			    quid       	"3A07D0C20344"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetObjectRects"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpRectPos, lpRectClip);
+|
+			    )))
+		    quid       	"3A07D0C2034E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpRectPos"
+			    quid       	"3A07D0C20358"
+			    type       	"LPCRECT")
+			(object Parameter "lpRectClip"
+			    quid       	"3A07D0C20359"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEventAdvise"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bAdvise);
+|
+			    )))
+		    quid       	"3A07D0C2036C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAdvise"
+			    quid       	"3A07D0C2036D"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnClick"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(iButton);
+|
+			    )))
+		    quid       	"3A07D0C20377"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iButton"
+			    quid       	"3A07D0C20380"
+			    type       	"USHORT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnKeyDownEvent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nChar, nShiftState);
+|
+			    )))
+		    quid       	"3A07D0C2038B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nChar"
+			    quid       	"3A07D0C20394"
+			    type       	"USHORT")
+			(object Parameter "nShiftState"
+			    quid       	"3A07D0C2039F"
+			    type       	"USHORT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnKeyUpEvent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nChar, nShiftState);
+|
+			    )))
+		    quid       	"3A07D0C203A9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nChar"
+			    quid       	"3A07D0C203AA"
+			    type       	"USHORT")
+			(object Parameter "nShiftState"
+			    quid       	"3A07D0C203B3"
+			    type       	"USHORT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnKeyPressEvent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nChar);
+|
+			    )))
+		    quid       	"3A07D0C203BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nChar"
+			    quid       	"3A07D0C203C7"
+			    type       	"USHORT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAppearanceChanged"
+		    quid       	"3A07D0C203D2"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnBackColorChanged"
+		    quid       	"3A07D0C203DC"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnBorderStyleChanged"
+		    quid       	"3A07D0C30007"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEnabledChanged"
+		    quid       	"3A07D0C30011"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnTextChanged"
+		    quid       	"3A07D0C3001C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFontChanged"
+		    quid       	"3A07D0C30026"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnForeColorChanged"
+		    quid       	"3A07D0C30039"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetControlInfo"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pControlInfo);
+|
+			    )))
+		    quid       	"3A07D0C30043"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pControlInfo"
+			    quid       	"3A07D0C3004D"
+			    type       	"LPCONTROLINFO"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnMnemonic"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0C30057"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0C30061"
+			    type       	"LPMSG"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAmbientPropertyChange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dispid);
+|
+			    )))
+		    quid       	"3A07D0C3006B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0C3006C"
+			    type       	"DISPID"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFreezeEvents"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bFreeze);
+|
+			    )))
+		    quid       	"3A07D0C3007F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bFreeze"
+			    quid       	"3A07D0C30080"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetInPlaceMenu"
+		    quid       	"3A07D0C30093"
+		    stereotype 	"virtual"
+		    result     	"HMENU"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowToolBars"
+		    quid       	"3A07D0C3009D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnHideToolBars"
+		    quid       	"3A07D0C300A8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetColorSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(ptd, hicTargetDev, ppColorSet);
+|
+			    )))
+		    quid       	"3A07D0C300BB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ptd"
+			    quid       	"3A07D0C300BC"
+			    type       	"DVTARGETDEVICE*")
+			(object Parameter "hicTargetDev"
+			    quid       	"3A07D0C300C5"
+			    type       	"HDC")
+			(object Parameter "ppColorSet"
+			    quid       	"3A07D0C300C6"
+			    type       	"LPLOGPALETTE*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetViewExtent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dwDrawAspect, lindex, ptd, lpsizel);
+|
+			    )))
+		    quid       	"3A07D0C300D9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwDrawAspect"
+			    quid       	"3A07D0C300DA"
+			    type       	"DWORD")
+			(object Parameter "lindex"
+			    quid       	"3A07D0C300E3"
+			    type       	"LONG")
+			(object Parameter "ptd"
+			    quid       	"3A07D0C300E4"
+			    type       	"DVTARGETDEVICE*")
+			(object Parameter "lpsizel"
+			    quid       	"3A07D0C300ED"
+			    type       	"LPSIZEL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetViewRect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dwAspect, pRect);
+|
+			    )))
+		    quid       	"3A07D0C300F8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwAspect"
+			    quid       	"3A07D0C30101"
+			    type       	"DWORD")
+			(object Parameter "pRect"
+			    quid       	"3A07D0C3010B"
+			    type       	"LPRECTL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetViewStatus"
+		    quid       	"3A07D0C30115"
+		    stereotype 	"virtual"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnQueryHitPoint"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dwAspect, pRectBounds, ptlLoc, lCloseHint, pHitResult);
+|
+			    )))
+		    quid       	"3A07D0C3011F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwAspect"
+			    quid       	"3A07D0C30129"
+			    type       	"DWORD")
+			(object Parameter "pRectBounds"
+			    quid       	"3A07D0C3012A"
+			    type       	"LPCRECT")
+			(object Parameter "ptlLoc"
+			    quid       	"3A07D0C30133"
+			    type       	"POINT")
+			(object Parameter "lCloseHint"
+			    quid       	"3A07D0C30134"
+			    type       	"LONG")
+			(object Parameter "pHitResult"
+			    quid       	"3A07D0C3013D"
+			    type       	"DWORD*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnQueryHitRect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dwAspect, pRectBounds, prcLoc, lCloseHint, pHitResult);
+|
+			    )))
+		    quid       	"3A07D0C30148"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwAspect"
+			    quid       	"3A07D0C30151"
+			    type       	"DWORD")
+			(object Parameter "pRectBounds"
+			    quid       	"3A07D0C3015B"
+			    type       	"LPCRECT")
+			(object Parameter "prcLoc"
+			    quid       	"3A07D0C3015C"
+			    type       	"LPCRECT")
+			(object Parameter "lCloseHint"
+			    quid       	"3A07D0C30165"
+			    type       	"LONG")
+			(object Parameter "pHitResult"
+			    quid       	"3A07D0C30166"
+			    type       	"DWORD*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetNaturalExtent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dwAspect, lindex, ptd, hicTargetDev, pExtentInfo, psizel);
+|
+			    )))
+		    quid       	"3A07D0C30170"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwAspect"
+			    quid       	"3A07D0C30179"
+			    type       	"DWORD")
+			(object Parameter "lindex"
+			    quid       	"3A07D0C30183"
+			    type       	"LONG")
+			(object Parameter "ptd"
+			    quid       	"3A07D0C30184"
+			    type       	"DVTARGETDEVICE*")
+			(object Parameter "hicTargetDev"
+			    quid       	"3A07D0C3018D"
+			    type       	"HDC")
+			(object Parameter "pExtentInfo"
+			    quid       	"3A07D0C30197"
+			    type       	"DVEXTENTINFO*")
+			(object Parameter "psizel"
+			    quid       	"3A07D0C30198"
+			    type       	"LPSIZEL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderGlobalData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, phGlobal);
+|
+			    )))
+		    quid       	"3A07D0C301A2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0C301AB"
+			    type       	"LPFORMATETC")
+			(object Parameter "phGlobal"
+			    quid       	"3A07D0C301B5"
+			    type       	"HGLOBAL*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderFileData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, pFile);
+|
+			    )))
+		    quid       	"3A07D0C301BF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0C301C9"
+			    type       	"LPFORMATETC")
+			(object Parameter "pFile"
+			    quid       	"3A07D0C301CA"
+			    type       	"CFile*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium);
+|
+			    )))
+		    quid       	"3A07D0C301D4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0C301DD"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0C301E7"
+			    type       	"LPSTGMEDIUM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium, bRelease);
+|
+			    )))
+		    quid       	"3A07D0C301F1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0C301FB"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0C301FC"
+			    type       	"LPSTGMEDIUM")
+			(object Parameter "bRelease"
+			    quid       	"3A07D0C30205"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEnumVerbs"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(ppenumOleVerb);
+|
+			    )))
+		    quid       	"3A07D0C3020F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ppenumOleVerb"
+			    quid       	"3A07D0C30219"
+			    type       	"LPENUMOLEVERB*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDoVerb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(iVerb, lpMsg, hWndParent, lpRect);
+|
+			    )))
+		    quid       	"3A07D0C30223"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iVerb"
+			    quid       	"3A07D0C30224"
+			    type       	"LONG")
+			(object Parameter "lpMsg"
+			    quid       	"3A07D0C3022D"
+			    type       	"LPMSG")
+			(object Parameter "hWndParent"
+			    quid       	"3A07D0C30237"
+			    type       	"HWND")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C30238"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEdit"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpMsg, hWndParent, lpRect);
+|
+			    )))
+		    quid       	"3A07D0C30242"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMsg"
+			    quid       	"3A07D0C3024B"
+			    type       	"LPMSG")
+			(object Parameter "hWndParent"
+			    quid       	"3A07D0C30255"
+			    type       	"HWND")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C30256"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnProperties"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpMsg, hWndParent, lpRect);
+|
+			    )))
+		    quid       	"3A07D0C30269"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMsg"
+			    quid       	"3A07D0C3026A"
+			    type       	"LPMSG")
+			(object Parameter "hWndParent"
+			    quid       	"3A07D0C30274"
+			    type       	"HWND")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C30275"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetDisplayString"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dispid, strValue);
+|
+			    )))
+		    quid       	"3A07D0C30288"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0C30289"
+			    type       	"DISPID")
+			(object Parameter "strValue"
+			    quid       	"3A07D0C30292"
+			    type       	"CString&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnMapPropertyToPage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dispid, lpclsid, pbPageOptional);
+|
+			    )))
+		    quid       	"3A07D0C3029C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0C302A6"
+			    type       	"DISPID")
+			(object Parameter "lpclsid"
+			    quid       	"3A07D0C302A7"
+			    type       	"LPCLSID")
+			(object Parameter "pbPageOptional"
+			    quid       	"3A07D0C302B0"
+			    type       	"BOOL*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetPredefinedStrings"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dispid, pStringArray, pCookieArray);
+|
+			    )))
+		    quid       	"3A07D0C302BB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0C302C4"
+			    type       	"DISPID")
+			(object Parameter "pStringArray"
+			    quid       	"3A07D0C302C5"
+			    type       	"CStringArray*")
+			(object Parameter "pCookieArray"
+			    quid       	"3A07D0C302CE"
+			    type       	"CDWordArray*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetPredefinedValue"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dispid, dwCookie, lpvarOut);
+|
+			    )))
+		    quid       	"3A07D0C302E2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0C302E3"
+			    type       	"DISPID")
+			(object Parameter "dwCookie"
+			    quid       	"3A07D0C302EC"
+			    type       	"DWORD")
+			(object Parameter "lpvarOut"
+			    quid       	"3A07D0C302ED"
+			    type       	"VARIANT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsSubclassedControl"
+		    quid       	"3A07D0C30300"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReparentControlWindow"
+		    quid       	"3A07D0C3030A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hWndOuter"
+			    quid       	"3A07D0C30314"
+			    type       	"HWND")
+			(object Parameter "hWndParent"
+			    quid       	"3A07D0C30315"
+			    type       	"HWND"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0C3031F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C30328"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C30332"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C30333"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetControlFlags"
+		    quid       	"3A07D0C3033D"
+		    stereotype 	"virtual"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetActivationPolicy"
+		    quid       	"3A07D0C30350"
+		    stereotype 	"virtual"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInactiveSetCursor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lprcBounds, x, y, dwMouseMsg, bSetAlways);
+|
+			    )))
+		    quid       	"3A07D0C3035A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lprcBounds"
+			    quid       	"3A07D0C30364"
+			    type       	"LPCRECT")
+			(object Parameter "x"
+			    quid       	"3A07D0C30365"
+			    type       	"long")
+			(object Parameter "y"
+			    quid       	"3A07D0C3036E"
+			    type       	"long")
+			(object Parameter "dwMouseMsg"
+			    quid       	"3A07D0C3036F"
+			    type       	"DWORD")
+			(object Parameter "bSetAlways"
+			    quid       	"3A07D0C30378"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInactiveMouseMove"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lprcBounds, x, y, dwKeyState);
+|
+			    )))
+		    quid       	"3A07D0C30383"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lprcBounds"
+			    quid       	"3A07D0C303A0"
+			    type       	"LPCRECT")
+			(object Parameter "x"
+			    quid       	"3A07D0C303A1"
+			    type       	"long")
+			(object Parameter "y"
+			    quid       	"3A07D0C303AA"
+			    type       	"long")
+			(object Parameter "dwKeyState"
+			    quid       	"3A07D0C303B4"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWindowlessMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(msg, wParam, lParam, plResult);
+|
+			    )))
+		    quid       	"3A07D0C303BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "msg"
+			    quid       	"3A07D0C303BF"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C303C8"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C303D2"
+			    type       	"LPARAM")
+			(object Parameter "plResult"
+			    quid       	"3A07D0C303D3"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetWindowlessDropTarget"
+		    quid       	"3A07D0C303DD"
+		    stereotype 	"virtual"
+		    result     	"IDropTarget*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetClientOffset"
+		    quid       	"3A07D0C40008"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pdxOffset"
+			    quid       	"3A07D0C40009"
+			    type       	"long*")
+			(object Parameter "pdyOffset"
+			    quid       	"3A07D0C40012"
+			    type       	"long*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ParentToClient"
+		    quid       	"3A07D0C4001D"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lprcBounds"
+			    quid       	"3A07D0C40026"
+			    type       	"LPCRECT")
+			(object Parameter "pPoint"
+			    quid       	"3A07D0C40030"
+			    type       	"LPPOINT")
+			(object Parameter "bHitTest"
+			    quid       	"3A07D0C40031"
+			    type       	"BOOL"
+			    initv      	"FALSE"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ClientToParent"
+		    quid       	"3A07D0C40044"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lprcBounds"
+			    quid       	"3A07D0C40045"
+			    type       	"LPCRECT")
+			(object Parameter "pPoint"
+			    quid       	"3A07D0C4004E"
+			    type       	"LPPOINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0C40058"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateControlWindow"
+		    quid       	"3A07D0C40063"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hWndParent"
+			    quid       	"3A07D0C4006C"
+			    type       	"HWND")
+			(object Parameter "rcPos"
+			    quid       	"3A07D0C40076"
+			    type       	"const CRect&")
+			(object Parameter "prcClipped"
+			    quid       	"3A07D0C40077"
+			    type       	"LPCRECT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DefWindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0C4008A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C4008B"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C40094"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C40095"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (ar.IsStoring())
+|{  // storing code
+|}
+|else
+|{ // loading code
+|}
+|
+			    )))
+		    quid       	"3A07D0C400A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0C400A9"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetInitialDataFormats"
+		    quid       	"3A07D0C400B3"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetConnectionHook"
+		    quid       	"3A07D0C400C6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iid"
+			    quid       	"3A07D0C400C7"
+			    type       	"REFIID"))
+		    result     	"LPCONNECTIONPOINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetExtraConnectionPoints"
+		    quid       	"3A07D0C400DA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pConnPoints"
+			    quid       	"3A07D0C400DB"
+			    type       	"CPtrArray*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnReflectorDestroyed"
+		    quid       	"3A07D0C400E5"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateAggregates"
+		    quid       	"3A07D0C400F8"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpen"
+		    quid       	"3A07D0C40102"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bTryInPlace"
+			    quid       	"3A07D0C4010C"
+			    type       	"BOOL")
+			(object Parameter "pMsg"
+			    quid       	"3A07D0C4010D"
+			    type       	"LPMSG"))
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnHide"
+		    quid       	"3A07D0C40117"
+		    stereotype 	"virtual"
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnActivateInPlace"
+		    quid       	"3A07D0C4012A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bUIActivate"
+			    quid       	"3A07D0C4012B"
+			    type       	"BOOL")
+			(object Parameter "pMsg"
+			    quid       	"3A07D0C40134"
+			    type       	"LPMSG"))
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddFrameLevelUI"
+		    quid       	"3A07D0C40140"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RemoveFrameLevelUI"
+		    quid       	"3A07D0C4014A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BuildSharedMenu"
+		    quid       	"3A07D0C4015D"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroySharedMenu"
+		    quid       	"3A07D0C40167"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CProgressCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C4017B"
+	    documentation 	"A 'progress bar control' is a window that an application can use to indicate the progress of a lengthy operation. It consists of a rectangle that is gradually filled, from left to right, with the system highlight color as an operation progresses."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C401AD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CProgressCtrl"
+		    quid       	"3A07D0C401B7"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRichEditCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C401C1"
+	    documentation 	
+|A 'rich edit control' is a window in which the user can enter and edit text. The text can be assigned character and paragraph formatting, and can include embedded OLE objects. Rich edit controls provide a programming interface for formatting text. However, an application must implement any user interface components necessary to make formatting operations available to the user.
+|
+|The CRichEditCntrItem class, with CRichEditView and CRichEditDoc, provides the functionality of the rich edit control within the context of MFC's document view architecture. CRichEditView maintains the text and formatting characteristic of text. CRichEditDoc maintains the list of OLE client items which are in the view. CRichEditCntrItem provides container-side access to the OLE client item.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C401FD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CRichEditCtrl"
+		    quid       	"3A07D0C401FE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CScrollBar"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C40211"
+	    documentation 	"The CScrollBar class provides the functionality of a Windows scroll-bar control. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C4024D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CScrollBar"
+		    quid       	"3A07D0C40257"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSliderCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C40261"
+	    documentation 	
+|A 'slider control' (also known as a trackbar) is a window containing a slider and optional tick marks. When the user moves the slider, using either the mouse or the direction keys, the control sends notification messages to indicate the change.
+|
+|Slider controls are useful when you want the user to select a discrete value or a set of consecutive values in a range.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C4029D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CSliderCtrl"
+		    quid       	"3A07D0C4029E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSpinButtonCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C402B1"
+	    documentation 	"A 'spin button control' (also known as an up-down control) is a pair of arrow buttons that the user can click to increment or decrement a value, such as a scroll position or a number displayed in a companion control. The value associated with a spin button control is called its current position. A spin button control is most often used with a companion control, called a 'buddy window.'"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C402ED"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CSpinButtonCtrl"
+		    quid       	"3A07D0C402EE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CStatic"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C40301"
+	    documentation 	"The CStatic class provides the functionality of a Windows static control. A static control displays a text string, box, rectangle, icon, cursor, bitmap, or enhanced metafile. It can be used to label, box, or separate other controls. A static control normally takes no input and provides no output; however, it can notify its parent of mouse clicks if it's created with SS_NOTIFY style."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C4033D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CStatic"
+		    quid       	"3A07D0C4033E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CStatusBarCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C40348"
+	    documentation 	"A 'status bar control' is a horizontal window, usually displayed at the bottom of a parent window, in which an application can display various kinds of status information. The status bar control can be divided into parts to display more than one type of information."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C4038D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CStatusBarCtrl"
+		    quid       	"3A07D0C4038E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C40398"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C403A1"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C403A2"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C403AB"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C403B5"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C403BF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C403C9"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CTabCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C403D3"
+	    documentation 	"A 'tab control' is analogous to the dividers in a notebook or the labels in a file cabinet. By using a tab control, an application can define multiple pages for the same area of a window or dialog box. Each page consists of a set of information or a group of controls that the application displays when the user selects the corresponding tab. A special type of tab control displays tabs that look like buttons. Clicking a button should immediately perform a command instead of displaying a page."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C50028"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CTabCtrl"
+		    quid       	"3A07D0C50029"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0C5003C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0C5003D"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0C50046"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0C50050"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0C5005A"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 Add your code to draw the specified item
+| 
+|
+			    )))
+		    quid       	"3A07D0C50064"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpDrawItemStruct"
+			    quid       	"3A07D0C5006E"
+			    type       	"LPDRAWITEMSTRUCT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CToolBarCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C50078"
+	    documentation 	
+|The CToolBarCtrl class provides the functionality of the Windows toolbar common control. This control (and therefore the CToolBarCtrl class) is available only to programs running under Windows 95 and Windows NT version 3.51 and later.
+|
+|A Windows toolbar common control is a rectangular child window that contains one or more buttons. These buttons can display a bitmap image, a string, or both. When the user chooses a button, it sends a command message to the toolbar's owner window. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C500B4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CToolBarCtrl"
+		    quid       	"3A07D0C500BE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CToolTipCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C500C8"
+	    documentation 	"The CToolTipCtrl class encapsulates the functionality of a 'tool tip control,' a small pop-up window that displays a single line of text describing the purpose of a tool in an application. A 'tool' is either a window, such as a child window or control, or an application-defined rectangular area within a window's client area. A tool tip is hidden most of the time, appearing only when the user puts the cursor on a tool and leaves it there for approximately one-half second. The tool tip appears near the cursor and disappears when the user clicks a mouse button or moves the cursor off of the tool."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C50104"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CToolTipCtrl"
+		    quid       	"3A07D0C50105"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroyToolTipCtrl"
+		    quid       	"3A07D0C5010F"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CTreeCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C50122"
+	    documentation 	"A 'tree view control' is a window that displays a hierarchical list of items, such as the headings in a document, the entries in an index, or the files and directories on a disk. Each item consists of a label and an optional bitmapped image, and each item can have a list of subitems associated with it. By clicking an item, the user can expand and collapse the associated list of subitems."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C5015E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CTreeCtrl"
+		    quid       	"3A07D0C5015F"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CReBarCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C50169"
+	    documentation 	"The CReBarCtrl class encapsulates the functionality of a rebar control, which is a container for a child window. The application in which the rebar control resides assigns the child window contained by the rebar control to the rebar band. The child window is usually another common control. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C501A4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMonthCalCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdtctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C501AE"
+	    documentation 	
+|A CMonthCalCtrl object encapsulates the functionality of a month calendar control. The month calendar control provides the user with a simple calendar interface, from which the user can select a date. The user can change the display by: 
+|
+|Scrolling backward and forward, from month to month.
+|
+|Clicking the Today text to display the current day (if the MCS_NOTODAY style is not used).
+|
+|Picking a month or a year from a pop-up menu. 
+|You can customize the month calendar control by applying a variety of styles to the object when you create it. These styles are described inMonth Calendar Control Styles in the Platform SDK.
+|
+|The month calendar control can display more than one month, and it can indicate special days (such as holidays) by bolding the date.
+|
+|For more information on using the month calendar control, seeUsing CMonthCalCtrl in the Visual C++ Programmer’s Guide.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C501EA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CMonthCalCtrl"
+		    quid       	"3A07D0C501EB"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CIPAddressCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C501FE"
+	    documentation 	
+|An IP Address control, a control similar to an edit control, allows you to enter and manipulate a numerical address in Internet Protocol (IP) format. 
+|
+|The CIPAddressCtrl class provides the functionality of the Windows common IP Address control. This control (and therefore the CIPAddressCtrl class) is available only to programs running under Microsoft Internet Explorer 4.0 and later. They will also be available under future versions of Windows and Windows NT.
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C5023A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CIPAddressCtrl"
+		    quid       	"3A07D0C5023B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDateTimeCtrl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdtctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C5024E"
+	    documentation 	"A CDateTimeCtrl object encapsulates the functionality of a date and time picker control. The date and time picker control (DTP control) provides a simple interface to exchange date and time information with a user. This interface contains fields, each of which displays a part of the date and time information stored in the control. The user can change the information stored in the control by changing the content of the string in a given field. The user can move from field to field using the mouse or the keyboard."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C50280"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CDateTimeCtrl"
+		    quid       	"3A07D0C5028A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CComboBoxEx"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcmn.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0C50294"
+	    documentation 	"The CComboBoxEx class extends the combo box control by providing support for image lists. By using CComboBoxEx to create combo box controls, you no longer need to implement your own image drawing code. Instead, use CComboBoxEx to access images from an image list."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C502D1"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CComboBox"
+		    quidu      	"3A07D0C10108"))
+	    operations 	(list Operations
+		(object Operation "~CComboBoxEx"
+		    quid       	"3A07D0C502DB"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

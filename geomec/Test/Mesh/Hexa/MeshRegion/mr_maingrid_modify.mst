@@ -1,0 +1,34 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("mr_maingrid_modify.new","mr_maingrid_modify")
+
+Scenario ("Maingrid Modify")
+StartScenario("Maingrid Modify")
+	MeshregionStartup
+	SetMainRegion(5,5)
+	' now verify the values of all the other meshregions
+	Dim regions AS ARRAY OF STRING
+	regions = MeshRegions()
+	Dim counter AS INTEGER
+	Dim info AS MESHREGION_INFO
+	for counter = lbound(regions) to ubound(regions)
+		info = GetMeshRegionInfo(regions(counter))
+		if regions(counter) <> "Main" then
+			if info.iGridSizeX > 5 then
+				TNOFAIL("GridSizeX of " + regions(counter) + " is larger than that of Main")
+			endif
+			if info.iGridSizeY > 5 then
+				TNOFAIL("GridSizeY of " + regions(counter) + " is larger than that of Main")
+			endif
+		endif
+	next
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

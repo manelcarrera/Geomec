@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ArrowLabelSymbol.cpp" />
+    <ClCompile Include="src\DrillingTowerSymbol.cpp" />
+    <ClCompile Include="src\GroundLevelSymbol.cpp" />
+    <ClCompile Include="src\LevelSymbol.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\WaterLevelSymbol.cpp" />
+    <ClCompile Include="src\WellDrawSpecBase.cpp" />
+    <ClCompile Include="src\WellPointDrawSpec.cpp" />
+    <ClCompile Include="src\WellSceneInterMed.cpp" />
+    <ClCompile Include="src\WellSectionDrawSpec.cpp" />
+    <ClCompile Include="src\WellSymbolBase.cpp" />
+    <ClCompile Include="h\moc_WellSectionDrawSpec.cpp" />
+    <ClCompile Include="h\moc_WellSceneInterMed.cpp" />
+    <ClCompile Include="h\moc_WellPointDrawSpec.cpp" />
+    <ClCompile Include="h\moc_WellDrawSpecBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\ArrowLabelSymbol.h" />
+    <ClInclude Include="h\DrillingTowerSymbol.h" />
+    <ClInclude Include="h\GroundLevelSymbol.h" />
+    <ClInclude Include="h\LevelSymbol.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\WaterLevelSymbol.h" />
+    <ClInclude Include="h\WellOverburdenDrawSpec.h" />
+    <ClInclude Include="h\WellSymbolBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\WellDrawSpecBase.h" />
+    <CustomBuild Include="h\WellPointDrawSpec.h" />
+    <CustomBuild Include="h\WellSceneInterMed.h" />
+    <CustomBuild Include="h\WellSectionDrawSpec.h" />
+  </ItemGroup>
+</Project>

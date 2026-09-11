@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio">
+<TITLE>Geomec 4 and 5 Projects</TITLE>
+</HEAD>
+<BODY>
+
+<h2>Geomec 4 and 5 Projects</h2>
+
+<p>Geomec 4 (.gm4) is a binary format that contains data for one or more models, pointsets and elementsets, meshes, results, etcetera. Geomec must load a complete Geomec 4 file in order to access all the data.</p>
+
+<p>Geomec 5 (.gm5) is a container format that contains Geomec 4 data divided into different sections. Geomec only needs to load the parts that it needs. The file will remain open (read-only) while you work on a model, and Geomec loads different parts when required. Geomec 5 is backwards compatible with Geomec 4, and at any time a Geomec 5 project can be saved as Geomec 4.</p>
+
+<p>Currently the only parts that are loaded on demand are the results. The .gm5 file effectively works as the Result Cache during viewing. As the file is read-only, when new calculations are run, these results are stored in the normal Result Cache until the model is saved.</p>
+
+<p>The underlying file format for Geomec 5 is HDF5 (Hierarchical Data Format version 5). Tools available for HDF5 can be used to access .gm5 files. See https://www.hdfgroup.org/HDF5/ for more information.</p>
+
+
+</BODY>
+</HTML>

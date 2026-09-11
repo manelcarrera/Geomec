@@ -1,0 +1,229 @@
+//
+// DSEALECT.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+#ifdef _WELLLIFE
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,2,1,0
+ PRODUCTVERSION 1,2,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WellLife MFC Application\0"
+            VALUE "FileVersion", "1, 2, 1, 0\0"
+            VALUE "InternalName", "WellLife\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2012\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WellLife.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WellLife Application\0"
+            VALUE "ProductVersion", "1, 2, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+#else
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,2,1,0
+ PRODUCTVERSION 1,2,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "DSealect MFC Application\0"
+            VALUE "FileVersion", "1, 2, 1, 0\0"
+            VALUE "InternalName", "DSealect\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2012\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "DSealect.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "DSealect Application\0"
+            VALUE "ProductVersion", "1, 2, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDTT_FRA_GUIDESHOE "Initial distribution\r of stresses in the casing during Waiting On Cement phase i.e. at the time where structural bond is achieved between cement and casing thanks to slurry hardening.In DSealect, two options are possible for assessing the distribution of axial stresses along the casing:-\tAutomatic option. Stresses are derived from static equilibrium of the casing, assumed to be filled with displacement fluid and to be floating in slurry and mud.-\tAdvanced option. Stresses are derived from the hook load and the weight per unit length of the casing.In both cases, all axial loads acting on casing are assumed to be concentrated at the top of the casing string (hook load) or at the bottom (buoyancy force, guide shoe additional weight, formation support at shoe…). This amounts to neglecting frictions of viscous fluids, scratchers, centralizers etc…The initial cross-sectional stresses are deduced from the distributions of outer and inner pressures on the casing. For the inner pressure, the user can specify if a ggggggggggggggggggggggggggggggggggg"
+		
+	IDTT_AAP_debAddAnalysisPointTMD			"TMD:                                              \n\nTrue Measured Depth.\nDepth/length measured following the well path from the surface.\rSee also AHD, TVD."//18//
+	IDTT_AAP_debAddAnalysisPointTVD			"TVD:                                              \n\nTrue Vertical Depth.\nDepth measured vertically from the surface.\rSee also AHD, TMD."//18//
+	IDTT_ANA_lstAnalysis					"Batch run:                                        \n\nSeries of finite element analyses.\n\nEach analysis corresponding to a given analysis point along the well\nand to a given cement scenario.\rSee also finite element analysis, analysis point, cement scenario."//1//
+	IDTT_CAO_ebGuideShoeDepth				"AHD:                                              \n\nAlong Hole Depth.\nDepth/length measured following the well path from the surface.\rSee also TMD, TVD."//1//9??? 2x
+	IDTT_CAO_ebPercentageEccentricity		"Percentage eccentricity:                          \n\nPercentage measuring the deviation from concentric\nplacement of the casing within the borehole.\nPercentage eccentricity is defined as the ratio between\nthe eccentricity shift and the thickness of the annulus,\nexpressed in percent.\n\nCasing eccentricity is usually due to imperfect casing placement.\nThe less centralizers are used and the more inclined the well is,\nthe more eccentric the casing is likely to be.In DSealect,\ncasing eccentricity is assumed to arise in the direction of\ngravity and to be constant along the well line.\rSee also casing operation."//12//
+	IDTT_CAO_lstCasingParams				"Casing:                                           \n\nSteel pipe placed in the well as drilling progresses to\n provide a means of extracting/injecting fluids during\nthe operational regime of the well.\rSee also casing operation, casing initial stresses, casing eccentricity."//2//
+	IDTT_CAS_ebHookLoad						"Hook load:                                        \n\nLoad supported by the hook,\ni.e. device fixed in the derrick from which the casing is suspended.\nHook load is expressed in [stress unit].\rSee also casing operation."//9//
+	IDTT_CAS_fraAxialStresses				"Casing initial stresses:                          \n\nInitial distribution of stresses in the casing during\nWaiting On Cement phase, i.e. at the time where\nstructural bond is achieved between cement and \ncasing thanks to slurry hardening.\nIn DSealect, two options are possible for assessing \nthe distribution of axial stresses along the casing:\n\n- Automatic option. \nStresses are derived from static equilibrium of the casing,\nassumed to be filled with displacement fluid and to \nbe floating in slurry and mud.\n\n- Advanced option.\nStresses are derived from the hook load and the weight per \nunit length of the casing.\n\nIn both cases, all axial loads acting on casing are assumed\nto be concentrated at the top of the casing string (hook load)\nor at the bottom (buoyancy force, guide shoe additional weight,\nformation support at shoe). This amounts to neglecting frictions\nof viscous fluids, scratchers, centralizers etc.\nThe initial cross-sectional stresses are deduced from the \ndistributions of outer and inner pressures on the casing.\nFor the inner pressure, the user can specify if a work string is present.\rSee also hook load, work string, displacement fluid, Casing/Work string annulus."//2//
+	IDTT_CAS_fraNewFluid					"Casing/Work string:                               \n\nSpace enclosed between the work string and the casing internal wall.\nIts function is to protect the casing from mechanical and \nthermal shocks, which may occur inside the work string.\nIt can be filled with fluid or gas depending on requirements \nof mechanical and thermal insulation.\rSee also work string."//3//
+	IDTT_CAW_chkAllowFurtherPostProcessing	"Post-processing:                                  \n\nLast step of a finite element analysis, \nwhere numerical results are prepared for \npresentation in the form of ordered numerical lists, \ngraphs and plots.\nIn DSealect, the post-processing generates DSealect graphs \nand plots from temporary finite element databases.\nIf the option 'Allow further post-processing' is not \nselected (default), the temporary databases will be removed \nafter each batch run. \nThe option 'Allow further post-processing' should be used with \ncare, as temporary finite element databases can be very costly\nin memory.\rSee also finite element analysis, output level selection."//14//
+	IDTT_CAW_chkSaveDiagnostic				"Diagnostic:                                       \n\nOverview information over the outcome and the success of the batch run.\rSee also finite element analysis, monitoring."//5//
+	IDTT_CAW_fraAdvancedOptionsForSteppingScheme "Stepping scheme:                             \n\nSet of parameters specifying the details of the \nnumerical solution procedure. \nThe proposed defaults are optimal.\nTuning of the stepping scheme should be left to specialists \nin non-linear finite element analysis. \nSome particularly unstable analyses result in calculation failure \ndue to divergence of the numerical solution scheme. \nThis problem can usually be solved by adjusting the stepping scheme.\n\nIncreasing the number of time steps and/or the maximum number of \niterations is most of the time sufficient to solve divergence problems.\nThe user should however be aware that the calculation time will \nincrease proportionally.\rSee also finite element analysis."//16//
+	IDTT_CEL_ebTensFractureEnergy			"Tensile fracture energy:                          \n\nEnergy required to extend a fracture plane by a unit area,\nassumed to be a material constant. \nTensile fracture energy is expressed in [energy unit]/[area unit].\rSee also material properties."//4b//17!!!!2x
+	IDTT_CEL_ebTensileStrength				"Tensile strength:                                 \n\nMaximum tensile stress that a material can withstand without fracturing. \nTensile strength is expressed in [stress unit].\rSee also material properties, cracking."//4b//17!!!!2x
+	IDTT_CEO_ebLeadCementStressGrad			"Lead cement:                                      \n\nFirst cement poured during the cementing job.\nOnce in place in the annulus, the lead \ncement rests on top of the tail cement.\rSee also tail cement."//10//
+	IDTT_CEO_ebTailCementStressGrad			"Tail cement:                                      \n\nSecond cement poured during the cementing job.\nOnce in place in the annulus, the tail \ncement is located below the lead cement.\rSee also lead cement."//16//
+	IDTT_CEP_ebNumberOfCementScenarios		"Cement scenario:                                  \n\nTrial case for the choice of an appropriate sealant.\nIn DSealect, the user is asked, for each cement scenario, \nto define material properties of the lead and tail cement. \n\nThe user specifies several cement scenarios, which are then run in turn. \nComparative results are shown for all cement scenarios, \nthus allowing the user to select the appropriate sealant.\rSee also cement, sealant."//3//
+	IDTT_COT_chkShutIn						"Shut-in:                                          \n\nPeriod of time during which the wellhead valves have \nbeen closed, ceasing production. \nThe bottom-hole pressure then gradually becomes equal to \nthe pressure of the fluids that exist in the formation \nat the bottom of the well.\nIn DSealect, it is assumed that, after completion and testing, \nthe well is shut in so that bottom-hole pressure and temperature \nequilibrium is achieved before the well is subjected to any further loading."//15//
+	IDTT_COT_cmbWellType					"Gas producer:                                     \nWell for which gas production is the normal operational regime.\n\nGas storage:\nWell used to inject and produce gas into/from a porous formation \nfor storage purposes.\n\nOil producer:\nWell for which oil production is the normal operational regime.\nIn DSealect, an oil producer is allowed to be converted to an injector at \na later stage of its life.\n\nSteam injector:\nWell for which steam injection is the normal operational regime.\n\nThermal well:\nWell for which hot water production is its normal operational regime.\n\nWater injector:\nWell for which water injection is the normal operational regime.\nIn DSealect, a water injector is allowed to be converted to a producer at \na later stage of its life.\n\nWater source:\nWell for which water production is its normal operational regime.\nIn DSealect, a water source is allowed to be converted to an injector at \na later stage of its life./n/n"//8//
+	IDTT_COT_ebDrillingFluidTemperature		"Drilling fluid temperature:                       \n\nBottom hole temperature of the circulated drilling mud.\nIn DSealect, the drilling temperature is assumed to be constant over the exposure time. \nIf the user has knowledge of the evolution of the bottom hole temperature over time, \nhe should then enter in DSealect an equivalent effective temperature, which is constant over time."//2a//6!!!! 2x
+	IDTT_COT_fraPressureTest				"Pressure test:                                    \n\nShoe bond test. \nTest applied after curing and before operational regime, \nwhich consists in pressurizing the well until a requested \nequivalent density to check the bonding properties at the \nweakest points of the structure (generally the casing shoe)."//14//
+	IDTT_DER_cmbPlotSpace					"Evolution over load/time:                         \n\nGraph of the evolution of the result within a load phase,\ne.g. crack opening or maximum plastic strain.\nThe evolution is shown over load increase until total load \nand/or over time until exposure time, where appropriate.\rSee also load type/load phase."//7//
+	
+	IDTT_DER_cmbResultType					"Test"//5//
+	
+	IDTT_DER_cmbTypeOfDamage				"Damage type:                                      \n\nType of structural damage, occurring either in the cement,\nthe casing or the formation.\nIn DSealect, the word damage is used as a generic term to \nrefer to any deterioration of mechanical properties of the well structure. \nDamage encompasses the following phenomena:\n\n-	debonding at cement faces\n-	shear deterioration in the cement or formation\n-	cracking in the cement\n-	plastic deformation in the casing\rSee also debonding, shear deterioration, cracking, plastic deformation."//5//
+	IDTT_DER_ebLoadType						"Load type/load phase:                             \n\nLoad corresponding to an operation applied to the well. In DSealect, the following loads are considered in the given order: curing, pressure test, perforation, shut-in, production (optional), injection (optional), stimulation (optional), well unloading (optional).See also curing, pressure test, perforation, shut-in, production, injection, stimulation, high rate killing, well unloading."//10//
+	IDTT_DRO_ebAzimuthWithNorth				"Well azimuth:                                     \n\nSigned angle between the projection of the \nwell direction on the horizontal plane and the North direction,\npositive towards the East.\nIn DSealect, the definition range of the well azimuth is[0, 360[.\nNote that the well azimuth can only be defined if the well inclination \nis different from 0 degrees.\rSee also well inclination."//19//
+	IDTT_DRO_ebBoreholeDiameter				"Borehole:                                         \n\nWellbore.\nCylindrical hole made by drilling or boring.\rSee also drilling."//1//
+	IDTT_DRO_ebWellInclination				"Well inclination:                                 \n\nAngle made by the well line and the vertical.\nIn DSealect, the definition range of the well inclination is [0, 180]. \nInclinations above 90 degrees denote an upward drilling direction.\rSee also well azimuth."//19//
+	IDTT_DRO_fraDrillingFluidWeight			"Drilling fluid weight:                            \n\nWeight of the mud used during drilling of the borehole.\nToo light a mud weight can lead to borehole instability and \novalisation or caving of the borehole.\nDSealect is not designed to compute optimum mud weights. \nThe optimum mud for the well to be studied using DSealect \nshould be determined using other design tools, possibly \ncomputer programs. \nThe user should be aware that if the plastic option is chosen \nfor the formation material properties, inappropriately low \nmud weights can lead to numerical instability (which reflects the \nmechanical borehole instability) and further result in \ncomputation failure.\rSee also drilling."//6//
+	IDTT_EXO_chkEvacuationUnloading			"Well unloading:                                   \n\nExceptional well operation where the pressure \ninside the casing is significantly decreased. \nThe most severe case of well unloading is evacuation, \nwhere the inside of the casing is kept at atmospheric pressure.\rSee also extreme operations."//19//
+	IDTT_EXO_chkFracturingHighRateKilling	"High rate killing:                                \n\nHalt oil production in order to recondition a well.\rSee also extreme operations."//9//
+	IDTT_FOD_ebOverburdenBottomTVD			"Overburden:                                       \n\nGroup of all the formations/geological layers stacked above \nthe region of interest, i.e. above the model. \nThe weight of the overburden applies vertical stresses on the top of the model.\rSee also model range, formation."//12//
+	IDTT_FOD_lstFormationDefinition			"RKB:                                              \n\nRig Kelly Bush.\nLevel corresponding to the work floor of the derrick where the \nkelly is connected to the top extremity of the drill pipe. \nIn DSealect, the RKB is chosen as reference point for the \ndefinition of TVD and TMD, i.e. RKB TVD, TMD =0."//14//
+	IDTT_FOD_optOffshoreDefinition			"Offshore:                                         \n\nDrilling of the well is taking place on a submerged location,\ne.g. a continental shelf. \nIn DSealect, fluid static pressures are then deduced taking \ninto account the elevation of the drill floor above the sea surface, \nand the depth of the seawater.\rSee also onshore."//12//
+	IDTT_FOD_optOnshoreDefinition			"Onshore:                                          \n\nDrilling of the well is taking place on land.\nIn DSealect, fluid static pressures are then deduced taking into \naccount the elevation of the drill floor above the ground.\rSee also offshore."//12//
+	IDTT_FOL_chkPlasticity					"Plasticity:                                       \n\nProperty of a body by which it undergoes plastic deformation when \nthe applied stress exceeds a certain value,\nknown as the yield value. Steel is well known \nto behave plastically both in the tensile and compressive regime. \nMaterials like rock or cement, despite behaving in a \nbrittle manner in the tensile regime, display a plastic \nbehaviour when deterioration occurs in the compressive/shear regime.\n\nIn DSealect, the following plastic models are adopted:\n-	Von Mises perfect plasticity for the (steel) casing,\n-	Mohr-Coulomb plastic envelop for rocks and cements.\rSee also material properties."//13//
+	IDTT_INS_ebAzimuthOfSHWithNorth			"Azimuth of Sigma_H with North:                    \n\nSigned angle between the North and the maximum horizontal \nprincipal stress, positive towards the east. \nIn DSealect, the definition range of this azimuth angle is[0, 360[.\rSee also insitu stresses."//1//
+	IDTT_INS_ebGeothermalGradient			"Geothermal gradient:                              \n\nSlope of insitu temperature distribution over depth.\nThe geothermal gradient is the result of the natural thermal diffusive \nprocesses taking place inside the crust of the earth.\nThe Geothermal gradient is expressed in [temperature unit]/[length unit].\n\nIn DSealect, the geothermal gradient is assumed constant over the entire \ndepth of each formation.\rSee also formation."//8//
+	IDTT_INS_ebGeothermalGradientF			"Geothermal gradient:                              \n\nSlope of insitu temperature distribution over depth.\nThe geothermal gradient is the result of the natural thermal diffusive \nprocesses taking place inside the crust of the earth.\nThe Geothermal gradient is expressed in [temperature unit]/[length unit].\n\nIn DSealect, the geothermal gradient is assumed constant over the entire \ndepth of each formation.\rSee also formation."//8//
+	IDTT_INS_ebSurfaceUndisturbedTemp		"Undisturbed temperature:                          \n\nTemperature that would prevail at the ground surface \nif there were no influence from seasonal temperature changes in the atmosphere. \nThis temperature can be measure a few meters underground where \nthe atmospheric influence is negligible.\nFor onshore drilling, the user can assume an undisturbed temperature \nof 16 ºC/ 60 ºF.\nIn DSealect, the undisturbed temperature is used as reference temperature \nfor the geothermal temperature distribution within the overburden and the formations."//18//
+	IDTT_INS_ebVerticalStressGradient		"Stress gradient:                                  \n\nSlope of the vertical stress distribution over depth. \nThe stress gradient is related to the density of the material considered.\nThe stress gradient is expressed in [stress unit]/[length unit].\n\nIn DSealect, the stress gradient are defined making the following assumptions:\n-	formation insitu stresses: \nstress gradient assumed constant over the entire depth of each formation, zero stress at surface.\n-	drilling fluid initial stresses: \nlinear evolution of the stress gradient with mud compressibility, zero stress at RKB.\n-	displacement fluid initial stresses: \nlinear evolution of the stress gradient with mud compressibility, overpressure at RKB.\rSee also formation, insitu stresses."//16//
+	IDTT_REO_optDamageStatusOverviewTable	"Damage type:                                      \n\nType of structural damage, occurring either in the cement,\nthe casing or the formation.\n\nIn DSealect, the word damage is used as a generic term to \nrefer to any deterioration of mechanical properties of the well structure. \nDamage encompasses the following phenomena:\n-	debonding at cement faces\n-	shear deterioration in the cement or formation\n-	cracking in the cement\n-	plastic deformation in the casing\rSee also debonding, shear deterioration, cracking, plastic deformation."//4//
+	IDTT_REO_optRiskOfDamageBarChart		"Risk of damage:                                   \n\nCapacity utilization.\nThe risk of damage is given by the ratio between the predicted \nelastic change in stress state and the change in stress state \nnecessary to cause damage. 0% correspond to the initial stress state.\n100% corresponds to onset of damage. \nNegative values correspond to changes that result in safer \nstress states than the initial situation.\rSee also damage type."//14//
+	IDTT_MORE_AnalysisPoint					"Analysis point:                                   \n\nPoint along the well line for which a (finite element) \nmechanical analysis is to be carried out. \nThe user should sample points along the well at locations where sealing \nleakage is likely to be the most critical.\rSee also TVD, TMD, AHD."//1a
+	IDTT_MORE_BottomHolePressure			"Bottom hole pressure:                             \n\nFluid pressure existing in the casing in bottom hole conditions.\nIn DSealect, the user is asked to enter bottom hole pressure for \nvarious loading types at each analysis point TVD."//1b
+	IDTT_MORE_BottomHoleTemperature			"Bottom hole temperature:                          \n\nFluid temperature existing in the casing in the bottom hole conditions.\nIn DSealect, the user is asked to enter bottom hole temperature for \nvarious loading types at each analysis point TVD."//2a
+	IDTT_MORE_Cohesion						"Cohesion:                                         \n\nTheoretical shear strength above which plastic deformation is assumed to occur.\nCohesion is expressed in [stress unit].\nFor Mohr-Coulomb plasticity, cohesion, c, can be deduced from \nthe uni-axial compressive strength, fc, and the angle of internal friction, phi\n\n c = fc(1-sin(phi))/cos(phi)\rSee also plasticity, friction angle, material properties."//3a  
+	IDTT_MORE_Completion					"Completion:                                       \n\nOperation during which work on the well is finished and \nthe well is brought to productive status. \nThis operation generally includes perforation. \nPerforation is a procedure in which holes are made in the \ncasing opposite the producing formation to allow oil or gas to \nflow into the well, or to allow water to be forced out into the \nformation, causing hydraulic fracturing. \n\nDepending on the technique used for perforation, the pressure \nexisting inside the casing during completion can be lower than \nthe bottom hole pore pressure, i.e. under-balanced completion, \nequal to the pore pressure, i.e. balanced completion, or larger \nthan the pore pressure, i.e. overbalanced completion.\rSee also pressure test."//4a
+	IDTT_MORE_Cracking						"Cracking:                                         \n\nFracture planes developing in the cement due to tensile \nstresses exceeding the material tensile strength. \nRadial cracks can be detrimental to sealing capacity, depending \non the extent of crack opening, the pore pressure and the viscosity of\nthe migrating fluid.Safe design of the sealant should aim at avoiding cracking.\n\nIn DSealect, only radial cracking is reported as the two other \ntypes of cracking are not relevant:\n-	cross-sectional cracking (horizontal cracking for vertical wells) \nis not detrimental to sealing capacity.\n-	circumferencial (hoop) cracking cannot occur as the bond strengths \nof the cement at the casing and at the formation walls are assumed to be \nlower than the cement tensile strength.\rSee also damage type."//4b
+	IDTT_MORE_Curing						"Curing:                                           \n\nWaiting On Cement time (WOC). \nPeriod of time, immediately after the cementing job, during which hydrostatic \nequilibrium of the well fluids is maintained to allow hardening of the cement(s)."//4c
+	IDTT_MORE_DisplacementFluid				"Displacement fluid:                               \n\nFluid, usually drilling mud or salt water, \nused during cementing for circulation purposes. \nThe displacement fluid is pumped into the well after the cement to \nforce the cement out of the casing and into the annulus. \nWhen no work string is used, the displacement fluid is pumped directly\ninto the casing. \nWhen a work string is used, the displacement fluid is pumped into the\nwork string.\rSee also cementing, annulus, work string."//5a
+	IDTT_MORE_Elasticity					"Elasticity:                                       \n\nProperty of a material which is able to return to its original \nshape after experiencing strain and removal of deforming stress. \nIn DSealect, solid materials are assumed to behave linear elastically before \nmaterial damage has occurred. \n\nThe elastic behaviour of solids is defined by two parameters:\n-	Young’s modulus, i.e. ratio between tensile or compressive stress and \nelongation of a solid stressed in one direction. \n-	Poisson ratio, i.e. absolute ratio of the transverse strain to the \naxial strain of a long specimen under an axial tensile or compressive stress at its ends.\rSee also material properties."//7a
+	IDTT_MORE_Elevation						"Elevation:                                        \n\nFor onshore drilling, the elevation is the vertical distance \nbetween the derrick floor (RKB) and the mean ground surface.\nFor offshore drilling, the elevation is the vertical distance between \nthe derrick floor (RKB) and the mean sea surface."//7b
+	IDTT_MORE_FiniteElementAnalysis			"Finite element analysis:                          \n\nNumerical procedure for analyzing structures and continua.\nThe mechanical problem is solved by discretization of space into a mesh made of nodes and elements.\nEvolution over time and distribution over space of the deformation, stresses, \nstrains and heat flow are solved at the nodes and interpolated over the elements. \nFinite elements produce approximated numerical solutions of mechanical problems. \nThe approximation error vanishes upon mesh refinement.\n\nIn DSealect, a finite element analysis is carried out for each combination of \nchosen analysis point along the well and cement scenario. \nThe finite element model used is a 2D plain strain model representing a cross-section \nperpendicular to the well.\rSee also mesh refinement, stepping scheme, batch run."//7c
+	IDTT_MORE_FrictionAngle					"Friction angle:                                   \n\nAngle of internal friction of a material behaving according to Mohr-Coulomb plasticity.\nThe Mohr-Coulomb failure envelope is represented in the t-s space as a straight \nline crossing the t axis at the value of the cohesion, c, and has a slope of tan.\rSee also plasticity, cohesion, material properties."//8a
+	IDTT_MORE_HardeningBehaviour			"Hardening behaviour:                              \n\nIncrease or decrease in resistance to hardness produced by plastic deformation.\nThe hardening behaviour of a plastic material is described by a \nset of hardening variables specifying the evolution of the plastic \nenvelope with increasing plastic strain.\n\nIn DSealect, choice is given between several predefined hardening curves (in the s-ep space):\n-	Linear hardening, i.e. constant apparent incremental stiffness.  \nThe required hardening parameter is the hardening modulus (lower than the Young’s modulus).\n-	Linear softening, i.e. linearly decreasing cohesion until reaching cohesionless behaviour. \nThe required hardening parameter is the (compressive) fracture energy.\n-	Parbolic softening, i.e. parbolic increase and decrease of cohesion until reaching cohesionless behaviour. \nThe required hardening parameter is the (compressive) fracture energy.\rSee also plasticity, material properties."//9a
+	IDTT_MORE_ModelRange					"Model range:                                      \n\nRange of depths which defines the region of interest with respect to sealing leakage.\nThe user only has to give detailed definition of the formations, \nwhich are located at depths sealing leakage is likely to occur. \rSee also overburden."//11a
+	IDTT_MORE_ThermalConductivity			"Thermal conductivity:                             \n\nQuantifies the rate of flow of thermal energy through a material \nin the presence of a temperature gradient, given by the amount of heat \ntransfer across a unit area in a unit amount of time, divided by the negative \nof the space rate of change in temperature in the direction perpendicular to the unit area. \nThermal conductivity is expressed in [Energy unit]/([time unit].[length unit].[temperature unit])\rSee also material properties."//17a
+	IDTT_MORE_ThermalExpansion				"Thermal expansion:                                \n\nIncrease in size of a solid object that takes place because of an \nincrease in temperature.\nIn DSealect, the user is asked to input the coefficient of \nlinear expansion expressed in [length ratio]/[temperature unit].\rSee also material properties."//17b
+	IDTT_MORE_ExposureTimeToFluid			"Exposure time to fluid:                           \n\nTotal time the well is subjected to a temperature load within one load phase.\nHeat transfer is a diffusive process occurring over time. \nThe most detrimental temperature distribution for the structure \nmay occur after some time of exposure to a temperature load.\rSee also evolution over load/time, load type/load phase."//17c
+	IDTT_MORE_VolumetricSpecificHeat		"Volumetric specific heat:                         \n\nHeat transfer necessary to increase the temperature of a unit \nvolume of a substance by 1° , while subject to constant conditions \nof volume or pressure. \nVolumetric specific heat is expressed in [energy unit]/([temperature unit].[volume unit])\rSee also material properties."//18a
+
+	//IDTT_ANA_btnRunAnalysis "Test"//7c//
+	//IDTT_CAL_ebPoissonRatio "Test"//7a//
+	//IDTT_CAL_ebThermalConductivity "Test"//17a//
+	//IDTT_CAL_ebThermalExpansion "Test"//17b//
+	//IDTT_CAL_ebVolumetricSpecificHeat "Test"//18a//
+	//IDTT_CAL_ebYoungsModulus "Test"//7a//
+	//IDTT_CAS_ebDispFluidCompressibility "Test"//5a//
+	//IDTT_CAS_ebDispFluidCompressibilityNWS "Test"//5a//
+	//IDTT_CAS_ebDispFluidStressGrad "Test"//5a//
+	//IDTT_CAS_ebDispFluidStressGradientNWS "Test"//5a//
+	//IDTT_CAW_bttnStart "Test"//7c//
+	//IDTT_CEL_cmbCompHardeningType "Test"//9a//
+	//IDTT_CEL_ebCohesion "Test"//3a//
+	//IDTT_CEL_ebCompFractureEnergy "Test"//9a//
+	//IDTT_CEL_ebCompHardeningGradient "Test"//9a//
+	//IDTT_CEL_ebFrictionAngle "Test"//8a//
+	//IDTT_CEL_ebHydrationHeat "Test"//4c//
+	//IDTT_CEL_ebPoissonRatio "Test"//7a//
+	//IDTT_CEL_ebThermalConductivity "Test"//17a//
+	//IDTT_CEL_ebThermalExpansion "Test"//17b//
+	//IDTT_CEL_ebVolumetricShrinkage "Test"//4c//
+	//IDTT_CEL_ebVolumetricSpecificHeat "Test"//18a//
+	//IDTT_CEL_ebYoungsModulus "Test"//7a//
+	//IDTT_COT_ebTestPressure "Test"//1b//
+	//IDTT_COT_fraCompletion "Test"//3a//
+	//IDTT_COT_fraCompletionBalance "Test"//3a//
+	//IDTT_COT_lstAnalysisPoints "Test"//1a//
+	//IDTT_DFA_fraAnalysisPointTMD "Test"//1a//
+	//IDTT_EXO_ebBottomHoleTreatingPres "Test"//1b//
+	//IDTT_EXO_ebMaximumInjectionPressure "Test"//1b//
+	//IDTT_EXO_ebTimeOfExposToTreatFluid "Test"//17c//
+	//IDTT_EXO_ebTimeOfExposToTreatFluidEU "Test"//17c//
+	//IDTT_EXO_ebTreatingFluidTemperature "Test"//2a//
+	//IDTT_EXO_ebTreatingFluidTemperatureEU "Test"//2a//
+	//IDTT_EXO_lstAnalysisPoint "Test"//1a//
+	//IDTT_FOD_ebMeanGroundLevel "Test"//7b//
+	//IDTT_FOD_ebMeanSeaLevel "Test"//7b//
+	//IDTT_FOD_ebModelBottomTVD "Test"//11a//
+	//IDTT_FOD_ebModelTopTVD "Test"//11a//
+	//IDTT_FOL_cmbHardeningType "Test"//9a//
+	//IDTT_FOL_ebFractureEnergy "Test"//9a//
+	//IDTT_FOL_ebFrictionAngle "Test"//8a//
+	//IDTT_FOL_ebHardeningGradient "Test"//9a//
+	//IDTT_FOL_ebPoissonRatio "Test"//7a//
+	//IDTT_FOL_ebThermalConductivity "Test"//17a//
+	//IDTT_FOL_ebThermalExpansion "Test"//17b//
+	//IDTT_FOL_ebVolumetricSpecificHeat "Test"//18a//
+	//IDTT_FOL_ebYoungsModulus "Test"//7a//
+	//IDTT_PRI_ebBottomHoleFlowingPress "Test"//1b//
+	//IDTT_PRI_ebBottomHoleFlowingTemp "Test"//2a//
+	//IDTT_PRI_ebInjectionTemperature "Test"//2a//
+	//IDTT_PRI_ebMaximumInjectionPressure "Test"//1b//
+	//IDTT_PRI_ebTimeOfContinuousInjection "Test"//17c//
+	//IDTT_PRI_ebTimeOfContinuousProd "Test"//17c//
+	//IDTT_PRI_lstAnalysisPoint "Test"//1a//
+	
+END
+
+#endif    // !_MAC

@@ -1,0 +1,583 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Window Support"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0B5038C"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B50397"
+	    documentation 	
+|The CWnd class provides the base functionality of all window classes in the Microsoft Foundation Class Library. 
+|
+|A CWnd object is distinct from a Windows window, but the two are tightly linked. 
+|
+|The CWnd class and the message-map mechanism hide the WndProc function.
+|
+|The CWnd class also lets you create a Windows child window for your application.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B503BE"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~CWnd"
+		    quid       	"3A07D0B503C8"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B503D2"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B503D3"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B503E6"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0B60008"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreSubclassWindow"
+		    quid       	"3A07D0B60012"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return CWnd::%2(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
+|
+			    )))
+		    quid       	"3A07D0B6001D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszClassName"
+			    quid       	"3A07D0B60026"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszWindowName"
+			    quid       	"3A07D0B60027"
+			    type       	"LPCTSTR")
+			(object Parameter "dwStyle"
+			    quid       	"3A07D0B60030"
+			    type       	"DWORD")
+			(object Parameter "rect"
+			    quid       	"3A07D0B6003A"
+			    type       	"const RECT&")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B6003B"
+			    type       	"CWnd*")
+			(object Parameter "nID"
+			    quid       	"3A07D0B60044"
+			    type       	"UINT")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B60045"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroyWindow"
+		    quid       	"3A07D0B60058"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(cs);
+|
+			    )))
+		    quid       	"3A07D0B60062"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D0B60063"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CalcWindowRect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpClientRect, nAdjustType);
+|
+			    )))
+		    quid       	"3A07D0B60076"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpClientRect"
+			    quid       	"3A07D0B60077"
+			    type       	"LPRECT")
+			(object Parameter "nAdjustType"
+			    quid       	"3A07D0B60080"
+			    type       	"UINT"
+			    initv      	"adjustBorder"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnToolHitTest"
+		    quid       	"3A07D0B6008A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "point"
+			    quid       	"3A07D0B60094"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266")
+			(object Parameter "pTI"
+			    quid       	"3A07D0B60095"
+			    type       	"TOOLINFO*"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetScrollBarCtrl"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nBar);
+|
+			    )))
+		    quid       	"3A07D0B6009F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "nBar"
+			    quid       	"3A07D0B600A8"
+			    type       	"int"))
+		    result     	"CScrollBar*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WinHelp"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwData, nCmd);
+|
+			    )))
+		    quid       	"3A07D0B600B3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwData"
+			    quid       	"3A07D0B600BC"
+			    type       	"DWORD")
+			(object Parameter "nCmd"
+			    quid       	"3A07D0B600BD"
+			    type       	"UINT"
+			    initv      	"HELP_CONTEXT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ContinueModal"
+		    quid       	"3A07D0B600D0"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndModalLoop"
+		    quid       	"3A07D0B600DA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nResult"
+			    quid       	"3A07D0B600E4"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B600EE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B600EF"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B600F8"
+			    type       	"LPARAM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam, pResult);
+|
+			    )))
+		    quid       	"3A07D0B60103"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B6010C"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B6010D"
+			    type       	"LPARAM")
+			(object Parameter "pResult"
+			    quid       	"3A07D0B60116"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetSuperWndProcAddr"
+		    quid       	"3A07D0B60121"
+		    stereotype 	"virtual"
+		    result     	"WNDPROC*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoDataExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pDX);
+|
+			    )))
+		    quid       	"3A07D0B6012B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDX"
+			    quid       	"3A07D0B60134"
+			    type       	"CDataExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BeginModalState"
+		    quid       	"3A07D0B6013F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndModalState"
+		    quid       	"3A07D0B60149"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B6015C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B6015D"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAmbientProperty"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pSite, dispid, pvar);
+|
+			    )))
+		    quid       	"3A07D0B60170"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pSite"
+			    quid       	"3A07D0B60171"
+			    type       	"COleControlSite*")
+			(object Parameter "dispid"
+			    quid       	"3A07D0B6017A"
+			    type       	"DISPID")
+			(object Parameter "pvar"
+			    quid       	"3A07D0B6017B"
+			    type       	"VARIANT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B6018E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B6018F"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B60199"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B6019A"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWndMsg"
+		    quid       	"3A07D0B601AD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B601AE"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B601B7"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B601B8"
+			    type       	"LPARAM")
+			(object Parameter "pResult"
+			    quid       	"3A07D0B601C1"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DefWindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B601CC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B601D5"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B601D6"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B601DF"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PostNcDestroy"
+		    quid       	"3A07D0B601E9"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChildNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam, pLResult);
+|
+			    )))
+		    quid       	"3A07D0B601F4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B601FD"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B60207"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B60208"
+			    type       	"LPARAM")
+			(object Parameter "pLResult"
+			    quid       	"3A07D0B60211"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CheckAutoCenter"
+		    quid       	"3A07D0B6021B"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsFrameWnd"
+		    quid       	"3A07D0B60226"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetOccDialogInfo"
+		    quid       	"3A07D0B60230"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pOccDialogInfo"
+			    quid       	"3A07D0B60239"
+			    type       	"_AFX_OCC_DIALOG_INFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class_Category "Frame Windows"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Frame Windows.cat"
+	    quid       	"3A07D0B60244")
+	(object Class_Category "Control Bars"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Control Bars.cat"
+	    quid       	"3A07D0B90084")
+	(object Class_Category "Property Sheets"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Property Sheets.cat"
+	    quid       	"3A07D0BA0180")
+	(object Class_Category "Dialog Boxes"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Dialog Boxes.cat"
+	    quid       	"3A07D0BA02D5")
+	(object Class_Category "Views"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Views.cat"
+	    quid       	"3A07D0BD0152")
+	(object Class_Category "Controls"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Controls.cat"
+	    quid       	"3A07D0C003A6"))
+    logical_presentations 	(list unit_reference_list))

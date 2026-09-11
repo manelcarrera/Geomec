@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F961631F-F0C5-441C-820C-6B591F42DBEE}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <RootNamespace>diana_app</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>diana_app</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(DIANAAPP);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5OpenGLd.lib;shlwapi.lib;Shell32.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);$(LIBLBCX);$(LIBLBDS);$(LIBLBCI);$(LIBLBEL);$(LIBLBGS);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);$(CM2LIBS);tbb_debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(QTDIR)/lib;$(QWTDIR)/lib;$(FLEXLM)/../lib64;$(CM2LIBPATH);$(TBBDIR)/lib/intel64/vc14</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(DIANAAPP);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5OpenGL.lib;shlwapi.lib;Shell32.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);$(LIBLBCX);$(LIBLBDS);$(LIBLBCI);$(LIBLBEL);$(LIBLBGS);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);$(CM2LIBS)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(QTDIR)/lib;$(QWTDIR)/lib;$(FLEXLM)/../lib64;$(CM2LIBPATH);$(TBBDIR)/lib/intel64/vc14</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(DIANAAPP);</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_RELEASE_WITH_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5OpenGL.lib;shlwapi.lib;Shell32.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);$(LIBLBCX);$(LIBLBDS);$(LIBLBCI);$(LIBLBEL);$(LIBLBGS);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);$(CM2LIBS)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(QTDIR)/lib;$(QWTDIR)/lib;$(FLEXLM)/../lib64;$(CM2LIBPATH);$(TBBDIR)/lib/intel64/vc14</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="moc\moc_DianaBusClient.cpp" />
+    <ClCompile Include="src\DianaBusClient.cpp" />
+    <ClCompile Include="src\DianaRunController.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fw51\Geometry\Geometry.vcxproj">
+      <Project>{be554a53-3201-496e-912b-fd63c8962b90}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Tensor\Tensor.vcxproj">
+      <Project>{bb3007b8-17c5-427d-b723-e3b8324218fc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DianaCore\DianaCore.vcxproj">
+      <Project>{5272d857-c66b-4b8f-9aff-22e1a11d7886}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DianaSignals\DianaSignals.vcxproj">
+      <Project>{ef5f3acb-d5d7-4aca-bf80-3c80280848a4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DianaStartup\DianaStartup.vcxproj">
+      <Project>{9dd2d3b7-87c1-42d2-99c6-6dd2dbd71507}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\QUtil\QUtil.vcxproj">
+      <Project>{f99b429a-1152-459d-8716-007a42c94625}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Util\Util.vcxproj">
+      <Project>{992d5320-b6c5-4f0d-a19f-40644956e729}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">
+      <Project>{b12702ad-abfb-343a-a199-8e24837244a3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <ClInclude Include="h\DianaClient.h" /> -->
+    <CustomBuild Include="h\DianaBusClient.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\DianaRunController.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

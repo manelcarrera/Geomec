@@ -1,0 +1,11 @@
+The set of input forms grouped under Depths/Cements for analysis 
+allows you to select the depths along the well to be considered 
+for analysis and to define several scenarios concerning the 
+material properties of the cement(s).
+ 
+Use the form Depths For Analysis to specify the depths along the 
+well for which analysis will be carried out.
+ 
+Use the form Cement Properties to attach material properties to 
+the various cement scenarios.
+  

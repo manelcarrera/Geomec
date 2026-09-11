@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="RegisterFgvViewOCX" Guid="D6C4081A-4632-4c9d-B663-3CF60D74E7C1" Win64="no">
+                <File Id="FgvViewOCX" KeyPath="yes" Source="$(var.WiXInstall)\FgvView.ocx">
+                    <Class Id="{D95E68A7-5004-11D2-B46C-006097492FD7}" Context="InprocServer32" Description="FgvView Property Page" />
+                    <TypeLib Id="{D95E68A3-5004-11D2-B46C-006097492FD7}" Control="yes" Description="FgvView ActiveX Control module" HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="3" MinorVersion="2">
+                        <Class Id="{D95E68A6-5004-11D2-B46C-006097492FD7}" Context="InprocServer32" Description="FgvView Control" ThreadingModel="apartment" Version="3.0" Control="yes">
+                            <ProgId Id="FGVVIEW.FgvViewCtrl.1" Description="FgvView Control" />
+                        </Class>
+                        <Interface Id="{D95E68A4-5004-11D2-B46C-006097492FD7}" Name="_DFgvView" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D95E68A5-5004-11D2-B46C-006097492FD7}" Name="_DFgvViewEvents" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                    </TypeLib>
+                </File>
+                <RegistryValue Root="HKCR" Key="CLSID\{D95E68A6-5004-11D2-B46C-006097492FD7}\MiscStatus\1" Value="131473" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D95E68A6-5004-11D2-B46C-006097492FD7}\MiscStatus" Value="0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D95E68A6-5004-11D2-B46C-006097492FD7}\ToolboxBitmap32" Value="[!FgvViewOCX], 1" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

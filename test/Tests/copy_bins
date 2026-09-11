@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#
+# copy binaries if needed
+#
+BIN=$(cd ../.. && pwd)_build/bin/$CONF
+#
+# geomec_cora: some app has it hardcoded and can't be replaced by geomec_shell
+#
+declare -a d=( 
+	Tests
+	gm_diana_app
+	geomec_shell
+	geomec_cora )
+
+for i in "${d[@]}"; 
+do
+   cp -u $BIN/$i . # -u: update, also --update
+done

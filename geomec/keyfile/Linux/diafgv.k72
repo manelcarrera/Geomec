@@ -1,0 +1,40 @@
+ j{B`||BBBX
+ 4sBmBB1tBB
+ BfKV|l#<BB
+ 8|1t#|~@U8
+ BBBqB9|RB|
+ /B6B0B4@o@
+ BVBIB:BfBo
+ B#/B&|6BF0
+ |+#4B@Bate
+ r+9||B4BBB
+
+ EXPIRE DATE            : 31/ 3/2020
+ SUPPORT EXPIRE DATE    : 31/ 3/2020
+ CUSTOMER NAME          : Shell
+ AUTHORIZED MODULES     : Geomec                                       
+ MACHINE NAME           : Linux
+ LIMITS                 : No FEMGV                                     
+ 
+************************************************************
+ Keyfile for   : Shell
+ DIANA version : 9.4
+ Serial Number : DKN8692
+************************************************************
+ Copy this file to the following location
+ and then rename it to diafgv.k72
+ (DIANA installation directory)\share\lib\ 
+************************************************************
+ No CAD repair tools. Contact your Supplier 
+ if you require any of the CAD repair tools 
+ (Only in combination with DIANA 9)
+************************************************************
+DIANA Support
+DIANA FEA BV
+Delftechpark 19a
+2628 XJ  DELFT
+The Netherlands
+Fax: +31 88 34262 99
+Email: support@dianafea.com
+*****************************************************KB4.0**
+

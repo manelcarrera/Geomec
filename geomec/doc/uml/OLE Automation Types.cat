@@ -1,0 +1,100 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "OLE Automation Types"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C6039A"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "COleCurrency"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C603A5"
+	    documentation 	"A COleCurrency object encapsulates the CURRENCY data type of OLE automation. CURRENCY is implemented as an 8-byte, two's-complement integer value scaled by 10,000. This gives a fixed-point number with 15 digits to the left of the decimal point and 4 digits to the right. The CURRENCY data type is extremely useful for calculations involving money, or for any fixed-point calculation where accuracy is important. It is one of the possible types for the VARIANT data type of OLE automation."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleVariant"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C70002"
+	    documentation 	"A COleVariant object encapsulates the VARIANT data type. This data type is used in OLE automation. Specifically, the DISPPARAMS structure contains a pointer to an array of VARIANT structures. A DISPPARAMS structure is used to pass parameters to IDispatch::Invoke."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDateTime"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C70048"
+	    documentation 	
+|A COleDateTime object encapsulates the DATE data type used in OLE automation. It is one of the possible types for the VARIANT data type of OLE automation. A COleDateTime value represents an absolute date and time value.
+|
+|The COleDateTime class handles dates from 1 January 100 to 31 December 9999.
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDateTimeSpan"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C7008F"
+	    documentation 	"A COleDateTimeSpan object represents a relative time, a time span. A COleDateTimeSpan keeps time in days."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

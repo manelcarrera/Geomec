@@ -1,0 +1,1503 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Dialog Boxes"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0BA02D5"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BA02E0"
+	    documentation 	
+|The CDialog class is the base class used for displaying dialog boxes on the screen. Dialog boxes are of two types: modal and modeless. A modal dialog box must be closed by the user before the application continues. A modeless dialog box allows the user to display the dialog box and return to another task without canceling or removing the dialog box.
+|
+|A CDialog object is a combination of a dialog template and a CDialog-derived class. Use the dialog editor to create the dialog template and store it in a resource, then use ClassWizard to create a class derived from CDialog. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BA0311"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CDialog"
+		    quid       	"3A07D0BA0312"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BA031C"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BA0325"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BA0330"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0BA033A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0BA0343"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0BA034D"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0BA034E"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0BA0357"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0BA0361"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0BA036B"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CheckAutoCenter"
+		    quid       	"3A07D0BA0375"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetOccDialogInfo"
+		    quid       	"3A07D0BA037F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pOccDialogInfo"
+			    quid       	"3A07D0BA0389"
+			    type       	"_AFX_OCC_DIALOG_INFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BA0393"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitDialog"
+		    quid       	"3A07D0BA039D"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetFont"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pFont);
+|
+			    )))
+		    quid       	"3A07D0BA03A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFont"
+			    quid       	"3A07D0BA03B1"
+			    type       	"CFont*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOK"
+		    quid       	"3A07D0BA03BB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    quid       	"3A07D0BA03C6"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreInitDialog"
+		    quid       	"3A07D0BA03D0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CCommonDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BA03E3"
+	    documentation 	
+|CCommonDialog is the base class for classes that encapsulate functionality of the Windows common dialogs, such as CFileDialog and CFontDialog.
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB002D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "OnOK"
+		    quid       	"3A07D0BB002E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    quid       	"3A07D0BB0038"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CColorDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB004B"
+	    documentation 	"The CColorDialog class allows you to incorporate a color-selection dialog box into your application. A CColorDialog object is a dialog box with a list of colors that are defined for the display system. The user can select or create a particular color from the list, which is then reported back to the application when the dialog box exits."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB0073"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB0074"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BB0087"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB0088"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnColorOK"
+		    quid       	"3A07D0BB0092"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFileDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB00A5"
+	    documentation 	"The CFileDialog class encapsulates the Windows common file dialog box. Common file dialog boxes provide an easy way to implement File Open and File Save As dialog boxes (as well as other file-selection dialog boxes) in a manner consistent with Windows standards."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB00CD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB00D7"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShareViolation"
+		    quid       	"3A07D0BB00E1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0BB00E2"
+			    type       	"LPCTSTR"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFileNameOK"
+		    quid       	"3A07D0BB00F5"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnLBSelChangedNotify"
+		    quid       	"3A07D0BB00FF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIDBox"
+			    quid       	"3A07D0BB0109"
+			    type       	"UINT")
+			(object Parameter "iCurSel"
+			    quid       	"3A07D0BB010A"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0BB0114"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitDone"
+		    quid       	"3A07D0BB011E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFileNameChange"
+		    quid       	"3A07D0BB0128"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFolderChange"
+		    quid       	"3A07D0BB0133"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnTypeChange"
+		    quid       	"3A07D0BB013D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BB0150"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB0151"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam, pResult);
+|
+			    )))
+		    quid       	"3A07D0BB0164"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0BB0165"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0BB016E"
+			    type       	"LPARAM")
+			(object Parameter "pResult"
+			    quid       	"3A07D0BB016F"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFindReplaceDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB0182"
+	    documentation 	"The CFindReplaceDialog class allows you to implement standard string Find/Replace dialog boxes in your application. Unlike the other Windows common dialog boxes, CFindReplaceDialog objects are modeless, allowing users to interact with other windows while they are on screen. There are two kinds of CFindReplaceDialog objects: Find dialog boxes and Find/Replace dialog boxes. Although the dialog boxes allow the user to input search and search/replace strings, they do not perform any of the searching or replacing functions. You must add these to the application."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB01AA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB01B4"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB01B5"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PostNcDestroy"
+		    quid       	"3A07D0BB01C8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFontDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB01D2"
+	    documentation 	"The CFontDialog class allows you to incorporate a font-selection dialog box into your application. A CFontDialog object is a dialog box with a list of fonts that are currently installed in the system. The user can select a particular font from the list, and this selection is then reported back to the application."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB0204"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB0205"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BB020F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB0218"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB0222"
+	    documentation 	"The COleDialog class provides functionality common to dialog boxes for OLE."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB0254"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB0255"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB025E"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleBusyDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB0268"
+	    documentation 	"The COleBusyDialog class is used for the OLE Server Not Responding or Server Busy dialog boxes. Create an object of class COleBusyDialog when you want to call these dialog boxes. After a COleBusyDialog object has been constructed, you can use the m_bz structure to initialize the values or states of controls in the dialog box. The m_bz structure is of type OLEUIBUSY."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB029A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB029B"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB02A4"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB02AF"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleChangeIconDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB02C2"
+	    documentation 	"The COleChangeIconDialog class is used for the OLE Change Icon dialog box. Create an object of class COleChangeIconDialog when you want to call this dialog box. After a COleChangeIconDialog object has been constructed, you can use the m_ci structure to initialize the values or states of controls in the dialog box. The m_ci structure is of type OLEUICHANGEICON."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB02EA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB02F4"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB02F5"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB0308"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleChangeIconDialog"
+		    quid       	"3A07D0BB0312"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleChangeSourceDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB031C"
+	    documentation 	"The COleChangeSourceDialog class is used for the OLE Change Source dialog box. Create an object of class COleChangeSourceDialog when you want to call this dialog box. After a COleChangeSourceDialog object has been constructed, you can use the m_cs structure to initialize the values or states of controls in the dialog box. The m_cs structure is of type OLEUICHANGESOURCE."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB034E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB034F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB0358"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB0363"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleChangeSourceDialog"
+		    quid       	"3A07D0BB036D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BB0380"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreInitDialog"
+		    quid       	"3A07D0BB038A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleConvertDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BB0395"
+	    documentation 	"The COleConvertDialog class is used for the OLE Convert dialog box. Create an object of class COleConvertDialog when you want to call this dialog box. After a COleConvertDialog object has been constructed, you can use the m_cv structure to initialize the values or states of controls in the dialog box. The m_cv structure is of type OLEUICONVERT."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BB03D1"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BB03D2"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BB03DB"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BB03E5"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleConvertDialog"
+		    quid       	"3A07D0BC0008"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleInsertDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC001B"
+	    documentation 	"The COleInsertDialog class is used for the OLE Insert Object dialog box. Create an object of class COleInsertDialog when you want to call this dialog box. After a COleInsertDialog object has been constructed, you can use the m_io structure to initialize the values or states of controls in the dialog box. The m_io structure is of type OLEUIINSERTOBJECT."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC0043"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BC004D"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC004E"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC0061"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleInsertDialog"
+		    quid       	"3A07D0BC006B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleLinksDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC007F"
+	    documentation 	"The COleLinksDialog object is used for the OLE Edit Links dialog box. Create an object of class COleLinksDialog when you want to call this dialog box. After a COleLinksDialog object has been constructed, you can use the m_el structure to initialize the values or states of controls in the dialog box. The m_el structure is of type OLEUIEDITLINKS."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC00A7"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BC00B1"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC00B2"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC00BC"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleLinksDialog"
+		    quid       	"3A07D0BC00CF"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BC00D9"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleUpdateDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC00E4"
+	    documentation 	"The COleUpdateDialog class is used for a special case of the OLE Edit Links dialog box, which should be used when you need to update only existing linked or embedded objects in a document."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC0115"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleInsertDialog"
+		    quidu      	"3A07D0BC001B"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BC011F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC0120"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC012A"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleUpdateDialog"
+		    quid       	"3A07D0BC013D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COlePasteSpecialDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC0147"
+	    documentation 	"The COlePasteSpecialDialog class is used for the OLE Paste Special dialog box. Create an object of class COlePasteSpecialDialog when you want to call this dialog box. After a COlePasteSpecialDialog object has been constructed, you can use the AddFormat and AddStandardFormats member functions to add Clipboard formats to the dialog box. You can also use the m_ps structure to initialize the values or states of controls in the dialog box. The m_ps structure is of type OLEUIPASTESPECIAL. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC0179"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BC017A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC0183"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC018D"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COlePasteSpecialDialog"
+		    quid       	"3A07D0BC0198"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BC01A2"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COlePropertiesDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxodlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC01B5"
+	    documentation 	"The COlePropertiesDialog class encapsulates the Windows common OLE Object Properties dialog box. Common OLE Object Properties dialog boxes provide an easy way to display and modify the properties of an OLE document item in a manner consistent with Windows standards. These properties include, among others, information on the file represented by the document item, options for displaying the icon and image scaling, and information on the item's link (if the item is linked)."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC01E7"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::COleDialog"
+		    quidu      	"3A07D0BB0222"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BC01E8"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC01F1"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC01FB"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BC0206"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnApplyScale"
+		    quid       	"3A07D0BC0210"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pItem"
+			    quid       	"3A07D0BC0219"
+			    type       	"COleClientItem*")
+			(object Parameter "nCurrentScale"
+			    quid       	"3A07D0BC0223"
+			    type       	"int")
+			(object Parameter "bRelativeToOrig"
+			    quid       	"3A07D0BC0224"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitDialog"
+		    quid       	"3A07D0BC022E"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPageSetupDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC0241"
+	    documentation 	"The CPageSetupDialog class encapsulates the services provided by the Windows common OLE Page Setup dialog box with additional support for setting and modifying print margins. This class is designed to take the place of the Print Setup dialog box."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC0273"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC0274"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BC027E"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC0287"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreDrawPage"
+		    quid       	"3A07D0BC0291"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wPaper"
+			    quid       	"3A07D0BC029C"
+			    type       	"WORD")
+			(object Parameter "wFlags"
+			    quid       	"3A07D0BC029D"
+			    type       	"WORD")
+			(object Parameter "pPSD"
+			    quid       	"3A07D0BC02A6"
+			    type       	"LPPAGESETUPDLG"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDrawPage"
+		    quid       	"3A07D0BC02B0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0BC02BA"
+			    type       	"CDC*")
+			(object Parameter "nMessage"
+			    quid       	"3A07D0BC02BB"
+			    type       	"UINT")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0BC02C4"
+			    type       	"LPRECT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPrintDialog"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC02CE"
+	    documentation 	"The CPrintDialog class encapsulates the services provided by the Windows common dialog box for printing. Common print dialog boxes provide an easy way to implement Print and Print Setup dialog boxes in a manner consistent with Windows standards."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC0300"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CCommonDialog"
+		    quidu      	"3A07D0BA03E3"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BC0301"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BC0314"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BC0315"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AttachOnSetup"
+		    quid       	"3A07D0BC0328"
+		    stereotype 	"virtual"
+		    result     	"CPrintDialog*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COlePropertyPage"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC033C"
+	    documentation 	"The COlePropertyPage class is used to display the properties of a custom control in a graphical interface, similar to a dialog box. For instance, a property page may include an edit control that allows the user to view and modify the control's caption property."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BC036E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0BC036F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetPageSite"
+		    quid       	"3A07D0BC0379"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnObjectsChanged"
+		    quid       	"3A07D0BC0383"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnHelp"
+		    quid       	"3A07D0BC0396"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszHelpDir"
+			    quid       	"3A07D0BC0397"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitDialog"
+		    quid       	"3A07D0BC03A1"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEditProperty"
+		    quid       	"3A07D0BC03B4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0BC03B5"
+			    type       	"DISPID"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPropertyPage"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BC03C8"
+	    documentation 	"Objects of class CPropertyPage represent individual pages of a property sheet, otherwise known as a tab dialog box."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BD0012"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "OnOK"
+		    quid       	"3A07D0BD0013"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    quid       	"3A07D0BD001D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BD0027"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BD0030"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam, pResult);
+|
+			    )))
+		    quid       	"3A07D0BD003B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0BD004E"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0BD0058"
+			    type       	"LPARAM")
+			(object Parameter "pResult"
+			    quid       	"3A07D0BD0059"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnApply"
+		    quid       	"3A07D0BD006C"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnReset"
+		    quid       	"3A07D0BD0076"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetActive"
+		    quid       	"3A07D0BD0081"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnKillActive"
+		    quid       	"3A07D0BD008B"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnQueryCancel"
+		    quid       	"3A07D0BD009E"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWizardBack"
+		    quid       	"3A07D0BD00A8"
+		    stereotype 	"virtual"
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWizardNext"
+		    quid       	"3A07D0BD00B3"
+		    stereotype 	"virtual"
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWizardFinish"
+		    quid       	"3A07D0BD00BD"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPropertyPage"
+		    quid       	"3A07D0BD00D0"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BD00DA"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0BD00E5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0BD00EE"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPropertyPageEx"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BD00F8"
+	    documentation 	
+|CPropertyPageEx provides support for the expandedPROPSHEETPAGE structure introduced in Windows 98 and Windows NT 5. The structure contains additional flags and members that support the following feature: 
+|
+|A wide header area to accommodate both a title and a subtitle. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BD012A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CPropertyPage"
+		    quidu      	"3A07D0BC03C8"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BD0134"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BD0135"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BD013F"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

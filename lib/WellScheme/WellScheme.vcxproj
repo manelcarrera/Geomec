@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\IWellSection.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\RTFile.h" />
+    <ClInclude Include="h\WellDefinitionPointList.h" />
+    <ClInclude Include="h\WellLog.h" />
+    <ClInclude Include="h\WellLogFile.h" />
+    <CustomBuild Include="h\wellpathbase.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\WellPoint.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\WellPointList.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\WellPointMapper.h" />
+    <ClInclude Include="h\WellScheme.h" />
+    <ClInclude Include="h\WellSchemeInclude.h" />
+    <CustomBuild Include="h\WellSection.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\WellSectionList.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\WellSectionListBase.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="moc\moc_IWellSection.cpp" />
+    <ClCompile Include="moc\moc_wellpathbase.cpp" />
+    <ClCompile Include="moc\moc_WellPoint.cpp" />
+    <ClCompile Include="moc\moc_WellPointList.cpp" />
+    <ClCompile Include="moc\moc_WellSection.cpp" />
+    <ClCompile Include="moc\moc_WellSectionList.cpp" />
+    <ClCompile Include="moc\moc_WellSectionListBase.cpp" />
+    <ClCompile Include="src\IWellSection.cpp" />
+    <ClCompile Include="src\RTFile.cpp" />
+    <ClCompile Include="src\WellDefinitionPointList.cpp" />
+    <ClCompile Include="src\WellLog.cpp" />
+    <ClCompile Include="src\WellLogFile.cpp" />
+    <ClCompile Include="src\wellpathbase.cpp" />
+    <ClCompile Include="src\WellPoint.cpp" />
+    <ClCompile Include="src\WellPointList.cpp" />
+    <ClCompile Include="src\WellPointMapper.cpp" />
+    <ClCompile Include="src\WellSection.cpp" />
+    <ClCompile Include="src\WellSectionList.cpp" />
+    <ClCompile Include="src\WellSectionListBase.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{196D6005-6814-4B11-89D7-DD391A44C239}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WELLSCHEME)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WELLSCHEME)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(WELLSCHEME)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

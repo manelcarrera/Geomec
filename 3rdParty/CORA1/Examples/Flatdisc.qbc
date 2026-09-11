@@ -1,0 +1,142 @@
+# match with excel files v46
+version = 2.0
+
+dir_inputfiles=C:\Program Files\GEOMEC 5.3 - SVS\CORA\Examples
+dir_intermfiles=C:\Program Files\GEOMEC 5.3 - SVS\CORA\Examples
+dir_fwresults=C:\Apps\
+dir_invresults=C:\Apps\
+
+file_interm=QBSubs.qbi
+export.filebase.geomec=QBSubsGEOM
+export.filebase.pngimage=QBSubs
+export.filebase.simpleascii=QBSubs
+export.fileext.geomec=.dat
+export.fileext.pngimage=.png
+export.fileext.simpleascii=.dat
+
+# ------------------------------
+# START OF INPUT BLOCK
+# ------------------------------
+# BASIC LAYER INFORMATION
+# the list "layers" specifies the order of the layers used (from top to bottom)
+
+layers=l1,l2,r1,l3
+
+surfacedepth.datatype=constant
+surfacedepth.constant=0.0
+seawater.present=False
+minlaythick=1.0
+
+l1.E.constant=2750.0
+l1.nu.constant=0.4
+l1.base.type=thickness
+l1.base.datatype=constant
+l1.base.constant=900.0
+
+l2.E.constant=2750.0
+l2.nu.constant=0.4
+l2.base.type=thickness
+l2.base.datatype=constant
+l2.base.constant=100.0
+
+r1.E.constant=2750.0
+r1.nu.constant=0.4
+r1.base.type=thickness
+r1.base.datatype=constant
+r1.base.constant=200.0
+
+l3.E.constant=2750.0
+l3.nu.constant=0.4
+l3.base.type=thickness
+l3.base.datatype=constant
+l3.base.constant=1000.0
+
+l1.si.density.constant=2038.736
+l1.si.Kh.constant=0.75
+l1.si.KH.constant=0.75
+l1.si.angleNH.constant=0.0
+l1.si.Pref.constant=0.01
+l1.si.zref.constant=0.0
+l1.si.Pgrad.constant=0.0
+
+l2.si.density.constant=2038.736
+l2.si.Kh.constant=0.75
+l2.si.KH.constant=0.75
+l2.si.angleNH.constant=0.0
+l2.si.Pref.constant=0.01
+l2.si.zref.constant=0.0
+l2.si.Pgrad.constant=0.0
+
+r1.si.density.constant=2038.736
+r1.si.Kh.constant=0.75
+r1.si.KH.constant=0.75
+r1.si.angleNH.constant=0.0
+r1.si.Pref.constant=0.01
+r1.si.zref.constant=0.0
+r1.si.Pgrad.constant=0.0
+
+l3.si.density.constant=2038.736
+l3.si.Kh.constant=0.75
+l3.si.KH.constant=0.75
+l3.si.angleNH.constant=0.0
+l3.si.Pref.constant=0.01
+l3.si.zref.constant=0.0
+l3.si.Pgrad.constant=0.0
+
+# ------------------------------
+# START OF RESERVOIR BLOCK
+# ------------------------------
+blocks.x.n=15
+blocks.x.size=333.333333333
+blocks.x.firstcoord=-2500.0
+blocks.y.n=15
+blocks.y.size=333.333333333
+blocks.y.firstcoord=-2500.0
+
+fw.res.groups=r1_dP
+fw.res.r1_dP.formationname=r1
+fw.res.r1_dP.depletionproperty=dP
+fw.res.r1_dP.loading.type=dP
+fw.res.r1_dP.loading.dP.datatype=ps
+fw.res.r1_dP.loading.dP.ps.filename=FlatDisc_dP_press.dat
+fw.res.r1_dP.loading.dP.ps.name=press.r1_dP
+
+# ------------------------------
+# START OF CALCULATION BLOCK
+# 
+# ------------------------------
+calcmodel=horzhet
+horzhet.depths=0.0
+horzhet.fft.x.n=256
+horzhet.fft.x.resolution=40.0
+horzhet.fft.y.n=256
+horzhet.fft.y.resolution=40.0
+
+horzhet.allowhormatcontrast=True
+horzhet.zoffset=0
+horzhet.zdiscard=0
+horzhet.extrapolateproperties=True
+
+# ------------------------------
+# START OF OUTPUT BLOCK
+# v46: output will be automatically added
+# ------------------------------
+forward=true
+fw.data.CORA_OUT.view.y.n=20
+fw.data.CORA_OUT.view.y.firstcoord=-3750.0
+fw.data.CORA_OUT.uN.propcoefs=1.0
+fw.data.CORA_OUT.uN.export.filetypes=simpleascii
+fw.data.CORA_OUT.view.x.firstcoord=-3750.0
+fw.data.CORA_OUT.uE.props=uE
+fw.data.coordgroups=CORA_OUT
+fw.data.CORA_OUT.uz.propcoefs=1.0
+fw.data.CORA_OUT.view.x.resolution=375.0
+fw.data.CORA_OUT.uN.props=uN
+fw.data.CORA_OUT.propgroups=uN,uE,uz
+fw.data.CORA_OUT.view.y.resolution=375.0
+fw.data.CORA_OUT.datadefinition=gridplanes
+fw.data.CORA_OUT.view.x.n=20
+fw.data.CORA_OUT.uE.propcoefs=1.0
+fw.data.CORA_OUT.uz.props=uz
+fw.data.CORA_OUT.uz.export.filetypes=simpleascii
+fw.data.CORA_OUT.uE.export.filetypes=simpleascii

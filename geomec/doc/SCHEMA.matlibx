@@ -1,0 +1,47 @@
+:Define MatLibXMaterials
+
+   :PushDir matlbx
+
+         # version info
+      versio
+      versio/MAJOR.i	                             :Default=3
+      versio/MINOR.i	                             :Default=2
+      versio/REVIS.i	                             :Default=0
+
+      :PushDir materi()
+
+            # name of material is unique identifier
+         NAME.c*
+
+            # material model:
+            # 0 = linear
+            # 1 = cam-clay
+            # 2 = mohr-coulomb
+            # 3 = modified mohr-coulomb
+            # 4 = creep
+         MODEL.i		                     :Domain=[0,4]
+
+            # maximum number of iterations
+         MAXITE.i
+
+            # convergence criterion
+         CNVCRI.d
+
+         :PushDir param()
+
+               # name of parameter is unique identifier
+            NAME.c*
+
+               # value of parameter
+            VALUE.d
+
+               # fixed yes/no
+            FIXED
+
+         :PopDir   # param()
+
+      :PopDir   # materi()
+
+   :PopDir   # matlbx
+
+:End

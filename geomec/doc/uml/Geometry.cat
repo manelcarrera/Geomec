@@ -1,0 +1,1588 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Geometry"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A0193310333"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CRegion"
+	    quid       	"39ED6F5603C7"
+	    documentation 	"A region object is rectangluar spot with a refinement of the grid. ")
+	(object Class_Category "Primitives"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Primitives.cat"
+	    quid       	"3A22959D03A3")
+	(object Class_Category "Primitive Collections"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Primitive Collections.cat"
+	    quid       	"3A2296140368")
+	(object Class_Category "Block Allocator"
+	    quid       	"3A90FBAC0384"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Parameterized_Class "block_allocated_list"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD602C9"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD60318"
+			    supplier   	"Logical View::Geometry::Block Allocator::std\\:\\:list<T,block_allocator<T,MSVC_STL_list_node<T>,chunk_size> >"
+			    quidu      	"3A90DFD60307"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A90DFD60319"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD6031A"
+			    type       	"size_t")))
+		(object Parameterized_Class "block_allocated_map"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD7021D"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD7028B"
+			    supplier   	"Logical View::Geometry::Block Allocator::std\\:\\:map<Key,T,Pred,block_allocator<T,MSVC_STL_map_node<Key,T>,chunk_size> >"
+			    quidu      	"3A90DFD7026B"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD7028C"
+			    type       	"class")
+			(object Parameter "T"
+			    quid       	"3A90DFD7029A"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD7029B"
+			    type       	"size_t")
+			(object Parameter "Pred"
+			    quid       	"3A90DFD7029C"
+			    type       	"class"
+			    initv      	"std::less<Key>")))
+		(object Parameterized_Class "block_allocated_multimap"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD70365"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD703C4"
+			    supplier   	"Logical View::Geometry::Block Allocator::std\\:\\:multimap<Key,T,Pred,block_allocator<T,MSVC_STL_multimap_node<Key,T>,chunk_size> >"
+			    quidu      	"3A90DFD703A3"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD703C5"
+			    type       	"class")
+			(object Parameter "T"
+			    quid       	"3A90DFD703C6"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD703C7"
+			    type       	"size_t")
+			(object Parameter "Pred"
+			    quid       	"3A90DFD703C8"
+			    type       	"class"
+			    initv      	"std::less<Key>")))
+		(object Parameterized_Class "block_allocated_set"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD603C3"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD7001A"
+			    supplier   	"Logical View::Geometry::Block Allocator::std\\:\\:set<Key,Pred,block_allocator<Key,MSVC_STL_set_node<Key>,chunk_size> >"
+			    quidu      	"3A90DFD70009"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD70029"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD7002A"
+			    type       	"size_t")
+			(object Parameter "Pred"
+			    quid       	"3A90DFD7002B"
+			    type       	"class"
+			    initv      	"std::less<Key>")))
+		(object Parameterized_Class "MSVC_STL_set_node"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD60384"
+		    stereotype 	"struct"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "t"
+			    quid       	"3A90DFD60395"
+			    type       	"T"
+			    exportControl 	"Public")
+			(object ClassAttribute "i"
+			    quid       	"3A90DFD60396"
+			    type       	"int"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A90DFD60394"
+			    type       	"class")))
+		(object Parameterized_Class "block_allocated_multiset"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD700D5"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD70133"
+			    supplier   	"Logical View::Geometry::Block Allocator::std\\:\\:multiset<Key,Pred,block_allocator<Key,MSVC_STL_multiset_node<Key>,chunk_size> >"
+			    quidu      	"3A90DFD70123"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD70134"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD70135"
+			    type       	"size_t")
+			(object Parameter "Pred"
+			    quid       	"3A90DFD70136"
+			    type       	"class"
+			    initv      	"std::less<Key>")))
+		(object Instantiated_Class "block_allocated_set<CVertex,100>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD30068"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD30086"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocated_set"
+			    quidu      	"3A90DFD603C3"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Instantiated_Class "block_allocator_cell<node_size,_chunk_size>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD50190"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD501A0"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocator_cell"
+			    quidu      	"3A90DFD402E8"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Parameterized_Class "block_allocator"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD60077"
+		    documentation 	
+| The template arguments of block_allocator are:
+| *   · T, the type of the elements contained.
+| *   · N, a class whose sizeof() determines the number of bytes
+| *     the allocator will be requested in every call to _Charalloc(),
+| *   · chunk_size, the number of nodes per chunk.
+		    
+		    operations 	(list Operations
+			(object Operation "address"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD60089"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter "x"
+				    quid       	"3A90DFD60096"
+				    type       	"reference"
+				    quidu      	"3A90DFD60180"))
+			    result     	"pointer"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A90DFD60142")
+			(object Operation "address"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD60097"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter "x"
+				    quid       	"3A90DFD60099"
+				    type       	"const_reference"
+				    quidu      	"3A90DFD601A0"))
+			    result     	"const_pointer"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A90DFD60161")
+			(object Operation "block_allocator"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD6009A"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "block_allocator"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD6009B"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD6009C"
+				    type       	"const block_allocator&"
+				    const      	TRUE))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "operator="
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600A6"
+			    documentation 	" see MSVC++ docs on this member funtion"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD600A7"
+				    type       	"const block_allocator<T,N,chunk_size>"
+				    const      	TRUE))
+			    result     	"block_allocator<T,N,chunk_size>&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "allocate"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600A8"
+			    documentation 	" containers supported never call this one"
+			    parameters 	(list Parameters
+				(object Parameter "n"
+				    quid       	"3A90DFD600A9"
+				    type       	"size_type"
+				    quidu      	"3A90DFD60103")
+				(object Parameter "hint"
+				    quid       	"3A90DFD600AA"
+				    type       	"const void*"
+				    const      	TRUE))
+			    result     	"pointer"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A90DFD60142")
+			(object Operation "_Charalloc"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600AB"
+			    parameters 	(list Parameters
+				(object Parameter "n"
+				    quid       	"3A90DFD600AC"
+				    type       	"size_type"
+				    quidu      	"3A90DFD60103"))
+			    result     	"char*"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "deallocate"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600AD"
+			    parameters 	(list Parameters
+				(object Parameter "p"
+				    quid       	"3A90DFD600B5"
+				    type       	"void*")
+				(object Parameter "n"
+				    quid       	"3A90DFD600B6"
+				    type       	"size_type"
+				    quidu      	"3A90DFD60103"))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "construct"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600B7"
+			    documentation 	" standard stuff"
+			    parameters 	(list Parameters
+				(object Parameter "p"
+				    quid       	"3A90DFD600B8"
+				    type       	"pointer"
+				    quidu      	"3A90DFD60142")
+				(object Parameter "val"
+				    quid       	"3A90DFD600B9"
+				    type       	"const T&"
+				    const      	TRUE))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "destroy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600BA"
+			    parameters 	(list Parameters
+				(object Parameter "p"
+				    quid       	"3A90DFD600BB"
+				    type       	"pointer"
+				    quidu      	"3A90DFD60142"))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "max_size"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD600BC"
+			    stereotype 	"const"
+			    result     	"size_type"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A90DFD60103")
+			(object Operation "operator<"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DFD600C5"
+			    documentation 	
+| This four member functions never get called, but VC complains if no
+|     * declaration for them is provided. See documentation for this
+|     * VC++ confirmed bug in the Microsoft Knowledge Base, article Q166721.
+|     * I think this has been fixed in VC++ 6.0.
+			    
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD600C7"
+				    type       	"const block_allocator<T,N,chunk_size>&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "operator>"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DFD600C8"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD600CA"
+				    type       	"const block_allocator<T,N,chunk_size>&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "operator=="
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DFD600CB"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD600D5"
+				    type       	"const block_allocator<T,N,chunk_size>&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "operator!="
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DFD600D6"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter ""
+				    quid       	"3A90DFD600D8"
+				    type       	"const block_allocator<T,N,chunk_size>&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A90DFD60086"
+			    type       	"class")
+			(object Parameter "N"
+			    quid       	"3A90DFD60087"
+			    type       	"class")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD60088"
+			    type       	"size_t"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "size_type"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef size_t     size_type;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD60103"
+			    documentation 	" Standard definitions, borrowed from the default VC++ allocator"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "difference_type"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef ptrdiff_t  difference_type;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD60123"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "pointer"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef T         *pointer;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD60142"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "const_pointer"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef const T   *const_pointer;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD60161"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "reference"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef T&         reference;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD60180"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "const_reference"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef const T&   const_reference;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD601A0"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "value_type"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef T          value_type;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD601BF"
+			    stereotype 	"typedef"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "cell"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef block_allocator_cell<sizeof(N),chunk_size>         cell;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD601DE"
+			    documentation 	" some typing saving typedefs"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "chunk_header"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef block_allocator_chunk_header<sizeof(N),chunk_size> chunk_header;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD601FD"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "chunk"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	"    typedef block_allocator_chunk<sizeof(N),chunk_size>        chunk;")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DFD6022C"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")))
+		(object Parameterized_Class "block_allocator_cell"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD402E8"
+		    documentation 	
+| A cell has information on the chunk it belongs in and a pointer
+| * for keeping a linked list of free cells. To save space, next and
+| * node have been merged into a union (next is only used when the
+| * cell is not used by the caller).
+		    
+		    stereotype 	"struct"
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "node_size"
+			    quid       	"3A90DFD40308"
+			    type       	"size_t")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD40309"
+			    type       	"size_t")))
+		(object Parameterized_Class "block_allocator_chunk"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD50103"
+		    stereotype 	"struct"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DFD50143"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocator_chunk_header<node_size,chunk_size>"
+			    quidu      	"3A90DFD50132"))
+		    operations 	(list Operations
+			(object Operation "block_allocator_chunk"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD501AF"
+			    documentation 	
+| The ctor puts the object in a state in which the first
+|   * cell is already "allocated". This saves some instructions
+|   * in the code.
+			    
+			    parameters 	(list Parameters
+				(object Parameter "previous"
+				    quid       	"3A90DFD501B0"
+				    type       	"block_allocator_chunk<node_size,chunk_size>*")
+				(object Parameter "next"
+				    quid       	"3A90DFD501BF"
+				    type       	"block_allocator_chunk<node_size,chunk_size>*"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "num_used_cells"
+			    quid       	"3A90DFD50154"
+			    type       	"size_t"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "node_size"
+			    quid       	"3A90DFD50152"
+			    type       	"size_t")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD50153"
+			    type       	"size_t")))
+		(object Instantiated_Class "block_allocator_cell<node_size,chunk_size>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD50161"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD50171"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocator_cell"
+			    quidu      	"3A90DFD402E8"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Parameterized_Class "block_allocator_chunk_header"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD403D2"
+		    documentation 	
+| Define block_allocator_chunk_header separately so that we
+| * can place dummy elements at the beginning and end of the linked list
+| * whitout the overhead of the data.
+		    
+		    stereotype 	"struct"
+		    operations 	(list Operations
+			(object Operation "block_allocator_chunk_header"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	TRUE))
+			    quid       	"3A90DFD50038"
+			    parameters 	(list Parameters
+				(object Parameter "previous"
+				    quid       	"3A90DFD50039"
+				    type       	"block_allocator_chunk<node_size,chunk_size>*"
+				    initv      	"0")
+				(object Parameter "next"
+				    quid       	"3A90DFD5003A"
+				    type       	"block_allocator_chunk<node_size,chunk_size>*"
+				    initv      	"0"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "node_size"
+			    quid       	"3A90DFD403E3"
+			    type       	"size_t")
+			(object Parameter "chunk_size"
+			    quid       	"3A90DFD403E4"
+			    type       	"size_t")))
+		(object Instantiated_Class "block_allocator_chunk_header<node_size,chunk_size>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD50132"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD50142"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocator_chunk_header"
+			    quidu      	"3A90DFD403D2"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Instantiated_Class "block_allocator_chunk<node_size,chunk_size>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD40317"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD40326"
+			    supplier   	"Logical View::Geometry::Block Allocator::block_allocator_chunk"
+			    quidu      	"3A90DFD50103"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Instantiated_Class "std::list<T,block_allocator<T,MSVC_STL_list_node<T>,chunk_size> >"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD60307"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD60317"
+			    supplier   	"std::list"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Parameterized_Class "MSVC_STL_list_node"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD6027A"
+		    stereotype 	"struct"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "t"
+			    quid       	"3A90DFD6029C"
+			    type       	"T"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A90DFD6029B"
+			    type       	"class")))
+		(object Parameterized_Class "MSVC_STL_map_node"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD701A0"
+		    stereotype 	"struct"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "i"
+			    quid       	"3A90DFD701FD"
+			    type       	"int"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD701BF"
+			    type       	"class")
+			(object Parameter "T"
+			    quid       	"3A90DFD701C0"
+			    type       	"class")))
+		(object Instantiated_Class "std::map<Key,T,Pred,block_allocator<T,MSVC_STL_map_node<Key,T>,chunk_size> >"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD7026B"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD7028A"
+			    supplier   	"std::map"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Parameterized_Class "MSVC_STL_multimap_node"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD702F7"
+		    stereotype 	"struct"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "i"
+			    quid       	"3A90DFD70336"
+			    type       	"int"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "Key"
+			    quid       	"3A90DFD70318"
+			    type       	"class")
+			(object Parameter "T"
+			    quid       	"3A90DFD70319"
+			    type       	"class")))
+		(object Parameterized_Class "MSVC_STL_multiset_node"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD70086"
+		    stereotype 	"struct"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "t"
+			    quid       	"3A90DFD700A8"
+			    type       	"T"
+			    exportControl 	"Public")
+			(object ClassAttribute "i"
+			    quid       	"3A90DFD700B5"
+			    type       	"int"
+			    exportControl 	"Public"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A90DFD700A7"
+			    type       	"class")))
+		(object Instantiated_Class "std::multimap<Key,T,Pred,block_allocator<T,MSVC_STL_multimap_node<Key,T>,chunk_size> >"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD703A3"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD703C3"
+			    supplier   	"std::multimap"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Instantiated_Class "std::set<Key,Pred,block_allocator<Key,MSVC_STL_set_node<Key>,chunk_size> >"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD70009"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD70019"
+			    supplier   	"std::set"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Instantiated_Class "std::multiset<Key,Pred,block_allocator<Key,MSVC_STL_multiset_node<Key>,chunk_size> >"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A90DFD70123"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A90DFD70132"
+			    supplier   	"std::multiset"))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "Block Allocator"
+		    quid       	"3A9107C70048"
+		    title      	"Block Allocator"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	1894
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Block Allocator::block_allocator_chunk" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1392, 880)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(1145, 817)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	494
+				justify    	0
+				label      	"block_allocator_chunk")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@1
+				location   	(1145, 767)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	494
+				justify    	0
+				label      	"<<struct>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD50103"
+			    compartment 	(object Compartment
+				Parent_View 	@1
+				location   	(1145, 878)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	3
+				max_width  	491)
+			    width      	512
+			    height     	326
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Block Allocator::block_allocator_chunk_header" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(464, 864)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(152, 826)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	624
+				justify    	0
+				label      	"block_allocator_chunk_header")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@2
+				location   	(152, 776)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	624
+				justify    	0
+				label      	"<<struct>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD403D2"
+			    compartment 	(object Compartment
+				Parent_View 	@2
+				location   	(152, 887)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	2
+				max_width  	622)
+			    width      	642
+			    height     	276
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "InstantiatedClass" "Logical View::Geometry::Block Allocator::block_allocator_chunk_header<node_size,chunk_size>" @3
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1024, 432)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(509, 381)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	1030
+				justify    	0
+				label      	"block_allocator_chunk_header<node_size,chunk_size>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD50132"
+			    width      	1048
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @4
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A90DFD50143"
+			    client     	@1
+			    supplier   	@3
+			    line_style 	0)
+			(object UsesView "" @5
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A90DFD50142"
+			    client     	@3
+			    supplier   	@2
+			    line_style 	0)
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Block Allocator::MSVC_STL_list_node" @6
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(464, 1360)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(247, 1322)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	434
+				justify    	0
+				label      	"MSVC_STL_list_node")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@6
+				location   	(247, 1272)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	434
+				justify    	0
+				label      	"<<struct>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD6027A"
+			    compartment 	(object Compartment
+				Parent_View 	@6
+				location   	(247, 1383)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	2
+				max_width  	122)
+			    width      	452
+			    height     	276
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Block Allocator::MSVC_STL_map_node" @7
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1056, 1360)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@7
+				location   	(831, 1322)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"MSVC_STL_map_node")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@7
+				location   	(831, 1272)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"<<struct>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD701A0"
+			    compartment 	(object Compartment
+				Parent_View 	@7
+				location   	(831, 1383)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	2
+				max_width  	141)
+			    width      	468
+			    height     	276
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "InstantiatedClass" "Logical View::Geometry::Block Allocator::std\\:\\:multimap<Key,T,Pred,block_allocator<T,MSVC_STL_multimap_node<Key,T>,chunk_size> >" @8
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(912, 1744)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@8
+				location   	(9, 1693)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	1806
+				justify    	0
+				label      	"std::multimap<Key,T,Pred,block_allocator<T,MSVC_STL_multimap_node<Key,T>,chunk_size> >")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD703A3"
+			    width      	1824
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "InstantiatedClass" "Logical View::Geometry::Block Allocator::std\\:\\:map<Key,T,Pred,block_allocator<T,MSVC_STL_map_node<Key,T>,chunk_size> >" @9
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(880, 1600)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@9
+				location   	(63, 1549)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	1634
+				justify    	0
+				label      	"std::map<Key,T,Pred,block_allocator<T,MSVC_STL_map_node<Key,T>,chunk_size> >")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD7026B"
+			    width      	1652
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "InstantiatedClass" "Logical View::Geometry::Block Allocator::std\\:\\:list<T,block_allocator<T,MSVC_STL_list_node<T>,chunk_size> >" @10
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2512, 1216)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@10
+				location   	(1859, 1165)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	1306
+				justify    	0
+				label      	"std::list<T,block_allocator<T,MSVC_STL_list_node<T>,chunk_size> >")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD60307"
+			    width      	1324
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Block Allocator::block_allocated_list" @11
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2336, 1760)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(2141, 1730)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	390
+				justify    	0
+				label      	"block_allocated_list")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD602C9"
+			    width      	408
+			    height     	161
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @12
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A90DFD60318"
+			    client     	@11
+			    supplier   	@10
+			    line_style 	0))))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Geometry Model Update Overview"
+	    quid       	"3A0FFFC5013B"
+	    title      	"Geometry Model Update Overview"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::block_allocated_set<CVertex,100>" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(352, 1248)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(17, 1174)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	670
+			justify    	0
+			label      	"block_allocated_set<CVertex,100>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150450253"
+		    width      	688
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "ParameterizedClass" "Logical View::Geometry::Primitive Collections::3D Array::C3DArray" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(240, 288)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(40, 234)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	400
+			justify    	0
+			label      	"C3DArray")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D03AB"
+		    width      	418
+		    height     	208
+		    annotation 	8
+		    autoResize 	TRUE)))))

@@ -1,0 +1,26 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_modify_dev.new","wp_modify_dev")
+
+Scenario ("Modification of deviated wellpath")
+StartScenario("Modification of deviated wellpath")
+	WellPathStartUp()
+	dim info as WELLPATH_INFO
+	AddDeviatedWellPath(curdir$ + "\test1.mwr","EU4")
+	info.sName = "EU4"
+	info.dNorthing = 20
+	info.dEasting = 25
+	info.dDerrickElevation = 2
+	if len(SetWellPathInfo("EU4",info,1)) = 0 then
+		tnofail "It is possible to modify the northing, easting or derrickelevation by hand for a deviated wellpath"
+	endif
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave()
+End Scenario
+
+EndLog
+
+End

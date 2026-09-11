@@ -1,0 +1,1091 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Graph"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A23D05302DF"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Add Graph"
+	    quid       	"3A261A600229")
+	(object UseCase "Delete Graph"
+	    quid       	"3A261A7D0285")
+	(object UseCase "Copy Graph"
+	    quid       	"3A261A8503DB")
+	(object UseCase "Add Wellpath to Graph"
+	    quid       	"3A261A9D019B")
+	(object UseCase "Delete All Graphs"
+	    quid       	"3A261ABB0310")
+	(object UseCase "Delete Wellpath from Graph"
+	    quid       	"3A261AFF017D")
+	(object UseCase "Graph Properties"
+	    quid       	"3A261B5403A7")
+	(object UseCase "Add to Graph"
+	    quid       	"3A2E4BD50020")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A261ACF012E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A261AD001B2"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Delete Graph"
+		    quidu      	"3A261A7D0285"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A261AD001BC"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Delete All Graphs"
+		    quidu      	"3A261ABB0310")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A261AD60247"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A261AD702E8"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Delete All Graphs"
+		    quidu      	"3A261ABB0310"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A261AD702F3"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A261ADD032D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A261ADE028E"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Add Graph"
+		    quidu      	"3A261A600229"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A261ADE0298"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A261AE20172"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A261AE301F5"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Copy Graph"
+		    quidu      	"3A261A8503DB"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A261AE301FF"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A261AE503D9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3A261AE60358"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Add Wellpath to Graph"
+		    quidu      	"3A261A9D019B"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A261AE60362"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$15"
+	    quid       	"3A261AFA00E0"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$16"
+		    quid       	"3A261AFB00AF"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Delete Graph"
+		    quidu      	"3A261A7D0285"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"3A261AFB00B9"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$18"
+	    quid       	"3A261B6501A2"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"3A261B660262"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Graph::Graph Properties"
+		    quidu      	"3A261B5403A7"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$20"
+		    quid       	"3A261B66026C"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Graph use Cases"
+	    quid       	"3A261A450018"
+	    title      	"Graph use Cases"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	88
+	    items      	(list diagram_item_list
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Delete All Graphs" @1
+		    location   	(592, 1552)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(592, 1690)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete All Graphs")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261ABB0310"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Add Graph" @2
+		    location   	(1376, 272)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1376, 410)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Graph")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261A600229"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Copy Graph" @3
+		    location   	(384, 848)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(384, 986)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Copy Graph")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261A8503DB"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Add Wellpath to Graph" @4
+		    location   	(1952, 704)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1952, 842)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Wellpath to Graph")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261A9D019B"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Delete Graph" @5
+		    location   	(304, 1232)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(304, 1370)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Graph")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261A7D0285"
+		    height     	118)
+		(object AssociationViewNew "$UNNAMED$0" @6
+		    location   	(482, 1430)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261ACF012E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @7
+			    Parent_View 	@6
+			    location   	(-30, -170)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AD001B2"
+			    client     	@6
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @8
+			    Parent_View 	@6
+			    location   	(-30, -170)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AD001BC"
+			    client     	@6
+			    supplier   	@1
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Graph::Graph Properties" @9
+		    location   	(912, 368)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(912, 506)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Graph Properties")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261B5403A7"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Change View Item Analysis Type" @10
+		    location   	(1136, 1744)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1136, 1882)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Change View Item Analysis Type")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E08E90184")
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Change View Item Depletion Stage" @11
+		    location   	(1920, 1104)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1920, 1242)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Change View Item Depletion Stage")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E08780182")
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Change View Item Gradient" @12
+		    location   	(2000, 1664)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(2000, 1802)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Change View Item Gradient")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E083800E9")
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Change View Item Result Type" @13
+		    location   	(1648, 1936)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(1648, 2074)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Change View Item Result Type")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E0621034D")
+		(object ClassView "Class" "Use Case View::Geomec User" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1328, 1056)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(1328, 1216)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$3" @15
+		    location   	(896, 1343)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261AD60247"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @16
+			    Parent_View 	@15
+			    location   	(688, 1167)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AD702E8"
+			    client     	@15
+			    supplier   	@1
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @17
+			    Parent_View 	@15
+			    location   	(688, 1167)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AD702F3"
+			    client     	@15
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @18
+		    location   	(1347, 704)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261ADD032D"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @19
+			    Parent_View 	@18
+			    location   	(1075, 512)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261ADE028E"
+			    client     	@18
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @20
+			    Parent_View 	@18
+			    location   	(1075, 512)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261ADE0298"
+			    client     	@18
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$9" @21
+		    location   	(986, 977)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261AE20172"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @22
+			    Parent_View 	@21
+			    location   	(714, 769)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AE301F5"
+			    client     	@21
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @23
+			    Parent_View 	@21
+			    location   	(714, 769)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AE301FF"
+			    client     	@21
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$12" @24
+		    location   	(1522, 943)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261AE503D9"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @25
+			    Parent_View 	@24
+			    location   	(1250, 735)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AE60358"
+			    client     	@24
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "$UNNAMED$14" @26
+			    Parent_View 	@24
+			    location   	(1250, 735)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AE60362"
+			    client     	@24
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$15" @27
+		    location   	(839, 1136)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261AFA00E0"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$16" @28
+			    Parent_View 	@27
+			    location   	(615, 928)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AFB00AF"
+			    client     	@27
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$17" @29
+			    Parent_View 	@27
+			    location   	(615, 928)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261AFB00B9"
+			    client     	@27
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$18" @30
+		    location   	(1143, 752)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261B6501A2"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$19" @31
+			    Parent_View 	@30
+			    location   	(871, 544)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261B660262"
+			    client     	@30
+			    supplier   	@9
+			    line_style 	0)
+			(object RoleView "$UNNAMED$20" @32
+			    Parent_View 	@30
+			    location   	(871, 544)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261B66026C"
+			    client     	@30
+			    supplier   	@14
+			    line_style 	0)))
+		(object AssociationViewNew "" @33
+		    location   	(1210, 1463)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E08F90386"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @34
+			    Parent_View 	@33
+			    location   	(122, 215)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @35
+				Parent_View 	@34
+				location   	(1220, 1276)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E08FA0391"
+			    client     	@33
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "" @36
+			    Parent_View 	@33
+			    location   	(122, 215)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @37
+				Parent_View 	@36
+				location   	(1121, 1631)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E08FA0387"
+			    client     	@33
+			    supplier   	@10
+			    line_style 	0)))
+		(object AssociationViewNew "" @38
+		    location   	(1597, 1074)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E089001EA"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @39
+			    Parent_View 	@38
+			    location   	(-35, -222)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @40
+				Parent_View 	@39
+				location   	(1426, 1104)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E0891017D"
+			    client     	@38
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "" @41
+			    Parent_View 	@38
+			    location   	(-35, -222)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @42
+				Parent_View 	@41
+				location   	(1765, 1129)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E08910173"
+			    client     	@38
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "" @43
+		    location   	(1734, 1423)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E084E0312"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @44
+			    Parent_View 	@43
+			    location   	(230, -209)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @45
+				Parent_View 	@44
+				location   	(1546, 1309)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E084F02F5"
+			    client     	@43
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "" @46
+			    Parent_View 	@43
+			    location   	(230, -209)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @47
+				Parent_View 	@46
+				location   	(1869, 1600)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E084F02EB"
+			    client     	@43
+			    supplier   	@12
+			    line_style 	0)))
+		(object AssociationViewNew "" @48
+		    location   	(1509, 1559)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E063F01DD"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @49
+			    Parent_View 	@48
+			    location   	(341, -313)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @50
+				Parent_View 	@49
+				location   	(1379, 1320)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E064001DF"
+			    client     	@48
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "" @51
+			    Parent_View 	@48
+			    location   	(341, -313)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @52
+				Parent_View 	@51
+				location   	(1563, 1826)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E064001D5"
+			    client     	@48
+			    supplier   	@13
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Make it the Current View" @53
+		    location   	(256, 336)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@53
+			location   	(256, 474)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Make it the Current View")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E4DCA016B")
+		(object AssociationViewNew "" @54
+		    location   	(884, 757)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E4E2B032D"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @55
+			    Parent_View 	@54
+			    location   	(772, 645)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @56
+				Parent_View 	@55
+				location   	(1213, 929)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4E2C01F8"
+			    client     	@54
+			    supplier   	@14
+			    line_style 	0)
+			(object RoleView "" @57
+			    Parent_View 	@54
+			    location   	(772, 645)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @58
+				Parent_View 	@57
+				location   	(555, 585)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4E2C01EE"
+			    client     	@54
+			    supplier   	@53
+			    line_style 	0)))
+		(object Label @59
+		    location   	(144, 80)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	557
+		    label      	"Graph Use Cases")))))

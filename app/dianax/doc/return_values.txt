@@ -1,0 +1,8 @@
+Return values for method RunDiana:
+
+0	: success
+-1	: invalid working directory
+-2	: invalid executable name
+-3	: diana not properly installed (environment variables)
+-4	: out of memory
+-5	: unable to run Diana executable

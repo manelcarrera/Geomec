@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define DIALIB="$(var.DIAPATH)\bin" ?>
+  <?define DIACM2="$(var.DIAPATH)\..\share\CM2\libs" ?>
+  <Component Id="Component_Diana_bin_Qt" Guid="$(var.ComponentID_Diana_bin_Qt)" Win64="yes">
+    <File Id="Qt5Core.dll" Name="Qt5Core.dll" Source="$(var.QTDIR)\bin\Qt5Core.dll" />
+    <File Id="Qt5Gui.dll" Name="Qt5Gui.dll" Source="$(var.QTDIR)\bin\Qt5Gui.dll" />
+    <File Id="Qt5Widgets.dll" Name="Qt5Widgets.dll" Source="$(var.QTDIR)\bin\Qt5Widgets.dll" />
+  </Component>
+  <Component Id="Component_Diana_bin" Guid="$(var.ComponentID_Diana_bin)" Win64="yes">
+    <!--
+	  <File Id="$(var.DLLANALYSISGUI)" Source="$(var.DIALIB)\$(var.DLLANALYSISGUI)" />
+	  <File Id="$(var.DLLFLDSWIDGETS)" Source="$(var.DIALIB)\$(var.DLLFLDSWIDGETS)" />
+	  <File Id="$(var.DLLGUICOMPONENTS)" Source="$(var.DIALIB)\$(var.DLLGUICOMPONENTS)" />
+	  <File Id="$(var.DLLPPFAPI)" Source="$(var.DIALIB)\$(var.DLLPPFAPI)" />
+	  <File Id="$(var.DLLPPFGUI)" Source="$(var.DIALIB)\$(var.DLLPPFGUI)" />
+	  <File Id="$(var.DLLPPFMODEL)" Source="$(var.DIALIB)\$(var.DLLPPFMODEL)" />
+    -->
+	  <File Id="$(var.DLLAPLB)" Source="$(var.DIALIB)\$(var.DLLAPLB)" />
+	  <File Id="$(var.DLLBAXQ)" Source="$(var.DIALIB)\$(var.DLLBAXQ)" />
+	  <File Id="$(var.DLLCILB)" Source="$(var.DIALIB)\$(var.DLLCILB)" />
+	  <File Id="$(var.DLLDCLB)" Source="$(var.DIALIB)\$(var.DLLDCLB)" />
+	  <File Id="$(var.DLLDEMF)" Source="$(var.DIALIB)\$(var.DLLDEMF)" />
+	  <File Id="$(var.DLLDEOU)" Source="$(var.DIALIB)\$(var.DLLDEOU)" />
+	  <File Id="$(var.DLLEIEM)" Source="$(var.DIALIB)\$(var.DLLEIEM)" />
+	  <File Id="$(var.DLLEIEV)" Source="$(var.DIALIB)\$(var.DLLEIEV)" />
+	  <File Id="$(var.DLLEIOU)" Source="$(var.DIALIB)\$(var.DLLEIOU)" />
+    <File Id="$(var.DLLEUCT)" Source="$(var.DIALIB)\$(var.DLLEUCT)" />
+    <File Id="$(var.DLLEULB)" Source="$(var.DIALIB)\$(var.DLLEULB)" />
+	  <File Id="$(var.DLLEURE)" Source="$(var.DIALIB)\$(var.DLLEURE)" />
+	  <File Id="$(var.DLLFLMA)" Source="$(var.DIALIB)\$(var.DLLFLMA)" />
+	  <File Id="$(var.DLLFQEF)" Source="$(var.DIALIB)\$(var.DLLFQEF)" />
+	  <File Id="$(var.DLLFQFP)" Source="$(var.DIALIB)\$(var.DLLFQFP)" />
+	  <File Id="$(var.DLLFQIN)" Source="$(var.DIALIB)\$(var.DLLFQIN)" />
+	  <File Id="$(var.DLLFQLO)" Source="$(var.DIALIB)\$(var.DLLFQLO)" />
+	  <File Id="$(var.DLLFQST)" Source="$(var.DIALIB)\$(var.DLLFQST)" />
+	  <File Id="$(var.DLLFSAC)" Source="$(var.DIALIB)\$(var.DLLFSAC)" />
+	  <File Id="$(var.DLLFSAM)" Source="$(var.DIALIB)\$(var.DLLFSAM)" />
+	  <File Id="$(var.DLLFSEF)" Source="$(var.DIALIB)\$(var.DLLFSEF)" />
+	  <File Id="$(var.DLLFSEM)" Source="$(var.DIALIB)\$(var.DLLFSEM)" />
+	  <File Id="$(var.DLLFSFL)" Source="$(var.DIALIB)\$(var.DLLFSFL)" />
+	  <File Id="$(var.DLLFSGM)" Source="$(var.DIALIB)\$(var.DLLFSGM)" />
+	  <File Id="$(var.DLLFSIA)" Source="$(var.DIALIB)\$(var.DLLFSIA)" />
+	  <File Id="$(var.DLLFSPR)" Source="$(var.DIALIB)\$(var.DLLFSPR)" />
+	  <File Id="$(var.DLLFSRD)" Source="$(var.DIALIB)\$(var.DLLFSRD)" />
+	  <File Id="$(var.DLLFSSV)" Source="$(var.DIALIB)\$(var.DLLFSSV)" />
+<!--	  <File Id="$(var.DLLHFCV)" Source="$(var.DIALIB)\$(var.DLLHFCV)" /> -->
+	  <File Id="$(var.DLLHFEX)" Source="$(var.DIALIB)\$(var.DLLHFEX)" />
+	  <File Id="$(var.DLLHFFO)" Source="$(var.DIALIB)\$(var.DLLHFFO)" />
+	  <File Id="$(var.DLLHFIN)" Source="$(var.DIALIB)\$(var.DLLHFIN)" />
+	  <File Id="$(var.DLLHFLC)" Source="$(var.DIALIB)\$(var.DLLHFLC)" />
+	  <File Id="$(var.DLLHFLO)" Source="$(var.DIALIB)\$(var.DLLHFLO)" />
+	  <File Id="$(var.DLLHFLR)" Source="$(var.DIALIB)\$(var.DLLHFLR)" />
+	  <File Id="$(var.DLLHFSO)" Source="$(var.DIALIB)\$(var.DLLHFSO)" />
+	  <File Id="$(var.DLLHFSU)" Source="$(var.DIALIB)\$(var.DLLHFSU)" />
+	  <File Id="$(var.DLLININ)" Source="$(var.DIALIB)\$(var.DLLININ)" />
+	  <File Id="$(var.DLLLBAJ)" Source="$(var.DIALIB)\$(var.DLLLBAJ)" />
+	  <File Id="$(var.DLLLBBB)" Source="$(var.DIALIB)\$(var.DLLLBBB)" />
+	  <File Id="$(var.DLLLBCI)" Source="$(var.DIALIB)\$(var.DLLLBCI)" />
+	  <File Id="$(var.DLLLBCP)" Source="$(var.DIALIB)\$(var.DLLLBCP)" />
+	  <File Id="$(var.DLLLBCX)" Source="$(var.DIALIB)\$(var.DLLLBCX)" />
+	  <File Id="$(var.DLLLBDC)" Source="$(var.DIALIB)\$(var.DLLLBDC)" />
+	  <File Id="$(var.DLLLBDS)" Source="$(var.DIALIB)\$(var.DLLLBDS)" />
+	  <File Id="$(var.DLLLBDY)" Source="$(var.DIALIB)\$(var.DLLLBDY)" />
+	  <File Id="$(var.DLLLBEL)" Source="$(var.DIALIB)\$(var.DLLLBEL)" />
+	  <File Id="$(var.DLLLBER)" Source="$(var.DIALIB)\$(var.DLLLBER)" />
+	  <File Id="$(var.DLLLBFI)" Source="$(var.DIALIB)\$(var.DLLLBFI)" />
+	  <File Id="$(var.DLLLBFL)" Source="$(var.DIALIB)\$(var.DLLLBFL)" />
+	  <File Id="$(var.DLLLBFWDIACOMMANDFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWDIACOMMANDFILE)" />
+	  <File Id="$(var.DLLLBFWDIADATAFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWDIADATAFILE)" />
+	  <File Id="$(var.DLLLBFWDIAFRAME)" Source="$(var.DIALIB)\$(var.DLLLBFWDIAFRAME)" />
+	  <File Id="$(var.DLLLBFWFIELDVALUEFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWFIELDVALUEFILE)" />
+	  <File Id="$(var.DLLLBFWFILOSMODELFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWFILOSMODELFILE)" />
+	  <File Id="$(var.DLLLBFWGEOMETRY)" Source="$(var.DIALIB)\$(var.DLLLBFWGEOMETRY)" />
+	  <File Id="$(var.DLLLBFWGUIFRAME)" Source="$(var.DIALIB)\$(var.DLLLBFWGUIFRAME)" />
+	  <File Id="$(var.DLLLBFWMIDASFXDFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWMIDASFXDFILE)" />
+	  <File Id="$(var.DLLLBFWMODELFRAME)" Source="$(var.DIALIB)\$(var.DLLLBFWMODELFRAME)" />
+	  <File Id="$(var.DLLLBFWNASTRANFILE)" Source="$(var.DIALIB)\$(var.DLLLBFWNASTRANFILE)" />
+<!--	  <File Id="$(var.DLLLBFWOCCGEOMETRY)" Source="$(var.DIALIB)\$(var.DLLLBFWOCCGEOMETRY)" /> -->
+<!--	  <File Id="$(var.DLLLBFWOPENGLFRAME)" Source="$(var.DIALIB)\$(var.DLLLBFWOPENGLFRAME)" /> -->
+<!--	  <File Id="$(var.DLLLBFWQTGUIFRAME)" Source="$(var.DIALIB)\$(var.DLLLBFWQTGUIFRAME)" /> -->
+	  <File Id="$(var.DLLLBFWTENSOR)" Source="$(var.DIALIB)\$(var.DLLLBFWTENSOR)" />
+	  <File Id="$(var.DLLLBFWTETMESH)" Source="$(var.DIALIB)\$(var.DLLLBFWTETMESH)" />
+	  <File Id="$(var.DLLLBFWTRIANGLE)" Source="$(var.DIALIB)\$(var.DLLLBFWTRIANGLE)" />
+	  <File Id="$(var.DLLLBGCCLASSES)" Source="$(var.DIALIB)\$(var.DLLLBGCCLASSES)" />
+	  <File Id="$(var.DLLLBGCROUTINES)" Source="$(var.DIALIB)\$(var.DLLLBGCROUTINES)" />
+	  <File Id="$(var.DLLLBGE)" Source="$(var.DIALIB)\$(var.DLLLBGE)" />
+	  <File Id="$(var.DLLLBGS)" Source="$(var.DIALIB)\$(var.DLLLBGS)" />
+    <File Id="$(var.DLLLBIO)" Source="$(var.DIALIB)\$(var.DLLLBIO)" />
+    <File Id="$(var.DLLLBJC)" Source="$(var.DIALIB)\$(var.DLLLBJC)" />
+	  <File Id="$(var.DLLLBMA)" Source="$(var.DIALIB)\$(var.DLLLBMA)" />
+	  <File Id="$(var.DLLLBME)" Source="$(var.DIALIB)\$(var.DLLLBME)" />
+	  <File Id="$(var.DLLLBPDARPACK)" Source="$(var.DIALIB)\$(var.DLLLBPDARPACK)" />
+	  <File Id="$(var.DLLLBPDBIHAR)" Source="$(var.DIALIB)\$(var.DLLLBPDBIHAR)" />
+	  <File Id="$(var.DLLLBPDEP)" Source="$(var.DIALIB)\$(var.DLLLBPDEP)" />
+	  <File Id="$(var.DLLLBPDLP)" Source="$(var.DIALIB)\$(var.DLLLBPDLP)" />
+	  <File Id="$(var.DLLLBPDLS)" Source="$(var.DIALIB)\$(var.DLLLBPDLS)" />
+	  <File Id="$(var.DLLLBPDMETIS)" Source="$(var.DIALIB)\$(var.DLLLBPDMETIS)" />
+	  <File Id="$(var.DLLLBPDOR)" Source="$(var.DIALIB)\$(var.DLLLBPDOR)" />
+	  <File Id="$(var.DLLLBPDQUAD)" Source="$(var.DIALIB)\$(var.DLLLBPDQUAD)" />
+	  <File Id="$(var.DLLLBPF)" Source="$(var.DIALIB)\$(var.DLLLBPF)" />
+	  <File Id="$(var.DLLLBPO)" Source="$(var.DIALIB)\$(var.DLLLBPO)" />
+	  <File Id="$(var.DLLLBQL)" Source="$(var.DIALIB)\$(var.DLLLBQL)" />
+	  <File Id="$(var.DLLLBRD)" Source="$(var.DIALIB)\$(var.DLLLBRD)" />
+	  <File Id="$(var.DLLLBSC)" Source="$(var.DIALIB)\$(var.DLLLBSC)" />
+	  <File Id="$(var.DLLLBSO)" Source="$(var.DIALIB)\$(var.DLLLBSO)" />
+	  <File Id="$(var.DLLLBTM)" Source="$(var.DIALIB)\$(var.DLLLBTM)" />
+	  <File Id="$(var.DLLLBUI)" Source="$(var.DIALIB)\$(var.DLLLBUI)" />
+	  <File Id="$(var.DLLLSAS)" Source="$(var.DIALIB)\$(var.DLLLSAS)" />
+	  <File Id="$(var.DLLLSDD)" Source="$(var.DIALIB)\$(var.DLLLSDD)" />
+	  <File Id="$(var.DLLLSEM)" Source="$(var.DIALIB)\$(var.DLLLSEM)" />
+	  <File Id="$(var.DLLLSEV)" Source="$(var.DIALIB)\$(var.DLLLSEV)" />
+    <File Id="$(var.DLLLSEX)" Source="$(var.DIALIB)\$(var.DLLLSEX)" />
+    <File Id="$(var.DLLLSFU)" Source="$(var.DIALIB)\$(var.DLLLSFU)" />
+	  <File Id="$(var.DLLLSIT)" Source="$(var.DIALIB)\$(var.DLLLSIT)" />
+	  <File Id="$(var.DLLLSLO)" Source="$(var.DIALIB)\$(var.DLLLSLO)" />
+    <File Id="$(var.DLLLSRF)" Source="$(var.DIALIB)\$(var.DLLLSRF)" />
+    <File Id="$(var.DLLMIRD)" Source="$(var.DIALIB)\$(var.DLLMIRD)" />
+	  <File Id="$(var.DLLMOCO)" Source="$(var.DIALIB)\$(var.DLLMOCO)" />
+	  <File Id="$(var.DLLMOFP)" Source="$(var.DIALIB)\$(var.DLLMOFP)" />
+	  <File Id="$(var.DLLMOLB)" Source="$(var.DIALIB)\$(var.DLLMOLB)" />
+	  <File Id="$(var.DLLMORD)" Source="$(var.DIALIB)\$(var.DLLMORD)" />
+	  <File Id="$(var.DLLMOXQ)" Source="$(var.DIALIB)\$(var.DLLMOXQ)" />
+	  <File Id="$(var.DLLNLCV)" Source="$(var.DIALIB)\$(var.DLLNLCV)" />
+	  <File Id="$(var.DLLNLDU)" Source="$(var.DIALIB)\$(var.DLLNLDU)" />
+	  <File Id="$(var.DLLNLEC)" Source="$(var.DIALIB)\$(var.DLLNLEC)" />
+	  <File Id="$(var.DLLNLES)" Source="$(var.DIALIB)\$(var.DLLNLES)" />
+    <!-- <File Id="$(var.DLLNLET)" Source="$(var.DIALIB)\$(var.DLLNLET)" /> -->
+    <File Id="$(var.DLLNLIF)" Source="$(var.DIALIB)\$(var.DLLNLIF)" />
+	  <File Id="$(var.DLLNLIN)" Source="$(var.DIALIB)\$(var.DLLNLIN)" />
+	  <File Id="$(var.DLLNLIS)" Source="$(var.DIALIB)\$(var.DLLNLIS)" />
+	  <File Id="$(var.DLLNLIX)" Source="$(var.DIALIB)\$(var.DLLNLIX)" />
+	  <File Id="$(var.DLLNLLB)" Source="$(var.DIALIB)\$(var.DLLNLLB)" />
+	  <File Id="$(var.DLLNLLG)" Source="$(var.DIALIB)\$(var.DLLNLLG)" />
+	  <File Id="$(var.DLLNLLO)" Source="$(var.DIALIB)\$(var.DLLNLLO)" />
+	  <File Id="$(var.DLLNLPR)" Source="$(var.DIALIB)\$(var.DLLNLPR)" />
+	  <File Id="$(var.DLLNLRD)" Source="$(var.DIALIB)\$(var.DLLNLRD)" />
+    <File Id="$(var.DLLNLRE)" Source="$(var.DIALIB)\$(var.DLLNLRE)" />
+    <File Id="$(var.DLLNLRF)" Source="$(var.DIALIB)\$(var.DLLNLRF)" />
+	  <File Id="$(var.DLLNLRL)" Source="$(var.DIALIB)\$(var.DLLNLRL)" />
+	  <File Id="$(var.DLLNLST)" Source="$(var.DIALIB)\$(var.DLLNLST)" />
+	  <File Id="$(var.DLLNLTG)" Source="$(var.DIALIB)\$(var.DLLNLTG)" />
+	  <File Id="$(var.DLLNMRS)" Source="$(var.DIALIB)\$(var.DLLNMRS)" />
+	  <File Id="$(var.DLLNMSA)" Source="$(var.DIALIB)\$(var.DLLNMSA)" />
+	  <File Id="$(var.DLLNMST)" Source="$(var.DIALIB)\$(var.DLLNMST)" />
+	  <File Id="$(var.DLLPEIN)" Source="$(var.DIALIB)\$(var.DLLPEIN)" />
+	  <File Id="$(var.DLLPEKA)" Source="$(var.DIALIB)\$(var.DLLPEKA)" />
+	  <File Id="$(var.DLLPELB)" Source="$(var.DIALIB)\$(var.DLLPELB)" />
+	  <File Id="$(var.DLLPFAS)" Source="$(var.DIALIB)\$(var.DLLPFAS)" />
+	  <File Id="$(var.DLLPFBF)" Source="$(var.DIALIB)\$(var.DLLPFBF)" />
+	  <File Id="$(var.DLLPFBO)" Source="$(var.DIALIB)\$(var.DLLPFBO)" />
+	  <File Id="$(var.DLLPFCS)" Source="$(var.DIALIB)\$(var.DLLPFCS)" />
+	  <File Id="$(var.DLLPFEM)" Source="$(var.DIALIB)\$(var.DLLPFEM)" />
+	  <File Id="$(var.DLLPFEV)" Source="$(var.DIALIB)\$(var.DLLPFEV)" />
+	  <File Id="$(var.DLLPFIN)" Source="$(var.DIALIB)\$(var.DLLPFIN)" />
+	  <File Id="$(var.DLLPFMR)" Source="$(var.DIALIB)\$(var.DLLPFMR)" />
+	  <File Id="$(var.DLLPFRN)" Source="$(var.DIALIB)\$(var.DLLPFRN)" />
+	  <File Id="$(var.DLLPFSV)" Source="$(var.DIALIB)\$(var.DLLPFSV)" />
+	  <File Id="$(var.DLLPFUT)" Source="$(var.DIALIB)\$(var.DLLPFUT)" />
+	  <File Id="$(var.DLLPHIN)" Source="$(var.DIALIB)\$(var.DLLPHIN)" />
+	  <File Id="$(var.DLLPHSU)" Source="$(var.DIALIB)\$(var.DLLPHSU)" />
+	  <File Id="$(var.DLLPIEV)" Source="$(var.DIALIB)\$(var.DLLPIEV)" />
+	  <File Id="$(var.DLLPIGE)" Source="$(var.DIALIB)\$(var.DLLPIGE)" />
+	  <File Id="$(var.DLLPILB)" Source="$(var.DIALIB)\$(var.DLLPILB)" />
+	  <File Id="$(var.DLLPIRD)" Source="$(var.DIALIB)\$(var.DLLPIRD)" />
+	  <File Id="$(var.DLLPOFP)" Source="$(var.DIALIB)\$(var.DLLPOFP)" />
+	  <File Id="$(var.DLLPOFX)" Source="$(var.DIALIB)\$(var.DLLPOFX)" />
+	  <File Id="$(var.DLLPOGM)" Source="$(var.DIALIB)\$(var.DLLPOGM)" />
+	  <File Id="$(var.DLLPOSR)" Source="$(var.DIALIB)\$(var.DLLPOSR)" />
+	  <File Id="$(var.DLLPOWR)" Source="$(var.DIALIB)\$(var.DLLPOWR)" />
+	  <File Id="$(var.DLLPSFS)" Source="$(var.DIALIB)\$(var.DLLPSFS)" />
+	  <File Id="$(var.DLLPSSF)" Source="$(var.DIALIB)\$(var.DLLPSSF)" />
+	  <File Id="$(var.DLLSAIN)" Source="$(var.DIALIB)\$(var.DLLSAIN)" />
+	  <File Id="$(var.DLLSAMO)" Source="$(var.DIALIB)\$(var.DLLSAMO)" />
+	  <File Id="$(var.DLLSARH)" Source="$(var.DIALIB)\$(var.DLLSARH)" />
+<!--
+    <File Id="$(var.DLLSEBO)" Source="$(var.DIALIB)\$(var.DLLSEBO)" />
+	  <File Id="$(var.DLLSEIO)" Source="$(var.DIALIB)\$(var.DLLSEIO)" />
+	  <File Id="$(var.DLLSELB)" Source="$(var.DIALIB)\$(var.DLLSELB)" />
+	  <File Id="$(var.DLLSEST)" Source="$(var.DIALIB)\$(var.DLLSEST)" />
+	  <File Id="$(var.DLLSETE)" Source="$(var.DIALIB)\$(var.DLLSETE)" />
+    -->
+	  <File Id="$(var.DLLSOSO)" Source="$(var.DIALIB)\$(var.DLLSOSO)" />
+	  <File Id="$(var.DLLSPXQ)" Source="$(var.DIALIB)\$(var.DLLSPXQ)" />
+	  <File Id="$(var.DLLUTLB)" Source="$(var.DIALIB)\$(var.DLLUTLB)" />
+    <File Id="$(var.EXELQ)" Source="$(var.DIALIB)\$(var.EXELQ)" />
+    <File Id="lbfw51Cm2License.dll" Source="$(var.DIALIB)\lbfw51Cm2License.dll" />
+    <File Id="lbfw51GOCADMesh.dll" Source="$(var.DIALIB)\lbfw51GOCADMesh.dll" />
+    <File Id="cm2hexamesh_x64_49.dll" Source="$(var.DIACM2)\cm2hexamesh_x64_49.dll" />
+    <File Id="cm2lapack_x64_49.dll" Source="$(var.DIACM2)\cm2lapack_x64_49.dll" />
+    <File Id="cm2math1_x64_49.dll" Source="$(var.DIACM2)\cm2math1_x64_49.dll" />
+    <File Id="cm2meshtools1d_x64_49.dll" Source="$(var.DIACM2)\cm2meshtools1d_x64_49.dll" />
+    <File Id="cm2meshtools2d_x64_49.dll" Source="$(var.DIACM2)\cm2meshtools2d_x64_49.dll" />
+    <File Id="cm2meshtools3d_x64_49.dll" Source="$(var.DIACM2)\cm2meshtools3d_x64_49.dll" />
+    <File Id="cm2meshtools_x64_49.dll" Source="$(var.DIACM2)\cm2meshtools_x64_49.dll" />
+    <File Id="cm2misc_x64_49.dll" Source="$(var.DIACM2)\cm2misc_x64_49.dll" />
+    <File Id="cm2quadmesh_aniso_x64_49.dll" Source="$(var.DIACM2)\cm2quadmesh_aniso_x64_49.dll" />
+    <File Id="cm2surf_remesh_q4_x64_49.dll" Source="$(var.DIACM2)\cm2surf_remesh_q4_x64_49.dll" />
+    <File Id="cm2surf_remesh_t3_x64_49.dll" Source="$(var.DIACM2)\cm2surf_remesh_t3_x64_49.dll" />
+    <File Id="cm2tetramesh_x64_49.dll" Source="$(var.DIACM2)\cm2tetramesh_x64_49.dll" />
+    <File Id="cm2triamesh_aniso_x64_49.dll" Source="$(var.DIACM2)\cm2triamesh_aniso_x64_49.dll" />
+  </Component>
+</Include>

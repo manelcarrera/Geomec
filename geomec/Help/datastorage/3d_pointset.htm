@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>3D point set</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="3D elementset">
+	<param name="Keyword" value="3D pointset">
+	<param name="Keyword" value="data storage">
+	<param name="Keyword" value="elementset">
+	<param name="Keyword" value="pointset">
+</OBJECT>
+<h1>3D Pointsets</h1>
+
+<p>A 3D point- or elementset is a series of Northing, Easting, Depth 
+coordinates, with or without associated data. </p>
+<p>A pointset can be created by Geomec (right click: Data Storage \&nbsp; 
+Point/element sets \ Create Pointset), by the user itself (for instance in 
+Excel) or by external programs (such as reservoir simulators, usually as TXT or 
+DAT files).</p>
+<p>Externally created pointsets usually need some editing to create proper 
+headers:</p>
+<ul>
+	<li>Make sure that the first (non-empty or non-comment) line contains the 
+	word Pointset</li>
+	<li>Make sure that the second (non-empty or non-comment) line contains the 
+	words UNIT SI or UNIT FIELD</li>
+	<li>Make sure the data is in the order Easting, Northing, Depth, values&nbsp;&nbsp; 
+	or&nbsp; Northing, Easting, Depth, values. </li>
+	<li>Make sure the data header at least contains the Tags Easting, Northing, 
+	Depth&nbsp;&nbsp; or&nbsp; Northing, Easting, Depth.</li>
+	<li>Comment out (with # or * )&nbsp; all other text and data not being the 
+	pointset itself</li>
+	<li>Put an END statement at the last line.</li>
+</ul>
+<p>For Data Tag format, <a href="../file%20formats/tagged_format.htm">see the 
+link</a></p>
+
+</body>
+
+</html>

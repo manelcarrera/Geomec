@@ -1,0 +1,2 @@
+lmutil lmborrow -status
+@pause

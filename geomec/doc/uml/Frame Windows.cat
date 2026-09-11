@@ -1,0 +1,1861 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Frame Windows"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0B60244"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CFrameWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B6024E"
+	    documentation 	"The CFrameWnd class provides the functionality of a Windows single document interface (SDI) overlapped or pop-up frame window, along with members for managing the window. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B60275"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "~CFrameWnd"
+		    quid       	"3A07D0B6027F"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B60289"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B60293"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B6029D"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0B602A7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B602B1"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0B602B2"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0B602BB"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0B602BC"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(cs);
+|
+			    )))
+		    quid       	"3A07D0B602CF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D0B602D0"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B602DA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B602E3"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B602ED"
+			    type       	"LPARAM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BeginModalState"
+		    quid       	"3A07D0B602F7"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndModalState"
+		    quid       	"3A07D0B60301"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B6030C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B60315"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PostNcDestroy"
+		    quid       	"3A07D0B6031F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsFrameWnd"
+		    quid       	"3A07D0B6032A"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nIDResource, dwDefaultStyle, pParentWnd, pContext);
+|
+			    )))
+		    quid       	"3A07D0B6033D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIDResource"
+			    quid       	"3A07D0B6033E"
+			    type       	"UINT")
+			(object Parameter "dwDefaultStyle"
+			    quid       	"3A07D0B60347"
+			    type       	"DWORD"
+			    initv      	"WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B60348"
+			    type       	"CWnd*"
+			    initv      	"NULL")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B60351"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetActiveDocument"
+		    quid       	"3A07D0B6035B"
+		    stereotype 	"virtual"
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetActiveFrame"
+		    quid       	"3A07D0B60366"
+		    stereotype 	"virtual"
+		    result     	"CFrameWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMessageString"
+		    quid       	"3A07D0B60379"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B6037A"
+			    type       	"UINT")
+			(object Parameter "rMessage"
+			    quid       	"3A07D0B60383"
+			    type       	"CString&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RecalcLayout"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bNotify);
+|
+			    )))
+		    quid       	"3A07D0B6038D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bNotify"
+			    quid       	"3A07D0B60397"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ActivateFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nCmdShow);
+|
+			    )))
+		    quid       	"3A07D0B603A1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCmdShow"
+			    quid       	"3A07D0B603A2"
+			    type       	"int"
+			    initv      	"-1"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetPreviewMode"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bPreview, pState);
+|
+			    )))
+		    quid       	"3A07D0B603B5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bPreview"
+			    quid       	"3A07D0B603B6"
+			    type       	"BOOL")
+			(object Parameter "pState"
+			    quid       	"3A07D0B603BF"
+			    type       	"CPrintPreviewState*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMessageBar"
+		    quid       	"3A07D0B603C9"
+		    stereotype 	"virtual"
+		    result     	"CWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NegotiateBorderSpace"
+		    quid       	"3A07D0B603D4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nBorderCmd"
+			    quid       	"3A07D0B603DD"
+			    type       	"UINT")
+			(object Parameter "lpRectBorder"
+			    quid       	"3A07D0B603E7"
+			    type       	"LPRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateClient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpcs, pContext);
+|
+			    )))
+		    quid       	"3A07D0B70009"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpcs"
+			    quid       	"3A07D0B7000A"
+			    type       	"LPCREATESTRUCT")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B70013"
+			    type       	"CCreateContext*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameTitle"
+		    quid       	"3A07D0B7001E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAddToTitle"
+			    quid       	"3A07D0B70027"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameMenu"
+		    quid       	"3A07D0B70031"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hMenuAlt"
+			    quid       	"3A07D0B7003B"
+			    type       	"HMENU"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultAccelerator"
+		    quid       	"3A07D0B70045"
+		    stereotype 	"virtual"
+		    result     	"HACCEL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DelayUpdateFrameMenu"
+		    quid       	"3A07D0B7004F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hMenuAlt"
+			    quid       	"3A07D0B70059"
+			    type       	"HMENU"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExitHelpMode"
+		    quid       	"3A07D0B70063"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMDIChildWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B7006E"
+	    documentation 	
+|The CMDIChildWnd class provides the functionality of a Windows multiple document interface (MDI) child window, along with members for managing the window. 
+|
+|An MDI child window looks much like a typical frame window, except that the MDI child window appears inside an MDI frame window rather than on the desktop. An MDI child window does not have a menu bar of its own, but instead shares the menu of the MDI frame window. The framework automatically changes the MDI frame menu to represent the currently active MDI child window.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B70096"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd"
+		    quidu      	"3A07D0B6024E"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0B700A0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B700A1"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B700B4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, pContext);
+|
+			    )))
+		    quid       	"3A07D0B700BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszClassName"
+			    quid       	"3A07D0B700BF"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszWindowName"
+			    quid       	"3A07D0B700C8"
+			    type       	"LPCTSTR")
+			(object Parameter "dwStyle"
+			    quid       	"3A07D0B700D2"
+			    type       	"DWORD"
+			    initv      	"WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW")
+			(object Parameter "rect"
+			    quid       	"3A07D0B700D3"
+			    type       	"const RECT&"
+			    initv      	"rectDefault")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B700DC"
+			    type       	"CMDIFrameWnd*"
+			    initv      	"NULL")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B700DD"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroyWindow"
+		    quid       	"3A07D0B700E7"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(cs);
+|
+			    )))
+		    quid       	"3A07D0B700FA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D0B700FB"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B70105"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B7010E"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DefWindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B70119"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B70122"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B7012C"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B7012D"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nIDResource, dwDefaultStyle, pParentWnd, pContext);
+|
+			    )))
+		    quid       	"3A07D0B70137"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIDResource"
+			    quid       	"3A07D0B70140"
+			    type       	"UINT")
+			(object Parameter "dwDefaultStyle"
+			    quid       	"3A07D0B7014A"
+			    type       	"DWORD"
+			    initv      	"WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B7014B"
+			    type       	"CWnd*"
+			    initv      	"NULL")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B70154"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ActivateFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nCmdShow);
+|
+			    )))
+		    quid       	"3A07D0B7015E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCmdShow"
+			    quid       	"3A07D0B7015F"
+			    type       	"int"
+			    initv      	"-1"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMessageBar"
+		    quid       	"3A07D0B70172"
+		    stereotype 	"virtual"
+		    result     	"CWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameTitle"
+		    quid       	"3A07D0B7017C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAddToTitle"
+			    quid       	"3A07D0B70186"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameMenu"
+		    quid       	"3A07D0B70190"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bActive"
+			    quid       	"3A07D0B7019A"
+			    type       	"BOOL")
+			(object Parameter "pActivateWnd"
+			    quid       	"3A07D0B7019B"
+			    type       	"CWnd*")
+			(object Parameter "hMenuAlt"
+			    quid       	"3A07D0B701A4"
+			    type       	"HMENU"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMDIFrameWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B701AE"
+	    documentation 	"The CMDIFrameWnd class provides the functionality of a Windows multiple document interface (MDI) frame window, along with members for managing the window."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B701D6"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd"
+		    quidu      	"3A07D0B6024E"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0B701D7"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B701E0"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B701EB"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0B701FE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B701FF"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0B70208"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0B70209"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0B70212"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(cs);
+|
+			    )))
+		    quid       	"3A07D0B7021C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D0B70226"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B70230"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B7023A"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B7023B"
+			    type       	"LPARAM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B70245"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B7024E"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DefWindowProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(message, wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B70259"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "message"
+			    quid       	"3A07D0B70262"
+			    type       	"UINT")
+			(object Parameter "wParam"
+			    quid       	"3A07D0B70263"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B7026C"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nIDResource, dwDefaultStyle, pParentWnd, pContext);
+|
+			    )))
+		    quid       	"3A07D0B70277"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIDResource"
+			    quid       	"3A07D0B70280"
+			    type       	"UINT")
+			(object Parameter "dwDefaultStyle"
+			    quid       	"3A07D0B70281"
+			    type       	"DWORD"
+			    initv      	"WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B7028A"
+			    type       	"CWnd*"
+			    initv      	"NULL")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B70294"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetActiveFrame"
+		    quid       	"3A07D0B7029E"
+		    stereotype 	"virtual"
+		    result     	"CFrameWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateClient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpcs, pContext);
+|
+			    )))
+		    quid       	"3A07D0B702A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpcs"
+			    quid       	"3A07D0B702B2"
+			    type       	"LPCREATESTRUCT")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B702B3"
+			    type       	"CCreateContext*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameTitle"
+		    quid       	"3A07D0B702BD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAddToTitle"
+			    quid       	"3A07D0B702C6"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameMenu"
+		    quid       	"3A07D0B702D1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hMenuAlt"
+			    quid       	"3A07D0B702DA"
+			    type       	"HMENU"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DelayUpdateFrameMenu"
+		    quid       	"3A07D0B702E4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hMenuAlt"
+			    quid       	"3A07D0B702EE"
+			    type       	"HMENU"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateClient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpCreateStruct, pWindowMenu);
+|
+			    )))
+		    quid       	"3A07D0B702F8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpCreateStruct"
+			    quid       	"3A07D0B702F9"
+			    type       	"LPCREATESTRUCT")
+			(object Parameter "pWindowMenu"
+			    quid       	"3A07D0B70302"
+			    type       	"CMenu*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetWindowMenuPopup"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(hMenuBar);
+|
+			    )))
+		    quid       	"3A07D0B7030D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hMenuBar"
+			    quid       	"3A07D0B70316"
+			    type       	"HMENU"))
+		    result     	"HMENU"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMiniFrameWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B70321"
+	    documentation 	"A CMiniFrameWnd object represents a half-height frame window typically seen around floating toolbars. These mini-frame windows behave like normal frame windows, except that they do not have minimize/maximize buttons or menus and you only have to single-click on the system menu to dismiss them."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B70353"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd"
+		    quidu      	"3A07D0B6024E"))
+	    operations 	(list Operations
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(cs);
+|
+			    )))
+		    quid       	"3A07D0B70354"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D0B7035D"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CalcWindowRect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpClientRect, nAdjustType);
+|
+			    )))
+		    quid       	"3A07D0B70367"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpClientRect"
+			    quid       	"3A07D0B70371"
+			    type       	"LPRECT")
+			(object Parameter "nAdjustType"
+			    quid       	"3A07D0B70372"
+			    type       	"UINT"
+			    initv      	"adjustBorder"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleIPFrameWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B70385"
+	    documentation 	"Use the COleIPFrameWnd class as the base for your application's in-place editing window. This class creates and positions control bars within the container application's document window. It also handles notifications generated by an embedded COleResizeBar object when the user resizes the in-place editing window."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B703AD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd"
+		    quidu      	"3A07D0B6024E"))
+	    operations 	(list Operations
+		(object Operation "~COleIPFrameWnd"
+		    quid       	"3A07D0B703AE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B703B8"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B703CB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B703CC"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateControlBars"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pWndFrame, pWndDoc);
+|
+			    )))
+		    quid       	"3A07D0B703DF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWndFrame"
+			    quid       	"3A07D0B703E0"
+			    type       	"CWnd*")
+			(object Parameter "pWndDoc"
+			    quid       	"3A07D0B80001"
+			    type       	"CWnd*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateControlBars"
+		    quid       	"3A07D0B8000B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWndFrame"
+			    quid       	"3A07D0B80015"
+			    type       	"CFrameWnd*")
+			(object Parameter "pWndDoc"
+			    quid       	"3A07D0B80016"
+			    type       	"CFrameWnd*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RepositionFrame"
+		    quid       	"3A07D0B80029"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpPosRect"
+			    quid       	"3A07D0B8002A"
+			    type       	"LPCRECT")
+			(object Parameter "lpClipRect"
+			    quid       	"3A07D0B80033"
+			    type       	"LPCRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nIDResource, dwDefaultStyle, pParentWnd, pContext);
+|
+			    )))
+		    quid       	"3A07D0B8003D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIDResource"
+			    quid       	"3A07D0B80051"
+			    type       	"UINT")
+			(object Parameter "dwDefaultStyle"
+			    quid       	"3A07D0B80052"
+			    type       	"DWORD"
+			    initv      	"WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE")
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B8005B"
+			    type       	"CWnd*"
+			    initv      	"NULL")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B8005C"
+			    type       	"CCreateContext*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RecalcLayout"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bNotify);
+|
+			    )))
+		    quid       	"3A07D0B80083"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bNotify"
+			    quid       	"3A07D0B8008D"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B80097"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B800A1"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetMessageString"
+		    quid       	"3A07D0B800AB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B800AC"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B800B5"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BuildSharedMenu"
+		    quid       	"3A07D0B800C0"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroySharedMenu"
+		    quid       	"3A07D0B800CA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInPlaceMenu"
+		    quid       	"3A07D0B800DD"
+		    stereotype 	"virtual"
+		    result     	"HMENU"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRequestPositionChange"
+		    quid       	"3A07D0B800E7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0B800F1"
+			    type       	"LPCRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSplitterWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxext.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B800FB"
+	    documentation 	"The CSplitterWnd class provides the functionality of a splitter window, which is a window that contains multiple panes. A pane is usually an application-specific object derived from CView, but it can be any CWnd object that has the appropriate child window ID."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B80123"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A2652BA03BD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB"
+		    client_cardinality 	(value cardinality "1")))
+	    operations 	(list Operations
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B8012D"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B80138"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B80141"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSplitterWnd"
+		    quid       	"3A07D0B8014C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(row, col, pViewClass, sizeInit, pContext);
+|
+			    )))
+		    quid       	"3A07D0B80156"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "row"
+			    quid       	"3A07D0B8015F"
+			    type       	"int")
+			(object Parameter "col"
+			    quid       	"3A07D0B80169"
+			    type       	"int")
+			(object Parameter "pViewClass"
+			    quid       	"3A07D0B8016A"
+			    type       	"CRuntimeClass*")
+			(object Parameter "sizeInit"
+			    quid       	"3A07D0B80173"
+			    type       	"SIZE")
+			(object Parameter "pContext"
+			    quid       	"3A07D0B80174"
+			    type       	"CCreateContext*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RecalcLayout"
+		    quid       	"3A07D0B8017E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDrawSplitter"
+		    quid       	"3A07D0B80191"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0B80192"
+			    type       	"CDC*")
+			(object Parameter "nType"
+			    quid       	"3A07D0B8019B"
+			    type       	"CSplitterWnd::ESplitType")
+			(object Parameter "rect"
+			    quid       	"3A07D0B801A5"
+			    type       	"const CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInvertTracker"
+		    quid       	"3A07D0B801AF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rect"
+			    quid       	"3A07D0B801B0"
+			    type       	"const CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateScrollBarCtrl"
+		    quid       	"3A07D0B801BA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwStyle"
+			    quid       	"3A07D0B801C3"
+			    type       	"DWORD")
+			(object Parameter "nID"
+			    quid       	"3A07D0B801CD"
+			    type       	"UINT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteView"
+		    quid       	"3A07D0B801D7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "row"
+			    quid       	"3A07D0B801E1"
+			    type       	"int")
+			(object Parameter "col"
+			    quid       	"3A07D0B801E2"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SplitRow"
+		    quid       	"3A07D0B801EC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cyBefore"
+			    quid       	"3A07D0B801F6"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SplitColumn"
+		    quid       	"3A07D0B80200"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cxBefore"
+			    quid       	"3A07D0B8020A"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteRow"
+		    quid       	"3A07D0B80214"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rowDelete"
+			    quid       	"3A07D0B8021E"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteColumn"
+		    quid       	"3A07D0B80228"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "colDelete"
+			    quid       	"3A07D0B80229"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetActivePane"
+		    quid       	"3A07D0B8023C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pRow"
+			    quid       	"3A07D0B8023D"
+			    type       	"int*"
+			    initv      	"NULL")
+			(object Parameter "pCol"
+			    quid       	"3A07D0B80246"
+			    type       	"int*"
+			    initv      	"NULL"))
+		    result     	"CWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetActivePane"
+		    quid       	"3A07D0B80250"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "row"
+			    quid       	"3A07D0B8025A"
+			    type       	"int")
+			(object Parameter "col"
+			    quid       	"3A07D0B8025B"
+			    type       	"int")
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B80264"
+			    type       	"CWnd*"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanActivateNext"
+		    quid       	"3A07D0B8026E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bPrev"
+			    quid       	"3A07D0B80278"
+			    type       	"BOOL"
+			    initv      	"FALSE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ActivateNext"
+		    quid       	"3A07D0B80282"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bPrev"
+			    quid       	"3A07D0B80283"
+			    type       	"BOOL"
+			    initv      	"FALSE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoKeyboardSplit"
+		    quid       	"3A07D0B80296"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoScroll"
+		    quid       	"3A07D0B802A0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pViewFrom"
+			    quid       	"3A07D0B802A1"
+			    type       	"CView*")
+			(object Parameter "nScrollCode"
+			    quid       	"3A07D0B802AA"
+			    type       	"UINT")
+			(object Parameter "bDoScroll"
+			    quid       	"3A07D0B802B4"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoScrollBy"
+		    quid       	"3A07D0B802BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pViewFrom"
+			    quid       	"3A07D0B802BF"
+			    type       	"CView*")
+			(object Parameter "sizeScroll"
+			    quid       	"3A07D0B802C8"
+			    type       	"CSize"
+			    quidu      	"3A07D0C702E7")
+			(object Parameter "bDoScroll"
+			    quid       	"3A07D0B802D2"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "HitTest"
+		    quid       	"3A07D0B802DC"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pt"
+			    quid       	"3A07D0B802DD"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInsideRect"
+		    quid       	"3A07D0B802F0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "rect"
+			    quid       	"3A07D0B802F1"
+			    type       	"CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetHitRect"
+		    quid       	"3A07D0B802FB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ht"
+			    quid       	"3A07D0B80304"
+			    type       	"int")
+			(object Parameter "rect"
+			    quid       	"3A07D0B8030E"
+			    type       	"CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TrackRowSize"
+		    quid       	"3A07D0B80318"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "y"
+			    quid       	"3A07D0B80322"
+			    type       	"int")
+			(object Parameter "row"
+			    quid       	"3A07D0B80323"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TrackColumnSize"
+		    quid       	"3A07D0B8032D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0B80336"
+			    type       	"int")
+			(object Parameter "col"
+			    quid       	"3A07D0B80337"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawAllSplitBars"
+		    quid       	"3A07D0B8034A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0B8034B"
+			    type       	"CDC*")
+			(object Parameter "cxInside"
+			    quid       	"3A07D0B80354"
+			    type       	"int")
+			(object Parameter "cyInside"
+			    quid       	"3A07D0B80355"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetSplitCursor"
+		    quid       	"3A07D0B80368"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ht"
+			    quid       	"3A07D0B80369"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "StartTracking"
+		    quid       	"3A07D0B80373"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ht"
+			    quid       	"3A07D0B8037C"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "StopTracking"
+		    quid       	"3A07D0B80387"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAccept"
+			    quid       	"3A07D0B80390"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0B8039B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B803A4"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B803A5"
+			    type       	"LPARAM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNotify"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam, pResult);
+|
+			    )))
+		    quid       	"3A07D0B803B8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0B803B9"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0B803C2"
+			    type       	"LPARAM")
+			(object Parameter "pResult"
+			    quid       	"3A07D0B803C3"
+			    type       	"LRESULT*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDocIPFrameWnd"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdocob.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0B803D6"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B90016"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::COleIPFrameWnd"
+		    quidu      	"3A07D0B70385"))
+	    operations 	(list Operations
+		(object Operation "~COleDocIPFrameWnd"
+		    quid       	"3A07D0B90017"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B9002A"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B90034"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B9003E"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRequestPositionChange"
+		    quid       	"3A07D0B90048"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0B90049"
+			    type       	"LPCRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RecalcLayout"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bNotify);
+|
+			    )))
+		    quid       	"3A07D0B90053"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bNotify"
+			    quid       	"3A07D0B9005C"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BuildSharedMenu"
+		    quid       	"3A07D0B90067"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroySharedMenu"
+		    quid       	"3A07D0B9007A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

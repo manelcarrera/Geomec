@@ -1,0 +1,23 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_modify_attr.new","wp_modify_attr")
+
+Scenario ("Modification of wellpath attributes")
+StartScenario("Modification of wellpath attributes")
+	WellPathStartUp()
+	dim info as WELLPATH_INFO
+	info.sName = "Well Path2"
+	info.dNorthing = 20
+	info.dEasting = 25
+	info.dDerrickElevation = 2
+	SetWellPathInfo("Well Path 1",info)
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

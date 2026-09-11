@@ -1,0 +1,10 @@
+dia_add_sources(
+  Circle.cpp          Conus.cpp           DirectedSegment.cpp 
+  ICircle.cpp         IConus.cpp          IElementSet.cpp     
+  ILine.cpp           IObject.cpp         IPolyLine.cpp       
+  IProgressBase.cpp   ISphere.cpp         IValue.cpp          
+  IValueSet.cpp       Line.cpp            OrthogonalBase.cpp  
+  PolyLine.cpp        ProgressScaler.cpp  RingFactory.cpp     
+  RingPolygon.cpp     Sphere.cpp          Value.cpp           
+  ValueSet.cpp        VectorTempl.cpp     CacheInterfaceDefault.cpp
+)

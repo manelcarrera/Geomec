@@ -1,0 +1,225 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Maps"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A40052"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Parameterized_Class "CMap"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxtempl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A4005D"
+	    documentation 	"CMap is a dictionary collection class that maps unique keys to values. Once you have inserted a key-value pair (element) into the map, you can efficiently retrieve or delete the pair using the key to access it. You can also iterate over all the elements in the map."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40084"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "KEY"
+		    quid       	"3A07D0A4005E"
+		    type       	"class")
+		(object Parameter "ARG_KEY"
+		    quid       	"3A07D0A40066"
+		    type       	"class")
+		(object Parameter "VALUE"
+		    quid       	"3A07D0A40067"
+		    type       	"class")
+		(object Parameter "ARG_VALUE"
+		    quid       	"3A07D0A40070"
+		    type       	"class")))
+	(object Class "CMapPtrToPtr"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A40085"
+	    documentation 	"The CMapPtrToPtr class supports maps of void pointers keyed by void pointers. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A400A2"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapWordToPtr"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A400A3"
+	    documentation 	"The CMapWordToPtr class supports maps of void pointers keyed by 16-bit words. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A400B6"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapPtrToWord"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A400C0"
+	    documentation 	"The CMapPtrToWord class supports maps of 16-bit words keyed by void pointers. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A400D4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapWordToOb"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A400DE"
+	    documentation 	"The CMapWordToOb class supports maps of CObject pointers keyed by 16-bit words. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A400F2"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapStringToPtr"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A400FC"
+	    documentation 	"The CMapStringToPtr class supports maps of void pointers keyed by CString objects. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40110"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapStringToOb"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A40111"
+	    documentation 	"CMapStringToOb is a dictionary collection class that maps unique CString objects to CObject pointers. Once you have inserted a CString-CObject* pair (element) into the map, you can efficiently retrieve or delete the pair using a string or a CString value as a key. You can also iterate over all the elements in the map."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A4012E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMapStringToString"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxcoll.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A4012F"
+	    documentation 	"The CMapStringToString class supports maps of CString objects keyed by CString objects."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40157"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

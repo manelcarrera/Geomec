@@ -1,0 +1,95 @@
+'=====================================================================
+' TEST CASE NAME:
+'
+' GENERAL DESCRIPTION OF WHAT IS VERIFIED:
+'	Reading in elementset's with properties. The tags of the properties
+'	are case insensitive and this tested.
+'
+'
+' SPECIFIC AREA ADDRESSED BY THIS TEST CASE:
+'
+'
+'=====================================================================
+' TEST CASE PURPOSE:
+'
+'
+' TEST CASE ABSTRACT OF TECHNIQUES USED TO TEST THE FEATURE:
+'
+'
+' SCENARIOS:    1.
+'               2.
+'               3.
+'               4.
+'               5.
+'               6.
+'               7.
+'               8.
+'               9.
+'              10.
+'
+'---------------------------------------------------------------------------
+' OTHER FILES REQUIRED TO RUN TEST CASE:
+'
+'
+'
+'---------------------------------------------------------------------------
+' REVISION HISTORY:
+'
+'	[ 0]	<07-08-03>		<LNB>	: Initial version
+'---------------------------------------------------------------------------
+
+
+' '$DEFINE and '$INCLUDE metacommands for test case
+'-------------------------------------------------------------------
+'$include 'Recorder.inc'
+'$include 'AppSettings.inc'
+'$include 'AppControl.inc'
+
+
+' DIM statements, TYPE declarations, global variables,
+' constants, and so on for test case
+'-------------------------------------------------------------------
+
+
+' *************************
+' **** BEGIN TEST CASE ****
+' *************************
+
+'******* Test Case INITIALIZATION/SETUP *********
+Viewport Clear
+
+
+
+
+'******* SCENARIO SECTION ***********************
+
+'*** Scenario 1:
+Scenario ("<name/description goes here>")
+
+StartApp
+	
+		
+Scenario Cleanup 'and handling of scenario failure
+
+	
+End Scenario
+
+
+
+'******* Test Case CLEANUP **********************
+
+
+
+
+
+' *************************
+' ***** END TEST CASE *****
+' *************************
+End
+
+
+
+'*****************************************************************************
+'                          LOCAL SCRIPT SUBS/FUNCTIONS
+'*****************************************************************************
+ 

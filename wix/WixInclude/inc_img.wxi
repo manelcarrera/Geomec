@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="img" Name="img">
+    <Component Id="Component_img" Guid="$(var.ComponentID_img)" Win64="yes">
+      <File Id="hexa.png" Name="hexa.png" Source="$(var.img)\hexa.png" />
+      <File Id="tetra.png" Name="tetra.png" Source="$(var.img)\tetra.png" />
+      <File Id="old.png" Name="old.png" Source="$(var.img)\old.png" />
+      <File Id="new.png" Name="new.png" Source="$(var.img)\new.png" />
+      <File Id="undefined.png" Name="undefined.png" Source="$(var.img)\undefined.png" />
+      <!-- mesh refinement -->
+      <File Id="undo_16.png" Name="undo_16.png" Source="$(var.img)\undo_16.png" />
+      <File Id="warning_16.png" Name="warning_16.png" Source="$(var.img)\warning_16.png" />
+      <File Id="delete_16.png" Name="delete_16.png" Source="$(var.img)\delete_16.png" />
+      <File Id="add_16.png" Name="add_16.png" Source="$(var.img)\add_16.png" />
+      <File Id="empty_16.png" Name="empty_16.png" Source="$(var.img)\empty_16.png" />
+      <File Id="zoom_16.png" Name="zoom_16.png" Source="$(var.img)\zoom_16.png" />
+      <File Id="edit.png" Name="edit.png" Source="$(var.img)\edit.png" />
+      <File Id="minimize.png" Name="minimize.png" Source="$(var.img)\minimize.png" />
+      <File Id="increase_size.png" Name="increase_size.png" Source="$(var.img)\increase_size.png" />
+      <File Id="rotate_16.png" Name="rotate_16.png" Source="$(var.img)\rotate_16.png" />
+      <File Id="connections_16.png" Name="connections_16.png" Source="$(var.img)\connections_16.png" />
+      <File Id="save_16.png" Name="save_16.png" Source="$(var.img)\save_16.png" />
+      <File Id="done_16.png" Name="done_16.png" Source="$(var.img)\done_16.png" />
+      <File Id="ok_16.png" Name="ok_16.png" Source="$(var.img)\ok_16.png" />
+      <File Id="pdf_16.png" Name="pdf_16.png" Source="$(var.img)\pdf_16.png" />
+      <File Id="center_16.png" Name="center_16.png" Source="$(var.img)\center_16.png" />
+      <File Id="planar_16.png" Name="planar_16.png" Source="$(var.img)\planar_16.png" />
+      <!-- geomec selector -->
+      <File Id="file_16.png" Name="file_16.png" Source="$(var.img)\file_16.png" />
+      <File Id="folder_16.png" Name="folder_16.png" Source="$(var.img)\folder_16.png" />
+      <File Id="more_than_16.png" Name="more_than_16.png" Source="$(var.img)\more_than_16.png" />
+      <File Id="less_than_16.png" Name="less_than_16.png" Source="$(var.img)\less_than_16.png" />
+      <File Id="config_16.png" Name="config_16.png" Source="$(var.img)\config_16.png" />
+      <File Id="logs_16.png" Name="logs_16.png" Source="$(var.img)\logs_16.png" />
+      <File Id="remove_16.png" Name="remove_16.png" Source="$(var.img)\remove_16.png" />
+      <File Id="python_16.png" Name="python_16.png" Source="$(var.img)\python_16.png" />
+      <File Id="add_file_16.png" Name="add_file_16.png" Source="$(var.img)\add_file_16.png" />
+      <!-- about geomec -->
+      <File Id="diana_fea_200.png" Name="diana_fea_200.png" Source="$(var.img)\diana_fea_200.png" />
+      <File Id="down_arrow_16.png" Name="down_arrow_16.png" Source="$(var.img)\down_arrow_16.png" />
+      <File Id="up_arrow_16.png" Name="up_arrow_16.png" Source="$(var.img)\up_arrow_16.png" />
+      <File Id="list_16.png" Name="list_16.png" Source="$(var.img)\list_16.png" />
+      <File Id="pdf2_16.png" Name="pdf2_16.png" Source="$(var.img)\pdf2_16.png" />
+    </Component>
+  </Directory>
+  
+</Include>

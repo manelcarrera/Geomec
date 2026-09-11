@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\Command_.h" />
+    <ClInclude Include="h\GmInterfaceGui.h" />
+    <ClInclude Include="h\GuiCommandTask.h" />
+    <ClInclude Include="h\IEventsHanlder.h" />
+    <ClInclude Include="h\IGmInterface.h" />
+    <ClInclude Include="h\IGmInterfaceGUI.h" />
+    <ClInclude Include="h\IPyInterface.h" />
+    <ClInclude Include="h\Plugins.h" />
+    <ClInclude Include="h\PyInterface.h" />
+    <ClInclude Include="h\PyTask.h" />
+    <ClInclude Include="h\Release.h" />
+    <ClInclude Include="h\SafeQueue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GmInterfaceGui.cpp" />
+    <ClCompile Include="src\GuiCommandTask.cpp" />
+    <ClCompile Include="src\Plugins.cpp" />
+    <ClCompile Include="src\PyInterface.cpp" />
+    <ClCompile Include="src\PyTask.cpp" />
+  </ItemGroup>
+</Project>

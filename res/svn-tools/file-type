@@ -1,0 +1,92 @@
+#! /bin/sh
+#
+# This utility prints a file's type
+#
+# Please note that we try to be strict, because
+#
+# * Subversion is very picky about inconsistent line endings when the 
+#   svn:eol-style attribute is set to native
+# * We want to be able to recover the original when a file is classified
+#   as dos or unix and converted to the platform's native format
+
+# Print usage info and exit
+#
+usage() {
+	cat >&2 <<EOF
+usage: $0 <file>
+prints a file's type - one of
+  binary
+  dos
+  unix
+  unknown
+EOF
+	exit 1
+}
+
+# Check the command line
+#
+while getopts ":" option ; do
+	case "$option" in
+	*)
+		usage
+	esac
+done
+shift $(expr $OPTIND - 1)
+
+[ $# -eq 1 ] || usage
+
+gawk '
+BEGIN {
+	# Force binary I/O on exotic platforms; no effect otherwise
+	BINMODE=rw
+
+	# By default, assume we do not know the file type
+	file_type="unknown"	
+}
+
+{
+	# note: RT is a gawk extension; it indicates the record separator found
+	# (we need it to detect incomplete last lines)
+	full_line=($0 RT)
+	
+	if (full_line ~ /^([^[:cntrl:]]|\t|\f)*\r\n$/) {
+
+		# handle full dos text line
+		if (file_type == "unknown") {
+			file_type = "dos"
+		} else if (file_type != "dos") {
+			file_type = "binary"
+		}
+		
+	} else if (full_line ~ /^([^[:cntrl:]]|\t|\f)*\n$/) {
+
+		# handle full unix text line
+		if (file_type == "unknown") {
+			file_type = "unix"
+		} else if (file_type != "unix") {
+			file_type = "binary"
+		}
+			
+	} else if (full_line ~ /^([^[:cntrl:]]|\t|\f)*$/) {
+
+		# incomplete (last) text line; could be dos, unix or binary,
+		# so do not conclude anything...
+
+	} else {
+		
+		# handle non-text line
+		file_type="binary"
+
+	}
+
+	# exit (but still print the file type in END) when we know what the 
+	# outcome will be
+	if (file_type == "binary") {
+		exit
+	} 
+}
+
+END {
+	print file_type
+}
+' < "$1"

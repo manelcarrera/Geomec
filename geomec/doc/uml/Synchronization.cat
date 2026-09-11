@@ -1,0 +1,252 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Synchronization"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A40158"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CSyncObject"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A40162"
+	    documentation 	"The CSyncObject class is a pure virtual class that provides functionality common to the synchronization objects in Win32. The Microsoft Foundation Class Library provides several classes derived from CSyncObject. These are CEvent, CMutex, CCriticalSection, and CSemaphore."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A4017F"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Lock"
+		    quid       	"3A07D0A40180"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwTimeout"
+			    quid       	"3A07D0A40189"
+			    type       	"DWORD"
+			    initv      	"INFINITE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Unlock"
+		    quid       	"3A07D0A40193"
+		    stereotype 	"abstract"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Unlock"
+		    quid       	"3A07D0A4019E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lCount"
+			    quid       	"3A07D0A401A7"
+			    type       	"LONG")
+			(object Parameter "lpPrevCount"
+			    quid       	"3A07D0A401B1"
+			    type       	"LPLONG"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSyncObject"
+		    quid       	"3A07D0A401BB"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A401C6"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A401D9"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A401DA"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CCriticalSection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A401ED"
+	    documentation 	"An object of class CCriticalSection represents a 'critical section' (a synchronization object that allows one thread at a time to access a resource or section of code). Critical sections are useful when only one thread at a time can be allowed to modify data or some other controlled resource. For example, adding nodes to a linked list is a process that should only be allowed by one thread at a time. By using a CCriticalSection object to control the linked list, only one thread at a time can gain access to the list."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40201"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Synchronization::CSyncObject"
+		    quidu      	"3A07D0A40162"))
+	    operations 	(list Operations
+		(object Operation "~CCriticalSection"
+		    quid       	"3A07D0A4020B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CEvent"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A40215"
+	    documentation 	"An object of class CEvent represents an 'event' (a synchronization object that allows one thread to notify another that an event has occurred). Events are useful when a thread needs to know when to perform its task. For example, a thread that copies data to a data archive would need to be notified when new data is available. By using a CEvent object to notify the copy thread when new data is available, the thread can perform its task as soon as possible."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40233"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Synchronization::CSyncObject"
+		    quidu      	"3A07D0A40162"))
+	    operations 	(list Operations
+		(object Operation "~CEvent"
+		    quid       	"3A07D0A40234"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMutex"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A4023E"
+	    documentation 	"An object of class CMutex represents a 'mutex' (a synchronization object that allows one thread mutually exclusive access to a resource). Mutexes are useful when only one thread at a time can be allowed to modify data or some other controlled resource. For example, adding nodes to a linked list is a process that should only be allowed by one thread at a time. By using a CMutex object to control the linked list, only one thread at a time can gain access to the list."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A4025B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Synchronization::CSyncObject"
+		    quidu      	"3A07D0A40162"))
+	    operations 	(list Operations
+		(object Operation "~CMutex"
+		    quid       	"3A07D0A4025C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSemaphore"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A4026F"
+	    documentation 	"An object of class CSemaphore represents a 'semaphore' (a synchronization object that allows a limited number of threads in one or more processes to access a resource). A CSemaphore object maintains a count of the number of threads currently accessing a specified resource. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40283"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Synchronization::CSyncObject"
+		    quidu      	"3A07D0A40162"))
+	    operations 	(list Operations
+		(object Operation "Unlock"
+		    quid       	"3A07D0A40284"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Unlock"
+		    quid       	"3A07D0A40297"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lCount"
+			    quid       	"3A07D0A40298"
+			    type       	"LONG")
+			(object Parameter "lprevCount"
+			    quid       	"3A07D0A402A1"
+			    type       	"LPLONG"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSemaphore"
+		    quid       	"3A07D0A402AC"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

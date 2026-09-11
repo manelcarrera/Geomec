@@ -1,0 +1,24 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("Del_wellpaths.new","Del_wellpaths")
+
+Scenario("Deleting WellPaths")
+StartScenario("Deleting WellPaths")
+	BreakdownStartup
+	Dim wellps AS ARRAY OF STRING
+	wellps = WellPaths()
+	if not isempty(wellps) then
+		for count = lbound(wellps) to ubound(wellps)
+				DeleteWellPath(wellps(count))
+		next
+	endif
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

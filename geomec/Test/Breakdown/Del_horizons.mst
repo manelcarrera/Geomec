@@ -1,0 +1,31 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("Del_horizons.new","Del_horizons")
+
+Scenario ("Deleting all horizons")
+StartScenario("Deleting all horizons")
+
+	BreakdownStartup
+	Dim hors as ARRAY OF STRING
+	Dim counter as INTEGER
+	hors = horizons()
+	for counter = lbound(horizons) to ubound(horizons)
+		DeleteHorizon(hors(counter))
+	next
+	'now check for formations
+	Dim forms AS ARRAY OF STRING
+	forms = formations()
+	if not isempty(forms) then
+		tnofail("There are still formations while all horizons are deleted")
+	endif
+		
+ScenarioPass	
+Scenario Cleanup 'and handling of scenario failure
+	ExitNoSave	
+End Scenario
+
+EndLog
+
+End

@@ -1,0 +1,10 @@
+include $(DIAINCLUDE)/Mkrules.h
+
+All:	Release_TSMesh.lib
+
+Release_TSMesh.lib:
+	$(DSPMAKE) $(DSPMAKE_FLAGS)
+	cp Release/TSMesh.lib $(DSPLIB)
+
+Documentation:
+	-( cd dox; $(MAKE) $(MFLAGS) )

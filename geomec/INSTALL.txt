@@ -1,0 +1,148 @@
+Contents:
+
+1. Install development tools
+2. Set up code base
+3. Set up environment
+4. Running
+
+==
+
+1. Install the following programs:
+
+	* Visual Studio 2012 (Premium) 
+	* Visual Studio 2012 Update 4
+	* Intel C(++) and Fortran runtime libraries
+	* WiX tool set 3.7
+	* Qt 4.8.5 + license file
+	* Qwt 6.0.2
+
+		Copy/move the Qt license file to your user home directory.
+
+		Install Qt and Qwt in a directory without spaces in its path.
+
+		Build them from the Visual Studio x64 Win64 Command Prompt.
+		(Careful, the VS menu under Start has several versions, the correct one is
+		"Open VS2012 x64 Native Tools Command Prompt")
+
+		The configure command for Qt is:
+		
+			configure -mp -nomake demos -nomake examples -no-qt3support -no-accessibility -platform win32-msvc2012
+
+		For Qwt: qmake qwt.pro
+
+	* Open Inventor SDK 9.3.1 C++ Visual2012 x64 (from here on OIV)
+	
+		Unpack the zip-file to, for example, C:\dev.
+		
+		OIV needs a license file, password.dat. Copy it to some location. We will later point to this location
+		via an environment variable (see Set up environment).
+		
+	* Hasp Driver (haspdinst.exe)
+	
+		This needs to be installed only once on a machine. From March 1, 2015, Diana will only use Hasp
+		for license checking.
+		
+		Open a command prompt and run: haspdinst /i
+		
+		The address of the license server is 10.127.157.202. Go to
+
+			http://localhost:1947/_int_/config_to.html
+
+		and fill this address in the "Specify Search Parameters" field and press submit. If the browser says that
+		it cannot load the page, then the driver is not (correctly) installed.
+
+		Location of the installed driver's ini file and logs is C:\Program Files (x86)\Common Files\Aladdin Shared\HASP.
+		As an alternative to the above configuration, you can add or edit hasplm.ini here.
+		It needs to contain (at least) a section [REMOTE] with:
+		
+			serveraddr = 10.127.157.202
+
+
+
+2. Set up code base
+
+Unpack the Diana zip file. Check whether hasp_windows_x64_3659.dll is present in release\bin and debug\bin.
+If not, copy it to those directories from share\SafeNet\LDK701\C.
+
+From TFS, get the latest version of Geomec.
+Copy geomec3\keyfile\diafgv.k72 to Diana's share\lib directory. (DEPRECATED, Diana now uses Hasp.)
+
+
+
+3. Set up environment
+
+Place the following variables in your environment:
+
+	INTEL		path to the Intel runtime libraries
+			eg: C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler
+
+	QTDIR		path to the Qt base directory
+			eg: C:\dev\qt-4.8.5
+
+	QWTDIR		path to the Qwt base directory
+			eg: C:\dev\qwt-6.0.2
+
+	WixToolPath	path to the WiX bin directory
+			eg: C:\Program Files (x86)\WiX Toolset v3.7\bin
+
+	DIAROOT		path to the directory containing the Diana debug/release/shared subdirectories.
+			eg: C:\dev\diana
+			
+	OIVHOME		path to the directory of the OIV SDK version
+			eg: C:\dev\Open Inventor\9.3.1 C++ Visual2012 x64
+			
+	VSG_LICENSE_FILE	path to the OIV password.dat file (including the filename)
+			eg: C:\Users\Somebody\OIV\password.dat
+			
+	VSG_LICENSE_DEBUG	path to the OIV license check log file; this is optional, but good to have
+			eg: C:\Users\Somebody\OIV\debug_log.txt
+				
+
+Add the following to your path:
+
+	%QTDIR%\bin
+	%QWTDIR%\lib
+	%INTEL%
+
+Set the following registry settings (change 5.0 to the current Major.Minor version if necessary, to be found in SRC/version.h):
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\TNO\Geomec 5.0]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\TNO\Geomec 5.0\Paths]
+"DianaExeName"="gm42.exe"
+"DIAPATH"="Your\\path\\to\\diana\\release"
+"DIASHARE"="Your\\path\\to\\diana\\share"
+"FgvExeName"="fgv4gm.exe"
+"InputExeName"="in51.exe"
+
+and optionally:
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Geomec.exe]
+@="C:\\Program Files\\GEOMEC 5.0 - SVS\\Geomec.exe"
+"Path"="C:\\Program Files\\GEOMEC 5.0 - SVS\\Diana\\bin"
+
+Example .reg files can be found on the developer's file exchange directory, under Registry settings.
+
+
+
+The Open Inventor installer defines the environment variables OIVARCH and OIVHOME. It then modifies the PATH by adding the following directories
+
+	%OIVHOME%\arch-Windows-x86_64-msvc10-Release\bin
+	%OIVHOME%\arch-Windows-x86_64-msvc10-Debug\bin
+
+to the *beginning* of the PATH variable. Since OpenInventor ships with its own copy of Qt, this will cause conflicts with the Qt version used in
+Geomec. To fix this, move these directories to the end of the PATH variable, so the OS finds the dll's in QTDIR\bin first.
+
+
+4. Running
+
+Load the Geomec solution in Visual Studio.
+
+The first time, set Geomec as Start Project.  In Geomec's properties, set under Debugging, in
+Environment (for both Debug and Release):
+
+	PATH=$(PATHPREFIX);$(PATH);$(OIVPATH)
+
+To check that the installation is working properly, compile (making sure the Platform is x64), and
+run. Load a small model, for example Tests\Models\TestLoadAndCalculate.gm4, and try to run a
+non-linear analysis. This should complete without any warnings, errors, or aborts.

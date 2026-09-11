@@ -1,0 +1,14 @@
+# Windows download metadata
+*:Zone.Identifier
+
+# Common local build output
+build/
+out/
+Debug/
+Release/
+x64/
+*.user
+*.suo
+
+# Exceeds GitHub's 100 MiB per-file limit; keep locally unless Git LFS is installed
+Tests/Models/test.ff

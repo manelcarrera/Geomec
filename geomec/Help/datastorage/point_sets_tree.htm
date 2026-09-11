@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Point sets</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="data storage">
+	<param name="Keyword" value="elementset">
+	<param name="Keyword" value="pointset">
+</OBJECT>
+<h1>Point/Element sets</h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Point/Element sets is
+a branch in the <a href="datastorage_tree.htm"> Data storage tree</a>.
+</o:p>
+A pointset represents a collection of points in space and an elementset 
+represents a collection of elements in space. An elementset or pointset could 
+contain distributions representing values in space. Distributions are the values 
+assigned to each point or element of the corresponding pointset or elementset. 
+The distributions could represent material, initial stress or pressure 
+properties in the model.</span></p>
+<p class="MsoNormal">
+<img border="0" src="point_set_2d.bmp" width="210" height="161"></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The Point/Elementsets
+branch is divided in a
+</span><span style="mso-ansi-language:EN-GB"><a href="2d_pointset.htm">2D</a></span><span style="mso-ansi-language:EN-GB"> 
+branch containing the two-dimensional pointsets or elementsets and a
+</span><a href="3d_pointset.htm">3D</a> <span style="mso-ansi-language:EN-GB">
+branch containing the three-dimensional pointsets or elementsets and the mesh. The 
+properties defined on the pointset or elementset are enumerated under the 
+property branch for each elementset or pointset. The user can easily assign the 
+properties by dragging or copying and pasting the properties from the property 
+branch to material, pressure or stress definitions in the model. If an imported 
+pointset was <a href="../file%20formats/tagged_format.htm">tagged</a>, the 
+property has been assigned to the right type of data already.</span></p>
+<p class="MsoNormal">Properties are based on distributions (values attached to 
+elements or points) or formulas. Distributions are imported by pointsets or 
+elementsets from files and assigned to properties in the
+<a href="../context/attributes/pointset_attributes.htm">point/element set 
+attributes dialog</a>.&nbsp;Formulas are created and assigned to properties in the
+<a href="../context/attributes/pointset_attributes.htm">point/element set 
+attributes dialog</a>. The formulas are edited in the
+<a href="../context/attributes/rpn_calculator.htm">RPN-Calculator dialog</a>. 
+Formulas assigned to pointsets are enumerated at the formula branch under 
+pointset or elementset.</p>
+<p class="MsoNormal">Formulas can be easily copied to other pointsets or elementsets 
+by dragging the existing formula on the new pointset or elementset. Copy and 
+paste the 
+existing formula onto the new pointset or element set as an 
+alternative to dragging a formula to a pointset or elementset. The 
+operands of the formula copied to a pointset or elementset may have lost the links 
+to distributions and the operands will be invalid.&nbsp; The invalid operands 
+are unassigned and are listed by question marks and a <i>&lt;number&gt; </i>in the
+<a href="../context/attributes/rpn_calculator.htm">RPN-Calculator dialog</a>. 
+The unassigned operand becomes valid by dragging a valid existing operand onto the 
+unassigned operand in the <a href="../context/attributes/rpn_calculator.htm">RPN-Calculator 
+dialog</a>.</p>
+<p class="MsoNormal">
+<img border="0" src="dragging_property.bmp" width="306" height="221"></p>
+<h2><b><span style="mso-ansi-language:EN-GB">Context sensitive menu<o:p>
+</o:p>
+</span></b></h2>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Right-clicking on Point/Elementsets displays the following context sensitive menu:
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" width="601">
+  <tr>
+    <td width="159" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><span style="mso-ansi-language: EN-GB">Import</span></td>
+    <td width="410" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal"><span style="mso-ansi-language: EN-GB">To import a
+      new pointset / elementset from a file.</span></td>
+  </tr>
+  <tr>
+    <td width="159" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">Create
+      pointset</td>
+    <td width="410" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm"><span style="mso-ansi-language: EN-GB">To
+      create a new point set using the create pointset dialog.</span></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

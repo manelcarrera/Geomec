@@ -1,0 +1,105 @@
+================================================================
+Release Notes for Geomec 3.4.1.0	       27 June 2006
+================================================================
+
+================================================================
+Contents
+================================================================
+1. Introduction
+2. New in this version
+3. Known issues
+4. Contents of this CD
+5. Installation
+
+================================================================
+1. Introduction
+================================================================
+The 3.4.1.0 version of geomec includes a product version of:
+- the hexahedron model
+- the tetrahedron model
+
+Tetra models have particularly been tested for problems 
+containing faults.
+
+The following features are kept behind the lock:
+- ECLIPSE model
+- Super model definition in tetrahedron model
+- large deformation calucation option
+- complex element-to-element mapping methods
+- export to FIST
+- Casing integrity, DCasint
+- Homogenization
+- Geomec 2D fully integrated in the version 3 interface
+- Automatic creation of a zoom-in model
+- The possibility to cut surfaces and create side surfaces
+  (tetra specific)
+
+
+================================================================
+2. New in this version
+================================================================
+New in the GEOMEC 3.4.1.0 release compared to the 3.3.1.0 release:
+- Extra import options of well paths
+- Export options for well paths
+- Export of slipping horizons
+- Interface element fault modelling for tetrahedron models
+- Import allows the definition of names for the properties
+- Equations of the RPN calculator can be copied
+- Input material parameters are available in RPN equations
+- Improvement of the fault result definition
+- Improvements in the 2D version of Geomec
+- Improvements in the workflow of zoom in
+
+Geomec does not support the definition of double fault surfaces
+in 3D anymore, because of the improved fault implementation with
+interface elements.
+
+
+================================================================
+3. Known issues
+================================================================
+The Geomec 2D program is improved, but still subject of testing.
+It is therefore still hidden behind a lock mechanism.
+
+The following features are still missing from Geomec 2D:
+- boundary resize
+- quantity/unit awareness of result import back to geomec 3D
+- definition of faults using triangulated surfaces intersecting
+  the cross-section
+- local definition of fault offset at each formation intersection
+- Online help. This is temporary replaced by the word document
+  "Geomec 2D Functionalities.doc"
+
+
+The following features are still missing in Geomec 3D:
+- import result data from external kernel
+- color scale library
+- view results on deformed mesh
+- vector result visualization
+- allow refinement of side surfaces in tetra super model
+
+The rest of the known issues are attached in a list of known bug
+to the CD 
+
+================================================================
+4. Contents of the delivery
+================================================================
+On the CD:
+- GEOMEC 3 program installation procedure
+- Release notes (this file)
+- Getting Started document
+- Data files for the Getting Started document
+- List of known bugs
+
+The unlocked CD installs the registery keys for unlocking the 
+experimental features,  geomec 2D, DCasint functinality, 
+Homogenization and zoom-in  functionality.
+
+The locked CD installs Geomec without experimental features
+
+================================================================
+5. Installation
+================================================================
+Insert the CD in the CD player. If the setup does not auto-
+matically start, browse to the CD-ROM player and double-click
+setup.exe located in the root-directory of the CD.

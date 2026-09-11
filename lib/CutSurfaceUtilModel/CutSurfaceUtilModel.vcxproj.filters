@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\GetSideName.cpp" />
+    <ClCompile Include="src\NamedDrawDef.cpp" />
+    <ClCompile Include="src\TriaIntersecBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\GetSideName.h" />
+    <ClInclude Include="h\NamedDrawDef.h" />
+    <ClInclude Include="h\TriaIntersecBox.h" />
+  </ItemGroup>
+</Project>

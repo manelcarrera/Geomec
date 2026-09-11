@@ -1,0 +1,101 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Filos"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2291CA02A1"
+    documentation 	
+|Geometry and Calculation data will be kept separate in the filos file
+| - Access Time (not verifiable, but assumed is that it is slower)
+| - Geometry is no longer depandant on filos file (Geometry package is not linked to filos.)
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "Filos Low Level"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Filos Low Level.cat"
+	    quid       	"3A5C280901E5")
+	(object Class_Category "Filos Extension"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Filos Extension.cat"
+	    quid       	"3A5C281A012A"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Filos Architecture"
+	    quid       	"3A5C27990149"
+	    title      	"Filos Architecture"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	72
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object CategoryView "Logical View::Filos::Filos Low Level" @1
+		    location   	(1232, 288)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1088, 204)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Filos Low Level")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A5C280901E5"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::Filos::Filos Extension" @2
+		    location   	(384, 288)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(240, 204)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Filos Extension")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A5C281A012A"
+		    width      	300
+		    height     	180)
+		(object ImportView "" @3
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A5C28A0012A"
+		    client     	@2
+		    supplier   	@1
+		    line_style 	0)))))

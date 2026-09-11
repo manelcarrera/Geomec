@@ -1,0 +1,6 @@
+Formation,StrainInvVolumetric_D1_N,formation:Formation,Min,1.000000
+Formation,StrainInvVolumetric_D1_N,formation:Formation,Min,1.0,TooHigh
+Formation,StrainInvVolumetric_D1_N,formation:Formation,Failure area Max,1.0,TooHigh
+Formation,StrainInvVolumetric_D2_N,formation:Formation,Min,1.000000
+Formation,StrainInvVolumetric_D2_N,formation:Formation,Min,1.0,TooHigh
+Formation,StrainInvVolumetric_D2_N,formation:Formation,Failure area Max,1.0,TooHigh

@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Model construction and constraints</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="constraints">
+	<param name="Keyword" value="construction">
+	<param name="Keyword" value="modelling">
+</OBJECT>
+<h2><a name="_Toc48442884"><span style="mso-ansi-language:EN-GB">Model
+construction and constraints</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+&nbsp;
+</span></h2>
+
+<h3><span style="mso-ansi-language: EN-GB">Hexahedron type model</o:p>
+</span></h3>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">For a hexahedron
+type model the
+finite element model is constructed from the horizons, the
+element-grid defined in the <a href="../context/attributes/main_mesh_attributes.htm"> main mesh region</a> and possible
+<a href="../tree/Model/list_of_meshregions_tree.htm"> sub-mesh regions</a> and the number of elements over the thickness of each formation.
+The following assumptions apply:<o:p>
+</o:p>
+</span></p>
+<ul>
+  <li>
+    <p class="MsoNormal"><span style="mso-ansi-language: EN-GB">Every <a href="../tree/Model/hexa/list_horizons_tree.htm"> horizon</a> 
+	stretches over the full horizontal domain of the model. If a horizon is defined via a horizon-file and does not cover
+the full horizontal domain of the model, the depths at the outer edges of the specified area are
+extrapolated with constant depth over the horizontal domain of the model.<o:p>
+</o:p>
+</span></li>
+  <li>
+    <p class="MsoNormal"><span style="mso-ansi-language: EN-GB">Horizons have a strict sequence of depth, which is defined by the user.<o:p>
+</o:p>
+</span></li>
+  <li>
+    <p class="MsoNormal"><span style="mso-ansi-language: EN-GB">Horizons do not intersect and can also coincide in total
+or partly. If at a certain location the vertical distance between 2 horizons
+is less than 1 meter, locally the depth of the lower horizon is defined by
+the depth of the upper horizon plus 1 meter.<o:p>
+</o:p>
+</span></li>
+</ul>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">In GEOMEC 3D the
+finite element grid is structured and built from eight-noded brick <a href="elements.htm">elements</a>. The
+user can specify a rectangular grid (parallel to North and East direction) in
+the horizontal plane. Zones with mesh refinement can be defined in this grid. In
+vertical direction the number of elements over the thickness of the <a href="../tree/Model/list_formations_tree.htm"> formation</a> is
+constant for every formation and the user can specify this number. The elements
+share nodes with neighboring elements in the same layer so that the horizons are
+always modeled as continuous <a href="../datastorage/surfaces_tree.htm">surfaces</a>. 
+If the horizon is defined via a
+surface-file, the depth of the nodes on a horizon are defined as sample points
+of the grid on this surface. The depths of
+the nodes inside a formation are divided equally between the depth of the top
+and the bottom of the formation. The nodes at the bottom surface are supported
+in the vertical direction. The nodes at the vertical outer surfaces are
+supported in the normal direction. The nodes at the top-surface of the model as
+well as all the internal nodes are free to move in any direction.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

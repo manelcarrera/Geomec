@@ -1,0 +1,357 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Vertex set"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A236A110233"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Read Vertex Set"
+	    quid       	"3A1E6E5F01D1"
+	    documentation 	"A vertex set is delete from the document")
+	(object UseCase "Delete Vertex Set"
+	    quid       	"3A2368050121")
+	(object UseCase "Properties Vertex Set"
+	    quid       	"3A2E032D0179")
+	(object UseCase "Export Vertex Set"
+	    quid       	"3A2E50100172")
+	(object UseCase "Rename VertexSet"
+	    quid       	"3A34DD0E01B9")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A236A750309"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A236A77001D"
+		    supplier   	"Use Case View::Model Use Cases::Vertex set::Read Vertex Set"
+		    quidu      	"3A1E6E5F01D1"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A236A770027"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A236A790200"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A236A7A002B"
+		    supplier   	"Use Case View::Model Use Cases::Vertex set::Delete Vertex Set"
+		    quidu      	"3A2368050121"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A236A7A0035"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2E0344001E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2E034403D5"
+		    supplier   	"Use Case View::Model Use Cases::Vertex set::Properties Vertex Set"
+		    quidu      	"3A2E032D0179"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2E03450001"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A2E504D00BB"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A2E504D03DC"
+		    supplier   	"Use Case View::Model Use Cases::Vertex set::Export Vertex Set"
+		    quidu      	"3A2E50100172"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A2E504E0009"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Vertex Set"
+	    quid       	"3A236A3C01DA"
+	    title      	"Vertex Set"
+	    documentation 	"Export x,y,z,result format for a given VertexSet"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(144, 32)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	3
+		    max_width  	1387
+		    label      	"Use case for the vertex set")
+		(object UseCaseView "Use Case View::Model Use Cases::Vertex set::Read Vertex Set" @2
+		    location   	(1504, 528)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1504, 672)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Read Vertex Set")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A1E6E5F01D1")
+		(object UseCaseView "Use Case View::Model Use Cases::Vertex set::Delete Vertex Set" @3
+		    location   	(1520, 1280)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1520, 1424)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Vertex Set")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2368050121")
+		(object UseCaseView "Use Case View::Model Use Cases::Vertex set::Properties Vertex Set" @4
+		    location   	(688, 1264)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(688, 1408)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Properties Vertex Set")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E032D0179"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Vertex set::Export Vertex Set" @5
+		    location   	(400, 320)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(400, 464)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Export Vertex Set")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E50100172"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(976, 736)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(976, 896)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	331
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @7
+		    location   	(1108, 681)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A236A750309"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @8
+			    Parent_View 	@7
+			    location   	(820, 57)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A236A77001D"
+			    client     	@7
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @9
+			    Parent_View 	@7
+			    location   	(820, 57)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A236A770027"
+			    client     	@7
+			    supplier   	@6
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @10
+		    location   	(1303, 1064)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A236A790200"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @11
+			    Parent_View 	@10
+			    location   	(1015, 104)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A236A7A002B"
+			    client     	@10
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @12
+			    Parent_View 	@10
+			    location   	(1015, 104)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A236A7A0035"
+			    client     	@10
+			    supplier   	@6
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @13
+		    location   	(796, 1063)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E0344001E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @14
+			    Parent_View 	@13
+			    location   	(444, 439)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E034403D5"
+			    client     	@13
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @15
+			    Parent_View 	@13
+			    location   	(444, 439)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E03450001"
+			    client     	@13
+			    supplier   	@6
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$9" @16
+		    location   	(776, 589)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E504D00BB"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @17
+			    Parent_View 	@16
+			    location   	(56, 45)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E504D03DC"
+			    client     	@16
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @18
+			    Parent_View 	@16
+			    location   	(56, 45)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E504E0009"
+			    client     	@16
+			    supplier   	@6
+			    line_style 	0)))))))

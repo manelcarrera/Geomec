@@ -1,0 +1,18 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_modify_click.new","wp_modify_click")
+
+Scenario ("Modification vertical wellpath by click")
+StartScenario("Modification vertical wellpath by click")
+	WellPathStartUp()
+	ModifyWellPathByHand("Well Path 1",90,30)
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave()
+End Scenario
+
+EndLog
+
+End

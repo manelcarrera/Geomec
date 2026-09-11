@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Troubleshooting</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="analysis">
+	<param name="Keyword" value="calculation">
+	<param name="Keyword" value="troubleshooting">
+</OBJECT>
+<h1><a name="_Toc48442877"><span style="mso-ansi-language:EN-GB">Troubleshooting</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">GEOMEC</span><span style="mso-ansi-language:EN-GB">
+uses DIANA Finite Element software to calculate results.<o:p>
+</o:p>
+ <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">In
+most cases the DIANA analysis will calculate results. However, in some
+cases DIANA code may generate specific error or warning messages.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">The
+variety of these messages is too large to explain them all in this context. General
+knowledge of the Finite Element Method is useful for interpreting the messages.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">Some
+straightforward errors and warnings are listed below. In other cases the GEOMEC user is
+referred to the DIANA manuals (1)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l46 level1 lfo45;tab-stops:list 36.0pt"><span style="mso-ansi-language: EN-GB">Errors
+    related to the operating system: read/write error.<o:p>
+    </o:p>
+    </span></li>
+</ul>
+<p class="MsoNormal" style="margin-left:36.0pt"><span style="mso-ansi-language: EN-GB">The
+general form of such an error is: <i>Trying to write to filosfile</i><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt"><span style="mso-ansi-language: EN-GB">Insufficient</span><span style="mso-ansi-language: EN-GB">
+disk space available. Make sure that enough disk space is available for DIANA to
+write to.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l46 level1 lfo45;tab-stops:list 36.0pt"><span style="mso-ansi-language: EN-GB">Warnings
+    related to the grid size<o:p>
+    </o:p>
+    </span></li>
+</ul>
+<p class="MsoNormal" style="margin-left:36.0pt"><span style="mso-ansi-language: EN-GB">The
+general form of such an error is: <i>Bad shaped element</i><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt">Steep gradients in horizons or
+relatively thin formations combined with a large grid spacing (hexahedron type
+model) can cause strangely shaped elements in the model. <span style="mso-ansi-language: EN-GB">In most
+cases refinement of the grid will eliminate this problem. Note that DIANA can
+still perform the finite element calculation. Results around the badly shaped
+elements are to be interpreted with caution, however.</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">(1)
+DIANA User’s Manuals, published by TNO DIANA BV, Schoemakerstraat 97, 2628 VK 
+Delft, The Netherlands</span></p>
+
+</body>
+
+</html>

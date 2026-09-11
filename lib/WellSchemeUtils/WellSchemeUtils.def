@@ -1,0 +1,6 @@
+; WellSchemeUtils.def : Declares the module parameters for the DLL.
+
+LIBRARY      "WellSchemeUtils"
+
+EXPORTS
+    ; Explicit exports can go here

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- <Directory Id="oiv" Name="oiv"> -->
+  
+    <?define ComponentID_OIV_bin="6b986df1-4b2f-4bdc-9a8f-77c98314d2c7" ?>
+    
+    <?define OIVBin="$(var.OIVRoot)\bin" ?>
+    <?define OIVLicense="$(var.OIVRoot)\license" ?>
+
+    <?define OIV_Inventor_dll="Inventor.dll" ?>
+    <?define OIV_InventorBase_dll="InventorBase.dll" ?>
+    <?define OIV_InventorGL_dll="InventorGL.dll" ?>
+    <?define OIV_InventorImage_dll="InventorImage.dll" ?>
+    <?define OIV_IvTbb_dll="IvTbb.dll" ?>
+    <?define OIV_IvTbbmalloc_dll="IvTbbmalloc.dll" ?>
+    <?define OIV_IvTbbmalloc_proxy_dll="IvTbbmalloc_proxy.dll" ?>
+    <?define OIV_fei_tbb_dll="fei_tbb.dll" ?>
+    <?define OIV_fei_tbbmalloc_dll="fei_tbbmalloc.dll" ?>
+    <?define OIV_fei_tbbmalloc_proxy_dll="fei_tbbmalloc_proxy.dll" ?>
+    <?define OIV_fei_boost_date_time_mt_dll="fei_boost_date_time-mt.dll" ?>
+    <?define OIV_fei_boost_system_mt_dll="fei_boost_system-mt.dll" ?>  <?define OIV_ScaleViz_dll="ScaleViz.dll" ?>
+    <?define OIV_fei_ImageAccess_dll="fei_ImageAccess.dll" ?>
+
+    <?define OIV_IvDLZLib_dll="IvDLZLib.dll" ?>
+    <?define OIV_IvDLLm_dll="IvDLLm.dll" ?>
+    <?define OIV_IvDLFreetype_dll="IvDLFreetype.dll" ?>
+  
+    <?define OIV_fei_inventor_io_dxf_dll="fei.inventor.io.dxf.dll" ?>
+    <?define OIV_fei_inventor_io_flt_dll="fei.inventor.io.flt.dll" ?>
+    <?define OIV_fei_inventor_io_stl_dll="fei.inventor.io.stl.dll" ?>
+
+    <?define OIV_InventorAlgorithms_dll="InventorAlgorithms.dll" ?>
+    <?define OIV_InventorGui_dll="InventorGui.dll" ?>
+    <?define OIV_InventorR_dll="InventorR.dll" ?>
+    <?define OIV_InventorWin_dll="InventorWin.dll" ?>
+
+    <?define OIV_MeshVizDataMapping_dll="MeshVizDataMapping.dll" ?>
+    <?define OIV_MeshVizExtractor_dll="MeshVizExtractor.dll" ?>
+    <?define OIV_MeshVizImpl_dll="MeshVizImpl.dll" ?>
+    <?define OIV_MeshViz_dll="MeshViz.dll" ?>
+    <?define OIV_MeshVizWin_dll="MeshVizWin.dll" ?>
+  
+    <!-- work-around -->
+    <?define OIV_DirectViz_dll="DirectViz.dll" ?>
+  
+    <?define password_dat="password.dat" ?>
+  
+    <?define lmutil_exe="lmutil.exe" ?>
+
+    <Component Id="Component_OIV_bin" Guid="$(var.ComponentID_OIV_bin)" Win64="yes">
+        
+      <File Id="$(var.OIV_Inventor_dll)" Source="$(var.OIVBin)\$(var.OIV_Inventor_dll)" />
+      <File Id="$(var.OIV_InventorBase_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorBase_dll)" />
+      <File Id="$(var.OIV_InventorGL_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorGL_dll)" />
+      <File Id="$(var.OIV_InventorImage_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorImage_dll)" />
+      <File Id="$(var.OIV_IvTbb_dll)" Source="$(var.OIVBin)\$(var.OIV_IvTbb_dll)" />
+      <File Id="$(var.OIV_IvTbbmalloc_dll)" Source="$(var.OIVBin)\$(var.OIV_IvTbbmalloc_dll)" />
+      <File Id="$(var.OIV_IvTbbmalloc_proxy_dll)" Source="$(var.OIVBin)\$(var.OIV_IvTbbmalloc_proxy_dll)" />
+      <File Id="$(var.OIV_fei_tbb_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_tbb_dll)" />
+      <File Id="$(var.OIV_fei_tbbmalloc_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_tbbmalloc_dll)" />
+      <File Id="$(var.OIV_fei_tbbmalloc_proxy_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_tbbmalloc_proxy_dll)" />
+      <File Id="OIV_fei_boost_date_time_mt_dll" Source="$(var.OIVBin)\$(var.OIV_fei_boost_date_time_mt_dll)" />
+      <File Id="OIV_fei_boost_system_mt_dll" Source="$(var.OIVBin)\$(var.OIV_fei_boost_system_mt_dll)" />
+      <File Id="$(var.OIV_ScaleViz_dll)" Source="$(var.OIVBin)\$(var.OIV_ScaleViz_dll)" />
+      <File Id="$(var.OIV_fei_ImageAccess_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_ImageAccess_dll)" />
+      <File Id="$(var.OIV_IvDLZLib_dll)" Source="$(var.OIVBin)\$(var.OIV_IvDLZLib_dll)" />
+      <File Id="$(var.OIV_IvDLLm_dll)" Source="$(var.OIVBin)\$(var.OIV_IvDLLm_dll)" />
+      <File Id="$(var.OIV_IvDLFreetype_dll)" Source="$(var.OIVBin)\$(var.OIV_IvDLFreetype_dll)" />
+      <File Id="$(var.OIV_fei_inventor_io_dxf_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_inventor_io_dxf_dll)" />
+      <File Id="$(var.OIV_fei_inventor_io_flt_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_inventor_io_flt_dll)" />
+      <File Id="$(var.OIV_fei_inventor_io_stl_dll)" Source="$(var.OIVBin)\$(var.OIV_fei_inventor_io_stl_dll)" />
+      <File Id="$(var.OIV_InventorAlgorithms_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorAlgorithms_dll)" />
+      <File Id="$(var.OIV_InventorGui_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorGui_dll)" />
+      <File Id="$(var.OIV_InventorR_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorR_dll)" />
+      <File Id="$(var.OIV_InventorWin_dll)" Source="$(var.OIVBin)\$(var.OIV_InventorWin_dll)" />
+      <File Id="$(var.OIV_MeshVizDataMapping_dll)" Source="$(var.OIVBin)\$(var.OIV_MeshVizDataMapping_dll)" />
+      <File Id="$(var.OIV_MeshVizExtractor_dll)" Source="$(var.OIVBin)\$(var.OIV_MeshVizExtractor_dll)" />
+      <File Id="$(var.OIV_MeshVizImpl_dll)" Source="$(var.OIVBin)\$(var.OIV_MeshVizImpl_dll)" />
+      <File Id="$(var.OIV_MeshViz_dll)" Source="$(var.OIVBin)\$(var.OIV_MeshViz_dll)" />
+      <File Id="$(var.OIV_MeshVizWin_dll)" Source="$(var.OIVBin)\$(var.OIV_MeshVizWin_dll)" />
+      <File Id="$(var.OIV_DirectViz_dll)" Source="$(var.OIVBin)\$(var.OIV_DirectViz_dll)" />
+      <File Id="$(var.password_dat)" Source="$(var.WixInclude)\$(var.password_dat)" />
+      <File Id="$(var.lmutil_exe)" Source="$(var.OIVLicense)\$(var.lmutil_exe)" />
+        
+    </Component>
+    
+    <!-- </Directory> --> <!-- oiv  -->
+</Include>

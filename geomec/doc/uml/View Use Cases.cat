@@ -1,0 +1,778 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "View Use Cases"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A0805F2039D"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Copy To Clipboard"
+	    quid       	"3A23D1BD004A")
+	(object Class_Category "OpenGL"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\OpenGL.cat"
+	    quid       	"3A23D07C02B6")
+	(object Class_Category "Gradients"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Gradients.cat"
+	    quid       	"3A2E07010313")
+	(object Class_Category "GeoView"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\GeoView.cat"
+	    quid       	"3A2E0FDF03C1"))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Tree View"
+	    quid       	"3A0183680184"
+	    title      	"Tree View"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object UseCaseView "Use Case View::Model Use Cases::Horizon::Delete Horizon" @1
+		    location   	(1296, 144)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1296, 282)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Horizon")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07B99502B7"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(912, 144)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(912, 304)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @3
+		    location   	(1077, 144)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07B9A5024C"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @4
+			    Parent_View 	@3
+			    location   	(933, -368)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07B9A7015E"
+			    client     	@3
+			    supplier   	@1
+			    line_style 	0)
+			(object RoleView "" @5
+			    Parent_View 	@3
+			    location   	(933, -368)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07B9A70168"
+			    client     	@3
+			    supplier   	@2
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Fault::Add Fault" @6
+		    location   	(528, 512)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(528, 654)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Fault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39FEF365032D"
+		    width      	231
+		    height     	125)
+		(object ClassView "Class" "Use Case View::Geomec User" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(128, 512)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(128, 672)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @8
+		    location   	(298, 512)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BA2D0049"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @9
+			    Parent_View 	@8
+			    location   	(170, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BA2E0004"
+			    client     	@8
+			    supplier   	@6
+			    line_style 	0)
+			(object RoleView "" @10
+			    Parent_View 	@8
+			    location   	(170, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BA2E0018"
+			    client     	@8
+			    supplier   	@7
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Fault::Delete Fault" @11
+		    location   	(1296, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1296, 634)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Fault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07BA4D00F9"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(912, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(912, 656)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @13
+		    location   	(1077, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BA550122"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @14
+			    Parent_View 	@13
+			    location   	(165, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BA5600B6"
+			    client     	@13
+			    supplier   	@11
+			    line_style 	0)
+			(object RoleView "" @15
+			    Parent_View 	@13
+			    location   	(165, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BA5600C0"
+			    client     	@13
+			    supplier   	@12
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Horizon::Insert Horizon" @16
+		    location   	(528, 160)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(528, 298)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Insert Horizon")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39FEEF670003"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(144, 160)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(144, 320)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @18
+		    location   	(309, 160)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"39FEEF7903A2"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @19
+			    Parent_View 	@18
+			    location   	(149, -80)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"39FEEF7B014C"
+			    client     	@18
+			    supplier   	@16
+			    line_style 	0)
+			(object RoleView "" @20
+			    Parent_View 	@18
+			    location   	(149, -80)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"39FEEF7B0160"
+			    client     	@18
+			    supplier   	@17
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Regions::Add Region" @21
+		    location   	(528, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(528, 970)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Region")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39FEF51E031E")
+		(object ClassView "Class" "Use Case View::Geomec User" @22
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(128, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(128, 992)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @23
+		    location   	(301, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BAE40196"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @24
+			    Parent_View 	@23
+			    location   	(173, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BAE50256"
+			    client     	@23
+			    supplier   	@21
+			    line_style 	0)
+			(object RoleView "" @25
+			    Parent_View 	@23
+			    location   	(173, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BAE5026A"
+			    client     	@23
+			    supplier   	@22
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Regions::Delete Region" @26
+		    location   	(1296, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@26
+			location   	(1296, 970)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Region")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07BAF000FD"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @27
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(912, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@27
+			location   	(912, 992)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @28
+		    location   	(1077, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BB0F006C"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @29
+			    Parent_View 	@28
+			    location   	(149, -16)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BB1000EF"
+			    client     	@28
+			    supplier   	@26
+			    line_style 	0)
+			(object RoleView "" @30
+			    Parent_View 	@28
+			    location   	(149, -16)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BB1000F9"
+			    client     	@28
+			    supplier   	@27
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Well path::Insert Wellpath" @31
+		    location   	(544, 1184)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@31
+			location   	(544, 1322)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Insert Wellpath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39FEF48700BE"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @32
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(128, 1184)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@32
+			location   	(128, 1344)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UseCaseView "Use Case View::Model Use Cases::Well path::Delete Wellpath" @33
+		    location   	(1296, 1152)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@33
+			location   	(1296, 1290)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Wellpath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07BC8A01D9"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @34
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(912, 1152)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@34
+			location   	(912, 1312)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @35
+		    location   	(1077, 1152)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BC9A02FF"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @36
+			    Parent_View 	@35
+			    location   	(165, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BC9B0210"
+			    client     	@35
+			    supplier   	@33
+			    line_style 	0)
+			(object RoleView "" @37
+			    Parent_View 	@35
+			    location   	(165, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BC9B0224"
+			    client     	@35
+			    supplier   	@34
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Model Use Cases::Formation::Move Body" @38
+		    location   	(544, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@38
+			location   	(544, 1674)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Move Body")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07BE420240"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @39
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(128, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@39
+			location   	(128, 1696)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @40
+		    location   	(308, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07BE5F01D4"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @41
+			    Parent_View 	@40
+			    location   	(180, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BE600080"
+			    client     	@40
+			    supplier   	@38
+			    line_style 	0)
+			(object RoleView "" @42
+			    Parent_View 	@40
+			    location   	(180, 0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A07BE60008A"
+			    client     	@40
+			    supplier   	@39
+			    line_style 	0)))))))

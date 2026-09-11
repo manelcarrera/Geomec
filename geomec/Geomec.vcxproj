@@ -1,0 +1,2069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="10.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|x64">
+      <Configuration>Template</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2914CCCE-F383-4176-AAB8-36CBCD58A04B}</ProjectGuid>
+    <RootNamespace>Geomec</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Geomec</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\vsprops\BuildCommon.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\vsprops\BuildRelease.props" />
+    <Import Project="..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\vsprops\BuildDebug.props" />
+    <Import Project="..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Template|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Template|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Template|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/Geomec.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(GEOMEC)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>../lib/GeomecStringTable/SRC;../../lib/GeomecStringTable/SRC;../lib/GeomecModel/SRC;../../lib/GeomecModel/SRC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;Qt5OpenGLd.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);opengl32.lib;glu32.lib;$(LIBLBCX);$(LIBLBDS);HtmlHelp.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;imm32.lib;wsock32.lib;winspool.lib;winmm.lib;$(LIBLBCI);psapi.lib;$(LIBLBEL);$(LIBLBGS);qwtd.lib;$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);netapi32.lib;$(LICENSERESOURCELIB);$(FLEXLIB);lmgr11.lib;lmgr11_MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(DSPLIB);$(QTDIR)/lib;FlexLM/lib64;$(QWTDIR)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5OpenGLd.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);opengl32.lib;glu32.lib;$(LIBLBCX);$(LIBLBDS);HtmlHelp.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;imm32.lib;wsock32.lib;winspool.lib;winmm.lib;$(LIBLBCI);psapi.lib;$(LIBLBEL);$(LIBLBGS);qwtd.lib;$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);netapi32.lib;$(LICENSERESOURCELIB);$(FLEXLIB);libhdf5_D.lib;libhdf5_cpp_D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(DSPLIB);$(QTDIR)/lib;FlexLM/lib64;$(QWTDIR)/lib;$(OIVHOME)/arch-Windows-x86_64-msvc10-$(Configuration)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OIVHOME)\$(OIVARCH_PREFIX)$(Configuration)\lib;$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(DSPLIB);$(QTDIR)/lib;FlexLM/lib64;$(QWTDIR)/lib;$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ManifestFile>$(IntDir)$(TargetFileName).intermediate.manifest</ManifestFile>
+      <AdditionalManifestDependencies>%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
+      <IgnoreSpecificDefaultLibraries>python27.lib;msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/Geomec.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptGeomecDebug)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionGeomecDebug)</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Release/Geomec.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm200 -d2SSAOptimizer- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(GEOMEC)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>../lib/GeomecStringTable/SRC;../../lib/GeomecStringTable/SRC;../lib/GeomecModel/SRC;../../lib/GeomecModel/SRC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5OpenGL.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);opengl32.lib;glu32.lib;$(LIBLBCX);$(LIBLBDS);HtmlHelp.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;imm32.lib;wsock32.lib;winspool.lib;winmm.lib;$(LIBLBCI);psapi.lib;$(LIBLBEL);$(LIBLBGS);qwt.lib;$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);netapi32.lib;$(LICENSERESOURCELIB);$(FLEXLIB);lmgr11.lib;lmgr11_MD.lib;libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OIVHOME)\$(OIVARCH_PREFIX)$(Configuration)\lib;$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(DSPLIB);$(QTDIR)/lib;$(QWTDIR)/lib;$(FLEXLM)/../lib64;$(CM2LIBPATH);$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>python27.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+      <Profile>false</Profile>
+    </Link>
+    <Bscmake />
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptGeomecRelease)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionGeomecRelease)</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Release/Geomec.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(GEOMEC)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_RELEASE_WITH_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <DisableSpecificWarnings>4100;4127;4131;4189;4251;4505;4706;4714;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>../lib/GeomecStringTable/SRC;../../lib/GeomecStringTable/SRC;../lib/GeomecModel/SRC;../../lib/GeomecModel/SRC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5OpenGL.lib;$(LIBLBFL);$(LIBLBCP);$(LIBLBDC);opengl32.lib;glu32.lib;$(LIBLBCX);$(LIBLBDS);HtmlHelp.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;imm32.lib;wsock32.lib;winspool.lib;winmm.lib;$(LIBLBCI);psapi.lib;$(LIBLBEL);$(LIBLBGS);qwt.lib;$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);netapi32.lib;$(LICENSERESOURCELIB);$(FLEXLIB);lmgr11.lib;lmgr11_MD.lib;libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OIVHOME)\$(OIVARCH_PREFIX)Release\lib;$(DIAOBJ);$(DIAOBJ)/ci;$(DIAOBJ)/lib;$(DSPLIB);$(QTDIR)/lib;$(QWTDIR)/lib;$(FLEXLM)/../lib64;$(CM2LIBPATH);$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>python27.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <Profile>false</Profile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Bscmake />
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptGeomecRelease)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionGeomecRelease)</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
+    <Link>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(QUTIL_LIB_INC);$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fw51\FieldValueFile\FieldValueFile.vcxproj">
+      <Project>{466422f4-3259-419b-80ea-65d3de4bd8c6}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Geometry\Geometry.vcxproj">
+      <Project>{be554a53-3201-496e-912b-fd63c8962b90}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\GuiFrame\GuiFrame.vcxproj">
+      <Project>{f535416a-4cfb-4d00-b4d8-2ee1640d88de}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\ModelFrame\ModelFrame.vcxproj">
+      <Project>{ff0762fd-0778-4be1-97dd-e7aa6e8b104a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\OpenGLFrame\OpenGLFrame.vcxproj">
+      <Project>{6eb909d5-a8fa-48fe-9fb2-3fdcc75977db}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Tensor\Tensor.vcxproj">
+      <Project>{bb3007b8-17c5-427d-b723-e3b8324218fc}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\TetMesh\TetMesh.vcxproj">
+      <Project>{aeeacd24-e222-4747-832f-b010c51d9bbd}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Triangle\triangle.vcxproj">
+      <Project>{a9906d73-fb4f-495d-bca1-54f4bf13a444}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\blosc_filter\blosc_filter.vcxproj">
+      <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+      <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
+      <Project>{d5ca483c-e972-4ca4-9ce2-f4ebc521108c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\ConsoleLibrary\ConsoleLibrary.vcxproj">
+      <Project>{b86ff4e0-616b-4972-9f3e-7094d1ca0347}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CutSurfaceUtilModel\CutSurfaceUtilModel.vcxproj">
+      <Project>{761de266-29aa-40e9-9f2a-90dace0d8a2f}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CutSurfaceUtil\CutSurfaceUtil.vcxproj">
+      <Project>{a3ba5cad-d4ee-4ec0-b3c9-9ae8b6558d08}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DCasing\DCasing.vcxproj">
+      <Project>{f641edd0-67f9-4488-8f2d-ab1fe0ddb148}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DianaGlue\DianaGlue.vcxproj">
+      <Project>{344f283e-11eb-452d-973b-49589be2f0b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DoubleEditLib\DoubleEditLib.vcxproj">
+      <Project>{77925400-c8db-4aaf-8e1a-bd7274ae1fa5}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\FemAppGUI\FemAppGUI.vcxproj">
+      <Project>{d123fa8c-5a4d-44a8-a1bb-04b5b8fe86ef}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\FemAppModel\FemAppModel.vcxproj">
+      <Project>{27902801-b1f4-435f-8e7d-dde68fd398ba}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GeomecModel\GeomecModel.vcxproj">
+      <Project>{ee2e3ba6-3ce5-4962-a545-4399139e3efe}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GeomecStringTable\GeomecStringTable.vcxproj">
+      <Project>{82df03e6-336a-4458-808b-d02fb1ccbaae}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GmDatabase\GmDatabase.vcxproj">
+      <Project>{96073ff9-fbe7-4123-8c73-ecc42b79c529}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GMSkuaConnector\GMSkuaConnector.vcxproj">
+      <Project>{7dff0108-6cff-4da1-985c-de482241d396}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\IT\IT.vcxproj">
+      <Project>{16be587e-c260-4a4a-9817-e4f7f5a68c07}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MaterialLibraryXML\MaterialLibraryXML.vcxproj">
+      <Project>{a499d6a1-480e-4409-82f9-699e5658cfcd}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MaterialLibrary\MaterialLibrary.vcxproj">
+      <Project>{6471453a-ba91-4241-823e-ff6cae2a242a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MeshDataCacher\MeshDataCacher.vcxproj">
+      <Project>{c0204739-a48c-4d3b-bd5f-c74d65871061}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MfcGuiFrame\MfcGuiFrame.vcxproj">
+      <Project>{de87a883-268b-4a5e-bd54-a7522191a9c5}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\NewWellScheme\NewWellScheme.vcxproj">
+      <Project>{2a6e8f7b-8d6b-4d66-ae56-1989dff03f6a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\OpenInventorDataInterface\OpenInventorDataInterface.vcxproj">
+      <Project>{c12d912c-41ad-4888-b92a-0876fd147ab9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Plugins\Plugins.vcxproj">
+      <Project>{f2b1aa28-9235-41af-85ed-9a6a7acddbd0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\PyLib\PyLib.vcxproj">
+      <Project>{cf6d0c66-92da-4d28-b7e3-4fab2370427e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\qtiocompressor\qtiocompressor.vcxproj">
+      <Project>{4ffd48fe-053e-4c8d-8060-cdbca4835590}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\qtwinmigrate\qtwinmigrate.vcxproj">
+      <Project>{ac4a2ddf-6bb5-4e9d-bf6c-383059506cbe}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Quantity\Quantity.vcxproj">
+      <Project>{be3d76e9-9084-464e-a152-863cb45cb664}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\QUtil\QUtil.vcxproj">
+      <Project>{f99b429a-1152-459d-8716-007a42c94625}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RESCUE\Rescue.vcxproj">
+      <Project>{1b818b98-cc70-4a22-9bd7-f48242463489}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RPN\RPN.vcxproj">
+      <Project>{4f25fb23-f39c-4e66-baf6-db3f6f8f15ac}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\TSMesh\TSMesh.vcxproj">
+      <Project>{0c6809c8-2d74-44a9-95d6-6b7f930007f9}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\WellScene3D\WellScene3D.vcxproj">
+      <Project>{37b4447f-0347-4432-87cd-4cd27dad2dd0}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\WELLSCHEMEUTILS\WellSchemeUtils.vcxproj">
+      <Project>{6b2bed05-e28a-4f03-8237-c23e23a95cb1}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\WellScheme\WellScheme.vcxproj">
+      <Project>{196d6005-6814-4b11-89d7-dd391a44c239}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\WindowsRegistry\WindowsRegistry.vcxproj">
+      <Project>{8743519e-49dc-424c-ad47-94e4781bef6a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\XMLLib\XMLLib.vcxproj">
+      <Project>{fc709f20-22cf-4130-ac2f-d7eb22452b8a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">
+      <Project>{b12702ad-abfb-343a-a199-8e24837244a3}</Project>
+    </ProjectReference>
+    <ProjectReference Condition="'$(BuildLicenseOption)'!='BUILD_LICENSE_OPTION=-1'" Include="FlexLM\License\License.vcxproj">
+      <Project>{7c705af8-27e4-41b5-852c-4e4302004fce}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="attr\src\AttriFormPlane.cpp" />
+    <ClCompile Include="attr\src\AttriGroupNode.cpp" />
+    <ClCompile Include="attr\src\AttriNonMeshedSurfacePressure.cpp" />
+    <ClCompile Include="attr\src\AttriTetraVolume.cpp" />
+    <ClCompile Include="attr\src\AttriThinLayerUpscalingTargetPointsets.cpp" />
+    <ClCompile Include="BaseModel\attr\src\attrianalysispoint.cpp" />
+    <ClCompile Include="BaseModel\attr\src\AttriFaultParameters.cpp" />
+    <ClCompile Include="BaseModel\attr\src\attriformation.cpp" />
+    <ClCompile Include="BaseModel\attr\src\AttriInterfaceMaterial.cpp" />
+    <ClCompile Include="BaseModel\attr\src\attrimesh.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\3DFormation_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\3DHorizon_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\3DModel_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\AnalysisPoint_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\BaseSupportNode_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\BoundaryBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\DepletionStage_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\FaultParametersNode_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\FormationBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\FormationVolume_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\GlobalTemperature_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\HexaModel_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\HorizonBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\IMaterialBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\IMaterialRock_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\IMaterialServerBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\IMaterial_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\InterfaceMaterial_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialAnisotropicCamClay_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialCamClayCreep_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialCamClay_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialCreep_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialDualCapLinEla_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialEntry_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialFractAnisotropy_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialFractureAperture2_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialFractureApertureBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialFractureAperture_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialLinear_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialModMohrCo_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialMohrCo_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialRigidity_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialServer_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialUndrained_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MaterialUpscaledAnisotropy_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MeasuredTopDisplacementsNode_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MeshBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\MeshRegionBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\ModelBase_Delegate.cpp" />
+    <ClCompile Include="BaseModel\delegate\src\TetraModel_Delegate.cpp" />
+    <ClCompile Include="BaseModel\src\ConcistencyGuardSettingsPg.cpp" />
+    <ClCompile Include="BaseModel\src\ConsistencyGuardErrorPg.cpp" />
+    <ClCompile Include="BaseModel\src\ConsistencyGuardValidationPg.cpp" />
+    <ClCompile Include="BaseModel\src\ElementOrderSubDialog.cpp" />
+    <ClCompile Include="BaseModel\src\FaultParametersHub.cpp" />
+    <ClCompile Include="BaseModel\src\HandleDefaultFaultParameters.cpp" />
+    <ClCompile Include="BaseModel\src\InitialTemperatureDlg.cpp" />
+    <ClCompile Include="BaseModel\src\ModelGeneralPg.cpp" />
+    <ClCompile Include="BaseModel\src\modelgeologypg.cpp" />
+    <ClCompile Include="BaseModel\src\modeltimesteppg.cpp" />
+    <ClCompile Include="delegate\src\BoundaryInterfaceDef_Delegate.cpp" />
+    <ClCompile Include="delegate\src\CalculatedTemperature_Delegate.cpp" />
+    <ClCompile Include="delegate\src\CamClayUpscaling_Delegate.cpp" />
+    <ClCompile Include="delegate\src\ColorGradient_Delegate.cpp" />
+    <ClCompile Include="delegate\src\CrossSection_Delegate.cpp" />
+    <ClCompile Include="delegate\src\ElementValueSet_Delegate.cpp" />
+    <ClCompile Include="delegate\src\FormationPlane_Delegate.cpp" />
+    <ClCompile Include="delegate\src\GroupNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\HomogenizationBox_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IScalingBox_Delegate.cpp" />
+    <ClCompile Include="delegate\src\MeshSampler_Delegate.cpp" />
+    <ClCompile Include="delegate\src\NewWellPathInput_Delegate.cpp" />
+    <ClCompile Include="delegate\src\NonMeshedSurfaceParametersNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\NonMeshedSurfacePressure_Delegate.cpp" />
+    <ClCompile Include="delegate\src\NonMeshedSurface_Delegate.cpp" />
+    <ClCompile Include="delegate\src\StrainLoad_Delegate.cpp" />
+    <ClCompile Include="delegate\src\Temperature_Delegate.cpp" />
+    <ClCompile Include="delegate\src\ThinLayerUpscaling_Delegate.cpp" />
+    <ClCompile Include="delegate\src\Upscaling_Delegate.cpp" />
+    <ClCompile Include="dlg\h\pointsetcreatedlg.cpp" />
+    <ClCompile Include="dlg\moc\moc_ChangelogDlg.cpp" />
+    <ClCompile Include="dlg\moc\moc_meshconverterdlg.cpp" />
+    <ClCompile Include="dlg\moc\moc_MeshRefinementDlg.cpp" />
+    <ClCompile Include="dlg\moc\moc_MeshRefinementGradientDlg.cpp" />
+    <ClCompile Include="dlg\moc\moc_AboutDlg.cpp" />
+    <ClCompile Include="dlg\src\AboutDlg.cpp" />
+    <ClCompile Include="dlg\src\AdvancedConvergenceOptionsDlg.cpp" />
+    <ClCompile Include="dlg\src\analysislogdlg.cpp" />
+    <ClCompile Include="dlg\src\AttriFaultPressureDlg.cpp" />
+    <ClCompile Include="dlg\src\AttriHotSpotDlg.cpp" />
+    <ClCompile Include="dlg\src\AttriTemperatureDlg.cpp" />
+    <ClCompile Include="dlg\src\ChangelogDlg.cpp" />
+    <ClCompile Include="dlg\src\DatFileDialog.cpp" />
+    <ClCompile Include="dlg\src\DialogBase.cpp" />
+    <ClCompile Include="dlg\src\DistriMatPropDlg.cpp" />
+    <ClCompile Include="dlg\src\EditFaultSettings.cpp" />
+    <ClCompile Include="dlg\src\MesherDlg.cpp" />
+    <ClCompile Include="dlg\src\ExecuteDianaDialog.cpp" />
+    <ClCompile Include="dlg\src\exportdlg.cpp" />
+    <ClCompile Include="dlg\src\ExportGocadDlg.cpp" />
+    <ClCompile Include="dlg\src\ExportSvsDlg.cpp" />
+    <ClCompile Include="dlg\src\FaultInitSettingsDlg.cpp" />
+    <ClCompile Include="dlg\src\FistExportDlg.cpp" />
+    <ClCompile Include="dlg\src\FistPointPickDlg.cpp" />
+    <ClCompile Include="dlg\src\GlobalMessage_GUI_MFC.cpp" />
+    <ClCompile Include="dlg\src\GraphLimitsDlg.cpp" />
+    <ClCompile Include="dlg\src\GVTAnalysisDlg.cpp" />
+    <ClCompile Include="dlg\src\GVTSeismicGridDlg.cpp" />
+    <ClCompile Include="dlg\src\GVTStartDlg.cpp" />
+    <ClCompile Include="dlg\src\homoboxattridlg.cpp" />
+    <ClCompile Include="dlg\src\LicenseBorrowDlg.cpp" />
+    <ClCompile Include="dlg\src\linstaparamsdlg.cpp" />
+    <ClCompile Include="dlg\src\ManageExportMacrosDialog.cpp" />
+    <ClCompile Include="dlg\src\MeshMessageDlg.cpp" />
+    <ClCompile Include="dlg\src\MeshRefinementGradientDlg.cpp" />
+    <ClCompile Include="dlg\src\MeshRefinementDlg.cpp" />
+    <ClCompile Include="dlg\src\meshtolerancedlg.cpp" />
+    <ClCompile Include="dlg\src\ModelValidationDlg.cpp" />
+    <ClCompile Include="dlg\src\MonthCalDlg.cpp" />
+    <ClCompile Include="dlg\src\meshconverterdlg.cpp" />
+    <ClCompile Include="dlg\src\NewModelDlg.cpp" />
+    <ClCompile Include="dlg\src\NonMeshedSurfaceParametersDlg.cpp" />
+    <ClCompile Include="dlg\src\OptimizationSettings.cpp" />
+    <ClCompile Include="dlg\src\PetrelFileUnitDialog.cpp" />
+    <ClCompile Include="dlg\src\ProgressDlg_MFC.cpp" />
+    <ClCompile Include="dlg\src\QuickBlocksDlg.cpp" />
+    <ClCompile Include="dlg\src\RenameNodeDlg.cpp" />
+    <ClCompile Include="dlg\src\ResultMaterialSelectDlg.cpp" />
+    <ClCompile Include="dlg\src\RichhInputSummaryDlg.cpp" />
+    <ClCompile Include="dlg\src\SelectExportMacroDialog.cpp" />
+    <ClCompile Include="dlg\src\SelectFormationsDlg.cpp" />
+    <ClCompile Include="dlg\src\SetGlobalFaultBehaviourDialog.cpp" />
+    <ClCompile Include="dlg\src\surfacemergedefdlg.cpp" />
+    <ClCompile Include="dlg\src\TipDlg.cpp" />
+    <ClCompile Include="DStaborLink\dlg\src\DsbPickPointsDlg.cpp" />
+    <ClCompile Include="DStaborLink\src\dsbtsctrl.cpp" />
+    <ClCompile Include="DStaborLink\src\dsbx.cpp" />
+    <ClCompile Include="DStaborLink\src\ExportIDMStabor.cpp" />
+    <ClCompile Include="DStaborLink\src\insitu.cpp" />
+    <ClCompile Include="DStaborLink\src\mesh.cpp" />
+    <ClCompile Include="DStaborLink\src\mudweight.cpp" />
+    <ClCompile Include="DStaborLink\src\output.cpp" />
+    <ClCompile Include="DStaborLink\src\proc.cpp" />
+    <ClCompile Include="DStaborLink\src\rock.cpp" />
+    <ClCompile Include="DStaborLink\src\timepoints.cpp" />
+    <ClCompile Include="DStaborLink\src\well.cpp" />
+    <ClCompile Include="Excel\src\excel8.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attriboundarydlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attricolorgradientdlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\AttriFractureMatrixPressureDlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attriglobalpressuredlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attriglobalstressdlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attrinewwellpathdlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attrinodalvalueset.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\AttriPointSetUtil.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attripressuredlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\AttriStrainDlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attrisurfacedlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\attrixsecdlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\horizondeldlg.cpp" />
+    <ClCompile Include="Geology\attrdlg\src\SampledPointsetDlg.cpp" />
+    <ClCompile Include="Geology\delegate\src\FaultPressure_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\FractureMatrixPressure_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\geoSurface_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\GlobalPressure_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\NewWellPath_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\PointSet_Delegate.cpp" />
+    <ClCompile Include="Geology\delegate\src\Pressure_Delegate.cpp" />
+    <ClCompile Include="Geology\dlg\src\WellPathFileUnitDlg.cpp" />
+    <ClCompile Include="GUI\src\3DGUI.cpp" />
+    <ClCompile Include="GUI\src\DocumentGUI.cpp" />
+    <ClCompile Include="GUI\src\DocumentProxyGUI.cpp" />
+    <ClCompile Include="GUI\src\EclipseGUI.cpp" />
+    <ClCompile Include="GUI\src\FemAppGUI.cpp" />
+    <ClCompile Include="GUI\src\GoCadGUI.cpp" />
+    <ClCompile Include="GUI\src\GUIBase.cpp" />
+    <ClCompile Include="GUI\src\GUIFactory.cpp" />
+    <ClCompile Include="GUI\src\HexaGUI.cpp" />
+    <ClCompile Include="GUI\src\IWellGUI.cpp" />
+    <ClCompile Include="GUI\src\ModelProxyGUI.cpp" />
+    <ClCompile Include="GUI\src\NewModelGUI.cpp" />
+    <ClCompile Include="GUI\src\TetraGUI.cpp" />
+    <ClCompile Include="GUI\src\WellCasingGUI.cpp" />
+    <ClCompile Include="GUI\src\WellZoomInGUI.cpp" />
+    <ClCompile Include="HexaModel\attr\src\attrihexaformation.cpp" />
+    <ClCompile Include="HexaModel\attr\src\attrihexahorizon.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaBoundary_Delegate.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaFormation_Delegate.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaHorizon_Delegate.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaMeshRegion_Delegate.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaMesh_Delegate.cpp" />
+    <ClCompile Include="HexaModel\delegate\src\HexaSurface_Delegate.cpp" />
+    <ClCompile Include="HexaModel\dlg\src\attrihexameshregiondlg.cpp" />
+    <ClCompile Include="HexaModel\dlg\src\hexameshdepthdlg.cpp" />
+    <ClCompile Include="HexaModel\observer\src\HexaFormationObserver.cpp" />
+    <ClCompile Include="IT\src\IGeomec.cpp" />
+    <ClCompile Include="IT\src\IGm.cpp" />
+    <ClCompile Include="IT\src\IGmIT.cpp" />
+    <ClCompile Include="IT\src\IGmSur.cpp" />
+    <ClCompile Include="IT\src\IT_Command_Task.cpp" />
+    <ClCompile Include="IT\src\IT_Events_Handler.cpp" />
+    <ClCompile Include="IT\src\IT_Printer.cpp" />
+    <ClCompile Include="IT\src\IT_Util.cpp" />
+    <ClCompile Include="IT\src\MaterialManager.cpp" />
+    <ClCompile Include="IT\src\PointSetManager.cpp" />
+    <ClCompile Include="IT\src\RunGm.cpp" />
+    <ClCompile Include="Material\GUI\src\CalibSettingsDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\DerivedMatLibDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\ExperimentDataLimits.cpp" />
+    <ClCompile Include="Material\GUI\src\GammaAxialView.cpp" />
+    <ClCompile Include="Material\GUI\src\GammaRadialView.cpp" />
+    <ClCompile Include="Material\GUI\src\GammaView.cpp" />
+    <ClCompile Include="Material\GUI\src\InPlaceEdit.cpp" />
+    <ClCompile Include="Material\GUI\src\MaterialExportDialog.cpp" />
+    <ClCompile Include="Material\GUI\src\MaterialImportDialog.cpp" />
+    <ClCompile Include="Material\GUI\src\MatLibDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\MatLibListCtrl.cpp" />
+    <ClCompile Include="Material\GUI\src\MatParamDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\RenameMaterialDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\SelectWorksheetDlg.cpp" />
+    <ClCompile Include="Material\GUI\src\TabExperiment.cpp" />
+    <ClCompile Include="Material\GUI\src\TabModel.cpp" />
+    <ClCompile Include="Material\src\ExperimentData.cpp" />
+    <ClCompile Include="Material\src\ResultData.cpp" />
+    <ClCompile Include="moc\moc_custombtn.cpp" />
+    <ClCompile Include="moc\moc_meshconvertertreeview.cpp" />
+    <ClCompile Include="observer\src\UpscalingObserver.cpp" />
+    <ClCompile Include="observer\src\ValueCompositeObserver.cpp" />
+    <ClCompile Include="OpenInventor\delegate\src\OIV2DGraphValueColorScene_Delegate.cpp" />
+    <ClCompile Include="OpenInventor\delegate\src\OIV2DHistoryScene_Delegate.cpp" />
+    <ClCompile Include="OpenInventor\delegate\src\OIV2DWellPathGraphScene_Delegate.cpp" />
+    <ClCompile Include="OpenInventor\delegate\src\OIVSceneBase_Delegate.cpp" />
+    <ClCompile Include="OpenInventor\delegate\src\OpenInventorSceneNode_Delegate.cpp" />
+    <ClCompile Include="OpenInventor\observer\src\OIV2DHistorySceneObserver.cpp" />
+    <ClCompile Include="OpenInventor\observer\src\OIV2DWellPathGraphSceneObserver.cpp" />
+    <ClCompile Include="OpenInventor\observer\src\OpenInventorSceneNodeObserver.cpp" />
+    <ClCompile Include="OpenInventor\src\Algebra.cpp" />
+    <ClCompile Include="OpenInventor\src\BusinessAction.cpp" />
+    <ClCompile Include="OpenInventor\src\ColorManager.cpp" />
+    <ClCompile Include="OpenInventor\src\Curve.cpp" />
+    <ClCompile Include="OpenInventor\src\CurveColor.cpp" />
+    <ClCompile Include="OpenInventor\src\CurveGroup.cpp" />
+    <ClCompile Include="OpenInventor\src\Deformation.cpp" />
+    <ClCompile Include="OpenInventor\src\FormationNodeAssistant.cpp" />
+    <ClCompile Include="OpenInventor\src\GeomecOIV.cpp" />
+    <ClCompile Include="OpenInventor\src\HistoryCurve.cpp" />
+    <ClCompile Include="OpenInventor\src\InfoLabel.cpp" />
+    <ClCompile Include="OpenInventor\src\MainMeshNodeAssistant.cpp" />
+    <ClCompile Include="OpenInventor\src\MeshNodeSettings.cpp" />
+    <ClCompile Include="OpenInventor\src\MeshRefinementBoxesHandler.cpp" />
+    <ClCompile Include="OpenInventor\src\NewWellPathCurve.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDILineMeshNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDIMeshNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDIMeshNodeManager.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDISurfaceMeshNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDISurfaceMeshOutlineNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OIDIVolumeMeshNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DGraph.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DGraphValueColorScene.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DHistoryGraph.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DHistoryScene.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DHistorySceneWrapper.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DLegend.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DLegendSection.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DScene.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DSceneWrapper.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DWellPathGraph.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DWellPathGraphScene.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DWellPathGraphSceneWrapper.cpp" />
+    <ClCompile Include="OpenInventor\src\OIV2DWellPathLegend.cpp" />
+    <ClCompile Include="OpenInventor\src\OIVSceneBase.cpp" />
+    <ClCompile Include="OpenInventor\src\OIVWellPath.cpp" />
+    <ClCompile Include="OpenInventor\src\OpenInventorEventsHandler.cpp" />
+    <ClCompile Include="OpenInventor\src\OpenInventorSceneNode.cpp" />
+    <ClCompile Include="OpenInventor\src\OpenInventorSceneNodeAction.cpp" />
+    <ClCompile Include="OpenInventor\src\OpenInventorSceneWrapper.cpp" />
+    <ClCompile Include="OpenInventor\src\PolyLineScreenDrawerRetainer.cpp" />
+    <ClCompile Include="OpenInventor\src\vcbfunctions.cpp" />
+    <ClCompile Include="OpenInventor\src\WellPathCurveBase.cpp" />
+    <ClCompile Include="progress\src\DualProgress.cpp" />
+    <ClCompile Include="progress\src\GeoProgress.cpp" />
+    <ClCompile Include="progress\src\ProgressFactory_MFC.cpp" />
+    <ClCompile Include="progress\src\WaitProgress.cpp" />
+    <ClCompile Include="src\BinaryResultsImport.cpp" />
+    <ClCompile Include="src\CalculationProperties.cpp" />
+    <ClCompile Include="src\Clipboard.cpp" />
+    <ClCompile Include="src\ComboListCtrl.cpp" />
+    <ClCompile Include="src\CrossSectionGroup.cpp" />
+    <ClCompile Include="src\CustomCmdLineInfo.cpp" />
+    <ClCompile Include="src\dianax.cpp" />
+    <ClCompile Include="src\DumpModel.cpp" />
+    <ClCompile Include="src\ExcelAppGuard.cpp" />
+    <ClCompile Include="src\ExcelCell.cpp" />
+    <ClCompile Include="src\FistExport.cpp" />
+    <ClCompile Include="src\ForceActivation.cpp" />
+    <ClCompile Include="src\FormationCrossSection.cpp" />
+    <ClCompile Include="src\Geomec.cpp" />
+    <ClCompile Include="src\GeomecDoc.cpp" />
+    <ClCompile Include="src\GeomecDocDianaSignals.cpp" />
+    <ClCompile Include="src\GeomecDoc_EventsHandler.cpp" />
+    <ClCompile Include="src\GeomecHelper.cpp" />
+    <ClCompile Include="src\GeomecSplitterWnd.cpp" />
+    <ClCompile Include="src\geomecstatusbar.cpp" />
+    <ClCompile Include="src\GeomecUtils.cpp" />
+    <ClCompile Include="src\GlobalUnitNode.cpp" />
+    <ClCompile Include="src\GmHelper.cpp" />
+    <ClCompile Include="src\GocadExportWrapper.cpp" />
+    <ClCompile Include="src\InPlaceCombo.cpp" />
+    <ClCompile Include="src\MainFrm.cpp" />
+    <ClCompile Include="src\MatParamDlgDianaSignals.cpp" />
+    <ClCompile Include="src\MeshCrossSection.cpp" />
+    <ClCompile Include="src\meshconvertertreeview.cpp" />
+    <ClCompile Include="src\NonlinParams.cpp" />
+    <ClCompile Include="src\OpenGLDlgView.cpp" />
+    <ClCompile Include="src\PropertyExcel.cpp" />
+    <ClCompile Include="src\registryxdll.cpp" />
+    <ClCompile Include="src\RetrieveDianaFileNames.cpp" />
+    <ClCompile Include="src\RetrieveDianaFileNamesGUI.cpp" />
+    <ClCompile Include="src\RunAnalysis.cpp" />
+    <ClCompile Include="src\RunAnalysis_NonDsa.cpp" />
+    <ClCompile Include="src\SaveModel.cpp" />
+    <ClCompile Include="src\SaveModelGUI.cpp" />
+    <ClCompile Include="src\SoSwitchBool.cpp" />
+    <ClCompile Include="src\splah.cpp" />
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Test.cpp" />
+    <ClCompile Include="src\TestInterface.cpp" />
+    <ClCompile Include="src\ThinLayerUpscalingCreateTargetPointset.cpp" />
+    <ClCompile Include="src\UndefinedIconProvider.cpp" />
+    <ClCompile Include="src\VectorDialogBar.cpp" />
+    <ClCompile Include="src\versioninfo.cpp" />
+    <ClCompile Include="src\WindowsPlatform.cpp" />
+    <ClCompile Include="src\wizzardpagebase.cpp" />
+    <ClCompile Include="src\ZoomInCreator.cpp" />
+    <ClCompile Include="TetraModel\delegate\h\TetraSurface_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\DisplacementSupportNode_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\PressureSupportNode_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraBoundary_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraFormation_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraHorizonBase_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraMesh_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraSubBoundary_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraSubHorizon_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraSuperHorizon_Delegate.cpp" />
+    <ClCompile Include="TetraModel\delegate\src\TetraSupportNode_Delegate.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\facesupportdlg.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\globaltensordlg.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\intfaceattrdlg.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\nodalsupportdlg.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\SelectGocadSolidDlg.cpp" />
+    <ClCompile Include="TetraModel\dlg\src\SupportDlgBase.cpp" />
+    <ClCompile Include="TetraModel\Eclipse\src\attrieclipsesubmodel.cpp" />
+    <ClCompile Include="TetraModel\Eclipse\src\eclipsefilepage.cpp" />
+    <ClCompile Include="TetraModel\Eclipse\src\eclipsehorizonpage.cpp" />
+    <ClCompile Include="TetraModel\Eclipse\src\EclipseModel_Delegate.cpp" />
+    <ClCompile Include="TetraModel\GoCad\delegate\src\GoCadModel_Delegate.cpp" />
+    <ClCompile Include="TetraModel\observer\src\TetraFormationObserver.cpp" />
+    <ClCompile Include="TetraModel\observer\src\TetraModelObserver.cpp" />
+    <ClCompile Include="TetraModel\observer\src\TetraSubBoundaryObserver.cpp" />
+    <ClCompile Include="Util\src\Item.cpp" />
+    <ClCompile Include="Value\delegate\src\DerivedResult_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ElementSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ExportResultDataEntry_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ExportResultData_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\FractTensor_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\GlobalInitialStressNode_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\GocadElementSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\GVTResult_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\IPointSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\IStrainTensorGroup_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\IStressTensorGroup_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ITensorGroup_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\IValueSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\IVectorResult_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\LasPointSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\MaterialResultTree_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\MatParamsTensor_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\MeshResultTree_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\NodalValueSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ResultTree_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\Result_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\RpnValueSet_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\StaborResult_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ValueComponent_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ValueTensor_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ValueTypeFactory_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ValueType_Delegate.cpp" />
+    <ClCompile Include="Value\delegate\src\ValueVector_Delegate.cpp" />
+    <ClCompile Include="Value\dlg\src\dimensiondlg.cpp" />
+    <ClCompile Include="Value\dlg\src\IExportDlg.cpp" />
+    <ClCompile Include="Value\dlg\src\resultexportdlg.cpp" />
+    <ClCompile Include="Value\dlg\src\resultselectdlg.cpp" />
+    <ClCompile Include="Value\dlg\src\ResultSingleSelectDialog.cpp" />
+    <ClCompile Include="Value\dlg\src\RPNDlg.cpp" />
+    <ClCompile Include="Value\dlg\src\rpndlgbase.cpp" />
+    <ClCompile Include="Value\dlg\src\RpnEditFormulaDlg.cpp" />
+    <ClCompile Include="Value\observer\src\ResultObserver.cpp" />
+    <ClCompile Include="Value\src\attrielementvalueset.cpp" />
+    <ClCompile Include="Value\src\AttriValueType.cpp" />
+    <ClCompile Include="Value\src\BaseResultSet.cpp" />
+    <ClCompile Include="Value\src\FormationLoadResultTree.cpp" />
+    <ClCompile Include="Value\src\ResultExportConfiguration.cpp" />
+    <ClCompile Include="Value\src\StressComponentProxy.cpp" />
+    <ClCompile Include="Value\src\ValueComponentProxyWrapper.cpp" />
+    <ClCompile Include="View\delegate\src\ColorScaleEntry_Delegate.cpp" />
+    <ClCompile Include="View\delegate\src\HotSpot_Delegate.cpp" />
+    <ClCompile Include="View\delegate\src\NodeLocationHighlighter_Delegate.cpp" />
+    <ClCompile Include="View\delegate\src\OpenGLSceneBase_Delegate.cpp" />
+    <ClCompile Include="View\dlg\src\attricolorscaleentrydlg.cpp" />
+    <ClCompile Include="View\observer\src\ModelObserver.cpp" />
+    <ClCompile Include="View\observer\src\PointsetEntryObserver.cpp" />
+    <ClCompile Include="View\src\attri2dscene.cpp" />
+    <ClCompile Include="View\src\attriscene.cpp" />
+    <ClCompile Include="View\src\CoordinateAxis.cpp" />
+    <ClCompile Include="View\src\CrossSectionManipulator.cpp" />
+    <ClCompile Include="View\src\DataTreeView.cpp" />
+    <ClCompile Include="View\src\DecimatingCellFilter.cpp" />
+    <ClCompile Include="View\src\GeomecPolygonScreenDrawer.cpp" />
+    <ClCompile Include="View\src\Gnomon.cpp" />
+    <ClCompile Include="View\src\intersection.cpp" />
+    <ClCompile Include="View\src\LegendScene.cpp" />
+    <ClCompile Include="View\src\LegendView.cpp" />
+    <ClCompile Include="View\src\MeshPointProbeGroup.cpp" />
+    <ClCompile Include="View\src\ModelTreeView.cpp" />
+    <ClCompile Include="View\src\ModelView.cpp" />
+    <ClCompile Include="View\src\NodeLocationHighlighter.cpp" />
+    <ClCompile Include="View\src\OpenGLSceneBase.cpp" />
+    <ClCompile Include="View\src\OpenGLSplitView.cpp" />
+    <ClCompile Include="View\src\PixelCamera.cpp" />
+    <ClCompile Include="View\src\ReadOnlyScene.cpp" />
+    <ClCompile Include="View\src\TreeSplitView.cpp" />
+    <ClCompile Include="View\src\ValueTextScene.cpp" />
+    <ClCompile Include="View\src\ValueTracker.cpp" />
+    <ClCompile Include="View\TensorViz\src\BeachBall.cpp" />
+    <ClCompile Include="View\TensorViz\src\MoMeshTensor.cpp" />
+    <ClCompile Include="View\TensorViz\src\MoMeshTensorVector.cpp" />
+    <ClCompile Include="View\TensorViz\src\MoTensorSet.cpp" />
+    <ClCompile Include="View\TensorViz\src\MoTensorSetElement.cpp" />
+    <ClCompile Include="View\TensorViz\src\Shader.cpp" />
+    <ClCompile Include="View\TensorViz\src\VBOMesh.cpp" />
+    <ClCompile Include="WellZoomInModel\attr\src\AttriWellCasingCementInterface.cpp" />
+    <ClCompile Include="WellZoomInModel\attr\src\AttriWellCasingMaterial.cpp" />
+    <ClCompile Include="WellZoomInModel\attr\src\AttriWellCasingRTCI.cpp" />
+    <ClCompile Include="WellZoomInModel\attr\src\AttriWellZoomInModel.cpp" />
+    <ClCompile Include="WellZoomInModel\attr\src\AttriWellZoomInParentResults.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\IWellMesh_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\IWellModel_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingCementInterface_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingCement_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingInternalPressure_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingInternalTemperature_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingMesh_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingModel_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingNode_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingRTCI_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingSteelMaterial_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellCasingSteel_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellFormation_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellZoomInMesh_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\delegate\src\WellZoomInModel_Delegate.cpp" />
+    <ClCompile Include="WellZoomInModel\dlg\src\AttriWellCasingMeshDlg.cpp" />
+    <ClCompile Include="WellZoomInModel\dlg\src\AttriWellZoomInMeshDlg.cpp" />
+    <ClCompile Include="WellZoomInModel\observer\src\WellCasingCementObserver.cpp" />
+    <ClCompile Include="WellZoomInModel\observer\src\WellCasingNodeObserver.cpp" />
+    <ClCompile Include="WellZoomInModel\observer\src\WellFormationObserver.cpp" />
+    <ClCompile Include="Zoomin\delegate\src\ZoominModelEntry_Delegate.cpp" />
+    <ClCompile Include="Zoomin\delegate\src\ZoominModelPlaceHolder_Delegate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="attr\h\AttriFormPlane.h" />
+    <ClInclude Include="attr\h\AttriGroupNode.h" />
+    <ClInclude Include="attr\h\AttriNonMeshedSurfacePressure.h" />
+    <ClInclude Include="attr\h\AttriTetraVolume.h" />
+    <ClInclude Include="attr\h\AttriThinLayerUpscalingTargetPointsets.h" />
+    <ClInclude Include="BaseModel\attr\h\attrianalysispoint.h" />
+    <ClInclude Include="BaseModel\attr\h\AttriFaultParameters.h" />
+    <ClInclude Include="BaseModel\attr\h\attriformation.h" />
+    <ClInclude Include="BaseModel\attr\h\attriformationelementset.h" />
+    <ClInclude Include="BaseModel\attr\h\AttriFormationTemplate.h" />
+    <ClInclude Include="BaseModel\attr\h\AttriHorizon.h" />
+    <ClInclude Include="BaseModel\attr\h\AttriInterfaceMaterial.h" />
+    <ClInclude Include="BaseModel\attr\h\attrimesh.h" />
+    <ClInclude Include="BaseModel\delegate\h\3DFormation_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\3DHorizon_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\3DModel_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\AnalysisPoint_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\BaseSupportNode_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\BoundaryBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\DepletionStage_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\FaultParametersNode_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\FormationBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\FormationVolume_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\GlobalTemperature_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\HexaModel_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\HorizonBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IMaterialBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IMaterialRock_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IMaterialServerBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IMaterialServerTempl_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IMaterial_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\InterfaceMaterial_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\IRockMaterialServerTempl_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialAnisotropicCamClay_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialCamClayCreep_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialCamClay_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialCreep_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialDualCapLinEla_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialEntry_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialFractAnisotropy_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialFractureAperture2_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialFractureApertureBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialFractureAperture_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialLinear_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialModMohrCo_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialMohrCo_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialRigidity_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialServerObserver_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialServerParent_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialServer_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialUndrained_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MaterialUpscaledAnisotropy_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MeasuredTopDisplacementsNode_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MeshBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\MeshRegionBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\ModelBase_Delegate.h" />
+    <ClInclude Include="BaseModel\delegate\h\TetraModel_Delegate.h" />
+    <ClInclude Include="BaseModel\h\3DHorizonObserver.h" />
+    <ClInclude Include="BaseModel\h\AnalysisPointObserver.h" />
+    <ClInclude Include="BaseModel\h\ConsistencyGuardErrorPg.h" />
+    <ClInclude Include="BaseModel\h\ConsistencyGuardSettingsPg.h" />
+    <ClInclude Include="BaseModel\h\ConsistencyGuardValidationPg.h" />
+    <ClInclude Include="BaseModel\h\ElementOrderSubDialog.h" />
+    <ClInclude Include="BaseModel\h\EntryTypes.h" />
+    <ClInclude Include="BaseModel\h\FaultParametersEnumerationBranch.h" />
+    <ClInclude Include="BaseModel\h\FaultParametersHub.h" />
+    <ClInclude Include="BaseModel\h\HandleDefaultFaultParameters.h" />
+    <ClInclude Include="BaseModel\h\HandleFaultFractureBehaviour.h" />
+    <ClInclude Include="BaseModel\h\HorizonObserver.h" />
+    <ClInclude Include="BaseModel\h\InitialTemperatureDlg.h" />
+    <ClInclude Include="BaseModel\h\InterfaceMaterialObserver.h" />
+    <ClInclude Include="BaseModel\h\MaterialEntryObserver.h" />
+    <ClInclude Include="BaseModel\h\MeasuredTopDisplacementsNodeObserver.h" />
+    <ClInclude Include="BaseModel\h\ModelGeneralPg.h" />
+    <ClInclude Include="BaseModel\h\modelgeologypg.h" />
+    <ClInclude Include="BaseModel\h\modeltimesteppg.h" />
+    <ClInclude Include="delegate\h\BoundaryInterfaceDef_Delegate.h" />
+    <ClInclude Include="delegate\h\CalculatedTemperature_Delegate.h" />
+    <ClInclude Include="delegate\h\CamClayUpscaling_Delegate.h" />
+    <ClInclude Include="delegate\h\ColorGradient_Delegate.h" />
+    <ClInclude Include="delegate\h\CrossSection_Delegate.h" />
+    <ClInclude Include="delegate\h\DeletableNodeObserver_Delegate.h" />
+    <ClInclude Include="delegate\h\ElementValueSet_Delegate.h" />
+    <ClInclude Include="delegate\h\FormationLoadBase_Delegate.h" />
+    <ClInclude Include="delegate\h\FormationLoad_Delegate.h" />
+    <ClInclude Include="delegate\h\FormationPlane_Delegate.h" />
+    <ClInclude Include="delegate\h\GlobalFormationLoad_Delegate.h" />
+    <ClInclude Include="delegate\h\GroupNode_Delegate.h" />
+    <ClInclude Include="delegate\h\HomogenizationBox_Delegate.h" />
+    <ClInclude Include="delegate\h\IScalingBox_Delegate.h" />
+    <ClInclude Include="delegate\h\MeshSampler_Delegate.h" />
+    <ClInclude Include="delegate\h\NewWellPathInput_Delegate.h" />
+    <ClInclude Include="delegate\h\NonMeshedSurfaceParametersNode_Delegate.h" />
+    <ClInclude Include="delegate\h\NonMeshedSurfacePressure_Delegate.h" />
+    <ClInclude Include="delegate\h\NonMeshedSurface_Delegate.h" />
+    <ClInclude Include="delegate\h\StrainLoad_Delegate.h" />
+    <ClInclude Include="delegate\h\Temperature_Delegate.h" />
+    <ClInclude Include="delegate\h\ThinLayerUpscaling_Delegate.h" />
+    <ClInclude Include="delegate\h\Upscaling_Delegate.h" />
+    <ClInclude Include="dlg\h\AdvancedConvergenceOptionsDlg.h" />
+    <ClInclude Include="dlg\h\analysislogdlg.h" />
+    <ClInclude Include="dlg\h\AttriFaultPressureDlg.h" />
+    <ClInclude Include="dlg\h\AttriFormationLoadDlg.h" />
+    <ClInclude Include="dlg\h\AttriGlobalFormationLoadDlg.h" />
+    <ClInclude Include="dlg\h\AttriHotSpotDlg.h" />
+    <ClInclude Include="dlg\h\AttriNameColorDlg.h" />
+    <ClInclude Include="dlg\h\AttriTemperatureDlg.h" />
+    <CustomBuild Include="dlg\h\ChangelogDlg.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="dlg\h\DatFileDialog.h" />
+    <ClInclude Include="dlg\h\DialogBase.h" />
+    <ClInclude Include="dlg\h\DistriMatPropDlg.h" />
+    <ClInclude Include="dlg\h\EditFaultSettings.h" />
+    <ClInclude Include="dlg\h\MesherDlg.h" />
+    <ClInclude Include="dlg\h\ExecuteDianaDialog.h" />
+    <ClInclude Include="dlg\h\exportdlg.h" />
+    <ClInclude Include="dlg\h\ExportGocadDlg.h" />
+    <ClInclude Include="dlg\h\ExportSvsDlg.h" />
+    <ClInclude Include="dlg\h\FaultInitSettingsDlg.h" />
+    <ClInclude Include="dlg\h\FistExportDlg.h" />
+    <ClInclude Include="dlg\h\FistPointPickDlg.h" />
+    <ClInclude Include="dlg\h\FormationPlaneDlg.h" />
+    <ClInclude Include="dlg\h\GlobalMessage_GUI_MFC.h" />
+    <ClInclude Include="dlg\h\graphlimitsdlg.h" />
+    <ClInclude Include="dlg\h\GVTAnalysisDlg.h" />
+    <ClInclude Include="dlg\h\GVTSeismicGridDlg.h" />
+    <ClInclude Include="dlg\h\GVTStartDlg.h" />
+    <ClInclude Include="dlg\h\homoboxattridlg.h" />
+    <ClInclude Include="dlg\h\LicenseBorrowDlg.h" />
+    <ClInclude Include="dlg\h\linstaparamsdlg.h" />
+    <ClInclude Include="dlg\h\ManageExportMacrosDialog.h" />
+    <ClInclude Include="dlg\h\MeshMessageDlg.h" />
+    <CustomBuild Include="dlg\h\MeshRefinementDlg.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dlg\h\MeshRefinementGradientDlg.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="dlg\h\meshtolerancedlg.h" />
+    <ClInclude Include="dlg\h\ModelValidationDlg.h" />
+    <ClInclude Include="dlg\h\MonthCalDlg.h" />
+    <CustomBuild Include="dlg\h\meshconverterdlg.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="dlg\h\NewModelDlg.h" />
+    <ClInclude Include="dlg\h\NonMeshedSurfaceParametersDlg.h" />
+    <ClInclude Include="dlg\h\OptimizationSettings.h" />
+    <ClInclude Include="dlg\h\PetrelFileUnitDialog.h" />
+    <ClInclude Include="dlg\h\pointsetcreatedlg.h" />
+    <ClInclude Include="dlg\h\ProgressDlg_MFC.h" />
+    <CustomBuild Include="dlg\h\AboutDlg.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="dlg\h\QuickBlocksDlg.h" />
+    <ClInclude Include="dlg\h\RenameNodeDlg.h" />
+    <ClInclude Include="dlg\h\ResultMaterialSelectDlg.h" />
+    <ClInclude Include="dlg\h\RichhInputSummaryDlg.h" />
+    <ClInclude Include="dlg\h\SelectExportMacroDialog.h" />
+    <ClInclude Include="dlg\h\SelectFormationsDlg.h" />
+    <ClInclude Include="dlg\h\SetGlobalFaultBehaviourDialog.h" />
+    <ClInclude Include="dlg\h\surfacemergedefdlg.h" />
+    <ClInclude Include="dlg\h\TipDlg.h" />
+    <ClInclude Include="DStaborLink\dlg\h\DsbPickPointsDlg.h" />
+    <ClInclude Include="DStaborLink\h\dsbtsctrl.h" />
+    <ClInclude Include="DStaborLink\h\dsbx.h" />
+    <ClInclude Include="DStaborLink\h\ExportIDMStabor.h" />
+    <ClInclude Include="DStaborLink\h\insitu.h" />
+    <ClInclude Include="DStaborLink\h\mesh.h" />
+    <ClInclude Include="DStaborLink\h\mudweight.h" />
+    <ClInclude Include="DStaborLink\h\OptimumMudResult.h" />
+    <ClInclude Include="DStaborLink\h\output.h" />
+    <ClInclude Include="DStaborLink\h\proc.h" />
+    <ClInclude Include="DStaborLink\h\rock.h" />
+    <ClInclude Include="DStaborLink\h\timepoints.h" />
+    <ClInclude Include="DStaborLink\h\well.h" />
+    <ClInclude Include="Excel\h\excel8.h" />
+    <ClInclude Include="Geology\attrdlg\h\attriboundarydlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\AttributesTemplate.h" />
+    <ClInclude Include="Geology\attrdlg\h\attricolorgradientdlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\AttriFractureMatrixPressureDlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attriglobalpressuredlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attriglobalstressdlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attrinewwellpathdlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attrinodalvalueset.h" />
+    <ClInclude Include="Geology\attrdlg\h\AttriPointSetDlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\AttriPointSetUtil.h" />
+    <ClInclude Include="Geology\attrdlg\h\attripressuredlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attriresultentry.h" />
+    <ClInclude Include="Geology\attrdlg\h\AttriStrainDlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attrisurfacedlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\attrixsecdlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\BoundarySpecific.h" />
+    <ClInclude Include="Geology\attrdlg\h\horizondeldlg.h" />
+    <ClInclude Include="Geology\attrdlg\h\SampledPointsetDlg.h" />
+    <ClInclude Include="Geology\delegate\h\FaultPressure_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\FractureMatrixPressure_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\geoSurface_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\GlobalPressure_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\NewWellPath_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\PointSet_Delegate.h" />
+    <ClInclude Include="Geology\delegate\h\Pressure_Delegate.h" />
+    <ClInclude Include="Geology\dlg\h\WellPathFileUnitDlg.h" />
+    <ClInclude Include="Geology\observer\h\GeoSurfaceObserver.h" />
+    <ClInclude Include="Geology\observer\h\NewWellPathObserver.h" />
+    <ClInclude Include="GUI\h\3DGUI.h" />
+    <ClInclude Include="GUI\h\DocumentGUI.h" />
+    <ClInclude Include="GUI\h\DocumentProxyGUI.h" />
+    <ClInclude Include="GUI\h\EclipseGUI.h" />
+    <ClInclude Include="GUI\h\FemAppGUI.h" />
+    <ClInclude Include="GUI\h\GoCadGUI.h" />
+    <ClInclude Include="GUI\h\GUIBase.h" />
+    <ClInclude Include="GUI\h\GUIFactory.h" />
+    <ClInclude Include="GUI\h\HexaGUI.h" />
+    <ClInclude Include="GUI\h\IWellGUI.h" />
+    <ClInclude Include="GUI\h\ModelProxyGUI.h" />
+    <ClInclude Include="GUI\h\TetraGUI.h" />
+    <ClInclude Include="GUI\h\WellCasingGUI.h" />
+    <ClInclude Include="GUI\h\WellZoomInGUI.h" />
+    <ClInclude Include="HexaModel\attr\h\attrihexaformation.h" />
+    <ClInclude Include="HexaModel\attr\h\attrihexahorizon.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaBoundary_Delegate.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaFormation_Delegate.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaHorizon_Delegate.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaMeshRegion_Delegate.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaMesh_Delegate.h" />
+    <ClInclude Include="HexaModel\delegate\h\HexaSurface_Delegate.h" />
+    <ClInclude Include="HexaModel\dlg\h\attrihexameshregiondlg.h" />
+    <ClInclude Include="HexaModel\dlg\h\hexameshdepthdlg.h" />
+    <ClInclude Include="HexaModel\h\HexaTying.h" />
+    <ClInclude Include="HexaModel\observer\h\HexaFormationObserver.h" />
+    <ClInclude Include="h\BinaryResultsImport.h" />
+    <ClInclude Include="h\CalculationProperties.h" />
+    <ClInclude Include="h\Clipboard.h" />
+    <ClInclude Include="h\ComboListCtrl.h" />
+    <ClInclude Include="h\CrossSectionGroup.h" />
+    <CustomBuild Include="h\custombtn.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\CustomCmdLineInfo.h" />
+    <ClInclude Include="h\DDX_Text_Patch.h" />
+    <ClInclude Include="h\DistributedQuantity.h" />
+    <ClInclude Include="h\DumpModel.h" />
+    <ClInclude Include="h\MesherDlgHelper.h" />
+    <ClInclude Include="h\ExcelAppGuard.h" />
+    <ClInclude Include="h\ExcelCell.h" />
+    <ClInclude Include="h\FistExport.h" />
+    <ClInclude Include="h\FormationCrossSection.h" />
+    <ClInclude Include="h\Geomec.h" />
+    <!-- <ClInclude Include="h\GeomecBusClient.h" /> -->
+    <ClInclude Include="h\GeomecDoc.h" />
+    <ClInclude Include="h\GeomecDocDianaSignals.h" />
+    <ClInclude Include="h\GeomecDoc_EventsHandler.h" />
+    <ClInclude Include="h\GeomecHelper.h" />
+    <ClInclude Include="h\GeomecSplitterWnd.h" />
+    <ClInclude Include="h\geomecstatusbar.h" />
+    <ClInclude Include="h\GlobalUnitNode.h" />
+    <ClInclude Include="h\GmHelper.h" />
+    <ClInclude Include="h\GocadExportWrapper.h" />
+    <ClInclude Include="h\HomogenizationBoxTypes.h" />
+    <ClInclude Include="h\InPlaceCombo.h" />
+    <ClInclude Include="h\MainFrm.h" />
+    <ClInclude Include="h\MatParamDlgDianaSignals.h" />
+    <ClInclude Include="h\MeshCrossSection.h" />
+    <ClInclude Include="h\MeshDlgBar.h" />
+    <CustomBuild Include="h\meshconvertertreeview.h">
+      <Command>%QTDIR%\bin\moc.exe -b StdAfx.h "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\NonlinParams.h" />
+    <ClInclude Include="h\OpenGLDlgView.h" />
+    <!-- <ClInclude Include="h\ProgressWrapper.h" /> -->
+    <ClInclude Include="h\QuantityEntry.h" />
+    <ClInclude Include="h\quantityfactory.h" />
+    <ClInclude Include="h\registryxdll.h" />
+    <ClInclude Include="h\RetrieveDianaFileNamesGUI.h" />
+    <ClInclude Include="h\RunAnalysis.h" />
+    <ClInclude Include="h\RunAnalysis_NonDsa.h" />
+    <ClInclude Include="h\SaveModel.h" />
+    <ClInclude Include="h\SaveModelGUI.h" />
+    <ClInclude Include="h\SoSwitchBool.h" />
+    <ClInclude Include="h\splah.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\SurfaceComposite.h" />
+    <ClInclude Include="h\Test.h" />
+    <ClInclude Include="h\TestInterface.h" />
+    <ClInclude Include="h\ThinLayerUpscalingCreateTargetPointset.h" />
+    <ClInclude Include="h\TimeLapseControlObjects.h" />
+    <ClInclude Include="h\UndefinedIconProvider.h" />
+    <ClInclude Include="h\VectorDialogBar.h" />
+    <ClInclude Include="h\versioninfo.h" />
+    <ClInclude Include="h\WindowsPlatform.h" />
+    <ClInclude Include="h\wizzardpagebase.h" />
+    <ClInclude Include="h\ZoomInCreator.h" />
+    <ClInclude Include="IT\h\IGeomec.h" />
+    <ClInclude Include="IT\h\IGm.h" />
+    <ClInclude Include="IT\h\IGmH.h" />
+    <ClInclude Include="IT\h\IGmInc.h" />
+    <ClInclude Include="IT\h\IGmIT.h" />
+    <ClInclude Include="IT\h\IGmSur.h" />
+    <ClInclude Include="IT\h\IT_Command_Task.h" />
+    <ClInclude Include="IT\h\IT_Events_Handler.h" />
+    <ClInclude Include="IT\h\IT_Geomec_Interface.h" />
+    <ClInclude Include="IT\h\IT_Printer.h" />
+    <ClInclude Include="IT\h\IT_Util.h" />
+    <ClInclude Include="IT\h\MaterialManager.h" />
+    <ClInclude Include="IT\h\PointSetManager.h" />
+    <ClInclude Include="IT\h\RunGm.h" />
+    <ClInclude Include="Material\GUI\h\CalibSettingsDlg.h" />
+    <ClInclude Include="Material\GUI\h\DerivedMatLibDlg.h" />
+    <ClInclude Include="Material\GUI\h\ExperimentDataLimits.h" />
+    <ClInclude Include="Material\GUI\h\GammaAxialView.h" />
+    <ClInclude Include="Material\GUI\h\GammaRadialView.h" />
+    <ClInclude Include="Material\GUI\h\GammaView.h" />
+    <ClInclude Include="Material\GUI\h\InPlaceEdit.h" />
+    <ClInclude Include="Material\GUI\h\MaterialExportDialog.h" />
+    <ClInclude Include="Material\GUI\h\MaterialImportDialog.h" />
+    <ClInclude Include="Material\GUI\h\MatLibDlg.h" />
+    <ClInclude Include="Material\GUI\h\MatLibListCtrl.h" />
+    <ClInclude Include="Material\GUI\h\MatParamDlg.h" />
+    <ClInclude Include="Material\GUI\h\RenameMaterialDlg.h" />
+    <ClInclude Include="Material\GUI\h\SelectWorksheetDlg.h" />
+    <ClInclude Include="Material\GUI\h\TabExperiment.h" />
+    <ClInclude Include="Material\GUI\h\TabModel.h" />
+    <ClInclude Include="Material\h\ExperimentData.h" />
+    <ClInclude Include="Material\h\HistoryList.h" />
+    <ClInclude Include="Material\h\ResultData.h" />
+    <ClInclude Include="observer\h\CrossSectionObserver.h" />
+    <ClInclude Include="observer\h\GroupNodeObserver.h" />
+    <ClInclude Include="observer\h\NewWellPathGroupNodeObserver.h" />
+    <ClInclude Include="observer\h\NonMeshedSurfaceObserver.h" />
+    <ClInclude Include="observer\h\PressureCompositeObserver.h" />
+    <ClInclude Include="observer\h\UpscalingObserver.h" />
+    <ClInclude Include="observer\h\ValueCompositeObserver.h" />
+    <ClInclude Include="OpenInventor\delegate\h\OIV2DGraphValueColorScene_Delegate.h" />
+    <ClInclude Include="OpenInventor\delegate\h\OIV2DHistoryScene_Delegate.h" />
+    <ClInclude Include="OpenInventor\delegate\h\OIV2DWellPathGraphScene_Delegate.h" />
+    <ClInclude Include="OpenInventor\delegate\h\OIVSceneBase_Delegate.h" />
+    <ClInclude Include="OpenInventor\delegate\h\OpenInventorSceneNode_Delegate.h" />
+    <ClInclude Include="OpenInventor\h\Algebra.h" />
+    <ClInclude Include="OpenInventor\h\BusinessAction.h" />
+    <ClInclude Include="OpenInventor\h\ColorManager.h" />
+    <ClInclude Include="OpenInventor\h\Curve.h" />
+    <ClInclude Include="OpenInventor\h\CurveColor.h" />
+    <ClInclude Include="OpenInventor\h\CurveGroup.h" />
+    <ClInclude Include="OpenInventor\h\Deformation.h" />
+    <ClInclude Include="OpenInventor\h\DepletionStageValuePair.h" />
+    <ClInclude Include="OpenInventor\h\FormationNodeAssistant.h" />
+    <ClInclude Include="OpenInventor\h\GeomecOIV.h" />
+    <ClInclude Include="OpenInventor\h\HistoryCurve.h" />
+    <ClInclude Include="OpenInventor\h\InfoLabel.h" />
+    <ClInclude Include="OpenInventor\h\MainMeshNodeAssistant.h" />
+    <ClInclude Include="OpenInventor\h\MeshNodeSettings.h" />
+    <ClInclude Include="OpenInventor\h\MeshRefinementBoxesHandler.h" />
+    <ClInclude Include="OpenInventor\h\NewWellPathCurve.h" />
+    <ClInclude Include="OpenInventor\h\OIDILineMeshNode.h" />
+    <ClInclude Include="OpenInventor\h\OIDIMeshNode.h" />
+    <ClInclude Include="OpenInventor\h\OIDIMeshNodeManager.h" />
+    <ClInclude Include="OpenInventor\h\OIDISurfaceMeshNode.h" />
+    <ClInclude Include="OpenInventor\h\OIDISurfaceMeshOutlineNode.h" />
+    <ClInclude Include="OpenInventor\h\OIDIVolumeMeshNode.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DGraph.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DGraphValueColorScene.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DHistoryGraph.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DHistoryScene.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DHistorySceneWrapper.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DLegend.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DLegendSection.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DRangeInterface.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DScene.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DSceneWrapper.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DWellPathGraph.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DWellPathGraphScene.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DWellPathGraphSceneWrapper.h" />
+    <ClInclude Include="OpenInventor\h\OIV2DWellPathLegend.h" />
+    <ClInclude Include="OpenInventor\h\OIVSceneBase.h" />
+    <ClInclude Include="OpenInventor\h\OIVSceneObserver.h" />
+    <ClInclude Include="OpenInventor\h\OIVWellPath.h" />
+    <ClInclude Include="OpenInventor\h\OpenInventorEventsHandler.h" />
+    <ClInclude Include="OpenInventor\h\OpenInventorSceneNode.h" />
+    <ClInclude Include="OpenInventor\h\OpenInventorSceneNodeAction.h" />
+    <ClInclude Include="OpenInventor\h\OpenInventorSceneWrapper.h" />
+    <ClInclude Include="OpenInventor\h\PolyLineScreenDrawerRetainer.h" />
+    <ClInclude Include="OpenInventor\h\vcbfunctions.h" />
+    <ClInclude Include="OpenInventor\h\WellPathCurveBase.h" />
+    <ClInclude Include="OpenInventor\observer\h\OIV2DHistorySceneObserver.h" />
+    <ClInclude Include="OpenInventor\observer\h\OIV2DWellPathGraphSceneObserver.h" />
+    <ClInclude Include="OpenInventor\observer\h\OpenInventorSceneNodeObserver.h" />
+    <!--    <ClInclude Include="resource.h" /> -->
+    <CustomBuild Include="resource.h">
+      <Message>Making HTML Help Include File...</Message>
+      <Command>makehm /h ID_,IDH_,0x10000 IDM_,IDH_,0x10000 "resource.h" &gt;"Help\$(TargetName).hm"
+makehm /h IDP_,IDH_,0x30000 "resource.h" &gt;&gt;"Help\$(TargetName).hm"
+makehm /h IDR_,IDH_,0x20000 "resource.h" &gt;&gt;"Help\$(TargetName).hm"
+makehm /h IDD_,IDH_,0x20000 "resource.h" &gt;&gt;"Help\$(TargetName).hm"
+makehm /h IDW_,IDH_,0x50000 "resource.h" &gt;&gt;"Help\$(TargetName).hm"
+echo. &gt;&gt;"Help\$(TargetName).hm"
+      </Command>
+      <Outputs>Help\$(TargetName).hm;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="progress\h\DualProgress.h" />
+    <ClInclude Include="progress\h\DualSilentProgress.h" />
+    <ClInclude Include="progress\h\GeoProgress.h" />
+    <ClInclude Include="progress\h\ProgressFactory_MFC.h" />
+    <ClInclude Include="progress\h\SilentProgress.h" />
+    <ClInclude Include="progress\h\WaitProgress.h" />
+    <ClInclude Include="TetraModel\delegate\h\DisplacementSupportNode_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\PressureSupportNode_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraBoundary_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraFormation_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraHorizonBase_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraMesh_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraSubBoundary_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraSubHorizon_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraSuperHorizon_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraSupportNode_Delegate.h" />
+    <ClInclude Include="TetraModel\delegate\h\TetraSurface_Delegate.h" />
+    <ClInclude Include="TetraModel\dlg\h\facesupportdlg.h" />
+    <ClInclude Include="TetraModel\dlg\h\globaltensordlg.h" />
+    <ClInclude Include="TetraModel\dlg\h\intfaceattrdlg.h" />
+    <ClInclude Include="TetraModel\dlg\h\nodalsupportdlg.h" />
+    <ClInclude Include="TetraModel\dlg\h\SelectGocadSolidDlg.h" />
+    <ClInclude Include="TetraModel\dlg\h\SupportDlgBase.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\attrieclipseformationdlg.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\attrieclipsesubmodel.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\EclipseBoundary.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\eclipsefilepage.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\EclipseFormation.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\eclipsehorizonpage.h" />
+    <ClInclude Include="TetraModel\Eclipse\h\EclipseModel_Delegate.h" />
+    <ClInclude Include="TetraModel\GoCad\delegate\h\GoCadModel_Delegate.h" />
+    <ClInclude Include="TetraModel\h\attritetrasubhorizon.h" />
+    <ClInclude Include="TetraModel\h\BoundaryCondition.h" />
+    <ClInclude Include="TetraModel\h\TetraBody.h" />
+    <ClInclude Include="TetraModel\observer\h\TetraFormationObserver.h" />
+    <ClInclude Include="TetraModel\observer\h\TetraModelObserver.h" />
+    <ClInclude Include="TetraModel\observer\h\TetraSubBoundaryObserver.h" />
+    <ClInclude Include="Util\h\Item.h" />
+    <ClInclude Include="Value\delegate\h\DerivedResult_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ElementSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ExportResultDataEntry_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ExportResultData_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\FractTensor_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\GlobalInitialStressNode_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\GocadElementSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\GVTResult_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\IPointSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\IStrainTensorGroup_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\IStressTensorGroup_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ITensorGroupTemplate_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ITensorGroup_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\IValueSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\IVectorResult_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\LasPointSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\MaterialResultTree_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\MatParamsTensor_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\MeshResultTree_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\NodalValueSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ResultTree_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\Result_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\RpnValueSet_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\SelectionObserver_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\StaborResult_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ValueComponent_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ValueTensor_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ValueTypeFactory_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ValueType_Delegate.h" />
+    <ClInclude Include="Value\delegate\h\ValueVector_Delegate.h" />
+    <ClInclude Include="Value\dlg\h\componentconvertdlg.h" />
+    <ClInclude Include="Value\dlg\h\dimensiondlg.h" />
+    <ClInclude Include="Value\dlg\h\IExportDlg.h" />
+    <ClInclude Include="Value\dlg\h\resultexportdlg.h" />
+    <ClInclude Include="Value\dlg\h\resultselectdlg.h" />
+    <ClInclude Include="Value\dlg\h\ResultSingleSelectDialog.h" />
+    <ClInclude Include="Value\dlg\h\RPNDlg.h" />
+    <ClInclude Include="Value\dlg\h\rpndlgbase.h" />
+    <ClInclude Include="Value\dlg\h\RpnEditFormulaDlg.h" />
+    <ClInclude Include="Value\h\attrielementvalueset.h" />
+    <ClInclude Include="Value\h\AttriValueType.h" />
+    <ClInclude Include="Value\h\BaseResultSet.h" />
+    <ClInclude Include="Value\h\depthcomponent.h" />
+    <ClInclude Include="Value\h\DepthQuantity.h" />
+    <ClInclude Include="Value\h\ExportResultTreeBranch.h" />
+    <ClInclude Include="Value\h\FormationLoadResultTree.h" />
+    <ClInclude Include="Value\h\IProperty.h" />
+    <ClInclude Include="Value\h\IResultCacheTemplate.h" />
+    <ClInclude Include="Value\h\ResultExportConfiguration.h" />
+    <ClInclude Include="Value\h\ResultKey.h" />
+    <ClInclude Include="Value\h\StaborResultComponent.h" />
+    <ClInclude Include="Value\h\StressComponentProxy.h" />
+    <ClInclude Include="Value\observer\h\DepletionStageObserver.h" />
+    <ClInclude Include="Value\observer\h\LocalResultObserver.h" />
+    <ClInclude Include="Value\observer\h\ResultObserver.h" />
+    <ClInclude Include="Value\observer\h\SelectionObserver.h" />
+    <ClInclude Include="View\delegate\h\ColorScaleEntry_Delegate.h" />
+    <ClInclude Include="View\delegate\h\HotSpot_Delegate.h" />
+    <ClInclude Include="View\delegate\h\NodeLocationHighlighter_Delegate.h" />
+    <ClInclude Include="View\delegate\h\OpenGLNodeObserver_Delegate.h" />
+    <ClInclude Include="View\delegate\h\OpenGLSceneBase_Delegate.h" />
+    <ClInclude Include="View\dlg\h\attricolorscaleentrydlg.h" />
+    <ClInclude Include="View\h\attri2dscene.h" />
+    <ClInclude Include="View\h\attriscene.h" />
+    <ClInclude Include="View\h\CoordinateAxis.h" />
+    <ClInclude Include="View\h\CrossSectionManipulator.h" />
+    <ClInclude Include="View\h\DataTreeView.h" />
+    <ClInclude Include="View\h\DecimatingCellFilter.h" />
+    <ClInclude Include="View\h\EmptySceneWrapper.h" />
+    <ClInclude Include="View\h\GeomecPolygonScreenDrawer.h" />
+    <ClInclude Include="View\h\Gnomon.h" />
+    <ClInclude Include="View\h\Header.h" />
+    <ClInclude Include="View\h\intersection.h" />
+    <ClInclude Include="View\h\ISceneWrapper.h" />
+    <ClInclude Include="View\h\LegendScene.h" />
+    <ClInclude Include="View\h\LegendView.h" />
+    <ClInclude Include="View\h\MeshPointProbeGroup.h" />
+    <ClInclude Include="View\h\ModelTreeView.h" />
+    <ClInclude Include="View\h\ModelView.h" />
+    <ClInclude Include="View\h\NodeLocationHighlighter.h" />
+    <ClInclude Include="View\h\OpenGLSceneBase.h" />
+    <ClInclude Include="View\h\OpenGLSplitView.h" />
+    <ClInclude Include="View\h\PixelCamera.h" />
+    <ClInclude Include="View\h\ReadOnlyScene.h" />
+    <ClInclude Include="View\h\SoGroupIterator.h" />
+    <ClInclude Include="View\h\TreeSplitView.h" />
+    <ClInclude Include="View\h\ValueTextScene.h" />
+    <ClInclude Include="View\h\ValueTracker.h" />
+    <ClInclude Include="View\observer\h\ModelObserver.h" />
+    <ClInclude Include="View\observer\h\OpenGLNodeObserver.h" />
+    <ClInclude Include="View\observer\h\PointsetEntryObserver.h" />
+    <ClInclude Include="View\observer\h\RadioEntryObserver.h" />
+    <ClInclude Include="View\TensorViz\h\BeachBall.h" />
+    <ClInclude Include="View\TensorViz\h\MoMeshTensor.h" />
+    <ClInclude Include="View\TensorViz\h\MoMeshTensorVector.h" />
+    <ClInclude Include="View\TensorViz\h\MoTensorSet.h" />
+    <ClInclude Include="View\TensorViz\h\MoTensorSetElement.h" />
+    <ClInclude Include="View\TensorViz\h\Shader.h" />
+    <ClInclude Include="View\TensorViz\h\VBOMesh.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellCasingCementInterface.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellCasingInternalLoad.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellCasingMaterial.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellCasingRTCI.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellZoomInModel.h" />
+    <ClInclude Include="WellZoomInModel\attr\h\AttriWellZoomInParentResults.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\IWellCasingInternalLoad_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\IWellMesh_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\IWellModel_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingCementInterface_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingCement_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingInternalPressure_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingInternalTemperature_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingMesh_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingModel_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingNode_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingRTCI_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingSteelMaterial_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellCasingSteel_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellFormation_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellZoomInMesh_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\delegate\h\WellZoomInModel_Delegate.h" />
+    <ClInclude Include="WellZoomInModel\dlg\h\AttriWellCasingMeshDlg.h" />
+    <ClInclude Include="WellZoomInModel\dlg\h\AttriWellZoomInMeshDlg.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellCasingCementObserver.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellCasingNodeObserver.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellCasingRTCIObserver.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellCasingSteelMaterialObserver.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellCasingSteelObserver.h" />
+    <ClInclude Include="WellZoomInModel\observer\h\WellFormationObserver.h" />
+    <ClInclude Include="Zoomin\delegate\h\ZoominModelEntry_Delegate.h" />
+    <ClInclude Include="Zoomin\delegate\h\ZoominModelPlaceHolder_Delegate.h" />
+    <!-- <ClInclude Include="Help\geomec.hhp" /> -->
+    <CustomBuild Include="Help\geomec.hhp">
+      <Message>Making HTML help file...</Message>
+      <Command>"C:\Program Files (x86)\HTML Help Workshop\hhc.exe" Help\%(Filename).hhp
+echo.
+echo OutDir is "$(OutDir)"
+if exist "Help\%(Filename).chm" copy "Help\%(Filename).chm" "$(OutDir)%(Filename).chm"
+	  </Command>
+      <AdditionalInputs>Help\geomec.hm;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs>$(OutDir)%(Filename).chm;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Geomec.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\1p.ico" />
+    <Image Include="res\2p.ico" />
+    <Image Include="res\analysis.ico" />
+    <Image Include="res\arrow.bmp" />
+    <Image Include="res\arrow.ico" />
+    <Image Include="res\birdeye.ico" />
+    <Image Include="res\bmp2d_to.bmp" />
+    <Image Include="res\body.ico" />
+    <Image Include="res\bottom_h.ico" />
+    <Image Include="res\boundary.ico" />
+    <Image Include="res\bulkmodulus.ico" />
+    <Image Include="res\bulk_den.ico" />
+    <Image Include="res\calctemper.ico" />
+    <Image Include="res\calctempers.ico" />
+    <Image Include="res\calc_bar.bmp" />
+    <Image Include="res\cg_broken.ico" />
+    <Image Include="res\cg_invalid.ico" />
+    <Image Include="res\cg_messy.ico" />
+    <Image Include="res\cg_ok.ico" />
+    <Image Include="res\cg_unknown.ico" />
+    <Image Include="res\checked.ico" />
+    <Image Include="res\check_mat.ico" />
+    <Image Include="res\check_re.ico" />
+    <Image Include="res\cohesion.ico" />
+    <Image Include="res\colorrange.ico" />
+    <Image Include="res\compartm.ico" />
+    <Image Include="res\componen.ico" />
+    <Image Include="res\control.bmp" />
+    <Image Include="res\crash.ico" />
+    <Image Include="RES\crossection.ico" />
+    <Image Include="res\crossection2d.ico" />
+    <Image Include="RES\crossections.ico" />
+    <Image Include="res\crossections2d.ico" />
+    <Image Include="res\curve.ico" />
+    <Image Include="res\curves.ico" />
+    <Image Include="res\data_sto.ico" />
+    <Image Include="res\delta_t.ico" />
+    <Image Include="res\delta_v.ico" />
+    <Image Include="res\depletin.ico" />
+    <Image Include="res\depletion stage branch.ico" />
+    <Image Include="res\depletion stage initial.ico" />
+    <Image Include="res\depletion stage initialdef.ico" />
+    <Image Include="res\Depletion Stage.ico" />
+    <Image Include="res\depletionstage_initial_branch.ico" />
+    <Image Include="res\depletionstage_initial_none.ico" />
+    <Image Include="res\depletionstage_none.ico" />
+    <Image Include="res\Diana.ico" />
+    <Image Include="res\discs.ico" />
+    <Image Include="res\dummy.ico" />
+    <Image Include="res\elastic_hardening.ico" />
+    <Image Include="res\element_.ico" />
+    <Image Include="res\empty_transparent.ico" />
+    <Image Include="res\exclamation.ico" />
+    <Image Include="res\fault.ico" />
+    <Image Include="res\faultld.ico" />
+    <Image Include="res\faultlu.ico" />
+    <Image Include="res\faultparameters.ico" />
+    <Image Include="res\force_tr.ico" />
+    <Image Include="res\formatio.ico" />
+    <Image Include="res\formation.ico" />
+    <Image Include="res\formations.ico" />
+    <Image Include="res\formationthickness.ico" />
+    <Image Include="res\FormPlanes.ico" />
+    <Image Include="res\formula.ico" />
+    <Image Include="res\fractstiffnormal.ico" />
+    <Image Include="res\fractstiffshear.ico" />
+    <Image Include="res\fracttensor.ico" />
+    <Image Include="res\fracture_matrix_pressure_distributed.ico" />
+    <Image Include="res\friction.ico" />
+    <Image Include="res\general.ico" />
+    <Image Include="res\gen_pres.ico" />
+    <Image Include="res\GeomecDoc.ico" />
+    <Image Include="res\global_i.ico" />
+    <Image Include="res\graphs.ico" />
+    <Image Include="res\heat.ico" />
+    <Image Include="res\highfractdens.ico" />
+    <Image Include="res\highfractdensazi.ico" />
+    <Image Include="res\highfractdensincl.ico" />
+    <Image Include="res\homgen.ico" />
+    <Image Include="res\horizon.ico" />
+    <Image Include="res\horizon_.ico" />
+    <Image Include="res\hotspots.ico" />
+    <Image Include="res\ico00001.ico" />
+    <Image Include="res\ico00002.ico" />
+    <Image Include="res\ico00003.ico" />
+    <Image Include="res\ico00004.ico" />
+    <Image Include="res\ico00005.ico" />
+    <Image Include="res\ico00006.ico" />
+    <Image Include="res\ico00007.ico" />
+    <Image Include="res\ico00008.ico" />
+    <Image Include="res\ico00009.ico" />
+    <Image Include="res\ico00010.ico" />
+    <Image Include="res\ico00011.ico" />
+    <Image Include="res\ico00012.ico" />
+    <Image Include="res\ico00013.ico" />
+    <Image Include="res\ico00014.ico" />
+    <Image Include="res\ico00015.ico" />
+    <Image Include="res\ico00016.ico" />
+    <Image Include="res\ico00017.ico" />
+    <Image Include="res\ico00018.ico" />
+    <Image Include="res\ico00019.ico" />
+    <Image Include="res\ico00020.ico" />
+    <Image Include="res\ico00021.ico" />
+    <Image Include="res\ico00022.ico" />
+    <Image Include="res\ico00023.ico" />
+    <Image Include="res\ico00024.ico" />
+    <Image Include="res\ico00025.ico" />
+    <Image Include="res\ico00026.ico" />
+    <Image Include="res\ico00027.ico" />
+    <Image Include="res\ico00028.ico" />
+    <Image Include="res\ico00029.ico" />
+    <Image Include="res\ico00030.ico" />
+    <Image Include="res\ico00031.ico" />
+    <Image Include="res\ico00032.ico" />
+    <Image Include="res\ico00033.ico" />
+    <Image Include="res\ico00035.ico" />
+    <Image Include="res\ico00036.ico" />
+    <Image Include="res\ico00036_parent.ico" />
+    <Image Include="res\ico00037.ico" />
+    <Image Include="res\ico00037_parent.ico" />
+    <Image Include="res\ico00038.ico" />
+    <Image Include="res\ico00039.ico" />
+    <Image Include="res\ico00040.ico" />
+    <Image Include="res\ico00041.ico" />
+    <Image Include="res\ico00042.ico" />
+    <Image Include="res\ico00043.ico" />
+    <Image Include="res\ico00044.ico" />
+    <Image Include="res\ico00045.ico" />
+    <Image Include="res\ico00046.ico" />
+    <Image Include="res\ico00047.ico" />
+    <Image Include="res\ico00048.ico" />
+    <Image Include="res\ico00049.ico" />
+    <Image Include="res\ico00050.ico" />
+    <Image Include="res\ico00051.ico" />
+    <Image Include="res\ico00052.ico" />
+    <Image Include="res\ico00053.ico" />
+    <Image Include="res\ico00054.ico" />
+    <Image Include="res\ico00055.ico" />
+    <Image Include="res\ico00056.ico" />
+    <Image Include="res\ico00057.ico" />
+    <Image Include="res\ico00058.ico" />
+    <Image Include="res\ico00059.ico" />
+    <Image Include="res\ico00060.ico" />
+    <Image Include="res\ico00061.ico" />
+    <Image Include="res\ico00062.ico" />
+    <Image Include="res\ico00063.ico" />
+    <Image Include="res\ico00064.ico" />
+    <Image Include="res\ico00065.ico" />
+    <Image Include="res\ico00066.ico" />
+    <Image Include="res\ico00067.ico" />
+    <Image Include="res\ico00068.ico" />
+    <Image Include="res\ico00069.ico" />
+    <Image Include="res\ico00070.ico" />
+    <Image Include="res\ico00071.ico" />
+    <Image Include="res\ico00072.ico" />
+    <Image Include="res\ico00073.ico" />
+    <Image Include="res\ico00074.ico" />
+    <Image Include="res\ico00075.ico" />
+    <Image Include="res\ico00076.ico" />
+    <Image Include="res\ico00077.ico" />
+    <Image Include="res\ico00078.ico" />
+    <Image Include="res\ico00079.ico" />
+    <Image Include="res\ico00080.ico" />
+    <Image Include="res\ico00081.ico" />
+    <Image Include="res\ico00082.ico" />
+    <Image Include="res\ico00083.ico" />
+    <Image Include="res\ico00084.ico" />
+    <Image Include="res\ico00085.ico" />
+    <Image Include="res\ico00087.ico" />
+    <Image Include="res\ico00088.ico" />
+    <Image Include="res\ico00089.ico" />
+    <Image Include="res\ico00090.ico" />
+    <Image Include="res\ico00091.ico" />
+    <Image Include="res\ico00092.ico" />
+    <Image Include="res\ico00093.ico" />
+    <Image Include="res\ico00094.ico" />
+    <Image Include="res\ico00095.ico" />
+    <Image Include="res\ico00096.ico" />
+    <Image Include="res\ico00097.ico" />
+    <Image Include="res\ico00098.ico" />
+    <Image Include="res\ico00099.ico" />
+    <Image Include="res\ico00100.ico" />
+    <Image Include="res\ico00101.ico" />
+    <Image Include="res\ico00102.ico" />
+    <Image Include="res\ico00103.ico" />
+    <Image Include="res\ico00104.ico" />
+    <Image Include="res\ico00105.ico" />
+    <Image Include="res\ico00106.ico" />
+    <Image Include="res\ico00107.ico" />
+    <Image Include="res\ico00108.ico" />
+    <Image Include="res\ico00109.ico" />
+    <Image Include="res\ico00110.ico" />
+    <Image Include="res\ico00111.ico" />
+    <Image Include="res\ico00112.ico" />
+    <Image Include="res\ico00113.ico" />
+    <Image Include="res\ico00114.ico" />
+    <Image Include="res\ico00115.ico" />
+    <Image Include="res\ico00116.ico" />
+    <Image Include="res\ico00117.ico" />
+    <Image Include="res\ico00118.ico" />
+    <Image Include="res\ico00119.ico" />
+    <Image Include="res\ico00120.ico" />
+    <Image Include="res\ico00121.ico" />
+    <Image Include="res\ico00122.ico" />
+    <Image Include="res\ico00123.ico" />
+    <Image Include="res\ico00124.ico" />
+    <Image Include="res\ico00125.ico" />
+    <Image Include="res\ico00126.ico" />
+    <Image Include="res\ico2d_3d.ico" />
+    <Image Include="res\ico2d_mo.ico" />
+    <Image Include="res\ico2d_re.ico" />
+    <Image Include="res\ico2d_xs.ico" />
+    <Image Include="res\ico3d_mo.ico" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\icon2.ico" />
+    <Image Include="res\icon3.ico" />
+    <Image Include="res\icon4.ico" />
+    <Image Include="res\icon6.ico" />
+    <Image Include="res\icon7.ico" />
+    <Image Include="res\icon8.ico" />
+    <Image Include="res\icon9.ico" />
+    <Image Include="res\icon_dis.ico" />
+    <Image Include="res\icon_dis_z.ico" />
+    <Image Include="res\ico_empty.ico" />
+    <Image Include="res\ico_vt_v0_hi.ico" />
+    <Image Include="res\ico_vt_v0_lo.ico" />
+    <Image Include="res\ico_vt_v0_me.ico" />
+    <Image Include="res\intfractdens.ico" />
+    <Image Include="res\krad.ico" />
+    <Image Include="res\ktan.ico" />
+    <Image Include="res\layernormalazi.ico" />
+    <Image Include="res\layernormalincl.ico" />
+    <Image Include="res\linear.ico" />
+    <Image Include="res\linthermexpnorm.ico" />
+    <Image Include="res\litebulb.bmp" />
+    <Image Include="res\lowfractdens.ico" />
+    <Image Include="res\lowfractdensazi.ico" />
+    <Image Include="res\lowfractdensincl.ico" />
+    <Image Include="res\macro.ico" />
+    <Image Include="res\mainfram.bmp" />
+    <Image Include="res\map.ico" />
+    <Image Include="res\material.ico" />
+    <Image Include="res\matlib.ico" />
+    <Image Include="res\maximal_.ico" />
+    <Image Include="res\measured_displacement.ico" />
+    <Image Include="res\mesh.ico" />
+    <Image Include="res\mesh_mas.ico" />
+    <Image Include="res\mesh_reg.ico" />
+    <Image Include="res\minimal_.ico" />
+    <Image Include="res\mixture.ico" />
+    <Image Include="res\Model1.ico" />
+    <Image Include="res\na.ico" />
+    <Image Include="res\na2.ico" />
+    <Image Include="res\non_and_.ico" />
+    <Image Include="res\non_line.ico" />
+    <Image Include="res\permea.ico" />
+    <Image Include="res\pointset.ico" />
+    <Image Include="res\pointsets.ico" />
+    <Image Include="res\poissonnormal.ico" />
+    <Image Include="res\poissons.ico" />
+    <Image Include="res\poissontrans.ico" />
+    <Image Include="res\poisson_decomp.ico" />
+    <Image Include="res\porosity.ico" />
+    <Image Include="res\pressure.ico" />
+    <Image Include="res\pressures.ico" />
+    <Image Include="res\pressure_change.ico" />
+    <Image Include="res\pressure_maximum.ico" />
+    <Image Include="res\pressure_minimum.ico" />
+    <Image Include="res\pres_con.ico" />
+    <Image Include="res\pres_dis.ico" />
+    <Image Include="res\pres_gwc.ico" />
+    <Image Include="res\pres_und.ico" />
+    <Image Include="res\property.ico" />
+    <Image Include="res\radiobutton_cheked.ico" />
+    <Image Include="res\radiobutton_unchecked.ico" />
+    <Image Include="res\radio_di.ico" />
+    <Image Include="res\report.ico" />
+    <Image Include="res\result.ico" />
+    <Image Include="res\result_m.ico" />
+    <Image Include="res\rpn_valueset_used.ico" />
+    <Image Include="res\running_thick.ico" />
+    <Image Include="res\scalingb.ico" />
+    <Image Include="res\secondary_hardening.ico" />
+    <Image Include="res\secondary_precon.ico" />
+    <Image Include="res\side_sur.ico" />
+    <Image Include="res\slip_con.ico" />
+    <Image Include="res\slip_hor.ico" />
+    <Image Include="res\splashnotextyel.bmp" />
+    <Image Include="res\stress.ico" />
+    <Image Include="res\stress_distr.ico" />
+    <Image Include="res\stress_mean.ico" />
+    <Image Include="res\stress_t.ico" />
+    <Image Include="res\surface.ico" />
+    <Image Include="res\surfaces.ico" />
+    <Image Include="res\surface_.ico" />
+    <Image Include="res\temperature.ico" />
+    <Image Include="res\temperatures.ico" />
+    <Image Include="res\temperature_distributed.ico" />
+    <Image Include="res\temperature_gradient.ico" />
+    <Image Include="res\temperature_repeater.ico" />
+    <Image Include="res\temperature_repeater_change.ico" />
+    <Image Include="res\thermal_expansion.ico" />
+    <Image Include="res\thermcapac.ico" />
+    <Image Include="res\thermconduct.ico" />
+    <Image Include="res\thermlinexptrans.ico" />
+    <Image Include="res\timestrain.ico" />
+    <Image Include="res\toolbar1.bmp" />
+    <Image Include="res\topview_.bmp" />
+    <Image Include="res\top_hori.ico" />
+    <Image Include="res\tri_chec.ico" />
+    <Image Include="res\upscaling.ico" />
+    <Image Include="res\ursa21.bmp" />
+    <Image Include="res\valuetyp.ico" />
+    <Image Include="res\valuetype_bmp\a1.bmp" />
+    <Image Include="res\valuetype_bmp\a2.bmp" />
+    <Image Include="res\valuetype_bmp\activation_energy_q1r.bmp" />
+    <Image Include="res\valuetype_bmp\activation_energy_q2r.bmp" />
+    <Image Include="res\valuetype_bmp\anisotropic_shear_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\anisotropic_shear_modulus_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\aperture.bmp" />
+    <Image Include="res\valuetype_bmp\azimuth.bmp" />
+    <Image Include="res\valuetype_bmp\bulkmodulus.bmp" />
+    <Image Include="res\valuetype_bmp\capshape.bmp" />
+    <Image Include="res\valuetype_bmp\cohesion.bmp" />
+    <Image Include="res\valuetype_bmp\creep_alpha.bmp" />
+    <Image Include="res\valuetype_bmp\density.bmp" />
+    <Image Include="res\valuetype_bmp\dilatation.bmp" />
+    <Image Include="res\valuetype_bmp\dynamic_shear_stiffness.bmp" />
+    <Image Include="res\valuetype_bmp\dynamic_uniaxial_stiffness.bmp" />
+    <Image Include="res\valuetype_bmp\elastic_hardening.bmp" />
+    <Image Include="res\valuetype_bmp\equivalent_plastic_strain_1.bmp" />
+    <Image Include="res\valuetype_bmp\equivalent_plastic_strain_2.bmp" />
+    <Image Include="res\valuetype_bmp\equivalent_plastic_strain_3.bmp" />
+    <Image Include="res\valuetype_bmp\fluid_bulk_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\fluid_density.bmp" />
+    <Image Include="res\valuetype_bmp\fluid_thermal_expansion.bmp" />
+    <Image Include="res\valuetype_bmp\fracture_matrix_pressure.bmp" />
+    <Image Include="res\valuetype_bmp\fracture_stiffness_normal.bmp" />
+    <Image Include="res\valuetype_bmp\fracture_stiffness_shear.bmp" />
+    <Image Include="res\valuetype_bmp\fracture_tensor.bmp" />
+    <Image Include="res\valuetype_bmp\friction_angle.bmp" />
+    <Image Include="res\valuetype_bmp\grain_bulk_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_cohesion_1.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_cohesion_2.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_cohesion_3.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_friction_angle_1.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_friction_angle_2.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_friction_angle_3.bmp" />
+    <Image Include="res\valuetype_bmp\hardening_parameter.bmp" />
+    <Image Include="res\valuetype_bmp\highest_fracture_density.bmp" />
+    <Image Include="res\valuetype_bmp\highest_fracture_density_azimuth.bmp" />
+    <Image Include="res\valuetype_bmp\highest_fracture_density_inclination.bmp" />
+    <Image Include="res\valuetype_bmp\initfriction.bmp" />
+    <Image Include="res\valuetype_bmp\intermediate_fracture_density.bmp" />
+    <Image Include="res\valuetype_bmp\latratio_max.bmp" />
+    <Image Include="res\valuetype_bmp\latratio_min.bmp" />
+    <Image Include="res\valuetype_bmp\layer_normal_azimuth.bmp" />
+    <Image Include="res\valuetype_bmp\layer_normal_inclination.bmp" />
+    <Image Include="res\valuetype_bmp\lowest_fracture_density.bmp" />
+    <Image Include="res\valuetype_bmp\lowest_fracture_density_azimuth.bmp" />
+    <Image Include="res\valuetype_bmp\lowest_fracture_density_inclination.bmp" />
+    <Image Include="res\valuetype_bmp\menu_fracture_parameters.bmp" />
+    <Image Include="res\valuetype_bmp\menu_hardening_parameters.bmp" />
+    <Image Include="res\valuetype_bmp\menu_poissons_ratio.bmp" />
+    <Image Include="res\valuetype_bmp\menu_rigidity_parameters.bmp" />
+    <Image Include="res\valuetype_bmp\menu_thermal_parameters.bmp" />
+    <Image Include="res\valuetype_bmp\menu_youngs_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\n1.bmp" />
+    <Image Include="res\valuetype_bmp\n2.bmp" />
+    <Image Include="res\valuetype_bmp\permeability.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio_normal.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio_normal_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio_transverse.bmp" />
+    <Image Include="res\valuetype_bmp\poissons_ratio_transverse_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\porosity.bmp" />
+    <Image Include="res\valuetype_bmp\preconsolidation.bmp" />
+    <Image Include="res\valuetype_bmp\reference_aperture.bmp" />
+    <Image Include="res\valuetype_bmp\reference_stress.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_01.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_02.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_03.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_04.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_05.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_06.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_07.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_08.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_09.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_10.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_11.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_12.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_13.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_14.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_15.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_16.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_17.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_18.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_19.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_20.bmp" />
+    <Image Include="res\valuetype_bmp\rigidity_21.bmp" />
+    <Image Include="res\valuetype_bmp\secondary_hardening.bmp" />
+    <Image Include="res\valuetype_bmp\secondary_preconsolidation_stress.bmp" />
+    <Image Include="res\valuetype_bmp\shear_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\tensile_stretch.bmp" />
+    <Image Include="res\valuetype_bmp\thermal_capacity.bmp" />
+    <Image Include="res\valuetype_bmp\thermal_conductivity.bmp" />
+    <Image Include="res\valuetype_bmp\thermal_expansion.bmp" />
+    <Image Include="res\valuetype_bmp\thermal_expansion_lateral.bmp" />
+    <Image Include="res\valuetype_bmp\thermal_expansion_normal.bmp" />
+    <Image Include="res\valuetype_bmp\thomsen_delta.bmp" />
+    <Image Include="res\valuetype_bmp\thomsen_epsilon.bmp" />
+    <Image Include="res\valuetype_bmp\thomsen_gamma.bmp" />
+    <Image Include="res\valuetype_bmp\uniaxial_elastic_compressibility.bmp" />
+    <Image Include="res\valuetype_bmp\uniaxial_plastic_compressibility.bmp" />
+    <Image Include="res\valuetype_bmp\v0_hi.bmp" />
+    <Image Include="res\valuetype_bmp\v0_lo.bmp" />
+    <Image Include="res\valuetype_bmp\v0_me.bmp" />
+    <Image Include="res\valuetype_bmp\viscosity.bmp" />
+    <Image Include="res\valuetype_bmp\vp.bmp" />
+    <Image Include="res\valuetype_bmp\vs.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus_normal.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus_normal_decompaction.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus_transverse.bmp" />
+    <Image Include="res\valuetype_bmp\youngs_modulus_transverse_decompaction.bmp" />
+    <Image Include="res\valuetype_viscosity.ico" />
+    <Image Include="res\value_se.ico" />
+    <Image Include="res\value_ty.ico" />
+    <Image Include="res\vertical.ico" />
+    <Image Include="res\view.ico" />
+    <Image Include="res\view_bar.bmp" />
+    <Image Include="res\xsection_any.ico" />
+    <Image Include="res\xsection_horizontal.ico" />
+    <Image Include="res\youngnormal.ico" />
+    <Image Include="res\youngs_m.ico" />
+    <Image Include="res\youngtrans.ico" />
+    <Image Include="res\young_decomp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\closemesh.cur" />
+    <None Include="res\cursor1.cur" />
+    <None Include="res\draw.cur" />
+    <None Include="res\nodrop.cur" />
+    <None Include="res\snapsegm.cur" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SRC\Geomec.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

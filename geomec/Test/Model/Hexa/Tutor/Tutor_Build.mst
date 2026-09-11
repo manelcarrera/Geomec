@@ -1,0 +1,125 @@
+'=====================================================================
+' TEST CASE NAME:
+'
+' GENERAL DESCRIPTION OF WHAT IS VERIFIED:
+'
+'
+' SPECIFIC AREA ADDRESSED BY THIS TEST CASE:
+'
+'
+' NAME OF APPLICATION UNDER TEST:
+'
+'=====================================================================
+' TEST CASE PURPOSE:
+'
+'
+' TEST CASE ABSTRACT OF TECHNIQUES USED TO TEST THE FEATURE:
+'
+'
+' SCENARIOS:    1.
+'               2.
+'               3.
+'               4.
+'               5.
+'               6.
+'               7.
+'               8.
+'               9.
+'              10.
+'
+'---------------------------------------------------------------------------
+' OTHER FILES REQUIRED TO RUN TEST CASE:
+'
+'
+'
+'---------------------------------------------------------------------------
+' REVISION HISTORY:
+'
+'	[ 0]	<DD-MM-YY>		<NAME>	: <CHANGES MADE>
+'	[ 1]	  -  -			<????>	: Created test.
+'---------------------------------------------------------------------------
+
+
+' '$DEFINE and '$INCLUDE metacommands for test case
+'-------------------------------------------------------------------
+'$include 'Recorder.inc'
+'$include '..\TestSuite.inc'
+
+
+' DIM statements, TYPE declarations, global variables,
+' constants, and so on for test case
+'-------------------------------------------------------------------
+
+
+' *************************
+' **** BEGIN TEST CASE ****
+' *************************
+
+'******* Test Case INITIALIZATION/SETUP *********
+Viewport Clear
+
+
+
+
+'******* SCENARIO SECTION ***********************
+
+'*** Scenario 1:
+Scenario ("Tutor_Build")
+StartApp
+NewModel("Horizon")
+' Read horizons
+FILELIST CLEAR
+FILELIST ADD CurDir$ + "\Horizons\*.txt"
+FOR TestFile$ IN FILELIST SORTED BY NAME
+	Import(GetPathName(TestFile), GetFileName(TestFile))
+	CreateHorizonFromSurface(GetFileName(TestFile))
+NEXT
+	
+' Read Pressures
+FILELIST CLEAR
+FILELIST ADD CurDir$ + "\Pressure\*.txt"
+FOR TestFile$ IN FILELIST SORTED BY NAME
+	Import(GetPathName(TestFile), GetFileName(TestFile))
+NEXT
+
+Dim names As VARIANT
+names = Formations()
+for x = LBOUND(names) to UBOUND(names)
+	print names(x)
+next x
+'Material for all formations
+''for_begin = FormationItemBegin()
+'for_end = FormationItemEnd()
+'for x = for_begin to for_end
+'   DIM formation_name As String
+'   formation_name = FormationName(x)
+'   NewMaterial( formation_name  )
+'  AssignMaterial(formation_name, formation_name)
+'Next x 
+
+
+		
+Scenario Cleanup 'and handling of scenario failure
+'ExitNoSave
+	
+End Scenario
+
+
+
+'******* Test Case CLEANUP **********************
+ 
+
+
+
+
+' *************************
+' ***** END TEST CASE *****
+' *************************
+End
+
+
+
+'*****************************************************************************
+'                          LOCAL SCRIPT SUBS/FUNCTIONS
+'*****************************************************************************
+ 

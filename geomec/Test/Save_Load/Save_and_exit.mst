@@ -1,0 +1,21 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("Save_and_exit.new","Save_and_exit")
+
+' This scenario tests whether the application correctly performs a save and afterwards doesn't ask for saving when the application is closed.
+Scenario ("Save and exit")
+StartScenario("Save and exit")
+	StartApp
+	LoadModel(curdir$,"test2.ff")
+	Sleep(5)
+	' Make some modifications to the model so we have to save
+	SetInitialPorePressureInfo(3, 2, 1, 0)
+	SaveAndExit
+ScenarioPass
+Scenario Cleanup
+End Scenario
+
+EndLog
+End

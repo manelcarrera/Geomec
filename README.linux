@@ -1,0 +1,13 @@
+The build environment on linux expects an environment variable
+
+	GM_SW_TOOL_PATH=/path/to/build/tools
+
+In this example, the directory tools should contain subdirectories,
+or links to their real locations, as follows:
+
+	diana		the diana distribution (contains release, debug, share)
+	GCC		gcc 4.7.2 or higher (contains include, lib64)
+	extra		the uuid library (contains include/uuid/, lib)
+	qt-4.8.5	Qt (contains include, lib)
+
+

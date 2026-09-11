@@ -1,0 +1,790 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Global Geomec Use Cases"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2E540002BC"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Exit Geomec"
+	    quid       	"3A07B88E02B9"
+	    documentation 	
+|If the model is dirty (due to calculation or other) then ask for saving on closing Geomec or opening a new filosfile or starting a NewModel.  If user not want to save the filosfile then the opened filosfile is unchanged.
+|A copy of the filosfile in a tempfilesdir is made during opening and restored to the original file if the user does not want to save.
+| 
+	    
+	    external_docs 	(list external_doc_list
+		(object external_doc
+		    external_doc_path 	"F:\\lnbx\\OR ICT.dot")))
+	(object UseCase "New Model"
+	    quid       	"3A0184FB00F7"
+	    documentation 	"If the user wants to start Diana on a new created model ( not saved yet) then a temporay filosfile is created in the tempfilesdir. If the user want to save the file then this temporary filosfile is copied to the user specified folder and filename.")
+	(object UseCase "Open Filos File"
+	    quid       	"3A01846403AD"
+	    documentation 	"A copy of the filosfile in a tempfilesdir is made during opening and restored to the original file if the user does not want to save.")
+	(object UseCase "Save Filos File"
+	    quid       	"3A0185AA0384")
+	(object UseCase "Save Filos File As"
+	    quid       	"3A0185F8030E")
+	(object UseCase "Set Global Geomec parameters"
+	    quid       	"3A2E553D02A4"
+	    documentation 	
+|Global Geomec parameters are stored in the registry (USER) and known between Geomec sessions.
+|
+|Some Global parameters are:
+|
+|Start Modelwizard at Geomec startup
+|Path to Temporary files folder
+|Unit system
+|Path to Model folder
+|
+|
+	    )
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2E54C8031E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2E54C9015C"
+		    supplier   	"Logical View::Global Geomec Use Cases::New Model"
+		    quidu      	"3A0184FB00F7"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2E54C90166"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A2E54CD03C5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A2E54CE0236"
+		    supplier   	"Logical View::Global Geomec Use Cases::Exit Geomec"
+		    quidu      	"3A07B88E02B9"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A2E54CE0240"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2E54DD0300"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2E54DE01B7"
+		    supplier   	"Logical View::Global Geomec Use Cases::Save Filos File As"
+		    quidu      	"3A0185F8030E"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2E54DE01CB"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A2E54E00372"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A2E54E10157"
+		    supplier   	"Logical View::Global Geomec Use Cases::Save Filos File"
+		    quidu      	"3A0185AA0384"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A2E54E10175"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A2E54E40197"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3A2E54E50026"
+		    supplier   	"Logical View::Global Geomec Use Cases::Open Filos File"
+		    quidu      	"3A01846403AD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A2E54E5003A"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$15"
+	    quid       	"3A2E55510049"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$16"
+		    quid       	"3A2E555102E8"
+		    supplier   	"Logical View::Global Geomec Use Cases::Set Global Geomec parameters"
+		    quidu      	"3A2E553D02A4"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"3A2E555102FC"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$18"
+	    quid       	"3A2E55F90005"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"3A2E55F90236"
+		    supplier   	"Use Case View::Material Library Use Cases::Open a Material Library"
+		    quidu      	"3A2E55A00364"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$20"
+		    quid       	"3A2E55F9024A"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$21"
+	    quid       	"3A2E55FF0086"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$22"
+		    quid       	"3A2E55FF02FD"
+		    supplier   	"Use Case View::Material Library Use Cases::Create a New Material Library"
+		    quidu      	"3A2E55AF02BC"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$23"
+		    quid       	"3A2E55FF0307"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$24"
+	    quid       	"3A2E56020166"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$25"
+		    quid       	"3A2E5602035B"
+		    supplier   	"Use Case View::Material Library Use Cases::Show Materials in The Material Library"
+		    quidu      	"3A2E55DE00D8"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$26"
+		    quid       	"3A2E5602036F"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$27"
+	    quid       	"3A2E560501C5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$28"
+		    quid       	"3A2E560503D8"
+		    supplier   	"Use Case View::Material Library Use Cases::Copy the Material Library"
+		    quidu      	"3A2E55BE0169"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$29"
+		    quid       	"3A2E560503E2"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Global Geomec Use Cases"
+	    quid       	"3A2E54220351"
+	    title      	"Global Geomec Use Cases"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object UseCaseView "Logical View::Global Geomec Use Cases::New Model" @1
+		    location   	(512, 1728)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(512, 1866)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"New Model")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A0184FB00F7")
+		(object UseCaseView "Logical View::Global Geomec Use Cases::Exit Geomec" @2
+		    location   	(240, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(240, 1434)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Exit Geomec")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07B88E02B9")
+		(object UseCaseView "Logical View::Global Geomec Use Cases::Save Filos File As" @3
+		    location   	(1936, 1808)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1936, 1946)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Save Filos File As")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A0185F8030E")
+		(object UseCaseView "Logical View::Global Geomec Use Cases::Save Filos File" @4
+		    location   	(1440, 1888)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1440, 2026)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Save Filos File")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A0185AA0384")
+		(object UseCaseView "Logical View::Global Geomec Use Cases::Open Filos File" @5
+		    location   	(944, 1936)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(944, 2074)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Open Filos File")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A01846403AD")
+		(object UseCaseView "Logical View::Global Geomec Use Cases::Set Global Geomec parameters" @6
+		    location   	(352, 704)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(352, 842)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Set Global Geomec parameters")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E553D02A4"
+		    height     	118)
+		(object UseCaseView "Use Case View::Material Library Use Cases::Open a Material Library" @7
+		    location   	(1120, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1120, 554)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Open a Material Library")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E55A00364"
+		    height     	118)
+		(object UseCaseView "Use Case View::Material Library Use Cases::Create a New Material Library" @8
+		    location   	(1744, 560)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(1744, 698)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Create a New Material Library")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E55AF02BC"
+		    height     	118)
+		(object UseCaseView "Use Case View::Material Library Use Cases::Show Materials in The Material Library" @9
+		    location   	(1904, 928)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(1904, 1066)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Show Materials in The Material Library")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E55DE00D8"
+		    height     	118)
+		(object UseCaseView "Use Case View::Material Library Use Cases::Copy the Material Library" @10
+		    location   	(1968, 1392)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1968, 1530)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Copy the Material Library")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E55BE0169"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1040, 1136)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1040, 1296)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	411
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @12
+		    location   	(716, 1495)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E54C8031E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @13
+			    Parent_View 	@12
+			    location   	(-100, 839)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54C9015C"
+			    client     	@12
+			    supplier   	@1
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @14
+			    Parent_View 	@12
+			    location   	(-100, 839)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54C90166"
+			    client     	@12
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @15
+		    location   	(664, 1207)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E54CD03C5"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @16
+			    Parent_View 	@15
+			    location   	(-152, 551)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54CE0236"
+			    client     	@15
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @17
+			    Parent_View 	@15
+			    location   	(-152, 551)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54CE0240"
+			    client     	@15
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @18
+		    location   	(1554, 1521)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E54DD0300"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @19
+			    Parent_View 	@18
+			    location   	(738, 865)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54DE01B7"
+			    client     	@18
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @20
+			    Parent_View 	@18
+			    location   	(738, 865)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54DE01CB"
+			    client     	@18
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$9" @21
+		    location   	(1271, 1574)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E54E00372"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @22
+			    Parent_View 	@21
+			    location   	(455, 918)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54E10157"
+			    client     	@21
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @23
+			    Parent_View 	@21
+			    location   	(455, 918)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54E10175"
+			    client     	@21
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$12" @24
+		    location   	(982, 1598)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E54E40197"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @25
+			    Parent_View 	@24
+			    location   	(166, 942)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54E50026"
+			    client     	@24
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$14" @26
+			    Parent_View 	@24
+			    location   	(166, 942)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E54E5003A"
+			    client     	@24
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$15" @27
+		    location   	(797, 982)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E55510049"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$16" @28
+			    Parent_View 	@27
+			    location   	(13, 374)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E555102E8"
+			    client     	@27
+			    supplier   	@6
+			    line_style 	0)
+			(object RoleView "$UNNAMED$17" @29
+			    Parent_View 	@27
+			    location   	(13, 374)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E555102FC"
+			    client     	@27
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$18" @30
+		    location   	(1072, 817)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E55F90005"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$19" @31
+			    Parent_View 	@30
+			    location   	(288, 209)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E55F90236"
+			    client     	@30
+			    supplier   	@7
+			    line_style 	0)
+			(object RoleView "$UNNAMED$20" @32
+			    Parent_View 	@30
+			    location   	(288, 209)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E55F9024A"
+			    client     	@30
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$21" @33
+		    location   	(1321, 904)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E55FF0086"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$22" @34
+			    Parent_View 	@33
+			    location   	(505, 312)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E55FF02FD"
+			    client     	@33
+			    supplier   	@8
+			    line_style 	0)
+			(object RoleView "$UNNAMED$23" @35
+			    Parent_View 	@33
+			    location   	(505, 312)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E55FF0307"
+			    client     	@33
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$24" @36
+		    location   	(1340, 1061)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E56020166"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$25" @37
+			    Parent_View 	@36
+			    location   	(524, 469)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E5602035B"
+			    client     	@36
+			    supplier   	@9
+			    line_style 	0)
+			(object RoleView "$UNNAMED$26" @38
+			    Parent_View 	@36
+			    location   	(524, 469)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E5602036F"
+			    client     	@36
+			    supplier   	@11
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$27" @39
+		    location   	(1477, 1254)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E560501C5"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$28" @40
+			    Parent_View 	@39
+			    location   	(661, 662)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E560503D8"
+			    client     	@39
+			    supplier   	@10
+			    line_style 	0)
+			(object RoleView "$UNNAMED$29" @41
+			    Parent_View 	@39
+			    location   	(661, 662)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E560503E2"
+			    client     	@39
+			    supplier   	@11
+			    line_style 	0)))
+		(object Label @42
+		    location   	(144, 80)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	750
+		    label      	"Global Geomec Use Cases")))))

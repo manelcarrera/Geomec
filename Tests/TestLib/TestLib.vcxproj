@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\TestFormation.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)../moc/moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)../moc/moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\TestHorizon.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)../moc/moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)../moc/moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="h\TestIModelObjectReceiver.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)../moc/moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)../moc/moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\SaveModelTest.h" />
+    <ClInclude Include="h\TestLib.h" />
+    <CustomBuild Include="h\TestMaterial.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)../moc/moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)../moc/moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\TestSoilModel.h" />
+    <ClInclude Include="h\TestSoilModelFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="moc\moc_TestFormation.cpp" />
+    <ClCompile Include="moc\moc_TestHorizon.cpp" />
+    <ClCompile Include="moc\moc_TestIModelObjectReceiver.cpp" />
+    <ClCompile Include="moc\moc_TestMaterial.cpp" />
+    <ClCompile Include="src\SaveModelTest.cpp" />
+    <ClCompile Include="src\TestFormation.cpp" />
+    <ClCompile Include="src\TestHorizon.cpp" />
+    <ClCompile Include="src\TestIModelObjectReceiver.cpp" />
+    <ClCompile Include="src\TestLib.cpp" />
+    <ClCompile Include="src\TestMaterial.cpp" />
+    <ClCompile Include="src\TestSoilModel.cpp" />
+    <ClCompile Include="src\TestSoilModelFactory.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{22A0CB19-DE79-4135-B46B-DFAE7B81C12D}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <RootNamespace>TestLib</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile />
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib />
+    <Lib>
+      <SubSystem>Console</SubSystem>
+    </Lib>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TESTSTESTLIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile />
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <SubSystem>Console</SubSystem>
+    </Lib>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TESTSTESTLIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <ClCompile />
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <SubSystem>Console</SubSystem>
+    </Lib>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TESTSTESTLIB)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

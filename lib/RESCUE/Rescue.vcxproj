@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\boolSupport.h" />
+    <ClInclude Include="h\cBagInt.h" />
+    <ClInclude Include="h\cBagRescueBlockUnit.h" />
+    <ClInclude Include="h\cBagRescueEdgeSet.h" />
+    <ClInclude Include="h\cBagRescueGeobodyPart.h" />
+    <ClInclude Include="h\cBagRescueGeometry.h" />
+    <ClInclude Include="h\cBagRescueHistory.h" />
+    <ClInclude Include="h\cBagRescueHistoryObject.h" />
+    <ClInclude Include="h\cBagRescuePolyLine.h" />
+    <ClInclude Include="h\cBagRescuePolyLineStub.h" />
+    <ClInclude Include="h\cBagRescueProperty.h" />
+    <ClInclude Include="h\cBagRescuePropertyGroup.h" />
+    <ClInclude Include="h\cBagRescueSection.h" />
+    <ClInclude Include="h\cBagRescueStairSteppedFault.h" />
+    <ClInclude Include="h\cBagRescueSurfaceCell.h" />
+    <ClInclude Include="h\cBagRescueSurfaceToGrid.h" />
+    <ClInclude Include="h\cBagRescueTimeStepGroup.h" />
+    <ClInclude Include="h\cBagRescueTriangleVertex.h" />
+    <ClInclude Include="h\cBagRescueTrimLoop.h" />
+    <ClInclude Include="h\cBagRescueWellboreCell.h" />
+    <ClInclude Include="h\cBagRescueWellboreSurface.h" />
+    <ClInclude Include="h\cNameValuePair.h" />
+    <ClInclude Include="h\cSetRescueArrayFragment.h" />
+    <ClInclude Include="h\cSetRescueBlock.h" />
+    <ClInclude Include="h\cSetRescueBlockUnit.h" />
+    <ClInclude Include="h\cSetRescueBlockUnitHorizonSurface.h" />
+    <ClInclude Include="h\cSetRescueBlockUnitSide.h" />
+    <ClInclude Include="h\cSetRescueDataContainer.h" />
+    <ClInclude Include="h\cSetRescueEdgeSet.h" />
+    <ClInclude Include="h\cSetRescueEdgeSetStub.h" />
+    <ClInclude Include="h\cSetRescueEventDescr.h" />
+    <ClInclude Include="h\cSetRescueFaultIntersection.h" />
+    <ClInclude Include="h\cSetRescueGeobody.h" />
+    <ClInclude Include="h\cSetRescueGeobodyPart.h" />
+    <ClInclude Include="h\cSetRescueGeobodySurface.h" />
+    <ClInclude Include="h\cSetRescueGeobodyVolume.h" />
+    <ClInclude Include="h\cSetRescueGeometry.h" />
+    <ClInclude Include="h\cSetRescueGeometryUnit.h" />
+    <ClInclude Include="h\cSetRescueGridAxis.h" />
+    <ClInclude Include="h\cSetRescueHistory.h" />
+    <ClInclude Include="h\cSetRescueHorizon.h" />
+    <ClInclude Include="h\cSetRescueIJSurface.h" />
+    <ClInclude Include="h\cSetRescueInterfaceSurfaceDesc.h" />
+    <ClInclude Include="h\cSetRescueLookup.h" />
+    <ClInclude Include="h\cSetRescueMacroVolume.h" />
+    <ClInclude Include="h\cSetRescueModelPropertyGroup.h" />
+    <ClInclude Include="h\cSetRescuePoint.h" />
+    <ClInclude Include="h\cSetRescuePolyLine.h" />
+    <ClInclude Include="h\cSetRescuePolyLineNode.h" />
+    <ClInclude Include="h\cSetRescuePolyLineNodeBUG.h" />
+    <ClInclude Include="h\cSetRescuePolyLineNodeUV.h" />
+    <ClInclude Include="h\cSetRescuePolyLineNodeUVT.h" />
+    <ClInclude Include="h\cSetRescuePolyLineStub.h" />
+    <ClInclude Include="h\cSetRescueProperty.h" />
+    <ClInclude Include="h\cSetRescuePropertyGroup.h" />
+    <ClInclude Include="h\cSetRescueReferenceSurface.h" />
+    <ClInclude Include="h\cSetRescueReservoir.h" />
+    <ClInclude Include="h\cSetRescueSection.h" />
+    <ClInclude Include="h\cSetRescueSOctTreeNode.h" />
+    <ClInclude Include="h\cSetRescueStairSteppedFault.h" />
+    <ClInclude Include="h\cSetRescueSurfaceCell.h" />
+    <ClInclude Include="h\cSetRescueSurfaceToGrid.h" />
+    <ClInclude Include="h\cSetRescueTimeStepGroup.h" />
+    <ClInclude Include="h\cSetRescueTriangleFace.h" />
+    <ClInclude Include="h\cSetRescueTriangleVertex.h" />
+    <ClInclude Include="h\cSetRescueTrimEdge.h" />
+    <ClInclude Include="h\cSetRescueTrimLoop.h" />
+    <ClInclude Include="h\cSetRescueTrimLoopStub.h" />
+    <ClInclude Include="h\cSetRescueTrimVertex.h" />
+    <ClInclude Include="h\cSetRescueUnit.h" />
+    <ClInclude Include="h\cSetRescueWellbore.h" />
+    <ClInclude Include="h\cSetRescueWellboreCell.h" />
+    <ClInclude Include="h\cSetRescueWellboreProperty.h" />
+    <ClInclude Include="h\cSetRescueWellboreSampling.h" />
+    <ClInclude Include="h\cSetRescueWellboreSurface.h" />
+    <ClInclude Include="h\cSetRescueWireframe.h" />
+    <ClInclude Include="h\cSetString.h" />
+    <ClInclude Include="h\FractureSetProposal.h" />
+    <ClInclude Include="h\myHeaders.h" />
+    <ClInclude Include="h\RCH2DArray.h" />
+    <ClInclude Include="h\RCH3DArray.h" />
+    <ClInclude Include="h\RCHf2DArray.h" />
+    <ClInclude Include="h\RCHf3DArray.h" />
+    <ClInclude Include="h\RCHString.h" />
+    <ClInclude Include="h\RCHXMLTokenizer.h" />
+    <ClInclude Include="h\RescueArray.h" />
+    <ClInclude Include="h\RescueArray2dVector.h" />
+    <ClInclude Include="h\RescueArray3dVector.h" />
+    <ClInclude Include="h\RescueArrayByte.h" />
+    <ClInclude Include="h\RescueArrayDouble.h" />
+    <ClInclude Include="h\RescueArrayFloat.h" />
+    <ClInclude Include="h\RescueArrayFragment.h" />
+    <ClInclude Include="h\RescueArrayFragment2dVector.h" />
+    <ClInclude Include="h\RescueArrayFragment3dVector.h" />
+    <ClInclude Include="h\RescueArrayFragmentByte.h" />
+    <ClInclude Include="h\RescueArrayFragmentDouble.h" />
+    <ClInclude Include="h\RescueArrayFragmentFloat.h" />
+    <ClInclude Include="h\RescueArrayFragmentInt.h" />
+    <ClInclude Include="h\RescueArrayFragmentShort.h" />
+    <ClInclude Include="h\RescueArrayInt.h" />
+    <ClInclude Include="h\RescueArrayShort.h" />
+    <ClInclude Include="h\RescueBitArray.h" />
+    <ClInclude Include="h\RescueBlock.h" />
+    <ClInclude Include="h\RescueBlockUnit.h" />
+    <ClInclude Include="h\RescueBlockUnitHorizonSurface.h" />
+    <ClInclude Include="h\RescueBlockUnitSide.h" />
+    <ClInclude Include="h\RescueBuffer.h" />
+    <ClInclude Include="h\RescueColor.h" />
+    <ClInclude Include="h\RescueColorTable.h" />
+    <ClInclude Include="h\RescueColorTableList.h" />
+    <ClInclude Include="h\RescueContext.h" />
+    <ClInclude Include="h\RescueCoordinateLine.h" />
+    <ClInclude Include="h\RescueCoordinatePolyLine.h" />
+    <ClInclude Include="h\RescueCoordinateSystem.h" />
+    <ClInclude Include="h\RescueCoordinateSystemAxis.h" />
+    <ClInclude Include="h\RescueDataContainer.h" />
+    <ClInclude Include="h\RescueDocument.h" />
+    <ClInclude Include="h\RescueDocumentList.h" />
+    <ClInclude Include="h\RescueEdgeSet.h" />
+    <ClInclude Include="h\RescueEdgeSetStub.h" />
+    <ClInclude Include="h\RescueEventDescr.h" />
+    <ClInclude Include="h\RescueFaultIntersection.h" />
+    <ClInclude Include="h\RescueGeobody.h" />
+    <ClInclude Include="h\RescueGeobodyPart.h" />
+    <ClInclude Include="h\RescueGeobodySurface.h" />
+    <ClInclude Include="h\RescueGeobodyVolume.h" />
+    <ClInclude Include="h\RescueGeometry.h" />
+    <ClInclude Include="h\RescueGeometryLGRList.h" />
+    <ClInclude Include="h\RescueGeometryObject.h" />
+    <ClInclude Include="h\RescueGeometryPropertyList.h" />
+    <ClInclude Include="h\RescueGeometryUnit.h" />
+    <ClInclude Include="h\RescueGrid.h" />
+    <ClInclude Include="h\RescueGridAxis.h" />
+    <ClInclude Include="h\RescueHistory.h" />
+    <ClInclude Include="h\RescueHistoryObject.h" />
+    <ClInclude Include="h\RescueHorizon.h" />
+    <ClInclude Include="h\RescueIdTree.h" />
+    <ClInclude Include="h\RescueIdTreeNode.h" />
+    <ClInclude Include="h\RescueIJSurface.h" />
+    <ClInclude Include="h\RescueInterfaceSurfaceDesc.h" />
+    <ClInclude Include="h\RescueListNode.h" />
+    <ClInclude Include="h\RescueLogicalOrder.h" />
+    <ClInclude Include="h\RescueLogicalOrderEntry.h" />
+    <ClInclude Include="h\RescueLookup.h" />
+    <ClInclude Include="h\RescueLookupItem.h" />
+    <ClInclude Include="h\RescueLookupString.h" />
+    <ClInclude Include="h\RescueLookupTable.h" />
+    <ClInclude Include="h\RescueMacroVolume.h" />
+    <ClInclude Include="h\RescueModel.h" />
+    <ClInclude Include="h\RescueModelPropertyGroup.h" />
+    <ClInclude Include="h\RescueObject.h" />
+    <ClInclude Include="h\RescueOrientationLedger.h" />
+    <ClInclude Include="h\RescueParametricLGRMap.h" />
+    <ClInclude Include="h\RescuePillar.h" />
+    <ClInclude Include="h\RescuePoint.h" />
+    <ClInclude Include="h\RescuePolyLine.h" />
+    <ClInclude Include="h\RescuePolyLineNode.h" />
+    <ClInclude Include="h\RescuePolyLineNodeBUG.h" />
+    <ClInclude Include="h\RescuePolyLineNodeUV.h" />
+    <ClInclude Include="h\RescuePolyLineNodeUVT.h" />
+    <ClInclude Include="h\RescuePolyLineStub.h" />
+    <ClInclude Include="h\RescueProgressReporter.h" />
+    <ClInclude Include="h\RescueProperty.h" />
+    <ClInclude Include="h\RescuePropertyGroup.h" />
+    <ClInclude Include="h\RescueQuadrupletArray.h" />
+    <ClInclude Include="h\RescueRadialGrid.h" />
+    <ClInclude Include="h\RescueReferenceSurface.h" />
+    <ClInclude Include="h\RescueReservoir.h" />
+    <ClInclude Include="h\RescueSection.h" />
+    <ClInclude Include="h\RescueSOctTreeNode.h" />
+    <ClInclude Include="h\RescueSplineCoef.h" />
+    <ClInclude Include="h\RescueSplitLine.h" />
+    <ClInclude Include="h\RescueSplitPoint.h" />
+    <ClInclude Include="h\RescueStairSteppedFault.h" />
+    <ClInclude Include="h\RescueSurface.h" />
+    <ClInclude Include="h\RescueSurfaceCell.h" />
+    <ClInclude Include="h\RescueSurfaceToGrid.h" />
+    <ClInclude Include="h\RescueTimeStepGroup.h" />
+    <ClInclude Include="h\RescueTimeStepManager.h" />
+    <ClInclude Include="h\RescueTree.h" />
+    <ClInclude Include="h\RescueTreeNode.h" />
+    <ClInclude Include="h\RescueTriangleFace.h" />
+    <ClInclude Include="h\RescueTriangleVertex.h" />
+    <ClInclude Include="h\RescueTriangulatedSurface.h" />
+    <ClInclude Include="h\RescueTrimEdge.h" />
+    <ClInclude Include="h\RescueTrimLoop.h" />
+    <ClInclude Include="h\RescueTrimLoopStub.h" />
+    <ClInclude Include="h\RescueTrimVertex.h" />
+    <ClInclude Include="h\RescueTrimVertexStub.h" />
+    <ClInclude Include="h\RescueTripletArray.h" />
+    <ClInclude Include="h\RescueTruncation.h" />
+    <ClInclude Include="h\RescueUnit.h" />
+    <ClInclude Include="h\RescueUnstructuredGrid.h" />
+    <ClInclude Include="h\RescueUOM.h" />
+    <ClInclude Include="h\RescueVertex.h" />
+    <ClInclude Include="h\RescueWellbore.h" />
+    <ClInclude Include="h\RescueWellboreCell.h" />
+    <ClInclude Include="h\RescueWellboreProperty.h" />
+    <ClInclude Include="h\RescueWellboreSampling.h" />
+    <ClInclude Include="h\RescueWellboreSurface.h" />
+    <ClInclude Include="h\RescueWireframe.h" />
+    <ClInclude Include="h\RescueWireframeCallBack.h" />
+    <ClInclude Include="h\RescueWireframeOwner.h" />
+    <ClInclude Include="h\RescueWireframeStub.h" />
+    <ClInclude Include="h\RescueZStack.h" />
+    <ClInclude Include="h\suppress_warnings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cBagInt.cpp" />
+    <ClCompile Include="src\cBagRescueBlockUnit.cpp" />
+    <ClCompile Include="src\cBagRescueEdgeSet.cpp" />
+    <ClCompile Include="src\cBagRescueGeobodyPart.cpp" />
+    <ClCompile Include="src\cBagRescueGeometry.cpp" />
+    <ClCompile Include="src\cBagRescueHistory.cpp" />
+    <ClCompile Include="src\cBagRescueHistoryObject.cpp" />
+    <ClCompile Include="src\cBagRescuePolyLine.cpp" />
+    <ClCompile Include="src\cBagRescuePolyLineStub.cpp" />
+    <ClCompile Include="src\cBagRescueProperty.cpp" />
+    <ClCompile Include="src\cBagRescuePropertyGroup.cpp" />
+    <ClCompile Include="src\cBagRescueSection.cpp" />
+    <ClCompile Include="src\cBagRescueStairSteppedFault.cpp" />
+    <ClCompile Include="src\cBagRescueSurfaceCell.cpp" />
+    <ClCompile Include="src\cBagRescueSurfaceToGrid.cpp" />
+    <ClCompile Include="src\cBagRescueTimeStepGroup.cpp" />
+    <ClCompile Include="src\cBagRescueTriangleVertex.cpp" />
+    <ClCompile Include="src\cBagRescueTrimLoop.cpp" />
+    <ClCompile Include="src\cBagRescueWellboreCell.cpp" />
+    <ClCompile Include="src\cBagRescueWellboreSurface.cpp" />
+    <ClCompile Include="src\cNameValuePair.cpp" />
+    <ClCompile Include="src\cSetRescueArrayFragment.cpp" />
+    <ClCompile Include="src\cSetRescueBlock.cpp" />
+    <ClCompile Include="src\cSetRescueBlockUnit.cpp" />
+    <ClCompile Include="src\cSetRescueBlockUnitHorizonSurface.cpp" />
+    <ClCompile Include="src\cSetRescueBlockUnitSide.cpp" />
+    <ClCompile Include="src\cSetRescueDataContainer.cpp" />
+    <ClCompile Include="src\cSetRescueEdgeSet.cpp" />
+    <ClCompile Include="src\cSetRescueEdgeSetStub.cpp" />
+    <ClCompile Include="src\cSetRescueEventDescr.cpp" />
+    <ClCompile Include="src\cSetRescueFaultIntersection.cpp" />
+    <ClCompile Include="src\cSetRescueGeobody.cpp" />
+    <ClCompile Include="src\cSetRescueGeobodyPart.cpp" />
+    <ClCompile Include="src\cSetRescueGeobodySurface.cpp" />
+    <ClCompile Include="src\cSetRescueGeobodyVolume.cpp" />
+    <ClCompile Include="src\cSetRescueGeometry.cpp" />
+    <ClCompile Include="src\cSetRescueGeometryUnit.cpp" />
+    <ClCompile Include="src\cSetRescueGridAxis.cpp" />
+    <ClCompile Include="src\cSetRescueHistory.cpp" />
+    <ClCompile Include="src\cSetRescueHorizon.cpp" />
+    <ClCompile Include="src\cSetRescueIJSurface.cpp" />
+    <ClCompile Include="src\cSetRescueInterfaceSurfaceDesc.cpp" />
+    <ClCompile Include="src\cSetRescueLookup.cpp" />
+    <ClCompile Include="src\cSetRescueMacroVolume.cpp" />
+    <ClCompile Include="src\cSetRescueModelPropertyGroup.cpp" />
+    <ClCompile Include="src\cSetRescuePoint.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLine.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLineNode.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLineNodeBUG.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLineNodeUV.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLineNodeUVT.cpp" />
+    <ClCompile Include="src\cSetRescuePolyLineStub.cpp" />
+    <ClCompile Include="src\cSetRescueProperty.cpp" />
+    <ClCompile Include="src\cSetRescuePropertyGroup.cpp" />
+    <ClCompile Include="src\cSetRescueReferenceSurface.cpp" />
+    <ClCompile Include="src\cSetRescueReservoir.cpp" />
+    <ClCompile Include="src\cSetRescueSection.cpp" />
+    <ClCompile Include="src\cSetRescueSOctTreeNode.cpp" />
+    <ClCompile Include="src\cSetRescueStairSteppedFault.cpp" />
+    <ClCompile Include="src\cSetRescueSurfaceCell.cpp" />
+    <ClCompile Include="src\cSetRescueSurfaceToGrid.cpp" />
+    <ClCompile Include="src\cSetRescueTimeStepGroup.cpp" />
+    <ClCompile Include="src\cSetRescueTriangleFace.cpp" />
+    <ClCompile Include="src\cSetRescueTriangleVertex.cpp" />
+    <ClCompile Include="src\cSetRescueTrimEdge.cpp" />
+    <ClCompile Include="src\cSetRescueTrimLoop.cpp" />
+    <ClCompile Include="src\cSetRescueTrimLoopStub.cpp" />
+    <ClCompile Include="src\cSetRescueTrimVertex.cpp" />
+    <ClCompile Include="src\cSetRescueUnit.cpp" />
+    <ClCompile Include="src\cSetRescueWellbore.cpp" />
+    <ClCompile Include="src\cSetRescueWellboreCell.cpp" />
+    <ClCompile Include="src\cSetRescueWellboreProperty.cpp" />
+    <ClCompile Include="src\cSetRescueWellboreSampling.cpp" />
+    <ClCompile Include="src\cSetRescueWellboreSurface.cpp" />
+    <ClCompile Include="src\cSetRescueWireframe.cpp" />
+    <ClCompile Include="src\cSetString.cpp" />
+    <ClCompile Include="src\Extra.cpp" />
+    <ClCompile Include="src\RCH2DArray.cpp" />
+    <ClCompile Include="src\RCH3DArray.cpp" />
+    <ClCompile Include="src\RCHString.cpp" />
+    <ClCompile Include="src\RCHXMLTokenizer.cpp" />
+    <ClCompile Include="src\RescueArray.cpp" />
+    <ClCompile Include="src\RescueArray2dVector.cpp" />
+    <ClCompile Include="src\RescueArray3dVector.cpp" />
+    <ClCompile Include="src\RescueArrayByte.cpp" />
+    <ClCompile Include="src\RescueArrayDouble.cpp" />
+    <ClCompile Include="src\RescueArrayFloat.cpp" />
+    <ClCompile Include="src\RescueArrayFragment.cpp" />
+    <ClCompile Include="src\RescueArrayFragment2dVector.cpp" />
+    <ClCompile Include="src\RescueArrayFragment3dVector.cpp" />
+    <ClCompile Include="src\RescueArrayFragmentByte.cpp" />
+    <ClCompile Include="src\RescueArrayFragmentDouble.cpp" />
+    <ClCompile Include="src\RescueArrayFragmentFloat.cpp" />
+    <ClCompile Include="src\RescueArrayFragmentInt.cpp" />
+    <ClCompile Include="src\RescueArrayFragmentShort.cpp" />
+    <ClCompile Include="src\RescueArrayInt.cpp" />
+    <ClCompile Include="src\RescueArrayShort.cpp" />
+    <ClCompile Include="src\RescueBitArray.cpp" />
+    <ClCompile Include="src\RescueBlock.cpp" />
+    <ClCompile Include="src\RescueBlockUnit.cpp" />
+    <ClCompile Include="src\RescueBlockUnitHorizonSurface.cpp" />
+    <ClCompile Include="src\RescueBlockUnitSide.cpp" />
+    <ClCompile Include="src\RescueBuffer.cpp" />
+    <ClCompile Include="src\RescueColor.cpp" />
+    <ClCompile Include="src\RescueColorTable.cpp" />
+    <ClCompile Include="src\RescueColorTableList.cpp" />
+    <ClCompile Include="src\RescueContext.cpp" />
+    <ClCompile Include="src\RescueCoordinateLine.cpp" />
+    <ClCompile Include="src\RescueCoordinatePolyLine.cpp" />
+    <ClCompile Include="src\RescueCoordinateSystem.cpp" />
+    <ClCompile Include="src\RescueCoordinateSystemAxis.cpp" />
+    <ClCompile Include="src\RescueDataContainer.cpp" />
+    <ClCompile Include="src\RescueDocument.cpp" />
+    <ClCompile Include="src\RescueDocumentList.cpp" />
+    <ClCompile Include="src\RescueEdgeSet.cpp" />
+    <ClCompile Include="src\RescueEdgeSetStub.cpp" />
+    <ClCompile Include="src\RescueEventDescr.cpp" />
+    <ClCompile Include="src\RescueFaultIntersection.cpp" />
+    <ClCompile Include="src\RescueGeobody.cpp" />
+    <ClCompile Include="src\RescueGeobodyPart.cpp" />
+    <ClCompile Include="src\RescueGeobodySurface.cpp" />
+    <ClCompile Include="src\RescueGeobodyVolume.cpp" />
+    <ClCompile Include="src\RescueGeometry.cpp" />
+    <ClCompile Include="src\RescueGeometryLGRList.cpp" />
+    <ClCompile Include="src\RescueGeometryPropertyList.cpp" />
+    <ClCompile Include="src\RescueGeometryUnit.cpp" />
+    <ClCompile Include="src\RescueGrid.cpp" />
+    <ClCompile Include="src\RescueGridAxis.cpp" />
+    <ClCompile Include="src\RescueHistory.cpp" />
+    <ClCompile Include="src\RescueHistoryObject.cpp" />
+    <ClCompile Include="src\RescueHorizon.cpp" />
+    <ClCompile Include="src\RescueIdTree.cpp" />
+    <ClCompile Include="src\RescueIdTreeNode.cpp" />
+    <ClCompile Include="src\RescueIJSurface.cpp" />
+    <ClCompile Include="src\RescueInterfaceSurfaceDesc.cpp" />
+    <ClCompile Include="src\RescueListNode.cpp" />
+    <ClCompile Include="src\RescueLogicalOrder.cpp" />
+    <ClCompile Include="src\RescueLogicalOrderEntry.cpp" />
+    <ClCompile Include="src\RescueLookup.cpp" />
+    <ClCompile Include="src\RescueLookupItem.cpp" />
+    <ClCompile Include="src\RescueLookupString.cpp" />
+    <ClCompile Include="src\RescueLookupTable.cpp" />
+    <ClCompile Include="src\RescueMacroVolume.cpp" />
+    <ClCompile Include="src\RescueModel.cpp" />
+    <ClCompile Include="src\RescueModelPropertyGroup.cpp" />
+    <ClCompile Include="src\RescueObject.cpp" />
+    <ClCompile Include="src\RescueOrientationLedger.cpp" />
+    <ClCompile Include="src\RescueParametricLGRMap.cpp" />
+    <ClCompile Include="src\RescuePillar.cpp" />
+    <ClCompile Include="src\RescuePoint.cpp" />
+    <ClCompile Include="src\RescuePolyLine.cpp" />
+    <ClCompile Include="src\RescuePolyLineNode.cpp" />
+    <ClCompile Include="src\RescuePolyLineNodeBUG.cpp" />
+    <ClCompile Include="src\RescuePolyLineNodeUV.cpp" />
+    <ClCompile Include="src\RescuePolyLineNodeUVT.cpp" />
+    <ClCompile Include="src\RescuePolyLineStub.cpp" />
+    <ClCompile Include="src\RescueProperty.cpp" />
+    <ClCompile Include="src\RescuePropertyGroup.cpp" />
+    <ClCompile Include="src\RescueQuadrupletArray.cpp" />
+    <ClCompile Include="src\RescueRadialGrid.cpp" />
+    <ClCompile Include="src\RescueReferenceSurface.cpp" />
+    <ClCompile Include="src\RescueReservoir.cpp" />
+    <ClCompile Include="src\RescueSection.cpp" />
+    <ClCompile Include="src\RescueSOctTreeNode.cpp" />
+    <ClCompile Include="src\RescueSplineCoef.cpp" />
+    <ClCompile Include="src\RescueSplitLine.cpp" />
+    <ClCompile Include="src\RescueSplitPoint.cpp" />
+    <ClCompile Include="src\RescueStairSteppedFault.cpp" />
+    <ClCompile Include="src\RescueSurface.cpp" />
+    <ClCompile Include="src\RescueSurfaceCell.cpp" />
+    <ClCompile Include="src\RescueSurfaceToGrid.cpp" />
+    <ClCompile Include="src\RescueTimeStepGroup.cpp" />
+    <ClCompile Include="src\RescueTimeStepManager.cpp" />
+    <ClCompile Include="src\RescueTree.cpp" />
+    <ClCompile Include="src\RescueTreeNode.cpp" />
+    <ClCompile Include="src\RescueTriangleFace.cpp" />
+    <ClCompile Include="src\RescueTriangleVertex.cpp" />
+    <ClCompile Include="src\RescueTriangulatedSurface.cpp" />
+    <ClCompile Include="src\RescueTrimEdge.cpp" />
+    <ClCompile Include="src\RescueTrimLoop.cpp" />
+    <ClCompile Include="src\RescueTrimLoopStub.cpp" />
+    <ClCompile Include="src\RescueTrimVertex.cpp" />
+    <ClCompile Include="src\RescueTrimVertexStub.cpp" />
+    <ClCompile Include="src\RescueTripletArray.cpp" />
+    <ClCompile Include="src\RescueTruncation.cpp" />
+    <ClCompile Include="src\RescueUnit.cpp" />
+    <ClCompile Include="src\RescueUnstructuredGrid.cpp" />
+    <ClCompile Include="src\RescueUOM.cpp" />
+    <ClCompile Include="src\RescueVertex.cpp" />
+    <ClCompile Include="src\RescueWellbore.cpp" />
+    <ClCompile Include="src\RescueWellboreCell.cpp" />
+    <ClCompile Include="src\RescueWellboreProperty.cpp" />
+    <ClCompile Include="src\RescueWellboreSampling.cpp" />
+    <ClCompile Include="src\RescueWellboreSurface.cpp" />
+    <ClCompile Include="src\RescueWireframe.cpp" />
+    <ClCompile Include="src\RescueWireframeOwner.cpp" />
+    <ClCompile Include="src\RescueWireframeStub.cpp" />
+    <ClCompile Include="src\RescueZStack.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1B818B98-CC70-4A22-9BD7-F48242463489}</ProjectGuid>
+    <RootNamespace>Rescue</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Rescue</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="..\..\vsprops\SuppressWarnings.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="..\..\vsprops\SuppressWarnings.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="..\..\vsprops\SuppressWarnings.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(RESCUE)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(RESCUE)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(RESCUE)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

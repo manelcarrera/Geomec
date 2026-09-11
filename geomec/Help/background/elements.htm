@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Elements</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="contact element">
+	<param name="Keyword" value="elements">
+	<param name="Keyword" value="hexahedron">
+	<param name="Keyword" value="interface element">
+	<param name="Keyword" value="tetrahedron">
+</OBJECT>
+<h1>Elements</h1>
+<p>At this moment two Body (3D) elements are possible within Geomec depending on the <a href="../tree/Model/model_types.htm">model type</a>:&nbsp; 
+Hexahedron brick elements (with 8 corners / nodes) and Tetrahedron pyramid 
+elements (with 4 corners / nodes).</p>
+<h2>Hexahedron type model</h2>
+<p>The Hexahedron brick model is preferred for simple layered systems, i.e. 
+without fault related steps, anticlines and stratification with wedges. 
+Furthermore, hexahedrons cannot be used when layer interfaces (=horizons) are 
+defined as triangulated surfaces, for instance created with GoCad.</p>
+<p>The Hexahedron model allows for mesh refinement in zones of interest, for 
+instance the area of depletion. In this case a horizontal surface 
+<a href="../context/attributes/mesh_region_attributes.htm">(mesh) region</a> must be 
+created, which refines the mesh (over the 
+full depth) by increasing the number of 
+elements by a factor within the selected area.&nbsp; </p>
+<p>To model the behavior of slipping <a href="../tree/Model/hexa/list_horizons_tree.htm">horizons</a>
+four-noded&nbsp;interface elements are used.</p>
+<h2>Tetrahedron type model</h2>
+<p>The use of Tetrahedrons is necessary to be able to mesh from GoCad or other 
+2D meshed surfaces with triangles. Also, in the case of wedges (sharp corners at 
+faults or layers which wegde out), only Tetrahedrons are able to mesh these 
+layers while being able to respect the user supplied interfaces and surfaces 
+(stratification or faults).</p>
+<p>To model the behavior of slipping horizons and faults three-noded contact
+elements are used.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,353 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Modified Mohr Coulomb</title>
+<style>
+<!--
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic}
+h3
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial}
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+<h1><span style="mso-ansi-language:EN-GB">Modified Mohr Coulomb<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span lang="EN-GB">The Modified Mohr-Coulomb (MMC) model is 
+more or less a blend of the Cam-Clay compaction model and the Mohr Coulomb 
+dilatant failure model, and (like Cam-Clay) written in p-q space.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The general <i>p-q</i> definition is 
+according to Equation 1, expressed in principal stresses. The shear stress <i>q</i> is 
+also called the Von Mises (equivalent) shear stress.</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%">
+<img border="0" src="modifi40.gif" width="479" height="68"></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><span lang="EN-GB">[Equation 1]</span></p>
+<h2>&nbsp;</h2>
+<h2><span lang="EN-GB">Dilatant Behaviour</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">The Modified Mohr Coulomb dilatant 
+behaviour is exactly equal to Mohr-Coulomb for triaxial conditions.</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">
+<img border="0" src="modifi41.GIF" width="584" height="330"></p>
+<p class="MsoNormal"><span lang="EN-GB">At the dilatant side, the plasticity 
+limit, is written as:</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi42.gif" width="132" height="100"></p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 2]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">Applying the Mohr-Coulomb parameters <i>
+c</i> for cohesion and </span><i><span lang="EN-GB" style="font-family: Symbol">
+f</span></i><span lang="EN-GB"> for the friction angle.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">Equation 2 can be rewritten as a stress 
+potential, determining the elastic or plastic stress state:</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi43a.gif" width="169" height="49">&nbsp;&nbsp;&nbsp; 
+(elasticity)</p>
+<p class="MsoNormal">
+<img border="0" src="modifi43b.gif" width="171" height="49">&nbsp;&nbsp;&nbsp; 
+(plasticity)</p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 3]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">When a stress state is calculated to be 
+at the plastic limit, the calculation is set up in such a manner that plastic 
+shear deformation is allowed which keeps the stresses at the plastic limit, which 
+might be an iterative process.</span></p>
+<h2><span lang="EN-GB">Compressive Behaviour</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">As well as dilational behaviour, Modified 
+Mohr Coulomb, also assumes plastic compressional compaction (pore collapse).</span></p>
+<p class="MsoNormal"><img border="0" src="modifi44.gif" width="237" height="58"></p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 4]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">or, written as stress potentials:</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi45a.gif" width="212" height="53">&nbsp;&nbsp;&nbsp; 
+(elasticity)</p>
+<p class="MsoNormal">
+<img border="0" src="modifi45b.gif" width="212" height="53">&nbsp;&nbsp;&nbsp; 
+(plasticity)</p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 5]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">We introduced two new parameters, the 
+MMC-cap shape </span><span lang="EN-GB" style="font-family: Symbol">a</span><span lang="EN-GB"> 
+and the preconsolidation stress <i>p<sub>c</sub></i>. The first determines the 
+influence of the Von Mises shear stress <i>q</i> on the onset of plasticity (see 
+figure above), the second determines the position of the plasticity curve which is 
+directly related to the volumetric strain.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">Note: the </span>
+<span lang="EN-GB" style="font-family: Symbol">a</span><span lang="EN-GB">-value 
+does <u>not relate</u> to the Cam-Clay cap-value, although it can be roughly 
+translated through Equation 14.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">Plastic volumetric deformation under 
+isotropic loading is written in Cam-Clay conditions as: </span></p>
+<img border="0" src="modifi46.gif" width="153" height="96"><p class="MsoNormal"><span lang="EN-GB">[Equation 6]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The total volumetric strain is:</span></p>
+<img border="0" src="modifi47.GIF" width="228" height="47"><p class="MsoNormal">[<span lang="EN-GB">Equation 7]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">in which:</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><i>
+<span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">v</span></sub><sup><span lang="EN-GB">p</span></sup></i><sup><span lang="EN-GB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></sup><span lang="EN-GB">volumetric plastic strain (- or m<sup>3</sup>/m<sup>3</sup>)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><i>
+<span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">v</span></sub><sup><span lang="EN-GB">e</span></sup></i><sup><span lang="EN-GB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></sup><span lang="EN-GB">volumetric elastic strain (- or m<sup>3</sup>/m<sup>3</sup>)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><span lang="NL">K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elastic bulk modulus 
+(MPa)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.5in;text-indent:-.5in;line-height:150%"><i><span lang="EN-GB">p<sub>c,0</sub></span></i><span lang="EN-GB"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the preconsolidation pressure (MPa) (onset of 
+plastic deformation on virgin rock sample)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><i><span lang="EN-GB">p<sub>c</sub></span></i><span lang="EN-GB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(reference) consolidation pressure isotropic stress field (MPa) </span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%"><i><span lang="EN-GB">n<sub>0</sub></span></i><span lang="EN-GB"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the initial porosity at p=p<sub>c,0</sub> (-)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in;line-height:150%">
+<span lang="EN-GB" style="font-family: Symbol">g</span><span lang="EN-GB"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the <u>plastic</u> material hardening parameter (-)</span></p>
+<p class="MsoNormal"><span lang="EN-GB">This function is modified somewhat to 
+accommodate for a too low estimate of the shear stress on the maximum shear 
+plane for situations where </span>
+<span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">2</span></sub><span lang="EN-GB"> 
+is not close to </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> 
+or </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">3.</span></sub><span lang="EN-GB">&nbsp;
+</span></p>
+<h2><span lang="EN-GB">Deformation</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">The strain tensor (or rather the 
+subdivision between shear strain and volumetric strain increments) is determined 
+by the deformation potentials <i>g</i>. Within Geomec these potentials are taken 
+to be equal to the stress potentials f.&nbsp; This is called &quot;associative flow&quot; in mechanics. 
+Non-associative behaviour, ie <i>f</i></span><i><span lang="EN-GB" style="font-family: Symbol">¹</span><span lang="EN-GB">g</span></i><span lang="EN-GB">, 
+is not currently a Geomec option.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">For the dilatant behaviour the function 
+calls:</span></p>
+<p class="MsoNormal"><span lang="EN-GB">
+<img border="0" src="modifi48.gif" width="230" height="73"> </span></p>
+<p class="MsoNormal"><span lang="EN-GB">[Equation 8]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">whereas on the compressive side (cap) 
+the function calls:</span></p>
+<p class="MsoNormal"><img border="0" src="modifi49.gif" width="221" height="46"></p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 9]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The deformation components are described 
+as the derivative to g<sub>x</sub>, where mainly the relation between the 
+volumetric and shear strain increment is relevant.</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi50a.gif" width="128" height="45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(increment of volumetric strain)</p>
+<p class="MsoNormal"><img border="0" src="modifi50b.gif" width="82" height="45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(increment of deviatoric or Von Mises strain)</p>
+<p class="MsoNormal">
+<img border="0" src="modifi50c.gif" width="196" height="45">&nbsp;&nbsp; 
+(relationship between volumetric and shear strain equivalents)</p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 10]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">For compressive compaction this can be 
+defined as:</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi51.gif" width="529" height="157"></p>
+<p class="MsoNormal">[<span lang="EN-GB">Equation 11]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The scalar </span>
+<span lang="EN-GB" style="font-family: Symbol">x</span><span lang="EN-GB"> 
+(unknown value) needs to be calculated via the strain hardening law. The strain 
+tensor is a decomposition of the Von Mises equivalent shear strain and 
+volumetric strain, i.e. scaling up to the stress tensor </span>
+<span lang="EN-GB" style="font-family: Symbol">s</span><span lang="EN-GB">.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">For triaxial situations with zero 
+cohesion (c=0) in compression 
+this reduces to:</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi52.gif" width="276" height="100"></p>
+<p class="MsoNormal">[<span lang="EN-GB"><!--[if gte mso 9]><![endif]-->Equation 12]</span></p>
+<p class="MsoNormal">For uniaxial loading (i.e. no lateral strain), when plastic 
+strain is dominating, the plastic horizontal stress build-up can be written as:</p>
+<img border="0" src="modifi_eq13.gif" width="141" height="45"><p class="MsoNormal">
+[Equation 13]</p>
+<p class="MsoNormal"><span lang="EN-GB">A small disadvantage of the MMC is that 
+there is a sharp transition at <i>q= Mp</i> between the compressive and dilatant 
+behaviour, which may lead to numerical instabilities and/or continuous 
+incremental swapping between compressive and dilatant behaviour. Another 
+disadvantage (of the DIANA implementation) is that the compressive cap also 
+moves with the setting of the cohesion, basically creating a mismatch between 
+the measured preconsolidation pressure and the p<sub>c0</sub> parameter.</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-size: 10.0pt">&nbsp;</span></p>
+<h2><span lang="EN-GB">&nbsp;</span></h2>
+<h2><img border="0" src="modifi53.GIF" width="577" height="300"></h2>
+<p class="MsoNormal"><span lang="EN-GB">Strain increments (volumetric and Von Mises) plotted in p-q space</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<h2><span lang="EN-GB">Input parameters for MMC</span></h2>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">E and </span>
+<span lang="EN-GB" style="font-family: Symbol">n</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(Young’s modulus [MPa], Poisson’s ratio [-]) </span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Elastic parameters, 
+which determine the elastic shear and bulk response. The values should be derived 
+from triaxial loading tests, hence including small compaction plasticity effects 
+here.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">n<sub>0</sub> (initial 
+porosity [-]) </span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">Initial porosity at the onset of plastic 
+deformation (p<sub>c</sub>=p<sub>c,0</sub>). Only the product (1-n<sub>0</sub>)</span><span lang="EN-GB" style="font-family: Symbol">g</span><span lang="EN-GB"> 
+is 
+used as model input.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">c and </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(cohesion [MPa] and friction [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">])</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Used to define the 
+failure and deformation mechanisms. The friction angle is also the dilation 
+angle. c is used to shift the failure lines to the left side by </span><i>
+<span lang="EN-GB" style="font-family: Symbol">D</span><span lang="EN-GB" style="font-family: Times New Roman">p=c/tan</span><span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman">.</span></i><span lang="EN-GB" style="font-family: Times New Roman"> 
+This also affects the onset of compressive plasticity to shift to lower values 
+than the user inputted <i>p<sub>c,0</sub></i><sub> </sub>values.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Symbol">a</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(shape parameter [-] )</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The shape parameter 
+determines the shape of the yield and deformation function in p-q space and lies 
+normally between 0.1 and 3. Note that this shape parameter has a different 
+definition than in the Cam Clay definition.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Symbol">g</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(plastic hardening parameter [-] )</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The plastic 
+hardening parameter determines the (plastic) volumetric strain hardening at 
+compaction (or softening at decompaction) and can be derived from Equation 1. It 
+relates basically <i>p<sub>c</sub></i> with the volumetric total strain. Only 
+the product (1-n<sub>0</sub>)</span><span lang="EN-GB" style="font-family: Symbol">g</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+is used as model input.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i><u>
+<span lang="EN-GB" style="font-family: Times New Roman">p<sub>c</sub>,<sub>0</sub></span></u></i><u><span lang="EN-GB" style="font-family: Times New Roman"> 
+(preconsolidation pressure [MPa])</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The preconsolidation 
+pressure is the onset of plastic deformation, assuming an isotropic loading 
+and/or and equivalent according to Equations 2 or 4. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The preconsolidation 
+pressure reflects a geologically early period of higher effective stresses or a 
+period of (slow) consolidation creep.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The preconsolidation 
+pressure does not vary with depth (as might be important in relatively thick 
+layers), unless specified via the RPN-calculator or imported via a pointset.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<h3><span lang="EN-GB">Other parameters</span></h3>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Symbol">r</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(density [ kg / m<sup>3</sup>] ) </span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Bulk density for 
+gravitational calculations. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span style="text-decoration: none; font-family: Times New Roman" lang="EN-GB">&nbsp;</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">SHtot/Svtot; Shtot/Svtot, 
+SHtot-azimuth</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Initial stress field 
+(after gravity loading). SHtot/Svtot is the highest horizontal/vertical 
+stress ratio. SHtot-azimuth [º] is the clockwise angle between the SHtot 
+direction and the Northing. Shtot/Svtot is the lower minimal stress ratio [-] 
+ratio, 
+perpendicular to the SHtot direction.</span></p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:0">
+&nbsp;</p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:0">
+<u><font face="symbol">a</font><font face="Times New Roman"><sub>v</sub> 
+(Volumetric Thermal Expansion Coefficient [°C<sup>-1</sup> or K<sup>-1</sup>]</font></u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Relative volumetric expansion per degree 
+temperature change. The value is three times the linear expansion coefficient, 
+sometimes provided for solids.</p>
+<h2>&nbsp;</h2>
+<h2><a name="OLE_LINK1"><span lang="EN-GB">Experiment comparison</span></a></h2>
+<p class="MsoNormal"><span lang="EN-GB">To match experimental test results with 
+parameter data, the user may import the test file in the Material database (via 
+an Excel or text file). The test results will appear as crosses (see test 
+below). </span></p>
+<p class="MsoNormal"><span lang="EN-GB">By pressing the compare button Geomec 
+will try and find the best (7) parameters set to match the laboratory data. 
+However, Geomec is likely to find a local minimum in obtaining a least-square 
+error fit, not satisfying the best solution. </span></p>
+<p class="MsoNormal"><span lang="EN-GB">A Best practice could be:</span></p>
+<ul style="margin-top: 0in; margin-bottom: 0in" type="disc">
+	<li class="MsoNormal"><span lang="EN-GB">fix the initial porosity (usually 
+	a known value)</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">fix the cohesion to a low value 
+	(1-2 MPa)</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">fix the preconsolidation pressure 
+	to a field expected value (or about a dog-leg in p-q space, see figure)</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">push the compare button</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">estimate (trial and error) the 
+	Young’s modulus and Poisson’s ratio by fixing and comparing with 
+	elastic behaviour only</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">Let Geomec calculate a best value 
+	for the hardening parameter, cap shape and friction angle</span></li>
+	<li class="MsoNormal"><span lang="EN-GB">possibly iterate on fixed 
+	parameters</span></li>
+</ul>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;</span></p>
+<p class="MsoNormal">
+<img border="0" src="modifi54.GIF" width="1024" height="742"></p>
+
+<p class="MsoNormal">&nbsp;</p>
+<h2>Difference with Cam clay model</h2>
+<p class="MsoNormal">The difference between the Cam clay and Modified 
+Mohr-Coulomb model is shown below. The main distinction is the sharp edge / 
+switch between the contractant and dilatant regime for the Modified Mohr Coulomb 
+regime. Note that for dilatancy at low confining pressures, Cam clay may 
+over-estimate the shear capacity.</p>
+<img border="0" src="modifi_cam_clay_difference.gif" width="526" height="339"><p>
+MMC v Cam clay for two sets of consolidation pressures.</p>
+<p>A reasonable translation of cap parameters for the contractant regime ((see 
+above) is:</p>
+<img border="0" src="modifi_eq14.gif" width="95" height="28"><p>[Equation 14]</p>
+
+</body>
+
+</html>

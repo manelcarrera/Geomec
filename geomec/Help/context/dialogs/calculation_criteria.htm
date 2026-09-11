@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Calculation criteria</title>
+</head>
+
+<body>
+
+<h1><span style="mso-ansi-language:EN-GB">Calculation criteria<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The calculation
+criteria dialog is displayed by selecting &quot;Calculation Criteria&quot; in the <a href="../../menus/analysis/analysis_menu.htm"> Analysis
+Menu</a>. <o:p>
+</o:p>
+</span></p>
+
+<p class="MsoNormal">A checkbox appears which shows whether or not all criteria 
+for performing a calculation have been<O:P> satisfied.</p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">T</span><span style="mso-ansi-language:EN-GB">he
+following items are checked. If one of the criteria is not fulfilled, a red cross is
+displayed in front of the item, a green check if it is. <o:p>
+</o:p>
+</span></p>
+<table border="0" width="100%" id="table1">
+	<tr>
+		<td width="284" valign="top">Mesh exists</td>
+		<td><span style="mso-ansi-language:EN-GB">Checks if a
+      mesh has been created. <a href="../../toolbars/analysis_create_mesh.htm">Create a mesh</a>
+      to fulfill this item.</span></td>
+	</tr>
+	<tr>
+		<td width="284" valign="top"><span style="mso-ansi-language:EN-GB">Reservoir
+      assigned</span></td>
+		<td><span style="mso-ansi-language:EN-GB">Checks if a 
+		reservoir is assigned. At least one formation should have a pressure or 
+		temperature 
+		change between two subsequent depletion stages (loading of mesh).</span></td>
+	</tr>
+	<tr>
+		<td width="284" valign="top"><span style="mso-ansi-language:EN-GB">Material
+      properties assigned to all formations</span></td>
+		<td>Checks if all formations have material properties
+      assigned to them. <span style="mso-ansi-language: EN-GB">Assign material
+      properties to all formations to fulfill this check.</span></td>
+	</tr>
+	<tr>
+		<td width="284" valign="top"><span style="mso-ansi-language:EN-GB">At least one
+      depletion stage assigned</span></td>
+		<td><span style="mso-ansi-language:EN-GB">Checks if at least one depletion
+      stage other then the initial stage is defined.<o:p></span><span style="mso-ansi-language: EN-GB"> </span>
+		</td>
+	</tr>
+</table>
+<p class="MsoNormal">
+<span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; mso-ansi-language: EN-GB; background-position: 0%">
+<b>Tetrahedron
+model specific</b></span><span style="mso-ansi-language:
+EN-GB"><o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">If the model
+currently being worked with is a tetrahedron model two additional checks are
+performed</span></p>
+<table border="0" width="100%" id="table2">
+	<tr>
+		<td width="281" valign="top">Boundary conditions set</td>
+		<td>In the tetrahedron model the boundary
+      conditions can be modified manually. This might result in a situation
+      where insufficient boundary conditions are set on the model. This check
+      must be fulfilled by setting additional boundary conditions at the proper
+      nodes.</td>
+	</tr>
+	<tr>
+		<td width="281" valign="top">No empty formations</td>
+		<td>All defined formations must contain at least
+      one body. Empty formations must get at least one body assigned, or they
+      must be removed from the model.</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

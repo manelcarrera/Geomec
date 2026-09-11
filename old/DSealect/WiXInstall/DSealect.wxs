@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="2F78E4D0-AC79-44f4-945E-C9066EBAF79A" Name="Wellbore Cement Integrity Model $(var.Version).$(var.Revision)" Language="1033" Version="$(var.Version).$(var.Revision)" Manufacturer="TNO Diana BV" UpgradeCode="ED9DA12A-1FFE-4eb0-AE5A-DCEAE2C743DD">
+    <Package InstallerVersion="300" Compressed="yes" InstallPrivileges="elevated" InstallScope="perMachine"/>
+    <Icon Id="DSealect.exe" SourceFile="$(var.DSealect)"/>
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Merge Id="Microsoft_VC90_CRT" Language="1033" SourceFile="$(var.Microsoft_VC90_CRT)" DiskId="1" />
+      <Merge Id="policy_9_0_Microsoft_VC90_CRT" Language="1033" SourceFile="$(var.policy_9_0_Microsoft_VC90_CRT)" DiskId="1" />
+      <Merge Id="Microsoft_VC90_MFC" Language="1033" SourceFile="$(var.Microsoft_VC90_MFC)" DiskId="1" />
+      <Merge Id="policy_9_0_Microsoft_VC90_MFC" Language="1033" SourceFile="$(var.policy_9_0_Microsoft_VC90_MFC)" DiskId="1" />
+      <Merge Id="Microsoft_VC90_OpenMP" Language="1033" SourceFile="$(var.Microsoft_VC90_OpenMP)" DiskId="1" />
+      <Merge Id="policy_9_0_Microsoft_VC90_OpenMP" Language="1033" SourceFile="$(var.policy_9_0_Microsoft_VC90_OpenMP)" DiskId="1" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="DSealectShortcutFolder" Name="Wellbore Cement Integrity Model $(var.Version).$(var.Revision)" />
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="Wellbore Cement Integrity Model $(var.Version).$(var.Revision)">
+          <Component Id="Wellbore_Cement_Integrity_Model" Guid="A4E8536A-ED46-493f-8204-5C17F7E7EE19">
+            <Shortcut Id="ShortcutDSealect$(var.Version)$(var.Revision)" Directory="DSealectShortcutFolder" Name="Wellbore Cement Integrity Model $(var.Version).$(var.Revision)" Description="Launch Wellbore Cement Integrity Model $(var.Version).$(var.Revision)" Advertise="yes" Icon="DSealect.exe" IconIndex="0" WorkingDirectory="INSTALLLOCATION"/>
+            <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" Directory="DSealectShortcutFolder" />
+            <File Id="DSealect.exe" Source="$(var.DSealect)" KeyPath="yes" />
+            <File Id="Barchart.oc2" Source="$(var.ChartIniFilesRoot)\Barchart.oc2" />
+            <File Id="chart2.oc2" Source="$(var.ChartIniFilesRoot)\chart2.oc2" />
+            <File Id="Linechart.oc2" Source="$(var.ChartIniFilesRoot)\Linechart.oc2" />
+            <File Id="analysis_info" Source="$(var.InfoFilesRoot)\analysis_info" />
+            <File Id="depth_info" Source="$(var.InfoFilesRoot)\depth_info" />
+            <File Id="drilling_info" Source="$(var.InfoFilesRoot)\drilling_info" />
+            <File Id="formations_info" Source="$(var.InfoFilesRoot)\formations_info" />
+            <File Id="operations_info" Source="$(var.InfoFilesRoot)\operations_info" />
+            <File Id="results_info" Source="$(var.InfoFilesRoot)\results_info" />
+            <File Id="CasingMatDatabase.mdb" Source="$(var.DatabaseRoot)\CasingMatDatabase.mdb">
+              <Permission User="Everyone" GenericAll="yes"/>
+            </File>
+            <File Id="CementMatDatabase.mdb" Source="$(var.DatabaseRoot)\CementMatDatabase.mdb">
+              <Permission User="Everyone" GenericAll="yes"/>
+            </File>
+            <File Id="FormationMatDatabase.mdb" Source="$(var.DatabaseRoot)\FormationMatDatabase.mdb">
+              <Permission User="Everyone" GenericAll="yes"/>
+            </File>
+          </Component>
+          <Directory Id="Diana" Name="Diana" >
+            <Directory Id="Diana_bin" Name="bin" >
+              <Component Id="ComponentDiana_bin_dsealect" Guid="AF4AACD3-8D9A-496c-884A-791827CAAEF8" >
+                <File Id="idiana.exe" Source="$(var.DIAPATH)\bin\idiana.exe" KeyPath="yes" />
+              </Component>
+              <?include $(var.WixInclude)\DianaBin.wxi ?>
+            </Directory>
+            <Directory Id="Diana_binseg" Name="binseg" >
+              <Directory Id="Diana_binseg_ap" Name="ap" >
+                <Component Id="ComponentDiana_binseg_ap_dsealect" Guid="C5E22CA7-FDB7-41fb-9AB4-DF94F2EBF2DB" >
+                  <File Id="se51.exe" Source="$(var.DIAPATH)\binseg\ap\se51.exe" KeyPath="yes" />
+                </Component>
+              </Directory>
+            </Directory>
+            <Directory Id="Diana_lib" Name="lib" >
+              <?include $(var.WixInclude)\DianaLib.wxi ?>
+            </Directory>
+            <Directory Id="Diana_share" Name="share" >
+              <?include $(var.WixInclude)\DiaShare.wxi ?>
+            </Directory>
+          </Directory>
+          <Component Id="RegistryKeys" Guid="79CAE88E-1643-4908-86D4-A3EB7B82B838" Win64="no">
+            <RegistryKey Root="HKLM" Key="SOFTWARE\TNO\Wellbore Cement Integrity Model\version$(var.Version)$(var.Revision)" Action="createAndRemoveOnUninstall">
+              <RegistryKey Key="General">
+                <RegistryValue Name="Current_FGV_Version" Value="70" Type="string" KeyPath="yes" />
+              </RegistryKey>
+              <RegistryKey Key="Paths">
+                <RegistryValue Name="DiaPath" Value="[INSTALLLOCATION]Diana" Type="string" />
+                <RegistryValue Name="DiaShare" Value="[INSTALLLOCATION]Diana\share" Type="string" />
+              </RegistryKey>
+            </RegistryKey>
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\DSealect.exe">
+              <RegistryValue Value="[INSTALLLOCATION]DSealect.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLLOCATION]Diana\bin" Type="string" />
+            </RegistryKey>
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\se51.exe">
+              <RegistryValue Value="[INSTALLLOCATION]Diana\binseg\ap\se51.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLLOCATION]Diana\bin" Type="string" />
+            </RegistryKey>
+          </Component>
+        </Directory>
+      </Directory>
+      <!-- 32 bit system files -->
+      <Directory Id="SystemFolder">
+        <?include $(var.WixInclude)\SystemFiles32.wxi ?>
+      </Directory>
+    </Directory>
+    <Feature Id="DSealectFeature" Title="Wellbore Cement Integrity Model Files" Level="1" Absent="disallow" AllowAdvertise="no" ConfigurableDirectory="INSTALLLOCATION">
+      <ComponentRef Id="Wellbore_Cement_Integrity_Model" Primary="yes" />
+      <ComponentRef Id="RegistryKeys" />
+      <ComponentRef Id="RegisterAxisXCtlOCX" />
+      <ComponentRef Id="RegisterDianaXOCX" />
+      <ComponentRef Id="RegisterFgvCtrOCX" />
+      <ComponentRef Id="RegisterFgvViewOCX" />
+      <ComponentRef Id="Registerolch2x32OCX" />
+      <ComponentRef Id="Registerss32x25OCX" />
+      <MergeRef Id="Microsoft_VC90_CRT"/>
+      <MergeRef Id="policy_9_0_Microsoft_VC90_CRT" />
+      <MergeRef Id="Microsoft_VC90_MFC" />
+      <MergeRef Id="policy_9_0_Microsoft_VC90_MFC" />
+      <MergeRef Id="Microsoft_VC90_OpenMP" />
+      <MergeRef Id="policy_9_0_Microsoft_VC90_OpenMP" />
+    </Feature>
+    <Feature Id="DianaFeature" Title="Diana Files" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentRef Id="ComponentDiana_bin_dsealect" Primary="yes" />
+      <ComponentRef Id="ComponentDiana_binseg_ap_dsealect" />
+      <?include $(var.WixInclude)\DianaComponentRef.wxi ?>
+    </Feature>
+  </Product>
+</Wix>

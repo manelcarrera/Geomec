@@ -1,0 +1,915 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Model"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07DEA5007F"
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"3A22690003AA"
+	    supplier   	"Logical View::Geometry"
+	    quidu      	"3A0193310333")
+	(object Visibility_Relationship
+	    quid       	"3A22913101B0"
+	    supplier   	"Logical View::Files"
+	    quidu      	"3A07EDCB0162"))
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CBoundary"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C30230"
+	    documentation 	"The CBoudary class defines the boundaries of the model. This class instantiated once in the model."
+	    operations 	(list Operations
+		(object Operation "~CBoudary"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C3024E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CBoudary"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C30262"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CDepletionStage"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C502E7"
+	    documentation 	"A depletionstage is copy of the properties of formation valid in another time step."
+	    operations 	(list Operations
+		(object Operation "~CDepletionStage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C5030F"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CDepletionStage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C5031A"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CFault"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C60090"
+	    documentation 	"A fault split up a formation in two bodies. As a result these bodies can shift independently along the fault as figure x shows. Analogous to a formation the horizon will also split up in two surfaces when the horizon is crossed by a fault."
+	    operations 	(list Operations
+		(object Operation "~CFault"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C600B8"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CFault"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C600CC"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CMaterial"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C30009"
+	    documentation 	"The CMaterial represents the material as it is defined in the material library. The poisson ratio and the elastic modulus is also specified by a collection of points"
+	    operations 	(list Operations
+		(object Operation "~CMaterial"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C30031"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CMaterial"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C3003B"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CTensorVertex"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C4017D"
+	    documentation 	
+|The CTensor class uses the tensor notation  with the components xx yy zz xy xz yz. The CTensor class uses an compression mechanism using the following properties
+|xx = value1
+|yy = value2
+|zz = value3
+|xy = 0.0
+|xz = 0.0
+|yz = 0.0
+|
+|in this case only value 1, 2 and 3 are stored and the case
+|
+|xx = value
+|yy = value
+|zz = value
+|xy = 0.0
+|xz = 0.0
+|yz = 0.0
+|
+|only value is stored.
+	    
+	    operations 	(list Operations
+		(object Operation "~CTensor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C401A5"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CTensor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C401B9"
+		    parameters 	(list Parameters
+			(object Parameter "vertex"
+			    quid       	"3A30EB97001B"
+			    documentation 	"The location of the vertex the tensor is assigned to"
+			    type       	"CVertex&")
+			(object Parameter "XX"
+			    quid       	"3A30EBAE0386"
+			    type       	"double&")
+			(object Parameter "YY"
+			    quid       	"3A30EC0E01CB"
+			    type       	"double&")
+			(object Parameter "ZZ"
+			    quid       	"3A30EC1D00D2"
+			    type       	"double&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "XX"
+		    quid       	"3A30E2DA0340"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "YY"
+		    quid       	"3A30E2F1007C"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ZZ"
+		    quid       	"3A30E30201C1"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "XY"
+		    quid       	"3A30E30F0314"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "YZ"
+		    quid       	"3A30E31C0150"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ZX"
+		    quid       	"3A30E34202EF"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "XX"
+		    quid       	"3A30E3F80098"
+		    parameters 	(list Parameters
+			(object Parameter "xx"
+			    quid       	"3A30E41202A8"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "YY"
+		    quid       	"3A30EA380252"
+		    parameters 	(list Parameters
+			(object Parameter "YY"
+			    quid       	"3A30EA4802F5"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ZZ"
+		    quid       	"3A30EA7300F8"
+		    parameters 	(list Parameters
+			(object Parameter "ZZ"
+			    quid       	"3A30EA8801CA"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "XY"
+		    quid       	"3A30EAB302B3"
+		    parameters 	(list Parameters
+			(object Parameter "XY"
+			    quid       	"3A30EACA0099"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "YZ"
+		    quid       	"3A30EADE02A0"
+		    parameters 	(list Parameters
+			(object Parameter "YZ"
+			    quid       	"3A30EB1101BD"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ZX"
+		    quid       	"3A30EB300320"
+		    parameters 	(list Parameters
+			(object Parameter "ZX"
+			    quid       	"3A30EB500087"
+			    type       	"double&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CWellPath"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A10F4C70132"
+	    operations 	(list Operations
+		(object Operation "~CWellPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C7015A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CWellPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A10F4C70165"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::GeomecModel"
+	    quidu      	"3A10F4130255"
+	    language   	"VC++")
+	(object Class "CBody"
+	    quid       	"3A30DA2F0028"
+	    documentation 	"The contains a collection of thetrahedrons. A body is generated by the volumetric mesher"
+	    language   	"VC++")
+	(object Class "CXSection"
+	    quid       	"3A36204E01C0")
+	(object Class "CEclipse"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504D0282"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504D02A1"
+		    supplier   	"Logical View::Geometry::Primitive Collections::CPrimitiveCollection"
+		    quidu      	"3A715047012A"))
+	    operations 	(list Operations
+		(object Operation "GetSize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D02D6"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A715045031E")
+		(object Operation "CEclipse"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D02E0"
+		    parameters 	(list Parameters
+			(object Parameter "nX"
+			    quid       	"3A71504D02E1"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "nY"
+			    quid       	"3A71504D02E2"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "nDepth"
+			    quid       	"3A71504D02E3"
+			    type       	"const int"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D02E4"
+		    documentation 	
+|	bool Insert(const CVoxel &vox);
+|	CVoxel GetVoxel(const int nX, const int nY, const nDepth);
+		    
+		    stereotype 	"virtual"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A715045031E")
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D02E6"
+		    stereotype 	"virtual"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A715045031E")
+		(object Operation "~CEclipse"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D02EF"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "GeomecModel Model Update Overview"
+	    quid       	"3A10F4C801FB"
+	    title      	"GeomecModel Model Update Overview"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	1075
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(80, 80)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	3
+		    max_width  	2212
+		    label      	
+|GeomecModel 
+|
+		    )
+		(object ClassView "Class" "Logical View::Model::CTensorVertex" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2576, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(2428, 1245)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"CTensorVertex")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C4017D"
+		    width      	314
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CWellPath" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(240, 2304)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(124, 2253)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"CWellPath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C70132"
+		    width      	250
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CDepletionStage" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1584, 1792)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1410, 1741)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"CDepletionStage")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C502E7"
+		    width      	366
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CBoundary" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(992, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(870, 844)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	244
+			justify    	0
+			label      	"CBoundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C30230"
+		    width      	262
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CFault" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1024, 1376)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(943, 1325)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	162
+			justify    	0
+			label      	"CFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C60090"
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CMaterial" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1024, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(921, 1485)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	206
+			justify    	0
+			label      	"CMaterial")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C30009"
+		    width      	224
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)))
+	(object ClassDiagram "Model Inhertiance Diagram"
+	    quid       	"3A361FA50181"
+	    title      	"Model Inhertiance Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Model::CBody" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(832, 1552)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(751, 1501)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	162
+			justify    	0
+			label      	"CBody")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30DA2F0028"
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CBoundary" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(208, 304)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(86, 252)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	244
+			justify    	0
+			label      	"CBoundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C30230"
+		    width      	262
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CFault" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(224, 1008)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(143, 956)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	162
+			justify    	0
+			label      	"CFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C60090"
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CDepletionStage" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(2144, 800)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1970, 748)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"CDepletionStage")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C502E7"
+		    width      	366
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CWellPath" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1696, 1008)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(1585, 956)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	222
+			justify    	0
+			label      	"CWellPath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C70132"
+		    width      	240
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CXSection" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1632, 1168)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(1515, 1117)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CXSection")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A36204E01C0"
+		    width      	252
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Model::CMaterial" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1632, 464)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(1529, 412)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	206
+			justify    	0
+			label      	"CMaterial")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A10F4C30009"
+		    width      	224
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoFormation" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(368, 1536)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(212, 1462)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	312
+			justify    	0
+			label      	"CGeoFormation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B032E"
+		    width      	330
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)))))

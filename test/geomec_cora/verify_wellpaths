@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "cmd : verify : $0 $@"
+
+OUTPUT_FOLDER=test_output
+
+#LINES=`cat $1.getmodelinfo | grep '^well:New Wellpath' | wc -l`
+LINES=`cat $OUTPUT_FOLDER/$1.getmodelinfo | grep '^well:New Wellpath' | wc -l`
+
+if [ $LINES -eq $2 ]; then
+	echo "TEST SUCCEEDED"
+else
+	echo "TEST FAILED"
+	exit 1
+fi

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <ComponentRef Id="Component_Diana_bin" />
+  <ComponentRef Id="Component_Diana_bin_Qt" />
+  <ComponentRef Id="Component_Diana_lib" />
+  <ComponentRef Id="Component_Diana_share_lib" />
+  <ComponentRef Id="Component_Diana_share_lib_ElmTyp" />
+  <ComponentRef Id="Component_Diana_share_src_ap" />
+  <ComponentRef Id="Component_Diana_share_src_dc" />
+  <ComponentRef Id="Component_Diana_share_src_in" />
+  <ComponentRef Id="Component_Diana_share_src_lb" />
+  <ComponentRef Id="Component_Diana_share_src_ls" />
+  <ComponentRef Id="Component_Diana_share_src_nl" />
+  <ComponentRef Id="Component_Diana_share_src_pf" />
+  <ComponentRef Id="Component_Diana_share_src_po" />
+  <ComponentRef Id="Component_Diana_share_src_so" />
+  <ComponentRef Id="Component_System_Files" />
+  <ComponentRef Id="Math_Kernel_Library" />
+</Include>

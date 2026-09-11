@@ -1,0 +1,213 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Result"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A261EC602F1"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Set HotSpot Values For a Result"
+	    quid       	"3A2E519102D4")
+	(object UseCase "Set Local Grdient Valus For a result"
+	    quid       	"3A2E51C601F4")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2E51A900B2"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2E51A90351"
+		    supplier   	"Use Case View::Model Use Cases::Result::Set HotSpot Values For a Result"
+		    quidu      	"3A2E519102D4"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2E51A90365"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A2E51E6039F"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A2E51E70292"
+		    supplier   	"Use Case View::Model Use Cases::Result::Set Local Grdient Valus For a result"
+		    quidu      	"3A2E51C601F4"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A2E51E7029C"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Result Use Cases"
+	    quid       	"3A261ED20059"
+	    title      	"Result Use Cases"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(96, 32)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	1
+		    max_width  	444
+		    label      	"Result Use Cases")
+		(object UseCaseView "Use Case View::Model Use Cases::Result::Set HotSpot Values For a Result" @2
+		    location   	(1392, 640)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1392, 784)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Set HotSpot Values For a Result")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E519102D4"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Result::Set Local Grdient Valus For a result" @3
+		    location   	(1408, 1024)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1408, 1168)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Set Local Grdient Valus For a result")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E51C601F4"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(496, 640)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(496, 800)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	331
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @5
+		    location   	(917, 640)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E51A900B2"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @6
+			    Parent_View 	@5
+			    location   	(677, 496)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E51A90351"
+			    client     	@5
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @7
+			    Parent_View 	@5
+			    location   	(677, 496)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E51A90365"
+			    client     	@5
+			    supplier   	@4
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @8
+		    location   	(924, 818)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E51E6039F"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @9
+			    Parent_View 	@8
+			    location   	(428, 178)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E51E70292"
+			    client     	@8
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @10
+			    Parent_View 	@8
+			    location   	(428, 178)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E51E7029C"
+			    client     	@8
+			    supplier   	@4
+			    line_style 	0)))))))

@@ -1,0 +1,496 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "OpenGL"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A23D07C02B6"
+    documentation 	"View based Use Cases regarding OpenGL"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Rotate"
+	    quid       	"3A23D0D50336")
+	(object UseCase "Pan"
+	    quid       	"3A23D12D0184")
+	(object UseCase "Zoom"
+	    quid       	"3A23D3210147")
+	(object UseCase "Update Tree View Items Properties"
+	    quid       	"3A261B8A00DD"
+	    documentation 	"This only works on Bird Eye, Planar and Graph views")
+	(object UseCase "Set Legend on/off"
+	    quid       	"3A2E525E017A")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A23D13800D5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A23D13900FF"
+		    supplier   	"Use Case View::View Use Cases::OpenGL::Rotate"
+		    quidu      	"3A23D0D50336"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A23D1390109"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A23D14A02D0"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A23D14C0034"
+		    supplier   	"Use Case View::View Use Cases::OpenGL::Pan"
+		    quidu      	"3A23D12D0184"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A23D14C003E"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A23D1CA0099"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A23D1CB01C7"
+		    supplier   	"Use Case View::View Use Cases::Copy To Clipboard"
+		    quidu      	"3A23D1BD004A"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A23D1CB01DB"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A23D32802FF"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A23D32903E7"
+		    supplier   	"Use Case View::View Use Cases::OpenGL::Zoom"
+		    quidu      	"3A23D3210147"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A23D32A0009"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A261BDA036D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3A261BDB03A1"
+		    supplier   	"Use Case View::View Use Cases::OpenGL::Update Tree View Items Properties"
+		    quidu      	"3A261B8A00DD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A261BDB03AB"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$15"
+	    quid       	"3A2E529A0108"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$16"
+		    quid       	"3A2E529A037F"
+		    supplier   	"Use Case View::View Use Cases::OpenGL::Set Legend on/off"
+		    quidu      	"3A2E525E017A"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"3A2E529A0389"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "OpenGL"
+	    quid       	"3A23D096017D"
+	    title      	"OpenGL"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object UseCaseView "Use Case View::View Use Cases::OpenGL::Rotate" @1
+		    location   	(1104, 368)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1104, 506)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Rotate")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A23D0D50336"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::OpenGL::Pan" @2
+		    location   	(1648, 704)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1648, 842)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Pan")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A23D12D0184"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::Copy To Clipboard" @3
+		    location   	(1632, 1088)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1632, 1226)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Copy To Clipboard")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A23D1BD004A"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::OpenGL::Zoom" @4
+		    location   	(432, 544)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(432, 682)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Zoom")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A23D3210147"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::OpenGL::Update Tree View Items Properties" @5
+		    location   	(1072, 1328)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1072, 1466)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Update Tree View Items Properties")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A261B8A00DD"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::OpenGL::Set Legend on/off" @6
+		    location   	(400, 1040)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(400, 1178)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Set Legend on/off")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E525E017A")
+		(object ClassView "Class" "Use Case View::Geomec User" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(960, 736)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(960, 896)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @8
+		    location   	(1012, 593)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A23D13800D5"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @9
+			    Parent_View 	@8
+			    location   	(772, 417)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D13900FF"
+			    client     	@8
+			    supplier   	@1
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @10
+			    Parent_View 	@8
+			    location   	(772, 417)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D1390109"
+			    client     	@8
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @11
+		    location   	(1276, 718)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A23D14A02D0"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @12
+			    Parent_View 	@11
+			    location   	(1020, 542)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D14C0034"
+			    client     	@11
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @13
+			    Parent_View 	@11
+			    location   	(1020, 542)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D14C003E"
+			    client     	@11
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @14
+		    location   	(1344, 936)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A23D1CA0099"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @15
+			    Parent_View 	@14
+			    location   	(1088, 760)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D1CB01C7"
+			    client     	@14
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @16
+			    Parent_View 	@14
+			    location   	(1088, 760)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D1CB01DB"
+			    client     	@14
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$9" @17
+		    location   	(826, 684)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A23D32802FF"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @18
+			    Parent_View 	@17
+			    location   	(570, 508)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D32903E7"
+			    client     	@17
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @19
+			    Parent_View 	@17
+			    location   	(570, 508)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A23D32A0009"
+			    client     	@17
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$12" @20
+		    location   	(1026, 1095)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A261BDA036D"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @21
+			    Parent_View 	@20
+			    location   	(770, 919)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261BDB03A1"
+			    client     	@20
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$14" @22
+			    Parent_View 	@20
+			    location   	(770, 919)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A261BDB03AB"
+			    client     	@20
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$15" @23
+		    location   	(627, 915)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E529A0108"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$16" @24
+			    Parent_View 	@23
+			    location   	(371, 739)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E529A037F"
+			    client     	@23
+			    supplier   	@6
+			    line_style 	0)
+			(object RoleView "$UNNAMED$17" @25
+			    Parent_View 	@23
+			    location   	(371, 739)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E529A0389"
+			    client     	@23
+			    supplier   	@7
+			    line_style 	0)))
+		(object Label @26
+		    location   	(97, 31)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	575
+		    label      	"Use Case OpenGLView")))))

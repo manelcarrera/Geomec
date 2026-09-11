@@ -1,0 +1,3 @@
+dia_add_sources(
+  IVolume.cpp RegisterVolume.cpp Volume.cpp
+)

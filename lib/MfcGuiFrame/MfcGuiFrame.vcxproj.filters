@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\CommandInvoker.h" />
+    <ClInclude Include="h\ContextMenuInvoker.h" />
+    <ClInclude Include="h\ControlManager.h" />
+    <ClInclude Include="h\CtrlDropTarget.h" />
+    <ClInclude Include="h\HScrollListBox.h" />
+    <ClInclude Include="h\IconImageList.h" />
+    <ClInclude Include="h\ICtrlObject.h" />
+    <ClInclude Include="h\ICtrlObjectBase.h" />
+    <ClInclude Include="h\IListObject.h" />
+    <ClInclude Include="h\inplaceedit.h" />
+    <ClInclude Include="h\ISubListObject.h" />
+    <ClInclude Include="h\ITreeObject.h" />
+    <ClInclude Include="h\ListCtrlBase.h" />
+    <ClInclude Include="h\listviewbase.h" />
+    <ClInclude Include="h\MigrateProfileSettings.h" />
+    <ClInclude Include="h\OpenGLView.h" />
+    <ClInclude Include="h\StaticFile.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\TnoFileDialog.h" />
+    <ClInclude Include="h\TnoWinApp.h" />
+    <ClInclude Include="h\treectrlbase.h" />
+    <ClInclude Include="h\TreeObject.h" />
+    <ClInclude Include="h\treeviewbase.h" />
+    <ClInclude Include="h\WMCommandCommand.h" />
+    <ClInclude Include="observer\h\MfcOpenGLObjectObserver.h" />
+    <ClInclude Include="observer\h\MfcOpenGLObjectObserverTemp.h" />
+    <ClInclude Include="observer\h\MfcTreeBranchObjectObserverTemp.h" />
+    <ClInclude Include="observer\h\MfcTreeLeafObserverTemp.h" />
+    <ClInclude Include="observer\h\MfcTreeObjectObserver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ContextMenuInvoker.cpp" />
+    <ClCompile Include="src\ControlManager.cpp" />
+    <ClCompile Include="src\CtrlDropTarget.cpp" />
+    <ClCompile Include="src\HScrollListBox.cpp" />
+    <ClCompile Include="src\IconImageList.cpp" />
+    <ClCompile Include="src\ICtrlObject.cpp" />
+    <ClCompile Include="src\ICtrlObjectBase.cpp" />
+    <ClCompile Include="src\IListObject.cpp" />
+    <ClCompile Include="src\InPlaceEdit.cpp" />
+    <ClCompile Include="src\ISubListObject.cpp" />
+    <ClCompile Include="src\ITreeObject.cpp" />
+    <ClCompile Include="src\ListCtrlBase.cpp" />
+    <ClCompile Include="src\ListViewBase.cpp" />
+    <ClCompile Include="src\MigrateProfileSettings.cpp" />
+    <ClCompile Include="src\OpenGLView.cpp" />
+    <ClCompile Include="src\StaticFile.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\TnoFileDialog.cpp" />
+    <ClCompile Include="src\TnoWinApp.cpp" />
+    <ClCompile Include="src\TreeCtrlBase.cpp" />
+    <ClCompile Include="src\TreeObject.cpp" />
+    <ClCompile Include="src\TreeViewBase.cpp" />
+    <ClCompile Include="observer\src\MfcOpenGLObjectObserver.cpp" />
+    <ClCompile Include="observer\src\MfcTreeObjectObserver.cpp" />
+  </ItemGroup>
+</Project>

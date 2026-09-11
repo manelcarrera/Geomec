@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<plugin>
+  <name>Test Python</name>
+  <version>1.0.0</version>
+  <!-- <manual>name_of_manual.pdf</manual> -->
+  <!-- <location>path_to_python_files</location> -->
+  <!-- <libs>additional_python_modules_path_1;additional_python_modules_path_2</libs> -->
+  <python>
+    <module>test_python</module>
+    <function>main</function>
+  </python>
+</plugin>

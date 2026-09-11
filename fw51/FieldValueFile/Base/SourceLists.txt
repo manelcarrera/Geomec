@@ -1,0 +1,6 @@
+dia_add_sources(
+  FvEclipseCell.cpp      FvEclipseFile.cpp      FvEclipseReservoir.cpp 
+  FvGocadFile.cpp        FvGocadHeader.cpp      FvGocadSurface.cpp     
+  FvGocadVolume.cpp      FvGocadWellFile.cpp    FvInputStream.cpp      
+  FvProperty.cpp         FvTextFile.cpp         FvToken.cpp            
+)

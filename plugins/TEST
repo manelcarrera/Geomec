@@ -1,0 +1,51 @@
+#
+# place this file in C:\Users\%USER%\AppData\Roaming\Geomec
+#
+# Ctrl+F6: Launch test 
+#
+# commnads: case-sensitive
+#
+# Logs: TEST.log
+#
+# 0) open
+#
+
+#open "C:/aWork/aProjects/2020/09/SynMod_test.gm5"
+#open "C:/aWork/aGeomec/Trunk_2020_02_10/Tests/Models/ResultsBranched.gm5"
+open "C:/aWork/aProjects/2020/02/Popups/test1_tetra.gm5"
+
+#
+# 1) run
+#
+
+label a
+
+run 0 	# Linear
+
+#run 1 	# Non-linear
+#run 2 	# Heat-flow
+#run 3 	# Mixture
+#run 4 	# Mixture with containment
+
+#
+# 2) goto
+#
+
+goto a 1	 	# 1-> line 1, 1-> one time 	[6]
+
+goto b 1		# skips export commands below
+
+#
+# 3) export
+#
+
+export 0 		# Exort: Linear
+#command ID_EXPORT_LINEAR # same as export 0 / not case sensitive
+
+export 0 quad 	# Exort: Linear Quad
+export 1 		# Exort: Non-linear					
+export 2 		# Exort: Heat-flow
+export 3 		# Exort: Mixture
+export 4 		# Exort: Mixture with containment
+
+label b

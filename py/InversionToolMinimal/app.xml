@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<plugin>
+  <name>Plugin name</name>
+  <version>1.0.0</version>
+  <python>
+    <module>gui</module> 
+    <function>main</function> 
+  </python>
+</plugin>

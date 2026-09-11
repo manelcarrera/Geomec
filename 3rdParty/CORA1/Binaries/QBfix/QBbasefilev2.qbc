@@ -1,0 +1,124 @@
+# match with excel files v46
+version = 2.0
+
+dir_inputfiles=C:\Apps\
+dir_intermfiles=C:\Apps\
+dir_fwresults=C:\Apps\
+dir_invresults=C:\Apps\
+
+file_interm=template_interm.qbi
+export.filebase.geomec=template_geom
+export.filebase.pngimage=template_img
+export.filebase.simpleascii=template_ascii
+export.fileext.geomec=.dat
+export.fileext.pngimage=.png
+export.fileext.simpleascii=.dat
+
+# ------------------------------
+# START OF INPUT BLOCK
+# ------------------------------
+# BASIC LAYER INFORMATION
+# the list "layers" specifies the order of the layers used (from top to bottom)
+
+layers=l1,l2,r1,l3
+
+surfacedepth.datatype=constant
+surfacedepth.constant=0
+seawater.present=False
+minlaythick=1.0
+
+l1.E.constant=1
+l1.nu.constant=0.1
+l1.base.type=thickness
+l1.base.datatype=constant
+l1.base.constant=10
+
+l2.E.constant=2
+l2.nu.constant=0.2
+l2.base.type=thickness
+l2.base.datatype=constant
+l2.base.constant=20
+
+r1.E.constant=1
+r1.nu.constant=0.1
+r1.base.type=thickness
+r1.base.datatype=constant
+r1.base.constant=10
+
+l3.E.constant=3
+l3.nu.constant=0.3
+l3.base.type=thickness
+l3.base.datatype=constant
+l3.base.constant=30
+
+l1.si.density.constant=0.0
+l1.si.Kh.constant=1.0
+l1.si.KH.constant=1.0
+l1.si.angleNH.constant=0.0
+l1.si.Pref.constant=0.0
+l1.si.zref.constant=0.0
+l1.si.Pgrad.constant=0.0
+
+l2.si.density.constant=0.0
+l2.si.Kh.constant=1.0
+l2.si.KH.constant=1.0
+l2.si.angleNH.constant=0.0
+l2.si.Pref.constant=0.0
+l2.si.zref.constant=0.0
+l2.si.Pgrad.constant=0.0
+
+r1.si.density.constant=0.0
+r1.si.Kh.constant=1.0
+r1.si.KH.constant=1.0
+r1.si.angleNH.constant=0.0
+r1.si.Pref.constant=0.0
+r1.si.zref.constant=0.0
+r1.si.Pgrad.constant=0.0
+
+l3.si.density.constant=0.0
+l3.si.Kh.constant=1.0
+l3.si.KH.constant=1.0
+l3.si.angleNH.constant=0.0
+l3.si.Pref.constant=0.0
+l3.si.zref.constant=0.0
+l3.si.Pgrad.constant=0.0
+
+# ------------------------------
+# START OF RESERVOIR BLOCK
+# ------------------------------
+blocks.x.n=5
+blocks.x.size=10
+blocks.x.firstcoord=0
+blocks.y.n=5
+blocks.y.size=10
+blocks.y.firstcoord=0
+
+fw.res.groups=r1_dP
+fw.res.r1_dP.formationname=r1
+fw.res.r1_dP.depletionproperty=dP
+fw.res.r1_dP.loading.type=dP
+fw.res.r1_dP.loading.dP.datatype=ps
+fw.res.r1_dP.loading.dP.ps.filename=C:/Apps/DATA/QBbatching/Cora/QBfix/pressures.dat
+fw.res.r1_dP.loading.dP.ps.name=dP0_reservoir
+
+# ------------------------------
+# START OF CALCULATION BLOCK
+# 
+# ------------------------------
+calcmodel=horzhet
+horzhet.depths=0, 400 
+horzhet.fft.x.n=256
+horzhet.fft.x.resolution=100
+horzhet.fft.y.n=256
+horzhet.fft.y.resolution=100
+
+horzhet.allowhormatcontrast=True
+horzhet.zoffset=0
+horzhet.zdiscard=0
+horzhet.extrapolateproperties=True
+
+# ------------------------------
+# START OF OUTPUT BLOCK
+# v46: output will be automatically added
+# ------------------------------
+forward=true

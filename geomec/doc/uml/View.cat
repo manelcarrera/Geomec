@@ -1,0 +1,420 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07E95F01E6"
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"3A2269960035"
+	    supplier   	"Logical View::Geomec::Document"
+	    quidu      	"3A100248023A"))
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Association "$UNNAMED$0"
+	    quid       	"3A7150490273"
+	    roles      	(list role_list
+		(object Role "m_mpResToImage:std::map<UINT,int>"
+		    quid       	"3A7150490274"
+		    documentation 	" Image mapping"
+		    label      	"m_mpResToImage:std::map<UINT,int>"
+		    supplier   	"Logical View::Geomec::View::Tree View::CMap<UINT,UINT,int,int>"
+		    quidu      	"3A7150490263"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$1"
+		    quid       	"3A7150490283"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoTreeView"
+		    quidu      	"3A07D9D70384"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    quid       	"3A7150490291"
+	    roles      	(list role_list
+		(object Role "m_pImageList"
+		    quid       	"3A7150490292"
+		    label      	"m_pImageList"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Control Support::CImageList"
+		    quidu      	"3A07D0A80008"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$3"
+		    quid       	"3A71504902A2"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoTreeView"
+		    quidu      	"3A07D9D70384")))
+	(object Class_Category "DialogClasses"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Dialog Classes.cat"
+	    quid       	"3A310D1C029E")
+	(object Class_Category "OpenGL View"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\OpenGL View.cat"
+	    quid       	"3A34EB42038C")
+	(object Class_Category "Tree View"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"D:\\users\\all\\Geomec 3 Design\\Tree View.cat"
+	    quid       	"3A7197E7006F"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "View Inheritance Diagram"
+	    quid       	"3A07E99D01E5"
+	    title      	"View Inheritance Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CTreeView" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1184, 816)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1070, 737)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CTreeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D0BF0137"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CView" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1184, 272)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1070, 193)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D0BD015D"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CCtrlView" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1184, 544)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1070, 465)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CCtrlView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D0BE0050"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @4
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D0BF0169"
+		    client     	@1
+		    supplier   	@3
+		    line_style 	0)
+		(object InheritView "" @5
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D0BE0082"
+		    client     	@3
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::Tree View::CMap<UINT,UINT,int,int>" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(304, 1152)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(54, 1078)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	500
+			justify    	0
+			label      	"CMap<UINT,UINT,int,int>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150490263"
+		    width      	518
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoTreeView" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1184, 1136)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1034, 1061)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	300
+			justify    	0
+			label      	"CGeoTreeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D70384"
+		    width      	318
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @8
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9D703B6"
+		    client     	@7
+		    supplier   	@1
+		    line_style 	0)
+		(object AssociationViewNew "$UNNAMED$0" @9
+		    location   	(793, 1142)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7150490273"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @10
+			    Parent_View 	@9
+			    location   	(137, 214)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @11
+				Parent_View 	@10
+				location   	(1008, 1097)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A7150490283"
+			    client     	@9
+			    supplier   	@7
+			    line_style 	0)
+			(object RoleView "m_mpResToImage:std::map<UINT,int>" @12
+			    Parent_View 	@9
+			    location   	(137, 214)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(819, 1204)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	714
+				justify    	0
+				label      	"-m_mpResToImage"
+				pctDist    	-0.107133
+				height     	63
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A7150490274"
+			    client     	@9
+			    supplier   	@6
+			    line_style 	0)))
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoDataSourceView" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(816, 1600)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(591, 1525)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"CGeoDataSourceView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D00BD"
+		    width      	468
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @15
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504D00CC"
+		    client     	@14
+		    supplier   	@7
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoModelView" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1680, 1600)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(1506, 1525)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"CGeoModelView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504A039B"
+		    width      	366
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @17
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504A03AB"
+		    client     	@16
+		    supplier   	@7
+		    line_style 	0)))))

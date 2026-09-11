@@ -1,0 +1,23 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("Del_depl_stages.new","Del_depl_stages")
+
+Scenario("Deleting depletion stages")
+	StartScenario("Deleting depletion stages")
+	BreakdownStartup
+	DIM stepCount as INTEGER
+	stepCount = GetTimeStepCount()
+	while stepCount > 1
+		SetTimeStepCount(stepCount-1)
+		stepCount = GetTimeStepCount()		
+	wend
+	ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

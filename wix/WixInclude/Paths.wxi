@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?ifndef Paths_wxi ?>
+  <?define Paths_wxi="Paths_wxi" ?>
+    <?define ProgramFiles="C:\Program Files (x86)"?>
+
+    <?define MergeModules="$(var.ProgramFiles)\Common Files\Merge Modules" ?>
+
+    <?define 3rdPartyRoot="$(var.DevelopRoot)\3rdParty" ?>
+    <?define GeomecRoot="$(var.DevelopRoot)\geomec" ?>
+
+    <?define DIAPATH="$(env.DIAROOT)\release" ?>
+    <?define DIASHARE="$(env.DIAROOT)\share" ?>
+  
+    <?define QTDIR="$(env.QTDIR)" ?>
+    <?define QWTDIR="$(env.QWTDIR)" ?>
+
+  <!-- location of libifcoremd.dll, libifportmd.dll, libmmd.dll, libguide40.dll and (64 bits only) libiomp5md.dll -->
+
+    <?define Intel64="$(env.INTEL)" ?>
+    <?define SafeNet="$(var.DIASHARE)\SafeNet" ?>
+  
+    <?define TBBBinDir="$(var.DevelopRoot)\lib\tbb\windows\bin\intel64\vc14" ?>
+
+    <?define OIVRoot="$(env.OIVHOME)\arch-Windows-x86_64-msvc14-Release" ?>
+
+    <?define ProgramFilesFolder="ProgramFiles64Folder" ?>
+  <?endif?>
+</Include>

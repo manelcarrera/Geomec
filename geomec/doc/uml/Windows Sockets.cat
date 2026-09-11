@@ -1,0 +1,560 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Windows Sockets"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A3015F"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CAsyncSocket"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxsock.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A3016A"
+	    documentation 	
+|A CAsyncSocket object represents a Windows Socket, an endpoint of network communication. Class CAsyncSocket encapsulates the Windows Sockets API, providing an object-oriented abstraction for programmers who want to use Windows Sockets in conjunction with MFC.
+|
+|This class is based on the assumption that you understand network communications. You are responsible for handling blocking, byte-order differences, and conversions between Unicode and multibyte character set (MBCS) strings.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A3017D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Accept"
+		    quid       	"3A07D0A3017E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rConnectedSocket"
+			    quid       	"3A07D0A30187"
+			    type       	"CAsyncSocket&")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A30191"
+			    type       	"SOCKADDR*"
+			    initv      	"NULL")
+			(object Parameter "lpSockAddrLen"
+			    quid       	"3A07D0A30192"
+			    type       	"int*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A3019C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Receive"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpBuf, nBufLen, nFlags);
+|
+			    )))
+		    quid       	"3A07D0A301AF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A301B0"
+			    type       	"void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A301B9"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A301BA"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Send"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpBuf, nBufLen, nFlags);
+|
+			    )))
+		    quid       	"3A07D0A301CD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A301CE"
+			    type       	"const void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A301D7"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A301D8"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnReceive"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A301EB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A301EC"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSend"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A301FF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A30200"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOutOfBandData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A3020A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A30213"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAccept"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A3021E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A30227"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnConnect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A30232"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A3023B"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnClose"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nErrorCode);
+|
+			    )))
+		    quid       	"3A07D0A30245"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nErrorCode"
+			    quid       	"3A07D0A3024F"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CAsyncSocket"
+		    quid       	"3A07D0A30259"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A30263"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A3026E"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A30278"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConnectHelper"
+		    quid       	"3A07D0A30283"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A3028C"
+			    type       	"const SOCKADDR*")
+			(object Parameter "nSockAddrLen"
+			    quid       	"3A07D0A3028D"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReceiveFromHelper"
+		    quid       	"3A07D0A302A0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A302A1"
+			    type       	"void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A302AA"
+			    type       	"int")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A302AB"
+			    type       	"SOCKADDR*")
+			(object Parameter "lpSockAddrLen"
+			    quid       	"3A07D0A302B4"
+			    type       	"int*")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A302BE"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SendToHelper"
+		    quid       	"3A07D0A302C8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A302D2"
+			    type       	"const void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A302D3"
+			    type       	"int")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A302DC"
+			    type       	"const SOCKADDR*")
+			(object Parameter "nSockAddrLen"
+			    quid       	"3A07D0A302DD"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A302E6"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSocket"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxsock.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A302FA"
+	    documentation 	"Class CSocket derives from CAsyncSocket and inherits its encapsulation of the Windows Sockets API. A CSocket object represents a higher level of abstraction of the Windows Sockets API than that of a CAsyncSocket object. CSocket works with classes CSocketFile and CArchive to manage the sending and receiving of data."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A3030E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Windows Sockets::CAsyncSocket"
+		    quidu      	"3A07D0A3016A"))
+	    operations 	(list Operations
+		(object Operation "Accept"
+		    quid       	"3A07D0A3030F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rConnectedSocket"
+			    quid       	"3A07D0A30318"
+			    type       	"CAsyncSocket&")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A30319"
+			    type       	"SOCKADDR*"
+			    initv      	"NULL")
+			(object Parameter "lpSockAddrLen"
+			    quid       	"3A07D0A30322"
+			    type       	"int*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A3032C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Receive"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpBuf, nBufLen, nFlags);
+|
+			    )))
+		    quid       	"3A07D0A30337"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A30340"
+			    type       	"void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A3034A"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A3034B"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Send"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpBuf, nBufLen, nFlags);
+|
+			    )))
+		    quid       	"3A07D0A30355"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A3035E"
+			    type       	"const void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A30368"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A30369"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSocket"
+		    quid       	"3A07D0A30373"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A3037D"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A30390"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A30391"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConnectHelper"
+		    quid       	"3A07D0A303A4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A303A5"
+			    type       	"const SOCKADDR*")
+			(object Parameter "nSockAddrLen"
+			    quid       	"3A07D0A303AE"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReceiveFromHelper"
+		    quid       	"3A07D0A303B8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A303C2"
+			    type       	"void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A303C3"
+			    type       	"int")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A303CC"
+			    type       	"SOCKADDR*")
+			(object Parameter "lpSockAddrLen"
+			    quid       	"3A07D0A303CD"
+			    type       	"int*")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A303D6"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SendToHelper"
+		    quid       	"3A07D0A303E0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A40002"
+			    type       	"const void*")
+			(object Parameter "nBufLen"
+			    quid       	"3A07D0A40003"
+			    type       	"int")
+			(object Parameter "lpSockAddr"
+			    quid       	"3A07D0A4000C"
+			    type       	"const SOCKADDR*")
+			(object Parameter "nSockAddrLen"
+			    quid       	"3A07D0A4000D"
+			    type       	"int")
+			(object Parameter "nFlags"
+			    quid       	"3A07D0A40016"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnMessagePending"
+		    quid       	"3A07D0A40021"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PumpMessages"
+		    quid       	"3A07D0A4002B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "uStopFlag"
+			    quid       	"3A07D0A4003E"
+			    type       	"UINT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

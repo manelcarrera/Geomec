@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\WellSchemeUtils.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DaoWellInterface.cpp" />
+    <ClCompile Include="src\DexCasingMatInterface.cpp" />
+    <ClCompile Include="src\DexWellInterface.cpp" />
+    <ClCompile Include="src\DSTable.cpp" />
+    <ClCompile Include="src\font.cpp" />
+    <ClCompile Include="src\IDexInterface.cpp" />
+    <ClCompile Include="src\picture.cpp" />
+    <ClCompile Include="src\SpreadView.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\TableWellpathGeometry.cpp" />
+    <ClCompile Include="src\VersionInfo.cpp" />
+    <ClCompile Include="src\VersionTable.cpp" />
+    <ClCompile Include="src\WellEditFrame.cpp" />
+    <ClCompile Include="src\WellEditView.cpp" />
+    <ClCompile Include="src\WellPointListCtrl.cpp" />
+    <ClCompile Include="src\WellSchemeUtils.cpp" />
+    <ClCompile Include="src\wellspreadsheet.cpp" />
+    <ClCompile Include="moc\moc_WellEditView.cpp" />
+    <ClCompile Include="dlg\src\dateeditdlg.cpp" />
+    <ClCompile Include="dlg\src\dexdepthtypedlg.cpp" />
+    <ClCompile Include="dlg\src\RadActTagDlg.cpp" />
+    <ClCompile Include="dlg\src\WellEditDlg.cpp" />
+    <ClCompile Include="dlg\src\wellinfodlg.cpp" />
+    <ClCompile Include="dlg\src\WellLogDlg.cpp" />
+    <ClCompile Include="dlg\src\WellPointListDlg.cpp" />
+    <ClCompile Include="dlg\src\WellPointPickDlg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\DaoWellInterface.h" />
+    <ClInclude Include="h\DexCasingMatInterface.h" />
+    <ClInclude Include="h\DexWellInterface.h" />
+    <ClInclude Include="h\DSTable.h" />
+    <ClInclude Include="h\font.h" />
+    <ClInclude Include="h\IDexInterface.h" />
+    <ClInclude Include="h\picture.h" />
+    <ClInclude Include="h\SpreadView.h" />
+    <ClInclude Include="h\SSOCX.H" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\TableWellpathGeometry.h" />
+    <ClInclude Include="h\VersionInfo.h" />
+    <ClInclude Include="h\VersionTable.h" />
+    <ClInclude Include="h\WellEditFrame.h" />
+    <ClInclude Include="h\WellPointListCtrl.h" />
+    <ClInclude Include="h\WellSchemeUtils.h" />
+    <ClInclude Include="h\wellspreadsheet.h" />
+    <ClInclude Include="dlg\h\dateeditdlg.h" />
+    <ClInclude Include="dlg\h\dexdepthtypedlg.h" />
+    <ClInclude Include="dlg\h\RadActTagDlg.h" />
+    <ClInclude Include="dlg\h\WellEditDlg.h" />
+    <ClInclude Include="dlg\h\wellinfodlg.h" />
+    <ClInclude Include="dlg\h\WellLogDlg.h" />
+    <ClInclude Include="dlg\h\WellPointListDlg.h" />
+    <ClInclude Include="dlg\h\WellPointPickDlg.h" />
+    <ClInclude Include="dlg\h\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\WellEditView.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+Project file,Source lines,Comment lines,Blank lines,Total lines
+controls,2055,391,631,3077
+dag,1010,269,325,1604
+database gm3,1529,425,450,2404
+filos,3755,747,803,5305
+geofilos,2515,233,478,3226
+geomec,37220,5794,8730,51744
+geometry,8752,1485,2453,12690
+opengl,3796,683,1348,5827
+quantity,3681,374,946,5001
+textfileparser,2622,464,761,3847
+tsmesh,39202,7066,4736,51004
+Total,106137,17931,21661,145729

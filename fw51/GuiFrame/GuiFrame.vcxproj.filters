@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\GuiCommand.h" />
+    <ClInclude Include="include\GuiFrameExports.h" />
+    <ClInclude Include="include\ICommandInvoker.h" />
+    <ClInclude Include="include\IContextMenu.h" />
+    <ClInclude Include="include\ISelectionContext.h" />
+    <ClInclude Include="include\ModelObjectScene.h" />
+    <ClInclude Include="include\OpenGLObjectObserver.h" />
+    <ClInclude Include="include\OpenGLObjectObserverTemp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\moc_ModelFileObs.cpp" />
+    <ClCompile Include="include\moc_ModelObjectObserver.cpp" />
+    <ClCompile Include="Base\ISelectionContext.cpp" />
+    <ClCompile Include="Base\ModelFileObs.cpp" />
+    <ClCompile Include="Base\ModelObjectObserver.cpp" />
+    <ClCompile Include="Base\ModelObjectScene.cpp" />
+    <ClCompile Include="Base\OpenGLObjectObserver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\ModelFileObs.h" />
+    <CustomBuild Include="include\ModelObjectObserver.h" />
+  </ItemGroup>
+</Project>

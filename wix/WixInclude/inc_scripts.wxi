@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="scripts_path" Name="scripts">
+    <Component Id="Component_scripts" Guid="$(var.ComponentID_scripts)" Win64="yes">
+      <File Id="fault_well_intersection.py" KeyPath="yes" Source="$(var.DevelopRoot)\res\scripts\fault_well_intersection.py" />
+    </Component>
+  </Directory>
+  
+</Include>

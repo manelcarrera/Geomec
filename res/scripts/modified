@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo -folder: $1
+
+# '2019/10/17 14:45:00'
+echo -newer than: $2
+echo -param: $3
+
+mod=${2//[ ]/_}
+mod=${mod//[:]/-}
+#echo mod:$mod
+
+
+#not exist
+if [ -z "$3" ]; then
+find $1 \
+-not -path "*/obj/*" \
+-not -path "*/bin/*" \
+-not -path "*/test_output/*" \
+-type f \
+-size -200k \
+\( -name "*.cpp" -o -name "*.h" -o \( ! -name "*.*" -a ! -name "Makefile" \) -o -name "*.pro" -o -name "*.pri" -o -name "*.py" \) \
+-newermt "$2" \
+-ls
+else
+find $1 \
+-not -path "*/obj/*" \
+-not -path "*/bin/*" \
+-not -path "*/test_output/*" \
+-type f \
+-size -200k \
+\( -name "*.cpp" -o -name "*.h" -o \( ! -name "*.*" -a ! -name "Makefile" \) -o -name "*.pro" -o -name "*.pri" -o -name "*.py" \) \
+-newermt "$2" \
+-exec tar -cjf $1_$mod.tar.bz2 {} + \
+-ls
+ls -lh $1_$mod.tar.bz2
+fi

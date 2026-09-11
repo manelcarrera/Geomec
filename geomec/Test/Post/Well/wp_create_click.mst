@@ -1,0 +1,18 @@
+'$include '..\..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_create_click.new","wp_create_click")
+
+Scenario ("Creation vertical wellpath by click")
+StartScenario("Creation vertical wellpath by click")
+	WellPathStartUp()
+	AddWellPathByHand(90,30)
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave()
+End Scenario
+
+EndLog
+
+End

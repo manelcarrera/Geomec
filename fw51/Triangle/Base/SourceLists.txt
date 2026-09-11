@@ -1,0 +1,4 @@
+dia_add_sources(
+  Region.cpp          TriangleEdge.cpp    TriangleElement.cpp 
+  TriangleNode.cpp    TriangleSurface.cpp                     
+)

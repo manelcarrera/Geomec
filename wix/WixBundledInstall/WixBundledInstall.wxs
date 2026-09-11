@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- chicken and egg (and local) -->
+
+<?define DevelopRoot="$(var.WixInstall64.ProjectDir)\..\.." ?>
+<?define WixInclude="$(var.DevelopRoot)\WixInclude" ?>
+
+<!-- version number -->
+
+<?include $(var.WixInclude)\GeomecVersion.wxi ?>
+
+<?define Version="$(var.VersionMajor).$(var.VersionMinor).$(var.VersionRevision).0" ?>
+
+<?define ProductName="GEOMEC $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)" ?>
+<?define ProductOwner="Shell International Ltd." ?>
+
+
+<Wix RequiredVersion="3.6.2830.0" xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
+    xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Bundle Name="$(var.ProductName)" Version="$(var.Version)" Manufacturer="$(var.ProductOwner)" UpgradeCode="445BA4F8-59FA-44D4-9217-9C0CD34CBE2E"
+    Copyright="Copyright© 2000-2014, $(var.ProductOwner)" DisableModify="yes" IconSourceFile="$(var.DevelopRoot)\geomec\SRC\res\Diana.ico">
+    <!--
+    IconSourceFile="Resource\Setup.ico"
+    SplashScreenSourceFile="Resource\SplashScreen.bmp"
+    AboutUrl="http://www.nowhere.com"
+    Condition="((VersionNT >= v5.1) AND (ServicePackLevel >= 3)) OR ((VersionNT >= v5.2) AND (ServicePackLevel >= 2)) OR (VersionNT >= v6.0)">
+    -->
+
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense" />
+    <WixVariable Id="WixStdbaLicenseUrl" Value="" />
+    
+    <!--
+    <WixVariable Id="WixStdbaLogo" Value="Resource\logoSmall.png" />
+    <Variable Name="InstallFolder" Type="string" Value="[ProgramFilesFolder]ACME\My App" />
+    -->
+
+    <Chain>
+      <MsiPackage
+        Id="SetupGeomec"
+        Compressed="yes"
+        SourceFile="$(var.WixInstall64.TargetPath)"
+        DisplayInternalUI="yes"
+        Vital="yes">
+        <!--<MsiProperty Name="INSTALLLOCATION" Value="[InstallFolder]" />-->
+      </MsiPackage>
+
+      <PackageGroupRef Id="NetFxFull" After="SetupGeomec"/>
+
+      <MsiPackage
+        Id="SetupCORA"
+        Compressed="yes"
+        SourceFile="$(var.DevelopRoot)\3rdParty\CORA\CORA 1.5.0.5_release.msi"
+        DisplayInternalUI="yes"
+        ForcePerMachine="yes"
+        Vital="yes">
+      </MsiPackage>
+    </Chain>
+  </Bundle>
+
+  <Fragment>
+    <util:RegistrySearch Root="HKLM"
+                         Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full"
+                         Value="Version"
+                         Variable="Netfx4FullVersion"/>
+
+    <util:RegistrySearch Root="HKLM"
+                         Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full"
+                         Value="Version"
+                         Variable="Netfx4x64FullVersion"
+                         Win64="yes"/>
+
+    <PackageGroup Id="NetFxFull">
+      <ExePackage Id="NetFxFull"
+                  DisplayName="Microsoft .NET Framework 4.0"
+                  Cache="yes"
+                  Compressed="yes"
+                  PerMachine="yes"
+                  Permanent="yes"
+                  Protocol="netfx4"
+                  Vital="yes"
+                  SourceFile="$(var.DevelopRoot)\3rdParty\dotNet\dotNetFx40_Full_x86_x64.exe"
+                  InstallCommand="/q /norestart /ChainingPackage SetupGeomec"
+                  RepairCommand="/q /norestart /ChainingPackage SetupGeomec"
+                  UninstallCommand="/q /norestart /ChainingPackage SetupGeomec"
+                  DetectCondition="(Netfx4FullVersion &lt;&lt; &quot;4&quot;) OR (Netfx4x64FullVersion &lt;&lt; &quot;4&quot;)"/>
+    </PackageGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Heat flow</title>
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+<meta name=keywords content="heat flow">
+</head>
+
+<body lang=NL link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1>Heat Flow</h1>
+
+<p class=MsoNormal><span lang=EN-US>Geomec can compute Temperature changes
+based on conduction through rock, based on the rock properties like thermal
+conduction and thermal capacity, which are material properties to all material
+models. The method is meant to compute temperature changes (and thermal
+expansion as a result) in the overburden and underburden, where fluid flow is
+negligible and Reservoir Engineers frequently do not compute pressure or
+temperature changes. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Heat that is carried by fluid flow is
+neglected by the procedure, since Diana cannot accurately model multi-phase
+fluid flow, including phase transitions. The user should obtain temperature
+changes in the reservoir from the reservoir engineer and apply them as input in
+Geomec for all Depletion Stages.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>All Formations that are given (user
+defined) pressure or temperature changes will be considered as Reservoirs. The
+user supplied (other than for initial Stage) data will act as boundary
+condition for all Depletion Stages. Initial temperature data for the bounding
+box of the model (the 6 bounding surfaces) will also act as boundary condition.
+The sea floor will hence always be a perfect heat sink or source.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The analysis uses the number of steps (per
+depletion stage) that is provided under the Non-linear analysis. Iterations are
+not required. The user can change the number of steps for the Non-linear FEM
+analysis, without invalidating the Heat Flow analysis.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The Heat Flow analysis is not staged.
+Changes in thermal conduction and –capacity imposed during a Staged (branched)
+approach are neglected by the analysis.</span></p>
+
+</div>
+
+</body>
+
+</html>

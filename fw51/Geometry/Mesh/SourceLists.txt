@@ -1,0 +1,8 @@
+dia_add_sources(
+  BlockMesh.cpp         BodyGroup.cpp         ElementGroup.cpp      
+  FaceGroup.cpp         IMesh.cpp             IMesh3D.cpp           
+  INode.cpp             ISupport.cpp          InterfaceElement.cpp  
+  Mesh.cpp              MeshNodeGroup.cpp     MeshTriangle.cpp      
+  Node.cpp              PolyLineGroup.cpp     SpringLineElement.cpp 
+  Tying.cpp                                                         
+)

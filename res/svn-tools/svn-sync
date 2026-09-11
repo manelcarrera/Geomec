@@ -1,0 +1,334 @@
+#! /bin/sh
+#
+# This script synchronizes a subversion working tree with some other file
+# system tree.
+#
+
+#
+# Map a path argument to the OS's native syntax
+#
+case "$(uname)" in
+CYGWIN*)
+	native_path() 
+	{
+		if [ $# -ne 1 ] ; then
+			echo "usage: $0 <unix path>" >&2
+			exit 1
+		fi
+
+		cygpath --windows "$1"
+	}
+	;;
+*)
+	native_path() 
+	{
+		if [ $# -ne 1 ] ; then
+			echo "usage: $0 <unix path>" >&2
+			exit 1
+		fi
+
+		printf "%s\n" "$1"
+	}
+	;;
+esac
+
+#
+# List entries in a working directory, one per line
+#
+list_entries() 
+{(
+	if [ $# -ne 1 ] ; then
+		echo "usage: list_entries <directory>" >&2
+		exit 1
+	fi
+
+	cd "$1" && ls -U -A -1 -I .svn
+)}
+
+#
+# Tell if a directory entry exists
+#
+entry_exists()
+{
+	if [ $# -ne 1 ] ; then
+		echo "usage: entry_exists <path>" >&2
+		exit 1
+	fi
+
+	[ -e "$1" ] || [ -L "$1" ]
+}
+
+#
+# Handle a new directory entry
+#
+handle_new_entry()
+{(
+	if [ $# -ne 2 ] ; then
+		echo "usage: handle_new_entry <source path> <working path>" >&2
+		exit 1
+	fi
+
+	source_path=$1
+	working_path=$2
+	native_working_path=$(native_path "$working_path")
+
+	if [ -L "$source_path" ] ; then
+		
+		echo "$0: $source_path is a symbolic link" >&2
+		exit 1
+
+	elif [ -d "$source_path" ] ; then
+
+		echo "new directory: $working_path"
+		svn --quiet $force -- mkdir "$native_working_path" || exit 1
+		synchronize "$source_path" "$working_path" || exit 1
+
+	elif [ -f "$source_path" ] ; then
+
+		type=$(file-type -- "$source_path") || exit 1
+		case "$type" in
+		dos|unix)
+			type=native
+			;;
+		esac		
+	
+		echo "new $type file: $working_path"
+		cat-source -- "$type" "$source_path" >"$working_path" || exit 1
+		svn --quiet $force -- add "$native_working_path" || exit 1
+		set-svn-file-type -- "$type" "$working_path" || exit 1
+
+	else
+
+		echo "$0: $source_path is not a directory," \
+			"and not a regular file" >&2
+		exit 1
+
+	fi
+)}
+		
+#
+# Handle a common directory entry
+#
+handle_common_entry() 
+{(
+	if [ $# -ne 2 ] ; then
+		echo "usage: handle_common_entry <source path> <working path>" >&2
+		exit 1
+	fi
+
+	source_path=$1
+	working_path=$2
+
+	if [ -L "$source_path" ] ; then
+		echo "$0: $source_path is a symbolic link" >&2
+		exit 1
+	
+	elif [ -L "$working_path" ] ; then
+
+		echo "$0: $working_path is a symbolic link" >&2
+		exit 1
+	
+	elif [ -d "$source_path" ] ; then
+
+		if ! [ -d "$working_path" ] ; then
+			echo "$0: $source_path is a directory," \
+				"but $working_path is not" >&2
+			exit 1
+		fi
+
+		synchronize "$source_path" "$working_path" || exit 1
+
+	elif [ -f "$source_path" ] ; then
+
+		if ! [ -f "$working_path" ] ; then
+			echo "$0: $source_path is a regular file," \
+				"but $working_path is not" >&2
+		fi
+
+		original_type=$(svn-file-type -- "$working_path") || exit 1
+
+		if ! files-identical -- \
+			"$original_type" "$source_path" "$working_path" ; then
+
+			# Check the file's type; it may have changed
+			#
+			case "$original_type" in
+			native|unknown)
+				new_type=$(file-type -- "$source_path")
+				case "$new_type" in
+				dos|unix)
+					new_type=native
+					;;
+				esac
+				;;
+			*)
+				new_type=$original_type
+				;;
+			esac
+
+			if [ "$new_type" != "$original_type" ] ; then
+				echo "changed $original_type -> $new_type file: $working_path"
+			else
+				echo "changed $original_type file: $working_path"
+			fi
+
+			cat-source -- "$new_type" "$source_path" >"$working_path" || exit 1
+
+			if [ "$new_type" != "$original_type" ] ; then
+				set-svn-file-type -- $new_type "$working_path" || exit 1
+			fi
+
+		elif [ -n "$verbose" ] ; then
+
+			echo "up to date $original_type file: $working_path"
+
+		fi
+
+	else
+
+		echo "$0: $source_path is not a regular file," \
+			"and not a directory" >&2
+		exit 1
+
+	fi
+)}
+
+#
+# Handle a dead directory entry
+#
+handle_dead_entry() 
+{(
+	if [ $# -ne 2 ] ; then
+		echo "usage: handle_dead_entry <source path> <working path>" >&2
+		exit 1
+	fi
+
+	source_path=$1
+	working_path=$2
+	native_working_path=$(native_path "$working_path")
+
+	if [ -L "$working_path" ] ; then
+	
+		echo "$0: $working_path is a symbolic link" >&2
+		exit 1
+
+	elif [ -d "$working_path" ] ; then
+
+		echo "dead directory: $working_path"
+		svn --quiet $force -- remove "$native_working_path" || exit 1
+
+	elif [ -f "$working_path" ] ; then
+
+		echo "dead file: $working_path"
+		svn --quiet $force -- remove "$native_working_path" || exit 1
+
+	else 
+
+		echo "$0: $working_path is not a directory," \
+			"and not a regular file" >&2
+		exit 1
+
+	fi
+)}
+
+#
+# Main synchronization routine
+#
+synchronize() 
+{(
+	if [ $# -ne 2 ] ; then
+		echo "usage: synchronize <source tree> <working tree>" >&2
+		exit 1
+	fi
+
+	source_dir=$1
+	working_dir=$2
+
+	if [ -L "$working_dir/.svn" ] || [ ! -d "$working_dir/.svn" ] ; then
+		echo "$0: $working_dir/.svn does not exist or is not a directory" >&2
+		exit 1
+	fi
+
+	working_entries=$(list_entries "$working_dir") || exit 1
+	source_entries=$(list_entries "$source_dir") || exit 1
+
+	#
+	# Handle dead entries
+	#
+	if [ -n "$working_entries" ] ; then
+		printf "%s\n" "$working_entries" | while read entry ; do
+			source_path="$source_dir/$entry"
+			if ! entry_exists "$source_path" ; then
+				working_path="$working_dir/$entry"
+				handle_dead_entry "$source_path" "$working_path" || exit 1
+			fi 
+		done || exit 1
+	fi
+
+	#
+	# Handle common and new entries
+	#
+	if [ -n "$source_entries" ] ; then
+		printf "%s\n" "$source_entries" | while read entry ; do
+			source_path="$source_dir/$entry"
+			working_path="$working_dir/$entry"
+			if entry_exists "$working_path" ; then
+				handle_common_entry "$source_path" "$working_path" || exit 1
+			else
+				handle_new_entry "$source_path" "$working_path" || exit 1
+			fi
+		done || exit 1
+	fi
+)}
+		
+#
+# Print usage info and exit
+#
+usage() 
+{
+cat >&2 <<EOF
+usage: $0 [<option> ...] <source dir> [<svn working copy dir>]
+  <svn working copy dir> defaults to '.'
+options are:
+  -f  use 'svn --force' for adds and removes
+  -v  verbose
+EOF
+	exit 1
+}
+
+#
+# Parse command line options
+#
+
+force=""
+verbose=""
+
+while getopts ":fv" option ; do
+	case "$option" in
+	f)
+		force=--force
+		;;
+	v)
+		verbose=yes
+		;;
+	*)
+		usage
+		;;
+	esac
+done
+shift $(expr $OPTIND - 1)
+
+if [ $# -eq 1 ] ; then
+	source_tree=$1
+	working_tree=.
+elif [ $# -eq 2 ] ; then
+	source_tree=$1
+	working_tree=$2
+else
+	usage
+fi
+
+#
+# And go...
+#
+synchronize "$source_tree" "$working_tree"

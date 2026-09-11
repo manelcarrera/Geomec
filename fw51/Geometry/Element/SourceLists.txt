@@ -1,0 +1,13 @@
+dia_add_sources(
+  BodyLine.cpp          BodyQuadrilateral.cpp BodyTriangle.cpp      
+  Box.cpp               Connect.cpp           ConvexHull.cpp        
+  ConvexHull_2D.cpp     EmbeddedTriangle.cpp  Hexahedron.cpp        
+  IBody.cpp             IBodyFace.cpp         IBox.cpp              
+  IElement.cpp          IFace.cpp             IHexahedron.cpp       
+  IPointElement.cpp     IPolygon.cpp          IQuadrilateral.cpp    
+  IRectangle.cpp        ISpline.cpp           ITetrahedron.cpp      
+  ITriangle.cpp         IWedge.cpp            LineInterface.cpp     
+  LinkedLine.cpp        Polygon.cpp           Polygon0.c            
+  Polygon1.c            Rectangle.cpp         Tetrahedron.cpp       
+  Triangle.cpp          VectMatr.c            ElementCacheObject.cpp
+)

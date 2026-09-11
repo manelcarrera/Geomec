@@ -1,0 +1,235 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Property Sheets"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0BA0180"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CPropertySheet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BA018A"
+	    documentation 	"Objects of class CPropertySheet represent property sheets, otherwise known as tab dialog boxes. A property sheet consists of a CPropertySheet object and one or more CPropertyPage objects. A property sheet is displayed by the framework as a window with a set of tab indices, with which the user selects the current page, and an area for the currently selected page. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BA01B2"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"))
+	    operations 	(list Operations
+		(object Operation "DoModal"
+		    quid       	"3A07D0BA01B3"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0BA01C6"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BA01C7"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPropertySheet"
+		    quid       	"3A07D0BA01D1"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BA01E4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0BA01EE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0BA01F8"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BuildPropPageArray"
+		    quid       	"3A07D0BA0202"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(wParam, lParam);
+|
+			    )))
+		    quid       	"3A07D0BA020C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "wParam"
+			    quid       	"3A07D0BA0216"
+			    type       	"WPARAM")
+			(object Parameter "lParam"
+			    quid       	"3A07D0BA0217"
+			    type       	"LPARAM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitDialog"
+		    quid       	"3A07D0BA0221"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ContinueModal"
+		    quid       	"3A07D0BA0234"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0BA023E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0BA0249"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0BA024A"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0BA0253"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0BA0254"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPropertySheetEx"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdlgs.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CWnd"))
+	    quid       	"3A07D0BA0271"
+	    documentation 	
+|CPropertySheetEx provides support for the expandedPROPSHEETHEADER structure introduced in Windows 98 and Windows NT 5. The structure contains additional flags and members that support the following feature: 
+|
+|A 'watermark' background bitmap. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0BA0299"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Property Sheets::CPropertySheet"
+		    quidu      	"3A07D0BA018A"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0BA029A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0BA02A3"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPropertySheetEx"
+		    quid       	"3A07D0BA02AE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0BA02B8"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BuildPropPageArray"
+		    quid       	"3A07D0BA02CB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

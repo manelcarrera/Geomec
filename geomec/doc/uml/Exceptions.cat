@@ -1,0 +1,605 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Exceptions"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0AD0196"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CArchiveException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD01A1"
+	    documentation 	"A CArchiveException object represents a serialization exception condition. The CArchiveException class includes a public data member that indicates the cause of the exception. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD01C8"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CArchiveException"
+		    quid       	"3A07D0AD01C9"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AD01D2"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AD01DC"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AD01E6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AD01F0"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AD01F1"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AD01FA"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD0204"
+	    documentation 	"CException is the base class for all exceptions in the Microsoft Foundation Class Library."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD0222"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CException"
+		    quid       	"3A07D0AD022C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AD0236"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AD0240"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AD0241"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AD024A"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReportError"
+		    quid       	"3A07D0AD0254"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nType"
+			    quid       	"3A07D0AD025E"
+			    type       	"UINT"
+			    initv      	"MB_OK")
+			(object Parameter "nMessageID"
+			    quid       	"3A07D0AD025F"
+			    type       	"UINT"
+			    initv      	"0"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD0272"
+	    documentation 	"A CDaoException object represents an exception condition arising from the MFC database classes based on data access objects (DAO). The class includes public data members you can use to determine the cause of the exception. CDaoException objects are constructed and thrown by member functions of the DAO database classes. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD0290"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CDaoException"
+		    quid       	"3A07D0AD0291"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AD02A4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AD02A5"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AD02AE"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AD02B8"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDBException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD02C2"
+	    documentation 	"A CDBException object represents an exception condition arising from the database classes. The class includes two public data members you can use to determine the cause of the exception or to display a text message describing the exception. CDBException objects are constructed and thrown by member functions of the database classes. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD02E0"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "BuildErrorString"
+		    quid       	"3A07D0AD02FE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pdb"
+			    quid       	"3A07D0AD02FF"
+			    type       	"CDatabase*")
+			(object Parameter "hstmt"
+			    quid       	"3A07D0AD0308"
+			    type       	"HSTMT")
+			(object Parameter "bTrace"
+			    quid       	"3A07D0AD0312"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AD031C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AD031D"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AD0326"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AD0330"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDBException"
+		    quid       	"3A07D0AD033A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFileException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD0344"
+	    documentation 	"A CFileException object represents a file-related exception condition. The CFileException class includes public data members that hold the portable cause code and the operating-system-specific error number. The class also provides static member functions for throwing file exceptions and for returning cause codes for both operating-system errors and C run-time errors. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD036C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CFileException"
+		    quid       	"3A07D0AD036D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AD0377"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0AD0380"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AD039F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AD03A8"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AD03B2"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AD03B3"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CInternetException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD03C6"
+	    documentation 	"The CInternetException object represents an exception condition related to an Internet operation. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD03E4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0AD03E5"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AE0006"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AE0011"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpstrError"
+			    quid       	"3A07D0AE001A"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AE0024"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AE0025"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMemoryException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE0043"
+	    documentation 	"A CMemoryException object represents an out-of-memory exception condition. No further qualification is necessary or possible. Memory exceptions are thrown automatically by new. If you write your own memory functions, using malloc, for example, then you are responsible for throwing memory exceptions."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE0061"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CMemoryException"
+		    quid       	"3A07D0AE006B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CNotSupportedException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE0075"
+	    documentation 	"A CNotSupportedException object represents an exception that is the result of a request for an unsupported feature. No further qualification is necessary or possible."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE009D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CNotSupportedException"
+		    quid       	"3A07D0AE009E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CUserException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE00B1"
+	    documentation 	"A CUserException is thrown to stop an end-user operation. Use CUserException when you want to use the throw/catch exception mechanism for application-specific exceptions. 'User' in the class name can be interpreted as 'my user did something exceptional that I need to handle.'"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE00CF"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CUserException"
+		    quid       	"3A07D0AE00D9"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CResourceException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE00E3"
+	    documentation 	"A CResourceException object is generated when Windows cannot find or allocate a requested resource. No further qualification is necessary or possible."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE010B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "~CResourceException"
+		    quid       	"3A07D0AE010C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE011F"
+	    documentation 	"A COleException object represents an exception condition related to an OLE operation. The COleException class includes a public data member that holds the status code indicating the reason for the exception."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE013D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AE013E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AE0147"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AE0151"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AE0152"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleException"
+		    quid       	"3A07D0AE015C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDispatchException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AE0179"
+	    documentation 	"The COleDispatchException class handles exceptions specific to the OLE IDispatch interface, which is a key part of OLE automation."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE0197"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Exceptions::CException"
+		    quidu      	"3A07D0AD0204"))
+	    operations 	(list Operations
+		(object Operation "GetErrorMessage"
+		    quid       	"3A07D0AE0198"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszError"
+			    quid       	"3A07D0AE01A1"
+			    type       	"LPTSTR")
+			(object Parameter "nMaxError"
+			    quid       	"3A07D0AE01AB"
+			    type       	"UINT")
+			(object Parameter "pnHelpContext"
+			    quid       	"3A07D0AE01AC"
+			    type       	"PUINT"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleDispatchException"
+		    quid       	"3A07D0AE01B6"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,65 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Non-CObject Classes"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C50353"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "Internet Server API"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Internet Server API.cat"
+	    quid       	"3A07D0C5035E")
+	(object Class_Category "OLE Automation Types"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\OLE Automation Types.cat"
+	    quid       	"3A07D0C6039A")
+	(object Class_Category "OLE Type Wrappers"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\OLE Type Wrappers.cat"
+	    quid       	"3A07D0C700D5")
+	(object Class_Category "Run-time Object Model Support"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Run-time Object Model Support.cat"
+	    quid       	"3A07D0C70161")
+	(object Class_Category "Simple Value Types"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Simple Value Types.cat"
+	    quid       	"3A07D0C7025B")
+	(object Class_Category "Structures"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Structures.cat"
+	    quid       	"3A07D0C80022")
+	(object Class_Category "Support Classes"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Support Classes.cat"
+	    quid       	"3A07D0C80180")
+	(object Class_Category "Synchronization"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Synchronization2.cat"
+	    quid       	"3A07D0C90290")
+	(object Class_Category "Typed Template Collections"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Typed Template Collections.cat"
+	    quid       	"3A07D0C90330"))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,16 @@
+// WellSchemeUtils.odl : type library source for WellSchemeUtils.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (WellSchemeUtils.tlb).
+
+[ uuid(8381B12F-4066-4677-B681-3A89811D14C0), version(1.0) ]
+library WellSchemeUtils
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary conditions</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="interface elements">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="stiffness">
+</OBJECT>
+<h1>Interface attributes</h1>
+<p class="MsoNormal"><span style="font-family: Times New Roman; color: black">
+The stiffness of the interface elements on the boundary can be set by right-clicking 
+on “Boundary” and selecting “Interface Attributes”. </span></p>
+<p class="MsoNormal"><span style="font-family: Times New Roman; color: black">
+The user has a simple option 
+for a zoom-in box, basically reflecting the analytical solution for the 
+stiffness of a cylinder in an infinite space. Geomec applies the average model 
+(brick) size&nbsp; R ( =(L+W+H)/6 ) instead.</span></p>
+<ul>
+	<li><font size="3">K-rad = K-normal = 3.04 * G / R</font></li>
+	<li><font size="3">K-tan = K-shear&nbsp; = 1.56 *&nbsp; G / R&nbsp; </font>
+	<span style="font-size: 11.0pt; font-family: Symbol; color: black">@</span><font size="3">&nbsp; 
+	½ * K-normal</font></li>
+</ul>
+<p class="MsoNormal"><span style="font-family: Times New Roman; color: black">
+The alternative is to manually set boundary stiffness conditions.&nbsp; </span></p>
+<ul>
+	<li><font size="3">A stiff (1E6 - 1E9 MPa/m) boundary element gives a 
+	domination of the deformation boundary condition, basically neglecting the 
+	applied stress boundary condition</font></li>
+	<li><font size="3">A soft (0.001- 1 MPa/m) boundary element gives a 
+	domination of the stress boundary condition, basically neglecting the 
+	applied deformation boundary condition</font></li>
+</ul>
+<span style="font-family: Times New Roman; color: black">Any mixed mode or mid 
+range values is possible.</span><p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

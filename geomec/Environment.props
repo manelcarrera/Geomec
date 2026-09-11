@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <DEVELOP>$(SolutionDir)..</DEVELOP>
+    <DIAPATH>$(DIAROOT)/$(Configuration)</DIAPATH>
+    <DIASHARE>$(DIAROOT)/share</DIASHARE>
+    <DIAOBJ>$(DIAPATH)/lib</DIAOBJ>
+    <DIASRC>$(DIASHARE)/src</DIASRC>
+    <DIAOBJINCLUDE>$(DIAPATH)/src/include</DIAOBJINCLUDE>
+    <DIASRCINCLUDE>$(DIASHARE)/src/include;$(DIASHARE)/src/lb/gc51/classes/include</DIASRCINCLUDE>
+    <FWDIR>$(DIASRC)/lb/fw51</FWDIR>
+    <FLEXLM>$(DEVELOP)/geomec3/FlexLM/$(Platform)</FLEXLM>
+    <USERDLLS>$(DEVELOP)/UserDLLs/$(Platform)/$(Configuration)</USERDLLS>
+    <PATHPREFIX>$(DIAPATH)/bin;$(USERDLLS);$(FLEXLM)/$(Configuration)</PATHPREFIX>
+    <FLEXLIB>EPTFlexLm_MD.lib</FLEXLIB>
+    <LICENSERESOURCELIB>LicenseResource.lib</LICENSERESOURCELIB>
+    <LIBLBCI>lbci30.lib</LIBLBCI>
+    <LIBLBCP>lbcp40.lib</LIBLBCP>
+    <LIBLBCX>lbcx40.lib</LIBLBCX>
+    <LIBLBDC>lbdc32.lib</LIBLBDC>
+    <LIBLBDS>lbds30.lib</LIBLBDS>
+    <LIBLBEL>lbel30.lib</LIBLBEL>
+    <LIBLBFL>lbfl44.lib</LIBLBFL>
+    <LIBLBGS>lbgs30.lib</LIBLBGS>
+    <LIBLBGCCLASSES>lbgc51classes.lib</LIBLBGCCLASSES>
+    <LIBLBGCROUTINES>lbgc51routines.lib</LIBLBGCROUTINES>
+    <LIBLBFW51FIELDVALUEFILE>lbfw51FieldValueFile.lib</LIBLBFW51FIELDVALUEFILE>
+    <LIBLBFW51GEOMETRY>lbfw51geometry.lib</LIBLBFW51GEOMETRY>
+    <LIBLBFW51GUIFRAME>lbfw51GuiFrame.lib</LIBLBFW51GUIFRAME>
+    <LIBLBFW51MODELFRAME>lbfw51ModelFrame.lib</LIBLBFW51MODELFRAME>
+    <LIBLBFW51OPENGLFRAME>lbfw51OpenGLFrame.lib</LIBLBFW51OPENGLFRAME>
+    <LIBLBFW51TENSOR>lbfw51Tensor.lib</LIBLBFW51TENSOR>
+    <LIBLBFW51TETMESH>lbfw51TetMesh.lib</LIBLBFW51TETMESH>
+    <LIBLBFW51TRIANGLE>lbfw51Triangle.lib</LIBLBFW51TRIANGLE>
+    <DLLANALYSISGUI>analysisgui.dll</DLLANALYSISGUI>
+    <DLLFLDSWIDGETS>fldswidgets.dll</DLLFLDSWIDGETS>
+    <DLLGUICOMPONENTS>guicomponents.dll</DLLGUICOMPONENTS>
+    <DLLPPFAPI>ppfapi.dll</DLLPPFAPI>
+    <DLLPPFGUI>ppfgui.dll</DLLPPFGUI>
+    <DLLPPFMODEL>ppfmodel.dll</DLLPPFMODEL>
+    <DLLAPLB>aplb40.dll</DLLAPLB>
+    <DLLBAXQ>baxq41.dll</DLLBAXQ>
+    <DLLCILB>cilb01.dll</DLLCILB>
+    <DLLDCLB>dclb33.dll</DLLDCLB>
+    <DLLDEMF>demf50.dll</DLLDEMF>
+    <DLLDEOU>deou50.dll</DLLDEOU>
+    <DLLEIEM>eiem40.dll</DLLEIEM>
+    <DLLEIEV>eiev50.dll</DLLEIEV>
+    <DLLEIOU>eiou40.dll</DLLEIOU>
+    <DLLEUCT>euct40.dll</DLLEUCT>
+    <DLLEULB>eulb40.dll</DLLEULB>
+    <DLLEURE>eure40.dll</DLLEURE>
+    <DLLFLMA>flma40.dll</DLLFLMA>
+    <DLLFQEF>fqef40.dll</DLLFQEF>
+    <DLLFQFP>fqfp40.dll</DLLFQFP>
+    <DLLFQIN>fqin40.dll</DLLFQIN>
+    <DLLFQLO>fqlo40.dll</DLLFQLO>
+    <DLLFQST>fqst40.dll</DLLFQST>
+    <DLLFSAC>fsac40.dll</DLLFSAC>
+    <DLLFSAM>fsam40.dll</DLLFSAM>
+    <DLLFSEF>fsef40.dll</DLLFSEF>
+    <DLLFSEM>fsem40.dll</DLLFSEM>
+    <DLLFSFL>fsfl40.dll</DLLFSFL>
+    <DLLFSGM>fsgm40.dll</DLLFSGM>
+    <DLLFSIA>fsia40.dll</DLLFSIA>
+    <DLLFSPR>fspr40.dll</DLLFSPR>
+    <DLLFSRD>fsrd40.dll</DLLFSRD>
+    <DLLFSSV>fssv40.dll</DLLFSSV>
+    <DLLHFCV>hfcv40.dll</DLLHFCV>
+    <DLLHFEX>hfex40.dll</DLLHFEX>
+    <DLLHFFO>hffo40.dll</DLLHFFO>
+    <DLLHFIN>hfin40.dll</DLLHFIN>
+    <DLLHFLC>hflc40.dll</DLLHFLC>
+    <DLLHFLO>hflo40.dll</DLLHFLO>
+    <DLLHFLR>hflr40.dll</DLLHFLR>
+    <DLLHFSO>hfso40.dll</DLLHFSO>
+    <DLLHFSU>hfsu40.dll</DLLHFSU>
+    <DLLININ>inin53.dll</DLLININ>
+    <DLLLBAJ>lbaj40.dll</DLLLBAJ>
+    <DLLLBBB>lbbb40.dll</DLLLBBB>
+    <DLLLBCI>lbci30.dll</DLLLBCI>
+    <DLLLBCP>lbcp40.dll</DLLLBCP>
+    <DLLLBCX>lbcx40.dll</DLLLBCX>
+    <DLLLBDC>lbdc32.dll</DLLLBDC>
+    <DLLLBDS>lbds30.dll</DLLLBDS>
+    <DLLLBDY>lbdy40.dll</DLLLBDY>
+    <DLLLBEL>lbel30.dll</DLLLBEL>
+    <DLLLBER>lber50.dll</DLLLBER>
+    <DLLLBFI>lbfi51.dll</DLLLBFI>
+    <DLLLBFL>lbfl44.dll</DLLLBFL>
+    <DLLLBFWDIACOMMANDFILE>lbfw51diacommandfile.dll</DLLLBFWDIACOMMANDFILE>
+    <DLLLBFWDIADATAFILE>lbfw51diadatafile.dll</DLLLBFWDIADATAFILE>
+    <DLLLBFWDIAFRAME>lbfw51diaframe.dll</DLLLBFWDIAFRAME>
+    <DLLLBFWFIELDVALUEFILE>lbfw51FieldValueFile.dll</DLLLBFWFIELDVALUEFILE>
+    <DLLLBFWFILOSMODELFILE>lbfw51filosmodelfile.dll</DLLLBFWFILOSMODELFILE>
+    <DLLLBFWGEOMETRY>lbfw51Geometry.dll</DLLLBFWGEOMETRY>
+    <DLLLBFWGUIFRAME>lbfw51guiframe.dll</DLLLBFWGUIFRAME>
+    <DLLLBFWMIDASFXDFILE>lbfw51midasfxdfile.dll</DLLLBFWMIDASFXDFILE>
+    <DLLLBFWMODELFRAME>lbfw51ModelFrame.dll</DLLLBFWMODELFRAME>
+    <DLLLBFWNASTRANFILE>lbfw51nastranfile.dll</DLLLBFWNASTRANFILE>
+    <DLLLBFWOCCGEOMETRY>lbfw51occgeometry.dll</DLLLBFWOCCGEOMETRY>
+    <DLLLBFWOPENGLFRAME>lbfw51OpenGLFrame.dll</DLLLBFWOPENGLFRAME>
+    <DLLLBFWQTGUIFRAME>lbfw51qtguiframe.dll</DLLLBFWQTGUIFRAME>
+    <DLLLBFWTENSOR>lbfw51Tensor.dll</DLLLBFWTENSOR>
+    <DLLLBFWTETMESH>lbfw51TetMesh.dll</DLLLBFWTETMESH>
+    <DLLLBFWTRIANGLE>lbfw51Triangle.dll</DLLLBFWTRIANGLE>
+    <DLLLBGCCLASSES>lbgc51classes.dll</DLLLBGCCLASSES>
+    <DLLLBGCROUTINES>lbgc51routines.dll</DLLLBGCROUTINES>
+    <DLLLBGE>lbge30.dll</DLLLBGE>
+    <DLLLBGS>lbgs30.dll</DLLLBGS>
+    <DLLLBJC>lbjc51.dll</DLLLBJC>
+    <DLLLBMA>lbma40.dll</DLLLBMA>
+    <DLLLBME>lbme51.dll</DLLLBME>
+    <DLLLBPDARPACK>lbpd30arpack.dll</DLLLBPDARPACK>
+    <DLLLBPDBIHAR>lbpd30bihar.dll</DLLLBPDBIHAR>
+    <DLLLBPDEP>lbpd30ep.dll</DLLLBPDEP>
+    <DLLLBPDLP>lbpd30lp.dll</DLLLBPDLP>
+    <DLLLBPDLS>lbpd30ls.dll</DLLLBPDLS>
+    <DLLLBPDMETIS>lbpd30metis.dll</DLLLBPDMETIS>
+    <DLLLBPDOR>lbpd30or.dll</DLLLBPDOR>
+    <DLLLBPDQUAD>lbpd30quad.dll</DLLLBPDQUAD>
+    <DLLLBPF>lbpf40.dll</DLLLBPF>
+    <DLLLBPO>lbpo40.dll</DLLLBPO>
+    <DLLLBQL>lbql30.dll</DLLLBQL>
+    <DLLLBRD>lbrd51.dll</DLLLBRD>
+    <DLLLBSC>lbsc30.dll</DLLLBSC>
+    <DLLLBSO>lbso50.dll</DLLLBSO>
+    <DLLLBTM>lbtm50.dll</DLLLBTM>
+    <DLLLBUI>lbui51.dll</DLLLBUI>
+    <DLLLSAS>lsas40.dll</DLLLSAS>
+    <DLLLSDD>lsdd40.dll</DLLLSDD>
+    <DLLLSEM>lsem40.dll</DLLLSEM>
+    <DLLLSEV>lsev40.dll</DLLLSEV>
+    <DLLLSFU>lsfu40.dll</DLLLSFU>
+    <DLLLSIT>lsit40.dll</DLLLSIT>
+    <DLLLSLO>lslo40.dll</DLLLSLO>
+    <DLLMIRD>mird50.dll</DLLMIRD>
+    <DLLMOCO>moco40.dll</DLLMOCO>
+    <DLLMOFP>mofp40.dll</DLLMOFP>
+    <DLLMOLB>molb40.dll</DLLMOLB>
+    <DLLMORD>mord40.dll</DLLMORD>
+    <DLLMOXQ>moxq40.dll</DLLMOXQ>
+    <DLLNLCV>nlcv41.dll</DLLNLCV>
+    <DLLNLDU>nldu41.dll</DLLNLDU>
+    <DLLNLEC>nlec42.dll</DLLNLEC>
+    <DLLNLES>nles41.dll</DLLNLES>
+    <DLLNLIF>nlif41.dll</DLLNLIF>
+    <DLLNLIN>nlin41.dll</DLLNLIN>
+    <DLLNLIS>nlis41.dll</DLLNLIS>
+    <DLLNLIX>nlix41.dll</DLLNLIX>
+    <DLLNLLB>nllb41.dll</DLLNLLB>
+    <DLLNLLG>nllg41.dll</DLLNLLG>
+    <DLLNLLO>nllo41.dll</DLLNLLO>
+    <DLLNLPR>nlpr41.dll</DLLNLPR>
+    <DLLNLRD>nlrd41.dll</DLLNLRD>
+    <DLLNLRF>nlrf41.dll</DLLNLRF>
+    <DLLNLRL>nlrl41.dll</DLLNLRL>
+    <DLLNLST>nlst41.dll</DLLNLST>
+    <DLLNLTG>nltg41.dll</DLLNLTG>
+    <DLLNMRS>nmrs41.dll</DLLNMRS>
+    <DLLNMSA>nmsa41.dll</DLLNMSA>
+    <DLLNMST>nmst41.dll</DLLNMST>
+    <DLLPEIN>pein41.dll</DLLPEIN>
+    <DLLPEKA>peka41.dll</DLLPEKA>
+    <DLLPELB>pelb41.dll</DLLPELB>
+    <DLLPFAS>pfas40.dll</DLLPFAS>
+    <DLLPFBF>pfbf40.dll</DLLPFBF>
+    <DLLPFBO>pfbo40.dll</DLLPFBO>
+    <DLLPFCS>pfcs40.dll</DLLPFCS>
+    <DLLPFEM>pfem40.dll</DLLPFEM>
+    <DLLPFEV>pfev40.dll</DLLPFEV>
+    <DLLPFIN>pfin40.dll</DLLPFIN>
+    <DLLPFMR>pfmr40.dll</DLLPFMR>
+    <DLLPFRN>pfrn40.dll</DLLPFRN>
+    <DLLPFSV>pfsv40.dll</DLLPFSV>
+    <DLLPFUT>pfut40.dll</DLLPFUT>
+    <DLLPHIN>phin40.dll</DLLPHIN>
+    <DLLPHSU>phsu40.dll</DLLPHSU>
+    <DLLPIEV>piev41.dll</DLLPIEV>
+    <DLLPIGE>pige40.dll</DLLPIGE>
+    <DLLPILB>pilb41.dll</DLLPILB>
+    <DLLPIRD>pird40.dll</DLLPIRD>
+    <DLLPOFP>pofp40.dll</DLLPOFP>
+    <DLLPOFX>pofx40.dll</DLLPOFX>
+    <DLLPOGM>pogm40.dll</DLLPOGM>
+    <DLLPOSR>posr40.dll</DLLPOSR>
+    <DLLPOWR>powr42.dll</DLLPOWR>
+    <DLLPSFS>psfs40.dll</DLLPSFS>
+    <DLLPSSF>pssf40.dll</DLLPSSF>
+    <DLLSAIN>sain50.dll</DLLSAIN>
+    <DLLSAMO>samo50.dll</DLLSAMO>
+    <DLLSARH>sarh50.dll</DLLSARH>
+    <DLLSEBO>sebo41.dll</DLLSEBO>
+    <DLLSEIO>seio41.dll</DLLSEIO>
+    <DLLSELB>selb41.dll</DLLSELB>
+    <DLLSEST>sest41.dll</DLLSEST>
+    <DLLSETE>sete41.dll</DLLSETE>
+    <DLLSOSO>soso41.dll</DLLSOSO>
+    <DLLSPXQ>spxq40.dll</DLLSPXQ>
+    <DLLUTLB>utlb01.dll</DLLUTLB>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="DEVELOP">
+      <Value>$(DEVELOP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIAPATH">
+      <Value>$(DIAPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIASHARE">
+      <Value>$(DIASHARE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIAOBJ">
+      <Value>$(DIAOBJ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIASRC">
+      <Value>$(DIASRC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIAOBJINCLUDE">
+      <Value>$(DIAOBJINCLUDE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIASRCINCLUDE">
+      <Value>$(DIASRCINCLUDE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FWDIR">
+      <Value>$(FWDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FLEXLM">
+      <Value>$(FLEXLM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="USERDLLS">
+      <Value>$(USERDLLS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PATHPREFIX">
+      <Value>$(PATHPREFIX)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="FLEXLIB">
+      <Value>$(FLEXLIB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LICENSERESOURCELIB">
+      <Value>$(LICENSERESOURCELIB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBCI">
+      <Value>$(LIBLBCI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBCP">
+      <Value>$(LIBLBCP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBCX">
+      <Value>$(LIBLBCX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBDC">
+      <Value>$(LIBLBDC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBDS">
+      <Value>$(LIBLBDS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBEL">
+      <Value>$(LIBLBEL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFL">
+      <Value>$(LIBLBFL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBGS">
+      <Value>$(LIBLBGS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBGCCLASSES">
+      <Value>$(LIBLBGCCLASSES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBGCROUTINES">
+      <Value>$(LIBLBGCROUTINES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51FIELDVALUEFILE">
+      <Value>$(LIBLBFW51FIELDVALUEFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51GEOMETRY">
+      <Value>$(LIBLBFW51GEOMETRY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51GUIFRAME">
+      <Value>$(LIBLBFW51GUIFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51MODELFRAME">
+      <Value>$(LIBLBFW51MODELFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51OPENGLFRAME">
+      <Value>$(LIBLBFW51OPENGLFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51TENSOR">
+      <Value>$(LIBLBFW51TENSOR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51TETMESH">
+      <Value>$(LIBLBFW51TETMESH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LIBLBFW51TRIANGLE">
+      <Value>$(LIBLBFW51TRIANGLE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLANALYSISGUI">
+      <Value>$(DLLANALYSISGUI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFLDSWIDGETS">
+      <Value>$(DLLFLDSWIDGETS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLGUICOMPONENTS">
+      <Value>$(DLLGUICOMPONENTS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPPFAPI">
+      <Value>$(DLLPPFAPI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPPFGUI">
+      <Value>$(DLLPPFGUI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPPFMODEL">
+      <Value>$(DLLPPFMODEL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLAPLB">
+      <Value>$(DLLAPLB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLBAXQ">
+      <Value>$(DLLBAXQ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLCILB">
+      <Value>$(DLLCILB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLDCLB">
+      <Value>$(DLLDCLB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLDEMF">
+      <Value>$(DLLDEMF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLDEOU">
+      <Value>$(DLLDEOU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEIEM">
+      <Value>$(DLLEIEM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEIEV">
+      <Value>$(DLLEIEV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEIOU">
+      <Value>$(DLLEIOU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEUCT">
+      <Value>$(DLLEUCT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEULB">
+      <Value>$(DLLEULB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLEURE">
+      <Value>$(DLLEURE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFLMA">
+      <Value>$(DLLFLMA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFQEF">
+      <Value>$(DLLFQEF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFQFP">
+      <Value>$(DLLFQFP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFQIN">
+      <Value>$(DLLFQIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFQLO">
+      <Value>$(DLLFQLO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFQST">
+      <Value>$(DLLFQST)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSAC">
+      <Value>$(DLLFSAC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSAM">
+      <Value>$(DLLFSAM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSEF">
+      <Value>$(DLLFSEF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSEM">
+      <Value>$(DLLFSEM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSFL">
+      <Value>$(DLLFSFL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSGM">
+      <Value>$(DLLFSGM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSIA">
+      <Value>$(DLLFSIA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSPR">
+      <Value>$(DLLFSPR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSRD">
+      <Value>$(DLLFSRD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLFSSV">
+      <Value>$(DLLFSSV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFCV">
+      <Value>$(DLLHFCV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFEX">
+      <Value>$(DLLHFEX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFFO">
+      <Value>$(DLLHFFO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFIN">
+      <Value>$(DLLHFIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFLC">
+      <Value>$(DLLHFLC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFLO">
+      <Value>$(DLLHFLO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFLR">
+      <Value>$(DLLHFLR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFSO">
+      <Value>$(DLLHFSO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLHFSU">
+      <Value>$(DLLHFSU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLININ">
+      <Value>$(DLLININ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBAJ">
+      <Value>$(DLLLBAJ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBBB">
+      <Value>$(DLLLBBB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBCI">
+      <Value>$(DLLLBCI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBCP">
+      <Value>$(DLLLBCP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBCX">
+      <Value>$(DLLLBCX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBDC">
+      <Value>$(DLLLBDC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBDS">
+      <Value>$(DLLLBDS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBDY">
+      <Value>$(DLLLBDY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBEL">
+      <Value>$(DLLLBEL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBER">
+      <Value>$(DLLLBER)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFI">
+      <Value>$(DLLLBFI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFL">
+      <Value>$(DLLLBFL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWDIACOMMANDFILE">
+      <Value>$(DLLLBFWDIACOMMANDFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWDIADATAFILE">
+      <Value>$(DLLLBFWDIADATAFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWDIAFRAME">
+      <Value>$(DLLLBFWDIAFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWFIELDVALUEFILE">
+      <Value>$(DLLLBFWFIELDVALUEFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWFILOSMODELFILE">
+      <Value>$(DLLLBFWFILOSMODELFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWGEOMETRY">
+      <Value>$(DLLLBFWGEOMETRY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWGUIFRAME">
+      <Value>$(DLLLBFWGUIFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWMIDASFXDFILE">
+      <Value>$(DLLLBFWMIDASFXDFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWMODELFRAME">
+      <Value>$(DLLLBFWMODELFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWNASTRANFILE">
+      <Value>$(DLLLBFWNASTRANFILE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWOCCGEOMETRY">
+      <Value>$(DLLLBFWOCCGEOMETRY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWOPENGLFRAME">
+      <Value>$(DLLLBFWOPENGLFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWQTGUIFRAME">
+      <Value>$(DLLLBFWQTGUIFRAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWTENSOR">
+      <Value>$(DLLLBFWTENSOR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWTETMESH">
+      <Value>$(DLLLBFWTETMESH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBFWTRIANGLE">
+      <Value>$(DLLLBFWTRIANGLE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBGCCLASSES">
+      <Value>$(DLLLBGCCLASSES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBGCROUTINES">
+      <Value>$(DLLLBGCROUTINES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBGE">
+      <Value>$(DLLLBGE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBGS">
+      <Value>$(DLLLBGS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBJC">
+      <Value>$(DLLLBJC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBMA">
+      <Value>$(DLLLBMA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBME">
+      <Value>$(DLLLBME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDARPACK">
+      <Value>$(DLLLBPDARPACK)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDBIHAR">
+      <Value>$(DLLLBPDBIHAR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDEP">
+      <Value>$(DLLLBPDEP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDLP">
+      <Value>$(DLLLBPDLP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDLS">
+      <Value>$(DLLLBPDLS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDMETIS">
+      <Value>$(DLLLBPDMETIS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDOR">
+      <Value>$(DLLLBPDOR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPDQUAD">
+      <Value>$(DLLLBPDQUAD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPF">
+      <Value>$(DLLLBPF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBPO">
+      <Value>$(DLLLBPO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBQL">
+      <Value>$(DLLLBQL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBRD">
+      <Value>$(DLLLBRD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBSC">
+      <Value>$(DLLLBSC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBSO">
+      <Value>$(DLLLBSO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBTM">
+      <Value>$(DLLLBTM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLBUI">
+      <Value>$(DLLLBUI)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSAS">
+      <Value>$(DLLLSAS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSDD">
+      <Value>$(DLLLSDD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSEM">
+      <Value>$(DLLLSEM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSEV">
+      <Value>$(DLLLSEV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSFU">
+      <Value>$(DLLLSFU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSIT">
+      <Value>$(DLLLSIT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLLSLO">
+      <Value>$(DLLLSLO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMIRD">
+      <Value>$(DLLMIRD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMOCO">
+      <Value>$(DLLMOCO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMOFP">
+      <Value>$(DLLMOFP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMOLB">
+      <Value>$(DLLMOLB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMORD">
+      <Value>$(DLLMORD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLMOXQ">
+      <Value>$(DLLMOXQ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLCV">
+      <Value>$(DLLNLCV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLDU">
+      <Value>$(DLLNLDU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLEC">
+      <Value>$(DLLNLEC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLES">
+      <Value>$(DLLNLES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLIF">
+      <Value>$(DLLNLIF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLIN">
+      <Value>$(DLLNLIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLIS">
+      <Value>$(DLLNLIS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLIX">
+      <Value>$(DLLNLIX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLLB">
+      <Value>$(DLLNLLB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLLG">
+      <Value>$(DLLNLLG)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLLO">
+      <Value>$(DLLNLLO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLPR">
+      <Value>$(DLLNLPR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLRD">
+      <Value>$(DLLNLRD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLRF">
+      <Value>$(DLLNLRF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLRL">
+      <Value>$(DLLNLRL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLST">
+      <Value>$(DLLNLST)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNLTG">
+      <Value>$(DLLNLTG)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNMRS">
+      <Value>$(DLLNMRS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNMSA">
+      <Value>$(DLLNMSA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLNMST">
+      <Value>$(DLLNMST)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPEIN">
+      <Value>$(DLLPEIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPEKA">
+      <Value>$(DLLPEKA)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPELB">
+      <Value>$(DLLPELB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFAS">
+      <Value>$(DLLPFAS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFBF">
+      <Value>$(DLLPFBF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFBO">
+      <Value>$(DLLPFBO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFCS">
+      <Value>$(DLLPFCS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFEM">
+      <Value>$(DLLPFEM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFEV">
+      <Value>$(DLLPFEV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFIN">
+      <Value>$(DLLPFIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFMR">
+      <Value>$(DLLPFMR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFRN">
+      <Value>$(DLLPFRN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFSV">
+      <Value>$(DLLPFSV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPFUT">
+      <Value>$(DLLPFUT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPHIN">
+      <Value>$(DLLPHIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPHSU">
+      <Value>$(DLLPHSU)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPIEV">
+      <Value>$(DLLPIEV)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPIGE">
+      <Value>$(DLLPIGE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPILB">
+      <Value>$(DLLPILB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPIRD">
+      <Value>$(DLLPIRD)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPOFP">
+      <Value>$(DLLPOFP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPOFX">
+      <Value>$(DLLPOFX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPOGM">
+      <Value>$(DLLPOGM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPOSR">
+      <Value>$(DLLPOSR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPOWR">
+      <Value>$(DLLPOWR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPSFS">
+      <Value>$(DLLPSFS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLPSSF">
+      <Value>$(DLLPSSF)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSAIN">
+      <Value>$(DLLSAIN)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSAMO">
+      <Value>$(DLLSAMO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSARH">
+      <Value>$(DLLSARH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSEBO">
+      <Value>$(DLLSEBO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSEIO">
+      <Value>$(DLLSEIO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSELB">
+      <Value>$(DLLSELB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSEST">
+      <Value>$(DLLSEST)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSETE">
+      <Value>$(DLLSETE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSOSO">
+      <Value>$(DLLSOSO)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLSPXQ">
+      <Value>$(DLLSPXQ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DLLUTLB">
+      <Value>$(DLLUTLB)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

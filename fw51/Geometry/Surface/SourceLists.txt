@@ -1,0 +1,3 @@
+dia_add_sources(
+  IPlane.cpp ISurface.cpp Plane.cpp Surface.cpp TriSurface.cpp
+)

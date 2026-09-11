@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Base\2DGraphBase.cpp" />
+    <ClCompile Include="Base\2DGraphLineBase.cpp" />
+    <ClCompile Include="Base\2DGraphParentBase.cpp" />
+    <ClCompile Include="Base\ColorScale.cpp" />
+    <ClCompile Include="Base\ColorScaleDrawDef.cpp" />
+    <ClCompile Include="Base\CurveFunction.cpp" />
+    <ClCompile Include="Base\DisplayPair.cpp" />
+    <ClCompile Include="Base\Dragger.cpp" />
+    <ClCompile Include="Base\DrawCountVisitor.cpp" />
+    <ClCompile Include="Base\DrawDef.cpp" />
+    <ClCompile Include="Base\DrawVisitor.cpp" />
+    <ClCompile Include="Base\DrawVisitorBase.cpp" />
+    <ClCompile Include="Base\GeoObjectHandlerBase.cpp" />
+    <ClCompile Include="Base\InterfaceDrawDef.cpp" />
+    <ClCompile Include="Base\IOpenGLFrame.cpp" />
+    <ClCompile Include="Base\LabelPoint.cpp" />
+    <ClCompile Include="Base\LegendFrameBase.cpp" />
+    <ClCompile Include="Base\LineModifier.cpp" />
+    <ClCompile Include="Base\Marker.cpp" />
+    <ClCompile Include="Base\MouseListener.cpp" />
+    <ClCompile Include="Base\ObjectModifier.cpp" />
+    <ClCompile Include="Base\OpenGLArrow.cpp" />
+    <ClCompile Include="Base\OpenGLAxis.cpp" />
+    <ClCompile Include="Base\OpenGLDraw.cpp" />
+    <ClCompile Include="Base\OpenGLFrame.cpp" />
+    <ClCompile Include="Base\OpenGLScene.cpp" />
+    <ClCompile Include="Base\OpenGLStar.cpp" />
+    <ClCompile Include="Base\OpenGLViewProxy.cpp" />
+    <ClCompile Include="Base\PointModifier.cpp" />
+    <ClCompile Include="Base\PolygonCreator.cpp" />
+    <ClCompile Include="Base\PolygonModifier.cpp" />
+    <ClCompile Include="Base\PolyLineCreator.cpp" />
+    <ClCompile Include="Base\RectangleModifier.cpp" />
+    <ClCompile Include="Base\SphereSymbol.cpp" />
+    <ClCompile Include="Base\VectorSymbol.cpp" />
+    <ClCompile Include="Base\ZoomWindowDragger.cpp" />
+    <ClCompile Include="include\moc_GeoObjectHandlerBase.cpp" />
+    <ClCompile Include="include\moc_OpenGLScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\2DGraphBase.h" />
+    <ClInclude Include="include\2DGraphLineBase.h" />
+    <ClInclude Include="include\2DGraphParentBase.h" />
+    <ClInclude Include="include\ColorScale.h" />
+    <ClInclude Include="include\ColorScaleDrawDef.h" />
+    <ClInclude Include="include\CurveFunction.h" />
+    <ClInclude Include="include\DisplayPair.h" />
+    <ClInclude Include="include\Dragger.h" />
+    <ClInclude Include="include\DrawCountVisitor.h" />
+    <ClInclude Include="include\DrawDef.h" />
+    <ClInclude Include="include\DrawVisitor.h" />
+    <ClInclude Include="include\DrawVisitorBase.h" />
+    <ClInclude Include="include\IDrawDef.h" />
+    <ClInclude Include="include\InterfaceDrawDef.h" />
+    <ClInclude Include="include\IOpenGLDraw.h" />
+    <ClInclude Include="include\IOpenGLFrame.h" />
+    <ClInclude Include="include\ISymbol.h" />
+    <ClInclude Include="include\LabelPoint.h" />
+    <ClInclude Include="include\LegendFrameBase.h" />
+    <ClInclude Include="include\LineModifier.h" />
+    <ClInclude Include="include\Marker.h" />
+    <ClInclude Include="include\MouseListener.h" />
+    <ClInclude Include="include\ObjectModifier.h" />
+    <ClInclude Include="include\OpenGL.h" />
+    <ClInclude Include="include\OpenGLArrow.h" />
+    <ClInclude Include="include\OpenGLAxis.h" />
+    <ClInclude Include="include\OpenGLDraw.h" />
+    <ClInclude Include="include\OpenGLFrame.h" />
+    <ClInclude Include="include\OpenGLFrameExports.h" />
+    <ClInclude Include="include\OpenGLStar.h" />
+    <ClInclude Include="include\OpenGLViewProxy.h" />
+    <ClInclude Include="include\PointModifier.h" />
+    <ClInclude Include="include\PolygonCreator.h" />
+    <ClInclude Include="include\PolygonModifier.h" />
+    <ClInclude Include="include\PolyLineCreator.h" />
+    <ClInclude Include="include\RectangleModifier.h" />
+    <ClInclude Include="include\SphereSymbol.h" />
+    <ClInclude Include="include\VectorSymbol.h" />
+    <ClInclude Include="include\ZoomWindowDragger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\GeoObjectHandlerBase.h" />
+    <CustomBuild Include="include\OpenGLScene.h" />
+  </ItemGroup>
+</Project>

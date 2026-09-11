@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Global strain tensor</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="global strain tensor">
+	<param name="Keyword" value="prescribed displacements">
+</OBJECT>
+<h1>Global strain tensor</h1>
+<p>The prescribed displacements on the corner nodes of the model can be
+specified through a single global strain tensor.</p>
+<p>To specify a global strain tensor, open the &quot;Boundary&quot; tree node,
+and right-click its subnode &quot;Prescribed Displacements&quot;. A context
+sensitive menu appears with the option &quot;Global strain tensor&quot;. Click
+the option, and the Global Strain Tensor dialog appears.</p>
+<p>By default, the strain tensor is &quot;Undefined&quot;. If this is the case, the
+options that use this strain tensor will not available. If the tensor was defined, and
+its state is set to &quot;Undefined&quot;, all options that refer to the tensor
+are switched back to their defaults.</p>
+<p>The global strain tensor can be specified in two ways:</p>
+<ul>
+  <li>General</li>
+</ul>
+<blockquote>
+  <p>The Full Strain tensor is specified <span style="color: black">(including shear components)</span>.</p>
+</blockquote>
+<ul>
+  <li>Vertical</li>
+</ul>
+<blockquote>
+  <p>Set the Half Strain tensor, <span style="color: black">assuming one 
+	principal strain is vertical. </span>This options allows only rotation in the NE plane. The azimuth is the angle
+  between the Northing axis and the Maximum horizontal direction. A positive
+  rotation is towards the Easting axis.</p>
+</blockquote>
+<p>If the strain tensor is specified, the &quot;Reference line azimuth&quot; must also be
+specified. This azimuth is 0 by default. The azimuth is the angle between the
+reference line and the Northing axis. A positive rotation is towards the Easting
+axis. See <a href="boundary_displacement_from_tensor.htm">Prescribed
+  displacements from a global strain tensor</a> for a mathematical description.</p>
+<p>If the strain tensor is specified in one way it will automatically converted to the
+other if the selection changes. If the selection changes from
+&quot;General&quot; to &quot;Vertical&quot; and the strain tensor contains shear
+terms in the vertical directions, these are set to zero.</p>
+
+<p><span style="font-size: 12.0pt; font-family: Times New Roman; color: black">
+The global strain tensor needs to be set manually for each Depletion stage (drop down 
+menu at the top).</span></p>
+
+<p>See <a href="boundary_prescribed_displacements.htm">Specifying prescribed 
+displacements</a> for help on attributing the global strain tensor to the 
+relevant corner nodes.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

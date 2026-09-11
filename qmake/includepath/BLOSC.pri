@@ -1,0 +1,2 @@
+# blosc_shared
+INCLUDEPATH += $$BLOSCSHARED_BASE

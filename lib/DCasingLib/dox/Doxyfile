@@ -1,0 +1,18 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = DCasingLib
+OUTPUT_DIRECTORY       = c:/Inetpub/wwwroot/DCasingLib
+INPUT                  = ..
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+TAGFILES              += ../../Quantity/dox/Quantity.tag=../../Quantity/html
+TAGFILES              += ../../QDianaStartUp/dox/QDianaStartUp.tag=../../QDianaStartUp/html
+GENERATE_TAGFILE       = DCasingLib.tag

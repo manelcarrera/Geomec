@@ -1,0 +1,40 @@
+UGUdU5UN_U
+>UGN>:1NG*
+U)UVU`Ua:k
+840;UNUU`2
+GU*=^7`UUN
+U:6s2FUGUG
+Ud;C+x7:kU
+:UUPye3kF3
+UUUG*UPUNU
+IN3UU@U>UN
+UNUMNU@Ulr
+UUNUwGU>UJ
+
+EXPIRE DATE            : 28/ 2/2014
+CUSTOMER NAME          : Shell Research bv KSEPL
+AUTHORIZED MODULES     : Linear Static and Eigenvalue Analysis        
+                       : Nonlinear and Dynamic Analysis               
+                       : Potential Flow Analysis                      
+MACHINE NAME           : Any machine
+LIMITS                 : Full FEMGV (default)                         
+Stop - Program terminated.
+ 
+************************************************************
+ Keyfile for   : Shell Research bv KSEPL
+ DIANA version : 8
+ Serial Number : DKN8231
+************************************************************
+ Copy this file to the following location
+ and then rename it to diafgv.k60
+ (DIANA installation directory)\share\lib\ 
+************************************************************
+DIANA Support
+TNO DIANA BV
+Delftechpark 19a
+2628 XJ  DELFT
+	The Netherlands
+Fax: +31 88 34262 99
+	Email: Support@tnodiana.com
+*****************************************************KB3.2**
+

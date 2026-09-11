@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# 1) needs to be eexecuted from the folder where  the script is
+
+#GEMHOME=.
+#TEMPDIR=D0.copy
+
+
+# 2) Look if with this can be executed from a different folder
+
+#this line must point to the location where geomec_rgi is installed
+GEMHOME=$(cd $(dirname $0); pwd -P)
+TEMPDIR=$(pwd)/D0.copy
+
+rm -rf $TEMPDIR
+cp -R $GEMHOME/D0 $TEMPDIR
+chmod -R +w $TEMPDIR
+
+LD_LIBRARY_PATH_=\
+$GEMHOME/Qt:\
+$GEMHOME/UserDLLs:\
+$GEMHOME/tbb:\
+$GEMHOME/diana/lib:\
+$GEMHOME/diana/hasp:\
+$GEMHOME/diana/intel:\
+$GEMHOME/gcc/lib64:\
+$GEMHOME/glib:\
+$GEMHOME/png:\
+$GEMHOME/zlib
+
+env -i \
+\
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH_ \
+DIAPATH=$GEMHOME/diana \
+DianaExeName=gm42 \
+\
+$GEMHOME/geomec_rgi \
+\
+/rockmechfile:$TEMPDIR/Gem15_rgi \
+$TEMPDIR/flowSRMS_coarse.gm4 \
+/outputdir:$TEMPDIR \
+/tempdir:$TEMPDIR
+
+# >& /dev/null

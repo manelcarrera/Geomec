@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\CutSurfaceUtil.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CheckFrm.cpp" />
+    <ClCompile Include="src\CutSurfaceDlg.cpp" />
+    <ClCompile Include="src\CutSurfaceFrame.cpp" />
+    <ClCompile Include="src\CutsurfaceTreeView.cpp" />
+    <ClCompile Include="src\CutSurfaceUtil.cpp" />
+    <ClCompile Include="src\EditForm.cpp" />
+    <ClCompile Include="src\GLView.cpp" />
+    <ClCompile Include="src\SelSurfDlg.cpp" />
+    <ClCompile Include="src\SelSurfFormView.cpp" />
+    <ClCompile Include="src\SelSurfFrame.cpp" />
+    <ClCompile Include="src\SelSurfGLView.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CutSurfaceUtil.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="toolbar1.bmp" />
+    <Image Include="well_view_bar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\CheckFrm.h" />
+    <ClInclude Include="h\CutSurfaceDlg.h" />
+    <ClInclude Include="h\CutSurfaceFrame.h" />
+    <ClInclude Include="h\CutsurfaceTreeView.h" />
+    <ClInclude Include="h\EditForm.h" />
+    <ClInclude Include="h\GLView.h" />
+    <ClInclude Include="h\NamedSurfaceMap.h" />
+    <ClInclude Include="h\SelSurfDlg.h" />
+    <ClInclude Include="h\SelSurfFormView.h" />
+    <ClInclude Include="h\SelSurfFrame.h" />
+    <ClInclude Include="h\SelSurfGLView.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+</Project>

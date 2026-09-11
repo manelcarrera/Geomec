@@ -1,0 +1,1101 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"VC++"
+	    name       	"Scripting"
+	    value      	FALSE)
+	(object Attribute
+	    tool       	"Traversal"
+	    name       	"CodeFile"
+	    value      	""))
+    quid       	"3A34C2DA02E0"
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	1.000000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	16
+	gridY      	16
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	1
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"365C7A6603BC"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list
+	    (object Class "Geomec User"
+		quid       	"39FEEF4B0279"
+		documentation 	"The Geomec application has a single user. "
+		stereotype 	"Actor")
+	    (object Association "$UNNAMED$0"
+		quid       	"39FEEF7903A2"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"39FEEF7B014C"
+			supplier   	"Use Case View::Model Use Cases::Horizon::Insert Horizon"
+			quidu      	"39FEEF670003"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"39FEEF7B0160"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$3"
+		quid       	"39FEF36E02B8"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"39FEF36F029C"
+			supplier   	"Use Case View::Model Use Cases::Fault::Add Fault"
+			quidu      	"39FEF365032D"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"39FEF36F02A6"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$6"
+		quid       	"39FEF4B5029A"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"39FEF4B6027E"
+			supplier   	"Use Case View::Model Use Cases::Well path::Insert Wellpath"
+			quidu      	"39FEF48700BE"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"39FEF4B60292"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$9"
+		quid       	"39FEF53B01AD"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"39FEF53C0262"
+			supplier   	"Use Case View::Model Use Cases::Regions::Add Region"
+			quidu      	"39FEF51E031E"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"39FEF53C026C"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$12"
+		quid       	"3A0184D20315"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$13"
+			quid       	"3A0184D4005B"
+			supplier   	"Use Case View::Global Geomec Use Cases::Open Filos File"
+			quidu      	"3A01846403AD"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$14"
+			quid       	"3A0184D40065"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$15"
+		quid       	"3A018526003B"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$16"
+			quid       	"3A0185260384"
+			supplier   	"Use Case View::Global Geomec Use Cases::New Model"
+			quidu      	"3A0184FB00F7"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$17"
+			quid       	"3A018526038E"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$18"
+		quid       	"3A0185C40291"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$19"
+			quid       	"3A0185C50293"
+			supplier   	"Use Case View::Global Geomec Use Cases::Save Filos File"
+			quidu      	"3A0185AA0384"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$20"
+			quid       	"3A0185C5029D"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$21"
+		quid       	"3A0187450371"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$22"
+			quid       	"3A0187460282"
+			supplier   	"Use Case View::Global Geomec Use Cases::Save Filos File As"
+			quidu      	"3A0185F8030E"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$23"
+			quid       	"3A018746028C"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$24"
+		quid       	"3A07B8B102E1"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$25"
+			quid       	"3A07B8B3009F"
+			supplier   	"Use Case View::Global Geomec Use Cases::Exit Geomec"
+			quidu      	"3A07B88E02B9"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$26"
+			quid       	"3A07B8B300A9"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$27"
+		quid       	"3A07B9A5024C"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$28"
+			quid       	"3A07B9A7015E"
+			supplier   	"Use Case View::Model Use Cases::Horizon::Delete Horizon"
+			quidu      	"3A07B99502B7"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$29"
+			quid       	"3A07B9A70168"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$30"
+		quid       	"3A07BA2D0049"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$31"
+			quid       	"3A07BA2E0004"
+			supplier   	"Use Case View::Model Use Cases::Fault::Add Fault"
+			quidu      	"39FEF365032D"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$32"
+			quid       	"3A07BA2E0018"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$33"
+		quid       	"3A07BA550122"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$34"
+			quid       	"3A07BA5600B6"
+			supplier   	"Use Case View::Model Use Cases::Fault::Delete Fault"
+			quidu      	"3A07BA4D00F9"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$35"
+			quid       	"3A07BA5600C0"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$36"
+		quid       	"3A07BAE40196"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$37"
+			quid       	"3A07BAE50256"
+			supplier   	"Use Case View::Model Use Cases::Regions::Add Region"
+			quidu      	"39FEF51E031E"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$38"
+			quid       	"3A07BAE5026A"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$39"
+		quid       	"3A07BB0F006C"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$40"
+			quid       	"3A07BB1000EF"
+			supplier   	"Use Case View::Model Use Cases::Regions::Delete Region"
+			quidu      	"3A07BAF000FD"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$41"
+			quid       	"3A07BB1000F9"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$42"
+		quid       	"3A07BC9A02FF"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$43"
+			quid       	"3A07BC9B0210"
+			supplier   	"Use Case View::Model Use Cases::Well path::Delete Wellpath"
+			quidu      	"3A07BC8A01D9"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$44"
+			quid       	"3A07BC9B0224"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Association "$UNNAMED$45"
+		quid       	"3A07BE5F01D4"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$46"
+			quid       	"3A07BE600080"
+			supplier   	"Use Case View::Model Use Cases::Formation::Move Body"
+			quidu      	"3A07BE420240"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$47"
+			quid       	"3A07BE60008A"
+			supplier   	"Use Case View::Geomec User"
+			quidu      	"39FEEF4B0279")))
+	    (object Class_Category "Model Use Cases"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Model Use Cases.cat"
+		quid       	"3A07FD6D0152")
+	    (object Class_Category "View Use Cases"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\View Use Cases.cat"
+		quid       	"3A0805F2039D")
+	    (object Class_Category "Global Geomec Use Cases"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Global Geomec Use Cases.cat"
+		quid       	"3A2E540002BC")
+	    (object Class_Category "Material Library Use Cases"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Material Library Use Cases.cat"
+		quid       	"3A2E561D00ED"))
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Result View"
+		quid       	"39FEF5990306"
+		title      	"Result View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"sc"
+		name       	"SourceControlProject"
+		value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+		))
+	    (object Attribute
+		tool       	"sc"
+		name       	"SourceControlDeploymentUnit"
+		value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+		))
+	    (object Attribute
+		tool       	"sc"
+		name       	"SourceControlModelProperties"
+		value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+		))
+	    (object Attribute
+		tool       	"sc"
+		name       	"SourceControlPath"
+		value      	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design"))
+	quid       	"365C7A6603BB"
+	documentation 	
+|We will try to identify Design Patterns as described by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides.
+|
+|Each class will recieve a pattern adornment if its pattern is identified.
+|
+|Identified are:
+| - fly weight
+| - facade
+| - adapter
+| - factory
+| - singleton
+| - iterators
+|- strategy
+|
+|The development process will be top down and bottom up.
+|
+|Tasks this week
+|Sequence diagrams:
+| - Identify diagrams that need to created
+|State Machines:
+| - Wizards are prime candidates
+| - Model Integrity Checking
+| - Analysis Types
+| - File I/O
+	
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"365C7A6603BD"
+	logical_models 	(list unit_reference_list
+	    (object Class_Category "Geometry"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Geometry.cat"
+		quid       	"3A0193310333")
+	    (object Class_Category "MFC 6.0"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\MFC 6.0.cat"
+		quid       	"3A07D0A103E7")
+	    (object Class_Category "Files"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Files.cat"
+		quid       	"3A07EDCB0162")
+	    (object Class_Category "Geomec"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Geomec.cat"
+		quid       	"3A228C3D0398")
+	    (object Class_Category "Filos"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Filos.cat"
+		quid       	"3A2291CA02A1")
+	    (object Class_Category "VC++ Reverse Engineered"
+		is_unit    	TRUE
+		is_loaded  	FALSE
+		file_name  	"D:\\users\\all\\Geomec 3 Design\\VC++ Reverse Engineered.cat"
+		quid       	"3A71504500FB"))
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"365C7A6603C1"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object CategoryView "Logical View::Geometry" @1
+			location   	(384, 1680)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(240, 1596)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"Geometry")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A0193310333"
+			width      	300
+			height     	180)
+		    (object Label @2
+			location   	(400, 1266)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			nlines     	5
+			max_width  	606
+			label      	"The model package uses the Geometry package the build the graphical Geomec Model")
+		    (object Label @3
+			location   	(66, 31)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			nlines     	1
+			max_width  	1325
+			label      	"Structure of the Geomec 3 application")
+		    (object CategoryView "Logical View::Files" @4
+			location   	(1312, 992)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@4
+			    location   	(1168, 908)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"Files")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A07EDCB0162"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::Geomec" @5
+			location   	(816, 336)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@5
+			    location   	(672, 252)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"Geomec")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A228C3D0398"
+			width      	300
+			height     	180)
+		    (object ImportView "" @6
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A228E0803D4"
+			client     	@5
+			supplier   	@4
+			line_style 	0)
+		    (object CategoryView "Logical View::MFC 6.0" @7
+			location   	(1392, 336)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@7
+			    location   	(1248, 252)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"MFC 6.0")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A07D0A103E7"
+			width      	300
+			height     	180)
+		    (object ImportView "" @8
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A228E43022A"
+			client     	@5
+			supplier   	@7
+			line_style 	0)
+		    (object Label @9
+			location   	(576, 1008)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			nlines     	3
+			max_width  	575
+			label      	"The model uses the files package to save calculation data in filos")
+		    (object Label @10
+			location   	(1168, 512)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			nlines     	5
+			max_width  	588
+			label      	"The Geomec application use the files package to import user data and save additional model info in the filos database")
+		    (object CategoryView "Logical View::Filos" @11
+			location   	(1312, 1616)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@11
+			    location   	(1168, 1532)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"Filos")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A2291CA02A1"
+			width      	300
+			height     	180)
+		    (object Label @12
+			location   	(1344, 1136)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			nlines     	3
+			max_width  	556
+			label      	"The files package uses the filos package to access the filos database")
+		    (object ImportView "" @13
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A2291D70390"
+			client     	@4
+			supplier   	@11
+			line_style 	0)))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"365C7A6603BD"
+	physical_models 	(list unit_reference_list
+	    (object module "MFC 6.0" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Generate"
+			value      	"False")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ExportMap"
+			value      	(value Text 
+|*:"stdafx.h":SOURCE
+|CArray(3A07D0A7004C):<afxtempl.h>:AUTO
+|CAsyncSocket(3A07D0A3016A):<afxsock.h>:AUTO
+|CByteArray(3A07D0A70089):<afxcoll.h>:AUTO
+|CCachedDataPathProperty(3A07D0AB0392):<afxctl.h>:AUTO
+|CConnectionPoint(3A07D0B1012D):<afxctl.h>:AUTO
+|CCriticalSection(3A07D0A401ED):<afxmt.h>:AUTO
+|CDaoDatabase(3A07D0A402C9):<afxdao.h>:AUTO
+|CDaoException(3A07D0AD0272):<afxdao.h>:AUTO
+|CDaoFieldExchange(3A07D0C802B7):<afxdao.h>:AUTO
+|CDaoQueryDef(3A07D0A40373):<afxdao.h>:AUTO
+|CDaoRecordset(3A07D0A50090):<afxdao.h>:AUTO
+|CDaoRecordView(3A07D0BF0372):<afxdao.h>:AUTO
+|CDaoTableDef(3A07D0A502FD):<afxdao.h>:AUTO
+|CDaoWorkspace(3A07D0A5039D):<afxdao.h>:AUTO
+|CDatabase(3A07D0A600EC):<afxdb.h>:AUTO
+|CDataPathProperty(3A07D0AB02D3):<afxctl.h>:AUTO
+|CDBException(3A07D0AD02C2):<afxdb.h>:AUTO
+|CDBVariant(3A07D0C80343):<afxdb.h>:AUTO
+|CDockState(3A07D0A703B5):<afxadv.h>:AUTO
+|CDWordArray(3A07D0A700A8):<afxcoll.h>:AUTO
+|CEvent(3A07D0A40215):<afxmt.h>:AUTO
+|CFieldExchange(3A07D0C80393):<afxdb.h>:AUTO
+|CFontHolder(3A07D0C700E0):<afxctl.h>:AUTO
+|CFtpConnection(3A07D0A20172):<afxinet.h>:AUTO
+|CFtpFileFind(3A07D0A2037A):<afxinet.h>:AUTO
+|CGopherConnection(3A07D0A201B8):<afxinet.h>:AUTO
+|CGopherFile(3A07D0AD0037):<afxinet.h>:AUTO
+|CGopherFileFind(3A07D0A3000B):<afxinet.h>:AUTO
+|CGopherLocator(3A07D0A30141):<afxinet.h>:AUTO
+|CHtmlStream(3A07D0C50368):<afxisapi.h>:AUTO
+|CHtmlView(3A07D0C000AD):<afxhtml.h>:AUTO
+|CHttpConnection(3A07D0A20212):<afxinet.h>:AUTO
+|CHttpFile(3A07D0AD00AF):<afxinet.h>:AUTO
+|CHttpFilter(3A07D0C60083):<afxisapi.h>:AUTO
+|CHttpFilterContext(3A07D0C601B0):<afxisapi.h>:AUTO
+|CHttpServer(3A07D0C601F6):<afxisapi.h>:AUTO
+|CHttpServerContext(3A07D0C6034A):<afxisapi.h>:AUTO
+|CInternetConnection(3A07D0A20136):<afxinet.h>:AUTO
+|CInternetException(3A07D0AD03C6):<afxinet.h>:AUTO
+|CInternetFile(3A07D0AC02E9):<afxinet.h>:AUTO
+|CInternetSession(3A07D0A200BE):<afxinet.h>:AUTO
+|CList(3A07D0A70166):<afxtempl.h>:AUTO
+|CListView(3A07D0BE0262):<afxcview.h>:AUTO
+|CLongBinary(3A07D0A603BC):<afxdb.h>:AUTO
+|CMap(3A07D0A4005D):<afxtempl.h>:AUTO
+|CMapPtrToPtr(3A07D0A40085):<afxcoll.h>:AUTO
+|CMapPtrToWord(3A07D0A400C0):<afxcoll.h>:AUTO
+|CMapStringToOb(3A07D0A40111):<afxcoll.h>:AUTO
+|CMapStringToPtr(3A07D0A400FC):<afxcoll.h>:AUTO
+|CMapStringToString(3A07D0A4012F):<afxcoll.h>:AUTO
+|CMapWordToOb(3A07D0A400DE):<afxcoll.h>:AUTO
+|CMapWordToPtr(3A07D0A400A3):<afxcoll.h>:AUTO
+|CMultiLock(3A07D0C9029B):<afxmt.h>:AUTO
+|CMutex(3A07D0A4023E):<afxmt.h>:AUTO
+|CObArray(3A07D0A700CF):<afxcoll.h>:AUTO
+|CObList(3A07D0A701B5):<afxcoll.h>:AUTO
+|COleControl(3A07D0C201FA):<afxctl.h>:AUTO
+|COleControlModule(3A07D0AF0152):<afxctl.h>:AUTO
+|COlePropertyPage(3A07D0BC033C):<afxctl.h>:AUTO
+|CPictureHolder(3A07D0C7011B):<afxctl.h>:AUTO
+|CPropExchange(3A07D0C90087):<afxctl.h>:AUTO
+|CPtrArray(3A07D0A700ED):<afxcoll.h>:AUTO
+|CPtrList(3A07D0A7018E):<afxcoll.h>:AUTO
+|CRecentFileList(3A07D0AD0113):<afxadv.h>:AUTO
+|CRecordset(3A07D0A601F0):<afxdb.h>:AUTO
+|CRecordView(3A07D0C00020):<afxdb.h>:AUTO
+|CRichEditCntrItem(3A07D0B4029A):<afxrich.h>:AUTO
+|CRichEditDoc(3A07D0B301D0):<afxrich.h>:AUTO
+|CRichEditView(3A07D0BE02E4):<afxrich.h>:AUTO
+|CSemaphore(3A07D0A4026F):<afxmt.h>:AUTO
+|CSharedFile(3A07D0AA01B9):<afxadv.h>:AUTO
+|CSingleLock(3A07D0C902E0):<afxmt.h>:AUTO
+|CSocket(3A07D0A302FA):<afxsock.h>:AUTO
+|CSocketFile(3A07D0AC0023):<afxsock.h>:AUTO
+|CStringArray(3A07D0A7010C):<afxcoll.h>:AUTO
+|CStringList(3A07D0A701D3):<afxcoll.h>:AUTO
+|CSyncObject(3A07D0A40162):<afxmt.h>:AUTO
+|CTreeView(3A07D0BF0137):<afxcview.h>:AUTO
+|CTypedPtrArray(3A07D0C9033B):<afxtempl.h>:AUTO
+|CTypedPtrList(3A07D0C9038B):<afxtempl.h>:AUTO
+|CTypedPtrMap(3A07D0C903DB):<afxtempl.h>:AUTO
+|CUIntArray(3A07D0A70133):<afxcoll.h>:AUTO
+|CWordArray(3A07D0A70025):<afxcoll.h>:AUTO
+|
+			))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"InternalMap"
+			value      	(value Text "")))
+		quid       	"3A07D0A101E8"
+		documentation 	"This component contains the MFC 6.0 classes."
+		stereotype 	""
+		language   	"VC++")
+	    (object module "Geomec" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectFile"
+			value      	"D:\\users\\lnbx\\Diana\\Geomec 3\\Geomec\\Geomec.dsp")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"WorkspaceFile"
+			value      	"D:\\users\\lnbx\\Diana\\Geomec 3\\Geomec\\Geomec.dsw")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Kind"
+			value      	("KindSet" 302))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectName"
+			value      	"Geomec")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Generate"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Copyright"
+			value      	(value Text "Copyright (C) 1991 - 1999 Rational Software Corporation"))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"UpdateATL"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"SmartPointersOnAssoc"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"GenerateImports"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"FullPathInImports"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"UseImportAttributes"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ImportAttributes"
+			value      	"no_namespace named_guids")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"PutImportsIn"
+			value      	"stdafx.h")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ImportProjTypeLib"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"DefaultTypeLib"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"TypeLibLocation"
+			value      	"")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"CompileProjTypeLib"
+			value      	"True"))
+		quid       	"3A07D7650117"
+		stereotype 	"EXE"
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"3A11086A039D"
+			supplier   	"Component View::GeomecModel"
+			quidu      	"3A10F4130255"
+			supplier_is_spec 	TRUE)
+		    (object Module_Visibility_Relationship
+			quid       	"3A11087C017C"
+			supplier   	"Component View::View"
+			quidu      	"3A07EC7A01CB"
+			supplier_is_spec 	TRUE))
+		language   	"VC++")
+	    (object module "View" "NotAModuleType" "NotAModulePart"
+		quid       	"3A07EC7A01CB"
+		stereotype 	"DLL"
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"3A11088A00F0"
+			supplier   	"Component View::GeomecModel"
+			quidu      	"3A10F4130255"
+			supplier_is_spec 	TRUE))
+		language   	"VC++")
+	    (object module "Geometry" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectFile"
+			value      	"..\\..\\lnbx\\Diana\\Geomec 3\\Geometry\\Geometry.dsp")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"WorkspaceFile"
+			value      	"..\\..\\lnbx\\Diana\\Geomec 3\\Geometry\\Geometry.dsw")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Kind"
+			value      	("KindSet" 301))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectName"
+			value      	"Geometry")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Generate"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Copyright"
+			value      	(value Text "Copyright (C) 1991 - 1999 Rational Software Corporation"))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"UpdateATL"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"SmartPointersOnAssoc"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"GenerateImports"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"FullPathInImports"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"UseImportAttributes"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ImportAttributes"
+			value      	"no_namespace named_guids")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"PutImportsIn"
+			value      	"stdafx.h")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ImportProjTypeLib"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"DefaultTypeLib"
+			value      	"True")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"TypeLibLocation"
+			value      	"")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"CompileProjTypeLib"
+			value      	"True"))
+		quid       	"3A0FFF5C0393"
+		documentation 	"This general purpose library contains the basis geometry classes."
+		stereotype 	"DLL"
+		language   	"VC++")
+	    (object module "GeomecModel" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectFile"
+			value      	"GeomecModel\\GeomecModel.dsp")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"WorkspaceFile"
+			value      	"F:\\all\\Geomec3\\GeomecModel\\GeomecModel.dsw")
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Kind"
+			value      	("KindSet" 301))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"ProjectName"
+			value      	"GeomecModel"))
+		quid       	"3A10F4130255"
+		documentation 	"This component is a MFC extension DLL. The Geomec model is in defined in this DLL"
+		stereotype 	"DLL"
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"3A11089A002B"
+			supplier   	"Component View::Geometry"
+			quidu      	"3A0FFF5C0393"
+			supplier_is_spec 	TRUE))
+		language   	"VC++"))
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"365C7A6603D8"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ModView "Component View::Geomec" "NotAModuleType" "NotAModulePart" @14
+			location   	(368, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@14
+			    location   	(333, 359)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	128
+			    label      	"Geomec")
+			icon       	"EXE"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A07D7650117"
+			width      	230
+			autoResize 	TRUE
+			width      	230
+			height     	162)
+		    (object ModView "Component View::GeomecModel" "NotAModuleType" "NotAModulePart" @15
+			location   	(1152, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(1111, 359)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	151
+			    label      	"GeomecModel")
+			icon       	"DLL"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A10F4130255"
+			width      	272
+			autoResize 	TRUE
+			width      	272
+			height     	162)
+		    (object ModVisView "" @16
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A11086A039D"
+			client     	@14
+			supplier   	@15
+			line_style 	0)
+		    (object ModView "Component View::View" "NotAModuleType" "NotAModulePart" @17
+			location   	(1152, 960)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(1117, 935)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	127
+			    label      	"View")
+			icon       	"DLL"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A07EC7A01CB"
+			width      	228
+			autoResize 	TRUE
+			width      	228
+			height     	162)
+		    (object ModVisView "" @18
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A11087C017C"
+			client     	@14
+			supplier   	@17
+			line_style 	0)
+		    (object ModVisView "" @19
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A11088A00F0"
+			client     	@17
+			supplier   	@15
+			line_style 	0)
+		    (object ModView "Component View::Geometry" "NotAModuleType" "NotAModulePart" @20
+			location   	(1904, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@20
+			    location   	(1869, 359)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	128
+			    label      	"Geometry")
+			icon       	"DLL"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A0FFF5C0393"
+			width      	230
+			autoResize 	TRUE
+			width      	230
+			height     	162)
+		    (object ModVisView "" @21
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3A11089A002B"
+			client     	@15
+			supplier   	@20
+			line_style 	0)
+		    (object ModView "Component View::MFC 6.0" "NotAModuleType" "NotAModulePart" @22
+			location   	(1920, 928)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@22
+			    location   	(1885, 903)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	127
+			    label      	"MFC 6.0")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3A07D0A101E8"
+			width      	228
+			autoResize 	TRUE
+			width      	228
+			height     	162)))))
+    process_structure 	(object Processes
+	is_unit    	TRUE
+	is_loaded  	FALSE
+	file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Deployment View.prc"
+	quid       	"365C7A6603BE")
+    properties 	(object Properties
+	is_unit    	TRUE
+	is_loaded  	FALSE
+	file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Model Properties.prp"
+	quid       	"39ED5CDC0212"))

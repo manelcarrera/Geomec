@@ -1,0 +1,263 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Mohr-Coulomb hardening plasticit</title>
+<style>
+<!--
+h1
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Arial Unicode MS";
+	}
+p.body
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";
+	}
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="cohesion">
+	<param name="Keyword" value="dilatation angle">
+	<param name="Keyword" value="friction angle">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+	<param name="Keyword" value="mohr-coulomb">
+	<param name="Keyword" value="Poisson's ratio">
+	<param name="Keyword" value="Young's modulus">
+</OBJECT>
+
+<h1><span lang="EN-GB"><font face="Times New Roman">Mohr-Coulomb hardening 
+plasticity</font></span></h1>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">As an extra option to 
+the Mohr-Coulomb model it is possible to apply variable friction or cohesion 
+values, especially if the material hardens and/or softens during the plastic 
+deformation. </span></p>
+<p class="MsoNormal"><span lang="EN-GB">The failure (plasticity) criterion is:</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><img border="0" src="mohr_ch1.GIF" width="504" height="84"></p>
+<p class="MsoNormal"><span lang="EN-GB">[Equation 
+1]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB">(</span><span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB">) 
+&nbsp;&nbsp;&nbsp;friction angle, variable with plastic deformation </span>
+<span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB"> [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB">]
+</span></p>
+<p class="MsoNormal"><span lang="EN-GB">c(</span><span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB">)&nbsp;&nbsp;&nbsp;&nbsp;cohesion, variable with plastic deformation </span>
+<span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB">&nbsp; (MPa)</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family: Symbol">k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang="EN-GB">plastic deformation [-] see equation 2</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+&nbsp;</p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">In the figure below we 
+see that the plasticity function moves with deformation, since the maximum 
+stress increases, while the minimum stress remains equal. This hardening can be 
+simulated by either increasing the cohesion or the friction as a function of 
+plastic deformation. Combined effects are not possible, so f</span><sub><span lang="EN-GB" style="font-family: Symbol">f</span></sub><span lang="EN-GB" style="font-family: Times New Roman">&nbsp; 
+changes with </span><span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB">(</span><span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB">) 
+and </span><span lang="EN-GB" style="font-family: Times New Roman">f<sub>c </sub>
+changes<sub> </sub>with </span><span lang="EN-GB">c(</span><span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB">)</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Both the new f</span><sub><span lang="EN-GB" style="font-family: Symbol">f</span></sub><span lang="EN-GB" style="font-family: Times New Roman"> 
+and the f<sub>c</sub> match the laboratory or field-observed hardening 
+behaviour.</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">The user must supply 1 
+(linear) to 3 (trilinear) plastic strains at which new values of </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+and c are applied.</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="MsoNormal"><span lang="EN-GB">At elasticity, f&lt;0. Stress combinations 
+leading to f&gt;0 are not possible, hence at plasticity not only f=0 but also&nbsp;
+</span><span lang="EN-GB" style="font-family: Symbol">S</span><span lang="EN-GB"> 
+df/d</span><span lang="EN-GB" style="font-family: Symbol">s</span><span lang="EN-GB">
+</span><span lang="EN-GB" style="font-family: Symbol">Ds</span><span lang="EN-GB">=0, 
+which determines the change in </span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><img border="0" src="mohr_c42.GIF" width="541" height="70"></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">If plasticity occurs, the type of deformation 
+which takes place must be defined. Usually the plastic strain 
+(tensor) is dependent on the stress (tensor).</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The (derivative of the) deformation 
+function is generally not equal to plasticity law, but similar in that the 
+friction angle is replaced with a dilation angle </span>
+<span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">.</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">
+<img border="0" src="mohr_c43.gif" width="226" height="46"></span></p>
+<p class="MsoNormal"><span lang="EN-GB">[Equation 2]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><!--[if gte mso 9]>
+<![endif]--></p>
+<p class="MsoNormal"><img border="0" src="mohr_c44.gif" width="77" height="48"></p>
+<p class="MsoNormal"><span lang="en-gb">[</span><span lang="EN-GB">Equation 3]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+= dilation angle [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB">]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">The deformation can now be written (in 
+main stress-strain notation): </span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">
+<img border="0" src="mohr_c45.gif" width="232" height="113"></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="en-gb">[</span><span lang="EN-GB">Equation 4]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">The dilation under biaxial or triaxial 
+conditions can be expressed as -</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">v</span></sub><span lang="EN-GB">/</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> 
+= (</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB">+</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">2</span></sub><span lang="EN-GB">+</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">3</span></sub><span lang="EN-GB">)/</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> 
+= - sin </span><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">/(½(1- 
+sin </span><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">))
+</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><img border="0" src="mohr_c46.gif" width="169" height="54"></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">[Equation 5]</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><span lang="EN-GB">The intermediate stress </span>
+<span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">2</span></sub><span lang="EN-GB"> 
+is hence of no importance to neither the failure criterion nor the deformation, 
+which is in line with the shear plane approach.</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<span style="font-size: 10.0pt; line-height: 150%">&nbsp;</span></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<img border="0" src="mohr_ch2.GIF" width="576" height="289"></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt">Fig 1 representation of 
+cohesion or friction hardening.</span></p>
+<p class="body" style="line-height: 150%; margin: 6.0pt 0in">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="line-height: 150%; margin: 6.0pt 0in">
+<font face="Times New Roman">The (equivalent) plastic strain </font>
+<span style="font-family: Times New Roman">k</span><font face="Times New Roman"> 
+is defined here as:</font></p>
+<p class="body" style="line-height: 150%; margin: 6.0pt 0in">
+&nbsp;</p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<img border="0" src="mohr_ch3.gif" width="198" height="35"></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<!--[if gte mso 9]>
+<![endif]-->[Equation 6]</p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+&nbsp;</p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<img border="0" src="mohr_ch4.gif" width="329" height="31"></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<span lang="PT">[Equation 6a]</span></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">&nbsp;</p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<img border="0" src="mohr_ch5.gif" width="329" height="31"></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<span lang="EN-GB">[Equation 6b]</span></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">&nbsp;</p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<span lang="EN-GB" style="font-size: 10.0pt; line-height: 150%">&nbsp;</span></p>
+<span lang="EN-GB" style="font-size: 10.0pt; line-height: 150%; font-family: Times New Roman">
+<br clear="all" style="page-break-before: always">
+<img border="0" src="mohr_ch6.GIF" width="577" height="217"></span><p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">
+<br clear="ALL">
+<span lang="EN-GB" style="font-size: 10.0pt; line-height: 150%">Fig 2 : </span>
+<span style="font-size: 10.0pt; line-height: 150%">Example of hardening / 
+softening diagram</span></p>
+<p class="MsoNormal" style="line-height: 150%; margin: 6.0pt 0in">&nbsp;</p>
+<h2 style="line-height: 150%; margin: 6.0pt 0in">
+<span lang="EN-GB">Input 
+parameters</span></h2>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Times New Roman">E and </span>
+<span lang="EN-GB" style="font-family: Symbol">n</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(Young’s modulus [MPa], Poisson’s ratio [-]) </span></u></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Elastic parameters, 
+which determine elastic shear and bulk response. The values should be derived 
+from triaxial loading tests.</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Symbol">r</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(density [ kg / m<sup>3</sup>] ) </span></u></p>
+<p class="MsoNormal"><span lang="EN-GB">Bulk density for gravitational 
+calculations. </span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Times New Roman">c and </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(cohesion [MPa] and friction [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">])</span></u></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Used to define the 
+failure and deformation mechanisms at initial plasticity conditions</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Times New Roman">c or </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(cohesion [MPa] and friction [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">]) 
+with plastic deformation </span><span lang="EN-GB" style="font-family: Symbol">k</span></u></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">1 to 3 paired 
+combinations of plastic strain </span>
+<span lang="EN-GB" style="font-family: Symbol">k</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+[-] and modified values of c or </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+to define strain hardening or softening.</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(dilation [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">])</span></u></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Used to define the 
+relative amount of dilation during plastic deformation</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<u><span lang="EN-GB" style="font-family: Times New Roman">SHtot/Svtot; Shtot/Svtot, 
+SHtot-azimuth</span></u></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: 0">
+<font face="tim"><span lang="EN-GB">Initial stress field (after gravity loading). SHtot/Svtot [-] 
+is the highest horizontal/vertical stress ratio. SHtot-azimuth [º] is the 
+clockwise angle between the SHtot direction and the Northing. Shtot/Svtot is the lowest 
+horizontal/vertical stress ratio [-], perpendicular to the SHtot direction.</span></font></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: 0">
+&nbsp;</p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:0">
+<u><font face="symbol">a</font><font face="Times New Roman"><sub>v</sub> 
+(Volumetric Thermal Expansion Coefficient [°C<sup>-1</sup> or K<sup>-1</sup>]</font></u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Relative volumetric expansion per degree 
+temperature change. The value is three times the linear expansion coefficient, 
+sometimes provided for solids.</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<font face="tim"><span style="font-size: 10.0pt; line-height: 150%"><br clear="all" style="page-break-before: always">
+&nbsp;</span></font></p>
+
+</body>
+
+</html>

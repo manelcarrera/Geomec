@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{333B215F-0ADE-4F95-BE73-4D421DBE2BB2}</ProjectGuid>
+    <RootNamespace>gendiatest</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(SolutionDir)\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(SolutionDir)\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(SolutionDir)\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;$(LIBLBCX);glu32.lib;opengl32.lib;$(LIBLBEL);$(LIBLBFL);$(LIBLBCI);$(LIBLBDC);$(LIBLBDS);$(LIBLBGS);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);qwtd.lib;psapi.lib;HtmlHelp.lib;LicenseResourceD.lib;libhdf5_D.lib;libhdf5_cpp_D.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(QWTDIR)/lib;../FlexLM/lib64;$(CM2LIBPATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <Link>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;$(LIBLBCX);glu32.lib;opengl32.lib;$(LIBLBEL);$(LIBLBFL);$(LIBLBCI);$(LIBLBDC);$(LIBLBDS);$(LIBLBGS);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);qwt.lib;psapi.lib;HtmlHelp.lib;LicenseResource.lib;libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(QWTDIR)/lib;../FlexLM/lib64;$(CM2LIBPATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <Link>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;$(LIBLBCX);glu32.lib;opengl32.lib;$(LIBLBEL);$(LIBLBFL);$(LIBLBCI);$(LIBLBDC);$(LIBLBDS);$(LIBLBGS);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);qwt.lib;psapi.lib;HtmlHelp.lib;LicenseResource.lib;libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(QWTDIR)/lib;../FlexLM/lib64;$(CM2LIBPATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GENDIATEST)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SolutionDir)\fw51\FieldValueFile\FieldValueFile.vcxproj">
+      <Project>{466422f4-3259-419b-80ea-65d3de4bd8c6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\Geometry\Geometry.vcxproj">
+      <Project>{be554a53-3201-496e-912b-fd63c8962b90}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\ModelFrame\ModelFrame.vcxproj">
+      <Project>{ff0762fd-0778-4be1-97dd-e7aa6e8b104a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\OpenGLFrame\OpenGLFrame.vcxproj">
+      <Project>{6eb909d5-a8fa-48fe-9fb2-3fdcc75977db}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\Tensor\Tensor.vcxproj">
+      <Project>{bb3007b8-17c5-427d-b723-e3b8324218fc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\TetMesh\TetMesh.vcxproj">
+      <Project>{aeeacd24-e222-4747-832f-b010c51d9bbd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\fw51\Triangle\triangle.vcxproj">
+      <Project>{a9906d73-fb4f-495d-bca1-54f4bf13a444}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\blosc_filter\blosc_filter.vcxproj">
+      <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+      <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\CommonWellScheme\CommonWellScheme.vcxproj">
+      <Project>{d5ca483c-e972-4ca4-9ce2-f4ebc521108c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\ConsoleLibrary\ConsoleLibrary.vcxproj">
+      <Project>{b86ff4e0-616b-4972-9f3e-7094d1ca0347}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\CutSurfaceUtilModel\CutSurfaceUtilModel.vcxproj">
+      <Project>{761de266-29aa-40e9-9f2a-90dace0d8a2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\DCasingLib\DCasing\DCasing.vcxproj">
+      <Project>{f641edd0-67f9-4488-8f2d-ab1fe0ddb148}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\DianaCore\DianaCore.vcxproj">
+      <Project>{5272d857-c66b-4b8f-9aff-22e1a11d7886}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\DianaSignals\DianaSignals.vcxproj">
+      <Project>{ef5f3acb-d5d7-4aca-bf80-3c80280848a4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\FemAppModel\FemAppModel.vcxproj">
+      <Project>{27902801-b1f4-435f-8e7d-dde68fd398ba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\GeomecModel\GeomecModel.vcxproj">
+      <Project>{ee2e3ba6-3ce5-4962-a545-4399139e3efe}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\GeomecStringTable\GeomecStringTable.vcxproj">
+      <Project>{82df03e6-336a-4458-808b-d02fb1ccbaae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\MaterialLibraryXML\MaterialLibraryXML.vcxproj">
+      <Project>{a499d6a1-480e-4409-82f9-699e5658cfcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\MaterialLibrary\MaterialLibrary.vcxproj">
+      <Project>{6471453a-ba91-4241-823e-ff6cae2a242a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\MeshDataCacher\MeshDataCacher.vcxproj">
+      <Project>{c0204739-a48c-4d3b-bd5f-c74d65871061}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\NewWellScheme\NewWellScheme.vcxproj">
+      <Project>{2a6e8f7b-8d6b-4d66-ae56-1989dff03f6a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\QDianaStartUp\QDianaStartUp.vcxproj">
+      <Project>{9dd2d3b7-87c1-42d2-99c6-6dd2dbd71507}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\qtiocompressor\qtiocompressor.vcxproj">
+      <Project>{4ffd48fe-053e-4c8d-8060-cdbca4835590}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\Quantity\Quantity.vcxproj">
+      <Project>{be3d76e9-9084-464e-a152-863cb45cb664}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\RPN\RPN.vcxproj">
+      <Project>{4f25fb23-f39c-4e66-baf6-db3f6f8f15ac}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\TSMesh\TSMesh.vcxproj">
+      <Project>{0c6809c8-2d74-44a9-95d6-6b7f930007f9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\WELLSCHEMEUTILS\WellSchemeUtils.vcxproj">
+      <Project>{6b2bed05-e28a-4f03-8237-c23e23a95cb1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\WellScheme\WellScheme.vcxproj">
+      <Project>{196d6005-6814-4b11-89d7-dd391a44c239}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

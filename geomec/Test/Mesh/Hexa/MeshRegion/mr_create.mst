@@ -1,0 +1,28 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("mr_create.new","mr_create")
+
+Scenario ("Creation meshregion")
+StartScenario("Creation meshregion")
+	MeshregionStartup
+	DIM points(0 to 3) AS MESHPOINT 
+	points(0).x = 20
+	points(0).y = 20
+	points(1).x = 80
+	points(1).y = 20
+	points(2).x = 80
+	points(2).y = 80
+	points(3).x = 20
+	points(3).y = 80
+
+	CreateMeshRegion(points,5,5)
+ScenarioPass
+Scenario Cleanup 'and handling of scenario failure
+	ExitNoSave	
+End Scenario
+
+EndLog
+
+End

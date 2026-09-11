@@ -1,0 +1,184 @@
+# local vars
+
+# ENVVARS
+
+# QTDIR
+
+# MCR: made manually
+
+SHELLSOFTBASE = /glb/data/hpcrnd/easybuild/PRODUCTION/software/rhel/7
+GLIB2PATH = $$SHELLSOFTBASE/GLib/2.54.3-GCCcore-7.3.0
+
+#DIANAAPP_BASE = $$ROOT/diana_app/h
+GMDIANAAPP_BASE = $$ROOT/gm_diana_app/h
+#CREATEFILOS_BASE = $$ROOT/createfilos_app/h
+DIANAGLUE_BASE = $$LBROOT/DianaGlue/h
+MODGMBUS_BASE = $$PROTOROOT/ModGMBus/h
+#GEOMECLAUNCHER_BASE = $$ROOT/geomec_launcher/h
+
+CREATERGINTERFACETESTS_BASE = $$TESTSROOT/CreateRGInterfaceTests/h
+
+MATLIB_BASE = $$LBROOT/MaterialLibrary/h
+
+MFCMODELFRAME_BASE = $$LBROOT/MfcModelFrame/h
+
+# FW51
+FW_GEOMETRY			= $$FWROOT/Geometry/include
+FW_MODELFRAME		= $$FWROOT/ModelFrame/include # !!!!!!!
+FW_FIELDVALUEFILE	= $$FWROOT/FieldValueFile/include
+FW_TENSOR			= $$FWROOT/Tensor/include
+
+FW_OPENGLFRAME		+= $$FWROOT/OpenGLFrame/Base
+FW_OPENGLFRAME		+= $$FWROOT/OpenGLFrame/include
+
+FW_TETMESH			+= $$FWROOT/TetMesh/include
+FW_TETMESH			+= $$FWROOT/TetMesh/tet_src/h
+
+FW_GUIFRAME			= $$FWROOT/GuiFrame/include
+
+FW_TRIANGLE			+= $$FWROOT/Triangle/Base
+FW_TRIANGLE			+= $$FWROOT/Triangle/Triangle
+FW_TRIANGLE			+= $$FWROOT/Triangle/include
+
+#TBB
+TBBDIR = $$LBROOT/tbb/linux
+
+# QT
+QTINCLUDES += $(QTDIR)/include
+QTINCLUDES += $(QTDIR)/QtCore
+QTINCLUDES += $(QTDIR)/QtGui
+QTINCLUDES += $(QTDIR)/QtOpenGL
+QTINCLUDES += $(QTDIR)/QtXml
+QTINCLUDES += $(QTDIR)/QtWidgets
+    
+FEMAPPGUI_BASE = $$LBROOT/FemAppGUI/h
+FEMAPPGUI_BASE += $$LBROOT/FemAppGUI/observer/h
+FEMAPPGUI_BASE += $$LBROOT/FemAppGUI/delegate/h
+
+DIANA += $(DIAPATH)/share/src/include
+DIANA += $(DIAPATH)/src/include
+DIANA += $(BOOST)/include
+
+DIANA_GOCAD					= $(DIAPATH)/share/src/lb/fw51/GOCADMesh/include
+
+DIANA_GC51					= $(DIAPATH)/share/src/lb/gc51/classes/include
+
+MFCGUIFRAME_BASE			= $$LBROOT/MfcGuiFrame/h
+MFCGUIFRAME_BASE			+= $$LBROOT/MfcGuiFrame/observer/h
+
+CUTSURFACEUTILMODEL_BASE	= $$LBROOT/CutSurfaceUtilModel/h
+MATLIB_BASE					= $$LBROOT/MaterialLibrary/h
+MATLIBXML_BASE				= $$LBROOT/MaterialLibraryXML/h
+QUANTITY_BASE				= $$LBROOT/Quantity/h
+GLOBALMESSAGE_BASE			= $$LBROOT/GlobalMessage/h
+DCASING_BASE				= $$LBROOT/DCasing/h
+COMMONWELLSCHEME_BASE		= $$LBROOT/CommonWellScheme/h
+WELLSCHEME_BASE				= $$LBROOT/WellScheme/h
+MESHDATACACHER_BASE			= $$LBROOT/MeshDataCacher/h
+DIANASIGNALS_BASE			= $$LBROOT/DianaSignals/h
+GEOMECSTRINGTABLE_BASE		= $$LBROOT/GeomecStringTable/h
+MPKERNEL_BASE				= $$LBROOT/MPKernel/h
+
+FEMAPPMODEL_BASE			= $$LBROOT/FemAppModel/h
+FEMAPPMODEL_BASE			+= $$LBROOT/FemAppModel/diana/h
+FEMAPPMODEL_BASE			+= $$LBROOT/FemAppModel/delegate/h
+
+DOUBLEEDITLIB_BASE			= $$LBROOT/DoubleEditLib/h
+
+CUTSURFACEUTIL_BASE +=  $$LBROOT/CutSurfaceUtil
+CUTSURFACEUTIL_BASE +=  $$LBROOT/CutSurfaceUtil/h
+
+DIANASTARTUP_BASE	= $$LBROOT/DianaStartup/h
+
+DIANACORE_BASE += $$LBROOT/DianaCore/h
+DIANACORE_BASE += $$LBROOT/DianaCore/Loads/h
+
+TSMESH_BASE += $$LBROOT/TSMesh/h
+TSMESH_BASE += $$LBROOT/TSMesh/Gts/h
+TSMESH_BASE += $$LBROOT/TSMesh/glib
+TSMESH_BASE += $$LBROOT/TSMesh/glib/gmodule
+TSMESH_BASE += $$LBROOT/TSMesh/glib/gobject
+
+WELLSCENE3D_BASE 		= $$LBROOT/WellScene3D/h
+NEWWELLSCHEME_BASE 		= $$LBROOT/NewWellScheme/h
+
+WELLSCHEMEUTILS_BASE 	= $$LBROOT/WellSchemeUtils/h
+WELLSCHEMEUTILS_BASE 	+= $$LBROOT/WellSchemeUtils/dlg/h
+
+GMDATABASE_BASE 	= $$LBROOT/GmDatabase/h
+#HDF5_BASE 			= $$LBROOT/hdf5/windows/include
+HDF5_BASE 			= $$LBROOT/hdf5/linux/include
+BLOSC_BASE 			= $$LBROOT/c-blosc-1.9.0/blosc
+BLOSCFILTER_BASE	+= $$LBROOT/blosc_filter/h
+BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/blosc
+BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/lz4-1.7.2
+BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/snappy-1.1.1
+BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/zlib-1.2.8
+BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/build/blosc
+
+CONSOLELIBRARY_BASE = $$LBROOT/ConsoleLibrary/h
+
+# GeomecModel
+GEOMECMODEL_PATH = $$LBROOT/GeomecModel
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/BaseModel/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/CLI/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/diana/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/Geology/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/GVT/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/HexaModel/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/Material/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/MaterialCreator/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/observer/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/TetraModel/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/TetraModel/Eclipse/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/TetraModel/GoCad/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/Value/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/View/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/visitor/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/WellPath/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/WellZoomInModel/h
+GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/Zoomin/h
+
+QTIOCOMPRESSOR_BASE	= $$LBROOT/qtiocompressor/h
+ZLIB_BASE			= $$LBROOT/zlib-1.2.6
+QTWINMIGRATE_BASE	= $$LBROOT/qtwinmigrate/h
+RESCUE_BASE			= $$LBROOT/RESCUE/h
+RPN_BASE			= $$LBROOT/RPN/h
+OPENINVENTORDATAINTERFACE_BASE = $$LBROOT/OpenInventorDataInterface/h
+
+GEOMEC_VERSION		= $$ROOT/version/h
+
+GEOMECCORA_BASE		= $$ROOT/geomec_cora/h
+GEOMECRGI_BASE		= $$ROOT/geomec_rgi/h
+GEOMECSHELL_BASE	= $$ROOT/geomec_shell/h
+    
+GEOMECCORALIB_BASE 	= $$LBROOT/geomec_cora_library/h
+GEOMECRGILIB_BASE 	= $$LBROOT/geomec_rgi_library/h
+
+GMSKUACONNECTOR_BASE = $$LBROOT/GMSkuaConnector/h
+    
+RGINTERFACE_BASE = $$LBROOT/RGInterface/h
+    
+WINDOWSREGISTRY_BASE = $$LBROOT/WindowsRegistry/h
+XMLLIB_BASE = $$LBROOT/XMLLib/h
+
+# IT
+PYLIB_BASE		= $$LBROOT/PyLib/h
+QUTIL_BASE		= $$LBROOT/QUtil/h
+UTIL_BASE		= $$LBROOT/Util/h
+PLUGINS_BASE	= $$LBROOT/Plugins/h
+IT_BASE			= $$LBROOT/IT/h
+
+# TESTS
+TESTSRUNTESTS_BASE			= $$TESTSROOT/Tests/h
+# Tests-lib
+TESTSMODELOPERATIONS_BASE	= $$TESTSLIBROOT/ModelOperations/h
+TESTSTESTLIB_BASE			= $$TESTSLIBROOT/TestLib/h
+TESTSSANITYCHECKS_BASE		= $$TESTSLIBROOT/SanityChecks/h
+TESTSFW51_BASE				= $$TESTSLIBROOT/Fw51/h
+TESTSMAT_BASE				= $$TESTSLIBROOT/Materials/h
+# other test apps
+TESTSBUILDENVIRONMENT_BASE	= $$TESTSROOT/BuildEnvironment/h
+    
+GTEST_BASE = $$LBROOT/gmock-1.7.0/gtest/include

@@ -1,0 +1,320 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Eclipse</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="eclipse">
+	<param name="Keyword" value="file formats">
+	<param name="Keyword" value="grid file">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">Eclipse / Grid file<o:p>
+(not functional yet !!!)
+</o:p>
+</span></h1>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">Geomec
+supports a sub-set of the GRID-format and the Extensible EGRID format. This
+means that only the relevant keywords for the Eclipse model are supported. A NX,
+NY, and NZ coordinate system with NUMRES reservoirs defines the Eclipse model in
+the file. NX defines the number of elements in the ‘Easting’ direction. NY
+defines the number of elements in the ‘Northing’ direction. <o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">DIMENS
+or GRIDSPEC<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">The
+keyword DIMENS or GRIDSPEC defines dimensions of the grid with 5 parameters. <o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt;text-indent:-11.35pt;mso-list:l11 level1 lfo32;
+mso-list-change:&quot;%1\:1\:0\:&quot; wed 20020712T1418;tab-stops:list 11.35pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">1<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>NX defines the number of elements in ‘Easting’ direction<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">Default: NX = 1<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt;text-indent:-11.35pt;mso-list:l11 level1 lfo32;
+mso-list-change:&quot;%1\:2\:0\:&quot; wed 20020712T1418;tab-stops:list 11.35pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">2<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>NY defines the number of elements in ‘Northing’ direction<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">Default: NY = 1<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt;text-indent:-11.35pt;mso-list:l11 level1 lfo32;
+mso-list-change:&quot;%1\:3\:0\:&quot; wed 20020712T1418;tab-stops:list 11.35pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">3<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>NZ defines the number of elements in ‘Depth’ direction<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">Default: NZ = 1<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt;text-indent:-11.35pt;mso-list:l62 level1 lfo31;
+mso-list-change:&quot;%1\:1\:0\:&quot; wed 20020712T1418;tab-stops:list 11.35pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">1<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>NUMRES defines the number of reservoirs.<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">Default: NUMRES = 1<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt;text-indent:-11.35pt;mso-list:l62 level1 lfo31;
+mso-list-change:&quot;%1\:2\:0\:&quot; wed 20020712T1418;tab-stops:list 11.35pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">2<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>F = Cartesian coordinate system<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="text-indent:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">T = Cylindrical coordinate system<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="margin-left:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">Default: F<o:p>
+</o:p>
+</span></p>
+<p class="Body" style="text-indent:11.35pt"><span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">Geomec
+supports a Cartesian coordinate system only.<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">Example:
+<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">SPECGRID<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">5 3 4 2 T /</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">COORDSYS<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The keyword COORDSYS
+defines the coordinate system layer for each reservoir with 6*NUMRES parameters.
+The following parameters are specified for each reservoir: <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:1\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">1<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Lower bound index for block index in k for grid blocks in this reservoir.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:2\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">2<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Upper bound index for block index in k for grid blocks in this reservoir.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:3\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">3<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Completion of circle, for grid blocks in this reservoir. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">‘COMP’
+<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Circle completed in theta (or y) direction.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">‘INCOMP’<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Circle is not completed<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">For
+the circle completed, the coordinate lines to be identified.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">Default:
+‘INCOMP’<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:4\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">4<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Connection to the reservoir below.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">‘JOIN’
+<span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Transmissibility’s will be calculated to the reservoir below.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">‘SEPARATE’
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Transmissibility’s
+will be isolated from the reservoir below<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:11.35pt;text-indent:11.35pt"><span style="mso-ansi-language:EN-GB">Default:
+‘SEPARATE’<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:5\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">5<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Lower bound for lateral reservoir connection<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt"><span style="mso-ansi-language:
+EN-GB">Default: Current reservoir number<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt;text-indent:-11.35pt;mso-list:
+l62 level2 lfo31;mso-list-change:&quot;%2\:6\:0\:&quot; wed 20020712T1418;tab-stops:list 22.7pt"><span style="mso-ansi-language:EN-GB">6<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>Upper bound for lateral reservoir connection<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:22.7pt"><span style="mso-ansi-language:
+EN-GB">Default: Current reservoir number<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Geomec ignores
+parameters 3 to 6.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Body"><i style="mso-bidi-font-style:normal"><span style="font-size:
+12.0pt;mso-bidi-font-size:10.0pt">Example: <o:p>
+</o:p>
+</span></i></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">NX = 5, NY = 3, NZ = 4, NUMRES = 2<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">COORDSYS<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">1 2 ‘COMP’ <span style="mso-tab-count:1">&nbsp;&nbsp; </span>/<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">3 4 ‘INCOMP’ /<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB"><span style="mso-spacerun: yes">&nbsp;</span><o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">COORD<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">A coordinate line
+defines the possible position for grid block corner points, for each (i,j) and
+for each reservoir in the grid. Given the depth of a particular grid block
+corner, and the associated coordinate line, the x and y coordinates representing
+two distinct point on it. If the (x, y) coordinates of the top and bottom points
+are identical, then the z coordinates of the points are not used in Geomec. The
+keyword COORD is followed by 2*(NY+1)*(NX+1)*NUMRES X,Y,Z coordinates. These
+coordinates describe the upper- and lower grid of the reservoirs.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">ZCORN<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Each grid block has 8
+corners. This keyword enables the depths of each corner of each grid block to be
+separately specified. It is used for specifying depths for corner point geometry.
+The keyword ZCORN is followed by (2 * NX) * (2 * NY) * (2 * NZ) values, with the
+two corners in the NX direction of the first grid block being first specified,
+then two corners for the next block in the I direction, and so on. The last
+value is followed by a slash (/).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:EN-GB">Example:<o:p>
+</o:p>
+</span></i></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">Here
+NX = 3, NY = 2, NZ = 2<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">ZCORN<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">24
+* 1000<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">24
+* 1020<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">24
+* 1020<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">24
+* 1040 /</span><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">ACTNUM<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">This
+keyword is followed by NX*NY*NZ values for each Eclipse element. The value must
+contain one of the following values:<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">0 –
+Inactive<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">1 –
+Active (or active matrix for dual porosity runs)<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">2 –
+Active fracture (for dual porosity runs)<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">3 –
+Active matrix and fracture (for dual porosity runs)<o:p>
+</o:p>
+</span></p>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">The
+ACTNUM table is optional and is ignored by Geomec. All defined cells are
+important from a geo-mechanical point of view.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+
+<h4><span style="mso-ansi-language:EN-GB">Properties<o:p>
+</o:p>
+</span></h4>
+<p class="Body"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">Properties
+like pressures or material properties are specified by a value for each Eclipse
+element. Every property has its own keyword. The available keywords are
+described in the chapter <a href="../general/tags.htm">tags for data</a>. The keywords are followed by NX*NY*NZ
+values. The last value is followed by a slash (/).<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

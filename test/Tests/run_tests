@@ -1,0 +1,116 @@
+#!/bin/sh
+
+##################################
+#
+# save and update PATH and LD_LIBRARY_PATH
+#
+##################################
+#
+# FXIME: if execution breaks then PATH stays wrong
+#
+# save current PATH and LD_LIBRARY_PATH
+#
+PATH_=$PATH
+LD_LIBRARY_PATH_=$LD_LIBRARY_PATH
+#
+#
+#
+BIN=$(cd ../.. && pwd)_build/bin/$CONF
+#
+#
+# PATH
+#
+export PATH=$PATH:$(pwd)
+echo "--PATH-- (Modified)"
+echo $PATH
+echo ""
+#
+# LD_LIBRARY_PATH
+#
+PATH_TO_SO=$BIN/so
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PATH_TO_SO
+echo "--LD_LIBRARY_PATH-- (Modified)"
+echo $LD_LIBRARY_PATH
+echo ""
+#
+#
+#
+
+##################################
+#
+# update bins
+#
+##################################
+. ./copy_bins
+
+#
+# test needs to eb cut in piuces due to diana license timeout
+# it last for around 1 minute
+#
+a=( "$@" )
+#
+if [ ${#a[@]} -eq 0 ]
+then
+    a=(20 9 10 11 12 13 14 15)
+fi
+#
+for i in "${a[@]}" # test id
+do
+	##################################
+	#
+	# include/exclude bins
+	#
+	##################################
+	# 1: non-model related
+	# 3: CORA
+	c=$(python func.py $i) 
+
+	echo "--TESTS--"
+	echo $c
+	echo ""
+	#return
+
+	##################################
+	#
+	# License : create port forwarding
+	#
+	##################################
+	cd ../common
+	. ./run_PRE
+	cd -
+
+	##################################
+	#
+	# run tests
+	#
+	##################################
+	./Tests release --gm-model-path=../../Tests/Models --gtest_filter=$c 2>&1	
+
+	##################################
+	#
+	# License : release port forwarding
+	#
+	##################################
+	cd ../common
+	. ./run_POST
+	cd -
+done
+##################################
+#
+# restore PATH and LD_LIBRARY_PATH
+#
+##################################
+#
+# restore PATH
+#
+export PATH=$PATH_
+echo "--PATH-- (Restored)"
+echo $PATH
+echo ""
+#
+# restore LD_LIBRARY_PATH
+#
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH_
+echo "--LD_LIBRARY_PATH-- (Restored)"
+echo $LD_LIBRARY_PATH
+echo ""

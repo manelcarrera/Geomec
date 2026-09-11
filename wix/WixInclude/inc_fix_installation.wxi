@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="fixInstallation" Name="fixInstallation">
+    <Component Id="Component_fixInstallation" Guid="$(var.ComponentID_fixInstallation)" Win64="yes">
+      <File Id="fixInstallation.bat" Name="fixInstallation.bat" Source="$(var.WixInclude)\fixInstallation.bat" />
+    </Component>
+    <Directory Id="fixInstallation.resources" Name="resources">
+      <Component Id="Component_fixInstallation_resources" Guid="$(var.ComponentID_fixInstallation_resources)" Win64="yes">
+        <File Id="fixInstallation_haspdinst" Name="haspdinst.exe" Source="$(var.WixInclude)\haspdinst.exe" />
+        <File Id="fixInstallation_wixhasppostinstall" Name="WixHaspPostInstall.exe" Source="$(var.WixHaspPostInstall.TargetPath)" />
+      </Component>
+    </Directory>
+  </Directory>
+  
+</Include>

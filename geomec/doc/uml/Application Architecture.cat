@@ -1,0 +1,5391 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Application Architecture"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0AE01C9"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CCmdTarget"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AE01D4"
+	    documentation 	"CCmdTarget is the base class for the Microsoft Foundation Class Library message-map architecture. A message map routes commands or messages to the member functions you write to handle them. (A command is a message from a menu item, command button, or accelerator key.)"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE01F1"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CCmdTarget"
+		    quid       	"3A07D0AE01FB"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AE0205"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AE020F"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AE0219"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0AE0223"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0AE022D"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0AE022E"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0AE0237"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0AE0238"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0AE024B"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsInvokeAllowed"
+		    quid       	"3A07D0AE0255"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dispid"
+			    quid       	"3A07D0AE0256"
+			    type       	"DISPID"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDispatchIID"
+		    quid       	"3A07D0AE0269"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pIID"
+			    quid       	"3A07D0AE026A"
+			    type       	"IID*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeInfoCount"
+		    quid       	"3A07D0AE0274"
+		    stereotype 	"virtual"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeLibCache"
+		    quid       	"3A07D0AE0287"
+		    stereotype 	"virtual"
+		    result     	"CTypeLibCache*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeLib"
+		    quid       	"3A07D0AE0291"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lcid"
+			    quid       	"3A07D0AE029B"
+			    type       	"LCID")
+			(object Parameter "ppTypeLib"
+			    quid       	"3A07D0AE029C"
+			    type       	"LPTYPELIB*"))
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateAggregates"
+		    quid       	"3A07D0AE02A6"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInterfaceHook"
+		    quid       	"3A07D0AE02B0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0AE02B9"
+			    type       	"const void*"))
+		    result     	"LPUNKNOWN"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetExtraConnectionPoints"
+		    quid       	"3A07D0AE02C4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pConnPoints"
+			    quid       	"3A07D0AE02CD"
+			    type       	"CPtrArray*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetConnectionHook"
+		    quid       	"3A07D0AE02D7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iid"
+			    quid       	"3A07D0AE02E1"
+			    type       	"const IID&"))
+		    result     	"LPCONNECTIONPOINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CWinThread"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AE02EB"
+	    documentation 	
+|A CWinThread object represents a thread of execution within an application. The main thread of execution is usually provided by an object derived from CWinApp; CWinApp is derived from CWinThread. Additional CWinThread objects allow multiple threads within a given application.
+|
+|There are two general types of threads that CWinThread supports: worker threads and user-interface threads.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AE0314"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~CWinThread"
+		    quid       	"3A07D0AE0315"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AE031F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AE0328"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AE0333"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreTranslateMessage"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0AE033D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0AE0346"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitInstance"
+		    quid       	"3A07D0AE0351"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Run"
+		    quid       	"3A07D0AE035B"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PumpMessage"
+		    quid       	"3A07D0AE036E"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnIdle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lCount);
+|
+			    )))
+		    quid       	"3A07D0AE0378"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lCount"
+			    quid       	"3A07D0AE0382"
+			    type       	"LONG"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsIdleMessage"
+		    quid       	"3A07D0AE038C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0AE038D"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExitInstance"
+		    quid       	"3A07D0AE03A0"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ProcessWndProcException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(e, pMsg);
+|
+			    )))
+		    quid       	"3A07D0AE03AB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "e"
+			    quid       	"3A07D0AE03B4"
+			    type       	"CException*")
+			(object Parameter "pMsg"
+			    quid       	"3A07D0AE03BE"
+			    type       	"const MSG*"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ProcessMessageFilter"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(code, lpMsg);
+|
+			    )))
+		    quid       	"3A07D0AE03C8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "code"
+			    quid       	"3A07D0AE03D2"
+			    type       	"int")
+			(object Parameter "lpMsg"
+			    quid       	"3A07D0AE03D3"
+			    type       	"LPMSG"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMainWnd"
+		    quid       	"3A07D0AE03DD"
+		    stereotype 	"virtual"
+		    result     	"CWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Delete"
+		    quid       	"3A07D0AF0008"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CWinApp"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AF0012"
+	    documentation 	"The CWinApp class is the base class from which you derive a Windows application object. An application object provides member functions for initializing your application (and each instance of it) and for running the application."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AF003A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CWinThread"
+		    quidu      	"3A07D0AE02EB"))
+	    operations 	(list Operations
+		(object Operation "~CWinApp"
+		    quid       	"3A07D0AF003B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AF0045"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AF004E"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AF0058"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WinHelp"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwData, nCmd);
+|
+			    )))
+		    quid       	"3A07D0AF0063"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwData"
+			    quid       	"3A07D0AF006C"
+			    type       	"DWORD")
+			(object Parameter "nCmd"
+			    quid       	"3A07D0AF006D"
+			    type       	"UINT"
+			    initv      	"HELP_CONTEXT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitInstance"
+		    quid       	"3A07D0AF0080"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Run"
+		    quid       	"3A07D0AF008A"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnIdle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lCount);
+|
+			    )))
+		    quid       	"3A07D0AF0094"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lCount"
+			    quid       	"3A07D0AF009E"
+			    type       	"LONG"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExitInstance"
+		    quid       	"3A07D0AF00A8"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ProcessWndProcException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(e, pMsg);
+|
+			    )))
+		    quid       	"3A07D0AF00B3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "e"
+			    quid       	"3A07D0AF00BC"
+			    type       	"CException*")
+			(object Parameter "pMsg"
+			    quid       	"3A07D0AF00BD"
+			    type       	"const MSG*"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OpenDocumentFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszFileName);
+|
+			    )))
+		    quid       	"3A07D0AF00D0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszFileName"
+			    quid       	"3A07D0AF00D1"
+			    type       	"LPCTSTR"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveAllModified"
+		    quid       	"3A07D0AF00DB"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDDECommand"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszCommand);
+|
+			    )))
+		    quid       	"3A07D0AF00EE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszCommand"
+			    quid       	"3A07D0AF00EF"
+			    type       	"LPTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddToRecentFileList"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName);
+|
+			    )))
+		    quid       	"3A07D0AF0102"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0AF0103"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitApplication"
+		    quid       	"3A07D0AF010D"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoMessageBox"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszPrompt, nType, nIDPrompt);
+|
+			    )))
+		    quid       	"3A07D0AF0120"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPrompt"
+			    quid       	"3A07D0AF0121"
+			    type       	"LPCTSTR")
+			(object Parameter "nType"
+			    quid       	"3A07D0AF012A"
+			    type       	"UINT")
+			(object Parameter "nIDPrompt"
+			    quid       	"3A07D0AF0134"
+			    type       	"UINT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoWaitCursor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nCode);
+|
+			    )))
+		    quid       	"3A07D0AF013E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCode"
+			    quid       	"3A07D0AF013F"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleControlModule"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AF0152"
+	    documentation 	"The COleControlModule class is the base class from which you derive an OLE control module object. This class provides member functions for initializing your control module. Each OLE control module that uses the Microsoft Foundation classes can only contain one object derived from COleControlModule. This object is constructed when other C++ global objects are constructed. Declare your derived COleControlModule object at the global level."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AF017A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CWinApp"
+		    quidu      	"3A07D0AF0012"))
+	    operations 	(list Operations
+		(object Operation "InitInstance"
+		    quid       	"3A07D0AF017B"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExitInstance"
+		    quid       	"3A07D0AF0185"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDocTemplate"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AF0198"
+	    documentation 	"CDocTemplate is an abstract base class that defines the basic functionality for document templates. You usually create one or more document templates in the implementation of your application's InitInstance function. A document template defines the relationships among three types of classes: a document class, a view class, and a frame window class."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AF01B6"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~CDocTemplate"
+		    quid       	"3A07D0AF01C0"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AF01CB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0AF01D5"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AF01DF"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0AF01EA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0AF01F3"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0AF01F4"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0AF01FD"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0AF0207"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitialUpdateFrame"
+		    quid       	"3A07D0AF0211"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrame"
+			    quid       	"3A07D0AF0212"
+			    type       	"CFrameWnd*")
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF021B"
+			    type       	"CDocument*")
+			(object Parameter "bMakeVisible"
+			    quid       	"3A07D0AF0225"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnIdle"
+		    quid       	"3A07D0AF022F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OpenDocumentFile"
+		    quid       	"3A07D0AF0239"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0AF0243"
+			    type       	"LPCTSTR")
+			(object Parameter "bMakeVisible"
+			    quid       	"3A07D0AF0244"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveAllModified"
+		    quid       	"3A07D0AF024E"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CloseAllDocuments"
+		    quid       	"3A07D0AF0261"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bEndSession"
+			    quid       	"3A07D0AF0262"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadTemplate"
+		    quid       	"3A07D0AF0275"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFirstDocPosition"
+		    quid       	"3A07D0AF027F"
+		    stereotype 	"abstract, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNextDoc"
+		    quid       	"3A07D0AF0289"
+		    stereotype 	"abstract, const"
+		    parameters 	(list Parameters
+			(object Parameter "rPos"
+			    quid       	"3A07D0AF0293"
+			    type       	"POSITION&"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddDocument"
+		    quid       	"3A07D0AF029D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF02A7"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RemoveDocument"
+		    quid       	"3A07D0AF02B1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF02B2"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDocString"
+		    quid       	"3A07D0AF02C5"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "rString"
+			    quid       	"3A07D0AF02C6"
+			    type       	"CString&")
+			(object Parameter "index"
+			    quid       	"3A07D0AF02CF"
+			    type       	"CDocTemplate::DocStringIndex"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "MatchDocType"
+		    quid       	"3A07D0AF02D9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0AF02E3"
+			    type       	"LPCTSTR")
+			(object Parameter "rpDocMatch"
+			    quid       	"3A07D0AF02E4"
+			    type       	"CDocument*&"))
+		    result     	"CDocTemplate::Confidence"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateNewDocument"
+		    quid       	"3A07D0AF02EE"
+		    stereotype 	"virtual"
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateNewFrame"
+		    quid       	"3A07D0AF0301"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF0302"
+			    type       	"CDocument*")
+			(object Parameter "pOther"
+			    quid       	"3A07D0AF030B"
+			    type       	"CFrameWnd*"))
+		    result     	"CFrameWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDefaultTitle"
+		    quid       	"3A07D0AF0316"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pDocument"
+			    quid       	"3A07D0AF031F"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSingleDocTemplate"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0AF0329"
+	    documentation 	
+|The CSingleDocTemplate class defines a document template that implements the single document interface (SDI). An SDI application uses the main frame window to display a document; only one document can be open at a time.
+|
+|A document template defines the relationship between a document class, a view class, and a frame window class.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AF0351"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocTemplate"
+		    quidu      	"3A07D0AF0198"))
+	    operations 	(list Operations
+		(object Operation "~CSingleDocTemplate"
+		    quid       	"3A07D0AF0352"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AF0365"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0AF0366"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AF0370"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OpenDocumentFile"
+		    quid       	"3A07D0AF0383"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0AF0384"
+			    type       	"LPCTSTR")
+			(object Parameter "bMakeVisible"
+			    quid       	"3A07D0AF038D"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFirstDocPosition"
+		    quid       	"3A07D0AF0398"
+		    stereotype 	"virtual, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNextDoc"
+		    quid       	"3A07D0AF03A2"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "rPos"
+			    quid       	"3A07D0AF03AB"
+			    type       	"POSITION&"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddDocument"
+		    quid       	"3A07D0AF03B6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF03BF"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RemoveDocument"
+		    quid       	"3A07D0AF03CA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0AF03D3"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDefaultTitle"
+		    quid       	"3A07D0AF03DD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDocument"
+			    quid       	"3A07D0AF03E7"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMultiDocTemplate"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B00009"
+	    documentation 	"The CMultiDocTemplate class defines a document template that implements the multiple document interface (MDI). An MDI application uses the main frame window as a workspace in which the user can open zero or more document frame windows, each of which displays a document."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B00031"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocTemplate"
+		    quidu      	"3A07D0AF0198"))
+	    operations 	(list Operations
+		(object Operation "~CMultiDocTemplate"
+		    quid       	"3A07D0B00032"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B00045"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0B00046"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B00050"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OpenDocumentFile"
+		    quid       	"3A07D0B00063"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B00064"
+			    type       	"LPCTSTR")
+			(object Parameter "bMakeVisible"
+			    quid       	"3A07D0B0006D"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadTemplate"
+		    quid       	"3A07D0B00077"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFirstDocPosition"
+		    quid       	"3A07D0B00082"
+		    stereotype 	"virtual, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNextDoc"
+		    quid       	"3A07D0B0008C"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "rPos"
+			    quid       	"3A07D0B00096"
+			    type       	"POSITION&"))
+		    result     	"CDocument*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddDocument"
+		    quid       	"3A07D0B000A1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0B000AA"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RemoveDocument"
+		    quid       	"3A07D0B000B5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDoc"
+			    quid       	"3A07D0B000BE"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDefaultTitle"
+		    quid       	"3A07D0B000C8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDocument"
+			    quid       	"3A07D0B000D2"
+			    type       	"CDocument*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleObjectFactory"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B000DC"
+	    documentation 	"The COleObjectFactory class implements the OLE class factory, which creates OLE objects such as servers, automation objects, and documents."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B00104"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~COleObjectFactory"
+		    quid       	"3A07D0B00105"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsRegistered"
+		    quid       	"3A07D0B0010F"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Register"
+		    quid       	"3A07D0B00122"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateRegistry"
+		    quid       	"3A07D0B0012C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bRegister"
+			    quid       	"3A07D0B0012D"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateObject"
+		    quid       	"3A07D0B00140"
+		    stereotype 	"virtual"
+		    result     	"CCmdTarget*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "VerifyUserLicense"
+		    quid       	"3A07D0B0014A"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLicenseKey"
+		    quid       	"3A07D0B00155"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwReserved"
+			    quid       	"3A07D0B0015E"
+			    type       	"DWORD")
+			(object Parameter "pbstrKey"
+			    quid       	"3A07D0B0015F"
+			    type       	"BSTR*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "VerifyLicenseKey"
+		    quid       	"3A07D0B00172"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bstrKey"
+			    quid       	"3A07D0B00173"
+			    type       	"BSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleTemplateServer"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B00186"
+	    documentation 	
+|The COleTemplateServer class is used for OLE visual editing servers, automation servers, and link containers (applications that support links to embeddings). 
+|
+|Use COleTemplateServer when implementing a full server, that is, a server that can be run as a standalone application. One COleTemplateServer object is needed for each type of server document an application supports; that is, if your server application supports both worksheets and charts, you must have two COleTemplateServer objects.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B001A4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleObjectFactory"
+		    quidu      	"3A07D0B000DC"))
+	    operations 	(list Operations
+		(object Operation "OnCreateObject"
+		    quid       	"3A07D0B001AE"
+		    stereotype 	"virtual"
+		    result     	"CCmdTarget*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0B001B9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B001C2"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0B001C3"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0B001CC"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0B001D6"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDataSource"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B001E0"
+	    documentation 	
+|The COleDataSource class acts as a cache into which an application places the data that it will offer during data transfer operations, such as Clipboard or drag-and-drop operations.
+|
+|Whenever you want to prepare data for a transfer, you should create an object of this class and fill it with your data using the most appropriate method for your data.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B00208"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~COleDataSource"
+		    quid       	"3A07D0B00209"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderGlobalData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, phGlobal);
+|
+			    )))
+		    quid       	"3A07D0B0021C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B0021D"
+			    type       	"LPFORMATETC")
+			(object Parameter "phGlobal"
+			    quid       	"3A07D0B00226"
+			    type       	"HGLOBAL*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderFileData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, pFile);
+|
+			    )))
+		    quid       	"3A07D0B00230"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B0023A"
+			    type       	"LPFORMATETC")
+			(object Parameter "pFile"
+			    quid       	"3A07D0B0023B"
+			    type       	"CFile*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium);
+|
+			    )))
+		    quid       	"3A07D0B00245"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B00258"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0B00262"
+			    type       	"LPSTGMEDIUM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium, bRelease);
+|
+			    )))
+		    quid       	"3A07D0B0026C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B00276"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0B00277"
+			    type       	"LPSTGMEDIUM")
+			(object Parameter "bRelease"
+			    quid       	"3A07D0B00280"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B0028B"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B00295"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B0029E"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDropSource"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B002B2"
+	    documentation 	"A COleDropSource object allows data to be dragged to a drop target. The COleDropTarget class handles the receiving portion of the drag-and-drop operation. The COleDropSource object is responsible for determining when a drag operation begins, providing feedback during the drag operation, and determining when the drag operation ends."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B002DA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0B002DB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B002E4"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "QueryContinueDrag"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(bEscapePressed, dwKeyState);
+|
+			    )))
+		    quid       	"3A07D0B002EE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bEscapePressed"
+			    quid       	"3A07D0B002F8"
+			    type       	"BOOL")
+			(object Parameter "dwKeyState"
+			    quid       	"3A07D0B002F9"
+			    type       	"DWORD"))
+		    result     	"SCODE"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GiveFeedback"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(dropEffect);
+|
+			    )))
+		    quid       	"3A07D0B0030C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dropEffect"
+			    quid       	"3A07D0B0030D"
+			    type       	"DROPEFFECT"))
+		    result     	"SCODE"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnBeginDrag"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pWnd);
+|
+			    )))
+		    quid       	"3A07D0B00320"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B00321"
+			    type       	"CWnd*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDropTarget"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B00334"
+	    documentation 	"A COleDropTarget object provides the communication mechanism between a window and the OLE libraries. Creating an object of this class allows a window to accept data through the OLE drag-and-drop mechanism."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B0035D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~COleDropTarget"
+		    quid       	"3A07D0B0035E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B00368"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B0037B"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B0037C"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Revoke"
+		    quid       	"3A07D0B00386"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDragEnter"
+		    quid       	"3A07D0B00399"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B0039A"
+			    type       	"CWnd*")
+			(object Parameter "pDataObject"
+			    quid       	"3A07D0B003A3"
+			    type       	"COleDataObject*")
+			(object Parameter "dwKeyState"
+			    quid       	"3A07D0B003AD"
+			    type       	"DWORD")
+			(object Parameter "point"
+			    quid       	"3A07D0B003AE"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"DROPEFFECT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDragOver"
+		    quid       	"3A07D0B003B8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B003C1"
+			    type       	"CWnd*")
+			(object Parameter "pDataObject"
+			    quid       	"3A07D0B003CB"
+			    type       	"COleDataObject*")
+			(object Parameter "dwKeyState"
+			    quid       	"3A07D0B003CC"
+			    type       	"DWORD")
+			(object Parameter "point"
+			    quid       	"3A07D0B003D5"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"DROPEFFECT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDrop"
+		    quid       	"3A07D0B003DF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B10001"
+			    type       	"CWnd*")
+			(object Parameter "pDataObject"
+			    quid       	"3A07D0B10002"
+			    type       	"COleDataObject*")
+			(object Parameter "dropEffect"
+			    quid       	"3A07D0B1000B"
+			    type       	"DROPEFFECT")
+			(object Parameter "point"
+			    quid       	"3A07D0B1000C"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDropEx"
+		    quid       	"3A07D0B1001F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B10020"
+			    type       	"CWnd*")
+			(object Parameter "pDataObject"
+			    quid       	"3A07D0B10029"
+			    type       	"COleDataObject*")
+			(object Parameter "dropDefault"
+			    quid       	"3A07D0B1002A"
+			    type       	"DROPEFFECT")
+			(object Parameter "dropList"
+			    quid       	"3A07D0B10033"
+			    type       	"DROPEFFECT")
+			(object Parameter "point"
+			    quid       	"3A07D0B1003D"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"DROPEFFECT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDragLeave"
+		    quid       	"3A07D0B10047"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B10048"
+			    type       	"CWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDragScroll"
+		    quid       	"3A07D0B1005B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B1005C"
+			    type       	"CWnd*")
+			(object Parameter "dwKeyState"
+			    quid       	"3A07D0B10065"
+			    type       	"DWORD")
+			(object Parameter "point"
+			    quid       	"3A07D0B10066"
+			    type       	"CPoint"
+			    quidu      	"3A07D0C70266"))
+		    result     	"DROPEFFECT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleMessageFilter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B10079"
+	    documentation 	
+|The COleMessageFilter class manages the concurrency required by the interaction of OLE applications. 
+|
+|The COleMessageFilter class is useful in visual editing server and container applications, as well as OLE automation applications. For server applications that are being called, this class can be used to make the application 'busy' so that incoming calls from other container applications are either canceled or retried later. This class can also be used to determine the action to be taken by a calling application when the called application is busy.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B100A1"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~COleMessageFilter"
+		    quid       	"3A07D0B100A2"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B100AC"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B100B6"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B100BF"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BeginBusyState"
+		    quid       	"3A07D0B100CA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndBusyState"
+		    quid       	"3A07D0B100D4"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnMessagePending"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pMsg);
+|
+			    )))
+		    quid       	"3A07D0B100E7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B100E8"
+			    type       	"const MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsSignificantMessage"
+		    quid       	"3A07D0B100FB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMsg"
+			    quid       	"3A07D0B100FC"
+			    type       	"MSG*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnBusyDialog"
+		    quid       	"3A07D0B10106"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "htaskBusy"
+			    quid       	"3A07D0B1010F"
+			    type       	"HTASK"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNotRespondingDialog"
+		    quid       	"3A07D0B1011A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "htaskBusy"
+			    quid       	"3A07D0B10123"
+			    type       	"HTASK"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CConnectionPoint"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B1012D"
+	    documentation 	
+|The CConnectionPoint class defines a special type of interface used to communicate with other OLE objects, called a 'connection point.' Unlike normal OLE interfaces, which are used to implement and expose the functionality of an OLE control, a connection point implements an outgoing interface that is able to initiate actions on other objects, such as firing events and change notifications.
+|
+|A connection consists of two parts: the object calling the interface, called the 'source,' and the object implementing the interface, called the 'sink.' By exposing a connection point, a source allows sinks to establish connections to itself. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B10155"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "GetIID"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|       // ToDo: Add your specialized code here
+|       return GUID_NULL;
+			    )))
+		    quid       	"3A07D0B1015F"
+		    stereotype 	"abstract"
+		    result     	"REFIID"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetContainer"
+		    quid       	"3A07D0B10169"
+		    stereotype 	"virtual"
+		    result     	"LPCONNECTIONPOINTCONTAINER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAdvise"
+		    quid       	"3A07D0B10174"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bAdvise"
+			    quid       	"3A07D0B1017D"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMaxConnections"
+		    quid       	"3A07D0B10187"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "QuerySinkInterface"
+		    quid       	"3A07D0B10192"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pUnkSink"
+			    quid       	"3A07D0B1019B"
+			    type       	"LPUNKNOWN"))
+		    result     	"LPUNKNOWN"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDocument"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B101A5"
+	    documentation 	"The CDocument class provides the basic functionality for user-defined document classes. A document represents the unit of data that the user typically opens with the File Open command and saves with the File Save command."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B101CD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~CDocument"
+		    quid       	"3A07D0B101CE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B101E1"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter ""
+			    quid       	"3A07D0B101E2"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B101EC"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0B101FF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B10200"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0B10209"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0B1020A"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0B10213"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0B1021F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetTitle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszTitle);
+|
+			    )))
+		    quid       	"3A07D0B10229"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszTitle"
+			    quid       	"3A07D0B10232"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultAccelerator"
+		    quid       	"3A07D0B1023D"
+		    stereotype 	"virtual"
+		    result     	"HACCEL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnIdle"
+		    quid       	"3A07D0B10247"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetPathName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName, bAddToMRU);
+|
+			    )))
+		    quid       	"3A07D0B1025A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B1025B"
+			    type       	"LPCTSTR")
+			(object Parameter "bAddToMRU"
+			    quid       	"3A07D0B10264"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsModified"
+		    quid       	"3A07D0B1026F"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetModifiedFlag"
+		    quid       	"3A07D0B10279"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bModified"
+			    quid       	"3A07D0B10282"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFirstViewPosition"
+		    quid       	"3A07D0B1028D"
+		    stereotype 	"virtual, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNextView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(rPosition);
+|
+			    )))
+		    quid       	"3A07D0B10297"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "rPosition"
+			    quid       	"3A07D0B102A0"
+			    type       	"POSITION&"))
+		    result     	"CView*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChangedViewList"
+		    quid       	"3A07D0B102AB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteContents"
+		    quid       	"3A07D0B102BE"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewDocument"
+		    quid       	"3A07D0B102C8"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpenDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (!%1::OnOpenDocument(lpszPathName))
+|        return FALSE;
+| 
+|%4 Add your specialized creation code here
+| 
+|return TRUE;
+|
+			    )))
+		    quid       	"3A07D0B102D2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B102DC"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszPathName);
+|
+			    )))
+		    quid       	"3A07D0B102E6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B102F0"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCloseDocument"
+		    quid       	"3A07D0B102FA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReportSaveLoadException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName, e, bSaving, nIDPDefault);
+|
+			    )))
+		    quid       	"3A07D0B10305"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B1030E"
+			    type       	"LPCTSTR")
+			(object Parameter "e"
+			    quid       	"3A07D0B1030F"
+			    type       	"CException*")
+			(object Parameter "bSaving"
+			    quid       	"3A07D0B10318"
+			    type       	"BOOL")
+			(object Parameter "nIDPDefault"
+			    quid       	"3A07D0B10322"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFile"
+		    quid       	"3A07D0B1032C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszFileName"
+			    quid       	"3A07D0B1032D"
+			    type       	"LPCTSTR")
+			(object Parameter "nOpenFlags"
+			    quid       	"3A07D0B10336"
+			    type       	"UINT")
+			(object Parameter "pError"
+			    quid       	"3A07D0B10337"
+			    type       	"CFileException*"))
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReleaseFile"
+		    quid       	"3A07D0B1034A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFile"
+			    quid       	"3A07D0B1034B"
+			    type       	"CFile*")
+			(object Parameter "bAbort"
+			    quid       	"3A07D0B10354"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanCloseFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pFrame);
+|
+			    )))
+		    quid       	"3A07D0B1035E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrame"
+			    quid       	"3A07D0B10368"
+			    type       	"CFrameWnd*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveModified"
+		    quid       	"3A07D0B10372"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCloseFrame"
+		    quid       	"3A07D0B1037D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrame"
+			    quid       	"3A07D0B10386"
+			    type       	"CFrameWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoSave"
+		    quid       	"3A07D0B10390"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B1039A"
+			    type       	"LPCTSTR")
+			(object Parameter "bReplace"
+			    quid       	"3A07D0B1039B"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoFileSave"
+		    quid       	"3A07D0B103A5"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateFrameCounts"
+		    quid       	"3A07D0B103B8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultMenu"
+		    quid       	"3A07D0B103C2"
+		    stereotype 	"virtual"
+		    result     	"HMENU"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDocument"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B103D6"
+	    documentation 	
+|COleDocument is the base class for OLE documents that support visual editing. COleDocument is derived from CDocument, which allows your OLE applications to use the document/view architecture provided by the Microsoft Foundation Class Library.
+|
+|COleDocument treats a document as a collection of CDocItem objects to handle OLE items. Both container and server applications require such an architecture because their documents must be able to contain OLE items.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B2000C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocument"
+		    quidu      	"3A07D0B101A5"))
+	    operations 	(list Operations
+		(object Operation "~COleDocument"
+		    quid       	"3A07D0B20016"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B20020"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B2002B"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B20034"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (ar.IsStoring())
+|{  // storing code
+|}
+|else
+|{ // loading code
+|}
+|
+			    )))
+		    quid       	"3A07D0B2003E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B20048"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInPlaceActiveItem"
+		    quid       	"3A07D0B20052"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B20053"
+			    type       	"CWnd*"))
+		    result     	"COleClientItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetStartPosition"
+		    quid       	"3A07D0B20066"
+		    stereotype 	"virtual, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNextItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pos);
+|
+			    )))
+		    quid       	"3A07D0B20070"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pos"
+			    quid       	"3A07D0B2007A"
+			    type       	"POSITION&"))
+		    result     	"CDocItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pItem);
+|
+			    )))
+		    quid       	"3A07D0B20084"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pItem"
+			    quid       	"3A07D0B20085"
+			    type       	"CDocItem*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RemoveItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pItem);
+|
+			    )))
+		    quid       	"3A07D0B20098"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pItem"
+			    quid       	"3A07D0B20099"
+			    type       	"CDocItem*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateModifiedFlag"
+		    quid       	"3A07D0B200A3"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPrimarySelectedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pView);
+|
+			    )))
+		    quid       	"3A07D0B200B6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pView"
+			    quid       	"3A07D0B200B7"
+			    type       	"CView*"))
+		    result     	"COleClientItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowViews"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bVisible);
+|
+			    )))
+		    quid       	"3A07D0B200C1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bVisible"
+			    quid       	"3A07D0B200CA"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetPathName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName, bAddToMRU);
+|
+			    )))
+		    quid       	"3A07D0B200D5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B200DE"
+			    type       	"LPCTSTR")
+			(object Parameter "bAddToMRU"
+			    quid       	"3A07D0B200E8"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteContents"
+		    quid       	"3A07D0B200F3"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCloseFrame"
+		    quid       	"3A07D0B200FD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrame"
+			    quid       	"3A07D0B20107"
+			    type       	"CFrameWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveModified"
+		    quid       	"3A07D0B20111"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnIdle"
+		    quid       	"3A07D0B2011B"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewDocument"
+		    quid       	"3A07D0B20126"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpenDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (!%1::OnOpenDocument(lpszPathName))
+|        return FALSE;
+| 
+|%4 Add your specialized creation code here
+| 
+|return TRUE;
+|
+			    )))
+		    quid       	"3A07D0B20130"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B20139"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszPathName);
+|
+			    )))
+		    quid       	"3A07D0B20144"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B2014D"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCloseDocument"
+		    quid       	"3A07D0B20158"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMoniker"
+		    quid       	"3A07D0B20162"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nAssign"
+			    quid       	"3A07D0B2016B"
+			    type       	"OLEGETMONIKER"))
+		    result     	"LPMONIKER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetContainer"
+		    quid       	"3A07D0B20176"
+		    stereotype 	"virtual"
+		    result     	"LPOLEITEMCONTAINER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadFromStorage"
+		    quid       	"3A07D0B20180"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveToStorage"
+		    quid       	"3A07D0B20193"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pObject"
+			    quid       	"3A07D0B20194"
+			    type       	"CObject*"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCmdMsg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nID, nCode, pExtra, pHandlerInfo);
+|
+			    )))
+		    quid       	"3A07D0B2019E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nID"
+			    quid       	"3A07D0B201A7"
+			    type       	"UINT")
+			(object Parameter "nCode"
+			    quid       	"3A07D0B201B1"
+			    type       	"int")
+			(object Parameter "pExtra"
+			    quid       	"3A07D0B201B2"
+			    type       	"void*")
+			(object Parameter "pHandlerInfo"
+			    quid       	"3A07D0B201BB"
+			    type       	"AFX_CMDHANDLERINFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleLinkingDoc"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B201C5"
+	    documentation 	
+|The COleLinkingDoc class is the base class for OLE container documents that support linking to the embedded items they contain. A container application that supports linking to embedded items is called a 'link container.' 
+|
+|When a linked item's source is an embedded item in another document, that containing document must be loaded in order for the embedded item to be edited. For this reason, a link container must be able to be launched by another container application when the user wants to edit the source of a linked item. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B201ED"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleDocument"
+		    quidu      	"3A07D0B103D6"))
+	    operations 	(list Operations
+		(object Operation "~COleLinkingDoc"
+		    quid       	"3A07D0B2020B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B20216"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B20220"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B20229"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowViews"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bVisible);
+|
+			    )))
+		    quid       	"3A07D0B20234"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bVisible"
+			    quid       	"3A07D0B2023D"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewDocument"
+		    quid       	"3A07D0B20247"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpenDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (!%1::OnOpenDocument(lpszPathName))
+|        return FALSE;
+| 
+|%4 Add your specialized creation code here
+| 
+|return TRUE;
+|
+			    )))
+		    quid       	"3A07D0B20252"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B2025B"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszPathName);
+|
+			    )))
+		    quid       	"3A07D0B20266"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B2026F"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCloseDocument"
+		    quid       	"3A07D0B20279"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMoniker"
+		    quid       	"3A07D0B20284"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nAssign"
+			    quid       	"3A07D0B2028D"
+			    type       	"OLEGETMONIKER"))
+		    result     	"LPMONIKER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetContainer"
+		    quid       	"3A07D0B20298"
+		    stereotype 	"virtual"
+		    result     	"LPOLEITEMCONTAINER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveToStorage"
+		    quid       	"3A07D0B202A2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pObject"
+			    quid       	"3A07D0B202AB"
+			    type       	"CObject*"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetLinkedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszItemName);
+|
+			    )))
+		    quid       	"3A07D0B202B6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszItemName"
+			    quid       	"3A07D0B202BF"
+			    type       	"LPCTSTR"))
+		    result     	"COleServerItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFindEmbeddedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszItemName);
+|
+			    )))
+		    quid       	"3A07D0B202C9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszItemName"
+			    quid       	"3A07D0B202D3"
+			    type       	"LPCTSTR"))
+		    result     	"COleClientItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReportSaveLoadException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName, e, bSaving, nIDPDefault);
+|
+			    )))
+		    quid       	"3A07D0B202DD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B202E7"
+			    type       	"LPCTSTR")
+			(object Parameter "e"
+			    quid       	"3A07D0B202E8"
+			    type       	"CException*")
+			(object Parameter "bSaving"
+			    quid       	"3A07D0B202F1"
+			    type       	"BOOL")
+			(object Parameter "nIDPDefault"
+			    quid       	"3A07D0B202F2"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RegisterIfServerAttached"
+		    quid       	"3A07D0B20305"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B20306"
+			    type       	"LPCTSTR")
+			(object Parameter "bMessage"
+			    quid       	"3A07D0B2030F"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleServerDoc"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B20323"
+	    documentation 	"COleServerDoc is the base class for OLE server documents. A server document can contain COleServerItem objects, which represent the server interface to embedded or linked items. When a server application is launched by a container to edit an embedded item, the item is loaded as its own server document; the COleServerDoc object contains just one COleServerItem object, consisting of the entire document. When a server application is launched by a container to edit a linked item, an existing document is loaded from disk; a portion of the document's contents is highlighted to indicate the linked item."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B2034B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleLinkingDoc"
+		    quidu      	"3A07D0B201C5"))
+	    operations 	(list Operations
+		(object Operation "~COleServerDoc"
+		    quid       	"3A07D0B2034C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B20356"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B20369"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B2036A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteContents"
+		    quid       	"3A07D0B20374"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveModified"
+		    quid       	"3A07D0B20387"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszPathName);
+|
+			    )))
+		    quid       	"3A07D0B20391"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B2039B"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCloseDocument"
+		    quid       	"3A07D0B203A6"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMoniker"
+		    quid       	"3A07D0B203B0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nAssign"
+			    quid       	"3A07D0B203BA"
+			    type       	"OLEGETMONIKER"))
+		    result     	"LPMONIKER"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivateUI"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bUndoable);
+|
+			    )))
+		    quid       	"3A07D0B203C4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bUndoable"
+			    quid       	"3A07D0B203C5"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivate"
+		    quid       	"3A07D0B203D8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowControlBars"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pFrameWnd, bShow);
+|
+			    )))
+		    quid       	"3A07D0B203E2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrameWnd"
+			    quid       	"3A07D0B30004"
+			    type       	"CFrameWnd*")
+			(object Parameter "bShow"
+			    quid       	"3A07D0B30005"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnClose"
+		    quid       	"3A07D0B3000F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwCloseOption"
+			    quid       	"3A07D0B30018"
+			    type       	"OLECLOSE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveEmbedding"
+		    quid       	"3A07D0B30023"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpStorage"
+			    quid       	"3A07D0B3002C"
+			    type       	"LPSTORAGE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetLinkedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszItemName);
+|
+			    )))
+		    quid       	"3A07D0B30036"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszItemName"
+			    quid       	"3A07D0B30040"
+			    type       	"LPCTSTR"))
+		    result     	"COleServerItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateDocument"
+		    quid       	"3A07D0B3004A"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetEmbeddedItem"
+		    quid       	"3A07D0B30055"
+		    stereotype 	"abstract"
+		    result     	"COleServerItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetHostNames"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszHost, lpszHostObj);
+|
+			    )))
+		    quid       	"3A07D0B3005F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszHost"
+			    quid       	"3A07D0B30068"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszHostObj"
+			    quid       	"3A07D0B30072"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnExecOleCmd"
+		    quid       	"3A07D0B3007C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pguidCmdGroup"
+			    quid       	"3A07D0B30086"
+			    type       	"const GUID*")
+			(object Parameter "nCmdID"
+			    quid       	"3A07D0B30087"
+			    type       	"DWORD")
+			(object Parameter "nCmdExecOpt"
+			    quid       	"3A07D0B30090"
+			    type       	"DWORD")
+			(object Parameter "pvarargIn"
+			    quid       	"3A07D0B30091"
+			    type       	"VARIANTARG*")
+			(object Parameter "pvarargOut"
+			    quid       	"3A07D0B3009A"
+			    type       	"VARIANTARG*"))
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDocObjectServer"
+		    quid       	"3A07D0B300A4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDocSite"
+			    quid       	"3A07D0B300AE"
+			    type       	"LPOLEDOCUMENTSITE"))
+		    result     	"CDocObjectServer*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bShow);
+|
+			    )))
+		    quid       	"3A07D0B300B8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bShow"
+			    quid       	"3A07D0B300CC"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetItemRects"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpPosRect, lpClipRect);
+|
+			    )))
+		    quid       	"3A07D0B300D6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpPosRect"
+			    quid       	"3A07D0B300E0"
+			    type       	"LPCRECT")
+			(object Parameter "lpClipRect"
+			    quid       	"3A07D0B300E1"
+			    type       	"LPCRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnReactivateAndUndo"
+		    quid       	"3A07D0B300EB"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFrameWindowActivate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bActivate);
+|
+			    )))
+		    quid       	"3A07D0B300FE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bActivate"
+			    quid       	"3A07D0B300FF"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDocWindowActivate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bActivate);
+|
+			    )))
+		    quid       	"3A07D0B30112"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bActivate"
+			    quid       	"3A07D0B30113"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateInPlaceFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pParentWnd);
+|
+			    )))
+		    quid       	"3A07D0B3011D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pParentWnd"
+			    quid       	"3A07D0B30126"
+			    type       	"CWnd*"))
+		    result     	"COleIPFrameWnd*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroyInPlaceFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pFrameWnd);
+|
+			    )))
+		    quid       	"3A07D0B30131"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrameWnd"
+			    quid       	"3A07D0B3013A"
+			    type       	"COleIPFrameWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnResizeBorder"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpRectBorder, lpUIWindow, bFrame);
+|
+			    )))
+		    quid       	"3A07D0B30145"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpRectBorder"
+			    quid       	"3A07D0B3014E"
+			    type       	"LPCRECT")
+			(object Parameter "lpUIWindow"
+			    quid       	"3A07D0B3014F"
+			    type       	"LPOLEINPLACEUIWINDOW")
+			(object Parameter "bFrame"
+			    quid       	"3A07D0B30158"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanCloseFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pFrame);
+|
+			    )))
+		    quid       	"3A07D0B30163"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrame"
+			    quid       	"3A07D0B3016C"
+			    type       	"CFrameWnd*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultMenu"
+		    quid       	"3A07D0B30180"
+		    stereotype 	"virtual"
+		    result     	"HMENU"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultAccelerator"
+		    quid       	"3A07D0B3018B"
+		    stereotype 	"virtual"
+		    result     	"HACCEL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFileTypeString"
+		    quid       	"3A07D0B30195"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rString"
+			    quid       	"3A07D0B3019E"
+			    type       	"CString&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewEmbedding"
+		    quid       	"3A07D0B301A9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpStorage"
+			    quid       	"3A07D0B301B2"
+			    type       	"LPSTORAGE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpenEmbedding"
+		    quid       	"3A07D0B301BD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpStorage"
+			    quid       	"3A07D0B301C6"
+			    type       	"LPSTORAGE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRichEditDoc"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxrich.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B301D0"
+	    documentation 	
+|A 'rich edit control' is a window in which the user can enter and edit text. The text can be assigned character and paragraph formatting, and can include embedded OLE objects. Rich edit controls provide a programming interface for formatting text. However, an application must implement any user interface components necessary to make formatting operations available to the user.
+|
+|The CRichEditDoc class, with CRichEditView and CRichEditCntrItem, provides the functionality of the rich edit control within the context of MFC's document view architecture. CRichEditView maintains the text and formatting characteristic of text. CRichEditDoc maintains the list of client items which are in the view. CRichEditCntrItem provides container-side access to the OLE client items.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B301F8"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleServerDoc"
+		    quidu      	"3A07D0B20323"))
+	    operations 	(list Operations
+		(object Operation "GetInPlaceActiveItem"
+		    quid       	"3A07D0B30202"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pWnd"
+			    quid       	"3A07D0B3020C"
+			    type       	"CWnd*"))
+		    result     	"COleClientItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B30216"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B30220"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B3022A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (ar.IsStoring())
+|{  // storing code
+|}
+|else
+|{ // loading code
+|}
+|
+			    )))
+		    quid       	"3A07D0B30234"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B3023E"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteContents"
+		    quid       	"3A07D0B30248"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateClientItem"
+		    quid       	"3A07D0B30252"
+		    stereotype 	"abstract, const"
+		    parameters 	(list Parameters
+			(object Parameter "preo"
+			    quid       	"3A07D0B3025C"
+			    type       	"REOBJECT*"
+			    initv      	"NULL"))
+		    result     	"CRichEditCntrItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetView"
+		    quid       	"3A07D0B30266"
+		    stereotype 	"virtual, const"
+		    result     	"CRichEditView*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetEmbeddedItem"
+		    quid       	"3A07D0B30271"
+		    stereotype 	"virtual"
+		    result     	"COleServerItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetPathName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszPathName, bAddToMRU);
+|
+			    )))
+		    quid       	"3A07D0B3027C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0B30285"
+			    type       	"LPCTSTR")
+			(object Parameter "bAddToMRU"
+			    quid       	"3A07D0B3028F"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetTitle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lpszTitle);
+|
+			    )))
+		    quid       	"3A07D0B30299"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszTitle"
+			    quid       	"3A07D0B3029A"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPrimarySelectedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pView);
+|
+			    )))
+		    quid       	"3A07D0B302AD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pView"
+			    quid       	"3A07D0B302AE"
+			    type       	"CView*"))
+		    result     	"COleClientItem*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetStartPosition"
+		    quid       	"3A07D0B302C1"
+		    stereotype 	"virtual, const"
+		    result     	"POSITION"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCloseFrame"
+		    quid       	"3A07D0B302CB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrameWnd"
+			    quid       	"3A07D0B302CC"
+			    type       	"CFrameWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateModifiedFlag"
+		    quid       	"3A07D0B302DF"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsModified"
+		    quid       	"3A07D0B302E9"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetModifiedFlag"
+		    quid       	"3A07D0B302F4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bModified"
+			    quid       	"3A07D0B302FD"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDocItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B30307"
+	    documentation 	"CDocItem is the base class for document items, which are components of a document's data. CDocItem objects are used to represent OLE items in both client and server documents."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B3032F"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "~CDocItem"
+		    quid       	"3A07D0B30339"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B30343"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B3034D"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B30357"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsBlank"
+		    quid       	"3A07D0B30361"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (ar.IsStoring())
+|{  // storing code
+|}
+|else
+|{ // loading code
+|}
+|
+			    )))
+		    quid       	"3A07D0B3036B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B30375"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleClientItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B3037F"
+	    documentation 	"The COleClientItem class defines the container interface to OLE items. An OLE item represents data, created and maintained by a server application, which can be 'seamlessly' incorporated into a document so that it appears to the user to be a single document. The result is a 'compound document' made up of the OLE item and a containing document."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B303A7"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocItem"
+		    quidu      	"3A07D0B30307"))
+	    operations 	(list Operations
+		(object Operation "Release"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwCloseOption);
+|
+			    )))
+		    quid       	"3A07D0B303B1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwCloseOption"
+			    quid       	"3A07D0B303B2"
+			    type       	"OLECLOSE"
+			    initv      	"OLECLOSE_NOSAVE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleClientItem"
+		    quid       	"3A07D0B303BC"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B303CF"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B303D9"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B303E3"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+|if (ar.IsStoring())
+|{  // storing code
+|}
+|else
+|{ // loading code
+|}
+|
+			    )))
+		    quid       	"3A07D0B40005"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B40006"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDrawAspect"
+		    quid       	"3A07D0B40010"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B40019"
+			    type       	"DVASPECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoVerb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nVerb, pView, lpMsg);
+|
+			    )))
+		    quid       	"3A07D0B40024"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nVerb"
+			    quid       	"3A07D0B4002D"
+			    type       	"LONG")
+			(object Parameter "pView"
+			    quid       	"3A07D0B40037"
+			    type       	"CView*")
+			(object Parameter "lpMsg"
+			    quid       	"3A07D0B40038"
+			    type       	"LPMSG"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetClipboardData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(bIncludeLink, lpOffset, lpSize);
+|
+			    )))
+		    quid       	"3A07D0B40042"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bIncludeLink"
+			    quid       	"3A07D0B4004B"
+			    type       	"BOOL")
+			(object Parameter "lpOffset"
+			    quid       	"3A07D0B40055"
+			    type       	"LPPOINT")
+			(object Parameter "lpSize"
+			    quid       	"3A07D0B40056"
+			    type       	"LPSIZE"))
+		    result     	"COleDataSource*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConvertTo"
+		    quid       	"3A07D0B40060"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "clsidNew"
+			    quid       	"3A07D0B40069"
+			    type       	"const CLSID&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ActivateAs"
+		    quid       	"3A07D0B40074"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszUserType"
+			    quid       	"3A07D0B4007D"
+			    type       	"LPCTSTR")
+			(object Parameter "clsidOld"
+			    quid       	"3A07D0B4007E"
+			    type       	"const CLSID&")
+			(object Parameter "clsidNew"
+			    quid       	"3A07D0B40087"
+			    type       	"const CLSID&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nCode, dwParam);
+|
+			    )))
+		    quid       	"3A07D0B40092"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCode"
+			    quid       	"3A07D0B4009B"
+			    type       	"OLE_NOTIFICATION")
+			(object Parameter "dwParam"
+			    quid       	"3A07D0B4009C"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetItemPosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(rPosition);
+|
+			    )))
+		    quid       	"3A07D0B400AF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rPosition"
+			    quid       	"3A07D0B400B0"
+			    type       	"CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnScrollBy"
+		    quid       	"3A07D0B400BA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "sizeScroll"
+			    quid       	"3A07D0B400C3"
+			    type       	"CSize"
+			    quidu      	"3A07D0C702E7"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDiscardUndoState"
+		    quid       	"3A07D0B400CE"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivateAndUndo"
+		    quid       	"3A07D0B400D8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivateUI"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bUndoable);
+|
+			    )))
+		    quid       	"3A07D0B400EB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bUndoable"
+			    quid       	"3A07D0B400EC"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowItem"
+		    quid       	"3A07D0B400FF"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetClipRect"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(rClipRect);
+|
+			    )))
+		    quid       	"3A07D0B40109"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rClipRect"
+			    quid       	"3A07D0B4010A"
+			    type       	"CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanActivate"
+		    quid       	"3A07D0B4011D"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnActivate"
+		    quid       	"3A07D0B40127"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnActivateUI"
+		    quid       	"3A07D0B40132"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivate"
+		    quid       	"3A07D0B4013C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetWindowContext"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(ppMainFrame, ppDocFrame, lpFrameInfo);
+|
+			    )))
+		    quid       	"3A07D0B40150"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ppMainFrame"
+			    quid       	"3A07D0B40151"
+			    type       	"CFrameWnd**")
+			(object Parameter "ppDocFrame"
+			    quid       	"3A07D0B4015A"
+			    type       	"CFrameWnd**")
+			(object Parameter "lpFrameInfo"
+			    quid       	"3A07D0B40164"
+			    type       	"LPOLEINPLACEFRAMEINFO"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChangeItemPosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(rectPos);
+|
+			    )))
+		    quid       	"3A07D0B4016E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rectPos"
+			    quid       	"3A07D0B4016F"
+			    type       	"const CRect&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInsertMenus"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMenuShared, lpMenuWidths);
+|
+			    )))
+		    quid       	"3A07D0B40182"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMenuShared"
+			    quid       	"3A07D0B40183"
+			    type       	"CMenu*")
+			(object Parameter "lpMenuWidths"
+			    quid       	"3A07D0B4018C"
+			    type       	"LPOLEMENUGROUPWIDTHS"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetMenu"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMenuShared, holemenu, hwndActiveObject);
+|
+			    )))
+		    quid       	"3A07D0B40196"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMenuShared"
+			    quid       	"3A07D0B401A0"
+			    type       	"CMenu*")
+			(object Parameter "holemenu"
+			    quid       	"3A07D0B401A1"
+			    type       	"HOLEMENU")
+			(object Parameter "hwndActiveObject"
+			    quid       	"3A07D0B401AA"
+			    type       	"HWND"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRemoveMenus"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMenuShared);
+|
+			    )))
+		    quid       	"3A07D0B401B4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMenuShared"
+			    quid       	"3A07D0B401BE"
+			    type       	"CMenu*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateFrameTitle"
+		    quid       	"3A07D0B401C8"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShowControlBars"
+		    quid       	"3A07D0B401D3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFrameWnd"
+			    quid       	"3A07D0B401DC"
+			    type       	"CFrameWnd*")
+			(object Parameter "bShow"
+			    quid       	"3A07D0B401DD"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReportError"
+		    quid       	"3A07D0B401F0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "sc"
+			    quid       	"3A07D0B401F1"
+			    type       	"SCODE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FreezeLink"
+		    quid       	"3A07D0B401FB"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetClientSite"
+		    quid       	"3A07D0B4020E"
+		    stereotype 	"virtual"
+		    result     	"LPOLECLIENTSITE"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FinishCreate"
+		    quid       	"3A07D0B40218"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "sc"
+			    quid       	"3A07D0B40222"
+			    type       	"SCODE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CheckGeneral"
+		    quid       	"3A07D0B4022C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "sc"
+			    quid       	"3A07D0B4022D"
+			    type       	"SCODE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDataChange"
+		    quid       	"3A07D0B40237"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B40240"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0B4024A"
+			    type       	"LPSTGMEDIUM"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetItemStorage"
+		    quid       	"3A07D0B40254"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadItem"
+		    quid       	"3A07D0B4025F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B40268"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteItem"
+		    quid       	"3A07D0B40272"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B4027C"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CommitItem"
+		    quid       	"3A07D0B40286"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bSuccess"
+			    quid       	"3A07D0B40287"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRichEditCntrItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxrich.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B4029A"
+	    documentation 	
+|A 'rich edit control' is a window in which the user can enter and edit text. The text can be assigned character and paragraph formatting, and can include embedded OLE objects. Rich edit controls provide a programming interface for formatting text. However, an application must implement any user interface components necessary to make formatting operations available to the user.
+|
+|The CRichEditCntrItem class, with CRichEditView and CRichEditDoc, provides the functionality of the rich edit control within the context of MFC's document view architecture. CRichEditView maintains the text and formatting characteristic of text. CRichEditDoc maintains the list of OLE client items which are in the view. CRichEditCntrItem provides container-side access to the OLE client item.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B402C2"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleClientItem"
+		    quidu      	"3A07D0B3037F"))
+	    operations 	(list Operations
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B402CC"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B402D6"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B402E0"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetClientSite"
+		    quid       	"3A07D0B402EA"
+		    stereotype 	"virtual"
+		    result     	"LPOLECLIENTSITE"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConvertTo"
+		    quid       	"3A07D0B402F4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "clsidNew"
+			    quid       	"3A07D0B402FE"
+			    type       	"const CLSID&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ActivateAs"
+		    quid       	"3A07D0B40308"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszUserType"
+			    quid       	"3A07D0B40309"
+			    type       	"LPCTSTR")
+			(object Parameter "clsidOld"
+			    quid       	"3A07D0B40312"
+			    type       	"const CLSID&")
+			(object Parameter "clsidNew"
+			    quid       	"3A07D0B4031C"
+			    type       	"const CLSID&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDrawAspect"
+		    quid       	"3A07D0B40326"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B40327"
+			    type       	"DVASPECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDeactivateUI"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(bUndoable);
+|
+			    )))
+		    quid       	"3A07D0B40331"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bUndoable"
+			    quid       	"3A07D0B4033A"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanActivate"
+		    quid       	"3A07D0B40345"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChangeItemPosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(rectPos);
+|
+			    )))
+		    quid       	"3A07D0B40358"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rectPos"
+			    quid       	"3A07D0B40359"
+			    type       	"const CRect&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleServerItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B4036C"
+	    documentation 	"The COleServerItem class provides the server interface to OLE items. A linked item can represent some or all of a server document. An embedded item always represents an entire server document. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B40394"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocItem"
+		    quidu      	"3A07D0B30307"))
+	    operations 	(list Operations
+		(object Operation "~COleServerItem"
+		    quid       	"3A07D0B40395"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderGlobalData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, phGlobal);
+|
+			    )))
+		    quid       	"3A07D0B403A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B403A9"
+			    type       	"LPFORMATETC")
+			(object Parameter "phGlobal"
+			    quid       	"3A07D0B403B2"
+			    type       	"HGLOBAL*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderFileData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, pFile);
+|
+			    )))
+		    quid       	"3A07D0B403BC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B403C6"
+			    type       	"LPFORMATETC")
+			(object Parameter "pFile"
+			    quid       	"3A07D0B403C7"
+			    type       	"CFile*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRenderData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium);
+|
+			    )))
+		    quid       	"3A07D0B403DA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B403DB"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0B403E4"
+			    type       	"LPSTGMEDIUM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpFormatEtc, lpStgMedium, bRelease);
+|
+			    )))
+		    quid       	"3A07D0B50006"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B50011"
+			    type       	"LPFORMATETC")
+			(object Parameter "lpStgMedium"
+			    quid       	"3A07D0B50012"
+			    type       	"LPSTGMEDIUM")
+			(object Parameter "bRelease"
+			    quid       	"3A07D0B5001B"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B50025"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B50030"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B50039"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsBlank"
+		    quid       	"3A07D0B50044"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetClipboardData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(bIncludeLink, lpOffset, lpSize);
+|
+			    )))
+		    quid       	"3A07D0B5004E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bIncludeLink"
+			    quid       	"3A07D0B50057"
+			    type       	"BOOL")
+			(object Parameter "lpOffset"
+			    quid       	"3A07D0B50061"
+			    type       	"LPPOINT")
+			(object Parameter "lpSize"
+			    quid       	"3A07D0B50062"
+			    type       	"LPSIZE"))
+		    result     	"COleDataSource*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    quid       	"3A07D0B5006C"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0B50075"
+			    type       	"CDC*")
+			(object Parameter "rSize"
+			    quid       	"3A07D0B5007F"
+			    type       	"CSize&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdate"
+		    quid       	"3A07D0B50089"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pSender"
+			    quid       	"3A07D0B5008A"
+			    type       	"COleServerItem*")
+			(object Parameter "lHint"
+			    quid       	"3A07D0B50093"
+			    type       	"LPARAM")
+			(object Parameter "pHint"
+			    quid       	"3A07D0B5009D"
+			    type       	"CObject*")
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B5009E"
+			    type       	"DVASPECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDrawEx"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pDC, nDrawAspect, rSize);
+|
+			    )))
+		    quid       	"3A07D0B500A8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A07D0B500B1"
+			    type       	"CDC*")
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B500BB"
+			    type       	"DVASPECT")
+			(object Parameter "rSize"
+			    quid       	"3A07D0B500BC"
+			    type       	"CSize&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetExtent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nDrawAspect, size);
+|
+			    )))
+		    quid       	"3A07D0B500C6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B500CF"
+			    type       	"DVASPECT")
+			(object Parameter "size"
+			    quid       	"3A07D0B500D9"
+			    type       	"const CSize&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetExtent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nDrawAspect, rSize);
+|
+			    )))
+		    quid       	"3A07D0B500E3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nDrawAspect"
+			    quid       	"3A07D0B500E4"
+			    type       	"DVASPECT")
+			(object Parameter "rSize"
+			    quid       	"3A07D0B500ED"
+			    type       	"CSize&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDoVerb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(iVerb);
+|
+			    )))
+		    quid       	"3A07D0B500F8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iVerb"
+			    quid       	"3A07D0B50101"
+			    type       	"LONG"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetColorScheme"
+		    quid       	"3A07D0B5010C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpLogPalette"
+			    quid       	"3A07D0B50115"
+			    type       	"const LOGPALETTE*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnQueryUpdateItems"
+		    quid       	"3A07D0B5011F"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdateItems"
+		    quid       	"3A07D0B5012A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShow"
+		    quid       	"3A07D0B50134"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpen"
+		    quid       	"3A07D0B50147"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnHide"
+		    quid       	"3A07D0B50151"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitFromData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pDataObject, bCreation);
+|
+			    )))
+		    quid       	"3A07D0B5015C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDataObject"
+			    quid       	"3A07D0B50165"
+			    type       	"COleDataObject*")
+			(object Parameter "bCreation"
+			    quid       	"3A07D0B5016F"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnFinalRelease"
+		    quid       	"3A07D0B50179"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMetafileData"
+		    quid       	"3A07D0B50183"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpFormatEtc"
+			    quid       	"3A07D0B5018D"
+			    type       	"LPFORMATETC")
+			(object Parameter "pmedium"
+			    quid       	"3A07D0B5018E"
+			    type       	"LPSTGMEDIUM"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveEmbedding"
+		    quid       	"3A07D0B50198"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpStorage"
+			    quid       	"3A07D0B501A1"
+			    type       	"LPSTORAGE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDocObjectServerItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdocob.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B501B5"
+	    documentation 	"Class CDocObjectServerItem, derived from COleServerItem, implements OLE server verbs specifically for DocObject servers. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B501DD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleServerItem"
+		    quidu      	"3A07D0B4036C"))
+	    operations 	(list Operations
+		(object Operation "~CDocObjectServerItem"
+		    quid       	"3A07D0B501DE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B501E8"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B501FB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B501FC"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDoVerb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(iVerb);
+|
+			    )))
+		    quid       	"3A07D0B5020F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "iVerb"
+			    quid       	"3A07D0B50210"
+			    type       	"LONG"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnHide"
+		    quid       	"3A07D0B50223"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnOpen"
+		    quid       	"3A07D0B5022D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnShow"
+		    quid       	"3A07D0B50242"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDocObjectServer"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdocob.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B50255"
+	    documentation 	"Class CDocObjectServer implements the additional OLE interfaces needed to make a normal COleDocument server into a full DocObject server: IOleDocument, IOleDocumentView, IOleCommandTarget, and IPrint. CDocObjectServer is derived from CCmdTarget and works closely with COleServerDoc to expose the interfaces. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B5027D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CCmdTarget"
+		    quidu      	"3A07D0AE01D4"))
+	    operations 	(list Operations
+		(object Operation "OnApplyViewState"
+		    quid       	"3A07D0B5027E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B50287"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSaveViewState"
+		    quid       	"3A07D0B50292"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D0B5029B"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnActivateView"
+		    quid       	"3A07D0B502A5"
+		    stereotype 	"virtual"
+		    result     	"HRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDocObjectServer"
+		    quid       	"3A07D0B502B0"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0B502BA"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0B502CE"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0B502CF"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCloseDocument"
+		    quid       	"3A07D0B502D9"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDocObjectItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CCmdTarget"))
+	    quid       	"3A07D0B502EC"
+	    documentation 	
+|The COleDocObjectItem class implements Active document containment. In MFC, an Active document is handled similarly to a regular, in-place editable embedding, with the following differences: 
+|
+|The COleDocument-derived class still maintains a list of the currently embedded items; however, these items may be COleDocObjectItem-derived items.
+|
+|When an active document is active, it occupies the entire client area of the view when it is in-place active. 
+|
+|An Active document container has full control of the Help menu. 
+|
+|The Help menu contains menu items for both the Active document container and server. 
+|Because the Active document container owns the Help menu, the container is responsible for forwarding server Help menu messages to the server. This integration is handled by COleDocObjectItem.
+|
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0B50314"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::COleClientItem"
+		    quidu      	"3A07D0B3037F"))
+	    operations 	(list Operations
+		(object Operation "Release"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwCloseOption);
+|
+			    )))
+		    quid       	"3A07D0B5031E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwCloseOption"
+			    quid       	"3A07D0B50328"
+			    type       	"OLECLOSE"
+			    initv      	"OLECLOSE_NOSAVE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~COleDocObjectItem"
+		    quid       	"3A07D0B50332"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnGetItemPosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(rPosition);
+|
+			    )))
+		    quid       	"3A07D0B5033C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rPosition"
+			    quid       	"3A07D0B50346"
+			    type       	"CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInsertMenus"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMenuShared, lpMenuWidths);
+|
+			    )))
+		    quid       	"3A07D0B50350"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMenuShared"
+			    quid       	"3A07D0B50351"
+			    type       	"CMenu*")
+			(object Parameter "lpMenuWidths"
+			    quid       	"3A07D0B5035A"
+			    type       	"LPOLEMENUGROUPWIDTHS"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnRemoveMenus"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pMenuShared);
+|
+			    )))
+		    quid       	"3A07D0B50365"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMenuShared"
+			    quid       	"3A07D0B5036E"
+			    type       	"CMenu*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetHelpMenu"
+		    quid       	"3A07D0B50378"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nPosition"
+			    quid       	"3A07D0B50382"
+			    type       	"UINT&"))
+		    result     	"CMenu*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class_Category "Window Support"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Window Support.cat"
+	    quid       	"3A07D0B5038C"))
+    logical_presentations 	(list unit_reference_list))

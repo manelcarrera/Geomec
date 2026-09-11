@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="SVS_PATH" Name="SVS">
+    <Component Id="Component_SVS" Guid="$(var.ComponentID_SVS)" Win64="yes">
+      <File Id="SVS.exe" KeyPath="yes" Source="$(var.SVS)\SVS64.exe" />
+      <Shortcut Id="Shortcut_SVS" 
+      	Directory="SVSShortcutFolder" 
+      	Name="SVS" 
+      	Description="Launch SVS" 
+      	Advertise="yes" 
+      	Icon="SVS.exe" 
+      	IconIndex="0" 
+      	WorkingDirectory="SVS_PATH"/>
+      <RemoveFolder Id="RemoveSVSShortcutFolder" On="uninstall" Directory="SVSShortcutFolder" />
+    </Component>
+  </Directory>
+  
+</Include>

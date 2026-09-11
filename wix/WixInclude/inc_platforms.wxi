@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="QtPlatforms" Name="platforms">
+    <Component Id="Component_QtPlatforms" Guid="$(var.ComponentID_QtPlatforms)" Win64="yes">
+      <File Id="qwindows.dll" Name="qwindows.dll" Source="$(var.QTDIR)\plugins\platforms\qwindows.dll" />
+    </Component>
+  </Directory>
+  
+</Include>

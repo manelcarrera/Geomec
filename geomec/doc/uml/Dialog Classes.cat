@@ -1,0 +1,663 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "DialogClasses"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A310D1C029E"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CFaultPropertyDlg"
+	    quid       	"3A3106F001BF"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A3106FF029D"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CFaultPropertyDlg_"
+		    quidu      	"3A3106BF00F7")))
+	(object Instantiated_Class "CBoundaryPropertyDlg_"
+	    quid       	"3A310C850066"
+	    visible_modules 	(list dependency_list
+		(object Dependency_Relationship
+		    quid       	"3A310CFF0011"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoBoundary"
+		    quidu      	"3A267B480267"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3A310CB302ED"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CPropertyDlg"
+		    quidu      	"3A30B3A10321")))
+	(object Instantiated_Class "CFaultPropertyDlg_"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"CodeFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CFaultPropertyDlg_.h")
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"BodyFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CFaultPropertyDlg_.cpp")
+		(object Attribute
+		    tool       	"cg"
+		    name       	"cg_style"
+		    value      	"Class Hidden Default"))
+	    quid       	"3A3106BF00F7"
+	    visible_modules 	(list dependency_list
+		(object Dependency_Relationship
+		    quid       	"3A31070E03A3"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoFault"
+		    quidu      	"3A2677110310"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3A3106CD0378"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CPropertyDlg"
+		    quidu      	"3A30B3A10321"))
+	    language   	"C++"
+	    parameters 	(list Parameters
+		(object Parameter "CGeoFault"
+		    quid       	"3A3107290398")))
+	(object Class "CFormationPropertyDlg"
+	    quid       	"3A31096D0157"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A31097D038B"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CFormationPropertyDlg_"
+		    quidu      	"3A310907031D")))
+	(object Class "CHorizonPropertyDlg"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"CodeFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CHorizonPropertyDlg.h")
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"BodyFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CHorizonPropertyDlg.cpp")
+		(object Attribute
+		    tool       	"cg"
+		    name       	"cg_style"
+		    value      	"Class Hidden Default"))
+	    quid       	"3A30BD1902CD"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A30BD2402BE"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CHorizonPropertyDlg_"
+		    quidu      	"3A30B667008D"))
+	    language   	"C++")
+	(object Instantiated_Class "CHorizonPropertyDlg_"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"CodeFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CHorizonPropertyDlg_.h")
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"BodyFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CHorizonPropertyDlg_.cpp"))
+	    quid       	"3A30B667008D"
+	    instantiation_relationship 	(object Instantiation_Relationship
+		quid       	"3A30B6840233"
+		supplier   	"Logical View::Geomec::View::DialogClasses::CPropertyDlg"
+		quidu      	"3A30B3A10321")
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3A30B6DD03D6"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CPropertyDlg"
+		    quidu      	"3A30B3A10321"))
+	    language   	"C++"
+	    parameters 	(list Parameters
+		(object Parameter "CGeoHorizon"
+		    quid       	"3A30B755034C")))
+	(object Parameterized_Class "CPropertyDlg"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"CodeFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CPropertyDlg.h")
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"BodyFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CPropertyDlg.cpp")
+		(object Attribute
+		    tool       	"cg"
+		    name       	"DestructorKind"
+		    value      	("ThreeKindSet" 201)))
+	    quid       	"3A30B3A10321"
+	    documentation 	"Blueprint for property dialogs"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A30B3CC037D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "Data"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3A30B585013C"
+		    type       	"DataClass&"))
+	    language   	"C++"
+	    parameters 	(list Parameters
+		(object Parameter "DataClass"
+		    quid       	"3A30B43401CE"
+		    type       	"class")))
+	(object Class "CBoundaryPropertyDlg"
+	    quid       	"3A310CC502A3"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A310CF70218"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CBoundaryPropertyDlg_"
+		    quidu      	"3A310C850066"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A310CE5012C"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CBoundaryPropertyDlg_"
+		    quidu      	"3A310C850066")))
+	(object Instantiated_Class "CFormationPropertyDlg_"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"CodeFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CFormationPropertyDlg_.h")
+		(object Attribute
+		    tool       	"Traversal"
+		    name       	"BodyFile"
+		    value      	"$ROSECPP_SOURCE\\Geomec\\View\\CFormationPropertyDlg_.cpp")
+		(object Attribute
+		    tool       	"cg"
+		    name       	"cg_style"
+		    value      	"Class Hidden Default"))
+	    quid       	"3A310907031D"
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3A31092C0316"
+		    supplier   	"Logical View::Geomec::View::DialogClasses::CPropertyDlg"
+		    quidu      	"3A30B3A10321"))
+	    language   	"C++"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Dialog Classes"
+	    quid       	"3A3102D00225"
+	    title      	"Dialog Classes"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Geomec::View::DialogClasses::CHorizonPropertyDlg" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(352, 1600)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(144, 1552)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	416
+			justify    	0
+			label      	"CHorizonPropertyDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30BD1902CD"
+		    width      	434
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::DialogClasses::CHorizonPropertyDlg_" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(352, 784)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(134, 733)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	436
+			justify    	0
+			label      	"CHorizonPropertyDlg_")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30B667008D"
+		    width      	454
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @3
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A30BD2402BE"
+		    client     	@1
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "ParameterizedClass" "Logical View::Geomec::View::DialogClasses::CPropertyDlg" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(992, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(800, 400)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	390
+			justify    	0
+			label      	"CPropertyDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30B3A10321"
+		    width      	408
+		    height     	211
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InstantiateView "" @5
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A30B6840233"
+		    client     	@2
+		    supplier   	@4
+		    line_style 	0)
+		(object RealizeView "" @6
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A30B6DD03D6"
+		    client     	@2
+		    supplier   	@4
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(992, 128)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(848, 48)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	290
+			justify    	0
+			label      	"CDialog")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D0BA02E0"
+		    width      	308
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @8
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A30B3CC037D"
+		    client     	@4
+		    supplier   	@7
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoFault" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1232, 1200)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(1004, 1122)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	456
+			justify    	0
+			label      	"CGeoFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2677110310"
+		    width      	474
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoBoundary" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2416, 1216)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(2206, 1138)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	420
+			justify    	0
+			label      	"CGeoBoundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A267B480267"
+		    width      	438
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::DialogClasses::CFaultPropertyDlg_" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(896, 784)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(704, 736)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	392
+			justify    	0
+			label      	"CFaultPropertyDlg_")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A3106BF00F7"
+		    width      	410
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object RealizeView "" @12
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A3106CD0378"
+		    client     	@11
+		    supplier   	@4
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::DialogClasses::CFaultPropertyDlg" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(896, 1664)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(704, 1616)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	372
+			justify    	0
+			label      	"CFaultPropertyDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A3106F001BF"
+		    width      	390
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @14
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A3106FF029D"
+		    client     	@13
+		    supplier   	@11
+		    line_style 	0)
+		(object DependencyView "" @15
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A31070E03A3"
+		    client     	@11
+		    supplier   	@9
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::DialogClasses::CFormationPropertyDlg_" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1552, 784)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(1314, 732)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	476
+			justify    	0
+			label      	"CFormationPropertyDlg_")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A310907031D"
+		    width      	494
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object RealizeView "" @17
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A31092C0316"
+		    client     	@16
+		    supplier   	@4
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::DialogClasses::CFormationPropertyDlg" @18
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1552, 1648)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@18
+			location   	(1328, 1600)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	458
+			justify    	0
+			label      	"CFormationPropertyDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A31096D0157"
+		    width      	476
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @19
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A31097D038B"
+		    client     	@18
+		    supplier   	@16
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::DialogClasses::CBoundaryPropertyDlg_" @20
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2176, 768)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@20
+			location   	(1936, 720)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	470
+			justify    	0
+			label      	"CBoundaryPropertyDlg_")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A310C850066"
+		    width      	488
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object RealizeView "" @21
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A310CB302ED"
+		    client     	@20
+		    supplier   	@4
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::DialogClasses::CBoundaryPropertyDlg" @22
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2176, 1648)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(1952, 1600)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	448
+			justify    	0
+			label      	"CBoundaryPropertyDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A310CC502A3"
+		    width      	466
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @23
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A310CF70218"
+		    client     	@22
+		    supplier   	@20
+		    line_style 	0)
+		(object DependencyView "" @24
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A310CFF0011"
+		    client     	@20
+		    supplier   	@10
+		    line_style 	0)))))

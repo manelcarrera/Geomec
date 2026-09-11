@@ -1,0 +1,447 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+
+
+<title>Cam-clay material model</title>
+<style>
+<!--
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic}
+caption      { font-family: Times New Roman; font-size: 12pt; font-style: italic }
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body id="body1">
+<h1>Cam-clay and Egg Cam-clay material models</h1>
+<h2>&nbsp;</h2>
+<h2>Cam-clay plasticity</h2>
+<p>The Cam-clay material model is an integrated model which describes both 
+compaction and dilation depending on the stress state and material parameters. 
+Like the Modified Mohr-Coulomb model Cam-clay is written in p-q space.</p>
+<p>The general <i>p-q</i> definition is according to Equation 1, expressed in 
+principal stresses. The shear stress <i>q</i> is also called the Von Mises 
+(equivalent) shear stress.</p>
+<p><img border="0" src="cam_clay_01.gif" width="472" height="65"></p>
+<p>[Equation 1]</p>
+<p>Cam-clay is a model which has been derived for clay like behaviour, i.e. 
+where (non-linear) compaction and decompaction (dilatancy) are very important.</p>
+<h2>&nbsp;</h2>
+<h2>Basic Cam-clay (cap <font face="symbol">a </font>= 1)</h2>
+<p>&nbsp;</p>
+<p><img border="0" src="cam_clay_02.gif" width="577" height="306"></p>
+<p><i><font face="Times New Roman">Figure 1: Basic Cam-clay failure curve 
+(cohesion c = 0; shape factor a = 1)</font></i></p>
+<p>Under triaxial loading, not only the isotropic component <i>p</i> [ = (<span style="font-family: Symbol">s</span><sub>ax</sub>+2<span style="font-family: Symbol">s</span><sub>rad</sub>)/3&nbsp; 
+]&nbsp; contributes to the deformation, but also the deviator component <i>q</i> [ = 
+(<span style="font-family: Symbol">s</span><sub>ax</sub>-<span style="font-family: Symbol">s</span><sub>rad</sub>) 
+].</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">For normal Cam-Clay behaviour it is assumed that the deviator
+<i>q</i> contributes to the onset of plasticity. Plasticity is invoked when the 
+deviator strain reaches a critical combination of confining stress <i>p</i> and 
+consolidation stress <i>p<sub>c</sub>. </i>For a cohesionless material, the 
+formula for the onset of plasticity (see Figure 1) is:</p>
+<p><img border="0" src="cam_clay_03.gif" width="138" height="26" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(c = 0)</p>
+<p>[Equation 2]</p>
+<p><font face="symbol">M </font><font face="Times New Roman">is related to the 
+common Mohr-Coulomb shear failure for cohesionless materials. It can be 
+expressed as:</font></p>
+<p><img border="0" src="cam_clay_04.gif" width="93" height="45" align="middle">&nbsp; 
+or&nbsp;
+<img border="0" src="cam_clay_05.gif" width="94" height="42" align="middle"></p>
+<p>[Equation 3]</p>
+<p><font face="symbol">M </font><font face="Times New Roman">will hence normally 
+be in the range 0.57 (</font><font face="symbol">f</font><font face="Times New Roman"> 
+= 15°) to 1.64 (</font><font face="symbol">f</font><font face="Times New Roman"> 
+= 40°)</font></p>
+<p><u>Important note:</u></p>
+<p>Standard Cam-clay models do not have a cohesion parameter. Cohesion and 
+friction are more or less blended, in the sense that stress levels (q &gt; Mp) can 
+exist that are not possible in the Modified Mohr-Coulomb equivalent. Omission of 
+the cohesion is hence not a big omission, unless true tensile stresses are 
+applied to the material (p &lt; 0), which cannot be handled by Cam-clay.</p>
+<p>This model is a special case of the Egg model, which will be elaborated upon 
+below.</p>
+<h2>&nbsp;</h2>
+<h2>Egg Cam-clay model (cap <font face="symbol">a ¹ </font>1)</h2>
+<p>A more sophisticated version of the Cam-clay model is called the Egg or 
+Modified Cam-clay model. The compressive shape can be stretched or condensed, 
+given higher or lower influence of the shear stress on reaching plasticity. Most 
+materials (sandstones, clays) can be fitted better with an extra cap (<font face="symbol">a</font>) 
+parameter, usually ranging from 0.5 to 2. For (seemingly) cohesionless 
+materials, the Modified Cam-clay plasticity equation (see Figure 2) reads:</p>
+<p><img border="0" src="cam_clay_06.gif" width="353" height="105"></p>
+<p>[Equation 4]</p>
+<p>which simplifies to the basic Cam-clay model if <font face="symbol">a </font>
+= 1. The two halves of the curve match both in level and in derivative at the 
+crest which makes the model easier to handle numerically that the intersecting 
+caps of the Modified Mohr-Coulomb model. The maximum shear stress (at <i>q = Mp</i>;
+<i>p = p<sub>a</sub></i>) can be independently changed from the isotropic 
+consolidation pressure (at <i>q = 0</i>; <i>p = p<sub>c</sub></i>).</p>
+<p><img border="0" src="cam_clay_07.gif" width="576" height="379"></p>
+<p><i><font face="Times New Roman">Figure 2: Cam-clay Egg or Modified Cam-clay 
+failure curve (cohesion c = 0; shape factor a &gt; 1)</font></i></p>
+<p><font face="Times New Roman">The failure (onset of plastic deformation) curve 
+for <i>q = 0</i> again occurs both at <i>p = 0</i> (tension) and <i>p = p<sub>c</sub></i>.</font></p>
+<h2>&nbsp;</h2>
+<h2>Egg model with cohesion</h2>
+<p><font face="Times New Roman">Two </font>methods exist to introduce cohesion 
+or rather tensile strength. The only available method in Geomec 3.3.3 and 
+earlier is implemented as a <i>p</i>-shift of the failure curve towards the 
+tensile regime. The updated plasticity curve is written as:</p>
+<p><img border="0" src="cam_clay_08.gif" width="318" height="129"></p>
+<p>[Equation 4a]</p>
+<p><img border="0" src="cam_clay_09.gif" width="158" height="54"></p>
+<p>[Equation 5a]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">The basic disadvantage is that the compressive side of the 
+equation shifts to the left (tensile) side too and that we should modify the cap 
+parameter &#945;, the pre-consolidation pressure <i>p<sub>c,0</sub></i> and the 
+friction angle <font face="symbol">f</font> to match the compressive side once 
+more. Besides, the hardening parameter &#955; (see paragraph Deformation) must change 
+to reflect the changed preconsolidation pressure. All parameters from external 
+fitting to the Cam-clay model become useless and need be refitted !</p>
+<p><img border="0" src="cam_clay_10.gif" width="530" height="415"></p>
+<p><i><font face="Times New Roman">Figure 2a: Cam-clay Egg failure curve with 
+cohesion (p) shift (cohesion c &gt; 0; shape factor a &gt; 1)</font></i></p>
+<h2>&nbsp;</h2>
+<h2>Egg model with tension stretch</h2>
+<p class="MsoNormal">A second option (available from Geomec 3.4 on) is to 
+stretch the tensional side, with a multiplication factor &#915; (Capital gamma), 
+being greater than 1. With &#915; = 1, the model simplifies to Equation 4 for 
+Modified Cam Clay. </p>
+<p><img border="0" src="cam_clay_11.gif" width="353" height="105"></p>
+<p>[Equation 4b]</p>
+<p><img border="0" src="cam_clay_12.gif" width="96" height="54"></p>
+<p>[Equation 5b]</p>
+<p class="body" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><span style="font-family: Times New Roman">This model has the 
+advantage of keeping the compressional part intact, whilst introducing tensile 
+strength. An additional advantage is the limited dilation and softening of the 
+material at high shear stresses, being much more stable in numerical routines. A 
+small disadvantage is the mechanical insignificance of the parameter gamma, and 
+the possible physically obscure increase of the cohesion (tensile strength) with 
+compaction.</span></p>
+<p class="body" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><span style="font-family: Times New Roman">For most reservoir 
+depletion cases we however are not very interested in load cases in the tensile 
+regime. Most physical loading will be in the compressional and shear region, 
+which are least affected. The stability of this model probably is however the 
+most important argument to use it, where the introduced error is likely to be 
+small. </span></p>
+<p><img border="0" src="cam_clay_13.gif" width="442" height="200"></p>
+<p><i><font face="Times New Roman">Figure 2b: Cam-clay Egg failure curve with 
+tensile stretch (Geomec 3.4 and further)</font></i></p>
+<h2>&nbsp;</h2>
+<h2><i>Deformation</i></h2>
+
+<p class="MsoNormal">Cam Clay is a model derived for Clay like behaviour, i.e. 
+where (non-linear) compaction and decompaction are very important, along with 
+Mohr Coulomb failure criteria. It assumes a logarithmic relationship between 
+total plastic volumetric strain and the consolidation pressure. For isotropic 
+compression the compaction formula is:&nbsp; </p>
+<p class="MsoNormal">
+<img border="0" src="cam_clay_14.gif" width="145" height="48"></p>
+<p class="MsoNormal">[Equation 6]</p>
+<p class="MsoNormal">
+<img border="0" src="cam_clay_15.gif" width="178" height="50"></p>
+<p class="MsoNormal">[Equation 7]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">in which:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i><span style="font-family: Symbol">e</span><sub>v</sub></i><sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</sup>total<sup> </sup>volumetric strain (-&nbsp; or&nbsp; m<sup>3</sup>/m<sup>3</sup>)</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i><span style="font-family: Symbol">e</span><sub>v</sub><sup>p</sup></i><sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</sup>plastic volumetric strain (-&nbsp; or&nbsp; m<sup>3</sup>/m<sup>3</sup>)</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i>p<sub>c,0</sub></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the preconsolidation pressure 
+(MPa) (onset of non-elastic deformation),</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i>p</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =<i> p<sub>c</sub></i> = isotropic stress or 
+isotropic stress equivalent (MPa) </p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i>n<sub>0</sub></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the initial porosity at p=p<sub>c,0</sub> 
+(-)</p>
+<p class="body" style="text-indent: 0cm; margin: 6.0pt 0cm">
+<span style="font-family: Symbol">l<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family: Times New Roman">the plastic material 
+hardening parameter (-)</span></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><i>K</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Elastic bulk modulus (MPa)</p>
+<p class="MsoNormal">
+<img border="0" src="cam_clay_16.gif" width="512" height="337"></p>
+<p><i><font face="Times New Roman">Figure 3: Deformation components plotted in 
+p-q space. Strain increments are the Von-Mises shear strain and volumetric 
+strain</font></i></p>
+<p><font face="Times New Roman">The yield criterion for Cam-clay is defined as 
+the specific set of stresses and strains where plastic deformation (compaction, 
+shear deformation and/or dilation) takes place. The yield criterion is:</font></p>
+<p><img border="0" src="cam_clay_17.gif" width="429" height="124"></p>
+<p>[Equation 8]</p>
+<p><img border="0" src="cam_clay_18.gif" width="337" height="81"></p>
+<p>[Equation 8a]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">The parameter <i>p<sub>c</sub></i> is the isotropic loading at 
+which yielding (non elastic compaction) occurs. This value <i>p<sub>c</sub></i> 
+depends on the initial overconsolidation (<i>p<sub>c,0</sub></i>) and on the 
+plastic volumetric strain during compaction (hardening) or decompaction 
+(softening).</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">If the yield criterion is not met (<i>f </i>&lt; 0) the material 
+behaves elastically. Stress combinations giving rise to values of <i>f &gt; 0</i> 
+are not possible (either compaction increases the consolidation pressure or the 
+shear stress must decrease, so <i>f</i> remains 0). The Geomec/ Diana 
+calculations are focused to keep the value of <i>f</i> at 0 during plastic 
+deformation, which implies that the rate of stress change is in line with the 
+rate of hardening (or softening).</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">The Cam-clay model is an associated plasticity model, i.e. the 
+deformation potential <i>g</i> is identical to the yield potential <i>f. </i>The 
+strain tensor is hence perpendicular to the yield-curve (see Figure 3). The 
+plastic strain is tensor is hence directly related to the plastic stress tensor. 
+At stresses of <i>q = Mp</i>, the deformation mechanism is pure shear (i.e. no 
+dilation and no compaction). At (relatively) higher shear stresses the 
+deformation becomes dilatant (also called dry with reference to the water 
+absorbent behaviour of clay here); at lower shear stresses the deformation 
+becomes compacting (also called wet with reference to the water expelling 
+behaviour of clay here). </p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">In general the shear and compression relations can be written 
+as the derivative of <i>g</i> to <i>p</i> and <i>q</i>, mainly to determine a 
+relation between the shear and volumetric strain:</p>
+<p><img border="0" src="cam_clay_19.gif" width="474" height="145"></p>
+<p>[Equation 9]</p>
+<p>The primary strain increments have to be decomposed from the Von Mises and 
+volumetric strain contributions. For triaxial conditions this renders:</p>
+<p><img border="0" src="cam_clay_20.gif" width="169" height="52"></p>
+<p class="MsoNormal" style="margin: 6.0pt 0cm">[Equation 10]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">The<font face="Symbol"> c </font>(MPa
+<sup>–1</sup>) factor depends on the stress state and hardening conditions and 
+can be related to a discrete change in the stress tensor, fulfilling the 
+requirements of Equations 1 to 10 to arrive at the general incremental 
+stress-strain relation, required for FE-calculations:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><img border="0" src="cam_clay_21.gif" width="92" height="28"></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">[Equation 11]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">This is the input for the general stress-strain change 
+relation:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm"><img border="0" src="cam_clay_22.gif" width="390" height="26"></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">[Equation 12]</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">with indices e for elasticity, c for creep, and p for 
+plasticity.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">PS The C above is a matrix, unrelated to compaction 
+coefficients !</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">&nbsp;</p>
+<h2 style="margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm">Standard Cam-clay input parameters</h2>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Times New Roman">E and </span>
+<span style="font-family: Symbol">n</span><span style="font-family: Times New Roman"> 
+(Young’s modulus [MPa] , Poisson’s ratio [-]) </span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">Elastic parameters, which determine 
+elastic shear and bulk response. The values should be derived from unloading 
+tests, assuming the absence of plasticity here. The option to use a non-linear 
+elastic parameter </span><span style="font-family: Symbol">k</span><span style="font-family: Times New Roman"> 
+is not yet available. Will probably be so in version 3.5 (planned Q1-2007)
+</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span lang="PT" style="font-family: Times New Roman">n<sub>0</sub> (initial 
+porosity [-])</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">Initial porosity at the 
+onset of plastic deformation (<i>p<sub>c</sub></i>=<i>p<sub>c,0</sub></i>). Note 
+that only the product&nbsp; (1-<i>n<sub>0</sub></i>)<span style="font-family: Symbol">l</span> 
+is used in Cam Clay. Variation at the same product value will not render 
+different results ! </p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Symbol">f</span><span style="font-family: Times New Roman"> 
+(friction angle [degrees])</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The friction angle [degrees or </span>
+<span style="font-family: Symbol">°</span><span style="font-family: Times New Roman">] 
+is used to calculate the M-parameter according to:</span></p>
+<p class="body" style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt"><img border="0" src="cam_clay_04.gif" width="93" height="45" align="middle"> 
+or <img border="0" src="cam_clay_23.gif" width="126" height="46"></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span lang="ES" style="font-family: Times New Roman">c (cohesion [MPa])</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The cohesion <i>c</i> [MPa] shifts 
+the Cam-Clay curve to the left by &#916;<i>p</i>=[<i>c</i> /tan </span><i>
+<span style="font-family: Symbol">f</span></i><span style="font-family: Times New Roman">]. 
+This generates an elastic behaviour at (effective) tensile stresses. This also 
+implies that the initiation of compressive plasticity is reduced by [<i>c</i>&nbsp; 
+/tan </span><span style="font-family: Symbol">f</span><span style="font-family: Times New Roman">], 
+i.e. plasticity starts at <i>p</i> = <i>p<sub>c,0</sub></i> –&nbsp; <i>c</i> /tan
+</span><span style="font-family: Symbol">f</span><span style="font-family: Times New Roman">.
+</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">Advised is to put the cohesion at 
+zero, and use the tensile stretch, or fit all parameters with the Geomec 
+calibration routine.</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span lang="ES" style="font-family: Times New Roman">&#915;</span><span style="font-family: Times New Roman"> 
+(tensile stretch [-])</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The stretch factor </span>
+<span lang="ES" style="font-family: Times New Roman">&#915;</span><span style="font-family: Times New Roman"> 
+(if &gt;1) elongates the dilatant part of the plasticity curve by a factor </span>
+<span lang="ES" style="font-family: Times New Roman">&#915;</span><span style="font-family: Times New Roman">, 
+without disturbing the compressive part. Practical values where the actual 
+tensile behaviour is of little relevance are from 5 to 50. Usually considered 
+the better option (over applying a cohesion) to prevent dilatant softening and 
+perhaps non-stable calculations. </span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Symbol">a</span><span style="font-family: Times New Roman"> 
+(shape parameter [-] )</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The shape parameter determines the 
+shape of the yield and deformation function in <i>p</i>-<i>q</i> space and lies 
+normally between 0.5 and 2. See also Equation 9.</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Symbol">l</span><span style="font-family: Times New Roman"> 
+(hardening parameter [-] )</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">The elasto-plastic 
+hardening parameter determines the plastic volumetric strain hardening at 
+compaction (or softening at decompaction) and can be derived from Equation 1. 
+Note that only the product (1-<i>n<sub>0</sub></i>)<span style="font-family: Symbol">l</span> 
+is used in Cam Clay. Variation at the same product value will not render 
+different results ! </p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Times New Roman">p<sub>c</sub>,<sub>0</sub> 
+(preconsolidation pressure [MPa])</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The preconsolidation pressure is the 
+onset of plastic deformation, assuming an isotropic loading and/or and 
+equivalent according to Equations 2 or 4. The preconsolidation pressure should 
+be always higher than the initial equivalent (<i>f</i>&lt;0), assuming the 
+reservoir and over/underburdens are in a state of elasticity at the onset of 
+depletion.</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The preconsolidation pressure 
+reflects a geological early period of higher effective stresses or a period of 
+(slow) consolidation creep.</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">The preconsolidation pressure does 
+not vary with depth (as might be important in relatively thick layers). It can 
+be modified to depend on depth&nbsp; using the RPN Calculator however or by applying 
+a pointset..</span></p>
+<p class="body" style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt">&nbsp;</p>
+<h2 style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt">&nbsp;</h2>
+<h2 style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt">
+General input parameters (non Cam-clay)</h2>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Times New Roman">SHtot/Svtot; Shtot/Svtot, SHtot-azimuth</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">
+<span style="font-family: Times New Roman">Initial stress field (after gravity 
+loading). SHtot/Svtot [-] is the highest horizontal/vertical stress ratio. SHtot-azimuth 
+[degrees] is the clockwise angle (degrees) between the SHtot direction and the 
+Northing. Shtot/Svtot is the lower minimal stress ratio [-], perpendicular to 
+SHtot direction</span></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="text-decoration: none; font-family: Times New Roman">&nbsp;</span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt"><u>
+<span style="font-family: Symbol">r</span><span style="font-family: Times New Roman"> 
+(density [kg / m<sup>3</sup>]) </span></u></p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">Bulk density for 
+gravitational calculations.</p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:0">
+&nbsp;</p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:0">
+<u><font face="symbol">a</font><font face="Times New Roman"><sub>v</sub> 
+(Volumetric Thermal Expansion Coefficient [°C<sup>-1</sup> or K<sup>-1</sup>]</font></u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Relative volumetric expansion per degree 
+temperature change. The value is three times the linear expansion coefficient, 
+sometimes provided for solids.</p>
+<p class="body" style="margin:0cm;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt">&nbsp;</p>
+<h2 style="margin-left: 0cm; margin-right: 0cm; margin-top: 0cm; margin-bottom: .0001pt">
+Comparison with laboratory experiments</h2>
+<p class="MsoNormal">To match experimental test results with parameter data, the 
+user may import the test file in the Material database (via an Excel or text 
+file). The test results will appear as crosses. </p>
+<p class="MsoNormal">By pressing the compare button Geomec will try and find the 
+best (7) parameter set to match the laboratory data. However, Geomec is likely 
+to find a local minimum in obtaining a least-square error fit, not satisfying 
+the best solution. </p>
+<p class="MsoNormal">A best practice could be:</p>
+<ul style="margin-top: 0cm; margin-bottom: 0cm" type="disc">
+	<li class="MsoNormal">Set the initial porosity (usually known value)</li>
+	<li class="MsoNormal">fix the cohesion to a low value (0-value preferred; 
+	put the Stretch parameter at 10 to 50 if pore collapse is the envisaged 
+	model)</li>
+	<li class="MsoNormal">put unrealistic high values for the friction and the 
+	preconsolidation factor (i.e. prevent plasticity) and fix</li>
+	<li class="MsoNormal">estimate (trial and error) the Young’s modulus and 
+	Poisson’s ratio by fixing and comparison to match elastic behaviour only.</li>
+	<li class="MsoNormal">push compare button to find and review match</li>
+	<li class="MsoNormal">fix iteratively the preconsolidation pressure to a 
+	field expected value (or about at dog-leg in p-q space, see figure)</li>
+	<li class="MsoNormal">push compare button</li>
+	<li class="MsoNormal">Let Geomec calculate a best value for the hardening 
+	parameter, cap shape and friction angle.</li>
+	<li class="MsoNormal">possibly iterate on fixed parameters</li>
+</ul>
+<h2>&nbsp;</h2>
+<h2>Difference with Mohr-Coulomb model</h2>
+<p class="MsoNormal">
+<span style="font-size: 12.0pt; font-family: Times New Roman">The difference 
+between the Cam Clay and Modified Mohr Coulomb model is shown in figure 4. The 
+main distinction is the sharp edge / switch between the contractant and dilatant 
+regime for the Modified Mohr Coulomb regime. Note that for dilatancy at low 
+confining pressures, Cam-Clay may overestimate the shear capacity. </span></p>
+<p class="MsoNormal">
+<img border="0" src="cam_clay_24.gif" width="421" height="269"></p>
+<p><i><font face="Times New Roman">Figure 4: MMC vs Cam-clay for two sets of 
+consolidation pressures</font></i></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

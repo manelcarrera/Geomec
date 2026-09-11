@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="RegisterDianaXOCX" Guid="1B01AFA3-C089-4589-8049-5449DAE1BC6F" Win64="no">
+        <File Id="DianaXOCX" Name="DianaX.ocx" KeyPath="yes" Source="$(var.WiXInstall)\DianaX.ocx">
+          <Class Id="{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}" Context="InprocServer32" Description="DianaX Control" ThreadingModel="apartment" Version="2.2">
+            <ProgId Id="DIANAX.DianaXCtrl.1" Description="DianaX Control" />
+          </Class>
+          <Class Id="{3A01BC18-BA9F-11D2-B3B4-00104B2556D9}" Context="InprocServer32" Description="DianaX Property Page" />
+        </File>
+        <RegistryValue Root="HKCR" Key="CLSID\{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}\Control" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}\MiscStatus\1" Value="132497" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}\MiscStatus" Value="0" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}\ToolboxBitmap32" Value="[!DianaXOCX], 1" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3A01BC17-BA9F-11D2-B3B4-00104B2556D9}\TypeLib" Value="{3A01BC14-BA9F-11D2-B3B4-00104B2556D9}" Type="string" Action="write" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

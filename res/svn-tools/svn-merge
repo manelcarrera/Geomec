@@ -1,0 +1,81 @@
+#! /bin/sh
+
+Usage()
+{
+  printf "Usage: %s [-v] -r<rev-number> <from-svn-url>\n" $(basename "$0")
+  if [ -n "$1" ] ; then
+    printf "  %s\n" "$1"
+  fi
+  exit 1
+}
+
+ParseLog()
+{
+  if [ $# -ne 1 ] ; then
+    printf "Usage: ParseLog <logstring>\n"
+    exit 1
+  fi
+
+  logtxt=$(printf "%s\n" "$1" | sed "/^-*$/d" | sed "/^$/d" | sed "/^r$revnum.*$/d")
+#  printf "Log text: '%s'\n" "$logtxt"
+#  tmpfile=$(mktemp)
+#  trap "rm -f $tmpfile" EXIT
+#
+#  line=0
+#  while read lineStr ; do
+#    printf "Line %d: '%s'\n" "$line" "$lineStr"
+#    line=$(($line + 1))
+#  done < "$tmpfile"
+}
+
+### Main
+
+while getopts ":r:v" option ; do
+  case "$option" in
+    v) verbose=1 ;;
+    r) revnum="$OPTARG" ;;
+    *) Usage ;;
+  esac
+done
+
+shift $(($OPTIND - 1))  # doesnt succeed in /usr/bin/sh
+
+if [ -z "$revnum" ] ; then
+  Usage "No <rev-number> found"
+fi
+
+[[ "$revnum" =~ "^[0-9]+$" ]]
+if [ $? -ne 0 ] ; then
+  Usage "Revision number '$revnum' is not a valid number"
+fi
+
+if [ $# -eq 0 ] ; then
+  Usage "No <from-svn-url> found"
+fi
+mergeFromUrl="$1"
+fromBranch=${mergeFromUrl##*/}
+
+revlog=$(svn log -r$revnum $mergeFromUrl)
+if [ -n "$verbose" ] ; then
+  printf "%s\n" "$revlog"
+fi
+
+ParseLog "$revlog"
+
+fromrev=$(($revnum - 1))
+mergecmd=$(printf "svn merge -r$fromrev:$revnum $mergeFromUrl")
+printf "Merging:\n%s\n" "$mergecmd" | tee -a merge.log
+mergeout=$($mergecmd)
+printf "%s\n" "$mergeout" | tee -a merge.log
+conflicts=$(printf "$mergeout" | grep "^C")
+
+if [ -n "$conflicts" ] ; then
+  printf "Resolve your conflicts:\n%s\n" "$conflicts"
+  exit 1
+fi
+
+logmessage="Merged $revnum from $fromBranch: $logtxt"
+commitcmd=$(printf "svn commit -m \"%s\"" "$logmessage")
+printf "Commit:\n%s\n" "$commitcmd"
+
+

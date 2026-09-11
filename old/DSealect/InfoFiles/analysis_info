@@ -1,0 +1,40 @@
+The sets of input forms grouped under Analysis Control allows you 
+to adjust some parameters of the finite element model, to select 
+the required level of output and to start the finite element 
+analysis.
+ 
+Use the form Mesh refinement to change the refinement level of the
+finite element mesh. The more refined the mesh is, the more 
+accurate the results, but also the longer the calculation time 
+and the larger the memory requirement. The mesh proposed by 
+default is optimal in most of the cases.
+ 
+The user may however wish to increase the refinement level in 
+order to capture highly irregular stress/strain fields caused for
+instance by damage localisation. The user should be aware that the
+calculation time will increase exponentially.
+ 
+The user may wish on the contrary to decrease the mesh refinement
+to reduce calculation time and memory requirements.
+ 
+Use the form Stepping Scheme to tune the parameters of the 
+solution procedure. The proposed defaults are optimal. Tuning of 
+the stepping scheme should be left to specialists in non-linear 
+finite element analysis.
+ 
+Some particularly unstable analyses result in calculation failure 
+due to divergence of the numerical solution scheme. this problem 
+can usually be solved by adjusting the stepping scheme. increasing 
+the number of time steps and/or the maximum number of iterations is 
+most of the time sufficient to solve divergence problems. The user
+should however be aware that the calculation time will increase 
+proportionally.
+  
+Use the form Output Selection to select the output level. Three 
+output levels are proposed. The first level selects only essential 
+output, i.e. overview tables and bar charts. The second level 
+selects also detailed output for the cement. The third level 
+selects also detailed output for the formation and the casing.
+Use the form Analysis to chose the analysis options and to start 
+and monitor the finite element calculation.
+ 

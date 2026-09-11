@@ -1,0 +1,283 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Gradients"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2E07010313"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Add Global Gradient"
+	    quid       	"3A2E07130337")
+	(object UseCase "Gradient Properties"
+	    quid       	"3A2E078D02CE")
+	(object UseCase "Delete Global Gradient"
+	    quid       	"3A2E4EBB0168")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2E0773023B"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2E077401A6"
+		    supplier   	"Use Case View::View Use Cases::Gradients::Add Global Gradient"
+		    quidu      	"3A2E07130337"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2E077401B0"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A2E079E0098"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A2E079F0085"
+		    supplier   	"Use Case View::View Use Cases::Gradients::Gradient Properties"
+		    quidu      	"3A2E078D02CE"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A2E079F008F"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2E4ECB0161"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2E4ECC0036"
+		    supplier   	"Use Case View::View Use Cases::Gradients::Delete Global Gradient"
+		    quidu      	"3A2E4EBB0168"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2E4ECC0040"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Gradients Use Cases"
+	    quid       	"3A2E07430209"
+	    title      	"Gradients Use Cases"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object UseCaseView "Use Case View::View Use Cases::Gradients::Add Global Gradient" @1
+		    location   	(1408, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1408, 762)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Global Gradient")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E07130337")
+		(object UseCaseView "Use Case View::View Use Cases::Gradients::Gradient Properties" @2
+		    location   	(976, 1312)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(976, 1450)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Gradient Properties")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E078D02CE"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::Gradients::Delete Global Gradient" @3
+		    location   	(432, 368)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(432, 506)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Global Gradient")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E4EBB0168"
+		    height     	118)
+		(object ClassView "Class" "Use Case View::Geomec User" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(992, 720)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(992, 880)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	403
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @5
+		    location   	(1200, 672)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E0773023B"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @6
+			    Parent_View 	@5
+			    location   	(944, 384)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E077401A6"
+			    client     	@5
+			    supplier   	@1
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @7
+			    Parent_View 	@5
+			    location   	(944, 384)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E077401B0"
+			    client     	@5
+			    supplier   	@4
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @8
+		    location   	(980, 1079)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E079E0098"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @9
+			    Parent_View 	@8
+			    location   	(724, 791)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E079F0085"
+			    client     	@8
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @10
+			    Parent_View 	@8
+			    location   	(724, 791)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E079F008F"
+			    client     	@8
+			    supplier   	@4
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @11
+		    location   	(814, 606)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E4ECB0161"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @12
+			    Parent_View 	@11
+			    location   	(558, 318)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4ECC0036"
+			    client     	@11
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @13
+			    Parent_View 	@11
+			    location   	(558, 318)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4ECC0040"
+			    client     	@11
+			    supplier   	@4
+			    line_style 	0)))
+		(object Label @14
+		    location   	(128, 16)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	619
+		    label      	"Gradient Use Cases")))))

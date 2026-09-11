@@ -1,0 +1,305 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>Fracture (Aperture) Anisotropy</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<h1>Fracture (Aperture) Anisotropy</h1>
+
+<p class=MsoNormal>Special <a href="anisotropy.htm">anisotropic</a> material
+model combines a transverse anisotropic material model with anisotropy by
+fracture weaknesses. One can be used without the other.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Fracture density</h2>
+
+<p class=MsoNormal>Fractures are planes of weakness that influence the matrix
+stiffness in specific directions only. The additional “strain absorption
+capacity”, both in normal and shear capacity is only acting in specific
+directions, the effect of which also dependent on the fracture density. By
+applying zero densities in all directions, the feature is disabled and the user
+can use transverse isotropy only.</p>
+
+<p class=MsoNormal>The strain reference strain absorbing capacity in normal and
+shear direction need to be provided as well as the reference stress build up
+(or build down) per metre of movement. The reference normal stiffness <i>D</i><sub><span
+style='font-family:Symbol'>^</span></sub> (in MPa/m of psi/ft) and the shear
+stiffness <i>D</i><sub>//</sub> (in MPa/m of psi/ft) can be chosen differently.
+</p>
+
+<p class=MsoNormal>The fracture stiffness (in normal and shear direction) can
+be chosen to depend on effective normal stress on the fracture, becoming very
+soft at tensile stresses and very stiff at high normal stresses. The “aperture
+dependency” <i>a</i>, (with unit 1/MPa or 1/psi) determines the non-linearity
+of the system, which is a function of fracture size, fracture distribution and
+intact rock properties. It needs be determined in situ or (for microcracks like
+coal cleats) in the laboratory.</p>
+
+<p class=MsoNormal><span style='position:relative;top:7.0pt'><img border=0
+width=195 height=26 src="frac_ani6.png"></span></p>
+
+<p class=MsoNormal><span style='position:relative;top:7.0pt'><img border=0
+width=194 height=26 src="frac_ani7.png"></span></p>
+
+<p class=MsoNormal>The fracture stiffness gets evaluated at the beginning of
+every loadstep. It is not iterated for, so stress changes during the step are
+not taken into account. For high values of “<i>a</i>” or big stress steps near
+the tensile regime this can lead to unrealistic tensile stresses hence a more
+or less permanent low fracture stiffness in subsequent steps. </p>
+
+<p class=MsoNormal><img border=0 width=602 height=434 id="Picture 25"
+src="frac_ani1.jpg"></p>
+
+<p class=MsoNormal>Fracture densities can differ in all directions, which is
+impossible to capture is an anisotropic model. It is hence assumed the fracture
+densities can be grouped in three principal directions of highest, lowest and
+intermediate fracture density, with orthogonal directions x, y and z
+respectively.</p>
+
+<p class=MsoNormal>If one assumes that the average fracture stiffness would be
+“<i>D</i><sub><span style='font-family:Symbol'>^</span></sub>” (in MPa/m or
+psi/ft), and that the fracture density in direction x would be <span
+style='font-family:Symbol'>d</span><sub>x</sub> (in 1/m or 1/ft) the strain
+absorption capacity would be <i>k<sub>x</sub></i> = <i>D</i><sub><span
+style='font-family:Symbol'>^</span></sub>/<span style='font-family:Symbol'>d</span><sub>x</sub>
+(in MPa or psi). A similar formulation holds for the y and z direction.
+Fractures might also contribute to shear deformation. The shear stiffness in y
+direction resulting from fractures in x direction would be <i>k<sub>xy</sub></i>
+= <i>D</i><sub>//</sub>/<span style='font-family:Symbol'>d</span><sub>x</sub>
+(in MPa or psi). The full shear strain is also dependent by the fractures in y
+direction the move in x-direction: <i>k<sub>xy</sub></i> = <i>D</i><sub>//</sub>/<span
+style='font-family:Symbol'>d</span><sub>y</sub>. A similar formulation holds
+for the shear combinations yz-zy and xz-zx.</p>
+
+<p class=MsoNormal>&nbsp;The resulting compliance matrix is: </p>
+
+<p class=MsoNormal><img border=0 width=373 height=244 src="frac_ani2.GIF"
+alt="Description: \\ijsseldijk\users\fnc\Geomec\geomec3\Help\background\frac_ani2.GIF"></p>
+
+<p class=MsoNormal>Geomec requires the input of the specific directions that
+encounter the highest and lowest fracture densities, defined as inclination and
+azimuth. The input follows the wells convention. When the highest fracture
+density is encountered in the direction (Easting, Northing, Depth)=(1,0,1),
+then the inclination is 45 degrees and the azimuth 90 degrees. This is then the
+x-direction. In reverse mode, the direction is defined as: </p>
+
+<p class=MsoNormal>&nbsp;<img border=0 width=148 height=83 src="frac_ani3.GIF"
+alt="Description: \\ijsseldijk\users\fnc\Geomec\geomec3\Help\background\frac_ani3.GIF"></p>
+
+<p class=MsoNormal>Geomec also reads in the direction of lowest fracture
+density. Geomec will however project this direction on the plane normal to the
+highest fracture density (x), to obtain the y-direction, so that an orthogonal
+system is maintained. The direction of the intermediate fracture density (z) is
+orthogonal to the highest and lowest densities and follows directly from the
+angles provided for the x- and y-direction, hence needs not be provided.</p>
+
+<p class=MsoNormal>&nbsp;The direction input is designed to receive detailed
+pointset information from the software package SVS. SVS outputs a file in Gocad
+3D pointset format with fracture densities in three directions (that depend on
+the user supplied scanning length of each point). The direction angles as
+provided for the intermediate fracture densities will be ignored by Geomec. The
+pointset values will be grouped into a tensor like group, so that the user only
+needs to drag and drop one pointset-item to material section under the
+Formations. </p>
+
+<p class=MsoNormal>&nbsp;Geomec will rotate this compliance matrix to the
+Global directions Northing, Easting, Depth (N,E,D) and add the contribution
+from the bulk material, which can also be an anisotropic material.</p>
+
+<p class=MsoNormal><u>Fracture Aperture and permeability multipliers</u></p>
+
+<p class=MsoNormal>The (direction dependent) fracture aperture “v” is used to
+compute permeability multipliers. The permeability within the fracture planes
+is dependent on the third power of the aperture. When the initial aperture is
+known, the aperture change can be computed by integrating stress over the
+aperture stiffness D<sub><span style='font-family:Symbol'>^</span></sub>. The
+permeability multiplier <i>m<sub>k</sub></i> for the two direction orthogonal
+to principal fracture density direction is the third power of the new over
+initial fracture aperture. For the direction of highest fracture density
+(encountered while drilling) holds:</p>
+
+<p class=MsoNormal><span style='position:relative;top:17.0pt'><img border=0
+width=203 height=56 src="frac_ani9.png"></span></p>
+
+<h2>Transverse isotropic materials</h2>
+
+<p class=MsoNormal>Geomec allows the input of transverse isotropic material
+parameters, which can be combined with fracture anisotropy or used in upscaled
+anistropy. A transverse anisotropic material is frequently observed in nature
+and usually is the upscaled effect of fine lamination (bedding) resulting from
+the early marine material deposition. The stiffness parameters in normal
+direction (E<sub>n</sub>, <span style='font-family:Symbol'>n</span><sub>n</sub>)
+to the lamination differ from the in-plane or transverse (E<sub>t</sub>, <span
+style='font-family:Symbol'>n</span><sub>t</sub>) stiffness parameters. The
+normal Poisson’s ratio is the portion (ratio) of absorbed normal strain that
+gets transferred to orthogonal (transverse) directions. The compliance matrix
+can be written as follows: </p>
+
+<p class=MsoNormal><img border=0 width=398 height=228 src="frac_ani4.GIF"
+alt="Description: \\ijsseldijk\users\fnc\Geomec\geomec3\Help\background\frac_ani4.GIF"></p>
+
+<p class=MsoNormal>The Shear Modulus G does not follow directly from the
+Young’s moduli and Poisson’s ratios. It can be derived from upscaling routines,
+where upscaled layer thicknesses are part of the equation. Its value ranges
+from close to zero (high Poisson’s ratios and high Young’s moduli contrast) to
+E<sub>n</sub>/[2(1+<span style='font-family:Symbol'>n</span><sub>n</sub>)] with
+Poisson’s ratios of zero. </p>
+
+<p class=MsoNormal>The user needs to define the dip and azimuth of the bedding
+plane. The dip is the deviation from horizontal of the bedding plane in
+degrees. A dip of 90 degrees would mean a vertical plane. The azimuth of the
+dip is defined here as the rotation (clockwise from Northing) of the direction
+of steepest descent, the direction where a ball would roll on a flat service.
+These definitions align with the PETREL definitions.</p>
+
+<p class=MsoNormal>In case of overturned formations, where the bottom is up,
+the user can select or import a dip greater than 90 degrees. A 10 degrees dip
+with azimuth 90 degrees coincides numerically with a 170 (=180-10) degrees dip
+and a –90 (or 270 = 90+180) degrees azimuth. </p>
+
+<p class=MsoNormal>The user might import a pointset with dip and azimuths to
+perform a proper matrix rotation. Be aware that another definition exists in
+geological literature, where the azimuth is defined as the iso-depth or strike
+direction, which is 90 degrees rotated from the dip-azimuth</p>
+
+<p class=MsoNormal>The relation between the dip (d<sub>n</sub>) and azimuth (<span
+style='font-family:Symbol'>q</span><sub>n</sub>) of a layer and its normal
+vector, is given by:</p>
+
+<p class=MsoNormal><img border=0 width=150 height=78 src="frac_ani5.GIF"
+alt="Description: \\ijsseldijk\users\fnc\Geomec\geomec3\Help\background\frac_ani5.GIF"></p>
+
+<p class=MsoNormal>Note the difference in minus sign for the Depth coordinate,
+with the fracture densities, which arises from conventions on the direction of
+the positive vertical.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:14.0pt'>Thomsen Parameters</span></p>
+
+<p class=MsoNormal>For Transverse Isotropy, the user may choose to use Thomsen
+Parameters instead of Young’s Moduli/Poisson’s ratios. Thomsen parameter are
+different way of expressing the anisotropy from seismic data. Instead of using 2
+Young’s Moduli, 2 Poisson’s Ratios and 1 Shear Modulus, V<sub>p</sub>, V<sub>s</sub>
+and three ratio’s (T<sub><span style='font-family:Symbol'>e</span></sub>, T<sub><span
+style='font-family:Symbol'>g</span></sub>, T<sub><span style='font-family:Symbol'>d</span></sub>)
+determine the parameters.</p>
+
+<p class=MsoNormal>The symmetric stiffness matrix S for z=normal direction
+(with <span style='font-family:Symbol'>s</span><sub>xy</sub>=S<sub>xy,yz</sub> <span
+style='font-family:Symbol'>e</span><sub>yz</sub>) is shaped by</p>
+
+<p class=MsoNormal><span style='position:relative;top:71.0pt'><img border=0
+width=343 height=190 src="frac_ani10.png"></p>
+
+<p class=MsoNormal>The stiffness matrix then gets inverted to a Compliance
+Matrix, which is used to derive the Young’s Moduli (E<sub>t</sub>, E<sub>n</sub>),
+Poisson’s Ratio’s (<span style='font-family:Symbol'>n</span><sub>t</sub>, <span
+style='font-family:Symbol'>n</span><sub>n</sub>) and Shear Modulus (G) used by
+Geomec/Diana</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

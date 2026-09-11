@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\TestLib.h" />
+    <ClInclude Include="h\TestSoilModel.h" />
+    <ClInclude Include="h\TestSoilModelFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\TestFormation.cpp" />
+    <ClCompile Include="src\TestHorizon.cpp" />
+    <ClCompile Include="src\TestIModelObjectReceiver.cpp" />
+    <ClCompile Include="src\TestLib.cpp" />
+    <ClCompile Include="src\TestMaterial.cpp" />
+    <ClCompile Include="src\TestSoilModel.cpp" />
+    <ClCompile Include="src\TestSoilModelFactory.cpp" />
+    <ClCompile Include="h\moc_TestFormation.cpp" />
+    <ClCompile Include="h\moc_TestHorizon.cpp" />
+    <ClCompile Include="h\moc_TestIModelObjectReceiver.cpp" />
+    <ClCompile Include="h\moc_TestMaterial.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\TestFormation.h" />
+    <CustomBuild Include="h\TestHorizon.h" />
+    <CustomBuild Include="h\TestIModelObjectReceiver.h" />
+    <CustomBuild Include="h\TestMaterial.h" />
+  </ItemGroup>
+</Project>

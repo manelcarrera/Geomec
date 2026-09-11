@@ -1,0 +1,4 @@
+INCLUDEPATH += $$PYLIB_BASE
+INCLUDEPATH += $$QUTIL_BASE
+INCLUDEPATH += $$PYTHONROOT\include
+INCLUDEPATH += $$PYTHONROOT\Lib\site-packages\numpy\core\include

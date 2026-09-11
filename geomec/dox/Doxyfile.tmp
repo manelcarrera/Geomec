@@ -1,0 +1,40 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = Geomec3
+OUTPUT_DIRECTORY       = c:/Inetpub/wwwroot/Geomec3
+INPUT                  = ..
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+TAGFILES              += ../../LIB/2DWellViewLib/dox/2DWellViewLib.tag=../../2DWellViewLib/html
+TAGFILES              += ../../LIB/Controls/dox/Controls.tag=../../Controls/html
+TAGFILES              += ../../LIB/DAG/dox/DAG.tag=../../DAG/html
+TAGFILES              += ../../LIB/DCasingLib/dox/DCasingLib.tag=../../DCasingLib/html
+TAGFILES              += ../../LIB/DianaCore/dox/DianaCore.tag=../../DianaCore/html
+TAGFILES              += ../../LIB/DoubleEditLib/dox/DoubleEditLib.tag=../../DoubleEditLib/html
+TAGFILES              += ../../LIB/FemApp/dox/FemApp.tag=../../FemApp/html
+TAGFILES              += ../../LIB/GenUtils/dox/GenUtils.tag=../../GenUtils/html
+TAGFILES              += ../../LIB/Geometry/dox/Geometry.tag=../../Geometry/html
+TAGFILES              += ../../LIB/GmDatabase/dox/GmDatabase.tag=../../GmDatabase/html
+TAGFILES              += ../../LIB/MeshDataCacher/dox/MeshDataCacher.tag=../../MeshDataCacher/html
+TAGFILES              += ../../LIB/OpenGL/dox/OpenGL.tag=../../OpenGL/html
+TAGFILES              += ../../LIB/Quantity/dox/Quantity.tag=../../Quantity/html
+TAGFILES              += ../../LIB/QDianaStartUp/dox/QDianaStartUp.tag=../../QDianaStartUp/html
+TAGFILES              += ../../LIB/RPN/dox/RPN.tag=../../RPN/html
+TAGFILES              += ../../LIB/TetMesh/dox/TetMesh.tag=../../TetMesh/html
+TAGFILES              += ../../LIB/Textfile_Parser/dox/Textfile_Parser.tag=../../Textfile_Parser/html
+TAGFILES              += ../../LIB/Triangle/dox/Triangle.tag=../../Triangle/html
+TAGFILES              += ../../LIB/TSMesh/dox/TSMesh.tag=../../TSMesh/html
+TAGFILES              += ../../LIB/WellMatLib/dox/WellMatLib.tag=../../WellMatLib/html
+TAGFILES              += ../../LIB/WellScene3D/dox/WellScene3D.tag=../../WellScene3D/html
+TAGFILES              += ../../LIB/WellScheme/dox/WellScheme.tag=../../WellScheme/html
+TAGFILES              += ../../LIB/WellSchemeUtils/dox/WellSchemeUtils.tag=../../WellSchemeUtils/html
+TAGFILES              += ../../LIB/XMLLib/dox/XMLLib.tag=../../XMLLib/html
+GENERATE_TAGFILE       = Geomec3.tag

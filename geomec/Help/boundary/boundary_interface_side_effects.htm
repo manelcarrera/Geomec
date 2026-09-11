@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary conditions</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="interface elements">
+	<param name="Keyword" value="boundary conditions">
+</OBJECT>
+<h1>Side effects of Interface elements on boundary</h1>
+<p>Applying interface elements on the boundary has the following side effects:</p>
+<ul>
+	<li><font size="3">If the top surface is a free surface (sea bottom or 
+	ground surfaces), then the <a href="boundary_interface_attributes.htm">Top 
+	K-values</a> should be set at very low values (order 1E-6 MPa/m) in order 
+	not to restrain deformation. The applied
+	<a href="boundary_stress_tensor_pointset.htm">stress tensor pointset</a> to 
+	the top surface will dominate.</font></li>
+	<li><font size="3">One can not set other boundary conditions, like described 
+	for meshes without boundary elements at the sides.&nbsp; </font></li>
+	<li><font size="3">All initial stresses come from the applied 3D
+	<a href="boundary_stress_tensor_pointset.htm">stress tensor pointset</a>. 
+	The pointset acts to preload the elements (so that they do not need to 
+	deform to reach these stresses), but also acts on the boundaries of the 
+	model. These stresses have to be in line with gravity build up and the 
+	expected horizontal stresses. The iterative initial stress routine, applying 
+	the “material properties” of initial horizontal/vertical stress ratios “Kh” 
+	and “KH” will be fully ignored.</font></li>
+	<li><span style="color: black"><font size="3">The
+	<a href="../tree/Model/weight_of_seawater.htm">seawater loading</a> is fully 
+	ignored. All total stress effects of seawater need to be included in the 3D 
+	stress pointset near the top surface</font></span></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

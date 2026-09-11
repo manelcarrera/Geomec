@@ -1,0 +1,117 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Weighted mapping</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="element to element mapping">
+	<param name="Keyword" value="mapping">
+	<param name="Keyword" value="weighted mapping">
+</OBJECT>
+<h1><a name="_Toc24265383"><span style="mso-ansi-language:EN-GB">Weighted
+mapping</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="Body">Weighted mapping incorporates the contributions of any elements
+in the source mesh that lie completely within the target element. This is not
+the case in the nodal interpolation method. A two step approach is used. The
+first step is to get values from the source mesh at the intersection points with
+the target element, and in the original source mesh nodes within the target
+element (see figure).</p>
+<p class="Body"><img border="0" src="weight18.gif" width="343" height="136"></p>
+<p><span lang="EN-US" style="font-size:12.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Samples
+are taken at the intersection points with the target element and in the original
+source mesh nodes within the target element</span></p>
+<p>These values are then input for a weighted least squares method. The
+weighting method can be either <a href="volume_based_mapping.htm">volume based</a>,
+or <a href="inverse_volume_based_mapping.htm">inverse volume based.</a><o:p>
+</o:p>
+<p><span lang="NL" style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:NL;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">The least squares method assumes there is a function description using a
+set of parameters that need to be resolved from a number of input values. The
+function we use here is the shape function of the target element:</span>
+<p><span style="mso-text-raise:-14.0pt"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:36.75pt;
+ height:33.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="weight19.gif" v:shapes="_x0000_i1025" width="49" height="45"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1122805109">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="73" valign="top" style="width:55.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">m<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="495" valign="top" style="width:371.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">is the number
+      of nodes on the target element<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="73" valign="top" style="width:55.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">L<sub>i</sub><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="495" valign="top" style="width:371.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">is the shape
+      function for node I<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="73" valign="top" style="width:55.05pt;padding:0cm 5.4pt 0cm 5.4pt"><span style="mso-ansi-language:EN-GB">u<sub>i</sub><o:p>
+      </o:p>
+      </span></td>
+    <td width="495" valign="top" style="width:371.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">is the value in
+      node i<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

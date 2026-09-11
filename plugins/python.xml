@@ -1,0 +1,6 @@
+<?xml version="1.0"?> 
+ <python title=""> 
+  <PYTHONROOT>path_to_python_interpreter</PYTHONROOT> 
+  <PYTHON_DLL>%PYTHONROOT%\python27.dll</PYTHON_DLL> 
+  <PYTHONPATH>%PYTHONROOT%\libs;%PYTHONROOT%\DLLs;%PYTHONROOT%\Lib;%PYTHONROOT%\Lib\site-packages;%PYTHONROOT%\Lib\lib-tk</PYTHONPATH>
+ </python>

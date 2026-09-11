@@ -1,0 +1,903 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "DAO Database Support"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A402BF"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CDaoDatabase"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A402C9"
+	    documentation 	"A CDaoDatabase object represents a connection to a database through which you can operate on the data.  You can have one or more CDaoDatabase objects active at a time in a given 'workspace,' represented by a CDaoWorkspace object."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A402DD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0A402DE"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A402E7"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDaoDatabase"
+		    quid       	"3A07D0A402F2"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    quid       	"3A07D0A402FC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A40305"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszLocale"
+			    quid       	"3A07D0A4030F"
+			    type       	"LPCTSTR"
+			    initv      	"dbLangGeneral")
+			(object Parameter "dwOptions"
+			    quid       	"3A07D0A40310"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A4031A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A40323"
+			    type       	"LPCTSTR")
+			(object Parameter "bExclusive"
+			    quid       	"3A07D0A4032D"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "bReadOnly"
+			    quid       	"3A07D0A4032E"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "lpszConnect"
+			    quid       	"3A07D0A40337"
+			    type       	"LPCTSTR"
+			    initv      	
+|_T("")
+			    ))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A40341"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A4034C"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDaoException"
+		    quid       	"3A07D0A40356"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nError"
+			    quid       	"3A07D0A4035F"
+			    type       	"int"
+			    initv      	"NO_AFX_DAO_ERROR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoQueryDef"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A40373"
+	    documentation 	"A CDaoQueryDef object represents a query definition, or 'querydef,' usually one saved in a database. A querydef is a data access object that contains the SQL statement that describes a query, and its properties, such as 'Date Created' and 'ODBC Timeout.' "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A40387"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0A40388"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A40391"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    quid       	"3A07D0A4039C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A403A5"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "lpszSQL"
+			    quid       	"3A07D0A403AF"
+			    type       	"LPCTSTR"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Append"
+		    quid       	"3A07D0A403B9"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A403C3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A403CD"
+			    type       	"LPCTSTR"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A403D7"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A403E2"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDaoException"
+		    quid       	"3A07D0A50004"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nError"
+			    quid       	"3A07D0A5000D"
+			    type       	"int"
+			    initv      	"NO_AFX_DAO_ERROR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Execute"
+		    quid       	"3A07D0A50019"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A50022"
+			    type       	"int"
+			    initv      	"dbFailOnError"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetParamValue"
+		    quid       	"3A07D0A5002D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50036"
+			    type       	"LPCTSTR"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "GetParamValue"
+		    quid       	"3A07D0A50041"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A5004A"
+			    type       	"int"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "SetParamValue"
+		    quid       	"3A07D0A50055"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A5005E"
+			    type       	"LPCTSTR")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A5005F"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetParamValue"
+		    quid       	"3A07D0A50072"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A5007C"
+			    type       	"int")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A5007D"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoRecordset"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A50090"
+	    documentation 	
+|A CDaoRecordset object represents a set of records selected from a data source. Known as 'recordsets,' CDaoRecordset objects are available in three forms:
+|table-type recordsets, dynaset-type recordsets, and snapshot-type recordsets.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A500A4"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0A500A5"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A500AE"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDaoRecordset"
+		    quid       	"3A07D0A500B9"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(nOpenType, lpszSql, nOptions);
+|
+			    )))
+		    quid       	"3A07D0A500C3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nOpenType"
+			    quid       	"3A07D0A500CC"
+			    type       	"int"
+			    initv      	"AFX_DAO_USE_DEFAULT_TYPE")
+			(object Parameter "lpszSql"
+			    quid       	"3A07D0A500D6"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A500D7"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A500EA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pQueryDef"
+			    quid       	"3A07D0A500F4"
+			    type       	"CDaoQueryDef*")
+			(object Parameter "nOpenType"
+			    quid       	"3A07D0A500F5"
+			    type       	"int"
+			    initv      	"dbOpenDynaset")
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A500FE"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A50108"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pTableDef"
+			    quid       	"3A07D0A50112"
+			    type       	"CDaoTableDef*")
+			(object Parameter "nOpenType"
+			    quid       	"3A07D0A5011C"
+			    type       	"int"
+			    initv      	"dbOpenTable")
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A5011D"
+			    type       	"int"
+			    initv      	"0"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A50127"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A5013A"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDaoException"
+		    quid       	"3A07D0A50144"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nError"
+			    quid       	"3A07D0A5014E"
+			    type       	"int"
+			    initv      	"NO_AFX_DAO_ERROR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetParamValue"
+		    quid       	"3A07D0A50158"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50162"
+			    type       	"LPCTSTR"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "GetParamValue"
+		    quid       	"3A07D0A5016C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A50176"
+			    type       	"int"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "SetParamValue"
+		    quid       	"3A07D0A50180"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50181"
+			    type       	"LPCTSTR")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A5018A"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetParamValue"
+		    quid       	"3A07D0A50195"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A5019E"
+			    type       	"int")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A501A8"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Move"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(lRows);
+|
+			    )))
+		    quid       	"3A07D0A501B2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lRows"
+			    quid       	"3A07D0A501BC"
+			    type       	"long"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Find"
+		    quid       	"3A07D0A501C6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lFindType"
+			    quid       	"3A07D0A501D0"
+			    type       	"long")
+			(object Parameter "lpszFilter"
+			    quid       	"3A07D0A501D1"
+			    type       	"LPCTSTR"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddNew"
+		    quid       	"3A07D0A501DB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Edit"
+		    quid       	"3A07D0A501EE"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Update"
+		    quid       	"3A07D0A501F8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Delete"
+		    quid       	"3A07D0A50203"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CancelUpdate"
+		    quid       	"3A07D0A5020D"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFieldValue"
+		    quid       	"3A07D0A50220"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50221"
+			    type       	"LPCTSTR")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A5022A"
+			    type       	"COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFieldValue"
+		    quid       	"3A07D0A50235"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A5023E"
+			    type       	"int")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A50248"
+			    type       	"COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFieldValue"
+		    quid       	"3A07D0A50252"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A5025C"
+			    type       	"LPCTSTR"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "GetFieldValue"
+		    quid       	"3A07D0A50270"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A50271"
+			    type       	"int"))
+		    result     	"COleVariant"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70002")
+		(object Operation "SetFieldValue"
+		    quid       	"3A07D0A5027B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50284"
+			    type       	"LPCTSTR")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A5028E"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetFieldValue"
+		    quid       	"3A07D0A50298"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A502A2"
+			    type       	"int")
+			(object Parameter "varValue"
+			    quid       	"3A07D0A502A3"
+			    type       	"const COleVariant&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Requery"
+		    quid       	"3A07D0A502B6"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultDBName"
+		    quid       	"3A07D0A502C0"
+		    stereotype 	"virtual"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetDefaultSQL"
+		    quid       	"3A07D0A502CB"
+		    stereotype 	"virtual"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "DoFieldExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pFX);
+|
+			    )))
+		    quid       	"3A07D0A502D6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFX"
+			    quid       	"3A07D0A502DF"
+			    type       	"CDaoFieldExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetDirtyFields"
+		    quid       	"3A07D0A502EA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoTableDef"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A502FD"
+	    documentation 	"A CDaoTableDef object represents the stored definition of a base table or an attached table. Each DAO database object maintains a collection, called TableDefs, that contains all saved DAO tabledef objects."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A5031B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0A5031C"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A50325"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    quid       	"3A07D0A5032F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50330"
+			    type       	"LPCTSTR")
+			(object Parameter "lAttributes"
+			    quid       	"3A07D0A50339"
+			    type       	"long"
+			    initv      	"0")
+			(object Parameter "lpszSrcTable"
+			    quid       	"3A07D0A50343"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "lpszConnect"
+			    quid       	"3A07D0A50344"
+			    type       	"LPCTSTR"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Append"
+		    quid       	"3A07D0A5034E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A50361"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A50362"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A5036C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A5037F"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDaoException"
+		    quid       	"3A07D0A50389"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nError"
+			    quid       	"3A07D0A50393"
+			    type       	"int"
+			    initv      	"NO_AFX_DAO_ERROR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoWorkspace"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A5039D"
+	    documentation 	"A CDaoWorkspace object manages a named, password-protected database session from login to logoff, by a single user. In most cases, you will not need multiple workspaces, and you will not need to create explicit workspace objects; when you open database and recordset objects, they use DAO's default workspace. However, if needed, you can run multiple sessions at a time by creating additional workspace objects. Each workspace object can contain multiple open database objects in its own Databases collection. In MFC, a workspace is primarily a transaction manager, specifying a set of open databases all in the same 'transaction space.'"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A503BB"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    quid       	"3A07D0A503BC"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A503C5"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CDaoWorkspace"
+		    quid       	"3A07D0A503CF"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Create"
+		    quid       	"3A07D0A503D9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A503E3"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszUserName"
+			    quid       	"3A07D0A503E4"
+			    type       	"LPCTSTR")
+			(object Parameter "lpszPassword"
+			    quid       	"3A07D0A60005"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Append"
+		    quid       	"3A07D0A6000F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A6001A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3A07D0A60023"
+			    type       	"LPCTSTR"
+			    initv      	"NULL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A6002E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A60038"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDaoException"
+		    quid       	"3A07D0A6004B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nError"
+			    quid       	"3A07D0A6004C"
+			    type       	"int"
+			    initv      	"NO_AFX_DAO_ERROR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

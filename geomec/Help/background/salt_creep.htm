@@ -1,0 +1,325 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+
+
+<title>Salt creep model</title>
+<style>
+<!--
+span.msoIns
+	{mso-style-name:"";
+	text-decoration:underline;
+	text-underline:single}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="Fokker-Creep">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+	<param name="Keyword" value="salt creep">
+</OBJECT>
+<h1><span lang="NL">Salt creep model&nbsp; (Fokker Creep)</span></h1>
+<p>&nbsp;</p>
+<h2>Secondary creep law</h2>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">S<span lang="EN-GB">econdary 
+creep is a direct relation between the shear strain rate and the differential 
+stresses, as experienced in many materials (metals and rocks) at elevated 
+temperatures, and in salt also at moderate temperatures (above 10 C). It may be 
+preceded by strain hardening (primary) creep -not available in Geomec at this 
+moment. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">Most 
+creep laws (both theoretical and lab-fitted) are written as a power-law relation 
+between the axial creep rate (
+<img border="0" src="salt_n1.gif" width="18" height="20" align="middle"><sub>ax</sub> 
+=&nbsp;&nbsp;<img border="0" src="salt_n1.gif" width="18" height="20" align="middle"> <sub>1</sub>) 
+on the triaxial differential stress ( </span>
+<span lang="EN-GB" style="font-family: Symbol">Ds</span><span lang="EN-GB"> =
+</span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> - </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">3</span></sub><span lang="EN-GB">&nbsp; 
+=&nbsp; </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">ax </span></sub><span lang="EN-GB">- </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">rad</span></sub><span lang="EN-GB"> 
+), with an additional Arrhenius-type relation to the ambient temperature T.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<span lang="EN-GB" style="font-size: 12.0pt; font-family: Times New Roman">
+Within Diana/Geomec it is possible to input two simultaneously acting creep 
+mechanisms, both contributing to creep strain. The secondary creep law observed 
+in constant-strain-rate triaxial tests can be written in the form:</span><p class="MsoCaption">
+<img border="0" src="salt_n2.GIF" width="340" height="57"></p>
+<p>
+[Equation 1.1]</p>
+<p class="Body"><span lang="EN-GB">where:</span></p>
+<table border="0" width="61%" id="table1">
+	<tr>
+		<td width="112"><span lang="EN-GB"><sub>
+		<img border="0" src="salt_n1.gif" width="18" height="20" align="middle">ax</sub></span>
+		</td>
+		<td>&nbsp;is the vertical strain rate in [1/s]</td>
+	</tr>
+	<tr>
+		<td width="112"><img border="0" src="salt3.gif" width="99" height="21"></td>
+		<td>is the differential stress in [Pa]</td>
+	</tr>
+	<tr>
+		<td width="112"><i>A<sub>1</sub></i> and <i>A<sub>2</sub></i><sub>&nbsp;&nbsp;
+</sub></td>
+		<td><sub>&nbsp;</sub>are creep strain rate coefficients in [1/s]</td>
+	</tr>
+	<tr>
+		<td width="112"><i>Q<sub>1</sub></i> and <i>Q<sub>2</sub></i>&nbsp; </td>
+		<td>are activation energies in [J/mol]</td>
+	</tr>
+	<tr>
+		<td width="112">n<sub>1</sub> and n<sub>2</sub></td>
+		<td><span style="font-size: 12.0pt; font-family: Times New Roman">are 
+		creep powers [-]</span></td>
+	</tr>
+	<tr>
+		<td width="112"><i>R</i></td>
+		<td>is the gas constant (8.314 J/ºK /mol)</td>
+	</tr>
+	<tr>
+		<td width="112"><i>T</i></td>
+		<td>is the ambient temperature [K]</td>
+	</tr>
+	<tr>
+		<td width="112"><span lang="EN-GB"><i><span style="font-family: Symbol">
+		s*</span></i> </span></td>
+		<td>
+		<span lang="EN-GB" style="font-size: 12.0pt; font-family: Times New Roman">
+		is a unifying reference stress (usually kept at 1 MPa)</span></td>
+	</tr>
+</table>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+user defined input parameters in Geomec are:</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i><u>A<sub>1</sub> and 
+A<sub>2</sub></u></i></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">Creep strain rate 
+coefficients [1/s] for mechanism 1 and mechanism 2. </p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">If only a single creep 
+mechanism is active or known, A<sub>2</sub> should be kept zero.</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i>&nbsp;</i></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i><u><span lang="PT">Q<sub>1</sub>/R 
+and Q<sub>2</sub>/R</span></u><span lang="PT"> &nbsp;&nbsp;&nbsp;&nbsp;</span></i></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">A</span>ctivation 
+temperatures in [K] for mechanism 1 and mechanism 2. The value is determined by 
+dividing the activation energies (in J/mole) by the gas constant&nbsp; <i>R</i>&nbsp;&nbsp;&nbsp;( = 
+8.314 J/K /mole). If the temperature dependence is not known (only tests results 
+at in situ temperatures), <i>Q<sub>1</sub>/R</i> and/or <i>Q<sub>2</sub>/R</i> 
+may be set at zero (0), where A<sub>1</sub> and A<sub>2</sub> should be chosen 
+to represent the creep rate at a differential stress of 1 MPa (or reference 
+field unit)<span class="msoIns"><ins datetime="2005-09-14T12:07" style="text-decoration: none" cite="mailto:Registered%20User">.</ins><ins datetime="2005-09-14T12:06" style="text-decoration: none" cite="mailto:Registered%20User">&nbsp;&nbsp;&nbsp;&nbsp;</ins></span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i>&nbsp;</i></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i><u>n<sub>1</sub> and 
+n<sub>2</sub></u></i><u>&nbsp;</u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">Stress powers for 
+mechanism 1 and mechanism 2.</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i>n</i> may vary from 
+0.5 (thixotropy) to 80 (plasticity without strain hardening), but for creep 
+usually varies from 1 (Newtonian creep) to 5.</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><i><u>
+<span lang="EN-GB" style="font-family: Symbol">s</span><span lang="EN-GB">*</span></u></i></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+Unifying reference stress (usually kept at 1 MPa or field unit)</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">Note 
+that creeps strains can be calculated when applying time-steps only ! Load steps 
+are seen as instantaneous, which implies the absence of creep strain !</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><b>
+<span lang="EN-GB" style="font-size: 16.0pt">Creep parameters:</span></b></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+Creep parameters are usually derived from laboratory test results, performed 
+under stresses and temperature, where the relevant creep mechanism is believed 
+to be dominating the creep rate. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+parameter <i>n</i> is best derived from strain rate stepping tests on a single 
+sample, varying the enforced strain rate by for instance an order of magnitude 
+and keeping the strain rate constant for a few percents of strain to be sure to 
+reach non-strain hardening or softening creep rates.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+<img border="0" src="salt_n3.gif" width="134" height="89"></p>
+<p class="body" style="margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+[<span lang="EN-GB">Equation 1.2]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+temperature dependence can be determined by performing constant stress or 
+constant strain rate tests at different temperatures:</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+<img border="0" src="salt_n4.gif" width="185" height="96" align="middle">&nbsp;&nbsp;&nbsp; 
+or&nbsp;&nbsp;&nbsp;
+<img border="0" src="salt_n5.gif" width="209" height="96" align="middle"></span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">[<span lang="DE">Equation 
+1.3]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><b>
+<span lang="EN-GB" style="font-size: 16.0pt">3D-creep formulae</span></b></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+implemented 3-D version of the creep law first scalars the stress-strain rate 
+relation by determining (shear) stress and strain rate equivalents.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+Diana/ Geomec calculates (non directional) Von Mises equivalents (</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">q</span></sub><span lang="EN-GB">) 
+of the creep strain rate and then distributes the creep components according to 
+the apparent stress tensor. For tri-axial stress situations (<i>q</i>=</span><i><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">ax</span></sub></i><span lang="EN-GB">-</span><i><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">rad</span></sub></i><span lang="EN-GB">) 
+the resulting outcome is identical.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<img border="0" src="salt_n6.gif" width="227" height="71"></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">[<span lang="EN-GB">Equation 1.4]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+<img border="0" src="salt_n7.gif" width="224" height="73">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">[<span lang="EN-GB">Equation 1.5]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+non dimensional creep law implemented in DIANA writes:</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<img border="0" src="salt_n8.gif" width="321" height="50"></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+[Equation 
+1.6]</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">This equation 
+reduces for triaxial loading (q=<span style="font-family: Symbol">s</span><sub>ax</sub>-<span style="font-family: Symbol">s</span><sub>rad</sub>=<span style="font-family: Symbol">Ds</span>) 
+and the presently implemented fixed volume creep (<i><span style="font-family: Symbol">e</span><sub>v</sub><sup>c</sup></i>&nbsp;=0;
+<i><span style="font-family: Symbol">e</span><sub>q</sub><sup>c</sup></i>&nbsp;= <i>
+<span style="font-family: Symbol">e</span><sub>1</sub><sup>c</sup></i>&nbsp;) to Equation 
+1.1.</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<h2>Calculation scheme</h2>
+<p style="margin:0in;margin-bottom:.0001pt">The general calculation scheme is 
+Regular Newton-Raphson for salt combined with a Direct solver, in which salt 
+creep is incorporated in the full model stiffness matrix, using the scheme below:</p>
+<p style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Calculate 
+the creep strains, assuming the stresses do not change over the time step.</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Calculate 
+the effects of stress changes during the time step. This implies a linearization 
+to <span style="font-family: Symbol">Ds</span> at the present stress situation
+<span style="font-family: Symbol">s</span>. For each element (stress point) and 
+each time step, this will lead to a different matrix !</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Combine the 
+stress-strain relations of the various material (elastic, plastic, creep)</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Calculate 
+the new stress field, resulting from the linearised approach</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+5.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Calculate 
+the non-linear creep contribution from the new stress field and add this to the 
+initial creep (force unbalance)</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+6.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Compare 
+unbalance with external stress field (convergence criteria)</p>
+<p style="text-indent: -.25in; margin-left: .5in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+7.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Iterate if 
+required steps 4-6 to obtain an improved stress field and improved non-linear 
+creep contribution.</p>
+<p style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p style="margin:0in;margin-bottom:.0001pt">It is possible to recalculate the 
+stiffness matrix every iteration, to allow linearization at the new (instead of 
+the old) stress estimation, in theory rendering a convergence with less steps 
+(Iterative solver). However this takes more calculation time per step, normally 
+not speeding up the calculations in total. </p>
+<p style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<h2><span lang="EN-GB">Background</span></h2>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">After calculating 
+the equivalent (Von Mises) stresses and strains (Eq 1.4-1.6), the creep strains 
+are (for non-dilatant non-contracting creep, the only present possibility in 
+Diana/ Geomec) redistributed to the strain tensor according to:</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<img border="0" src="salt_n9.gif" width="93" height="54"></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">[Equation 1.7]</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">P<sub>c</sub> =
+<img border="0" src="salt_n10.gif" width="211" height="145" align="middle"></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">[Equation 1.8]</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+Within Geomec, the salt creep model of Equation 1.6 is linearised to </span>
+<span lang="EN-GB" style="font-family: Symbol">s</span><span lang="EN-GB"> and
+<i>q, </i>i.e. the creep is dependent on the (in the previous time or load step 
+calculated) stress state </span><span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">t</span></sub><span lang="EN-GB"> 
+and the stress change over the time step </span>
+<span lang="EN-GB" style="font-family: Symbol">D</span><span lang="EN-GB">t:
+</span><span lang="EN-GB" style="font-family: Symbol">Ds</span><span lang="EN-GB">.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<img border="0" src="salt_n11.gif" width="458" height="52"></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">[Equation 
+1.9]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">To 
+improve on linearization errors, a correction term </span>
+<span lang="EN-GB" style="font-family: Symbol">De</span><sup><span lang="EN-GB">c,nl</span></sup><span lang="EN-GB"> 
+is introduced, which can be calculated after the first iteration, when first 
+estimates for the new stresses at t+</span><span lang="EN-GB" style="font-family: Symbol">D</span><span lang="EN-GB">t 
+are known. With multiple iterations, multiple updates of </span>
+<span lang="EN-GB" style="font-family: Symbol">De</span><sup><span lang="EN-GB">c,nl</span></sup><span lang="EN-GB"> 
+are calculated, which normally converge, unless the stress changes during the 
+time step are too big (especially for non-linear creep, i.e. n </span>
+<span lang="EN-GB" style="font-family: Symbol">¹</span><span lang="EN-GB"> 1)</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+linearised creep stiffness C<sub>c</sub> (per creep mechanism) can be calculated 
+to be:</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<img border="0" src="salt_n12.gif" width="238" height="49"></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">[<span lang="EN-GB">Equation 1.10]</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">with 
+I the 6x6 indentity matrix.</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB">&nbsp;</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB">&nbsp;</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB">The elasto-visco-plastic apparent stiffness matrix becomes:</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB"><img border="0" src="salt_n13.gif" width="416" height="27">&nbsp;</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB">[Equation 1.11]</span></p>
+<p class="MsoCaption" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">
+where C<sub>e</sub> is the elastic compliance matrix, C<sub>c,1 </sub>C<sub>c,2
+</sub>are the matrices from the 2 defined creep mechanisms and C<sub>p</sub> is 
+any stiffness related to other non-elastic processes (presently not possible in 
+salt). </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">For 
+linear creep (n=1) the corrections are absent, by which this creep mode is very 
+stable. For higher n values stress changes, in combination with (too) high time 
+steps give rise to large corrections on the creep strain. This causes multiple 
+iterations and can even lead to non-convergence of the calculations. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">The 
+remedial is always to limit the duration of the time steps, especially where the 
+(shear) stresses can be expected to vary considerably during the time step, for 
+instance after instantaneous (elastic) loading of the model. </span></p>
+
+</body>
+
+</html>

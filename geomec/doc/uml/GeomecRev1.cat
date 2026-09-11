@@ -1,0 +1,4079 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Geomec"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A71504500FD"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CVertexSetFormat"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A7150450149"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A715045014A"
+		    supplier   	"Logical View::Files::CGeoFileSection"
+		    quidu      	"3A71504B039B"))
+	    operations 	(list Operations
+		(object Operation "Read2DPropertyVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504501D6"
+		    documentation 	" Vertex Read Functions"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504501D7"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "Read3DTensorVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504501D8"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504501E6"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "GetVertexSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504501F5"
+		    result     	"CGeoVertexSet*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertexSetFormat"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504501F6"
+		    parameters 	(list Parameters
+			(object Parameter "pVertexSet"
+			    quid       	"3A71504501F7"
+			    type       	"CGeoVertexSet*")
+			(object Parameter "pFactory"
+			    quid       	"3A71504501F8"
+			    type       	"CFactory*"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150450205"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A7150450207"
+			    type       	"CGeoFile&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150450208"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A715045020A"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150450214"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A7150450216"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CVertexSetFormat"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150450217"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF860048"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A90DF860058"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteTasks"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF860059"
+		    stereotype 	"virtual, const"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CVertexSetIter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef CVertexSet::const_iterator CVertexSetIter;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A7150450272"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Parameterized_Class "CPropertyVertex"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A715046032E"
+	    operations 	(list Operations
+		(object Operation "CPropertyVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A715046035E"
+		    parameters 	(list Parameters
+			(object Parameter "v"
+			    quid       	"3A715046035F"
+			    type       	"const CVertex&"
+			    const      	TRUE)
+			(object Parameter "rhs"
+			    quid       	"3A7150460360"
+			    type       	"const TYPE&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CPropertyVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A7150460361"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A7150460362"
+			    type       	"const TYPE&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetVal"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A7150460363"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A7150460364"
+			    type       	"const TYPE&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetVal"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A715046036C"
+		    result     	"TYPE&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_tpVal"
+		    quid       	"3A715046035D"
+		    type       	"TYPE"))
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "TYPE"
+		    quid       	"3A715046034E"
+		    type       	"class")))
+	(object Class "CDoubleVertex"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef CPropertyVertex<double> CDoubleVertex;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A715046036D"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Class "CZVector"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::vector <CPrimitiveSet*> CZVector;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504700BD"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Class "CYVector"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::vector <CZVector*> CYVector;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504700DC"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Class "CXVector"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::vector <CYVector*> CXVector;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504700ED"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Class "CLessPrimitive"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A7150470234"
+	    operations 	(list Operations
+		(object Operation "operator()"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A7150470243"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "p1"
+			    quid       	"3A7150470245"
+			    type       	"const CPrimitive*"
+			    const      	TRUE)
+			(object Parameter "p2"
+			    quid       	"3A7150470246"
+			    type       	"const CPrimitive*"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"VC++")
+	(object Instantiated_Class "deque<CLine>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A71504702B1"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A71504702C0"
+		    supplier   	"deque"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoGraphItemSet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::set<const CGeoGraphItem*, CLessGeoGraphItem> CGeoGraphItemSet;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504B0178"
+	    stereotype 	"typedef"
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoGraphItemSetIt"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef CGeoGraphItemSet::const_iterator CGeoGraphItemSetIt;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504B0189"
+	    stereotype 	"typedef"
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CString>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A71504B03DA"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A71504C0001"
+		    supplier   	"vector"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CGeoFileSection*>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A71504C00FB"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A71504C010B"
+		    supplier   	"vector"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CFactoryDlg"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CDialog"))
+	    quid       	"3A71504D0188"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504D0197"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "CFactoryDlg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0199"
+		    parameters 	(list Parameters
+			(object Parameter "pParent"
+			    quid       	"3A71504D019A"
+			    type       	"CWnd*"
+			    initv      	"NULL"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoDataExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D01B7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDX"
+			    quid       	"3A71504D01C6"
+			    type       	"CDataExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInitDialog"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D01C7"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CZaxis"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::vector<CVertex*> CZaxis;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504D0226"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Class "CYaxis"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::vector<CZaxis> CYaxis;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504D0244"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CVertex*>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A71504D033D"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A71504D034D"
+		    supplier   	"vector"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CLine*>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A71504D036C"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A71504D037C"
+		    supplier   	"vector"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<double>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A7677CE0157"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A7677CE0176"
+		    supplier   	"vector"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CDisplayList"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::map<const CGeoViewableItem*, int, CLessGeoGraphItem> CDisplayList;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DF8800E4"
+	    documentation 	
+|The OpenGLScene class defines the view of the OpenGL view 
+|class
+	    
+	    stereotype 	"typedef"
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CDisplayListIt"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef CDisplayList::const_iterator CDisplayListIt;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DF880103"
+	    stereotype 	"typedef"
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "COpenGLGeoItemView"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CView"))
+	    quid       	"3A90DF890058"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DF890067"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLView"
+		    quidu      	"3A715047032E"))
+	    operations 	(list Operations
+		(object Operation "COpenGLGeoItemView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF890068"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "CompileItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF890077"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A90DF890078"
+			    type       	"const CGeoViewableItem&"
+			    const      	TRUE)
+			(object Parameter "result"
+			    quid       	"3A90DF890079"
+			    type       	"const CGeoResult&"
+			    const      	TRUE)
+			(object Parameter "scale"
+			    quid       	"3A90DF89007A"
+			    type       	"const CGeoColorScale&"
+			    const      	TRUE)
+			(object Parameter "nDisplayList"
+			    quid       	"3A90DF89007B"
+			    type       	"const int"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CurrentScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF89007C"
+		    stereotype 	"abstract"
+		    result     	"COpenGLScene&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitialUpdate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF89007E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF890087"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A90DF890089"
+			    type       	"CDC*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "~COpenGLGeoItemView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF89008A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF89008C"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DF890097"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A90DF890099"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A71504501E7"
+	    roles      	(list role_list
+		(object Role "m_pVertexSet"
+		    quid       	"3A71504501E8"
+		    label      	"m_pVertexSet"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::Geometry Items::CGeoVertexSet"
+		    quidu      	"3A71504900FB"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$1"
+		    quid       	"3A71504501EA"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CVertexSetFormat"
+		    quidu      	"3A7150450149")))
+	(object Association "$UNNAMED$2"
+	    quid       	"3A715046005F"
+	    roles      	(list role_list
+		(object Role "m_wndSplitter"
+		    quid       	"3A7150460060"
+		    label      	"m_wndSplitter"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$3"
+		    quid       	"3A7150460062"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeSplitView"
+		    quidu      	"3A7150460040"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    quid       	"3A71504601B7"
+	    roles      	(list role_list
+		(object Role "m_stComposite"
+		    quid       	"3A71504601B8"
+		    label      	"m_stComposite"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CGeoGraphItemSet"
+		    quidu      	"3A71504B0178"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A71504601BA"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A7150460244"
+	    roles      	(list role_list
+		(object Role "m_pTreeCtrl"
+		    quid       	"3A7150460245"
+		    label      	"m_pTreeCtrl"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CTreeCtrl"
+		    quidu      	"3A07D0C50122"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$7"
+		    quid       	"3A7150460247"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItem"
+		    quidu      	"3A7150460224")))
+	(object Association "$UNNAMED$8"
+	    quid       	"3A7150470001"
+	    roles      	(list role_list
+		(object Role "m_btCancel"
+		    quid       	"3A7150470002"
+		    label      	"m_btCancel"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CButton"
+		    quidu      	"3A07D0C10018"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$9"
+		    quid       	"3A7150470004"
+		    supplier   	"Logical View::Geomec::Document::CProgressDlg"
+		    quidu      	"3A71504603CA"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$10"
+	    quid       	"3A7150470011"
+	    roles      	(list role_list
+		(object Role "m_pSecundary"
+		    quid       	"3A7150470012"
+		    label      	"m_pSecundary"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CProgressCtrl"
+		    quidu      	"3A07D0C4017B"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A7150470014"
+		    supplier   	"Logical View::Geomec::Document::CProgressDlg"
+		    quidu      	"3A71504603CA")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A7150470020"
+	    roles      	(list role_list
+		(object Role "m_pPrimary"
+		    quid       	"3A7150470021"
+		    label      	"m_pPrimary"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CProgressCtrl"
+		    quidu      	"3A07D0C4017B"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$13"
+		    quid       	"3A7150470030"
+		    supplier   	"Logical View::Geomec::Document::CProgressDlg"
+		    quidu      	"3A71504603CA")))
+	(object Association "$UNNAMED$14"
+	    quid       	"3A715047039C"
+	    roles      	(list role_list
+		(object Role "m_wndSplitter"
+		    quid       	"3A715047039D"
+		    label      	"m_wndSplitter"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$15"
+		    quid       	"3A715047039F"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLSplitView"
+		    quidu      	"3A715047038B"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$16"
+	    quid       	"3A715048008E"
+	    roles      	(list role_list
+		(object Role "m_pDC"
+		    quid       	"3A715048008F"
+		    label      	"m_pDC"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing::CDC"
+		    quidu      	"3A07D0A80261"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"3A7150480091"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLModelView"
+		    quidu      	"3A715048006F")))
+	(object Association "$UNNAMED$18"
+	    quid       	"3A715048009D"
+	    roles      	(list role_list
+		(object Role "m_hGLRC"
+		    quid       	"3A715048009E"
+		    label      	"m_hGLRC"
+		    supplier   	"HGLRC"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$19"
+		    quid       	"3A71504800A0"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLModelView"
+		    quidu      	"3A715048006F"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$20"
+	    quid       	"3A71504800AD"
+	    roles      	(list role_list
+		(object Role "m_GLPalette"
+		    quid       	"3A71504800AE"
+		    label      	"m_GLPalette"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing Objects::CPalette"
+		    quidu      	"3A07D0A70309"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$21"
+		    quid       	"3A71504800B0"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLModelView"
+		    quidu      	"3A715048006F"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$22"
+	    quid       	"3A71504A03BA"
+	    roles      	(list role_list
+		(object Role "m_pHorizon"
+		    quid       	"3A71504A03BB"
+		    documentation 	" Roots"
+		    label      	"m_pHorizon"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$23"
+		    quid       	"3A71504A03BD"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoModelView"
+		    quidu      	"3A71504A039B")))
+	(object Association "$UNNAMED$24"
+	    quid       	"3A71504A03CA"
+	    roles      	(list role_list
+		(object Role "m_pFault"
+		    quid       	"3A71504A03CB"
+		    label      	"m_pFault"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$25"
+		    quid       	"3A71504A03CD"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoModelView"
+		    quidu      	"3A71504A039B")))
+	(object Association "$UNNAMED$26"
+	    quid       	"3A71504A03DA"
+	    roles      	(list role_list
+		(object Role "m_pFormation"
+		    quid       	"3A71504A03DB"
+		    label      	"m_pFormation"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$27"
+		    quid       	"3A71504A03DD"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoModelView"
+		    quidu      	"3A71504A039B")))
+	(object Association "$UNNAMED$28"
+	    quid       	"3A71504B0001"
+	    roles      	(list role_list
+		(object Role "m_pMesh"
+		    quid       	"3A71504B0002"
+		    label      	"m_pMesh"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$29"
+		    quid       	"3A71504B0004"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoModelView"
+		    quidu      	"3A71504A039B")))
+	(object Association "$UNNAMED$30"
+	    quid       	"3A71504B0243"
+	    roles      	(list role_list
+		(object Role "m_stNeighbours:mutable CGeoGraphItemSet"
+		    quid       	"3A71504B0244"
+		    label      	"m_stNeighbours:mutable CGeoGraphItemSet"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CGeoGraphItemSet"
+		    quidu      	"3A71504B0178"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$31"
+		    quid       	"3A71504B0246"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+		    quidu      	"3A71504B0214")))
+	(object Association "$UNNAMED$32"
+	    quid       	"3A71504B03BA"
+	    roles      	(list role_list
+		(object Role "m_mpSubSections:std::map<const CString,CGeoFileSection*>"
+		    quid       	"3A71504B03BB"
+		    label      	"m_mpSubSections:std::map<const CString,CGeoFileSection*>"
+		    supplier   	"CString,CGeoFileSection*>"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$33"
+		    quid       	"3A71504B03CA"
+		    supplier   	"Logical View::Files::CGeoFileSection"
+		    quidu      	"3A71504B039B"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$34"
+	    quid       	"3A71504C0002"
+	    roles      	(list role_list
+		(object Role "m_vcComment:std::vector<CString>"
+		    quid       	"3A71504C0003"
+		    label      	"m_vcComment:std::vector<CString>"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::vector<CString>"
+		    quidu      	"3A71504B03DA"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$35"
+		    quid       	"3A71504C0005"
+		    supplier   	"Logical View::Files::CGeoFileSection"
+		    quidu      	"3A71504B039B"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$36"
+	    quid       	"3A71504C011A"
+	    roles      	(list role_list
+		(object Role "m_vcFileFormat:std::vector<CGeoFileSection*>"
+		    quid       	"3A71504C011B"
+		    documentation 	" FileSections"
+		    label      	"m_vcFileFormat:std::vector<CGeoFileSection*>"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::vector<CGeoFileSection*>"
+		    quidu      	"3A71504C00FB"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$37"
+		    quid       	"3A71504C011D"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$38"
+	    quid       	"3A71504C012A"
+	    roles      	(list role_list
+		(object Role "m_spBegin:std::streampos"
+		    quid       	"3A71504C012B"
+		    documentation 	" Stream position for file progress"
+		    label      	"m_spBegin:std::streampos"
+		    supplier   	"streampos"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$39"
+		    quid       	"3A71504C012D"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$40"
+	    quid       	"3A71504C013A"
+	    roles      	(list role_list
+		(object Role "m_spEnd:std::streampos"
+		    quid       	"3A71504C013B"
+		    label      	"m_spEnd:std::streampos"
+		    supplier   	"streampos"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$41"
+		    quid       	"3A71504C013D"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$42"
+	    quid       	"3A71504C0149"
+	    roles      	(list role_list
+		(object Role "m_spStore:std::streampos"
+		    quid       	"3A71504C014A"
+		    label      	"m_spStore:std::streampos"
+		    supplier   	"streampos"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$43"
+		    quid       	"3A71504C014C"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$44"
+	    quid       	"3A71504C0159"
+	    roles      	(list role_list
+		(object Role "m_pStreamInput:std::ifstream*"
+		    quid       	"3A71504C015A"
+		    documentation 	" Streaming pointers"
+		    label      	"m_pStreamInput:std::ifstream*"
+		    supplier   	"ifstream"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$45"
+		    quid       	"3A71504C015C"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$46"
+	    quid       	"3A71504C0169"
+	    roles      	(list role_list
+		(object Role "m_pStreamOutput:std::ofstream*"
+		    quid       	"3A71504C016A"
+		    label      	"m_pStreamOutput:std::ofstream*"
+		    supplier   	"ofstream"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$47"
+		    quid       	"3A71504C016C"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$48"
+	    quid       	"3A71504C0178"
+	    roles      	(list role_list
+		(object Role "m_pWnd"
+		    quid       	"3A71504C0179"
+		    label      	"m_pWnd"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::CWnd"
+		    quidu      	"3A07D0B50397"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$49"
+		    quid       	"3A71504C017B"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Association "$UNNAMED$50"
+	    quid       	"3A71504C0243"
+	    roles      	(list role_list
+		(object Role "m_pDocument"
+		    quid       	"3A71504C0244"
+		    label      	"m_pDocument"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$51"
+		    quid       	"3A71504C0246"
+		    supplier   	"Logical View::Geomec::Document::CGeoDocObserver"
+		    quidu      	"3A71504C0224")))
+	(object Association "$UNNAMED$52"
+	    quid       	"3A71504D00DC"
+	    roles      	(list role_list
+		(object Role "m_pSurface"
+		    quid       	"3A71504D00DD"
+		    documentation 	" Roots"
+		    label      	"m_pSurface"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$53"
+		    quid       	"3A71504D00DF"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoDataSourceView"
+		    quidu      	"3A71504D00BD")))
+	(object Association "$UNNAMED$54"
+	    quid       	"3A71504D00EC"
+	    roles      	(list role_list
+		(object Role "m_pVertexSet"
+		    quid       	"3A71504D00ED"
+		    label      	"m_pVertexSet"
+		    supplier   	"Logical View::Geomec::View::Tree View::CTreeGraphItemComposite"
+		    quidu      	"3A7150460188"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$55"
+		    quid       	"3A71504D00EF"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoDataSourceView"
+		    quidu      	"3A71504D00BD")))
+	(object Association "$UNNAMED$56"
+	    quid       	"3A71504D01A7"
+	    roles      	(list role_list
+		(object Role "m_lcFactory"
+		    quid       	"3A71504D01A8"
+		    label      	"m_lcFactory"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Controls::CListCtrl"
+		    quidu      	"3A07D0C20178"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$57"
+		    quid       	"3A71504D01AA"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CFactoryDlg"
+		    quidu      	"3A71504D0188"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$58"
+	    quid       	"3A71504E0002"
+	    roles      	(list role_list
+		(object Role "m_Xaxis:std::vector<CYaxis>"
+		    quid       	"3A71504E0003"
+		    label      	"m_Xaxis:std::vector<CYaxis>"
+		    supplier   	"Logical View::Geometry::Primitive Collections::3D Array::vector<CYaxis>"
+		    quidu      	"3A71504D03CA"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$59"
+		    quid       	"3A71504E0005"
+		    supplier   	"Logical View::Geometry::Primitive Collections::3D Array::C3DArray"
+		    quidu      	"3A71504D03AB"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$60"
+	    quid       	"3A7677CE0177"
+	    roles      	(list role_list
+		(object Role "m_vcTensor:std::vector<double>"
+		    quid       	"3A7677CE0178"
+		    label      	"m_vcTensor:std::vector<double>"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::vector<double>"
+		    quidu      	"3A7677CE0157"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$61"
+		    quid       	"3A7677CE017A"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::Model Items::CTensor"
+		    quidu      	"3A7677CE0137"
+		    is_aggregate 	TRUE))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Geomec Model Update Overview"
+	    quid       	"3A7150560282"
+	    title      	"Geomec Model Update Overview"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	719
+	    items      	(list diagram_item_list
+		(object Label @1
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	3
+		    max_width  	1998
+		    label      	
+|Geomec Model Update Overview
+|This diagram was automatically created by Rational Rose Model Update Tool.
+|26 January 2001 11:24:22
+		    )
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CTreeGraphItem" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2320, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(2149, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	342
+			justify    	0
+			label      	"CTreeGraphItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150460224"
+		    width      	360
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CView" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8352, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(8238, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0BD015D"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLSplitView" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7728, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(7535, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	386
+			justify    	0
+			label      	"COpenGLSplitView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715047038B"
+		    width      	404
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @5
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715047039B"
+		    client     	@4
+		    supplier   	@3
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::block_allocated_set<CVertex,100>" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6048, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(5713, 898)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	670
+			justify    	0
+			label      	"block_allocated_set<CVertex,100>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150450253"
+		    width      	688
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoItem" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1520, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1319, 577)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	402
+			justify    	0
+			label      	"CGeoItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B009D"
+		    width      	420
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(9504, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(9325, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	358
+			justify    	0
+			label      	"CDialog")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0BA02E0"
+		    width      	376
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::CProgressDlg" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(9232, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(9081, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"CProgressDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504603CA"
+		    width      	320
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @10
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504603DA"
+		    client     	@9
+		    supplier   	@8
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3600, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(3399, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	402
+			justify    	0
+			label      	"CGeoViewableItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504900BD"
+		    width      	420
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6560, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(6354, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	412
+			justify    	0
+			label      	"CFrameWnd")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0B6024E"
+		    width      	430
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geometry::Primitives::CRectangle" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6880, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(6733, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"CRectangle")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150460300"
+		    width      	312
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CYaxis" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(384, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(267, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CYaxis")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@14
+			location   	(267, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	231
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D0244"
+		    width      	252
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geometry::Primitive Collections::3D Array::C3DArray::CYaxis" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(672, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(525, 1952)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"CYaxis")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@15
+			location   	(525, 1902)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504E004F"
+		    width      	312
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::vector<CGeoFileSection*>" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1088, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(835, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	506
+			justify    	0
+			label      	"vector<CGeoFileSection*>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504C00FB"
+		    width      	524
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Files::CGeoFile" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1488, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(1385, 1905)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	206
+			justify    	0
+			label      	"CGeoFile")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504C00DC"
+		    width      	224
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Geometry Items::CGeoSurface" @18
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2992, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@18
+			location   	(2788, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"CGeoSurface")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504A033D"
+		    width      	426
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @19
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504A034D"
+		    client     	@18
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoHorizon" @20
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3296, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@20
+			location   	(3126, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoHorizon")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B010B"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @21
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B011A"
+		    client     	@20
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CZaxis" @22
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(1760, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(1643, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CZaxis")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@22
+			location   	(1643, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	231
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D0226"
+		    width      	252
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geometry::Primitive Collections::3D Array::C3DArray::CZaxis" @23
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(2048, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@23
+			location   	(1901, 1952)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"CZaxis")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@23
+			location   	(1901, 1902)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504E0033"
+		    width      	312
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CMainFrame" @24
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6272, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@24
+			location   	(6030, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	484
+			justify    	0
+			label      	"CMainFrame")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D60211"
+		    width      	502
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @25
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9D60256"
+		    client     	@24
+		    supplier   	@12
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geomec::View::Tree View::CMap<UINT,UINT,int,int>" @26
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2464, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@26
+			location   	(2214, 1905)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	500
+			justify    	0
+			label      	"CMap<UINT,UINT,int,int>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150490263"
+		    width      	518
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoTreeView" @27
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(5088, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@27
+			location   	(4939, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	298
+			justify    	0
+			label      	"CGeoTreeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D70384"
+		    width      	316
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "CGeomecTreeView" @28
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@28
+			location   	(5633, 1122)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	353
+			justify    	0
+			label      	"CGeomecTreeView")
+		    stereotype 	(object SegLabel @29
+			Parent_View 	@28
+			location   	(5603, 1238)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			anchor     	10
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"<<Instantiates>>"
+			pctDist    	0.500000
+			height     	120
+			orientation 	0)
+		    line_color 	3342489
+		    quidu      	"3A2653C50227"
+		    client     	@24
+		    supplier   	@27
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoDataSourceView" @30
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4688, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@30
+			location   	(4464, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	448
+			justify    	0
+			label      	"CGeoDataSourceView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D00BD"
+		    width      	466
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @31
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504D00CC"
+		    client     	@30
+		    supplier   	@27
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CLessPrimitive" @32
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2896, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@32
+			location   	(2745, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"CLessPrimitive")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150470234"
+		    width      	320
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CVertexSetIter" @33
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(3248, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@33
+			location   	(3101, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"CVertexSetIter")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@33
+			location   	(3101, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150450272"
+		    width      	312
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Geometry Items::CGeoBody" @34
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3600, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@34
+			location   	(3396, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"CGeoBody")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D013A"
+		    width      	426
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @35
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504D0159"
+		    client     	@34
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocument" @36
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(10064, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@36
+			location   	(9789, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	550
+			justify    	0
+			label      	"CDocument")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0B101A5"
+		    width      	568
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::CGeoDocObserver" @37
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1328, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@37
+			location   	(1141, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	374
+			justify    	0
+			label      	"CGeoDocObserver")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504C0224"
+		    width      	392
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Geometry Items::CGeoVertexSet" @38
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3920, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@38
+			location   	(3716, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"CGeoVertexSet")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504900FB"
+		    width      	426
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @39
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715049010B"
+		    client     	@38
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLModelView" @40
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8160, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@40
+			location   	(7954, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	412
+			justify    	0
+			label      	"COpenGLModelView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715048006F"
+		    width      	430
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::CWinApp" @41
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(10352, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@41
+			location   	(10077, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	550
+			justify    	0
+			label      	"CWinApp")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0AF0012"
+		    width      	568
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CGeomecApp" @42
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(10352, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@42
+			location   	(10110, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	484
+			justify    	0
+			label      	"CGeomecApp")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B005F"
+		    width      	502
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @43
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B006F"
+		    client     	@42
+		    supplier   	@41
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::CObject" @44
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1520, 368)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@44
+			location   	(1308, 289)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	424
+			justify    	0
+			label      	"CObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0A20046"
+		    width      	442
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @45
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B00AD"
+		    client     	@7
+		    supplier   	@44
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CGeoGraphItemSetIt" @46
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(3936, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@46
+			location   	(3732, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"CGeoGraphItemSetIt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@46
+			location   	(3732, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B0189"
+		    width      	426
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::3D Array::vector<CYaxis>" @47
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4336, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@47
+			location   	(4171, 1905)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	330
+			justify    	0
+			label      	"vector<CYaxis>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D03CA"
+		    width      	348
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "ParameterizedClass" "Logical View::Geometry::Primitive Collections::3D Array::C3DArray" @48
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(10736, 1008)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@48
+			location   	(10597, 950)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	278
+			justify    	0
+			label      	"C3DArray")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D03AB"
+		    width      	296
+		    height     	216
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::CPrimitiveSet" @49
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(4688, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@49
+			location   	(4504, 1952)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	368
+			justify    	0
+			label      	"CPrimitiveSet")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@49
+			location   	(4504, 1902)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	368
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150470253"
+		    width      	386
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem" @50
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1520, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@50
+			location   	(1319, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	402
+			justify    	0
+			label      	"CGeoGraphItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B0214"
+		    width      	420
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @51
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B0234"
+		    client     	@50
+		    supplier   	@7
+		    line_style 	0)
+		(object InheritView "" @52
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504C0235"
+		    client     	@37
+		    supplier   	@50
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CGeoGraphItemSet" @53
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(5056, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@53
+			location   	(4864, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	384
+			justify    	0
+			label      	"CGeoGraphItemSet")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@53
+			location   	(4864, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	384
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B0178"
+		    width      	402
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLView" @54
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8544, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@54
+			location   	(8360, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	368
+			justify    	0
+			label      	"COpenGLView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715047032E"
+		    width      	386
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @55
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715047033D"
+		    client     	@54
+		    supplier   	@3
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLLegendView" @56
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8544, 1632)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@56
+			location   	(8330, 1553)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	428
+			justify    	0
+			label      	"COpenGLLegendView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715048013A"
+		    width      	446
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @57
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7150480159"
+		    client     	@56
+		    supplier   	@54
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CXVector" @58
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(5408, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@58
+			location   	(5291, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CXVector")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@58
+			location   	(5291, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	231
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504700ED"
+		    width      	252
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CTreeSplitView" @59
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8896, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@59
+			location   	(8743, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	306
+			justify    	0
+			label      	"CTreeSplitView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150460040"
+		    width      	324
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @60
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715046004F"
+		    client     	@59
+		    supplier   	@3
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CYVector" @61
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(5696, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@61
+			location   	(5579, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CYVector")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@61
+			location   	(5579, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	231
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504700DC"
+		    width      	252
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CTreeObserver" @62
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2096, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@62
+			location   	(1945, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"CTreeObserver")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504600DC"
+		    width      	320
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @63
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504600EC"
+		    client     	@62
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CLessGeoGraphItem" @64
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6080, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@64
+			location   	(5871, 1905)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	418
+			justify    	0
+			label      	"CLessGeoGraphItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B0159"
+		    width      	436
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CZVector" @65
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(6448, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@65
+			location   	(6331, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	234
+			justify    	0
+			label      	"CZVector")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@65
+			location   	(6331, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	231
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504700BD"
+		    width      	252
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Files::CGeoFileSection::CSubSectionIt" @66
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(6768, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@66
+			location   	(6556, 1952)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	424
+			justify    	0
+			label      	"CSubSectionIt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@66
+			location   	(6556, 1902)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	424
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DD9902D8"
+		    width      	442
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "ParameterizedClass" "Logical View::VC++ Reverse Engineered::Geomec::CPropertyVertex" @67
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7136, 1648)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@67
+			location   	(6963, 1618)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	346
+			justify    	0
+			label      	"CPropertyVertex")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715046032E"
+		    width      	364
+		    height     	161
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::vector<CString>" @68
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7104, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@68
+			location   	(6945, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	318
+			justify    	0
+			label      	"vector<CString>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B03DA"
+		    width      	336
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Files::CGeoFileSection" @69
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(11856, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@69
+			location   	(11680, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	352
+			justify    	0
+			label      	"CGeoFileSection")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B039B"
+		    width      	370
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CTreeView" @70
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(5088, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@70
+			location   	(4974, 577)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CTreeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0BF0137"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @71
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9D703B6"
+		    client     	@27
+		    supplier   	@70
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CEclipse" @72
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(11296, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@72
+			location   	(11126, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CEclipse")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D0282"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CDoubleVertex" @73
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(7456, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@73
+			location   	(7304, 1963)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	304
+			justify    	0
+			label      	"CDoubleVertex")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@73
+			location   	(7304, 1913)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	304
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715046036D"
+		    width      	322
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CAboutDlg" @74
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(9504, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@74
+			location   	(9262, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	484
+			justify    	0
+			label      	"CAboutDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D903E1"
+		    width      	502
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @75
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9DA0021"
+		    client     	@74
+		    supplier   	@8
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CVertexSetFormat" @76
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(11872, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@76
+			location   	(11685, 1245)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	374
+			justify    	0
+			label      	"CVertexSetFormat")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150450149"
+		    width      	392
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @77
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715045014A"
+		    client     	@76
+		    supplier   	@69
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CFactoryDlg" @78
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(9792, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@78
+			location   	(9659, 1245)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	266
+			justify    	0
+			label      	"CFactoryDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D0188"
+		    width      	284
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::CGeoDoc" @79
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(10064, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@79
+			location   	(9913, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"CGeoDoc")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9DA0298"
+		    width      	320
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @80
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9DA02C0"
+		    client     	@79
+		    supplier   	@36
+		    line_style 	0)
+		(object InheritView "" @81
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504D0197"
+		    client     	@78
+		    supplier   	@8
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CTreeGraphItemComposite" @82
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2544, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@82
+			location   	(2277, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	534
+			justify    	0
+			label      	"CTreeGraphItemComposite")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150460188"
+		    width      	552
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @83
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7150460197"
+		    client     	@82
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoModelView" @84
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(5136, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@84
+			location   	(4963, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	346
+			justify    	0
+			label      	"CGeoModelView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504A039B"
+		    width      	364
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @85
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504A03AB"
+		    client     	@84
+		    supplier   	@27
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry" @86
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1728, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@86
+			location   	(1527, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	402
+			justify    	0
+			label      	"CGeoGraphEntry")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B02C0"
+		    width      	420
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @87
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B02E1"
+		    client     	@86
+		    supplier   	@50
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoFormation" @88
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4272, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@88
+			location   	(4102, 1217)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoFormation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B032E"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @89
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B033D"
+		    client     	@88
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::vector<CVertex*>" @90
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7824, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@90
+			location   	(7645, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	358
+			justify    	0
+			label      	"vector<CVertex*>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D033D"
+		    width      	376
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::vector<CLine*>" @91
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8208, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@91
+			location   	(8049, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	318
+			justify    	0
+			label      	"vector<CLine*>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D036C"
+		    width      	336
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::deque<CLine>" @92
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8944, 1984)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@92
+			location   	(8796, 1933)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"deque<CLine>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504702B1"
+		    width      	314
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoFault" @93
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3600, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@93
+			location   	(3430, 577)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677D00241"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @94
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7677D00251"
+		    client     	@93
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::VC++ Reverse Engineered::Geomec::vector<double>" @95
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(272, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@95
+			location   	(121, 333)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"vector<double>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677CE0157"
+		    width      	320
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CTensor" @96
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(720, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@96
+			location   	(550, 305)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CTensor")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677CE0137"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoWellPath" @97
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3248, 848)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@97
+			location   	(3078, 769)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoWellPath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677CF007C"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @98
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7677CF008B"
+		    client     	@97
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoMaterial" @99
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3328, 576)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@99
+			location   	(3158, 497)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoMaterial")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677CF034B"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @100
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7677CF035A"
+		    client     	@99
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoBoundary" @101
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4144, 848)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@101
+			location   	(3974, 769)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	340
+			justify    	0
+			label      	"CGeoBoundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7677D003D7"
+		    width      	358
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @102
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7677D003E7"
+		    client     	@101
+		    supplier   	@11
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorScale" @103
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(944, 1232)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@103
+			location   	(772, 1158)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	344
+			justify    	0
+			label      	"CGeoColorScale")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8D026B"
+		    width      	362
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @104
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8D027A"
+		    client     	@103
+		    supplier   	@50
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::CBirdEyeScene" @105
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4768, 752)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@105
+			location   	(4602, 678)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	332
+			justify    	0
+			label      	"CBirdEyeScene")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8D0384"
+		    width      	350
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::COpenGLGeoItemView" @106
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(8192, 1648)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@106
+			location   	(7959, 1597)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	466
+			justify    	0
+			label      	"COpenGLGeoItemView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF890058"
+		    width      	484
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @107
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DD970132"
+		    client     	@40
+		    supplier   	@106
+		    line_style 	0)
+		(object InheritView "" @108
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF890067"
+		    client     	@106
+		    supplier   	@54
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoHotSpot" @109
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(688, 1664)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@109
+			location   	(548, 1590)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	280
+			justify    	0
+			label      	"CGeoHotSpot")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8A03E2"
+		    width      	298
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @110
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8B0019"
+		    client     	@109
+		    supplier   	@103
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::Results::CGeoResult" @111
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1984, 848)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@111
+			location   	(1857, 774)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	254
+			justify    	0
+			label      	"CGeoResult")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8A01DE"
+		    width      	272
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @112
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8A01EE"
+		    client     	@111
+		    supplier   	@50
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::Results::CGeoDepthResult" @113
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2064, 576)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@113
+			location   	(1884, 502)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	360
+			justify    	0
+			label      	"CGeoDepthResult")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8D0161"
+		    width      	378
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @114
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8D0190"
+		    client     	@113
+		    supplier   	@111
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Files::CGeoFileSection::CSubSectionRevIt" @115
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(272, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@115
+			location   	(95, 629)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"CSubSectionRevIt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@115
+			location   	(95, 579)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504C0070"
+		    width      	372
+		    height     	178
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorGradient" @116
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1232, 1648)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@116
+			location   	(1039, 1574)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	386
+			justify    	0
+			label      	"CGeoColorGradient")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8D02B9"
+		    width      	404
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @117
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8D02C9"
+		    client     	@116
+		    supplier   	@103
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CDisplayListIt" @118
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(816, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@118
+			location   	(676, 640)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	280
+			justify    	0
+			label      	"CDisplayListIt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@118
+			location   	(676, 590)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	280
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF880103"
+		    width      	298
+		    height     	157
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CDisplayList" @119
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(272, 1024)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@119
+			location   	(142, 1008)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	260
+			justify    	0
+			label      	"CDisplayList")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@119
+			location   	(142, 958)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	260
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8800E4"
+		    width      	278
+		    height     	157
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene" @120
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4752, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@120
+			location   	(4554, 897)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	396
+			justify    	0
+			label      	"COpenGLScene")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150480001"
+		    width      	414
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @121
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF8D0394"
+		    client     	@105
+		    supplier   	@120
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::OpenGL Scene::CPlanarScene" @122
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4496, 576)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@122
+			location   	(4334, 502)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	324
+			justify    	0
+			label      	"CPlanarScene")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DF8702F7"
+		    width      	342
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @123
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DF870307"
+		    client     	@122
+		    supplier   	@120
+		    line_style 	0)))))

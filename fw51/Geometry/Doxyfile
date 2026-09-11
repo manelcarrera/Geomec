@@ -1,0 +1,17 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = . $(DIALIB) $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = Geometry
+OUTPUT_DIRECTORY       = .
+INPUT                  = .
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references
+#---------------------------------------------------------------------------
+TAGFILES              += 
+GENERATE_TAGFILE       = Geometry.tag

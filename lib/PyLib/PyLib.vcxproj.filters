@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\LoadedLibs.cpp" />
+    <ClCompile Include="src\PyLibHandler.cpp" />
+    <ClCompile Include="src\PyWrapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\Data.h" />
+    <ClInclude Include="h\LoadedLibs.h" />
+    <ClInclude Include="h\PyInc.h" />
+    <ClInclude Include="h\PyLibHandler.h" />
+    <ClInclude Include="h\PyTypes.h" />
+    <ClInclude Include="h\PyWrapper.h" />
+  </ItemGroup>
+</Project>

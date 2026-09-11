@@ -1,0 +1,292 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>Upscaling</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+<meta http-equiv=Content-Language content=en-us>
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><b><span style='font-size:24.0pt'>Upscaling Procedure Thin
+layers</span></b></p>
+
+<p class=MsoNormal>A reservoir may exist of many thin layers rather than a
+uniform formation of sand. The layers may be alternating shale-sand formations
+or sand formations with an (orders of magnitude) different permeability and
+stiffness. </p>
+
+<p class=MsoNormal>Thin bedded formations have different compressibilities in
+normal and lateral directions. Depletion (both in terms of drainage and in
+terms of sweep efficiency)  may also be very different over the thin layers. 
+Some shale layers may even be fully undrained, where thin sands may only
+partially deplete.</p>
+
+<p class=MsoNormal>A static model (like a Petrel model) may have all this
+information from cross-correlation of wells. The thin layers are usually
+sub-seismic. </p>
+
+<p class=MsoNormal>For large fields, it is impossible to model all
+(metre-scale) layers in a Finite Element model, if also the full overburden,
+sideburden and underburden needs to be modelled. A method to deal with this
+problem is upscaling.  A Reservoir Engineering package can usually deal with
+much thinner layers than a Geomechanical package can. The Reservoir Simulator
+can leave out non-producing zones (like the over and underburden) and sometimes
+disregard non-producing shale layers (void blocks). Besides, the aspect ratios
+(height versus length or width) can be much worse. Even here, upscaling takes
+place.</p>
+
+<p class=MsoNormal><u><span style='font-size:14.0pt'>Create and populate an
+refined model</span></u></p>
+
+<p class=MsoNormal>Start by creating a fine scaled model. This can be a mesh to
+compute fine scaled stress changes on later or an artificial mesh, only meant
+to do the upscaling of parameters (not to do Finite Element computations)</p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;line-height:normal'><span
+lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Create
+a fine scaled (hexahedron of tetrahedron)  mesh of the reservoir and (perhaps)
+direct overburden/underburden. This can be a close copy of the reservoir
+simulator mesh or from the static model mesh. Use the thin layer surfaces as
+Formation boundaries. </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;line-height:normal'><span
+lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Import
+(3D or 2D per sublayer) Temperature and Pressure data from the Reservoir
+Simulator. Make sure what assumptions the Reservoir Engineer has made on the
+shale (or low perm) layers. If he did not compute updated pressures or
+temperatures, make sure that you do not assign data to these Formations (or
+that the change is zero: initial data only). </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;line-height:normal'><span
+lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Decide
+whether or not to compute pressure and temperature changes in the direct
+overburden, underburden and Shale Formations, assuming the Reservoir Simulator
+did not supply them. You can use the Heat Flow module to compute updated
+Temperatures (also for non-permeable layers !). With Mixture Flow, you can
+compute reservoir deformation and single phase fluid flow (pressure changes) in
+the non-reservoir layers at the same time. The effects of temperature changes
+on fluid and rock expansion will also be taken into account.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='text-indent:-.25in;line-height:normal'><span
+lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB style='font-size:12.0pt;font-family:"Times New Roman","serif"'>If
+the non-reservoir layers are truely non-depleting (impermeable in a decade’s
+depletion time frame), you may choose the material model “undrained”. In this
+case the rock and fluids are assumed to act as a single (undrained) material.
+Do not assign pressure changes to undrained materials.  You cannot (should not)
+mix undrained materials with fluid flow (mixture flow) computations   </span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><u><span style='font-size:14.0pt'>Do the upscaling</span></u></p>
+
+<p class=MsoNormal>In the upscaling routine, the user needs to select the
+upscaling range (formations and volume of interest).</p>
+
+<p class=MsoNormal>Within Geomec, Right click on the Upscaling leaf and select
+“New Thin Layer Upscaling”.</p>
+
+<p class=MsoListParagraph style='margin-top:3.0pt;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.75in;text-indent:-.25in;line-height:14.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Check the Formations that require upscaling .
+All unflagged Formations or elements outside an assigned 3D pointset area
+(convex hull volume) will not be upscaled. </span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:3.0pt;
+margin-left:0in;line-height:14.0pt'>The user can limit the volume of the
+Formations to be upscaled by adding 3D pointsets (drag and drop) to the leaf
+“Target Volume from pointset”. The volume of the pointset is determined by a
+convex hull method. When adding multiple pointsets, the user can select whether
+the volume of interest should be the overlap of all pointsets (AND) or the
+total of volumes of any pointset (OR).</p>
+
+<p class=MsoNormal align=center style='text-align:center'><img width=228
+height=228 id="Picture 4" src="upscaling1.png"></p>
+
+<p class=MsoListParagraph style='margin-top:3.0pt;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.75in;text-indent:-.25in;line-height:14.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Create a semi-regular 3D pointset to be
+collapsed to a 2D pointset. This either an extrusion of a 2D-pointset or
+surface or the Midpoints of Hexahedrons. The Depth spacing is based on the
+element density. </span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:3.0pt;
+margin-left:0in;line-height:14.0pt'><img width=535 height=400 id="Picture 3"
+src="upscaling2.png"></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='margin-top:3.0pt;margin-bottom:3.0pt;line-height:
+     14.0pt'>Do the upscaling by clicking “Execute”, which is accessible by
+     right-clicking on the “New Thin Layer Upscaling x” branch.</li>
+</ul>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:3.0pt;
+margin-left:0in;line-height:14.0pt'><img width=324 height=150 id="Picture 2"
+src="upscaling3.jpg"></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='margin-top:3.0pt;margin-bottom:3.0pt;line-height:
+     14.0pt'>Geomec computes an upscaled 2D pointset, that lands in the data
+     storage </li>
+</ul>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:3.0pt;
+margin-left:0in;line-height:14.0pt'><img width=182 height=202 id="Picture 1"
+src="upscaling4.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:.5in;text-indent:-.25in;line-height:14.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Export the 2D pointset for import and use the
+pointset in a different (coarser scaled) Geomec model, or modify the present
+file by deleting layers or surfaces.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:.5in;text-indent:-.25in;line-height:14.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Assign the pointsets to the upscaled Formations,
+using the material model <a href="upscaled_anisotropy.htm">Upscaled Anisotropy</a></span></p>
+
+<p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

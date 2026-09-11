@@ -1,0 +1,146 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Simple Value Types"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C7025B"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CPoint"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C70266"
+	    documentation 	"The CPoint class is similar to the Windows POINT structure. It also includes member functions to manipulate CPoint and POINT structures. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRect"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C702AB"
+	    documentation 	
+|The CRect class is similar to a Windows RECT structure. CRect also includes member functions to manipulate CRect objects and Windows RECT structures. 
+|
+|A CRect contains member variables that define the top-left and bottom-right points of a rectangle.
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSize"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C702E7"
+	    documentation 	"The CSize class is similar to the Windows SIZE structure, which implements a relative coordinate or position"
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CString"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C70338"
+	    documentation 	"A CString object consists of a variable-length sequence of characters. CString provides functions and operators using a syntax similar to that of Basic. Concatenation and comparison operators, together with simplified memory management, make CString objects easier to use than ordinary character arrays. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CTime"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C7037E"
+	    documentation 	
+|A CTime object represents an absolute time and date. The CTime class incorporates the ANSI time_t data type and its associated run-time functions, including the ability to convert to and from a Gregorian date and 24-hour time. 
+|
+|CTime values are based on coordinated universal time (UTC), which is equivalent to Greenwich mean time (GMT). The local time zone is controlled by the TZ environment variable. 
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CTimeSpan"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C703C4"
+	    documentation 	
+|A CTimeSpan object represents a relative time span. The CTimeSpan class incorporates the ANSI time_t data type and its associated run-time functions. These functions convert seconds to various combinations of days, hours, minutes, and seconds. 
+|
+|A CTimeSpan object keeps time in seconds. Because the CTimeSpan object is stored as a signed number in 4 bytes, the maximum allowed span is approximately ± 68 years.
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

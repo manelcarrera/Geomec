@@ -1,0 +1,270 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Boundary"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2370570097"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Modify Boundary"
+	    quid       	"3A1E2528031A"
+	    documentation 	
+|The user modifies the boundary by changing a rectangle in the top view.The user can change the orientation of the model (rotate on z-axis). All geometry views are shown with respect to the (new) orientation of the boundary.
+|
+|In some cases (for example if a model contains faults) modifying the boundary can change the number of bodys or the definition of the bodies and therfore invalidate (remove) the bodys assigned to the formations (Autodetect-Bodies must be invoked to recalculate the definition of the bodies)
+|
+|Modifying the boundary causes restoring the initial mesh for all
+|horizons and faults. All Defined mesh regions are relative to the boundary and therfore stay intact.
+|
+|
+	    )
+	(object UseCase "Best Fit"
+	    quid       	"3A23719A0269"
+	    documentation 	
+|If information of reservoirs is known then adjust the size of the boundary to the reservoir-size else adjust the size according the geometry of the model. The rectangular size can only changed in the topview (x,y plane) and rotated on the z axis.
+|
+|
+|
+|
+|
+	    )
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2371C0021D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2371C10142"
+		    supplier   	"Use Case View::Model Use Cases::Boundary::Best Fit"
+		    quidu      	"3A23719A0269"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2371C1014C"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Boundary"
+	    quid       	"3A2371A50106"
+	    title      	"Boundary"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(80, 80)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	1244
+		    label      	"Use cases for the boundary")
+		(object UseCaseView "Use Case View::Model Use Cases::Boundary::Modify Boundary" @2
+		    location   	(512, 432)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(512, 576)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Modify Boundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A1E2528031A")
+		(object UseCaseView "Use Case View::Model Use Cases::Boundary::Best Fit" @3
+		    location   	(928, 432)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(928, 576)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Best Fit")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A23719A0269")
+		(object ClassView "Class" "Use Case View::Geomec User" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(720, 976)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(720, 1136)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	331
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @5
+		    location   	(632, 748)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A1E253C0193"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @6
+			    Parent_View 	@5
+			    location   	(24, 236)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @7
+				Parent_View 	@6
+				location   	(639, 881)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A1E253D02E9"
+			    client     	@5
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "" @8
+			    Parent_View 	@5
+			    location   	(24, 236)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @9
+				Parent_View 	@8
+				location   	(550, 646)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				hidden     	TRUE
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	""
+				pctDist    	0.800000
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A1E253D02DF"
+			    client     	@5
+			    supplier   	@2
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$0" @10
+		    location   	(804, 748)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2371C0021D"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @11
+			    Parent_View 	@10
+			    location   	(260, 12)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2371C10142"
+			    client     	@10
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @12
+			    Parent_View 	@10
+			    location   	(260, 12)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2371C1014C"
+			    client     	@10
+			    supplier   	@4
+			    line_style 	0)))))))

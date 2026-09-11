@@ -1,0 +1,400 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Element set file</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="elementset">
+	<param name="Keyword" value="elementset file format">
+	<param name="Keyword" value="file formats">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">Elementset file<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The tagged format for
+the elementset always starts with keyword </span><span style="font-family:
+Courier;mso-ansi-language:EN-GB">ELEMENTSET</span><span style="mso-ansi-language:
+EN-GB"> to distinguish between the pointset and elementset format. The keyword </span><span style="font-family:Courier;mso-ansi-language:EN-GB">UNIT</span><span style="mso-ansi-language:EN-GB">
+pinpoints whether FIELD or SI units are used for the associated Data. Note that 
+the set may contain SI coordinates with FIELD data or FIELD coordinates with SI 
+data. This procedure is not recommended, but data as such might be required in 
+some cases. This can be set in Export and Data Storage area if necessary.
+<o:p>
+&nbsp;</o:p></span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="130" valign="top" style="width:97.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">UNIT&nbsp;
+      FIELD</span><span style="mso-ansi-language:EN-GB"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="438" valign="top" style="width:328.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The unit of the
+      file is field.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier;mso-ansi-language:EN-GB">UNIT&nbsp;
+      SI</span><span style="mso-ansi-language:EN-GB"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="438" valign="top" style="width:328.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The unit of the
+      file is SI<o:p>.
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">When the unit keyword
+is not defined the SI unit system is taken as the default.<o:p>
+</o:p></span></p>
+<p class="MsoNormal">An element set is a total (or selection) of all the 
+elements, the nodes which are attached to it, the coordinates of the nodes and 
+(usually) data values which are attached to the nodes. One can hence import or 
+export data via an element set. The import function is only possible on an 
+identical mesh, usually a data modification from an earlier export. </p>
+<p class="MsoNormal">The format of an elementset is as in the example</p>
+<ol>
+	<li>
+	<p class="MsoNormal">header &quot;ELEMENTSET&quot;</li>
+	<li>
+	<p class="MsoNormal">unit definition, either &quot;UNIT &lt;tab&gt; SI&quot; or &quot;UNIT 
+	&lt;tab&gt; FIELD&quot;</li>
+	<li>
+	<p class="MsoNormal">header &quot;POINTS&quot;</li>
+	<li>
+	<p class="MsoNormal">list of all the nodes, with header &quot;Index&nbsp;&lt;tab&gt; 
+	Easting&nbsp;&lt;tab&gt; Northing&nbsp;&lt;tab&gt; Depth&quot;</li>
+	<li>
+	<p class="MsoNormal">header &quot;ELEMENTS&quot; </li>
+	<li>
+	<p class="MsoNormal">per type of element: element name&nbsp;(see 
+	table)&nbsp; &quot;ELEMENT &lt;tab&gt; [elementname]&quot;</li>
+	<li>
+	<p class="MsoNormal">per type of element: a header &quot;ElementNr&nbsp;&lt;tab&gt; NodeIndex&nbsp;&lt;tab&gt; [valuetype1] 
+	&lt;tab&gt; [valuetype2] &lt;tab&gt;... [valuetype-n]&quot;</li>
+	<li>
+	<p class="MsoNormal">listing of all the elements and associated nodes with 
+	format:&nbsp; &quot;[elementNr] &lt;tab&gt; [NodeIndex] &lt;tab&gt; [value1] &lt;tab&gt; [value2] 
+	&lt;tab&gt; ... [value-n]&quot;</li>
+	<li>
+	<p class="MsoNormal">line &quot;END&quot;</li>
+	<li>
+	<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">comment tags
+are the&nbsp; “#” and the “*” character</span></li>
+</ol>
+<p class="MsoNormal">It can be seen that in this set up, a single node can have 
+multiple values, equal to the number of connected elements. For displacements 
+these values need be identical, for other values, such as a shear stress or a 
+Young's modulus, they can differ, since they basically represent a part of an 
+element rather than the node itself.</p>
+<p class="MsoNormal">&nbsp;</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:5.4pt;
+ border-collapse:collapse;mso-table-layout-alt:fixed;mso-padding-alt:0cm 5.4pt 0cm 5.4pt" width="634" id="table1">
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  background:silver;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-GB">Element<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;background:silver;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><b style="mso-bidi-font-weight:normal"><span style="font-family:Courier;
+  mso-ansi-language:EN-GB">Nodes<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td valign="top" style="border-right:.5pt solid windowtext; border-top:.5pt solid windowtext; border-bottom:.5pt solid windowtext; width:161px;border-left:medium none;mso-border-left-alt:solid windowtext .5pt;background:silver;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><b style="mso-bidi-font-weight:normal"><span style="font-family:Courier;
+  mso-ansi-language:EN-GB">Element code<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td valign="top" style="border-right:.5pt solid windowtext; border-top:.5pt solid windowtext; border-bottom:.5pt solid windowtext; width:53px;border-left:medium none;mso-border-left-alt:solid windowtext .5pt;background:silver;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p align="center"><b>Mesh</b></td>
+    <td valign="top" style="border-right:.5pt solid windowtext; border-top:.5pt solid windowtext; border-bottom:.5pt solid windowtext; width:85px;border-left:medium none;mso-border-left-alt:solid windowtext .5pt;background:silver;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p align="center"><b>Element Set</b></td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Hexahedron<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">HEXA8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Quadrilateral
+      interface element<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">IQUAD8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      No</td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Tetrahedron<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">TETRA4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Triangular
+      interface element<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">6<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center">ITRI6<span style="mso-ansi-language:EN-GB"><o:p>
+      or other
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      No</td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Triangle<o:p>
+      (2D)</o:p></span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">3<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">TRI3<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Quadrilateral<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:161px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+      <p class="MsoNormal" align="center" style="text-align:center"><span style="mso-ansi-language:EN-GB">QUAD4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td valign="top" style="width:53px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      No</td>
+    <td valign="top" style="width:85px;border-top:medium none;border-left:
+  medium none;border-bottom:.5pt solid windowtext;border-right:.5pt solid windowtext;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm" align="center">
+      Yes</td>
+  </tr>
+</table>
+<p class="MsoNormal">
+<span style="mso-ansi-language:EN-GB; text-decoration:underline">EXAMPLE:</span></p>
+<font SIZE="2">
+<p>ELEMENTSET</p>
+<p>UNIT&nbsp;&nbsp;&nbsp; SI</p>
+<p>POINTS</p>
+<p>Index&nbsp;&nbsp;&nbsp;&nbsp; Easting&nbsp;&nbsp;&nbsp;&nbsp; Northing&nbsp;&nbsp;&nbsp;&nbsp; 
+Depth</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00&nbsp;&nbsp;&nbsp;&nbsp; 
+0.00000000E+00&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00</p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+02&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00 </p>
+<p>3&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00&nbsp;&nbsp;&nbsp;&nbsp; 
+2.00000000E+02&nbsp;&nbsp;&nbsp;&nbsp; 0.00000000E+00 </p>
+<p>[......] </p>
+<p>604&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03&nbsp;&nbsp;&nbsp;&nbsp; 
+9.00000000E+02&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>605&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+03&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>&nbsp;</p>
+<p>ELEMENTS</p>
+<p>ELEMENT&nbsp;&nbsp;&nbsp; HEXA8</p>
+<p>ElementNr&nbsp;&nbsp;&nbsp;&nbsp; NodeIndex&nbsp;&nbsp;&nbsp;&nbsp; [value]</p>
+<p>#Mesh</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+02</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+02</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+02</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1.00000000E+02</p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 364&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 365&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 376&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>1&nbsp;&nbsp;&nbsp;&nbsp; 375&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 364&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 365&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 376&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 375&nbsp;&nbsp;&nbsp;&nbsp; 2.50000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 122&nbsp;&nbsp;&nbsp;&nbsp; 5.00000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 123&nbsp;&nbsp;&nbsp;&nbsp; 5.00000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 134&nbsp;&nbsp;&nbsp;&nbsp; 5.00000000E+02 </p>
+<p>2&nbsp;&nbsp;&nbsp;&nbsp; 133&nbsp;&nbsp;&nbsp;&nbsp; 5.00000000E+02 </p>
+<p>[......]</p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 593&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 594&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 605&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 604&nbsp;&nbsp;&nbsp;&nbsp; 7.50000000E+02 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 351&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 352&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 363&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03 </p>
+<p>400&nbsp;&nbsp;&nbsp;&nbsp; 362&nbsp;&nbsp;&nbsp;&nbsp; 1.00000000E+03 </p>
+<p>END</p>
+<p>&nbsp;</p>
+</font>
+
+</body>
+
+</html>

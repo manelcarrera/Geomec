@@ -1,0 +1,15 @@
+# Error in Gocad file: not a coordinate 
+GOCAD TSurf
+HEADER {
+name:top_missing_coor
+}
+TFACE
+VRTX 0 0 0 aap
+VRTX 1 100 0 0
+VRTX 2 100 100 0
+VRTX 3 0 100 0
+TRGL 0 1 2
+TRGL 0 2 
+END
+
+

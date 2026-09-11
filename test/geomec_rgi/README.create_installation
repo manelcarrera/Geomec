@@ -1,0 +1,8 @@
+- create the compressed archive by executing the command
+  './create_installation',
+- install the compressed archive ('geomec_rgi.tar.bz2') by executing the
+  commands 'mkdir test', './install test',
+- the installation can now be verified by executing the commands 'cd test',
+  './test_geomec_rgi'.
+- due to an unknown and unresolved issue the test may have to be executed
+  several times before the result 'TEST SUCCEEDED' is returned.

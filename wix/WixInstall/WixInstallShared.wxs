@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- chicken and egg (and local) -->
+
+<?define DevelopRoot="$(var.Geomec.ProjectDir)\.." ?>
+<?define WixInclude="$(var.DevelopRoot)\Wix\WixInclude" ?>
+<?define plugins="$(var.DevelopRoot)\plugins" ?>
+<?define changelog="$(var.DevelopRoot)\changelog" ?>
+<?define img="$(var.DevelopRoot)\img" ?>
+
+<!-- version number -->
+
+<?include $(var.WixInclude)\GeomecVersion.wxi ?>
+
+<!-- configuration -->
+
+<!-- forcing 64 bits; TODO: remove 32 bits altogether -->
+<?if $(var.Platform)!="x64" ?>
+<?define Platform="x64" ?>
+<?endif?>
+
+<!-- paths -->
+
+<?include $(var.WixInclude)\Paths.wxi ?>
+
+<!-- merge modules for x64 with VS2013 -->
+<?define Microsoft_VC140_CRT="$(var.MergeModules)\Microsoft_VC140_CRT_x64.msm"?>
+<?define Microsoft_VC140_MFC="$(var.MergeModules)\Microsoft_VC140_MFC_x64.msm" ?>
+<?define Microsoft_VC140_OpenMP="$(var.MergeModules)\Microsoft_VC140_OpenMP_x64.msm" ?>
+
+<!-- application files -->
+<?define Geomec_exe="$(var.Geomec.TargetPath)" ?>
+<?define Geomec_rgi_exe="$(var.geomec_rgi.TargetPath)" ?>
+<?define Geomec_cora_exe="$(var.geomec_cora.TargetPath)" ?>
+<?define Geomec_shell_exe="$(var.geomec_shell.TargetPath)" ?>
+<?define Geomec_launcher_exe="$(var.geomec_launcher.TargetPath)" ?>
+<?define Diana_app_exe="$(var.diana_app.TargetPath)" ?>
+<?define CutSurfaceUtil_dll="$(var.CutSurfaceUtil.TargetPath)" ?>
+<?define WellSchemeUtils_dll="$(var.WellSchemeUtils.TargetPath)" ?>
+<?define blosc_shared_dll="$(var.blosc_shared.TargetPath)" ?>
+<?define GMSkuaConnector_dll="$(var.GMSkuaConnector.TargetPath)" ?>
+<?define DianaX_ocx="$(var.DevelopRoot)\controls\dianax\x64\Release\DianaX.ocx" ?>
+<?define FlexLM_dll="$(var.GeomecRoot)\FlexLM\lib64\lmgr11.dll" ?>
+<?define RGInterface_dll="$(var.RGInterface.TargetPath)" ?>
+<?define zlibwapi_dll="$(var.zlibvc.TargetPath)" ?>
+<?define ModGMBus_dll="$(var.ModGMBus.TargetPath)" ?>
+<?define unzip="$(var.WixInclude)\7za.exe" ?>
+
+<?include $(var.WixInclude)\Cora.wxi ?>
+
+<!-- GVT (x64 only) -->
+
+<!-- disable the installation of GVT
+<?define GVT="$(var.3rdPartyRoot)\GVT" ?>
+ -->
+
+<?ifdef GVT ?>
+<?define GVT_exe="$(var.GVT)\GVT.exe" ?>
+<?define gvt_3dio_dll="$(var.GVT)\3dio.dll" ?>
+<?define gvt_GVTCore_dll="$(var.GVT)\GVTCore.dll" ?>
+<?define gvt_GVTDatamanager_dll="$(var.GVT)\GVTDatamanager.dll" ?>
+<?define gvt_GVTUtils_dll="$(var.GVT)\Utils.dll" ?>
+<?define gvt_QtCore4_dll="$(var.GVT)\QtCore4.dll" ?>
+<?define gvt_QtGui4_dll="$(var.GVT)\QtGui4.dll" ?>
+<?define gvt_Sp_dll="$(var.GVT)\Sp.dll" ?>
+<?define gvt_SpData_dll="$(var.GVT)\SpData.dll" ?>
+<?define gvt_SpMessage_dll="$(var.GVT)\SpMessage.dll" ?>
+<?define gvt_SpShell_dll="$(var.GVT)\SpShell.dll" ?>
+<?define gvt_SpUnit_dll="$(var.GVT)\SpUnit.dll" ?>
+<?define gvt_SpUtil_dll="$(var.GVT)\SpUtil.dll" ?>
+<?define gvt_libifcoremd_dll="$(var.GVT)\libifcoremd.dll" ?>
+<?define gvt_libmmd_dll="$(var.GVT)\libmmd.dll" ?>
+<?define gvt_pcre_dll="$(var.GVT)\pcre.dll" ?>
+<?define gvt_pcreposix_dll="$(var.GVT)\pcreposix.dll" ?>
+<?define gvt_pthreadVC2_dll="$(var.GVT)\pthreadVC2.dll" ?>
+<?define gvt_xerces-c_2_8_dll="$(var.GVT)\xerces-c_2_8.dll" ?>
+<?endif?>
+
+<?define Geomec_chm="$(var.GeomecRoot)\Help\Geomec.chm" ?>
+<?define Matlib_chm="$(var.DevelopRoot)\lib\matlib\hlp\matlib.chm" ?>
+<?define zoominwell_pdf="$(var.GeomecRoot)\Help\zoominwell.pdf" ?>
+<?define mesh_refinement_pdf="$(var.GeomecRoot)\Help\Mesh refinement guide.pdf" ?>
+<?define KeyFile="$(var.GeomecRoot)\keyfile" ?>
+
+<!-- SVS -->
+<?define SVS="$(var.3rdPartyRoot)\SVS" ?>
+<?define SVS_exe="$(var.SVS)\SVS64.exe" ?>
+
+<!-- Component IDs -->
+<?include $(var.WixInclude)\GuidsDefault570.wxi ?>
+
+
+<?define GeomecName="GEOMEC $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)" ?>
+<?define SVSName="SVS" ?>
+<?define ProductName="$(var.GeomecName) - $(var.SVSName)" ?>
+
+
+<?include $(var.WixInclude)\DianaEnv.wxi ?>
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="$(var.ProductID)" Name="$(var.ProductName)" Language="1033" Version="$(var.VersionMajor).$(var.VersionMinor).$(var.VersionRevision).0" Manufacturer="Shell International Ltd." UpgradeCode="$(var.UpgradeCodeID)">
+    <!-- See http://msdn.microsoft.com/en-us/library/aa370570(VS.85).aspx:
+    Windows Installer 5.0 on Windows Server 2012, Windows 8, Windows Server 2008 R2 or Windows 7.
+    Windows Installer 4.0 or Windows Installer 4.5 on Windows Server 2008 or Windows Vista.
+    Windows Installer on Windows Server 2003 or Windows XP -->
+    <Package InstallerVersion="405" Compressed="yes" Platform="$(var.Platform)" />
+
+    <?include UI.wxi ?>
+
+    <Icon Id="Geomec.exe" SourceFile="$(var.Geomec_exe)"/>
+    <Icon Id="SVS.exe" SourceFile="$(var.SVS_exe)"/>
+
+    <Property Id="ARPPRODUCTICON" Value="Geomec.exe" />
+
+    <Media Id="1" Cabinet="WixInstall.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <!-- VS2015 -->
+      <Merge Id="Microsoft_VC140_CRT" Language="1033" SourceFile="$(var.Microsoft_VC140_CRT)" DiskId="1" />
+      <Merge Id="Microsoft_VC140_MFC" Language="1033" SourceFile="$(var.Microsoft_VC140_MFC)" DiskId="1" />
+      <Merge Id="Microsoft_VC140_OpenMP" Language="1033" SourceFile="$(var.Microsoft_VC140_OpenMP)" DiskId="1" />
+      
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="GeomecShortcutFolder" Name="$(var.GeomecName)">
+          <Directory Id="GeomecDocumentsShortcutFolder" Name="Documents"/>
+        </Directory>
+        <Directory Id="SVSShortcutFolder" Name="$(var.SVSName)" />
+        <Directory Id="CORAShortcutFolder" Name="$(var.CORAName)">
+          <Directory Id="CORADocumentsShortcutFolder" Name="Documents">
+            <Directory Id="CORABackgroundInformationShortcutFolder" Name="BackgroundInformation"/>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="$(var.ProgramFilesFolder)">
+        <Directory Id="INSTALLDIR" Name="$(var.ProductName)">
+
+          <Component Id="Component_Registry_keys" Guid="$(var.ComponentID_Registry_keys)" Win64="yes">
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\TNO\Geomec $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)">
+              <RegistryKey Key="Paths">
+                <RegistryValue Name="DianaExeName" Value="gm42.exe" Type="string" KeyPath="yes" />
+                <RegistryValue Name="DIAPATH" Value="[INSTALLDIR]Diana" Type="string" />
+                <RegistryValue Name="DIASHARE" Value="[INSTALLDIR]Diana\share" Type="string" />
+                <RegistryValue Name="FgvExeName" Value="fgv4gm.exe" Type="string" />
+                <RegistryValue Name="InputExeName" Value="in51.exe" Type="string" />
+              </RegistryKey>
+              <RegistryKey Key="Settings" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Geomec.exe">
+              <RegistryValue Value="[INSTALLDIR]Geomec.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_rgi.exe">
+              <RegistryValue Value="[INSTALLDIR]geomec_rgi.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_cora.exe">
+              <RegistryValue Value="[INSTALLDIR]geomec_cora.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_shell.exe">
+              <RegistryValue Value="[INSTALLDIR]geomec_shell.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_launcher.exe">
+              <RegistryValue Value="[INSTALLDIR]geomec_launcher.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\diana_app.exe">
+              <RegistryValue Value="[INSTALLDIR]diana_app.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\gm42.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\gm42.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\in51.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\in51.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\ca40.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\ca40.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\ho40.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\ho40.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mc41.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\mc41.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\bo40.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\bo40.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\se51.exe">
+              <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\se51.exe" Type="string" />
+              <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+            </RegistryKey>
+
+            <RegistryKey Root="HKCR" Key=".gm4">
+              <RegistryValue Value="Geomec4.Document" Type="string" />
+            </RegistryKey>
+            <RegistryKey Root="HKCR" Key="Geomec4.Document">
+              <RegistryValue Value="GEOMEC 4 Project" Type="string" />
+              <RegistryKey Key="DefaultIcon">
+                <RegistryValue Value="&quot;[INSTALLDIR]Geomec.exe&quot;,0" Type="string" />
+              </RegistryKey>
+              <RegistryKey Key="shell">
+                <RegistryKey Key="open">
+                  <RegistryKey Key="command">
+                    <RegistryValue Value="&quot;[INSTALLDIR]Geomec.exe&quot; &quot;%1&quot;" Type="string" />
+                  </RegistryKey>
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+
+            <RegistryKey Root="HKCR" Key=".gm5">
+              <RegistryValue Value="Geomec5.Document" Type="string" />
+            </RegistryKey>
+            <RegistryKey Root="HKCR" Key="Geomec5.Document">
+              <RegistryValue Value="GEOMEC 5 Project" Type="string" />
+              <RegistryKey Key="DefaultIcon">
+                <RegistryValue Value="&quot;[INSTALLDIR]Geomec.exe&quot;,0" Type="string" />
+              </RegistryKey>
+              <RegistryKey Key="shell">
+                <RegistryKey Key="open">
+                  <RegistryKey Key="command">
+                    <RegistryValue Value="&quot;[INSTALLDIR]Geomec.exe&quot; &quot;%1&quot;" Type="string" />
+                  </RegistryKey>
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+          </Component>
+
+          <Component Id="Component_Geomec_exe" Guid="$(var.ComponentID_Geomec_exe)" Win64="yes">
+
+            <Shortcut Id="Shortcut_Geomec_$(var.VersionMajor)_$(var.VersionMinor)" Directory="GeomecShortcutFolder" Name="Geomec $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)" Description="Launch GEOMEC" Advertise="yes" Icon="Geomec.exe" IconIndex="0" WorkingDirectory="INSTALLDIR"/>
+            <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" Directory="GeomecShortcutFolder" />
+            <File Id="Geomec.exe" Source="$(var.Geomec_exe)" KeyPath="yes" />
+            <File Id="geomec_rgi.exe" Source="$(var.Geomec_rgi_exe)" />
+            <File Id="geomec_cora.exe" Source="$(var.Geomec_cora_exe)" />
+            <File Id="geomec_shell.exe" Source="$(var.Geomec_shell_exe)" />
+            <File Id="geomec_launcher.exe" Source="$(var.Geomec_launcher_exe)" />
+            <File Id="diana_app.exe" Source="$(var.Diana_app_exe)" />
+            <File Id="Geomec.chm" Source="$(var.Geomec_chm)" >
+              <Shortcut Id="Geomec.chm.sc" Directory="GeomecDocumentsShortcutFolder" Name="Geomec Help" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+            </File>
+            <File Id="zoominwell.pdf" Source="$(var.zoominwell_pdf)" >
+              <Shortcut Id="zoominwell.pdf.sc" Directory="GeomecDocumentsShortcutFolder" Name="Well Zoom-in" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+            </File>
+            <File Id="License_borrowing.pdf" Source="$(var.GeomecRoot)/Help/License borrowing and troubleshooting.pdf" >
+              <Shortcut Id="License_borrowing.pdf.sc" Directory="GeomecDocumentsShortcutFolder" Name="License borrowing and troubleshooting" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+            </File>
+            <File Id="GVT_Quick_Tour.pdf" Source="$(var.GeomecRoot)/Help/GVT Quick Tour.pdf" >
+              <Shortcut Id="GVT_Quick_Tour.pdf.sc" Directory="GeomecDocumentsShortcutFolder" Name="GVT Quick Tour" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+            </File>
+            <!-- Set up as automatic; for Trunk versions it would probably be good to include some pointers that this is work in progress, etc. Or leave it out -->
+            <File Id="Geomec_$(var.VersionMajor)_$(var.VersionMinor)_Release_Notes.pdf" Source="$(var.GeomecRoot)/Help/Geomec $(var.VersionMajor).$(var.VersionMinor) Release Notes.pdf" >
+              <Shortcut Id="Geomec_release_notes.pdf.sc" Directory="GeomecDocumentsShortcutFolder" Name="Geomec $(var.VersionMajor).$(var.VersionMinor) Release Notes" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+            </File>
+            <File Id="mr_pdf" Source="$(var.mesh_refinement_pdf)" />
+            <File Id="show_licenses.bat" Source="$(var.WixInclude)/show_licenses.bat" />
+            <File Id="LicenseCheck.gm4" Source="$(var.WixInclude)/LicenseCheck.gm4" />
+            <File Id="CutSurfaceUtil.dll" Source="$(var.CutSurfaceUtil_dll)" />
+            <File Id="WellSchemeUtils.dll" Source="$(var.WellSchemeUtils_dll)" />
+            <File Id="blosc_shared.dll" Source="$(var.blosc_shared_dll)" />
+            <File Id="GMSkuaConnector.dll" Source="$(var.GMSkuaConnector_dll)" />
+            <File Id="RGInterface.dll" Source="$(var.RGInterface_dll)" />
+            <File Id="zlibwapi.dll" Source="$(var.zlibwapi_dll)" />
+            <File Id="ModGMBus.dll" Source="$(var.ModGMBus_dll)" />
+            <File Id="Qt5Core.dll_local" Name="Qt5Core.dll" Source="$(var.QTDIR)\bin\Qt5Core.dll" />
+            <File Id="Qt5Gui.dll_local" Name="Qt5Gui.dll" Source="$(var.QTDIR)\bin\Qt5Gui.dll" />
+            <File Id="Qt5Widgets.dll_local" Name="Qt5Widgets.dll" Source="$(var.QTDIR)\bin\Qt5Widgets.dll" />
+            <File Id="Qt5OpenGL.dll_local" Name="Qt5OpenGL.dll" Source="$(var.QTDIR)\bin\Qt5OpenGL.dll" />
+            <File Id="Qt5Xml.dll" Name="Qt5Xml.dll" Source="$(var.QTDIR)\bin\Qt5Xml.dll" />
+            <File Id="Qt5PrintSupport.dll" Name="Qt5PrintSupport.dll" Source="$(var.QTDIR)\bin\Qt5PrintSupport.dll" />
+            <File Id="Qt5Svg.dll" Name="Qt5Svg.dll" Source="$(var.QTDIR)\bin\Qt5Svg.dll" />
+            <File Id="Qt5Network.dll" Name="Qt5Network.dll" Source="$(var.QTDIR)\bin\Qt5Network.dll" />
+            <File Id="Qwt.dll" Name="Qwt.dll" Source="$(var.QWTDIR)\lib\Qwt.dll" />
+
+            <File Id="libifcoremd.dll.local" Name="libifcoremd.dll" Source="$(var.Intel64)\libifcoremd.dll" />
+            <File Id="libifportmd.dll.local" Name="libifportmd.dll" Source="$(var.Intel64)\libifportmd.dll" />
+            <File Id="libmmd.dll.local" Name="libmmd.dll" Source="$(var.Intel64)\libmmd.dll" />
+            <File Id="libiomp5md.dll.local" Name="libiomp5md.dll" Source="$(var.Intel64)\libiomp5md.dll" />
+            <File Id="svml_dispmd.dll.local" Name="svml_dispmd.dll" Source="$(var.Intel64)\svml_dispmd.dll" />
+
+            <File Id="tbb.dll" Name="tbb.dll" Source="$(var.TBBBinDir)\tbb.dll" />
+            <File Id="tbbmalloc.dll" Name="tbbmalloc.dll" Source="$(var.TBBBinDir)\tbbmalloc.dll" />
+
+            <?ifdef LicenseResource_dll ?>
+            <File Id="LicenseResource.dll" Name="LicenseResource.dll" Source="$(var.LicenseResource_dll)" />
+            <?endif?>
+            
+            <?ifdef FlexLM_dll ?>
+            <File Id="FlexLM.dll.local" Name="lmgr11.dll" Source="$(var.FlexLM_dll)" />
+            <?endif?>
+
+            <File Id="unzip" Name="7za.exe" Source="$(var.unzip)" />
+
+          </Component>
+
+          <Directory Id="packages" Name="packages">
+            <Component Id="Component_packages" Guid="$(var.ComponentID_packages)" Win64="yes">
+              <File Id="plugin_test_python_zip" Name="test_python.zip" Source="$(var.plugins)\test_python.zip" />
+              <File Id="app_xml" Name="app.xml" Source="$(var.plugins)\app.xml" />
+              <File Id="geomec_xml" Name="geomec.xml" Source="$(var.plugins)\geomec.xml" />
+              <File Id="logs_xml" Name="logs.xml" Source="$(var.plugins)\logs.xml" />
+              <File Id="python_xml" Name="python.xml" Source="$(var.plugins)\python.xml" />
+              <File Id="plugin_inversion_tool.zip" Name="inversion_tool.zip" Source="$(var.plugins)\Inversion tool 17-01-2019.zip" />
+              <!--<File Id="changelog.zip" Name="changelog.zip" Source="$(var.plugins)\changelog.zip" />-->
+            </Component>
+          </Directory>
+
+          <Directory Id="changelog" Name="changelog">
+            <Directory Id="changelog_gm55" Name="Geomec 5.5">
+              <Component Id="Component_Changelog55" Guid="$(var.ComponentID_Changelog55)" Win64="yes">
+                <File Id="index55.html" Name="index.html" Source="$(var.changelog)\Geomec 5.5\index.html" />
+                <File Id="casing_visualization.png" Name="casing_visualization.png" Source="$(var.changelog)\Geomec 5.5\casing_visualization.png" />
+                <File Id="inversion_tool.png" Name="inversion_tool.png" Source="$(var.changelog)\Geomec 5.5\inversion_tool.png" />
+                <File Id="mesh_refinement.png" Name="mesh_refinement.png" Source="$(var.changelog)\Geomec 5.5\mesh_refinement.png" />
+              </Component>
+            </Directory>
+            <Directory Id="changelog_gm56" Name="Geomec 5.6">
+              <Component Id="Component_Changelog56" Guid="$(var.ComponentID_Changelog56)" Win64="yes">
+                <File Id="index56.html" Name="index.html" Source="$(var.changelog)\Geomec 5.6\index.html" />
+                <File Id="windows_10_stability.png" Name="windows_10_stability.png" Source="$(var.changelog)\Geomec 5.6\windows_10_stability.png" />
+                <File Id="inversion_tool_v2.png" Name="inversion_tool_v2.png" Source="$(var.changelog)\Geomec 5.6\inversion_tool_v2.png" />
+                <File Id="help_visualization.png" Name="help_visualization.png" Source="$(var.changelog)\Geomec 5.6\help_visualization.png" />
+                <File Id="mesh_converter.png" Name="mesh_converter.png" Source="$(var.changelog)\Geomec 5.6\mesh_converter.png" />
+              </Component>
+            </Directory>
+             <Directory Id="changelog_gm57" Name="Geomec 5.7">
+              <Component Id="Component_Changelog57" Guid="$(var.ComponentID_Changelog57)" Win64="yes">
+                <File Id="index57.html" Name="index.html" Source="$(var.changelog)\Geomec 5.7\index.html" />
+              </Component>
+            </Directory>
+         </Directory>
+
+          <Directory Id="img" Name="img">
+            <Component Id="Component_img" Guid="$(var.ComponentID_img)" Win64="yes">
+              <File Id="hexa.png" Name="hexa.png" Source="$(var.img)\hexa.png" />
+              <File Id="tetra.png" Name="tetra.png" Source="$(var.img)\tetra.png" />
+              <File Id="old.png" Name="old.png" Source="$(var.img)\old.png" />
+              <File Id="new.png" Name="new.png" Source="$(var.img)\new.png" />
+              <File Id="undefined.png" Name="undefined.png" Source="$(var.img)\undefined.png" />
+              <!-- mesh refinement -->
+              <File Id="undo_16.png" Name="undo_16.png" Source="$(var.img)\undo_16.png" />
+              <File Id="warning_16.png" Name="warning_16.png" Source="$(var.img)\warning_16.png" />
+              <File Id="delete_16.png" Name="delete_16.png" Source="$(var.img)\delete_16.png" />
+              <File Id="add_16.png" Name="add_16.png" Source="$(var.img)\add_16.png" />
+              <File Id="empty_16.png" Name="empty_16.png" Source="$(var.img)\empty_16.png" />
+              <File Id="zoom_16.png" Name="zoom_16.png" Source="$(var.img)\zoom_16.png" />
+              <File Id="edit.png" Name="edit.png" Source="$(var.img)\edit.png" />
+              <File Id="minimize.png" Name="minimize.png" Source="$(var.img)\minimize.png" />
+              <File Id="increase_size.png" Name="increase_size.png" Source="$(var.img)\increase_size.png" />
+              <File Id="rotate_16.png" Name="rotate_16.png" Source="$(var.img)\rotate_16.png" />
+              <File Id="connections_16.png" Name="connections_16.png" Source="$(var.img)\connections_16.png" />
+              <File Id="save_16.png" Name="save_16.png" Source="$(var.img)\save_16.png" />
+              <File Id="done_16.png" Name="done_16.png" Source="$(var.img)\done_16.png" />
+              <File Id="ok_16.png" Name="ok_16.png" Source="$(var.img)\ok_16.png" />
+              <File Id="pdf_16.png" Name="pdf_16.png" Source="$(var.img)\pdf_16.png" />
+            </Component>
+          </Directory>
+
+
+          <Directory Id="QtPlatforms" Name="platforms">
+            <Component Id="Component_QtPlatforms" Guid="$(var.cid_qt_platforms)" Win64="yes">
+              <File Id="qwindows.dll" Name="qwindows.dll" Source="$(var.QTDIR)\plugins\platforms\qwindows.dll" />
+            </Component>
+          </Directory>
+          
+          <Directory Id="fixInstallation" Name="fixInstallation">
+            <Component Id="Component_fixInstallation" Guid="$(var.ComponentID_fixInstallation)" Win64="yes">
+              <File Id="fixInstallation.bat" Name="fixInstallation.bat" Source="$(var.WixInclude)\fixInstallation.bat" />
+            </Component>
+            <Directory Id="fixInstallation.resources" Name="resources">
+              <Component Id="Component_fixInstallation_resources" Guid="$(var.ComponentID_fixInstallation_resources)" Win64="yes">
+                <File Id="fixInstallation_geomec_reg" Name="geomec_$(var.VersionMajor).$(var.VersionMinor).reg" Source="$(var.WixInclude)\geomec_$(var.VersionMajor).$(var.VersionMinor).reg" />
+                <File Id="fixInstallation_haspdinst" Name="haspdinst.exe" Source="$(var.WixInclude)\haspdinst.exe" />
+                <File Id="fixInstallation_wixhasppostinstall" Name="WixHaspPostInstall.exe" Source="$(var.WixHaspPostInstall.TargetPath)" />
+              </Component>
+            </Directory>
+          </Directory>
+
+          <?ifdef GVT ?>
+          <Directory Id="GVT_PATH" Name="GVT">
+            <Component Id="Component_GVT" Guid="$(var.ComponentID_GVT)" Win64="yes">
+              <File Id="GVT.exe" KeyPath="yes" Source="$(var.GVT)\GVT.exe" />
+              <File Id="boost.dll" Name="boost_date_time-vc120-mt-1_57.dll" Source="$(var.GVT)\boost_date_time-vc120-mt-1_57.dll" />
+              <File Id="_3dio.dll" Name="3dio.dll" Source="$(var.GVT)\3dio.dll" />
+              <File Id="GVTCore.dll" Source="$(var.GVT)\GVTCore.dll" />
+              <File Id="GVTDatamanager.dll" Source="$(var.GVT)\GVTDatamanager.dll" />
+              <File Id="Utils.dll" Source="$(var.GVT)\Utils.dll" />
+              <File Id="gvt_QtCore4.dll" Name="QtCore4.dll" Source="$(var.GVT)\QtCore4.dll" />
+              <File Id="gvt_QtGui4.dll" Name="QtGui4.dll" Source="$(var.GVT)\QtGui4.dll" />
+              <File Id="Sp.dll" Source="$(var.GVT)\Sp.dll" />
+              <File Id="SpData.dll" Source="$(var.GVT)\SpData.dll" />
+              <File Id="SpMessage.dll" Source="$(var.GVT)\SpMessage.dll" />
+              <File Id="SpShell.dll" Source="$(var.GVT)\SpShell.dll" />
+              <File Id="SpUnit.dll" Source="$(var.GVT)\SpUnit.dll" />
+              <File Id="SpUtil.dll" Source="$(var.GVT)\SpUtil.dll" />
+              <File Id="gvt_libifcoremd.dll" Name="libifcoremd.dll" Source="$(var.GVT)\libifcoremd.dll" />
+              <File Id="gvt_libmmd.dll" Name="libmmd.dll" Source="$(var.GVT)\libmmd.dll" />
+              <File Id="pcre.dll" Source="$(var.GVT)\pcre.dll" />
+              <File Id="pcreposix.dll" Source="$(var.GVT)\pcreposix.dll" />
+              <File Id="pthreadVC2.dll" Source="$(var.GVT)\pthreadVC2.dll" />
+              <File Id="xerces_c_2_8.dll" Name="xerces-c_2_8.dll" Source="$(var.GVT)\xerces-c_2_8.dll" />
+            </Component>
+          </Directory>
+          <?endif?>
+
+          <Directory Id="DIAPATH" Name="Diana">
+            <Directory Id="Diana_bin" Name="bin">
+              <Component Id="Component_Diana_bin_geomec" Guid="$(var.ComponentID_Diana_bin_geomec)" Win64="yes">
+                <File Id="fgv4gm.exe" KeyPath="yes" Source="$(var.DIAPATH)\bin\fgv4gm.exe" />
+              </Component>
+              <?include $(var.WixInclude)\DianaBin.wxi ?>
+              <?include $(var.WixInclude)\SystemFiles64.wxi ?>
+            </Directory>
+            <Directory Id="SafeNet_bin" Name="bin">
+              <Component Id="Component_SafeNet_bin_geomec" Guid="$(var.ComponentID_SafeNet_bin_geomec)" Win64="yes">
+                <File Id="hasp_windows_x64_3659.dll" KeyPath="yes" Source="$(var.SafeNet)\hasp_windows_x64_3659.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="Diana_binseg" Name="binseg">
+              <Directory Id="Diana_binseg_ap" Name="ap">
+                <Component Id="Component_Diana_binseg_ap_geomec" Guid="$(var.ComponentID_Diana_binseg_ap_geomec)" Win64="yes">
+                  <File Id="gm42.exe" Source="$(var.DIAPATH)\binseg\ap\gm42.exe" KeyPath="yes" />
+                  <File Id="ca40.exe" Source="$(var.DIAPATH)\binseg\ap\ca40.exe" />
+                  <File Id="ho40.exe" Source="$(var.DIAPATH)\binseg\ap\ho40.exe" />
+                  <File Id="in51.exe" Source="$(var.DIAPATH)\binseg\ap\in51.exe" />
+                  <File Id="mc41.exe" Source="$(var.DIAPATH)\binseg\ap\mc41.exe" />
+                  <File Id="bo40.exe" Source="$(var.DIAPATH)\binseg\ap\bo40.exe" />
+                  <!--
+                  <File Id="se51.exe" Source="$(var.DIAPATH)\binseg\ap\se51.exe" />
+                  <File Id="QtCore4.dll_temporary" Name="QtCore4.dll" Source="$(var.WixInclude)\QtCore4.dll" />
+                  <File Id="QtGui4.dll_temporary" Name="QtGui4.dll" Source="$(var.WixInclude)\QtGui4.dll" />
+                  <File Id="QtNetwork4.dll_temporary" Name="QtNetwork4.dll" Source="$(var.WixInclude)\QtNetwork4.dll" />
+                  <File Id="QtOpenGL4.dll_temporary" Name="QtOpenGL4.dll" Source="$(var.WixInclude)\QtOpenGL4.dll" />
+                  -->
+                </Component>
+              </Directory>
+            </Directory>
+            <Directory Id="Diana_lib" Name="lib">
+              <?include $(var.WixInclude)\DianaLib.wxi ?>
+            </Directory>
+            <Directory Id="DIASHARE" Name="share">
+              <?include $(var.WixInclude)\DiaShare.wxi ?>
+            </Directory>
+          </Directory>
+
+          <Directory Id="SVS_PATH" Name="SVS">
+            <Component Id="Component_SVS" Guid="$(var.ComponentID_SVS)" Win64="yes">
+              <File Id="SVS.exe" KeyPath="yes" Source="$(var.SVS)\SVS64.exe" />
+              <Shortcut Id="Shortcut_SVS" Directory="SVSShortcutFolder" Name="SVS" Description="Launch SVS" Advertise="yes" Icon="SVS.exe" IconIndex="0" WorkingDirectory="SVS_PATH"/>
+              <RemoveFolder Id="RemoveSVSShortcutFolder" On="uninstall" Directory="SVSShortcutFolder" />
+            </Component>
+          </Directory>
+
+          <!-- <?include $(var.WixInclude)\OIVBin.wxi ?> -->
+          <?include $(var.WixInclude)\inc_oiv.wxi ?>
+
+          <Directory Id="CORA_PATH" Name="$(var.CoraTargetDir)" />
+
+        </Directory>
+      </Directory>
+		</Directory>
+
+		<Feature Id="ProductFeature" Title="Application Files" Level="1" Absent="disallow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR">
+			<ComponentRef Id="Component_Geomec_exe" Primary="yes" />
+      <ComponentRef Id="Component_QtPlatforms" />
+      <ComponentRef Id="Component_System_Files" />
+      <ComponentRef Id="Component_Registry_keys" />
+      <ComponentRef Id="Component_OIV_bin" />
+      <ComponentRef Id="Component_fixInstallation" />
+      <ComponentRef Id="Component_fixInstallation_resources" />
+      <ComponentRef Id="Component_packages"/>
+      <ComponentRef Id="Component_Changelog55"/>
+      <ComponentRef Id="Component_Changelog56"/>
+      <ComponentRef Id="Component_Changelog57"/>
+      <ComponentRef Id="Component_img"/>
+
+      <!-- VS2015 -->
+      <MergeRef Id="Microsoft_VC140_CRT" />
+      <MergeRef Id="Microsoft_VC140_MFC" />
+      <MergeRef Id="Microsoft_VC140_OpenMP" />
+    </Feature>
+
+    <?ifdef GVT ?>
+    <Feature Id="GVTFeature" Title="GVT Files" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentRef Id="Component_GVT" Primary="yes"/>
+    </Feature>
+    <?endif?>
+
+    <Feature Id="DianaFeature" Title="DIANA Files" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentRef Id="Component_Diana_binseg_ap_geomec" Primary="yes" />
+      <ComponentRef Id="Component_Diana_bin_geomec" />
+      <ComponentRef Id="Component_SafeNet_bin_geomec" />
+      <?include $(var.WixInclude)\DianaComponentRef.wxi ?>
+    </Feature>
+
+    <Feature Id="SVSFeature" Title="SVS Files" Level="1" Absent="allow" AllowAdvertise="no">
+      <ComponentRef Id="Component_SVS" Primary="yes"/>
+    </Feature>
+
+    <Feature Id="CORAFeature" Title="CORA Application" Level="1" Absent="disallow" AllowAdvertise="no">
+      <ComponentGroupRef Id="CoraComponentGroup" />
+    </Feature>
+
+    <Binary Id="HaspDriverInstallerBinary" SourceFile="$(var.WixInclude)\haspdinst.exe" />
+    <Binary Id="HaspDriverIniUpdateBinary" SourceFile="$(var.WixHaspPostInstall.TargetPath)" />
+    <Binary Id="ChangelogInstallBinary" SourceFile="$(var.WixPostInstallChangelog.TargetPath)" />
+
+    <CustomAction Id="HaspDriverInstall" BinaryKey="HaspDriverInstallerBinary" ExeCommand="-install -fi" Execute="deferred" Impersonate="no" Return="ignore" />
+    <CustomAction Id="HaspDriverIniUpdate" BinaryKey="HaspDriverIniUpdateBinary" ExeCommand="" Execute="deferred" Impersonate="no" Return="ignore" />
+    <!--
+    <CustomAction Id="ChangelogInstall" BinaryKey="ChangelogInstallBinary" ExeCommand="" Execute="deferred" Impersonate="no" Return="check" />
+    <CustomAction Id="ChangelogUninstall" BinaryKey="ChangelogInstallBinary" ExeCommand="uninstall" Execute="deferred" Impersonate="no" Return="check" />
+    -->
+
+    <InstallExecuteSequence>
+      <Custom Action="HaspDriverInstall" Before="InstallFinalize">NOT Installed</Custom>
+      <Custom Action="HaspDriverIniUpdate" After="HaspDriverInstall">NOT Installed</Custom>
+      <!--<Custom Action="ChangelogInstall" After="HaspDriverIniUpdate">NOT Installed</Custom>
+      <Custom Action="ChangelogUninstall" After="InstallInitialize">REMOVE="ALL"</Custom>-->
+    </InstallExecuteSequence>
+
+	</Product>
+</Wix>

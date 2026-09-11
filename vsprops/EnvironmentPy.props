@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <PY_INC>$(PYTHONROOT)\include</PY_INC>
+    <PY_INC_NUMPY>$(PYTHONROOT)\Lib\site-packages\numpy\core\include</PY_INC_NUMPY>
+    <IT_IFACE_INC>$(GMROOT)\IT\include</IT_IFACE_INC>
+    <IT_LIB_INC>$(LBROOT)\IT\include</IT_LIB_INC>
+    <PY_LIB_INC>$(LBROOT)\PyLib\include</PY_LIB_INC>
+    <UTIL_LIB_INC>$(LBROOT)\Util\include</UTIL_LIB_INC>
+    <PY_INC_ALL>$(PY_INC);$(PY_INC_NUMPY);$(IT_IFACE_INC);$(IT_LIB_INC);$(PY_LIB_INC);$(UTIL_LIB_INC)</PY_INC_ALL>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(PY_INC_ALL);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="PY_INC">
+      <Value>$(PY_INC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PY_INC_NUMPY">
+      <Value>$(PY_INC_NUMPY)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IT_IFACE_INC">
+      <Value>$(IT_IFACE_INC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IT_LIB_INC">
+      <Value>$(IT_LIB_INC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PY_LIB_INC">
+      <Value>$(PY_LIB_INC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="UTIL_LIB_INC">
+      <Value>$(UTIL_LIB_INC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PY_INC_ALL">
+      <Value>$(PY_INC_ALL)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

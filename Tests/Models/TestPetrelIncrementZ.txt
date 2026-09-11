@@ -1,0 +1,29 @@
+# WELL TRACE FROM PETREL
+# WELL NAME: S-149ST1
+# WELL HEAD X-COORDINATE: 512844.39471961 (m)
+# WELL HEAD Y-COORDINATE: 510349.15735134 (m)
+# WELL KB: 4.19999981 (m)
+# WELL TYPE: PLUGGED AND ABANDONED, DRY
+# MD AND TVD ARE REFERENCED (=0) AT KB AND INCREASE DOWNWARDS
+# ANGLES ARE GIVEN IN DEGREES
+# XYZ TRACE IS GIVEN IN COORDINATE SYSTEM Timbalai 1948/RSO Borneo m [1592_29873] (Brunei)
+# AZIMUTH REFERENCE UNDEFINED
+# DX DY ARE UNDEFINED IN m-UNITS
+# DEPTH (Z, TVD) GIVEN IN m-UNITS
+# ANGLES ARE NOT EXACT (TRACE WAS NOT IMPORTED USING ANGLES)
+#======================================================================================================================================
+      MD X Y Z TVD DX DY AZIM INCL DLS
+#======================================================================================================================================
+0 200 100  -100 0 0 0 0 0 0
+0 200 100   000 0 0 0 0 0 0
+0 200 100   100 0 0 0 0 0 0
+0 200 100   200 0 0 0 0 0 0
+0 200 100   300 0 0 0 0 0 0
+0 200 100   400 0 0 0 0 0 0
+0 200 100   500 0 0 0 0 0 0
+0 200 100   600 0 0 0 0 0 0
+0 200 100   700 0 0 0 0 0 0
+0 200 100   800 0 0 0 0 0 0
+0 200 100   900 0 0 0 0 0 0
+0 200 100  1000 0 0 0 0 0 0
+0 200 100  1100 0 0 0 0 0 0

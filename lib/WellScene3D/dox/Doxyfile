@@ -1,0 +1,20 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = WellScene3D
+OUTPUT_DIRECTORY       = c:/Inetpub/wwwroot/WellScene3D
+INPUT                  = ..
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+TAGFILES              += ../../Geometry/dox/Geometry.tag=../../Geometry/html
+TAGFILES              += ../../WellScheme/dox/WellScheme.tag=../../WellScheme/html
+TAGFILES              += ../../Quantity/dox/Quantity.tag=../../Quantity/html
+TAGFILES              += ../../OpenGL/dox/OpenGL.tag=../../OpenGL/html
+GENERATE_TAGFILE       = WellScene3D.tag

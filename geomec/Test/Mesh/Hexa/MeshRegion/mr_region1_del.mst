@@ -1,0 +1,18 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("mr_region1_del.new","mr_region1_del")
+
+Scenario ("Check Region1 Delete")
+StartScenario("Scenario Check Region1 Delete")
+	MeshregionStartup
+	DeleteMeshRegion("Region2")
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

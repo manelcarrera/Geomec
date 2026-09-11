@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Component Id="c_dll_all_together" Guid="$(var.cid_dll_all_together)" Win64="yes">
+    <!-- usr dll -->
+      <File Id="CutSurfaceUtil.dll" Source="$(var.CutSurfaceUtil_dll)" />
+      <File Id="WellSchemeUtils.dll" Source="$(var.WellSchemeUtils_dll)" />
+      <File Id="blosc_shared.dll" Source="$(var.blosc_shared_dll)" />
+      <File Id="RGInterface.dll" Source="$(var.RGInterface_dll)" />
+      <File Id="zlibwapi.dll" Source="$(var.zlibwapi_dll)" />
+      <File Id="ModGMBus.dll" Source="$(var.ModGMBus_dll)" />
+      <File Id="GMSkuaConnector.dll" Source="$(var.GMSkuaConnector_dll)" />
+    <!-- qt dll -->
+      <File Id="Qt5Core.dll_local" Name="Qt5Core.dll" Source="$(var.QTDIR)\bin\Qt5Core.dll" />
+      <File Id="Qt5Gui.dll_local" Name="Qt5Gui.dll" Source="$(var.QTDIR)\bin\Qt5Gui.dll" />
+      <File Id="Qt5Widgets.dll_local" Name="Qt5Widgets.dll" Source="$(var.QTDIR)\bin\Qt5Widgets.dll" />
+      <File Id="Qt5OpenGL.dll_local" Name="Qt5OpenGL.dll" Source="$(var.QTDIR)\bin\Qt5OpenGL.dll" />
+      <File Id="Qt5Xml.dll" Name="Qt5Xml.dll" Source="$(var.QTDIR)\bin\Qt5Xml.dll" />
+      <File Id="Qt5PrintSupport.dll" Name="Qt5PrintSupport.dll" Source="$(var.QTDIR)\bin\Qt5PrintSupport.dll" />
+      <File Id="Qt5Svg.dll" Name="Qt5Svg.dll" Source="$(var.QTDIR)\bin\Qt5Svg.dll" />
+      <File Id="Qt5Network.dll" Name="Qt5Network.dll" Source="$(var.QTDIR)\bin\Qt5Network.dll" />
+    <!-- qwt dll -->
+      <File Id="Qwt.dll" Name="Qwt.dll" Source="$(var.QWTDIR)\lib\Qwt.dll" />
+    <!-- other dll -->
+      <File Id="libifcoremd.dll.local" Name="libifcoremd.dll" Source="$(var.Intel64)\libifcoremd.dll" />
+      <File Id="libifportmd.dll.local" Name="libifportmd.dll" Source="$(var.Intel64)\libifportmd.dll" />
+      <File Id="libmmd.dll.local" Name="libmmd.dll" Source="$(var.Intel64)\libmmd.dll" />
+      <File Id="libiomp5md.dll.local" Name="libiomp5md.dll" Source="$(var.Intel64)\libiomp5md.dll" />
+      <File Id="svml_dispmd.dll.local" Name="svml_dispmd.dll" Source="$(var.Intel64)\svml_dispmd.dll" />
+    <!-- tbb dll -->
+      <File Id="tbb.dll" Name="tbb.dll" Source="$(var.TBBBinDir)\tbb.dll" />
+      <File Id="tbbmalloc.dll" Name="tbbmalloc.dll" Source="$(var.TBBBinDir)\tbbmalloc.dll" />
+    <!-- license dll -->
+      <?ifdef LicenseResource_dll ?>
+        <File Id="LicenseResource.dll" Name="LicenseResource.dll" Source="$(var.LicenseResource_dll)" />
+      <?endif?>
+    <!-- flex dll -->
+      <?ifdef FlexLM_dll ?>
+        <File Id="FlexLM.dll.local" Name="lmgr11.dll" Source="$(var.FlexLM_dll)" />
+      <?endif?>
+
+    </Component>
+  
+</Include>

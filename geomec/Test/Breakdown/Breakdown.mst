@@ -1,0 +1,84 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+
+StartLog("Breakdown.new","Breakdown")
+
+Scenario ("Deleting all horizons")
+StartScenario("Deleting all horizons")
+
+	BreakdownStartup
+	Dim hors as ARRAY OF STRING
+	Dim counter as INTEGER
+	hors = horizons()
+	for counter = lbound(horizons) to ubound(horizons)
+		DeleteHorizon(hors(counter))
+	next
+	'now check for formations
+	Dim forms AS ARRAY OF STRING
+	forms = formations()
+	if not isempty(forms) then
+		tnofail("There are still formations while all horizons are deleted")
+	endif
+		
+ScenarioPass	
+Scenario Cleanup 'and handling of scenario failure
+	ExitNoSave	
+End Scenario
+
+Scenario("Deleting depletion stages")
+	StartScenario("Deleting depletion stages")
+	BreakdownStartup
+	DIM stepCount as INTEGER
+	stepCount = GetTimeStepCount()
+	while stepCount > 1
+		SetTimeStepCount(stepCount-1)
+		stepCount = GetTimeStepCount()		
+	wend
+	ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+Scenario("Deleting meshregions")
+	StartScenario("Deleting meshregions")
+	BreakdownStartup
+	Dim meshes AS ARRAY OF STRING
+	meshes = MeshRegions()
+	if not isempty(meshes) then
+		for count = lbound(meshes) to ubound(meshes)
+			if meshes(count) <> "Main" then
+				DeleteMeshRegion(meshes(count))
+			endif
+		next
+	endif
+
+	ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+Scenario("Deleting WellPaths")
+StartScenario("Deleting WellPaths")
+	BreakdownStartup
+	Dim wellps AS ARRAY OF STRING
+	wellps = WellPaths()
+	if not isempty(wellps) then
+		for count = lbound(wellps) to ubound(wellps)
+				DeleteWellPath(wellps(count))
+		next
+	endif
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+
+End
+
+
+
+ 

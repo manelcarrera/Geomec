@@ -1,0 +1,32 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Material Library Use Cases"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2E561D00ED"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Copy the Material Library"
+	    quid       	"3A2E55BE0169"
+	    documentation 	"Copy the current material database")
+	(object UseCase "Create a New Material Library"
+	    quid       	"3A2E55AF02BC"
+	    documentation 	"Create a new material database")
+	(object UseCase "Open a Material Library"
+	    quid       	"3A2E55A00364"
+	    documentation 	"Assign a new current material database")
+	(object UseCase "Show Materials in The Material Library"
+	    quid       	"3A2E55DE00D8"
+	    documentation 	"Show the current material database"))
+    logical_presentations 	(list unit_reference_list))

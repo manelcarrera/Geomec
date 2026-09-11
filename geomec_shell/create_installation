@@ -1,0 +1,82 @@
+#! /bin/sh
+
+if [ "$DIAPATH" = "" ]; then
+	echo "DIAPATH not defined"
+	exit 1
+fi
+
+if [ "$DIASRC" = "" ]; then
+	echo "DIASRC not defined"
+	exit 1
+fi
+
+if [ "$INTEL" = "" ]; then
+	echo "INTEL not defined"
+	exit 1
+fi
+
+if [ "$QTLIB" = "" ]; then
+	echo "QTLIB not defined"
+	exit 1
+fi
+
+if [ $# = 0 ]; then
+	echo "create_installation 'path for GCC libraries'"
+	exit 1
+fi
+
+rm -rf geomec_shell
+
+mkdir -p geomec_shell/diana/share
+mkdir geomec_shell/lib
+
+
+CP="/bin/cp -a"
+
+
+cd geomec_shell
+
+$CP -R $DIAPATH/release/* diana
+$CP -R $DIASRC/../lib diana/share
+$CP -R $DIASRC/* diana/share
+rm -rf diana/share/src/include
+
+$CP -R ../../../UserDLLs/*.so* lib
+
+$CP ../installer_run_geomec_shell run_geomec_shell
+$CP ../installer_test_geomec_shell test_geomec_shell
+$CP ../release/geomec_shell .
+$CP -R ../data .
+
+#find ./D0/. -name '.svn' -exec rm -rf {} >& /dev/null \;
+
+$CP $INTEL/*.so* lib
+
+$CP ../../../lib/tbb/linux/lib/intel64/gcc4.7/libtbb.so* lib
+$CP ../../../lib/tbb/linux/lib/intel64/gcc4.7/libtbbmalloc.so* lib
+
+$CP $QTLIB/libQt5Core.so* lib
+$CP $QTLIB/libQt5Gui.so* lib
+$CP $QTLIB/libQt5Widgets.so* lib
+
+$CP -R $1/*.so* lib
+
+#tar -cjf ../geomec_shell.tar.bz2 .
+
+version=`LD_LIBRARY_PATH=lib:diana/lib ./geomec_shell --version | head -1 | awk '{ print substr($0, 22); }'`
+
+echo $version
+
+exit
+
+cd ..
+
+rm -rf geomec_shell
+rm -rf install_files
+
+mkdir install_files
+mv geomec_shell.tar.bz2 install_files/
+cp README.install install_files/
+cp install install_files
+echo -n $version > install_files/VERSION
+

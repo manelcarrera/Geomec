@@ -1,0 +1,25 @@
+// IProgressBase.cpp: implementation of the IProgressBase class.
+//
+//////////////////////////////////////////////////////////////////////
+#ifdef _MSC_VER
+#pragma warning ( disable : 4786 )
+#endif  // _MSC_VER
+#include "IDCProgressBase.h"
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+namespace dia {
+
+IProgressBase::IProgressBase()
+{
+
+}
+
+IProgressBase::~IProgressBase()
+{
+
+}
+
+} // namespace dia

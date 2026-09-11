@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<selector title="selector">
+    <location></location>
+    <version/></version> 
+    <!-- <delete/> -->
+    <migrate/>
+</selector>

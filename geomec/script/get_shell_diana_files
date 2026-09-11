@@ -1,0 +1,419 @@
+#!/bin/bash
+
+Usage()
+{
+	# -- DOS batch scripts escape using ^ character
+	echo "Usage: $0 <diana root dir> <diana share dir>"
+	pad=$(printf '%0.1s' " "{1..60})
+	script=$0
+	printf "       %*.*s" 0 $((${#script} + 1)) "$pad"
+	printf "%s\n" "<target directory>"
+	echo "       A directory named 'diana' will be created under" \
+	     "<target directory>"
+	exit 1
+}
+
+binfiles()
+{
+	# REL is either 'release' or 'debug'
+	REL=$2
+	mkdir -p $1/$REL
+
+	DIAPATH=$DIAROOT/$REL
+	DIALIB=$DIAPATH/lib
+	DIABIN=$DIAPATH/bin
+	BINSEG=$DIAPATH/binseg
+
+	# -- lib
+	SD=$DIALIB
+	TD=$1/$REL/lib
+	mkdir $TD
+	cff liblbci30
+	cff liblbcp40
+	cff liblbcx40
+	cff liblbdc32
+	cff liblbds30
+	cff liblbel30
+	cff liblbfl51
+	cff liblbgc51classes
+	cff liblbgc51routines
+	cff liblbgs30
+	cff ElmTypes
+	cff SCHEMA
+	cff SCHEMA.bin
+
+	# originally in the bin section (with lower-case names)
+
+	cff libaplb40
+	cff libbaxq41
+	cff libcilb01
+	cff libdclb33
+	cff libdemf50
+	cff libdeou50
+	cff libeiem40
+	cff libeiev50
+	cff libeiou40
+	cff libeuct40
+	cff libeulb40
+	cff libeure40
+	cff libflma40
+	cff libfqef40
+	cff libfqfp40
+	cff libfqin40
+	cff libfqlo40
+	cff libfqst40
+	cff libfsac40
+	cff libfsam40
+	cff libfsef40
+	cff libfsem40
+	cff libfsfl40
+	cff libfsgm40
+	cff libfsia40
+	cff libfspr40
+	cff libfsrd40
+	cff libfssv40
+	cff libhfex40
+	cff libhffo40
+	cff libhfin40
+	cff libhflc40
+	cff libhflo40
+	cff libhflr40
+	cff libhfso40
+	cff libhfsu40
+	cff libinin53
+	cff liblbaj40
+	cff liblbbb40
+	cff liblbci30
+	cff liblbcp40
+	cff liblbcx40
+	cff liblbdc32
+	cff liblbds30
+	cff liblbdy40
+	cff liblbel30
+	cff liblber50
+	cff liblbfi51
+	cff liblbfl51
+	cff liblbfw51DiaCommandFile
+	cff liblbfw51DiaDataFile
+	cff liblbfw51DiaFrame
+	cff liblbfw51FieldValueFile
+	cff liblbfw51FilosModelFile
+	cff liblbfw51Geometry
+	cff liblbfw51GuiFrame
+	cff liblbfw51MidasFXDFile
+	cff liblbfw51ModelFrame
+	cff liblbfw51NastranFile
+	cff liblbfw51Tensor
+	cff liblbfw51TetMesh
+	cff liblbfw51Triangle
+	cff liblbgc51classes
+	cff liblbgc51routines
+	cff liblbge30
+	cff liblbgs30
+	cff liblbio51
+	cff liblbjc51
+	cff liblbma40
+	cff liblbme51
+	cff liblbpd30arpack
+	cff liblbpd30bihar
+	cff liblbpd30ep
+	cff liblbpd30lp
+	cff liblbpd30ls
+	cff liblbpd30metis
+	cff liblbpd30or
+	cff liblbpd30quad
+	cff liblbpd30rkf
+	cff liblbpf40
+	cff liblbpo40
+	cff liblbql30
+	cff liblbrd51
+	cff liblbsc30
+	cff liblbso50
+	cff liblbtm50
+	cff liblbui51
+	cff liblsas40
+	cff liblsdd40
+	cff liblsem40
+	cff liblsev40
+	cff liblsex50
+	cff liblsfu40
+	cff liblsit40
+	cff liblslo40
+	cff liblsrf50
+	cff libmird50
+	cff libmoco40
+	cff libmofp40
+	cff libmolb40
+	cff libmord40
+	cff libmoxq40
+	cff libnlcv41
+	cff libnldu41
+	cff libnlec42
+	cff libnles41
+	cff libnlif41
+	cff libnlin41
+	cff libnlis41
+	cff libnlix41
+	cff libnllb41
+	cff libnllg41
+	cff libnllo41
+	cff libnlpr41
+	cff libnlrd41
+	cff libnlre41
+	cff libnlrf41
+	cff libnlrl41
+	cff libnlst41
+	cff libnltg41
+	cff libnmrs41
+	cff libnmsa41
+	cff libnmst41
+	cff libpein41
+	cff libpeka41
+	cff libpelb41
+	cff libpfas40
+	cff libpfbf40
+	cff libpfbo40
+	cff libpfcs40
+	cff libpfem40
+	cff libpfev40
+	cff libpfin40
+	cff libpfmr40
+	cff libpfrn40
+	cff libpfsv40
+	cff libpfut40
+	cff libphin40
+	cff libphsu40
+	cff libpiev41
+	cff libpige40
+	cff libpilb41
+	cff libpird40
+	cff libpofp40
+	cff libpofx40
+	cff libpogm40
+	cff libposr40
+	cff libpowr42
+	cff libpsfs40
+	cff libpssf40
+	cff libsain50
+	cff libsamo50
+	cff libsarh50
+	cff libsebo41
+	cff libseio41
+	cff libselb41
+	cff libsest41
+	cff libsete41
+	cff libsoso41
+	cff libspxq40
+	cff libutlb01
+
+	# -- bin
+	SD=$DIABIN
+	TD=$1/$REL/bin
+	mkdir $TD
+
+	cff fgv4gm
+	cff lq
+
+	# -- binseg
+	mkdir $1/$REL/binseg
+
+	# -- binseg/ap
+	SD=$BINSEG/ap
+	TD=$1/$REL/binseg/ap
+	mkdir $TD
+	cf gm42
+	cf ca40
+	cf ho40
+	cf in51
+	cf mc41
+	cf se51
+	cf bo40
+
+	# -- src
+	mkdir $1/$REL/src
+
+	# -- src/include
+	SD=$DIAPATH/src/include
+	TD=$1/$REL/src/include
+	mkdir $TD
+	cf dimple.h
+	cf f77names.h
+}
+
+sharefiles()
+{
+	# -- share
+	mkdir $1
+
+	DIASLIB=$DIASHARE/lib
+	DIASRC=$DIASHARE/src
+
+	# -- share/lib
+	SD=$DIASHARE/lib
+	TD=$1/lib
+	mkdir $TD
+	cf DI_ERROR.DAT
+	cf femsys.ini
+	cf filoscap
+	cf geoclass.res
+	cf matclass.res
+
+	# -- share/lib/ElmTyp
+	mkdir $1/lib/ElmTyp
+	cp $DIASLIB/ElmTyp/* $1/lib/ElmTyp
+
+	# -- share/src
+	mkdir $1/src
+
+	# -- share/src/include
+	SD=$DIASRC/include
+	TD=$1/src/include
+	mkdir $TD
+	cf BoundBox.h
+	cf d_cpptypes.h
+	cf DiaAssert.h
+	cf DiaValueVector.h
+	cf DianaVersionInfo.h
+	cf DiMalloc.h
+	cf fnames.dat
+	cf fort.h
+	cf lbci.h
+	cf lbcp.h
+	cf lbcx.h
+	cf lbdc.h
+	cf lbel.h
+	cf lbfl.h
+	cf lbgc.h
+	cf lbgs.h
+	cf RBTree.h
+	cf Set.h
+	cf Utils.h
+
+	# -- share/src/ap
+	mkdir $1/src/ap
+	cp $DIASRC/ap/*.txt $1/src/ap
+
+	# -- share/src/dc
+	mkdir $1/src/dc
+	cp $DIASRC/dc/*.txt $1/src/dc
+
+	# -- share/src/in
+	mkdir $1/src/in
+	cp $DIASRC/in/*.txt $1/src/in
+
+	# -- share/src/lb
+	mkdir $1/src/lb
+	cp $DIASRC/lb/*.txt $1/src/lb
+
+	# -- share/src/lb/fl51
+	SD=$DIASRC/lb/fl51
+	TD=$1/src/lb/fl51
+	mkdir $TD
+	cf ds.h
+	cf filos.h
+	cf flut.h
+
+	# -- share/src/lb/gc51/classes/include
+	mkdir $1/src/lb/gc51
+	mkdir $1/src/lb/gc51/classes
+	mkdir $1/src/lb/gc51/classes/include
+	cp $DIASRC/lb/gc51/classes/include/*.h $1/src/lb/gc51/classes/include/.
+
+	# -- share/src/ls
+	mkdir $1/src/ls
+	cp $DIASRC/ls/*.txt $1/src/ls
+
+	# -- share/src/nl
+	mkdir $1/src/nl
+	cp $DIASRC/nl/*.txt $1/src/nl
+
+	# -- share/src/pf
+	mkdir $1/src/pf
+	cp $DIASRC/pf/*.txt $1/src/pf
+
+	# -- share/src/po
+	mkdir $1/src/po
+	cp $DIASRC/po/*.txt $1/src/po
+
+	# -- share/src/so
+	mkdir $1/src/so
+	cp $DIASRC/so/*.txt $1/src/so
+}
+
+
+intelfiles()
+{
+	mkdir $1
+
+	cp /opt/intel/compilers_and_libraries/linux/lib/intel64/*.so $1/.
+	cp /opt/intel/compilers_and_libraries/linux/lib/intel64/*.so.* $1/.
+	cp /opt/intel/compilers_and_libraries/linux/mkl/lib/intel64/*.so $1/.
+}
+
+haspfiles()
+{
+	mkdir $1
+
+	cp /opt/SafeNet/LDK741/C/libhasp_linux_x86_64_3659.so $1/.
+}
+
+cf()
+{
+	# copy file from $SD to $TD
+	if [ -e $SD/$1 ]; then
+		cp "$SD/$1" "$TD"
+	else
+		echo "cannot copy $SD/$1 to $TD"
+	fi
+}
+
+cfw()
+{
+	# copy framework include directory
+	mkdir $TD/$1
+	mkdir $TD/$1/include
+	cp $SD/$1/include/*.h $TD/$1/include
+}
+
+cff()
+{
+	# copy file from $SD to $TD
+	if [ -e $SD/$1 ]; then
+		cp $SD/$1 "$TD"
+	elif [ -e $SD/$1.* ]; then
+		cp $SD/$1.* "$TD"
+	else
+		echo "cannot copy $SD/$1.* or $SD/$1 to $TD"
+	fi
+}
+
+# -- $1 is diana root dir
+if [ "$1" == "" ]; then Usage; fi
+# -- $2 is diana share dir
+if [ "$2" == "" ]; then Usage; fi
+# -- $3 is target dir
+if [ "$3" == "" ]; then Usage; fi
+
+DIAROOT="$1"
+DIASHARE="$2"
+TARGET="$3"
+
+if [ -e $3/diana ]; then
+	rm -rf $3/diana
+fi
+
+binfiles $3/diana release
+binfiles $3/diana debug
+sharefiles $3/diana/share
+intelfiles $3/diana/intel
+haspfiles $3/diana/hasp
+
+original=`pwd`
+cd $3
+tar -cjf diana.tar.bz2 diana
+cd $original
+original=
+
+rm -rf $3/diana
+
+exit 0

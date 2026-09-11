@@ -1,0 +1,189 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+
+<title>RPN calculator</title>
+</head>
+
+<body>
+
+<h1>RPN calculator</h1>
+<p>The Geomec RPN calculator is useful for:</p>
+<ol>
+	<li>Modifying pointsets, for instance to create material properties that 
+	correlate with depth or present pointsets such as Young's modulus or 
+	density.</li>
+	<li>For generation of
+	<a href="../../tree/Derived%20result/derived_result_tree.htm">derived 
+	results</a> (belonging to the model) or
+	<a href="../../tree/Defined%20results/user_defined_results_tree.htm">user 
+	defined results</a> (standard for all models of a user).</li>
+</ol>
+<p>The calculator works on values, which are stored within Geomec which are in SI 
+units although the calculator does not check on, nor work with units. All 
+parameter &quot;units&quot; with dimensions are hence in metres, MPa and kg/m<sup>3</sup>, 
+Celcius or angle degrees, even if the imported data are in FIELD units. The 
+values can also be the result of another calculation on the same pointset.</p>
+<p>The calculator uses the Reverse Polish Notation (RPN) system and hence works 
+on a stack of operands in reverse order. &quot;Reverse notation&quot; basically means that 
+working on the operands, which were created last and are, hence, on the top of 
+the stack. The lowest operand is taken first.</p>
+<p><b>Example: </b>A pointset is required where a value (say Young's modulus) 
+depends on Depth (the Depth coordinate of the pointset). A formula is required 
+where the value is 6655 at Depth &lt; 88m and 1122 at Depth &gt; 88m, so (xy) Depth is 
+selected (by double-clicking from the list of operands) followed by 88 (clicking 
+on the keypad) and then on the operator &quot;&lt;&quot;. The calculator takes the 2nd item 
+in the stack first to get Depth &lt; 88 as a result. Then one proceeds by typing 
+6655, Enter, 1122. The &lt;Enter&gt; command is only required to separate the input of 
+two numerical values. The picture below will be seen with 3 arguments on the 
+stack.</p>
+<img border="0" src="stack_before_if.jpg" width="237" height="84"><p>
+<span style="font-family: Times New Roman; font-style: italic" lang="en-us">
+Figure: Stack before pressing &quot;if&quot;</span></p>
+<p>The &lt;If&gt; operator requires 3 arguments: The &quot;logical&quot; part, which can be True 
+or False on the 3<sup>rd</sup> line, the True outcome on the 2<sup>nd</sup> line 
+and the Else outcome on the 1<sup>st</sup> line.</p>
+<p>If the wrong order of values is in the stack, two items at a time can be 
+swapped by selecting (exactly) two lines (ctrl-mouse click) and pressing &lt;Swap&gt;.</p>
+<img border="0" src="stack_after_if.jpg" width="534" height="392"><p>
+<i>Figure: Stack and calculator after pressing &quot;if&quot;</i></p>
+<p>While working with the calculator it is possible to have several operands on 
+the stack. However after the result of a calculation there can be only one 
+operand on the stack. If, in addition to the desired result, other values remain 
+on the stack they should be removed using the CE button. The CE button breaks 
+down the formula on row 1 or removes the first single item on the stack so the 
+Swap button must be used first in order to remove other items from the stack.</p>
+<p>Note that operators that return either &quot;true&quot; or &quot;false&quot; do so using 1 and 0 
+respectively so that they may be used for multiplication purposes.</p>
+<p>&nbsp;</p>
+<h2>Available Standard Operands</h2>
+<h3>When used for calculating within the Data-storage section</h3>
+<ul>
+	<li>Coordinates (Northing, Easting, Depth)</li>
+	<li>Formations (for logical operations to select a certain formation)</li>
+	<li>lfReservoir (for logical operations to select all formations with 
+	pressure changes)</li>
+	<li>Imported data (from file) on the same pointset</li>
+	<li>Previous calculator results on the same pointset</li>
+</ul>
+
+<p><b>Note:</b> Care should be taken when modifying surfaces that the logical 
+operands do not point to non-existent or renamed formations</p>
+<h3>&nbsp;</h3>
+<h3>User Defined Result</h3>
+<ul>
+	<li>Coordinates (Northing, Easting, Depth)</li>
+	<li>lfReservoir (for logical operations to select all formations with 
+	pressure changes)</li>
+	<li>All Generic Results, available from the export option (e.g. vertical 
+	total stress of first non-linear depletion stage). These items must be 
+	selected via the &lt;new item&gt; entry</li>
+	<li>Attributed material parameters, e.g. Young's Modulus</li>
+	<li>All existing User Defined results</li>
+</ul>
+
+<p><b>Note:</b> Model specific items such as Formations or Derived Results are 
+not available. </p>
+<p style="margin:0in;margin-bottom:.0001pt">In case of results, the user must 
+indicate whether he wishes a fixed depletion stage (and linear/non-linear 
+calculation) to be taken (that does not vary with the selected stage), for 
+instance DisplacementN_D1_N, or that he wishes a generic results, that changes 
+with the selection in the viewer or the export, for instance DisplacementN.&nbsp; A 
+formula like “DisplacementN – DisplacementN_D1_N” will render the displacement 
+change in Northing direction between the selected depletion stage (and linear / 
+nonlinear mode) and the North-displacement in Depletion Stage 1 for the 
+nonlinear computation.</p>
+<p style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p style="margin:0in;margin-bottom:.0001pt">In case material parameters have 
+been chosen in the formula, the assigned value in Depletion Stage 0 will be 
+selected, although it is possible to change material parameters in Depletion 
+Stages, provided a Branch with restart file has been created. &nbsp;In future 
+releases, the material parameters might become Stage sensitive.</p>
+<p>&nbsp;</p>
+<h3>Derived Results</h3>
+<ul>
+	<li>Coordinates (Northing, Easting, Depth)</li>
+	<li>Formations (for logical operations to select a certain formation)</li>
+	<li>lfReservoir (for logical operations to select all formations with 
+	pressure changes)</li>
+	<li>All Generic Results, available from the export option (e.g. vertical 
+	total stress of first non-linear depletion stage). These items must be 
+	selected via the &lt;new item&gt; entry</li>
+	<li>Imported data items which must be selected via the &lt;new item&gt; entry and 
+	select Input (the default is Output)</li>
+	<li>All existing Derived Results</li>
+</ul>
+
+<p><b>Note:</b> User specific items are not available since they are not stored 
+with the model but on the user's PC and so are not available for a different 
+user or on a different PC.</p>
+<p style="margin:0in;margin-bottom:.0001pt">See also “User Defined Results” for 
+Depletion stage dependent results.</p>
+<h2>&nbsp;</h2>
+<h2>Operators</h2>
+<p>Most operators are straightforward in terms of use, some notes on the less 
+obvious functions follow:</p>
+<ul>
+	<li>The logical operators supply or take 1=True and 0=False</li>
+	<li>Power(3,4) = 3<sup>4</sup>, should be inserted as: 3, Enter, 4, pow</li>
+	<li>The min and max operators only take two operands. Multiple stacked 
+	statements are necessary for more than two operands: e.g. max(op1, max(op2, 
+	op3))</li>
+	<li>The sin, cos and tan operators require values in radians. Using, for 
+	instance, a friction angle in degrees will require a multiplication with 
+	&#960;/180.</li>
+	<li>The acos, asin and atan operators render results in radians.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>Editing, copying and pasting</h2>
+<p>The formulas can be hand-edited with the &quot;Edit formula&quot; button. Numbers and 
+operands can be changed by selecting and typing. When creating a similar 
+calculation as an existing one (eg. just a change in the depletion stage), the 
+formula can be selected in edit mode and copied and sent to memory by pressing 
+Ctrl-C. When creating a new calculator item and pressing &quot;Edit formula&quot; the 
+formula in memory can be pasted using Ctrl-V. A formula can also be copied in 
+this way between Geomec models.</p>
+<p>&nbsp;</p>
+<h2>Additional notes</h2>
+<p>The calculator does not check for impossible operands like (-3)<sup>2.5</sup> 
+or asin(-2). The output for such a formula will display 'nan' or junk results. 
+This type of behaviour occurs due to the fact that the calculator uses the RPN 
+method to create formulas.</p>
+<p>The infix notation formula which is shown in the calculator window does not 
+use implicit precedence and associativity of operators. This means that 1+2+3 
+will always be written as (1+2)+3.</p>
+<p>If an operator or function button is clicked with insufficient operands on 
+the stack then the button click is ignored (e.g. clicking 'if' with only one or 
+two operands on the stack). The formula editor checks for a sufficient number of 
+operands for each operator/function. A text formula which is fed back to the 
+calculator should not change when displayed in the calculator (except perhaps 
+for the number of parentheses).</p>
+<p>The -/+ button only works on numerical operands and only when 'Enter' has not 
+yet been clicked. The formula editor mimics this behaviour.</p>
+<p>The formula editor is case sensitive: abs(a) is understood, but Abs(a) is 
+not.</p>
+<p>Numerical variable names (e.g. a pointset name) are valid but strongly 
+advised against. When feeding name '25' back from the formula editor to the 
+calculator, it is treated as number 25 as the formula is simply text. This is 
+probably not what is required.</p>
+<p>Variable names do not have to be unique in a pointset, i.e. they may all be 
+called 'pressure'. The calculator (in edit mode) will not recognise this and 
+will pick the first entry with the given name.</p>
+<p>If a formula is copied and pasted from one model to another it may contain 
+items with names that the receiving model does not know about. This will result 
+in an error message.</p>
+<p>Formula results should be connected to the pointset entry and then connected 
+to the appropriate cells (element set) in the material model, pressure or 
+temperature. When modifying calculator entries the pointset entries should be 
+checked to see whether they have been updated (the updated calculator might 
+reside next to the old calculator result). To be certain the pointset variable 
+(with the calculator result) should be deleted and recreated.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

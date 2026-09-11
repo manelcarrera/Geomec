@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\GM3CheckedValue.h" />
+    <ClInclude Include="h\GM3CrossSection.h" />
+    <ClInclude Include="h\GM3Database.h" />
+    <ClInclude Include="h\GM3Formation.h" />
+    <ClInclude Include="h\GM3Horizon.h" />
+    <ClInclude Include="h\GM3IncompleteException.h" />
+    <ClInclude Include="h\GM3MeshZone.h" />
+    <ClInclude Include="h\GM3Model.h" />
+    <ClInclude Include="h\GM3Pressure.h" />
+    <ClInclude Include="h\GM3ProgressCallBack.h" />
+    <ClInclude Include="h\GM3StringTable.h" />
+    <ClInclude Include="h\GM3TableDef.h" />
+    <ClInclude Include="h\GM3Timestep.h" />
+    <ClInclude Include="h\gm3WellPath.h" />
+    <ClInclude Include="h\GM3WellPoint.h" />
+    <ClInclude Include="h\GMDatabase.h" />
+    <ClInclude Include="h\GMFormation.h" />
+    <ClInclude Include="h\GMModel.h" />
+    <ClInclude Include="h\GMPressure.h" />
+    <ClInclude Include="h\GMTimestep.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\Database_GM3.h" />
+    <ClInclude Include="h\GM3CancelException.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GM3CrossSection.cpp" />
+    <ClCompile Include="src\GM3Database.cpp" />
+    <ClCompile Include="src\GM3Formation.cpp" />
+    <ClCompile Include="src\GM3Horizon.cpp" />
+    <ClCompile Include="src\GM3IncompleteException.cpp" />
+    <ClCompile Include="src\GM3MeshZone.cpp" />
+    <ClCompile Include="src\GM3Model.cpp" />
+    <ClCompile Include="src\GM3Pressure.cpp" />
+    <ClCompile Include="src\GM3ProgressCallBack.cpp" />
+    <ClCompile Include="src\GM3Timestep.cpp" />
+    <ClCompile Include="src\gm3WellPath.cpp" />
+    <ClCompile Include="src\GM3WellPoint.cpp" />
+    <ClCompile Include="src\gmDatabase.cpp" />
+    <ClCompile Include="src\GMFormation.cpp" />
+    <ClCompile Include="src\GMModel.cpp" />
+    <ClCompile Include="src\GMPressure.cpp" />
+    <ClCompile Include="src\GMTimestep.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+  </ItemGroup>
+</Project>

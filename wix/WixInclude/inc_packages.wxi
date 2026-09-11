@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="packages" Name="packages">
+    <Component Id="Component_packages" Guid="$(var.ComponentID_packages)" Win64="yes">
+      <File Id="plugin_test_python_zip" Name="test_python.zip" Source="$(var.plugins)\test_python.zip" />
+      <File Id="app_xml" Name="app.xml" Source="$(var.plugins)\app.xml" />
+      <File Id="geomec_xml" Name="geomec.xml" Source="$(var.plugins)\geomec.xml" />
+      <File Id="logs_xml" Name="logs.xml" Source="$(var.plugins)\logs.xml" />
+      <File Id="python_xml" Name="python.xml" Source="$(var.plugins)\python.xml" />
+      <File Id="plugin_inversion_tool.zip" Name="inversion_tool.zip" Source="$(var.plugins)\Inversion tool 17-01-2019.zip" />
+      <!-- selector -->
+      <File Id="geomec_ini" Name="geomec.ini" Source="$(var.plugins)\geomec_distribution.ini" />
+      <File Id="selector_xml" Name="selector.xml" Source="$(var.plugins)\selector.xml" />
+      <!--<File Id="changelog.zip" Name="changelog.zip" Source="$(var.plugins)\changelog.zip" />-->
+    </Component>
+  </Directory>
+  
+</Include>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Directory Id="Diana_share_lib" Name="lib">
+    <?include DianaShareLib.wxi ?>
+  </Directory>
+  <Directory Id="Diana_share_src" Name="src">
+    <Directory Id="Diana_share_src_ap" Name="ap">
+      <Component Id="Component_Diana_share_src_ap" Guid="$(var.ComponentID_Diana_share_src_ap)" Win64="yes">
+        <File Id="hs40er.txt" Source="$(var.DIASHARE)\src\ap\hs40er.txt" />
+        <!--          <File Id="la02er.txt" Source="$(var.DIASHARE)\src\ap\la02er.txt" /> -->
+        <File Id="hf40er.txt" Source="$(var.DIASHARE)\src\ap\hf40er.txt" />
+        <File Id="pb41er.txt" Source="$(var.DIASHARE)\src\ap\pb41er.txt" />
+        <File Id="gm42er.txt" Source="$(var.DIASHARE)\src\ap\gm42er.txt" />
+        <File Id="eu41er.txt" Source="$(var.DIASHARE)\src\ap\eu41er.txt" />
+        <File Id="sp40er.txt" Source="$(var.DIASHARE)\src\ap\sp40er.txt" />
+        <File Id="gs40er.txt" Source="$(var.DIASHARE)\src\ap\gs40er.txt" />
+        <File Id="ht40er.txt" Source="$(var.DIASHARE)\src\ap\ht40er.txt" />
+        <File Id="pe41er.txt" Source="$(var.DIASHARE)\src\ap\pe41er.txt" />
+        <File Id="mc41er.txt" Source="$(var.DIASHARE)\src\ap\mc41er.txt" />
+        <File Id="gt40er.txt" Source="$(var.DIASHARE)\src\ap\gt40er.txt" />
+        <File Id="mo40er.txt" Source="$(var.DIASHARE)\src\ap\mo40er.txt" />
+        <File Id="nl41er.txt" Source="$(var.DIASHARE)\src\ap\nl41er.txt" />
+        <File Id="bo40er.txt" Source="$(var.DIASHARE)\src\ap\bo40er.txt" />
+        <File Id="ei41er.txt" Source="$(var.DIASHARE)\src\ap\ei41er.txt" />
+        <File Id="ca40er.txt" Source="$(var.DIASHARE)\src\ap\ca40er.txt" />
+        <File Id="pi40er.txt" Source="$(var.DIASHARE)\src\ap\pi40er.txt" />
+        <File Id="fq40er.txt" Source="$(var.DIASHARE)\src\ap\fq40er.txt" />
+        <File Id="lb40er.txt" Source="$(var.DIASHARE)\src\ap\lb40er.txt" />
+        <File Id="nm41er.txt" Source="$(var.DIASHARE)\src\ap\nm41er.txt" />
+        <!-- No longer exists?
+        <File Id="we51er.txt" Source="$(var.DIASHARE)\src\ap\we51er.txt" />
+        <File Id="de50er.txt" Source="$(var.DIASHARE)\src\ap\de50er.txt" />
+         -->
+        <File Id="dg51er.txt" Source="$(var.DIASHARE)\src\ap\dg51er.txt" />
+        <File Id="ec50er.txt" Source="$(var.DIASHARE)\src\ap\ec50er.txt" />
+        <File Id="el50er.txt" Source="$(var.DIASHARE)\src\ap\el50er.txt" />
+<!--        <File Id="rd50er.txt" Source="$(var.DIASHARE)\src\ap\rd50er.txt" />-->
+        <File Id="sa50er.txt" Source="$(var.DIASHARE)\src\ap\sa50er.txt" />
+        <!--
+        <File Id="se51er.txt" Source="$(var.DIASHARE)\src\ap\se51er.txt" />
+        -->
+        <File Id="vi50er.txt" Source="$(var.DIASHARE)\src\ap\vi50er.txt" />
+        <File Id="fa51er.txt" Source="$(var.DIASHARE)\src\ap\fa51er.txt" />
+        <File Id="rf50er_2.txt" Source="$(var.DIASHARE)\src\ap\rf50er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_dc" Name="dc">
+      <Component Id="Component_Diana_share_src_dc" Guid="$(var.ComponentID_Diana_share_src_dc)" Win64="yes">
+        <File Id="lb33er.txt" Source="$(var.DIASHARE)\src\dc\lb33er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_in" Name="in">
+      <Component Id="Component_Diana_share_src_in" Guid="$(var.ComponentID_Diana_share_src_in)" Win64="yes">
+        <File Id="in53er.txt" Source="$(var.DIASHARE)\src\in\in53er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_lb" Name="lb">
+      <Component Id="Component_Diana_share_src_lb" Guid="$(var.ComponentID_Diana_share_src_lb)" Win64="yes">
+        <File Id="bb40er.txt" Source="$(var.DIASHARE)\src\lb\bb40er.txt" />
+        <File Id="dc32er.txt" Source="$(var.DIASHARE)\src\lb\dc32er.txt" />
+        <File Id="au32er.txt" Source="$(var.DIASHARE)\src\lb\au32er.txt" />
+        <File Id="gs30er.txt" Source="$(var.DIASHARE)\src\lb\gs30er.txt" />
+        <File Id="el30er.txt" Source="$(var.DIASHARE)\src\lb\el30er.txt" />
+        <File Id="er50er.txt" Source="$(var.DIASHARE)\src\lb\er50er.txt" />
+        <File Id="ql30er.txt" Source="$(var.DIASHARE)\src\lb\ql30er.txt" />
+        <File Id="dy40er.txt" Source="$(var.DIASHARE)\src\lb\dy40er.txt" />
+        <File Id="po40er.txt" Source="$(var.DIASHARE)\src\lb\po40er.txt" />
+        <File Id="ci30er.txt" Source="$(var.DIASHARE)\src\lb\ci30er.txt" />
+        <File Id="ds30er.txt" Source="$(var.DIASHARE)\src\lb\ds30er.txt" />
+        <File Id="fl51er.txt" Source="$(var.DIASHARE)\src\lb\fl51er.txt" />
+        <File Id="ma40er.txt" Source="$(var.DIASHARE)\src\lb\ma40er.txt" />
+        <File Id="pf40er.txt" Source="$(var.DIASHARE)\src\lb\pf40er.txt" />
+        <File Id="pd30er.txt" Source="$(var.DIASHARE)\src\lb\pd30er.txt" />
+        <File Id="aj40er.txt" Source="$(var.DIASHARE)\src\lb\aj40er.txt" />
+        <File Id="rd51er.txt" Source="$(var.DIASHARE)\src\lb\rd51er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_ls" Name="ls">
+      <Component Id="Component_Diana_share_src_ls" Guid="$(var.ComponentID_Diana_share_src_ls)" Win64="yes">
+        <File Id="lo40er.txt" Source="$(var.DIASHARE)\src\ls\lo40er.txt" />
+        <File Id="ev40er.txt" Source="$(var.DIASHARE)\src\ls\ev40er.txt" />
+        <File Id="it40er.txt" Source="$(var.DIASHARE)\src\ls\it40er.txt" />
+        <File Id="as40er.txt" Source="$(var.DIASHARE)\src\ls\as40er.txt" />
+        <File Id="em40er.txt" Source="$(var.DIASHARE)\src\ls\em40er.txt" />
+        <File Id="fu40er.txt" Source="$(var.DIASHARE)\src\ls\fu40er.txt" />
+        <File Id="dd40er.txt" Source="$(var.DIASHARE)\src\ls\dd40er.txt" />
+        <File Id="rf50er.txt" Source="$(var.DIASHARE)\src\ls\rf50er.txt" />
+        <File Id="ex50er.txt" Source="$(var.DIASHARE)\src\ls\ex50er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_nl" Name="nl">
+      <Component Id="Component_Diana_share_src_nl" Guid="$(var.ComponentID_Diana_share_src_nl)" Win64="yes">
+        <File Id="rl41er.txt" Source="$(var.DIASHARE)\src\nl\rl41er.txt" />
+        <File Id="st41er.txt" Source="$(var.DIASHARE)\src\nl\st41er.txt" />
+        <File Id="is41er.txt" Source="$(var.DIASHARE)\src\nl\is41er.txt" />
+        <File Id="ix41er.txt" Source="$(var.DIASHARE)\src\nl\ix41er.txt" />
+        <File Id="lb41er.txt" Source="$(var.DIASHARE)\src\nl\lb41er.txt" />
+        <File Id="es41er.txt" Source="$(var.DIASHARE)\src\nl\es41er.txt" />
+        <File Id="in41er.txt" Source="$(var.DIASHARE)\src\nl\in41er.txt" />
+        <File Id="tg41er.txt" Source="$(var.DIASHARE)\src\nl\tg41er.txt" />
+        <File Id="lo41er.txt" Source="$(var.DIASHARE)\src\nl\lo41er.txt" />
+        <File Id="rf41er.txt" Source="$(var.DIASHARE)\src\nl\rf41er.txt" />
+        <File Id="du41er.txt" Source="$(var.DIASHARE)\src\nl\du41er.txt" />
+        <File Id="if41er.txt" Source="$(var.DIASHARE)\src\nl\if41er.txt" />
+        <File Id="cv41er.txt" Source="$(var.DIASHARE)\src\nl\cv41er.txt" />
+        <File Id="pr41er.txt" Source="$(var.DIASHARE)\src\nl\pr41er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_pf" Name="pf">
+      <Component Id="Component_Diana_share_src_pf" Guid="$(var.ComponentID_Diana_share_src_pf)" Win64="yes">
+        <File Id="as40er.txt.pf" Name="as40er.txt" Source="$(var.DIASHARE)\src\pf\as40er.txt" />
+        <File Id="bo40er.txt.pf" Name="bo40er.txt" Source="$(var.DIASHARE)\src\pf\bo40er.txt" />
+        <File Id="em40er.txt.pf" Name="em40er.txt" Source="$(var.DIASHARE)\src\pf\em40er.txt" />
+        <File Id="ev40er.txt.pf" Name="ev40er.txt" Source="$(var.DIASHARE)\src\pf\ev40er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_po" Name="po">
+      <Component Id="Component_Diana_share_src_po" Guid="$(var.ComponentID_Diana_share_src_po)" Win64="yes">
+        <File Id="fp40er.txt" Source="$(var.DIASHARE)\src\po\fp40er.txt" />
+        <File Id="gm40er.txt" Source="$(var.DIASHARE)\src\po\gm40er.txt" />
+        <File Id="sr40er.txt" Source="$(var.DIASHARE)\src\po\sr40er.txt" />
+        <File Id="wr42er.txt" Source="$(var.DIASHARE)\src\po\wr42er.txt" />
+        <File Id="fx40er.txt" Source="$(var.DIASHARE)\src\po\fx40er.txt" />
+      </Component>
+    </Directory>
+    <Directory Id="Diana_share_src_so" Name="so">
+      <Component Id="Component_Diana_share_src_so" Guid="$(var.ComponentID_Diana_share_src_so)" Win64="yes">
+        <File Id="so41er.txt" Source="$(var.DIASHARE)\src\so\so41er.txt" />
+      </Component>
+    </Directory>
+  </Directory>
+</Include>

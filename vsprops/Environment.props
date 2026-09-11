@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <DEVELOP>$(SolutionDir)</DEVELOP>
+    <APP>$(DEVELOP)/app</APP>
+    <GMROOT>$(DEVELOP)/geomec</GMROOT>
+    <LBROOT>$(DEVELOP)/lib</LBROOT>
+    <FWROOT>$(DEVELOP)/Fw51</FWROOT>
+    <TESTSROOT>$(DEVELOP)/Tests</TESTSROOT>
+    <FLEXLM>$(GMROOT)/FlexLM/$(Platform)</FLEXLM>
+    <FLEXLIB>EPTFlexLm_MD.lib</FLEXLIB>
+    <LICENSERESOURCELIB>LicenseResource.lib</LICENSERESOURCELIB>
+    <CM2LIBPATH>$(DIAROOT)/share/CM2/libs</CM2LIBPATH>
+    <PATHPREFIX>$(DIAPATH)/bin;$(CM2LIBPATH);$(USERDLLS);$(FLEXLM)/../lib64</PATHPREFIX>
+
+    <OUTPUT_BASE_DIR>$(SolutionDir.TrimEnd('\'))__BUILD__</OUTPUT_BASE_DIR>
+    <OUTPUT_DIR>$(OUTPUT_BASE_DIR)\bin\$(Platform)\$(Configuration)\</OUTPUT_DIR>
+    <INTERMEDIATEDIR>$(OUTPUT_BASE_DIR)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</INTERMEDIATEDIR>
+    <USERDLLS>$(OUTPUT_DIR)</USERDLLS>
+
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="DEVELOP">
+      <Value>$(DEVELOP)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GMROOT">
+      <Value>$(GMROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LBROOT">
+      <Value>$(LBROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FWROOT">
+      <Value>$(FWROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TESTSROOT">
+      <Value>$(TESTSROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FLEXLM">
+      <Value>$(FLEXLM)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FLEXLIB">
+      <Value>$(FLEXLIB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LICENSERESOURCELIB">
+      <Value>$(LICENSERESOURCELIB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="USERDLLS">
+      <Value>$(USERDLLS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CM2LIBPATH">
+      <Value>$(CM2LIBPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PATHPREFIX">
+      <Value>$(PATHPREFIX)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OUTPUT_DIR">
+      <Value>$(OUTPUT_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="INTERMEDIATEDIR">
+      <Value>$(INTERMEDIATEDIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("mr_main_del.new","mr_main_del")
+
+Scenario ("Check Main Delete")
+StartScenario("Scenario Check Main Delete")
+	MeshregionStartup
+	WTreeItemClk("@2", "Horizon\Mesh\Main", VK_RBUTTON)
+	if WMenuEnabled("&Delete") then
+		TNOFAIL("It is possible to delete the main meshregion")
+	endif
+	Play "{ESC}"
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

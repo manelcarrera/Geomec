@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="BuildCommon.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <DIAPATH>$(DIAROOT)/release</DIAPATH>
+    <DIAOBJ>$(DIAPATH)/lib</DIAOBJ>
+    <DIAOBJINCLUDE>$(DIAPATH)/src/include</DIAOBJINCLUDE>
+    <OIVPATH>$(OIVHOME)\arch-Windows-x86_64-msvc14-Release\bin</OIVPATH>
+    <PATHPREFIX>$(DIAPATH)/bin;$(USERDLLS);$(FLEXLM)/../lib64;$(PATHPREFIX)</PATHPREFIX>
+    <ALLINCLUDES>.;$(FWINCLUDES);$(GMINCLUDES);$(LBINCLUDES);$(DIASRCINCLUDE);$(DIAOBJINCLUDE);$(DIAOBJ)/fl44;$(QTINCLUDES)</ALLINCLUDES>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
+    <Lib>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="DIAPATH">
+      <Value>$(DIAPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIAOBJ">
+      <Value>$(DIAOBJ)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DIAOBJINCLUDE">
+      <Value>$(DIAOBJINCLUDE)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OIVPATH">
+      <Value>$(OIVPATH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PATHPREFIX">
+      <Value>$(PATHPREFIX)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="ALLINCLUDES">
+      <Value>$(ALLINCLUDES)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,142 @@
+***	Geomec Model Dump	***
+
+Global initial stresses
+
+Vertical Stress Gradient Dry   :  0
+Vertical Stress Gradient Wet   :  0
+Water Surface Depth            :  0
+Water Column Stress Gradient   :  1
+Vertical Stress Exponent       :  1
+Distributed outside convex hull:  0
+
+
+Initial Pore Pressure
+
+Reference Pressure             :  0
+Reference Depth                :  0
+Pressure Gradient              :  0
+Distributed outside convex hull:  1
+
+
+***	TimeSteps	***
+Nr of Timesteps : 1
+
+Name : Initial
+Year : 0
+***	Horizons	***
+
+Horizon              : end
+    Top              :  2439.02439
+    Bottom           :  2439.02439
+    Surface          : end
+
+Horizon              : chalk
+    Top              :  3239.329268
+    Bottom           :  3597.865854
+    Surface          : chalk
+
+Horizon              : hod
+    Top              :  3849
+    Bottom           :  4208
+    Surface          : hod
+
+Horizon              : cromer_knoll
+    Top              :  4595
+    Bottom           :  5144
+    Surface          : cromer_knoll
+
+Horizon              : kimmeridge
+    Top              :  4758
+    Bottom           :  5393
+    Surface          : kimmeridge
+
+Horizon              : upper_fulmar
+    Top              :  4894
+    Bottom           :  6450
+    Surface          : upper_fulmar
+
+Horizon              : lower_fulmar
+    Top              :  4907
+    Bottom           :  6473
+    Surface          : lower_fulmar
+
+Horizon              : pentland
+    Top              :  4930
+    Bottom           :  6723
+    Surface          : pentland
+
+Horizon              : triassic
+    Top              :  4984.481707
+    Bottom           :  7242.082317
+    Surface          : triassic
+***	Formations	***
+
+Name                   : end
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+end
+chalk
+
+Name                   : chalk
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+chalk
+hod
+
+Name                   : hod
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+hod
+cromer_knoll
+
+Name                   : cromer_knoll
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+cromer_knoll
+kimmeridge
+
+Name                   : kimmeridge
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+kimmeridge
+upper_fulmar
+
+Name                   : upper_fulmar
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+upper_fulmar
+lower_fulmar
+
+Name                   : lower_fulmar
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+lower_fulmar
+pentland
+
+Name                   : pentland
+Min Layer Thickness    :  1 
+Nr of elements         :  1 
+
+Horizons:
+pentland
+triassic
+***	MeshRegions	***
+
+MeshRegion: Main
+    Gridsize X:  1000
+    Gridsize Y:  1000
+***	WellPaths	***

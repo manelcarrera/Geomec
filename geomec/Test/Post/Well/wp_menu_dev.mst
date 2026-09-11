@@ -1,0 +1,21 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_menu_dev.new","wp_menu_dev")
+
+Scenario ("Menu check for deviated wellpath")
+StartScenario("Menu check for deviated wellpath")
+	WellPathStartUp()
+	AddDeviatedWellPath(curdir$ + "\test1.mwr","EU4")
+	if len(ModifyWellPathByHand("EU4",90,30,1)) = 0 then
+		tnofail "It is possible to modify the position of a deviated wellpath"
+	endif
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

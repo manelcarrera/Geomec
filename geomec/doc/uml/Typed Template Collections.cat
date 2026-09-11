@@ -1,0 +1,105 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Typed Template Collections"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C90330"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Parameterized_Class "CTypedPtrArray"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxtempl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C9033B"
+	    documentation 	"The CTypedPtrArray class provides a type-safe 'wrapper' for objects of class CPtrArray or CObArray. When you use CTypedPtrArray rather than CPtrArray or CObArray, the C++ type-checking facility helps eliminate errors caused by mismatched pointer types."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "BASE_CLASS"
+		    quid       	"3A07D0C9033C"
+		    type       	"class")
+		(object Parameter "TYPE"
+		    quid       	"3A07D0C90344"
+		    type       	"class")))
+	(object Parameterized_Class "CTypedPtrList"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxtempl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C9038B"
+	    documentation 	
+|The CTypedPtrList class provides a type-safe 'wrapper' for objects of class CPtrList. When you use CTypedPtrList rather than CObList or CPtrList, the C++ type-checking facility helps eliminate errors caused by mismatched pointer types.
+|
+|In addition, the CTypedPtrList wrapper performs much of the casting that would be required if you used CObList or CPtrList.
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "BASE_CLASS"
+		    quid       	"3A07D0C90395"
+		    type       	"class")
+		(object Parameter "TYPE"
+		    quid       	"3A07D0C90396"
+		    type       	"class")))
+	(object Parameterized_Class "CTypedPtrMap"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxtempl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C903DB"
+	    documentation 	"The CTypedPtrMap class provides a type-safe 'wrapper' for objects of the pointer-map classes CMapPtrToPtr, CMapPtrToWord, CMapWordToPtr, and CMapStringToPtr. When you use CTypedPtrMap, the C++ type-checking facility helps eliminate errors caused by mismatched pointer types."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "BASE_CLASS"
+		    quid       	"3A07D0C903E5"
+		    type       	"class")
+		(object Parameter "KEY"
+		    quid       	"3A07D0CA0007"
+		    type       	"class")
+		(object Parameter "VALUE"
+		    quid       	"3A07D0CA0008"
+		    type       	"class"))))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\AnalysisLogger.cpp" />
+    <ClCompile Include="src\ArchiveInterface.cpp" />
+    <ClCompile Include="src\ArchiveQDataStream.cpp" />
+    <ClCompile Include="src\ColorEntry.cpp" />
+    <ClCompile Include="src\colornode.cpp" />
+    <ClCompile Include="src\DocumentProxy.cpp" />
+    <ClCompile Include="src\DocumentProxyConsole.cpp" />
+    <ClCompile Include="src\FemAppModel.cpp" />
+    <ClCompile Include="src\GraphEntry.cpp" />
+    <ClCompile Include="src\GraphNode.cpp" />
+    <ClCompile Include="src\GraphNodeVisitor.cpp" />
+    <ClCompile Include="src\HDF5File.cpp" />
+    <ClCompile Include="src\IColorScaleEntry.cpp" />
+    <ClCompile Include="src\IColorScaleNode.cpp" />
+    <ClCompile Include="src\IDualProgressBase.cpp" />
+    <ClCompile Include="src\ivaluecomponent.cpp" />
+    <ClCompile Include="src\ivaluecomposite.cpp" />
+    <ClCompile Include="src\IVectorComposite.cpp" />
+    <ClCompile Include="src\MaterialErrorHandler.cpp" />
+    <ClCompile Include="src\ModelProxy.cpp" />
+    <ClCompile Include="src\ModelProxyConsole.cpp" />
+    <ClCompile Include="src\NewArchiveStdStringStream.cpp" />
+    <ClCompile Include="src\OpenGLComposite.cpp" />
+    <ClCompile Include="src\openglnode.cpp" />
+    <ClCompile Include="src\OpenGLNodeBase.cpp" />
+    <ClCompile Include="src\OperationReceiver.cpp" />
+    <ClCompile Include="src\ProgressBase.cpp" />
+    <ClCompile Include="src\RegistryCleanupWrapper.cpp" />
+    <ClCompile Include="src\StorageNode.cpp" />
+    <ClCompile Include="src\StringUtils.cpp" />
+    <ClCompile Include="src\TimeInterval.cpp" />
+    <ClCompile Include="src\TypeInfo.cpp" />
+    <ClCompile Include="src\unitnode.cpp" />
+    <ClCompile Include="src\ZeroDrawDef.cpp" />
+    <ClCompile Include="delegate\src\Delegate.cpp" />
+    <ClCompile Include="moc\moc_HDF5File.cpp" />
+    <ClCompile Include="moc\moc_OperationReceiver.cpp" />
+    <ClCompile Include="src\ISettings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\AnalysisLogger.h" />
+    <ClInclude Include="h\ArchiveInterface.h" />
+    <ClInclude Include="h\ArchiveQDataStream.h" />
+    <ClInclude Include="h\ColorEntry.h" />
+    <ClInclude Include="h\colornode.h" />
+    <ClInclude Include="h\DocumentProxy.h" />
+    <ClInclude Include="h\DocumentProxyConsole.h" />
+    <ClInclude Include="h\FemAppEntryTypes.h" />
+    <ClInclude Include="h\FemAppModel.h" />
+    <ClInclude Include="h\GraphEntry.h" />
+    <ClInclude Include="h\GraphNode.h" />
+    <ClInclude Include="h\GraphNodeVisitor.h" />
+    <ClInclude Include="h\GraphPtr.h" />
+    <ClInclude Include="h\IColorScaleEntry.h" />
+    <ClInclude Include="h\IColorScaleNode.h" />
+    <ClInclude Include="h\IDualProgressBase.h" />
+    <ClInclude Include="h\ivaluecomponent.h" />
+    <ClInclude Include="h\ivaluecomposite.h" />
+    <ClInclude Include="h\IValueDataInterface.h" />
+    <ClInclude Include="h\IValueDomain.h" />
+    <ClInclude Include="h\IVectorComposite.h" />
+    <ClInclude Include="h\MaterialErrorHandler.h" />
+    <ClInclude Include="h\ModelProxy.h" />
+    <ClInclude Include="h\ModelProxyConsole.h" />
+    <ClInclude Include="h\ModifiedHint.h" />
+    <ClInclude Include="h\NewArchiveStdStringStream.h" />
+    <ClInclude Include="h\OpenGLComposite.h" />
+    <ClInclude Include="h\openglnode.h" />
+    <ClInclude Include="h\OpenGLNodeBase.h" />
+    <ClInclude Include="h\ProgressBase.h" />
+    <ClInclude Include="h\RegistryCleanupWrapper.h" />
+    <ClInclude Include="h\StorageNode.h" />
+    <ClInclude Include="h\StringUtils.h" />
+    <ClInclude Include="h\TimeInterval.h" />
+    <ClInclude Include="h\TypeInfo.h" />
+    <ClInclude Include="h\unitnode.h" />
+    <ClInclude Include="h\ZeroDrawDef.h" />
+    <ClInclude Include="delegate\h\Delegate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\HDF5File.h" />
+    <CustomBuild Include="h\OperationReceiver.h" />
+  </ItemGroup>
+</Project>

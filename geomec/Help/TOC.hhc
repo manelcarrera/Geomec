@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GEOMEC Help contents">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Contents">
+			<param name="Local" value="contents.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="General">
+			<param name="Local" value="general\general.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Assigning values">
+				<param name="Local" value="general\values.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Distributed values">
+					<param name="Local" value="general\distributed_value.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Extrapolation of values">
+					<param name="Local" value="general\extrapolated_value.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Pressure & Temperature pointsets">
+					<param name="Local" value="general\pressure_temperature_pointset_values.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="File tags">
+				<param name="Local" value="general\tags.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Generic file tags">
+					<param name="Local" value="general\generic_tags.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Material file tags">
+					<param name="Local" value="general\material_tags.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Result file tags">
+					<param name="Local" value="general\result_tags.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Context sensitive menus">
+				<param name="Local" value="general\context_sensitive_menu.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Units">
+				<param name="Local" value="general\units.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Main window">
+			<param name="Local" value="main window\main_window.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Menus">
+				<param name="Local" value="menus\geomec_menus.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="File">
+					<param name="Local" value="menus\File\file_menu.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Recent file list">
+						<param name="Local" value="menus\File\recent_file.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Exit">
+						<param name="Local" value="menus\File\exit.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Import">
+					<param name="Local" value="menus\Import\import_menu.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Settings">
+					<param name="Local" value="menus\Settings\settings_menu.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="View">
+					<param name="Local" value="menus\View\view_menu.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Statusbar">
+						<param name="Local" value="menus\View\status_bar.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Perspective">
+						<param name="Local" value="menus\View\perspective.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Fill">
+						<param name="Local" value="menus\View\fill.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Rotate">
+						<param name="Local" value="menus\View\rotate.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Boundary">
+						<param name="Local" value="menus\View\boundary.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Axis">
+						<param name="Local" value="menus\View\axis.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Geology">
+						<param name="Local" value="menus\View\geology.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Value">
+						<param name="Local" value="menus\View\value.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Global colorscale">
+						<param name="Local" value="menus\View\global_colorscale.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Local colorscale">
+						<param name="Local" value="menus\View\local_colorscale.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Hotspot">
+						<param name="Local" value="menus\View\hotspot.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Analysis">
+					<param name="Local" value="menus\analysis\analysis_menu.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Calculation criteria">
+						<param name="Local" value="menus\analysis\analysis_calculation_criteria.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Linear depletion">
+						<param name="Local" value="menus\analysis\linear_depletion.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Nonlinear depletion">
+						<param name="Local" value="menus\analysis\nonlinear_depletion.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Analysis log">
+						<param name="Local" value="menus\analysis\analysis_log.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Nonlinear calculation parameters">
+						<param name="Local" value="context\dialogs\nonlinear_calculation_parameter.htm">
+						<param name="URL" value="context\dialogs\nonlinear_calculation_parameter.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Upgrade mesher">
+						<param name="Local" value="context\dialogs\upgrade_mesher.htm">
+						<param name="URL" value="context\dialogs\upgrade_mesher.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Help">
+					<param name="Local" value="menus\Help\help_menu.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Help topics">
+						<param name="Local" value="menus\Help\help_topics.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="About GEOMEC">
+						<param name="Local" value="menus\Help\about_geomec.htm">
+						</OBJECT>
+				</UL>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Toolbars">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="General toolbar">
+					<param name="Local" value="toolbars\toolbar_general.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="View toolbar">
+					<param name="Local" value="toolbars\toolbar_view.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Topview toolbar">
+					<param name="Local" value="toolbars\toolbar_topview.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Analysis toolbar">
+					<param name="Local" value="toolbars\toolbar_analysis.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tree">
+				<param name="Local" value="tree\geomec_tree.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Model tree">
+					<param name="Local" value="tree\Model\model_tree.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Model types">
+						<param name="Local" value="tree\Model\model_types.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Hexahedron model tree">
+						<param name="Local" value="tree\Model\hexa\hexahedron_tree.htm">
+						</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Initial pore pressure">
+							<param name="Local" value="tree\Model\initial_pore_pressure_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Initial temperature">
+							<param name="Local" value="tree\Model\initial_temperature_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Horizons">
+							<param name="Local" value="tree\Model\hexa\horizon_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Formations">
+							<param name="Local" value="tree\Model\formations_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Boundary">
+							<param name="Local" value="tree\Model\boundary_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Mesh">
+							<param name="Local" value="tree\Model\mesh_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Analysis points">
+							<param name="Local" value="tree\Model\analysis_points_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Cross-sections">
+							<param name="Local" value="tree\Model\cross_sections_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="2D Results">
+							<param name="Local" value="tree\Model\2D_results_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Wellpaths">
+							<param name="Local" value="tree\Model\wellpaths_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Scaling boxes">
+							<param name="Local" value="tree\Model\scaling_boxes_tree.htm">
+							</OBJECT>
+					</UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Tetrahedron model tree">
+						<param name="Local" value="tree\Model\tetra\tetrahedron_tree.htm">
+						</OBJECT>
+					<UL>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Initial pore pressure">
+							<param name="Local" value="tree\Model\initial_pore_pressure_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Initial temperature">
+							<param name="Local" value="tree\Model\initial_temperature_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="GoCad Sub Model">
+							<param name="Local" value="tree\Model\tetra\gocad_sub_model_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Horizons">
+							<param name="Local" value="tree\Model\horizons_formation_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Formations">
+							<param name="Local" value="tree\Model\formations_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Boundary">
+							<param name="Local" value="tree\Model\boundary_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Analysis points">
+							<param name="Local" value="tree\Model\analysis_points_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Cross-sections">
+							<param name="Local" value="tree\Model\cross_sections_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="2D Results">
+							<param name="Local" value="tree\Model\2D_results_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Wellpaths">
+							<param name="Local" value="tree\Model\wellpaths_tree.htm">
+							</OBJECT>
+						<LI> <OBJECT type="text/sitemap">
+							<param name="Name" value="Scaling boxes">
+							<param name="Local" value="tree\Model\scaling_boxes_tree.htm">
+							</OBJECT>
+					</UL>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Views tree">
+					<param name="Local" value="tree\Views\views_tree.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="2D Line graph">
+						<param name="Local" value="tree\Views\2D_line_graph.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Birdeye view">
+						<param name="Local" value="tree\Views\Birdeye_view.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Cross-section view">
+						<param name="Local" value="tree\Views\cross_sections.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Default view">
+						<param name="Local" value="tree\Views\default.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Top view">
+						<param name="Local" value="tree\Views\top_view.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mesh results tree">
+					<param name="Local" value="tree\Mesh_results\mesh_results_tree.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Depth">
+						<param name="Local" value="tree\Mesh_results\depth.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Max edge length">
+						<param name="Local" value="tree\Mesh_results\Max_edge.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Average edge length">
+						<param name="Local" value="tree\Mesh_results\mean_edge.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Area">
+						<param name="Local" value="tree\Mesh_results\surface.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Volume">
+						<param name="Local" value="tree\Mesh_results\volume.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Results">
+					<param name="Local" value="tree\Results\results_tree.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Displacements">
+						<param name="Local" value="tree\Results\displacements.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Stresses">
+						<param name="Local" value="tree\Results\stresses.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Pore pressure">
+						<param name="Local" value="tree\Results\pore_pressure.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Strains">
+						<param name="Local" value="tree\Results\strains.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Optimum mudweight">
+						<param name="Local" value="tree\Results\optimum.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Fault">
+						<param name="Local" value="tree\Results\fault.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Depletion stages">
+						<param name="Local" value="tree\Results\depletion_stages.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Linear/non-linear">
+						<param name="Local" value="tree\Results\linear_nonlinear.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Derived results">
+					<param name="Local" value="tree\Derived result\derived_result_tree.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="User defined results">
+					<param name="Local" value="tree\Defined results\user_defined_results_tree.htm">
+					</OBJECT>
+     		    <LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Multiple delete">
+					<param name="Local" value="tree\Multiple delete\multiple_delete.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Legend">
+				<param name="Local" value="main window\legend_area.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Geology mode">
+					<param name="Local" value="main window\legend_geology.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Value mode">
+					<param name="Local" value="main window\legend_value.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mesh results">
+					<param name="Local" value="main window\value_mesh_results.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Results">
+					<param name="Local" value="main window\value_results.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Drawing area">
+				<param name="Local" value="main window\drawing_area.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Dynamic view manipulations">
+					<param name="Local" value="main window\dynamic.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Models">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Eclipse model">
+				<param name="Local" value="models\eclipse_model.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Casing model steel visualization">
+				<param name="Local" value="models\visualization_casing_model.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Data storage">
+			<param name="Local" value="datastorage\datastorage_general.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Data storage tree">
+				<param name="Local" value="datastorage\datastorage_tree.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Point/Elementsets">
+					<param name="Local" value="datastorage\point_sets_tree.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Rock material">
+					<param name="Local" value="datastorage\materials_tree.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Surfaces">
+					<param name="Local" value="datastorage\surfaces_tree.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Material library">
+			<param name="Local" value="material library\working_mat_lib.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Working with the material library">
+				<param name="Local" value="material library\working_mat_lib.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Calculating">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Calculating in GEOMEC">
+				<param name="Local" value="calculate\calculating_in_geomec.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Troubleshooting">
+				<param name="Local" value="calculate\troubleshooting.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="File formats">
+			<param name="Local" value="file formats\file_formats.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Geomec 4 and 5 Projects">
+				<param name="Local" value="file formats\geomec_file_format.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ASCII">
+				<param name="Local" value="file formats\ascii.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Excel">
+				<param name="Local" value="file formats\excel.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Pointset file format">
+				<param name="Local" value="file formats\point_set_file.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Elementset file format">
+				<param name="Local" value="file formats\element_set_file.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Eclipse file format">
+				<param name="Local" value="file formats\eclipse_grid.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GoCad file format">
+				<param name="Local" value="file formats\gocad_file.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Deviated wellpath file format">
+				<param name="Local" value="file formats\well_path_format.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Boundary conditions">
+			<param name="Local" value="boundary\boundary_general.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Boundary conditions">
+				<param name="Local" value="boundary\boundary_conditions.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Prescribed displacements">
+				<param name="Local" value="boundary\boundary_prescribed_displacements.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Global stress tensor">
+				<param name="Local" value="boundary\boundary_global_stress_tensor.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Global strain tensor">
+				<param name="Local" value="boundary\boundary_global_strain_tensor.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Background theory">
+			<param name="Local" value="background\geomec_theory_description.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Elements">
+				<param name="Local" value="background\elements.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Model construction and constraints">
+				<param name="Local" value="background\construction_and_constrain.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Material models">
+				<param name="Local" value="background\material_models.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Material parameter calibration algorithm">
+				<param name="Local" value="background\calibration_algorithm.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Iteration schemes">
+				<param name="Local" value="background\iteration_schemes_theory.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Rules">
+				<param name="Local" value="background\rules.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Setup of initial stresses">
+				<param name="Local" value="background\initial_stresses.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Results">
+				<param name="Local" value="background\results_theory.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Homogenization">
+				<param name="Local" value="background\homogenization.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Mapping routines">
+				<param name="Local" value="background\mapping_routines.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Zoom-in analysis">
+				<param name="Local" value="background\zoom-in-technique.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Zoom-in analysis on well">
+				<param name="Local" value="background\zoom-in_on_well_principle.htm">
+				</OBJECT>	
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Heat flow analysis">
+				<param name="Local" value="background\heat-flow.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GVT analysis">
+				<param name="Local" value="background\GVT_analysis.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Upscaling">
+				<param name="Local" value="background\upscaling.htm">
+				</OBJECT>		
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Fist">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Fist export">
+				<param name="Local" value="context\dialogs\fist_export.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Points used for Fist export">
+				<param name="Local" value="context\dialogs\points_fist_export.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+</UL>
+<OBJECT type="text/sitemap">
+  <param name="Merge" value="matlib.CHM::\TOC.hhc">
+</OBJECT>
+</BODY></HTML>

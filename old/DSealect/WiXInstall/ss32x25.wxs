@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="Registerss32x25OCX" Guid="6BA1D3D6-91E9-4961-A739-31804DA09AE3" Win64="no">
+                <File Id="ss32x25OCX" KeyPath="yes" Source="$(var.WiXInstall)\ss32x25.ocx">
+                    <Class Id="{1B52ECE0-8483-101C-933E-0000C005958C}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <Class Id="{1B52ECE1-8483-101C-933E-0000C005958C}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <Class Id="{1B52ECE2-8483-101C-933E-0000C005958C}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <Class Id="{4D2ACF01-745F-11CF-8BC4-00AA00B42B7C}" Context="InprocServer32" Description="Color Property Page" />
+                    <Class Id="{C75C4FE5-848D-11CE-AF28-861BF46909CC}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <Class Id="{C9047280-848F-101C-933E-0000C005958C}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <Class Id="{C9047281-848F-101C-933E-0000C005958C}" Context="InprocServer32" Description="Ssocx Property Page" />
+                    <TypeLib Id="{B02F3647-766B-11CE-AF28-C3A2FBE76A13}" Control="yes" Description="FarPoint Spreadsheet Control" HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="2" MinorVersion="5">
+                        <Class Id="{B02F3641-766B-11CE-AF28-C3A2FBE76A13}" Context="InprocServer32" Description="FarPoint Spreadsheet Control" Version="2.5" SafeForScripting="yes" SafeForInitializing="yes" Control="yes">
+                            <ProgId Id="FPSpread.Spread.1" Description="FarPoint Spreadsheet Control" />
+                        </Class>
+                        <Interface Id="{C75C4FE1-848D-11CE-AF28-861BF46909CC}" Name="_DSpreadSheet" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{C75C4FE3-848D-11CE-AF28-861BF46909CC}" Name="_DSpreadEvents" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                    </TypeLib>
+                </File>
+                <RegistryValue Root="HKCR" Key="CLSID\{B02F3641-766B-11CE-AF28-C3A2FBE76A13}\MiscStatus\1" Value="131473" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B02F3641-766B-11CE-AF28-C3A2FBE76A13}\MiscStatus" Value="0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B02F3641-766B-11CE-AF28-C3A2FBE76A13}\ToolboxBitmap32" Value="[!ss32x25OCX], 1" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Component Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="409" Value="Controls that are safely scriptable" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Component Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="409" Value="Controls safely initializable from persistent data" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

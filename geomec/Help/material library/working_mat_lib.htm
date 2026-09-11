@@ -1,0 +1,92 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Working with the Material Library</title>
+</head>
+
+<body>
+<h1><a name="_Toc49063297"><span style="mso-ansi-language:EN-GB">Working with
+the Material Library</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The material library
+is the centralized location where material models with material properties can be 
+imported, created, viewed
+and edited.&nbsp; Materials can also be added to or imported from the material 
+library to allow a database of material properties to be maintained.</span></p>
+<p class="MsoNormal">There is a Geomec model-specific library stored in/with the 
+GMP file (under Data Storage) and external libraries (with extension GML). GML 
+files can be addressed by GMP files. It allows the central storage of material 
+models (for various Geomec, Fist, Stabor runs), but also easier transport of 
+material properties between GMP files.</p>
+<p class="MsoNormal">The internal material library is entered by right-clicking 
+&quot;Rock material&quot; in the Data Storage area (or an existing material attributed to 
+a formation) and left-clicking &quot;Attributes&quot;.</p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The main screen of
+the material library contains a list of all materials available in the material 
+library. In this list, a single material can be selected. The values of the 
+material parameters are then shown in the lower list on the main screen.&nbsp; 
+Clicking the same material name a second time in the top list allows you to 
+rename the material.</span></p>
+<p class="MsoNormal"><img border="0" src="mat_lib.JPG" width="389" height="568"></p>
+<p class="MsoNormal">&nbsp;</p>
+<h2>New material (model with properties)</h2>
+<p class="MsoNormal">A new material can be created by pressing the New button.&nbsp; 
+A small dialog will appear requesting the name of the new material and then a 
+larger dialog will be displayed in which the material (constitutive) model has 
+to be selected. Default values of parameters will be attributed, which require 
+an update. The associated parameters (i) can be selected and changed manually or 
+(ii) can be fitted to stress-strain curves of laboratory experiments. The latter 
+is not possible for anisotropic, salt creep and hardening Mohr-Coulomb.</p>
+<p class="MsoNormal">Since the Material Library is a plug-in (shared program 
+with for instance Stabor), the Help on fitting experiments needs to be addressed 
+via the Help-button when viewing the Material Library.</p>
+<p class="MsoNormal">Apply the Save button after editing (or &quot;Save as&quot; to create 
+a material with a different name).</p>
+<h2>Edit material (model with properties)</h2>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Material
+properties (and model) can be edited by pressing the Edit button. One can change 
+the constitutive model (note that shared values, like Young's Modulus will be 
+kept in place) or change parameters. &quot;Save&quot; will overwrite the existing model. 
+&quot;Save as&quot; will create a new material model.</span></p>
+<h2>Delete materials</h2>
+<p class="MsoNormal">Materials can be deleted from the internal or external 
+material libraries by pressing the Delete button. When deleting from an internal 
+library (the Data Storage area) they disappear from the formations, if applied. 
+A new material model should be dragged to the formation in that case, prior to 
+running the model once more.</p>
+<h2>Import material models</h2>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Materials can be 
+imported from a separate material library (GML file) by right-clicking &quot;From 
+material Library&quot;, selecting a single material and pressing the Select
+button. One needs to import the materials one-by-one. Retyping the parameter 
+values might be quicker.</span></p>
+<p class="MsoNormal">Geomec uses the Material Library that was last addressed on 
+the computer, which can be confusing. The &quot;Material Library&quot; files do not show 
+their file name in the input screen. If you need to address a certain Library it 
+is best to right-click on &quot;Rock Material&quot; and choose &quot;Select Library&quot;. Next 
+browse to the correct folder and name of the library. The library will now be 
+default until another one is selected.</p>
+<p class="MsoNormal">To copy material data from one (external) library to 
+another (external) library, press the Import button, select one (or more) 
+materials and click the &quot;Select&quot; button. Here it is possible to select multiple 
+materials.</p>
+<h2>Export material </h2>
+<p class="MsoNormal">Right-clicking on a specific material in the Data Storage 
+area allows the user to copy the material to the default external library.</p>
+<p class="MsoNormal">Geomec uses the Material Library that was last addressed on 
+the computer which can be confusing. If you need to address a certain Library it 
+is best to right-click on &quot;Rock Material&quot; and choose &quot;Select Library&quot;. Next 
+browse to the correct folder and name of the library before saving material 
+models to the library.</p>
+<h2>Background on material models</h2>
+<p class="MsoNormal">For background on constitutive (material) models and 
+parameter determination see: <a href="../background/material_models.htm">
+material models</a>.</p>
+
+</body>
+
+</html>

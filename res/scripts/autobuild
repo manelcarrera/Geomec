@@ -1,0 +1,243 @@
+#!/bin/bash
+
+# automatic build script
+#
+# creates a new workspace, retrieves the files, builds, and drops desired
+# output into a drop folder
+# 
+# returns 0 on success, and prints the dropfolder to stdout
+#
+# optionally accepts 'release' or 'debug' as its first argument
+# and the build type as second argument (see version.h for
+# postfixes of GM_BUILD_TYPE_as valid values)
+#
+# TODO:
+#
+# better handling of (having no) output in case things go wrong,
+# as not to confuse the windows end too much
+# 
+#############################################################################
+#
+# EDIT these values to your liking; be sure to create a tf profile before
+# you use this script
+
+### set this if you want to (re)run to a specific workspace:
+#use_workspace=gm531_2
+
+export https_proxy=https://proxy-eu.shell.com:8080/
+export http_proxy=http://proxy-eu.shell.com:8080/
+export no_proxy=localhost,shell.com,127.0.0.0/8
+
+export TF_AUTO_SAVE_CREDENTIALS=1
+
+export PATH=/apps/sssdev/tools/eclipse_tfs/TEE-CLC-14.0.2:$PATH
+
+
+tf_collection=https://sede-pt-ssw.visualstudio.com/DefaultCollection
+tf_login=any_name,`cat ~/.ssh/sede_vso.token`
+
+ws_base=/scratch
+drop_base=/glb/data/geomechanics/`whoami`/drops
+tool_base=/glb/data/geomechanics/software
+
+build=Linux_test
+build_type=`echo -n ${2:-NIGHTLY} | tr "[a-z]" "[A-Z]"`
+source=$/Geomec/${3:-Trunk}
+configuration=`echo -n ${1:-release} | tr "[A-Z]" "[a-z]"`
+qmake_target=model-view.pro
+make_target=installer
+logfile=build.log
+version=$4
+
+if [ "$version" != "" ]; then
+  version="-version=$version"
+fi
+
+
+dropfiles=(
+  geomec3/geomec_rgi/install_files/geomec_rgi.tar.bz2
+  geomec3/geomec_rgi/install_files/install
+  geomec3/geomec_rgi/install_files/README.install
+  geomec3/geomec_rgi/install_files/VERSION
+  Tests/Tests/test_output.trx
+  $logfile
+)
+
+#############################################################################
+
+
+# error codes
+err_configuration=-1
+err_profile=-2
+err_tf=-3
+err_ws_base=-4
+err_drop_base=-5
+err_localdir=-6
+err_dropdir=-6
+err_chdir=-7
+
+
+
+# sanity checks
+
+if [ "$configuration" != "release" -a "$configuration" != "debug" ]; then
+  echo "'configuration' is set to \"$configuration\" but should be either \"release\" or \"debug\", exiting"
+  exit $err_configuration
+fi
+
+if [ ! -x "`which tf`" ]; then
+  echo "Cannot find or execute 'tf' (\"`which tf`\"), please fix it"
+  exit $err_tf
+fi
+
+if [ ! -d "$ws_base" ]; then
+  echo -n "'ws_base' \"$ws_base\" does not exist, trying to create it... "
+  mkdir -p "$ws_base"
+  if [ -d "$ws_base" ]; then
+    echo succeeded
+  else
+    echo failed, exiting
+    exit $err_ws_base
+  fi
+fi
+
+if [ ! -d "$drop_base" ]; then
+  echo -n "'drop_base' \"$drop_base\" does not exist, trying to create it... "
+  mkdir -p "$drop_base"
+  if [ -d "$drop_base" ]; then
+    echo succeeded
+  else
+    echo failed, exiting
+    exit $err_drop_base
+  fi
+fi
+
+
+
+# environment settings
+
+if [ `lsb_release -r | grep -c '5.'` -eq 1 ]; then
+sw_path=$tool_base/RHEL_510
+else
+sw_path=$tool_base/RHEL_66
+fi
+
+export TMP=/scratch/tmp
+
+export QTDIR=$sw_path/qt-5.6.1_gcc
+export PATH=$QTDIR/bin:$sw_path/GCC/bin:/usr/bin:/bin:$PATH
+export DIAPATH=$sw_path/diana
+export DIASRC=$DIAPATH/share/src
+export INTEL=$DIAPATH/intel
+export QTLIB=$QTDIR/lib
+export LD_LIBRARY_PATH=$DIAPATH/$configuration/lib:$INTEL:$QTLIB:$sw_path/GCC/lib64:$sw_path/GCC/lib:$sw_path/local/lib
+export LIBRARY_PATH=$sw_path/GCC/lib64
+
+export GM_SW_TOOL_PATH=$sw_path
+
+
+# create workspace
+
+datetime=`date +%Y_%m_%d__%H_%M_%S`
+if [ "$use_workspace" == "" ]; then
+  localdir=`TMPDIR=$ws_base mktemp -d -t ${build}_${datetime}__XXXX`
+  ignore_tf=0
+else
+  localdir=$ws_base/$use_workspace
+  ignore_tf=1
+fi
+
+if [ ! -d "$localdir" ]; then
+  mkdir -p "$localdir"
+  ignore_tf=0
+fi
+
+if [ ! -d "$localdir" ]; then
+  echo "'localdir' \"$localdir\" does not exist, exiting"
+  exit $err_localdir
+fi
+
+workspace=`basename $localdir`
+dropdir=$drop_base/$workspace
+
+mkdir -p "$dropdir"
+if [ ! -d "$dropdir" ]; then
+  echo "'dropdir' \"$dropdir\" does not exist, exiting"
+  exit $err_dropdir
+fi
+
+pushd . > /dev/null
+cd "$localdir"
+
+pwd=`pwd`
+if [ "$localdir" != "$pwd" ]; then
+  echo "Seems we cannot chdir to \"$localdir\" (we ended up in \"$pwd\"), exiting"
+  exit $err_chdir
+fi
+
+
+# create workspace and get files 
+
+if [ $ignore_tf -eq 0 ]; then
+  echo tf workspace -new $workspace -collection:$tf_collection -login:$tf_login -location:local > $logfile 2>&1
+  tf workspace -new $workspace -collection:$tf_collection -login:$tf_login -location:local >> $logfile 2>&1
+  echo tf workfold -map -workspace:$workspace -collection:$tf_collection "$source" "$localdir" >> $logfile 2>&1
+  tf workfold -map -workspace:$workspace -collection:$tf_collection "$source" "$localdir" >> $logfile 2>&1
+
+  echo tf get -recursive -force $version . >> $logfile 2>&1
+  tf get -recursive -force $version . >> $logfile 2>&1
+
+  chmod +x qmake/check.environment.sh
+  chmod +x qmake/create.diana.pri
+  chmod +x lib/GeomecStringTable/testYear
+  chmod +x geomec3/RGInterfaceTest/testRGInterface
+  chmod +x geomec3/geomec_rgi/create_installation
+  chmod +x geomec3/geomec_rgi/install
+  chmod +x geomec3/geomec_rgi/run_geomec_rgi
+  chmod +x geomec3/geomec_rgi/test_geomec_rgi_save
+  chmod +x geomec3/geomec_rgi/test_geomec_rgi
+  chmod +x geomec3/geomec_rgi/installer_run_geomec_rgi
+  chmod +x geomec3/geomec_rgi/installer_test_geomec_rgi
+  chmod +x lib/CreateRGInterfaceTests/test_geomec_rgi
+fi
+
+# make
+
+BUILD_TYPE=$build_type qmake $qmake_target
+
+# cores=`grep cores /proc/cpuinfo | head -1 | awk '{ split($0, l, ": ") ; print l[2] * 1.5; }'`
+# looks like we can't do a multicore make yet
+
+if BUILD_TYPE=$build_type make $make_target >> $logfile 2>&1; then
+  make_errors=1
+fi
+
+if [ "$use_workspace" != "" ]; then
+  exit
+fi
+
+
+# copy to drop dir and cleanup
+
+for i in ${dropfiles[*]}; do
+  if [ -e $i ]; then
+    cp $i "$dropdir"
+  fi
+done
+
+tf workspace -delete $workspace >> $logfile 2>&1
+
+if [ "$make_errors" == "" ]; then
+  rm -rf *
+  rm -rf /scratch/tmp/*
+fi
+
+popd > /dev/null
+if [ "$make_errors" == "" ]; then
+  rmdir "$localdir"
+fi
+
+echo -n $workspace
+
+
+

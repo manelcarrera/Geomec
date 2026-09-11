@@ -1,0 +1,21 @@
+The set of input forms grouped under Operational Regimes allows 
+you to define the various mechanical and thermal loads to which 
+the well will be subjected during its lifetime.
+ 
+Use the form Completion & Testing  to specify the type of the 
+well and to define mechanical and thermal loads applied between 
+completion and shut-in:
+- pressure test
+- perforation
+ 
+Use the form Production & Injection to define mechanical and 
+thermal loads which arise during the normal operational regime 
+of the well:
+- production
+- injection
+ 
+Use the form Extreme Operations to define extreme mechanical 
+and thermal loads which arise during exceptional well operations:
+- unloading / evacuation
+- fracturing / high rate killing
+  

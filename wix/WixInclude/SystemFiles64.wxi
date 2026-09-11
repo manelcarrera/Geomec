@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Component Id="Component_System_Files" Guid="$(var.ComponentID_System_Files)" Win64="yes">
+    <File Id="libifcoremd.dll" Source="$(var.Intel64)\libifcoremd.dll" />
+    <File Id="libifportmd.dll" Source="$(var.Intel64)\libifportmd.dll" />
+    <File Id="libmmd.dll" Source="$(var.Intel64)\libmmd.dll" />
+    <File Id="libiomp5md.dll" Source="$(var.Intel64)\libiomp5md.dll" />
+    <File Id="svml_dispmd.dll" Source="$(var.Intel64)\svml_dispmd.dll" />
+  </Component>
+  <Component Id="Math_Kernel_Library" Guid="$(var.ComponentID_Math_Kernel_Library)" Win64="yes">
+    <File Id="mkl_msg.dll" Source="$(var.Intel64)\1033\mkl_msg.dll" />
+    <File Id="libimalloc.dll" Source="$(var.Intel64)\libimalloc.dll" />
+    <File Id="mkl_avx.dll" Source="$(var.Intel64)\mkl_avx.dll" />
+    <File Id="mkl_avx2.dll" Source="$(var.Intel64)\mkl_avx2.dll" />
+    <File Id="mkl_avx512.dll" Source="$(var.Intel64)\mkl_avx512.dll" />
+    <!--
+    <File Id="mkl_blacs_ilp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_ilp64.dll" />
+    <File Id="mkl_blacs_intelmpi_ilp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_intelmpi_ilp64.dll" />
+    <File Id="mkl_blacs_intelmpi_lp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_intelmpi_lp64.dll" />
+    <File Id="mkl_blacs_lp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_lp64.dll" />
+    <File Id="mkl_blacs_mpich2_ilp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_mpich2_ilp64.dll" />
+    <File Id="mkl_blacs_mpich2_lp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_mpich2_lp64.dll" />
+    <File Id="mkl_blacs_msmpi_ilp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_msmpi_ilp64.dll" />
+    <File Id="mkl_blacs_msmpi_lp64.dll" Source="$(var.Intel64)\..\mkl\mkl_blacs_msmpi_lp64.dll" />
+    <File Id="mkl_cdft_core.dll" Source="$(var.Intel64)\..\mkl\mkl_cdft_core.dll" />
+    -->
+    <File Id="mkl_core.dll" Source="$(var.Intel64)\mkl_core.dll" />
+    <File Id="mkl_def.dll" Source="$(var.Intel64)\mkl_def.dll" />
+    <File Id="mkl_intel_thread.dll" Source="$(var.Intel64)\mkl_intel_thread.dll" />
+    <File Id="mkl_mc.dll" Source="$(var.Intel64)\mkl_mc.dll" />
+    <File Id="mkl_mc3.dll" Source="$(var.Intel64)\mkl_mc3.dll" />
+    <File Id="mkl_rt.dll" Source="$(var.Intel64)\mkl_rt.dll" />
+    <!--
+    <File Id="mkl_scalapack_ilp64.dll" Source="$(var.Intel64)\..\mkl\mkl_scalapack_ilp64.dll" />
+    <File Id="mkl_scalapack_lp64.dll" Source="$(var.Intel64)\..\mkl\mkl_scalapack_lp64.dll" />
+    -->
+    <File Id="mkl_sequential.dll" Source="$(var.Intel64)\mkl_sequential.dll" />
+    <File Id="mkl_vml_avx.dll" Source="$(var.Intel64)\mkl_vml_avx.dll" />
+    <File Id="mkl_vml_avx2.dll" Source="$(var.Intel64)\mkl_vml_avx2.dll" />
+    <File Id="mkl_vml_avx512.dll" Source="$(var.Intel64)\mkl_vml_avx512.dll" />
+    <File Id="mkl_vml_cmpt.dll" Source="$(var.Intel64)\mkl_vml_cmpt.dll" />
+    <File Id="mkl_vml_def.dll" Source="$(var.Intel64)\mkl_vml_def.dll" />
+    <File Id="mkl_vml_mc.dll" Source="$(var.Intel64)\mkl_vml_mc.dll" />
+    <File Id="mkl_vml_mc2.dll" Source="$(var.Intel64)\mkl_vml_mc2.dll" />
+    <File Id="mkl_vml_mc3.dll" Source="$(var.Intel64)\mkl_vml_mc3.dll" />
+  </Component>
+</Include>

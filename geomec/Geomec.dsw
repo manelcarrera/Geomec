@@ -1,0 +1,458 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "2DWellViewLib"=..\LIB\2DWellViewLib\2DWellViewLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "CutSurfaceUtil"=..\lib\CutSurfaceUtil\CutSurfaceUtil.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name DoubleEditLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MfcGuiFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "DCasing"=..\lib\DCasingLib\dcasing\DCasing.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "DianaCore"=..\lib\DianaCore\DianaCore.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "DoubleEditLib"=..\LIB\DoubleEditLib\DoubleEditLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "FemApp"=..\lib\femapp\FemApp.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "FieldValueFile"=..\LIB\FieldValueFile\FieldValueFile.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Geomec"=.\Geomec.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Tensor
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name FieldValueFile
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name OpenGLFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ModelFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ModelObjectFactory
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name GuiFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name FemApp
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name RPN
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TextFileParser
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TSMesh
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DianaCore
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScheme
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DoubleEditLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScene3D
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DCasing
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name QDianaStartUp
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellSchemeUtils
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name 2DWellViewLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name XMLLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MeshDataCacher
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name GmDatabase
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MfcGuiFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name CutSurfaceUtil
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TetMesh
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name triangle
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Geometry"=..\LIB\Geometry\Geometry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "GmDatabase"=..\lib\GmDatabase\GmDatabase.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "GuiFrame"=..\LIB\GuiFrame\GuiFrame.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "MeshDataCacher"=..\lib\MeshDataCacher\MeshDataCacher.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "MfcGuiFrame"=..\lib\MfcGuiFrame\MfcGuiFrame.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ModelFrame"=..\LIB\ModelFrame\ModelFrame.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ModelObjectFactory"=..\LIB\ModelObjectFactory\ModelObjectFactory.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ModelFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "OpenGLFrame"=..\LIB\OpenGLFrame\OpenGLFrame.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "QDianaStartUp"=..\LIB\QDianaStartUp\QDianaStartUp.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Quantity"=..\lib\quantity\Quantity.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "RPN"=..\lib\RPN\RPN.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TSMesh"=..\lib\tsmesh\TSMesh.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Tensor"=..\LIB\Tensor\Tensor.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TetMesh"=..\LIB\TetMesh\TetMesh.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WellScene3D"=..\LIB\WellScene3D\WellScene3D.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WellScheme"=..\LIB\WellScheme\WellScheme.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WellSchemeUtils"=..\LIB\WELLSCHEMEUTILS\WellSchemeUtils.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScheme
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DoubleEditLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScene3D
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MfcGuiFrame
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ModelObjectFactory
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "XMLLib"=..\lib\XMLLIB\XMLLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "triangle"=..\LIB\triangle\triangle.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

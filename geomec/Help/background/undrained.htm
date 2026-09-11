@@ -1,0 +1,673 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="nl">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Undrained</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="material">
+	<param name="Keyword" value="material model">
+	<param name="Keyword" value="undrained">
+</OBJECT>
+<h1>Undrained</h1>
+<p>The undrained model is appropriate to model pore-elastic materials that have
+a very low permeability in relation with the time scale considered. The validity
+gide line is:</p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><span style="mso-text-raise:-28.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:135.75pt;
+ height:62.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="undrai25.gif" v:shapes="_x0000_i1025" width="181" height="83"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126353719">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;With<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">L = characteristic
+length (layer thickness)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Symbol;mso-ansi-language:EN-GB">k</span><span style="mso-ansi-language:EN-GB">´
+= modified permeability (=</span><span style="font-family:Symbol;mso-ansi-language:EN-GB">k</span><span style="mso-ansi-language:EN-GB">´/</span><span style="font-family:Symbol;
+mso-ansi-language:EN-GB">m</span><sub><span style="mso-ansi-language:EN-GB">f</span></sub><span style="mso-ansi-language:EN-GB">)</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB"><i>K</i><i><sub>f</sub></i>=
+fluid bulk modulus</span><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p>&nbsp;</p>
+<p>In GEOMEC an undrained material model is implemented which is able to
+describe the following undrained effects:</p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span style="mso-ansi-language:
+     EN-GB">Apparent stiffening of the bulk behaviour</span><span style="font-family:&quot;Arial Unicode MS&quot;;mso-ansi-language:EN-GB"><o:p>
+    </o:p>
+    </span></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span style="mso-ansi-language:
+     EN-GB">Generation of excess pore pressure<o:p>
+    </o:p>
+    </span></li>
+</ul>
+<p>The total stress formulation is the numerical method available in GEOMEC to
+simulate undrained behaviour in a time independent analysis. Here the pore
+pressure is not modelled explicity, but can be deduced at post-processing time.
+So the behaviour described by this model is poro-elasticity.</p>
+<p>This model can be used not only in combination with the linear analysis
+option, but also in combination with the non-linear option, when <b>other</b>
+layers in the model have a non-linear material behaviour. But the formulation of
+the model forbids to combine it with a plastic model in a formation. </p>
+<p>This material model is only available for non-reservoir layers, i.e. layers
+for wich the pore pressure distribution is defined constant over the depletion
+stages. GEOMEC will check that no pressure change is specified within undrained
+layers.</p>
+<p><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">For the undrained
+material model the following material parameters must be provided:<o:p>
+</o:p>
+</span></p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span lang="NL">the
+    drained Young’s modulus, <i style="mso-bidi-font-style:normal">E</i>, </span><span lang="NL" style="mso-fareast-font-family:&quot;Arial Unicode MS&quot;"><o:p>
+    </o:p>
+    </span></li>
+  <li class="MsoNormal" style="mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span lang="NL">the
+    drained Poisson ration, </span><i style="mso-bidi-font-style:
+     normal"><span lang="NL" style="font-family:Symbol">n</span></i><span lang="NL">,</span></li>
+  <li class="MsoNormal" style="mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span lang="NL">the
+    porosity, <i style="mso-bidi-font-style:normal">n</i>,</span></li>
+  <li class="MsoNormal" style="mso-list:l2 level1 lfo1;tab-stops:list 36.0pt"><span lang="NL">the
+    fluid bulk modulus, <i style="mso-bidi-font-style:normal">K<sub>f</sub></i>.</span></li>
+</ul>
+<p><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">&nbsp;Note that in
+Geomec the Biot </span><span style="font-family:Symbol">a</span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">
+effect is neglected. The stress decomposition is expressed as:<o:p>
+</o:p>
+</span></p>
+<p style="margin-bottom:0cm;margin-bottom:.0001pt;tab-stops:
+right 364.5pt"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:47.25pt;
+ height:15pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="undrai1.gif" v:shapes="_x0000_i1025" width="63" height="20"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126339903">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p>
+</o:p>
+</span></p>
+<p><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">This corresponds to
+the Terzaghi assumption where the intrinsic bulk modulus of the grains, <i style="mso-bidi-font-style:normal">K<sub>s</sub></i>,
+is assumed much larger than the drained bulk modulus, thus resulting in a Biot <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol">a</span>:<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p style="tab-stops:right 364.5pt"><span style="font-size:11.0pt;
+mso-bidi-font-size:10.0pt"><span style="mso-text-raise:-13.0pt"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:63pt;
+ height:29.25pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="undrai2.gif" v:shapes="_x0000_i1025" width="84" height="39"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126340451">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p>
+</o:p>
+</span></p>
+<p><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-GB;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">During
+material evaluation, three derived </span></span><span style="font-size: 11.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-bidi-font-size: 10.0pt">undrained
+</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-GB;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">material
+properties will be computed</span></span><span style="font-size: 11.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: EN-GB; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-bidi-font-size: 10.0pt">:</span></p>
+<p><span lang="EN-US" style="font-size:11.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-12.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:62.25pt;
+ height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/10/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="undrai3.gif" v:shapes="_x0000_i1025" width="83" height="37"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126340775">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></p>
+<p><span lang="EN-US" style="font-size:11.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-14.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:162pt;
+ height:30pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/11/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <span lang="NL" style="font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:NL;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-10.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:36pt;
+ height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img src="undrai26.gif" v:shapes="_x0000_i1025" width="48" height="37"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126353866">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126340793">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></p>
+<p><span lang="EN-US" style="font-size:11.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-13.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:63pt;
+ height:28.5pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <span lang="NL" style="font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:NL;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:51.75pt;
+ height:28.5pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img src="undrai27.gif" v:shapes="_x0000_i1025" width="69" height="38"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126353895">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></span></span></p>
+<p><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">Then the undrained
+elastic properties are deduced and input in the model:<o:p>
+</o:p>
+</span></p>
+<p style="margin-bottom:6.0pt;tab-stops:right 364.5pt"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt"><span style="mso-text-raise:
+-12.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:81.75pt;
+ height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <span lang="NL" style="font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:NL;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-12.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:77.25pt;
+ height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img src="undrai28.gif" v:shapes="_x0000_i1025" width="103" height="37"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126353926">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126340902">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p style="tab-stops:right 364.5pt"><span lang="NL"><span style="mso-text-raise:-12.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1026"
+ type="#_x0000_t75" style='width:86.25pt;height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <span lang="NL" style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:NL;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:81pt;
+ height:27.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img src="undrai29.gif" v:shapes="_x0000_i1025" width="108" height="37"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126353948">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1026"
+  DrawAspect="Content" ObjectID="_1126340904">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p></span></p>
+<p style="tab-stops:right 364.5pt"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt">The pore pressure is
+set to zero in the model and the analysis is run in term of total stresses.
+</span></p>
+<p class="MsoNormal"><span lang="NL">During post-processing, at every result
+point in the undrained material, the change in average total stress is
+calculated and the excess pore pressure is deduced:</span></p>
+<p class="MsoNormal"><span lang="NL"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:53.25pt;
+ height:14.25pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <span lang="NL" style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:NL;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:54pt;
+ height:15.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img src="undrai30.gif" v:shapes="_x0000_i1025" width="72" height="21"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126354014">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126341306">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The following regular
+Geomec output are then provided:<o:p>
+</o:p>
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" width="600">
+  <tr>
+    <td width="198" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <ul style="margin-top:0cm" type="disc">
+        <li class="MsoNormal" style="mso-list:l0 level1 lfo4;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-GB">the
+          total stress tensor<o:p>
+          </o:p>
+          </span></li>
+      </ul>
+    </td>
+    <td width="370" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal"><i style="mso-bidi-font-style:normal"><span lang="NL" style="font-family:Symbol">s</span></i><span style="mso-ansi-language:EN-GB"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="198" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <ul style="margin-top:0cm" type="disc">
+        <li class="MsoNormal" style="mso-list:l0 level1 lfo4;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-GB">the
+          total pore pressure<o:p>
+          </o:p>
+          </span></li>
+      </ul>
+    </td>
+    <td width="370" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal"><span lang="NL"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1026" type="#_x0000_t75" style='width:53.25pt;height:15pt'
+   o:ole="" fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image003.wmz"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="undrai9.gif" v:shapes="_x0000_i1026" width="71" height="20"></span><!--[if gte mso 9]><xml>
+   <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1026"
+    DrawAspect="Content" ObjectID="_1126341308">
+   </o:OLEObject>
+  </xml><![endif]-->
+      </span><span style="mso-ansi-language:EN-GB"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="198" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <ul style="margin-top:0cm" type="disc">
+        <li class="MsoNormal" style="mso-list:l0 level1 lfo4;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-GB">the
+          effective stress tensor<o:p>
+          </o:p>
+          </span></li>
+      </ul>
+    </td>
+    <td width="370" valign="top" style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal"><span lang="NL"><span style="mso-text-raise:-5.0pt"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:51pt;height:15pt' o:ole=""
+   fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image005.wmz"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <span lang="NL" style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:NL;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:54pt;
+ height:15.75pt' o:ole="" fillcolor="window">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/12/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+      <img src="undrai31.gif" v:shapes="_x0000_i1025" width="72" height="21"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126354081">
+ </o:OLEObject>
+</xml><![endif]-->
+      </span></span><!--[if gte mso 9]><xml>
+   <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1027"
+    DrawAspect="Content" ObjectID="_1126341309">
+   </o:OLEObject>
+  </xml><![endif]-->
+      </span><span style="mso-ansi-language:EN-GB"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<o:p>
+</o:p></o:p>
+</span></p>
+<p><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt"><o:p>
+</o:p>
+</span></p>
+<p><span lang="EN-US" style="font-size:11.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126340807">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt"><o:p>
+</o:p>
+</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

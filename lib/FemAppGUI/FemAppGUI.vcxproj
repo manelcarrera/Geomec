@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ArchiveCArchive.cpp" />
+    <ClCompile Include="delegate\src\ColorNode_Delegate.cpp" />
+    <ClCompile Include="src\dianax.cpp" />
+    <ClCompile Include="src\FemAppDoc.cpp" />
+    <ClCompile Include="src\FemAppMainWindow.cpp" />
+    <ClCompile Include="delegate\src\FemAppModel_Delegate.cpp" />
+    <ClCompile Include="src\FemAppOpenGLView.cpp" />
+    <ClCompile Include="delegate\src\GraphEntry_Delegate.cpp" />
+    <ClCompile Include="src\GraphMainFrameProgress.cpp" />
+    <ClCompile Include="src\GraphMainFrm.cpp" />
+    <ClCompile Include="delegate\src\GraphNode_Delegate.cpp" />
+    <ClCompile Include="src\graphtreectrl.cpp" />
+    <ClCompile Include="src\GraphTreeView.cpp" />
+    <ClCompile Include="delegate\src\IColorScaleEntry_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IColorScaleNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IValueComponent_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IValueComposite_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLNodeBase_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLNode_Delegate.cpp" />
+    <ClCompile Include="src\openglscenenode.cpp" />
+    <ClCompile Include="delegate\src\OpenGLSceneNode_Delegate.cpp" />
+    <ClCompile Include="src\openglvaluescene.cpp" />
+    <ClCompile Include="delegate\src\OpenGLValueScene_Delegate.cpp" />
+    <ClCompile Include="src\SceneDrawDef.cpp" />
+    <ClCompile Include="src\ScenePtr.cpp" />
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="delegate\src\StorageNode_Delegate.cpp" />
+    <ClCompile Include="src\TreeNode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\ArchiveCArchive.h" />
+    <ClInclude Include="h\AttributeTempl.h" />
+    <ClInclude Include="h\ChildEnumerator.h" />
+    <ClInclude Include="delegate\h\ColorNode_Delegate.h" />
+    <ClInclude Include="h\dianax.h" />
+    <ClInclude Include="h\EnumerationBranch.h" />
+    <ClInclude Include="h\FemAppDoc.h" />
+    <ClInclude Include="h\FemAppMainWindow.h" />
+    <ClInclude Include="delegate\h\FemAppModel_Delegate.h" />
+    <ClInclude Include="h\FemAppOpenGLView.h" />
+    <ClInclude Include="delegate\h\GraphEntry_Delegate.h" />
+    <ClInclude Include="h\GraphMainFrameProgress.h" />
+    <ClInclude Include="h\GraphMainFrm.h" />
+    <ClInclude Include="delegate\h\GraphNode_Delegate.h" />
+    <ClInclude Include="delegate\h\GraphPtr_Delegate.h" />
+    <ClInclude Include="h\graphtreectrl.h" />
+    <ClInclude Include="h\GraphTreeView.h" />
+    <ClInclude Include="delegate\h\IColorScaleEntry_Delegate.h" />
+    <ClInclude Include="delegate\h\IColorScaleNode_Delegate.h" />
+    <ClInclude Include="delegate\h\IValueComponent_Delegate.h" />
+    <ClInclude Include="delegate\h\IValueComposite_Delegate.h" />
+    <ClInclude Include="observer\h\NodeObserver.h" />
+    <ClInclude Include="delegate\h\NodeObserver_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLNodeBase_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLNode_Delegate.h" />
+    <ClInclude Include="h\openglscenenode.h" />
+    <ClInclude Include="delegate\h\OpenGLSceneNode_Delegate.h" />
+    <ClInclude Include="h\openglvaluescene.h" />
+    <ClInclude Include="delegate\h\OpenGLValueScene_Delegate.h" />
+    <ClInclude Include="h\SceneDrawDef.h" />
+    <ClInclude Include="h\ScenePtr.h" />
+    <ClInclude Include="h\StateBranch.h" />
+    <ClInclude Include="delegate\h\StateBranch_Delegate.h" />
+    <ClInclude Include="h\StateEnumerationBranch.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="delegate\h\StorageNode_Delegate.h" />
+    <ClInclude Include="h\TreeNode.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D123FA8C-5A4D-44A8-A1BB-04B5B8FE86EF}</ProjectGuid>
+    <RootNamespace>FemAppGUI</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>FemAppGUI</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="..\..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="..\..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="..\..\vsprops\LocalPCH.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FEMAPPGUI)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FEMAPPGUI)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(FEMAPPGUI)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\RTFile.h" />
+    <ClInclude Include="h\WellDefinitionPointList.h" />
+    <ClInclude Include="h\WellLog.h" />
+    <ClInclude Include="h\WellLogFile.h" />
+    <ClInclude Include="h\WellPointMapper.h" />
+    <ClInclude Include="h\WellScheme.h" />
+    <ClInclude Include="h\WellSchemeInclude.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\IWellSection.cpp" />
+    <ClCompile Include="src\RTFile.cpp" />
+    <ClCompile Include="src\WellDefinitionPointList.cpp" />
+    <ClCompile Include="src\WellLog.cpp" />
+    <ClCompile Include="src\WellLogFile.cpp" />
+    <ClCompile Include="src\wellpathbase.cpp" />
+    <ClCompile Include="src\WellPoint.cpp" />
+    <ClCompile Include="src\WellPointList.cpp" />
+    <ClCompile Include="src\WellPointMapper.cpp" />
+    <ClCompile Include="src\WellSection.cpp" />
+    <ClCompile Include="src\WellSectionList.cpp" />
+    <ClCompile Include="src\WellSectionListBase.cpp" />
+    <ClCompile Include="h\moc_IWellSection.cpp" />
+    <ClCompile Include="h\moc_wellpathbase.cpp" />
+    <ClCompile Include="h\moc_WellPoint.cpp" />
+    <ClCompile Include="h\moc_WellPointList.cpp" />
+    <ClCompile Include="h\moc_WellSection.cpp" />
+    <ClCompile Include="h\moc_WellSectionList.cpp" />
+    <ClCompile Include="h\moc_WellSectionListBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\IWellSection.h" />
+    <CustomBuild Include="h\wellpathbase.h" />
+    <CustomBuild Include="h\WellPoint.h" />
+    <CustomBuild Include="h\WellPointList.h" />
+    <CustomBuild Include="h\WellSection.h" />
+    <CustomBuild Include="h\WellSectionList.h" />
+    <CustomBuild Include="h\WellSectionListBase.h" />
+  </ItemGroup>
+</Project>

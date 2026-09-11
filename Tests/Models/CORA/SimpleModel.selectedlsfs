@@ -1,0 +1,3 @@
+Formation,StrainInvVolumetric_D1_L,formation:res,Min,1.000000
+Fault,FaultDisplacementL_D1_L,fault:New Horizon 3,Min,1.000000
+Well,StrainInvVolumetric_D1_L,well:New Wellpath (ps) 1,Min,1.000000

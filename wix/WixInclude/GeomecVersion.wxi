@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?ifndef GeomecVersion_wxi ?>
+  <?define GeomecVersion_wxi="GeomecVersion_wxi" ?>
+    <!-- version number -->
+
+    <?define VersionMajor="5"?>
+    <?define VersionMinor="8"?>
+    <?define VersionBuild="0"?>
+    <?define VersionRevision="0"?>
+
+    <?define GeomecBuildType="build"?>
+    <?define GeomecBuildNumber="20105.1"?>
+
+    <?ifndef VersionQualifier ?>
+      <?define VersionQualifier="" ?>
+    <?endif?>
+  <?endif?>
+</Include>

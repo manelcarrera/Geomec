@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Directory Id="GVT_PATH" Name="GVT">
+    <Component Id="Component_GVT" Guid="$(var.ComponentID_GVT)" Win64="yes">
+      <File Id="GVT.exe" KeyPath="yes" Source="$(var.GVT)\GVT.exe" />
+      <File Id="boost.dll" Name="boost_date_time-vc120-mt-1_57.dll" Source="$(var.GVT)\boost_date_time-vc120-mt-1_57.dll" />
+      <File Id="_3dio.dll" Name="3dio.dll" Source="$(var.GVT)\3dio.dll" />
+      <File Id="GVTCore.dll" Source="$(var.GVT)\GVTCore.dll" />
+      <File Id="GVTDatamanager.dll" Source="$(var.GVT)\GVTDatamanager.dll" />
+      <File Id="Utils.dll" Source="$(var.GVT)\Utils.dll" />
+      <File Id="gvt_QtCore4.dll" Name="QtCore4.dll" Source="$(var.GVT)\QtCore4.dll" />
+      <File Id="gvt_QtGui4.dll" Name="QtGui4.dll" Source="$(var.GVT)\QtGui4.dll" />
+      <File Id="Sp.dll" Source="$(var.GVT)\Sp.dll" />
+      <File Id="SpData.dll" Source="$(var.GVT)\SpData.dll" />
+      <File Id="SpMessage.dll" Source="$(var.GVT)\SpMessage.dll" />
+      <File Id="SpShell.dll" Source="$(var.GVT)\SpShell.dll" />
+      <File Id="SpUnit.dll" Source="$(var.GVT)\SpUnit.dll" />
+      <File Id="SpUtil.dll" Source="$(var.GVT)\SpUtil.dll" />
+      <File Id="gvt_libifcoremd.dll" Name="libifcoremd.dll" Source="$(var.GVT)\libifcoremd.dll" />
+      <File Id="gvt_libmmd.dll" Name="libmmd.dll" Source="$(var.GVT)\libmmd.dll" />
+      <File Id="pcre.dll" Source="$(var.GVT)\pcre.dll" />
+      <File Id="pcreposix.dll" Source="$(var.GVT)\pcreposix.dll" />
+      <File Id="pthreadVC2.dll" Source="$(var.GVT)\pthreadVC2.dll" />
+      <File Id="xerces_c_2_8.dll" Name="xerces-c_2_8.dll" Source="$(var.GVT)\xerces-c_2_8.dll" />
+    </Component>
+  </Directory>
+  
+</Include>

@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+test_output=${1:-test_output}
+
+mkdir $test_output >/dev/null 2>&1
+
+if [ ! -d "$test_output" ]; then
+  echo Can\'t perform tests, because directory \'$test_output\' doesn\'t exist
+  echo You can specify a different directory as first parameter
+  exit 1
+fi
+
+GEMHOME=$(cd $(dirname $0); pwd -P)
+
+
+## CORA tests
+
+retval=0
+
+wellpath_list=(0 1 4 1 2 4 8 0 1 4 1 2 4 8)
+
+for i in `find data/CORA -name "*.gm4" | sort`; do
+  path=`dirname $i`
+  base=${i%.gm4}
+  base=${base#$path/}
+
+  /bin/bash $GEMHOME/run_geomec_shell $path/$base.gm4 getmodelinfo $test_output/$base.modelinfo $test_output/$base.modelinfo_result_summary >/dev/null 2>&1
+
+  if [ $? -ne 0 ]; then
+    retval=$[retval + 1];
+    echo TEST FAILED
+  fi
+
+  if [ -f $path/$base.parameterfile ]; then
+    /bin/bash $GEMHOME/run_geomec_shell $path/$base.gm4 runmodel 1.3 $path/$base.parameterfile $path/$base.selectedlsfs $test_output/$base.response_parameters $test_output/$base.runmodel_result_summary minimum_output >/dev/null 2>&1
+
+    if [ $? -ne 0 ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+  else
+    if [ `grep -c '^well:New Wellpath' $test_output/$base.modelinfo >/dev/null 2>&1` -ne ${wellpath_list[0]} ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+    wellpath_list=("${wellpath_list[@]:1}")
+  fi
+
+done
+
+
+## RGI tests
+
+
+
+
+if [ $retval -ne 0 ]; then
+  echo $retval TESTS FAILED
+  exit 1
+else
+  echo TESTS SUCCEEDED
+fi
+

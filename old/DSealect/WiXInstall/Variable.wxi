@@ -1,0 +1,44 @@
+<Include>
+  <!-- Version -->
+  <?define Version="1"?>
+  <?define Revision="0"?>
+  <!-- Configuration -->
+  <?define DevelopmentRoot="$(env.DEVELOP)" ?>
+  <?define WixInclude="$(var.DevelopmentRoot)\WixInclude" ?>
+  <?define DSealectRoot="$(var.DevelopmentRoot)\DSealect" ?>
+  <?define DIAPATH="$(env.DIAPATH)" ?>
+  <?define DIASHARE="$(env.DIASHARE)" ?>
+  <?define KeyFile="$(var.DSealectRoot)\keyfile" ?>
+  <?define GUIRoot="$(var.DSealectRoot)\GUI" ?>
+  <?define ChartIniFilesRoot="$(var.DSealectRoot)\GUI\ChartIniFiles" ?>
+  <?define InfoFilesRoot="$(var.DSealectRoot)\InfoFiles" ?>
+  <?define DatabaseRoot="$(var.DSealectRoot)\material library" ?>
+  <?define WiXInstall="$(var.DSealectRoot)\WiXInstall" ?>
+  <?define ProgramFiles="C:\Program Files"?>
+  <?define MergeModules="$(var.ProgramFiles)\Common Files\Merge Modules" ?>
+  <!-- Merge Modules -->
+  <?define Microsoft_VC90_CRT="$(var.MergeModules)\Microsoft_VC90_CRT_x86.msm"?>
+  <?define policy_9_0_Microsoft_VC90_CRT="$(var.MergeModules)\policy_9_0_Microsoft_VC90_CRT_x86.msm" ?>
+  <?define Microsoft_VC90_MFC="$(var.MergeModules)\Microsoft_VC90_MFC_x86.msm" ?>
+  <?define policy_9_0_Microsoft_VC90_MFC="$(var.MergeModules)\policy_9_0_Microsoft_VC90_MFC_x86.msm" ?>
+  <?define Microsoft_VC90_OpenMP="$(var.MergeModules)\Microsoft_VC90_OpenMP_x86.msm" ?>
+  <?define policy_9_0_Microsoft_VC90_OpenMP="$(var.MergeModules)\policy_9_0_Microsoft_VC90_OpenMP_x86.msm" ?>
+  <!-- Application -->
+  <?define DSealect="$(var.GUIRoot)\Release\DSealect.exe" ?>
+  <?define FortranRT32="C:\dev\Intel\Compiler\11.1\065\bin\ia32" ?>
+  <?define IntelMathKernelLibraryRT32="C:\dev\Intel\ComposerXE-2011\redist\ia32" ?>
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_bin_Qt="58CB4ABC-E36D-4bc9-83C7-E90719864572" ?>
+  <?define ComponentID_Diana_share_lib="98BC7C8E-A953-47a6-B0F1-86CAF2BC8372" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="63698A20-CE04-4a53-A034-C7E69F4C2D0F" ?>
+  <?define ComponentID_Diana_lib="2C1BAB7A-B755-43d2-AA49-6FE4260F038A" ?>
+  <?define ComponentID_Diana_bin="96AD2EE7-881A-4c9f-B2C8-70CAAD6487BC" ?>
+  <?define ComponentID_Diana_share_src_ap="70129FEB-E1E4-45df-9021-97252E60BEF7" ?>
+  <?define ComponentID_Diana_share_src_dc="9D342EDE-F0B2-40c4-AE53-3B19C502B53A" ?>
+  <?define ComponentID_Diana_share_src_in="459802D3-322A-45c0-A248-E42EEBC1B0A4" ?>
+  <?define ComponentID_Diana_share_src_lb="D59D583A-00FE-4d5e-B218-2CB21CBCADB4" ?>
+  <?define ComponentID_Diana_share_src_ls="749DE4C9-822E-4012-84EB-F5006EA9532E" ?>
+  <?define ComponentID_Diana_share_src_nl="4ADF4026-E9DD-4f22-8A03-ACC77C1F63A7" ?>
+  <?define ComponentID_Diana_share_src_po="D156D541-FC04-4345-8C1F-4AD068BAD8EC" ?>
+  <?define ComponentID_Diana_share_src_so="43C9B654-EC98-4931-BD42-EE62DBF77A88" ?>
+</Include>

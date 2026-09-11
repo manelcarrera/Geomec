@@ -1,0 +1,257 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>GVT analysis</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h4
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+<meta http-equiv=Content-Language content=en-us>
+</head>
+
+<body lang=NL link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1><span lang=EN-US>GVT Analysis</span></h1>
+
+<h2><span lang=EN-US>Introduction</span></h2>
+
+<p><span lang=EN-US>GVT calculates time-lapse time shifts due to geomechanical
+changes for zero offset seismic rays. This is an alpha release, with the output
+as property sets in the Data storage tree. In a future release, these properties
+can be converted to a seismic volume in .vt
+format, which can be read into 123DI/nDI/GeoSigns. </span></p>
+
+<p><span lang=EN-US>For more information on geomechanics and time-lapse time
+shifts see Hatchell et. al. </span>(EP 2005-5429) or Bauer et. al. (EP
+2007-5720). </p>
+
+<h2>Configuring GVT</h2>
+
+<p><span lang=EN-US>GVT can be accessed using the Analysis menu or Settings
+menu. Configuring GVT consists of three stages :</span></p>
+
+<ul type=disc>
+ <li class=MsoNormal>Set up the survey geometry </li>
+ <li class=MsoNormal><span lang=EN-US>Define a velocity change model for each
+     formation </span></li>
+ <li class=MsoNormal><span lang=EN-US>Define the timing of the time-lapse
+     scenarios </span></li>
+</ul>
+
+<h2>GVT Input</h2>
+
+<h3><span lang=EN-US>Survey Box section - defining the survey geometry</span></h3>
+
+<p><span lang=EN-US>There are two options for defining a seismic grid:</span></p>
+
+<ul type=disc>
+ <li class=MsoNormal><span lang=EN-US>Using an existing keyfile - an ascii file
+     that is used in 123DI to define the geometry of a seismic survey. </span></li>
+ <li class=MsoNormal><span lang=EN-US>Manually - e.g. in a feasibility study
+     where the geometry of the seismic survey has not yet been defined. </span></li>
+</ul>
+
+<h4><span lang=EN-US>Using a keyfile</span></h4>
+
+<p><span lang=EN-US>Select the keyfile using the browse option. The survey
+parameters will be automatically filled in to the GUI. </span></p>
+
+<p><span lang=EN-US>Note: For the beta release you <i>may</i> need to override
+the track/bin spacing to something coarser than that of a seismic survey (say
+100 x 100m) to avoid memory issues – this will be fixed in a later release. </span></p>
+
+<h4><span lang=EN-US>Manual definition</span></h4>
+
+<p><span lang=EN-US>The grid is defined by a fixed corner point (bottom
+left-hand corner), length, width and azimuth as shown in the figure below. </span></p>
+
+<p class=MsoNormal><img width=357 height=383
+src="GVTgeometry.jpg"
+alt="Survey geometry"></p>
+
+</img>
+
+<!--
+<p><b><span lang=EN-US>Max Depth Parameter</span></b><span lang=EN-US> </span></p>
+
+<p><span lang=EN-US>Geomec models are often much deeper than is of practical
+interest for 4D seismic (this is to avoid boundary effects at the base of the
+model). Enter a maximum depth below with results will be ignored. </span></p>-->
+
+<p><b><span lang=EN-US>Track/Bin Spacing</span></b><span lang=EN-US> </span></p>
+
+<p><span lang=EN-US>The track/bin spacing of the seismic survey.</span></p>
+
+<h4><span lang=EN-US>Initial velocity model file</span></h4>
+
+<p><span lang=EN-US>In order to calculate the time-shifts and time-convert the
+result and initial velocity model is required. In the alpha release, GVT only
+accepts a velocity model based on the Vp values in the material models of the
+formations. In the future, it will also accept a single check-shot
+file, which gives a 1D velocity model for the whole survey, or a VEL3D format
+file. </span></p>
+
+<!--
+<ul type=disc>
+ <li class=MsoNormal><b><span lang=EN-US>Checkshot file</span></b><span
+     lang=EN-US> - The file is an ascii file in the format of
+     depth(ft)-time(ms) pairs, with the values separated by spaces.</span></li>
+ <li class=MsoNormal><b><span lang=EN-US>VEL3D file format</span></b><span
+     lang=EN-US> - See </span><a
+     href="http://sww-geo.shell.com/123di/technicaldocs/velocity/formats/formats.html"><span
+     lang=EN-US>the 123DI file format web page</span></a><span lang=EN-US>. </span></li>
+</ul>
+-->
+
+<!--
+<h2><span lang=EN-US>GVT output section</span></h2>
+
+<p><span lang=EN-US>Choose a prefix for all GVT created files along with a
+directory to save them to. </span>Available outputs are: </p>
+
+<ul type=disc>
+ <li class=MsoNormal><span lang=EN-US>dV – a .vt file containing the change in
+     velocity </span></li>
+ <li class=MsoNormal><span lang=EN-US>dT – a .vt file containing the time-shift
+     </span></li>
+ <li class=MsoNormal><span lang=EN-US>import back to Geomec - create file that
+     can be imported back to Geomec. </span></li>
+</ul>
+-->
+
+<h2><span lang=EN-US>Velocity model definition section</span></h2>
+
+<p><span lang=EN-US>At present two models are available in GVT the R factor
+model and S factor model, with more models expected to added in the future. Models
+can be applied on a per-formation basis. For each formation chose the desired
+model from the drop-down menu then set the model parameters in the adjacent
+box. For details of the the R-factor model see Hatchell et. al. (EP 2005-5429)
+and for the S factor model Bauer et. al. </span>(EP 2007-5720). </p>
+
+<h2><span lang=EN-US>Time-Lapse Scenario section</span></h2>
+
+<p><span lang=EN-US>Choose the times at which to run the analysis. This can be
+any combination of depletion stages but the first depletion stage should be the
+time of the actual or anticpated (if a feasability study) base time-lapse
+survey. </span></p>
+
+<h2><span lang=EN-US>Running GVT</span></h2>
+
+<p><span lang=EN-US>When all the GVT settings are complete the analysis is ready
+to run. GVT uses non-linear result values if they are available, otherwise linear results.
+GVT will create three output pointsets, based on the grid name (say "grid0") of the survey box:</span></p>
+
+<p><span lang=EN-US>
+    <ul>
+        <li class="MsoNormal"><span lang="EN-US">grid0: a 2D grid following the definition of the survey box</span></li>
+        <li class="MsoNormal"><span lang="EN-US">grid0_input: a "pillar map" of the grid, with a point for each element that intersects with the pillars, and the analysis input properties that are taken from the model</span></li>
+        <li class="MsoNormal"><span lang="EN-US">grid0_output: the same "pillar map", with the output properties</span></li>
+    </ul></span></p>
+
+<p><span lang=EN-US>If a pointset with the grid name postfixed by "_input" already exists, the analysis will re-use that pointset. You can force regeneration of the input by checking the box "Create new sample and analysis pointsets" in the main GVT dialog.</span></p>
+
+<p><span lang=EN-US>
+    The following output properties are created (for each time-lapse &lt;j, i&gt; in point n):</span></p>
+
+<p><span lang=EN-US>
+    <ul>
+        <li class="MsoNormal"><span lang="EN-US">Delta v:</span><br/>
+        R-Model: <img src="gvt_formulas_R_factor.png" style="vertical-align:bottom"/>; R is R_C if the strain difference is positive, R_EX if it's negative.<br/>
+        S-Model: <img src="gvt_formulas_S_factor.png" style="vertical-align:bottom" />
+        </li>
+        <li class="MsoNormal"><span lang="EN-US">Delta t:</span><br/>
+        The total two-way time t(n) from the top surface is calculated as <img src="gvt_formulas_twt.png" style="vertical-align:bottom" /><br />
+        The delta two-way time dt(n) is: <img src="gvt_formulas_delta_twt.png" style="vertical-align:bottom" />
+        </li>
+    </ul>
+</span></p>
+
+<p><span lang=EN-US>
+    In case of sea water, an initial delta two-way time of twice the subsidence divided by a velocity of 1500 m/s is used.
+</span></p>
+
+<p><span lang=EN-US>
+    Note that the GVT calculation itself is rather fast, and while a progress bar is used, it may not be visible. Once the dialog disappears, check the Data storage tree for the output pointset.
+</span></p>
+<!--
+The output .vt files will be directed to the output directory specified
+in the 'GVT Output' section of the settings menu. </span></p>
+-->
+
+<p style='text-autospace:none'><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

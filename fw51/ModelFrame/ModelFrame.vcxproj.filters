@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Factory\IModelObjectFactory.cpp" />
+    <ClCompile Include="include\moc_DocumentBase.cpp" />
+    <ClCompile Include="include\moc_IModelFile.cpp" />
+    <ClCompile Include="include\moc_IModelFileItem.cpp" />
+    <ClCompile Include="include\moc_IModelObject.cpp" />
+    <ClCompile Include="include\moc_ModelOperation.cpp" />
+    <ClCompile Include="include\moc_ModelOperationStack.cpp" />
+    <ClCompile Include="include\moc_Operation.cpp" />
+    <ClCompile Include="Base\BufferUndo.cpp" />
+    <ClCompile Include="Base\ColorUndo.cpp" />
+    <ClCompile Include="Base\CompositeUndo.cpp" />
+    <ClCompile Include="Base\CreateUndo.cpp" />
+    <ClCompile Include="Base\DestroyUndo.cpp" />
+    <ClCompile Include="Base\DocumentBase.cpp" />
+    <ClCompile Include="Base\IModelFile.cpp" />
+    <ClCompile Include="Base\IModelFileItem.cpp" />
+    <ClCompile Include="Base\IModelObject.cpp" />
+    <ClCompile Include="Base\LocalUndo.cpp" />
+    <ClCompile Include="Base\ModelLocation.cpp" />
+    <ClCompile Include="Base\ModelMessage.cpp" />
+    <ClCompile Include="Base\ModelOperation.cpp" />
+    <ClCompile Include="Base\ModelOperationStack.cpp" />
+    <ClCompile Include="Base\Operation.cpp" />
+    <ClCompile Include="Base\QtDataStream.cpp" />
+    <ClCompile Include="Base\ReferenceUndo.cpp" />
+    <ClCompile Include="Base\SimpleUndo.cpp" />
+    <ClCompile Include="Base\StreamVersion.cpp" />
+    <ClCompile Include="Base\TextUndo.cpp" />
+    <ClCompile Include="Base\UndoOperation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BufferUndo.h" />
+    <ClInclude Include="include\ColorUndo.h" />
+    <ClInclude Include="include\CompositeUndo.h" />
+    <ClInclude Include="include\CreateUndo.h" />
+    <ClInclude Include="include\DestroyUndo.h" />
+    <ClInclude Include="include\FileMessage.h" />
+    <ClInclude Include="include\IModelObjectFactory.h" />
+    <ClInclude Include="include\IModelStream.h" />
+    <ClInclude Include="include\LocalUndo.h" />
+    <ClInclude Include="include\ModelContainer.h" />
+    <ClInclude Include="include\ModelFrameExports.h" />
+    <ClInclude Include="include\ModelKeyContainer.h" />
+    <ClInclude Include="include\ModelLocation.h" />
+    <ClInclude Include="include\ModelMessage.h" />
+    <ClInclude Include="include\ModelObjectFactoryExports.h" />
+    <ClInclude Include="include\QtDataStream.h" />
+    <ClInclude Include="include\ReferenceContainer.h" />
+    <ClInclude Include="include\ReferenceKeyContainer.h" />
+    <ClInclude Include="include\ReferenceUndo.h" />
+    <ClInclude Include="include\SimpleUndo.h" />
+    <ClInclude Include="include\StreamVersion.h" />
+    <ClInclude Include="include\TextUndo.h" />
+    <ClInclude Include="include\UndoOperation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\DocumentBase.h" />
+    <CustomBuild Include="include\IModelFile.h" />
+    <CustomBuild Include="include\IModelFileItem.h" />
+    <CustomBuild Include="include\IModelObject.h" />
+    <CustomBuild Include="include\ModelOperation.h" />
+    <CustomBuild Include="include\ModelOperationStack.h" />
+    <CustomBuild Include="include\Operation.h" />
+  </ItemGroup>
+</Project>

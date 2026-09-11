@@ -1,0 +1,17 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = XMLLib
+OUTPUT_DIRECTORY       = c:/Inetpub/wwwroot/XMLLib
+INPUT                  = ..
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+TAGFILES              += 
+GENERATE_TAGFILE       = XMLLib.tag

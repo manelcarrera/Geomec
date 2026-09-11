@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary conditions</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="applied stress change">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="prescribed displacements">
+</OBJECT>
+<h1>Specify boundary conditions without using interface elements</h1>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">In a 
+tetrahedron model it is possible to change boundary conditions manually. </p>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">Before boundary conditions can be specified some prerequisites must have been
+satisfied, see <a href="boundary_general.htm">Boundary conditions</a>.</p>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">Open the tree node &quot;Boundary&quot;, and select its sub node
+&quot;Boundary Conditions&quot;. The model will be drawn in the <a href="../main%20window/drawing_area.htm">Drawing
+area</a>, showing only the separations between bodies at the sides and bottom of
+the model. This splits up the outer surfaces into faces. Each face can be selected
+by left-clicking on it. A selected face is filled in yellow. See Figure.</p>
+<p><img border="0" src="bounda16.JPG" width="580" height="456"></p>
+<p>To change the supports, select the face for which you want to specify the boundary conditions, and
+right-click on it. A context sensitive menu containing the option
+&quot;Attributes&quot; appears. Select the option, and the <a href="boundary_face_attributes_dialog.htm">Boundary
+Face Attributes dialog</a> appears. Unless the option &quot;Apply to all outer faces&quot; is specified in the
+dialog, this process must be repeated for each face.</p>
+
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">
+<span style="color:black">The user can set 
+<a href="boundary_tensor_specification.htm">stress boundary conditions</a> and 
+<a href="boundary_prescribed_displacements.htm">deformation boundary 
+conditions</a>, that depend on the chosen support directions. Remember that you can 
+not prescribe a deformation AND a stress at the same time. (This is only 
+possible when there are <a href="boundary_conditions_with_interfaces.htm">
+interface elements on the boundary</a>). A supported direction 
+can hence have a displacement (not a stress) and an unsupported direction can 
+have a stress (and not a deformation)</span></p>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">
+<span style="color:black">Prescribed stress tensors, strain tensors and 
+deformation vectors will be decomposed in the orientation of the Faces, where 
+only the valid components will be applied as boundary conditions.</span></p>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">&nbsp;</p>
+<p class="MsoNormal" style="text-autospace: none; margin: 5.0pt 0in">&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+
+</body>
+
+</html>

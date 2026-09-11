@@ -1,0 +1,6 @@
+dia_add_sources(
+  tet_body.c         tet_bodyset.c      tet_edge.c         tet_femgv.c        
+  tet_graph.c        tet_mesh.c         tet_meshtriangle.c tet_point.c        
+  tet_surface.c      tet_surfaceset.c   tet_tetrahedron.c  tet_triangle.c     
+  tet_utils.c        tet_xpoint.c                                             
+)

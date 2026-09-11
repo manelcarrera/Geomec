@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\CreateRGInterfaceTests.cpp" />
+    <ClCompile Include="src\TestRGInterface.0.cpp" />
+    <ClCompile Include="src\TestRGInterface.1.cpp" />
+    <ClCompile Include="src\TestRGInterface.2.cpp" />
+    <ClCompile Include="src\TestRGInterface.3.cpp" />
+    <ClCompile Include="src\TestRGInterface.4.cpp" />
+    <ClCompile Include="src\TestRGInterface.5.cpp" />
+    <ClCompile Include="src\TestRGInterface.6.cpp" />
+    <ClCompile Include="src\TestRGInterface.7.cpp" />
+    <ClCompile Include="src\TestRGInterface.8.cpp" />
+    <ClCompile Include="src\TestRGInterface.9.cpp" />
+    <ClCompile Include="src\TestRGInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\TestRGInterface.0.h" />
+    <ClInclude Include="h\TestRGInterface.1.h" />
+    <ClInclude Include="h\TestRGInterface.2.h" />
+    <ClInclude Include="h\TestRGInterface.3.h" />
+    <ClInclude Include="h\TestRGInterface.4.h" />
+    <ClInclude Include="h\TestRGInterface.5.h" />
+    <ClInclude Include="h\TestRGInterface.6.h" />
+    <ClInclude Include="h\TestRGInterface.7.h" />
+    <ClInclude Include="h\TestRGInterface.8.h" />
+    <ClInclude Include="h\TestRGInterface.9.h" />
+    <ClInclude Include="h\TestRGInterface.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\GMSkuaConnectorExport.h" />
+    <ClInclude Include="h\SKUAParser.h" />
+    <ClInclude Include="h\SKUAIProgressHandler.h" />
+    <ClInclude Include="h\SKUAImport.h" />
+    <ClInclude Include="h\SKUAParseData.h" />
+    <ClInclude Include="h\SKUADefs.h" />
+    <ClInclude Include="h\SKUAIPostProcessor.h" />
+    <ClInclude Include="h\SKUACoordinatePostProcessor.h" />
+    <ClInclude Include="h\SKUASolidPostProcessor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SKUAParser.cpp" />
+    <ClCompile Include="src\SKUAImport.cpp" />
+    <ClCompile Include="src\SKUAParseData.cpp" />
+    <ClCompile Include="src\SKUACoordinatePostProcessor.cpp" />
+    <ClCompile Include="src\SKUASolidPostProcessor.cpp" />
+  </ItemGroup>
+</Project>

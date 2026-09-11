@@ -1,0 +1,335 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "GeoViewItem"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2BC28E013D"
+    documentation 	"The abstract class CGeoViewItem defines the input tree for CGeoView and CLegendView. A CGeoViewItem object can be saved in filos."
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CGeoViewDefinition"
+	    quid       	"3A2BC2EC0355"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A2BC883000A"
+		    supplier   	"Logical View::Geomec::Document::GeoItems::CGeoItem"
+		    quidu      	"3A2676C502C1"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A2BC8F901C2"
+		    label      	"Has GeoItems"
+		    supplier   	"Logical View::Geomec::Document::GeoItems::CGeoItem"
+		    quidu      	"3A2676C502C1"
+		    exportControl 	"Implementation"
+		    client_cardinality 	(value cardinality "0..n")))
+	    language   	"VC++")
+	(object Class "CGeoLineView"
+	    quid       	"3A2BC300005B"
+	    documentation 	"The graph view on the model"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A2BC377014C"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoViewDefinition"
+		    quidu      	"3A2BC2EC0355"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A3F59DE00B6"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::Viewable items::CLineViewItem"
+		    quidu      	"3A3F59600119"
+		    supplier_cardinality 	(value cardinality "0..n")))
+	    language   	"VC++")
+	(object Class "CGeoBirdEyeView"
+	    quid       	"3A2BC38100F7"
+	    documentation 	"The bird-eye view on a model"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A2BC3A400D9"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoViewDefinition"
+		    quidu      	"3A2BC2EC0355"))
+	    language   	"VC++")
+	(object Class "CGeoPlanarView"
+	    quid       	"3A2BC8B30153"
+	    documentation 	"The planar view on a model"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A2BC8DE023B"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoViewDefinition"
+		    quidu      	"3A2BC2EC0355"))
+	    language   	"VC++")
+	(object Class "CGeoCrossSection"
+	    quid       	"3A3F58A000AF"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A3F58B401B2"
+		    supplier   	"Logical View::Geomec::Document::GeoItems::CViewableGraphItem"
+		    quidu      	"3A3F5749023C"))
+	    language   	"VC++")
+	(object Class_Category "Viewable items"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"D:\\users\\all\\Geomec 3 Design\\Viewable items.cat"
+	    quid       	"3A3F51CB01A5"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "GeoViewItem inheritance diagram"
+	    quid       	"3A2BC358029C"
+	    title      	"GeoViewItem inheritance diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	1000
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoViewDefinition" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(880, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(767, 821)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	226
+			justify    	0
+			label      	"CGeoViewDefinition")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2BC2EC0355"
+		    width      	244
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoBirdEyeView" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(880, 1392)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(784, 1312)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	208
+			justify    	0
+			label      	"CGeoBirdEyeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2BC38100F7"
+		    width      	226
+		    height     	176
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @3
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2BC3A400D9"
+		    client     	@2
+		    supplier   	@1
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoLineView" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1440, 1392)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1291, 1340)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	298
+			justify    	0
+			label      	"CGeoLineView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2BC300005B"
+		    width      	316
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @5
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2BC377014C"
+		    client     	@4
+		    supplier   	@1
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoItems::CGeoItem" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(880, 240)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(736, 160)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"CGeoItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2676C502C1"
+		    width      	312
+		    height     	184
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @7
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2BC883000A"
+		    client     	@1
+		    supplier   	@6
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoPlanarView" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(304, 1376)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(208, 1296)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	196
+			justify    	0
+			label      	"CGeoPlanarView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2BC8B30153"
+		    width      	214
+		    height     	176
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @9
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2BC8DE023B"
+		    client     	@8
+		    supplier   	@1
+		    line_style 	0)
+		(object NoteView @10
+		    location   	(1776, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1488, 816)
+			fill_color 	13434879
+			nlines     	3
+			max_width  	552
+			label      	
+|Composite:
+|The CGeoViewItem collects CGeoItems.
+			)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	612
+		    height     	187)
+		(object AttachView "" @11
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@1
+		    supplier   	@10
+		    line_style 	0)))))

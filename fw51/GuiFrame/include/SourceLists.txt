@@ -1,0 +1,3 @@
+dia_add_sources(
+  ISelectionContext.h ModelFileObs.h ModelObjectObserver.h
+)

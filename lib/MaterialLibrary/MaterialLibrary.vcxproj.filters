@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\mlMaterial.cpp" />
+    <ClCompile Include="src\mlMaterialLibrary.cpp" />
+    <ClCompile Include="src\mlMatParam.cpp" />
+    <ClCompile Include="src\mlMatParamDomain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\mlMaterial.h" />
+    <ClInclude Include="h\mlMaterialLibrary.h" />
+    <ClInclude Include="h\mlMatParam.h" />
+    <ClInclude Include="h\mlMatParamDomain.h" />
+  </ItemGroup>
+</Project>

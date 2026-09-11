@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+<?define CoraSourceDir="$(var.3rdPartyRoot)\CORA1" ?>
+<?define CoraTargetDir="CORA" ?>
+<?define CORAName="CORA" ?>
+<?define CoraSheet="$(var.CoraSourceDir)\Cora 1.6.0.1.xlsm" ?>
+
+</Include>

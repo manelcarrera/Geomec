@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BE554A53-3201-496E-912B-FD63C8962B90}</ProjectGuid>
+    <RootNamespace>Geometry</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>FW51-Geometry</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(FW-GEOMETRY);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(FW-GEOMETRY);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(FW-GEOMETRY);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BlockMesh.h" />
+    <ClInclude Include="include\BodyGroup.h" />
+    <ClInclude Include="include\BodyLine.h" />
+    <ClInclude Include="include\BodyQuadrilateral.h" />
+    <ClInclude Include="include\BodyTriangle.h" />
+    <ClInclude Include="include\BoundingBox.h" />
+    <ClInclude Include="include\Box.h" />
+    <ClInclude Include="include\BucketKernel.h" />
+    <ClInclude Include="include\CacheInterfaceDefault.h" />
+    <ClInclude Include="include\Circle.h" />
+    <ClInclude Include="include\Connect.h" />
+    <ClInclude Include="include\Conus.h" />
+    <ClInclude Include="include\ConvexHull.h" />
+    <ClInclude Include="include\ConvexHullImpl.h" />
+    <ClInclude Include="include\ConvexHull_2D.h" />
+    <ClInclude Include="include\CoordinateMap.h" />
+    <ClInclude Include="include\CoordinateSet.h" />
+    <ClInclude Include="include\CylindricHull.h" />
+    <ClInclude Include="include\DispatchVisitorBase.h" />
+    <ClInclude Include="include\ElementCacheObject.h" />
+    <ClInclude Include="include\ElementGroup.h" />
+    <ClInclude Include="include\ElementPoint.h" />
+    <ClInclude Include="include\EmbeddedTriangle.h" />
+    <ClInclude Include="include\FaceGroup.h" />
+    <ClInclude Include="include\Geometry.h" />
+    <ClInclude Include="include\GeometryExports.h" />
+    <ClInclude Include="include\GeoStream.h" />
+    <ClInclude Include="include\Hexahedron.h" />
+    <ClInclude Include="include\IBody.h" />
+    <ClInclude Include="include\IBodyFace.h" />
+    <ClInclude Include="include\IBox.h" />
+    <ClInclude Include="include\ICacheInterface.h" />
+    <ClInclude Include="include\ICircle.h" />
+    <ClInclude Include="include\IConus.h" />
+    <ClInclude Include="include\ICoordinate.h" />
+    <ClInclude Include="include\IElement.h" />
+    <ClInclude Include="include\IElementSet.h" />
+    <ClInclude Include="include\IFace.h" />
+    <ClInclude Include="include\IHexahedron.h" />
+    <ClInclude Include="include\IInterfaceElement.h" />
+    <ClInclude Include="include\ILine.h" />
+    <ClInclude Include="include\IMatrix.h" />
+    <ClInclude Include="include\IMesh.h" />
+    <ClInclude Include="include\IMesh3D.h" />
+    <ClInclude Include="include\INode.h" />
+    <ClInclude Include="include\InterfaceElement.h" />
+    <ClInclude Include="include\InterfaceElementPart.h" />
+    <ClInclude Include="include\InterfaceElementTempl.h" />
+    <ClInclude Include="include\IObject.h" />
+    <ClInclude Include="include\IParallelInitializationCallback.h" />
+    <ClInclude Include="include\IPlane.h" />
+    <ClInclude Include="include\IPoint.h" />
+    <ClInclude Include="include\IPointElement.h" />
+    <ClInclude Include="include\IPolygon.h" />
+    <ClInclude Include="include\IPolyLine.h" />
+    <ClInclude Include="include\IQuadrilateral.h" />
+    <ClInclude Include="include\IRectangle.h" />
+    <ClInclude Include="include\ISphere.h" />
+    <ClInclude Include="include\ISpline.h" />
+    <ClInclude Include="include\ISupport.h" />
+    <ClInclude Include="include\ISurface.h" />
+    <ClInclude Include="include\ITetrahedron.h" />
+    <ClInclude Include="include\ITriangle.h" />
+    <ClInclude Include="include\IValue.h" />
+    <ClInclude Include="include\IValueSet.h" />
+    <ClInclude Include="include\IValueSetTemplate.h" />
+    <ClInclude Include="include\IVector.h" />
+    <ClInclude Include="include\IVolume.h" />
+    <ClInclude Include="include\IWedge.h" />
+    <ClInclude Include="include\Line.h" />
+    <ClInclude Include="include\LineInterface.h" />
+    <ClInclude Include="include\Loki.h" />
+    <ClInclude Include="include\Matrix.h" />
+    <ClInclude Include="include\Mesh.h" />
+    <ClInclude Include="include\MeshNodeGroup.h" />
+    <ClInclude Include="include\MeshTriangle.h" />
+    <ClInclude Include="include\NearestNeighbour.h" />
+    <ClInclude Include="include\Node.h" />
+    <ClInclude Include="include\ObjectDispatcher.h" />
+    <ClInclude Include="include\Octree.h" />
+    <ClInclude Include="include\OrthogonalBase.h" />
+    <ClInclude Include="include\PhMatrix.h" />
+    <ClInclude Include="include\PhPolyhedron.h" />
+    <ClInclude Include="include\PhPolyLib.h" />
+    <ClInclude Include="include\PhPolyParam.h" />
+    <ClInclude Include="include\PhTypes.h" />
+    <ClInclude Include="include\PhVector.h" />
+    <ClInclude Include="include\Plane.h" />
+    <ClInclude Include="include\Point.h" />
+    <ClInclude Include="include\Polygon.h" />
+    <ClInclude Include="include\PolyLine.h" />
+    <ClInclude Include="include\PolyLineGroup.h" />
+    <ClInclude Include="include\ProgressScaler.h" />
+    <ClInclude Include="include\Rectangle.h" />
+    <ClInclude Include="include\RegisterVolume.h" />
+    <ClInclude Include="include\RingFactory.h" />
+    <ClInclude Include="include\Sphere.h" />
+    <ClInclude Include="include\SpringLineElement.h" />
+    <ClInclude Include="include\Surface.h" />
+    <ClInclude Include="include\Tetrahedron.h" />
+    <ClInclude Include="include\TiedBodyTriangle.h" />
+    <ClInclude Include="include\TiedPointBodyTriangle.h" />
+    <ClInclude Include="include\Triangle.h" />
+    <ClInclude Include="include\TriSurface.h" />
+    <ClInclude Include="include\Tying.h" />
+    <ClInclude Include="include\Value.h" />
+    <ClInclude Include="include\ValueSet.h" />
+    <ClInclude Include="include\Vector.h" />
+    <ClInclude Include="include\VectorTempl.h" />
+    <ClInclude Include="include\Volume.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Base\BoundingBox.cpp" />
+    <ClCompile Include="Base\Circle.cpp" />
+    <ClCompile Include="Base\Conus.cpp" />
+    <ClCompile Include="Base\DirectedSegment.cpp" />
+    <ClCompile Include="Base\ICircle.cpp" />
+    <ClCompile Include="Base\IConus.cpp" />
+    <ClCompile Include="Base\IElementSet.cpp" />
+    <ClCompile Include="Base\ILine.cpp" />
+    <ClCompile Include="Base\IObject.cpp" />
+    <ClCompile Include="Base\IParallelInitializationCallback.cpp" />
+    <ClCompile Include="Base\IPolyLine.cpp" />
+    <ClCompile Include="Base\ISphere.cpp" />
+    <ClCompile Include="Base\IValue.cpp" />
+    <ClCompile Include="Base\IValueSet.cpp" />
+    <ClCompile Include="Base\Line.cpp" />
+    <ClCompile Include="Base\OrthogonalBase.cpp" />
+    <ClCompile Include="Base\PolyLine.cpp" />
+    <ClCompile Include="Base\ProgressScaler.cpp" />
+    <ClCompile Include="Base\RingFactory.cpp" />
+    <ClCompile Include="Base\RingPolygon.cpp" />
+    <ClCompile Include="Base\Sphere.cpp" />
+    <ClCompile Include="Base\Value.cpp" />
+    <ClCompile Include="Base\ValueSet.cpp" />
+    <ClCompile Include="Base\VectorTempl.cpp" />
+    <ClCompile Include="Coordinate\ElementPoint.cpp" />
+    <ClCompile Include="Coordinate\ICoordinate.cpp" />
+    <ClCompile Include="Coordinate\IPoint.cpp" />
+    <ClCompile Include="Coordinate\IVector.cpp" />
+    <ClCompile Include="Coordinate\Point.cpp" />
+    <ClCompile Include="Coordinate\Vector.cpp" />
+    <ClCompile Include="Dispatch\DispatchVisitorBase.cpp" />
+    <ClCompile Include="Dispatch\ObjectDispatcher.cpp" />
+    <ClCompile Include="Element\BodyLine.cpp" />
+    <ClCompile Include="Element\BodyQuadrilateral.cpp" />
+    <ClCompile Include="Element\BodyTriangle.cpp" />
+    <ClCompile Include="Element\Box.cpp" />
+    <ClCompile Include="Element\Connect.cpp" />
+    <ClCompile Include="Element\ConvexHull.cpp" />
+    <ClCompile Include="Element\ConvexHullImpl.cpp" />
+    <ClCompile Include="Element\ConvexHull_2D.cpp" />
+    <ClCompile Include="Element\CylindricHull.cpp" />
+    <ClCompile Include="Element\EmbeddedTriangle.cpp" />
+    <ClCompile Include="Element\Hexahedron.cpp" />
+    <ClCompile Include="Element\IBody.cpp" />
+    <ClCompile Include="Element\IBodyFace.cpp" />
+    <ClCompile Include="Element\IBox.cpp" />
+    <ClCompile Include="Element\IElement.cpp" />
+    <ClCompile Include="Element\IFace.cpp" />
+    <ClCompile Include="Element\IHexahedron.cpp" />
+    <ClCompile Include="Element\IPointElement.cpp" />
+    <ClCompile Include="Element\IPolygon.cpp" />
+    <ClCompile Include="Element\IQuadrilateral.cpp" />
+    <ClCompile Include="Element\IRectangle.cpp" />
+    <ClCompile Include="Element\ISpline.cpp" />
+    <ClCompile Include="Element\ITetrahedron.cpp" />
+    <ClCompile Include="Element\ITriangle.cpp" />
+    <ClCompile Include="Element\IWedge.cpp" />
+    <ClCompile Include="Element\LineInterface.cpp" />
+    <ClCompile Include="Element\LinkedLine.cpp" />
+    <ClCompile Include="Element\Polygon.cpp" />
+    <ClCompile Include="Element\Polygon0.c" />
+    <ClCompile Include="Element\Polygon1.c" />
+    <ClCompile Include="Element\Rectangle.cpp" />
+    <ClCompile Include="Element\Tetrahedron.cpp" />
+    <ClCompile Include="Element\TiedBodyTriangle.cpp" />
+    <ClCompile Include="Element\TiedPointBodyTriangle.cpp" />
+    <ClCompile Include="Element\Triangle.cpp" />
+    <ClCompile Include="Element\VectMatr.c" />
+    <ClCompile Include="Matrix\IMatrix.cpp" />
+    <ClCompile Include="Matrix\Matrix.cpp" />
+    <ClCompile Include="Mesh\BlockMesh.cpp" />
+    <ClCompile Include="Mesh\BodyGroup.cpp" />
+    <ClCompile Include="Mesh\ElementGroup.cpp" />
+    <ClCompile Include="Mesh\FaceGroup.cpp" />
+    <ClCompile Include="Mesh\IMesh.cpp" />
+    <ClCompile Include="Mesh\IMesh3D.cpp" />
+    <ClCompile Include="Mesh\INode.cpp" />
+    <ClCompile Include="Mesh\InterfaceElement.cpp" />
+    <ClCompile Include="Mesh\ISupport.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="Mesh\MeshNodeGroup.cpp" />
+    <ClCompile Include="Mesh\MeshTriangle.cpp" />
+    <ClCompile Include="Mesh\Node.cpp" />
+    <ClCompile Include="Mesh\PolyLineGroup.cpp" />
+    <ClCompile Include="Mesh\SpringLineElement.cpp" />
+    <ClCompile Include="Mesh\Tying.cpp" />
+    <ClCompile Include="NearestNeighbour\NearestNeighbour.cpp" />
+    <ClCompile Include="Polyhedron\PhMatrix.c" />
+    <ClCompile Include="Polyhedron\PhPolyhedron.c" />
+    <ClCompile Include="Polyhedron\PhPolyParam.c" />
+    <ClCompile Include="Polyhedron\PhVector.c" />
+    <ClCompile Include="Surface\IPlane.cpp" />
+    <ClCompile Include="Surface\ISurface.cpp" />
+    <ClCompile Include="Surface\Plane.cpp" />
+    <ClCompile Include="Surface\Surface.cpp" />
+    <ClCompile Include="Surface\TriSurface.cpp" />
+    <ClCompile Include="Volume\IVolume.cpp" />
+    <ClCompile Include="Volume\RegisterVolume.cpp" />
+    <ClCompile Include="Element\ElementCacheObject.cpp" />
+    <ClCompile Include="Volume\Volume.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

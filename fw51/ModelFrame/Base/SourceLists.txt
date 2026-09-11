@@ -1,0 +1,9 @@
+dia_add_sources(
+  BufferUndo.cpp          ColorUndo.cpp           CompositeUndo.cpp       
+  CreateUndo.cpp          DestroyUndo.cpp         DocumentBase.cpp        
+  IModelFile.cpp          IModelFileItem.cpp      IModelObject.cpp        
+  LocalUndo.cpp           ModelLocation.cpp       ModelOperation.cpp      
+  ModelOperationStack.cpp Operation.cpp           QtDataStream.cpp        
+  ReferenceUndo.cpp       SimpleUndo.cpp          StreamVersion.cpp       
+  TextUndo.cpp            UndoOperation.cpp       ModelMessage.cpp
+)

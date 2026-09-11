@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <OIVARCH_PREFIX>arch-Windows-x86_64-msvc14-</OIVARCH_PREFIX>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="DIAROOT">
+      <Value>$(DIAROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OIVHOME">
+      <Value>$(OIVHOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OIVARCH_PREFIX">
+      <Value>$(OIVARCH_PREFIX)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QTDIR">
+      <Value>$(QTDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QWTDIR">
+      <Value>$(QWTDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="INTEL">
+      <Value>$(INTEL)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_DIR">
+      <Value>$(BOOST_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

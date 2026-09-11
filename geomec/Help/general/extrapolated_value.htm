@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Extrapolated value</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="element to element mapping">
+	<param name="Keyword" value="elementset">
+	<param name="Keyword" value="mapping">
+	<param name="Keyword" value="nearest neighbour">
+	<param name="Keyword" value="pointset">
+</OBJECT>
+<h1><span style="mso-ansi-language:EN-GB">Extrapolated value<o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Extrapolated values
+are values assigned outside a set of <a href="Distributed_value.htm">distributed values</a>. In this 
+situation the
+<a href="../datastorage/pointset.htm"> point</a>- or <a href="../datastorage/element_pointset.htm"> elementset</a> does not enclose the whole object
+(e.g. formation) to which the distributed value is attached:<o:p>
+</o:p>
+</span><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The extrapolation 
+method depends on whether the distributed values are created with a <span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; background-position: 0%">point-
+</span>or an <span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; background-position: 0%">elementset</span>. <o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The
+‘nearest neighbour’ method is used for extrapolation of values. To all
+points outside the defined set the value of the point nearest to it contained by
+the defined set will be assigned (see figure).</span></p>
+<p class="MsoNormal">&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<img border="0" src="extrap3.gif" width="256" height="200"></p>
+<p class="MsoNormal">The blue spots contain the values. The red spot is not
+enclosed by the blue spots, so it uses its 'nearest neighbour' to obtain a value.
+The value of the blue spot pointed to by the black arrow will be used for the red
+spot.</p>
+
+</body>
+
+</html>

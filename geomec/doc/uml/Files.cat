@@ -1,0 +1,662 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Files"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07EDCB0162"
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"3A2291D70390"
+	    supplier   	"Logical View::Filos"
+	    quidu      	"3A2291CA02A1"))
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CGeoFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504C00DC"
+	    documentation 	
+|The GeoFile class represents an ASCII file loaded with one 
+|or more formats.
+	    
+	    operations 	(list Operations
+		(object Operation "GetFormat"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0188"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A71504C0189"
+			    type       	"const int"
+			    const      	TRUE))
+		    result     	"CGeoFileSection*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFormatCount"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0197"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "StoreFilePosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0198"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RestoreFilePosition"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0199"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetOutputStream"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01A7"
+		    result     	"std::ofstream&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInputStream"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01A8"
+		    result     	"std::ifstream&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadWriteFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01A9"
+		    parameters 	(list Parameters
+			(object Parameter "pProgress"
+			    quid       	"3A71504C01AA"
+			    type       	"CWnd*"
+			    initv      	"0"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFileName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01B7"
+		    stereotype 	"const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "CGeoFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01B9"
+		    documentation 	" External interface"
+		    parameters 	(list Parameters
+			(object Parameter "section"
+			    quid       	"3A71504C01C6"
+			    type       	"CGeoFileSection&")
+			(object Parameter "strPathName"
+			    quid       	"3A71504C01C7"
+			    type       	"CString&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01D6"
+		    parameters 	(list Parameters
+			(object Parameter "strPathName"
+			    quid       	"3A71504C01D7"
+			    type       	"CString&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddFileFormat"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01D8"
+		    parameters 	(list Parameters
+			(object Parameter "section"
+			    quid       	"3A71504C01D9"
+			    type       	"CGeoFileSection&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01E6"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateReadProgress"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01E8"
+		    documentation 	" Internal interface for file sections"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteTaskDone"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C01E9"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsEndOfLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0161"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FileError"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0162"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FormatError"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0172"
+		    stereotype 	"virtual, const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Canceled"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0174"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCurrentFormat"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0181"
+		    stereotype 	"const"
+		    result     	"CGeoFileSection*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EatWhite"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0183"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsDelimiter"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A0190"
+		    parameters 	(list Parameters
+			(object Parameter "ch"
+			    quid       	"3A90DD9A0191"
+			    type       	"char"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9A01A0"
+		    stereotype 	"const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_strPath"
+		    quid       	"3A71504C00EC"
+		    type       	"CString"
+		    quidu      	"3A07D0C70338")
+		(object ClassAttribute "m_bCanceled"
+		    quid       	"3A90DD9A00D5"
+		    documentation 	" Status"
+		    type       	"bool")
+		(object ClassAttribute "m_bFormatError"
+		    quid       	"3A90DD9A00E4"
+		    type       	"bool")
+		(object ClassAttribute "m_bFileError"
+		    quid       	"3A90DD9A00F4"
+		    type       	"bool")
+		(object ClassAttribute "m_nTotalWriteTask"
+		    quid       	"3A90DD9A0132"
+		    documentation 	" Progress Window"
+		    type       	"int")
+		(object ClassAttribute "m_nWriteTaskDone"
+		    quid       	"3A90DD9A0142"
+		    type       	"int"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoFileSection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504B039B"
+	    operations 	(list Operations
+		(object Operation "ReadLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0020"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504C0021"
+			    type       	"CGeoFile&"))
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "CGeoFileSection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0022"
+		    documentation 	" Construction"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoFileSection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0030"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteTasks"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0032"
+		    documentation 	" Overrides"
+		    stereotype 	"abstract, const"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0035"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504C0041"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnParse"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0042"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504C0044"
+			    type       	"CGeoFile&")
+			(object Parameter "strKeyWord"
+			    quid       	"3A71504C0045"
+			    type       	"const CString"
+			    const      	TRUE)
+			(object Parameter "strLine"
+			    quid       	"3A71504C0046"
+			    type       	"const CString"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C004F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504C0051"
+			    type       	"CGeoFile&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddSubSection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0052"
+		    documentation 	" File subsections"
+		    parameters 	(list Parameters
+			(object Parameter "strKeyWord"
+			    quid       	"3A71504C0053"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "section"
+			    quid       	"3A71504C0054"
+			    type       	"CGeoFileSection&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddSubSection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C005F"
+		    parameters 	(list Parameters
+			(object Parameter "strKeyWord"
+			    quid       	"3A71504C0060"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "AddCommentTag"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0061"
+		    documentation 	" Comment Handling"
+		    parameters 	(list Parameters
+			(object Parameter "strComment"
+			    quid       	"3A71504C0062"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ParseLines"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0063"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A71504C006F"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD99025D"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A90DD99026C"
+			    type       	"CGeoFile&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnParseComment"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD99027A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A90DD99027C"
+			    type       	"CGeoFile&")
+			(object Parameter "strLine"
+			    quid       	"3A90DD99028A"
+			    type       	"const CString"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnParseFail"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD99029A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "file"
+			    quid       	"3A90DD99029C"
+			    type       	"CGeoFile&")
+			(object Parameter "strLine"
+			    quid       	"3A90DD99029D"
+			    type       	"const CString"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++"
+	    nestedClasses 	(list nestedClasses
+		(object Class "CSubSectionRevIt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef std::map<const CString, CGeoFileSection*>::reverse_iterator CSubSectionRevIt;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A71504C0070"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117")
+		(object Class "CSubSectionIt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	
+|	typedef std::map<const CString, CGeoFileSection*>::const_iterator CSubSectionIt;
+			    )
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DD9902D8"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117")))
+	(object Association "$UNNAMED$0"
+	    quid       	"3A90DD9A0113"
+	    roles      	(list role_list
+		(object Role "m_pCurrentFormat"
+		    quid       	"3A90DD9A0114"
+		    label      	"m_pCurrentFormat"
+		    supplier   	"Logical View::Files::CGeoFileSection"
+		    quidu      	"3A71504B039B"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$1"
+		    quid       	"3A90DD9A0116"
+		    supplier   	"Logical View::Files::CGeoFile"
+		    quidu      	"3A71504C00DC")))
+	(object Class_Category "GoCad Files"
+	    quid       	"3A34EC4103E5"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list)
+	    logical_presentations 	(list unit_reference_list)))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "The File Diagram"
+	    quid       	"3A07EE7E0340"
+	    title      	"The File Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list))))

@@ -1,0 +1,180 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Volume based mapping</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="element to element mapping">
+	<param name="Keyword" value="mapping">
+	<param name="Keyword" value="Voight">
+	<param name="Keyword" value="volume-weighted">
+</OBJECT>
+<h1><a name="_Toc49063294"><span style="mso-bookmark:
+_Toc24265384">Volume based mapping</span></a></h1>
+<p class="Body">The function to be used for the least squares method is called R<sup>2</sup>
+and is defined as follows:</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-14.0pt"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:245.25pt;
+ height:33.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume39.gif" v:shapes="_x0000_i1025" width="327" height="45"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1122805465">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">u<sub>1</sub> through u<sub>m</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">are the desired nodal values of the target element<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">v<sub>i</sub><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">is the input
+      value i (from the source mesh)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">L<sub>1</sub> through L<sub>m</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">are the shape function values of the target element for
+      input value i<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="102" valign="top" style="width:76.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">w<sub>i</sub><o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="466" valign="top" style="width:349.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="Body">is the weight factor for input value i, the volume
+      fraction of the source element within the target element<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+</table>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="Body">The derivatives of this function to all desired values (u<sub>1</sub>
+through u<sub>m</sub>) are set to zero.</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:246pt;height:36pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume40.gif" v:shapes="_x0000_i1026" width="328" height="48"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1026"
+  DrawAspect="Content" ObjectID="_1122805466">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:246.75pt;height:36pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image005.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume41.gif" v:shapes="_x0000_i1027" width="329" height="48"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1027"
+  DrawAspect="Content" ObjectID="_1122805467">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">etc. until<o:p>
+</o:p>
+</span></p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:249pt;height:36pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image007.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume42.gif" v:shapes="_x0000_i1028" width="332" height="48"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1028"
+  DrawAspect="Content" ObjectID="_1122805468">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">This gives us in matrix notation</p>
+<p class="CaptionVergelijking"><span style="mso-text-raise:-77.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:396pt;height:159.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image009.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume43.gif" v:shapes="_x0000_i1029" width="528" height="213"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1029"
+  DrawAspect="Content" ObjectID="_1122805469">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="Body">from which the vector <span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1030" type="#_x0000_t75" style='width:9.75pt;height:12.75pt'
+ o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/02/clip_image011.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="volume44.gif" v:shapes="_x0000_i1030" width="13" height="17"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1030"
+  DrawAspect="Content" ObjectID="_1122805470">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span>can be derived by inverting the
+matrix.</p>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

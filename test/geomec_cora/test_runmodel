@@ -1,0 +1,90 @@
+#!/bin/sh
+
+# ENVVARS:
+
+#-bash-4.1$ echo $DIASRC
+#/glb/data/geomechanics/software/RHEL/68/diana/share/src
+
+#-bash-4.1$ echo $DIAPATH
+#/glb/data/geomechanics/software/RHEL/68/diana
+
+
+echo "`basename "$0"` : $0 $@"
+
+# $1: debug / release
+# $2: geomec_cora (binary)
+# $3: model (.gm4)
+# $4: model params file
+# $5: model selectedlsfs
+# $6: diana lib
+# $7: diana src
+
+DEBUG_RELEASE=$1
+BINARY=$2
+MODEL=$3
+MODEL_PAR=$4
+MODEL_SEL=$5
+DIANA_LIB=$6
+DIANA_SRC=$7
+
+
+#echo "cd $DEBUG_RELEASE"
+#cd $DEBUG_RELEASE
+
+# MCR: is this needed ? yes, it's needed
+cat geomec.ini.template | perl -pe 's!DIAPATH=diana!DIAPATH="'"$DIANA_LIB/.."'"!g' > geomec.ini
+cat geomec.ini | perl -pe 's!DIASHARE=share!DIASHARE="'"$DIANA_SRC/.."'"!g' > geomec.ini.new
+mv geomec.ini.new geomec.ini
+
+
+ROOT=../..
+USER="$ROOT/UserDLLs"
+
+if [ "$DEBUG_RELEASE" = "debug" ]; then
+	USER_LIB=$USER/$DEBUG_RELEASE
+else
+	USER_LIB=$USER
+fi
+
+#DIANA="$6"
+VERSION="1.3"
+unset DIAPATH
+
+TBBGCC_LIB=$ROOT/lib/tbb/linux/lib/intel64/gcc4.7
+
+#LD_LIBRARY_PATH_=GCC:$QTDIR/lib:$USER_:INTEL:$DIANA:$DIANA/../../hasp:../../lib/tbb/linux/lib/intel64/gcc4.7:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH_=\
+$QTDIR/lib:\
+$USER_LIB:\
+$DIANA_LIB:\
+$DIANA_LIB/../../hasp:\
+$TBBGCC_LIB
+
+#echo LD_LIBRARY_PATH_ : $LD_LIBRARY_PATH_
+
+FILENAME=$(basename $MODEL .gm4)
+
+OUTPUT_FOLDER=test_output
+
+#echo "`basename "$0"` : LD_LIBRARY_PATH=$LD_LIBRARY_PATH_:$LD_LIBRARY_PATH $BINARY $MODEL runmodel $VERSION $MODEL_PAR $MODEL_SEL $OUTPUT_FOLDER/$FILENAME.responseparameterfile $OUTPUT_FOLDER/$FILENAME.summary_result_file minimum_output > $OUTPUT_FOLDER/$FILENAME.run.log 2>&1"
+
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH_:$LD_LIBRARY_PATH \
+./$BINARY \
+$MODEL \
+runmodel \
+$VERSION \
+$MODEL_PAR \
+$MODEL_SEL \
+$OUTPUT_FOLDER/$FILENAME.responseparameterfile \
+$OUTPUT_FOLDER/$FILENAME.summary_result_file \
+minimum_output \
+> $OUTPUT_FOLDER/$FILENAME.run.log 2>&1
+
+if [ $? -eq 0 ]; then
+	echo "TEST SUCCEEDED (runmodel)"
+else
+	echo "TEST FAILED (runmodel)"
+	exit 1
+fi
+
+#cd ..

@@ -1,0 +1,17 @@
+# Doxyfile 1.3.6
+
+@INCLUDE_PATH = $(DIASLIB)
+@INCLUDE = DianaTemplate.dox
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+PROJECT_NAME           = DoubleEditLib
+OUTPUT_DIRECTORY       = c:/Inetpub/wwwroot/DoubleEditLib
+INPUT                  = ..
+
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references   
+#---------------------------------------------------------------------------
+TAGFILES              += 
+GENERATE_TAGFILE       = DoubleEditLib.tag

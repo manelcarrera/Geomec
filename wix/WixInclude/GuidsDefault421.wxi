@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_share_lib="c2694dcf-3d43-4f7e-8b4a-035194ba6df7" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="755962e5-b0af-49ac-8b9b-32fa291655c7" ?>
+  <?define ComponentID_Diana_lib="114d4633-1ce9-4ce8-be72-130c169f619e" ?>
+  <?define ComponentID_Diana_bin="31a5d26c-6123-49a7-8eaf-f5ed2458a501" ?>
+  <?define ComponentID_Diana_bin_Qt="12e76310-415d-4087-b8c7-601c0ec1b7e8" ?>
+  <?define ComponentID_Diana_share_src_ap="d64c0398-abc3-422c-807f-eab41f866a88" ?>
+  <?define ComponentID_Diana_share_src_dc="82b54da1-b765-4006-9921-7abd8406f6d0" ?>
+  <?define ComponentID_Diana_share_src_in="1a5e734b-339e-41a7-be4a-73446df8d5b7" ?>
+  <?define ComponentID_Diana_share_src_lb="89e04d51-33e0-4fbb-b9c5-37bc1adc32ed" ?>
+  <?define ComponentID_Diana_share_src_ls="c08cf94a-81d6-4fba-8b35-4b6259c076fe" ?>
+  <?define ComponentID_Diana_share_src_nl="ca32cf65-2b17-4691-995b-65395ba0dcdd" ?>
+  <?define ComponentID_Diana_share_src_po="6a22b2aa-049b-4bf9-b1d4-33aa76a90936" ?>
+  <?define ComponentID_Diana_share_src_so="5a6a15e1-7450-48fd-bd0b-dec083005b7c" ?>
+  
+  <?define ComponentID_System_Files="614ab9c9-141f-4a7a-961f-2c114360efaa" ?>
+  <?define ComponentID_Math_Kernel_Library="96d974a6-3519-4b00-9f19-636587e29b1f" ?>
+  
+  <?define ProductID="2486de75-d34f-4ede-8f13-b9ef9fe62306" ?>
+  <?define UpgradeCodeID="cc18b018-2523-4fd5-872d-71b90ae8c8c3" ?>
+  
+  <?define ComponentID_Registry_keys="3d62d4c0-2f75-4b19-96be-3849c2b17b1c" ?>
+  
+  <?define ComponentID_Geomec_exe="39ab7915-3547-4994-9bed-8050e6b7669f" ?>
+  
+  <?define ComponentID_EditX_ocx="121e8b8f-7f51-4ab1-a11e-c6004c6d15fb" ?>
+  
+  <?define ComponentID_GVT="865e9a82-49d8-44f1-8437-bd07ed2b592c" ?>
+  
+  <?define ComponentID_Diana_bin_geomec="09f706f4-e362-42f8-9d5b-548f9a21c530" ?>
+  
+  <?define ComponentID_SafeNet_bin_geomec="00653de5-3b01-41e3-864c-1d69487e0ca1" ?>
+  
+  <?define ComponentID_Diana_binseg_ap_geomec="f5c76cb9-d4f0-49b6-b893-f45c1cbf95f6" ?>
+  
+  <?define ComponentID_SVS="950b1113-1ef3-4301-8c03-bb21138e4512" ?>
+  
+  <?define ComponentID_OIVBin="c333da04-4563-48eb-96e9-1ea02df12695" ?>
+  
+</Include>

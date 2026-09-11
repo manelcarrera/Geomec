@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# ENVARS are set with setenv so no need to pass them to teh binary
+# even 'USRLIB' and 'TBBLIB' are Ok as far as script is run from its local folder 
+# 'USRLIB' and 'TBBLIB' path are not local but referenced to ROOT=../../
+
+../../bin/$CONF/geomec_shell "${@:2}" 
+
+exitCode=$?
+
+echo exitCode:$exitCode
+
+if [ $exitCode != 0 ]; then
+	echo warning: any environment var not set
+fi
+
+exit $exitCode

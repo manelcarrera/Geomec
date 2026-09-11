@@ -1,0 +1,17 @@
+Cora;Path cora application;C:\Program Files\GEOMEC 5.4 - SVS\CORA\Binaries
+Cora;Verbose;2
+Cora;NumberOfCores;4
+GeoMec;GEOMEC path;C:\Program Files\GEOMEC 5.4 - SVS
+GEOMEC;SaveAllCoraInput;False
+GEOMEC;SaveAllModelResults;False
+GEOMEC;SaveModelResultsFailedCases;True
+GEOMEC;SaveInputFilesFailedCases;True
+UserModel;UserModel path;C:\Program Files\QuickBlocks 2.2\python.exe
+FIST;FIST path;C:\Program Files\FIST6.6
+FIST;SaveAllCoraInput;False
+FIST;SaveAllModelResults;False
+FIST;SaveModelResultsFailedCases;True
+FIST;SaveInputFilesFailedCases;True
+QuickBlocks;Python path;C:\Program Files\QuickBlocks 2.2\pythonw.exe
+QuickBlocks;QuickBlocks path;C:\Program Files\QuickBlocks 2.2
+QuickBlocks;QBpythonCore;C:\Program Files\QuickBlocks 2.2\python.exe

@@ -1,0 +1,25 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "VC++ Reverse Engineered"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	
+|"$/Geomec3/uml", HYEAAAAA
+	    ))
+    quid       	"3B03B8360206"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "Geometry"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"D:\\users\\all\\Geometry\\UML\\Geometry.cat"
+	    quid       	"3B03B8360208"))
+    logical_presentations 	(list unit_reference_list))

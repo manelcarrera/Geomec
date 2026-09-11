@@ -1,0 +1,32 @@
+-== NEW ==-
+r39930 nlfbeu (2015-02-05 14:16) TP SRMS 21585 Fix bug gm4 files corruption by Geomec
+-== PREVIOUS ==-
+r39417 nlfbeu (2014-12-19 14:10) TP SRMS 18611 Update Rockmech with upscaling and downscaling
+r39272 nlfbeu (2014-12-10 16:04) TP SRMS 18951 Merged from BRA_ROCKMECH_REDESIGN
+r39257 nlfbeu (2014-12-10 05:35) TP SRMS 18954 Update upscaling equations in Rockmech
+r39198 nlfbeu (2014-12-05 13:03) TP SRMS 20570 Publish new RGINterface that includes Total Stress and Strain
+r38826 nlfbeu (2014-11-07 12:08) Small fix for RGinterface crash on release mode reviewed by John S. (introduced in r38774)
+r38774 nlfbeu (2014-11-04 13:19) TP SRMS 19594 Fix coverity issues
+r38443 nlfbeu (2014-09-25 15:17) Change RGInterface version (needed since r38305)
+r38353 nlfbeu (2014-09-12 11:20) TP 18691 Remove warning in RGInterface relative to dll-interface not defined for member of exported classes
+r38305 nlfbeu (2014-09-05 12:18) TP 18593 Remove the RGI files after use and add a SAVE_RGI option to Rockmech
+r37721 nlfbeu (2014-07-02 15:12) TP 17040 Implement downscaling in mecha library
+r37661 nlfbeu (2014-06-26 09:42) TP 17294 Fix RGProperty::fromString in RGInterface
+r37497 nlfbeu (2014-06-11 11:27) Fix for Windows build, introduced in r37492
+r37492 nlfbeu (2014-06-10 14:32) TP16594 Identify last application updating the RGinterface
+r37252 nlfbeu (2014-05-15 09:56) TP16594 Fix bug in RGInterface when using fault
+r37071 nlfbeu (2014-04-24 09:21) TP 15293 Implement poroelasticity upscaling scheme
+r36976 nlfbeu (2014-04-14 10:33) TP 15292 Extend RGInterface with method for flagging and testing normal GEOMEC termination
+r36755 nlrvmf (2014-03-21 11:57) Dynamo build available on RHEL64, Third-party warnings suppressed, GCC builds available for GCC 421, 431, 461, and 482 [some issues on GCC builds, see TECHSPECS/2015/01/Ramon.txt. Firthermore code is made ready for using boost 1.55.0 in future
+r36684 nljstj (2014-03-17 11:04) Fix for GCC 4.6.1 build, included cstddef for size_t, needed since revision 36652
+r36679 nljstj (2014-03-14 18:02) Fix for GCC build, include limits.h for INT_MAX, needed since revision 36624.
+r36659 nljstj (2014-03-12 19:00) Fix for Windows build, needed since revision 36652.
+r36652 nlfbeu (2014-03-12 10:52) TP 15291 	Extend RGInterface with a static function that indicates if a value is expected for a property/element-type combination
+r36624 nlfbeu (2014-03-10 13:52) TP 15289 Expose undefined int/double on RGInterface
+r36578 nlfbeu (2014-03-05 10:40) TP 15007 Avoid exception being thrown in RGInterface when existing data is overwritten
+r36497 nlfbeu (2014-02-27 11:45) Upscale stiffness from RE to Geomec with Backus method
+r36165 nlfbeu (2014-02-04 13:26) TP 13903 Fix RockmechTime and enhance unit testing of librockmech
+r36164 nlfbeu (2014-02-04 13:17) TP 14600 Update stack angles to dip and azimuth angles in Rockmech
+r36163 nlfbeu (2014-02-04 13:12) TP 13477 Activation and clean up obsolete version check in RGInterface
+r35892 nljstj (2014-01-09 15:15) Fox for GCC build, included climits for INT_MAX, needed since revision 35863.
+r35870 nlfbeu (2014-01-08 10:42) Fix for Windows build, add interface export, needed since r35283

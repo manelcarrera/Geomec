@@ -1,0 +1,832 @@
+#include "TestRGInterface.7.h"
+#include "RGInterface.h"
+
+CTestRGInterface7::CTestRGInterface7(const QString& modelName)
+: ITestRGInterface()
+{
+  createTest(modelName);
+}
+
+void CTestRGInterface7::createNodes(RGInterface& rgInterface)
+{
+  rgInterface.addNode(RGNode(50, 25, 60));
+  rgInterface.addNode(RGNode(75, 50, 40));
+  rgInterface.addNode(RGNode(75, 25, 40));
+  rgInterface.addNode(RGNode(75, 50, 60));
+  rgInterface.addNode(RGNode(50, 25, 40));
+  rgInterface.addNode(RGNode(25, 0, 60));
+  rgInterface.addNode(RGNode(50, 0, 80));
+  rgInterface.addNode(RGNode(50, 25, 80));
+  rgInterface.addNode(RGNode(50, 0, 60));
+  rgInterface.addNode(RGNode(25, 0, 80));
+  rgInterface.addNode(RGNode(25, 50, 60));
+  rgInterface.addNode(RGNode(50, 50, 60));
+  rgInterface.addNode(RGNode(25, 25, 60));
+  rgInterface.addNode(RGNode(25, 50, 80));
+  rgInterface.addNode(RGNode(50, 50, 80));
+  rgInterface.addNode(RGNode(50, 75, 80));
+  rgInterface.addNode(RGNode(25, 25, 80));
+  rgInterface.addNode(RGNode(75, 50, 80));
+  rgInterface.addNode(RGNode(0, 25, 80));
+  rgInterface.addNode(RGNode(0, 0, 80));
+  rgInterface.addNode(RGNode(0, 50, 80));
+  rgInterface.addNode(RGNode(0, 25, 60));
+  rgInterface.addNode(RGNode(0, 50, 60));
+  rgInterface.addNode(RGNode(0, 0, 60));
+  rgInterface.addNode(RGNode(25, 75, 60));
+  rgInterface.addNode(RGNode(25, 75, 80));
+  rgInterface.addNode(RGNode(0, 75, 60));
+  rgInterface.addNode(RGNode(0, 50, 40));
+  rgInterface.addNode(RGNode(0, 25, 40));
+  rgInterface.addNode(RGNode(75, 25, 80));
+  rgInterface.addNode(RGNode(75, 0, 80));
+  rgInterface.addNode(RGNode(75, 25, 60));
+  rgInterface.addNode(RGNode(75, 0, 60));
+  rgInterface.addNode(RGNode(62.0600450603, 9.03488964783, 46.8044753075));
+  rgInterface.addNode(RGNode(75, 75, 80));
+  rgInterface.addNode(RGNode(75, 75, 60));
+  rgInterface.addNode(RGNode(75, 75, 40));
+  rgInterface.addNode(RGNode(50, 75, 40));
+  rgInterface.addNode(RGNode(50, 0, 40));
+  rgInterface.addNode(RGNode(0, 75, 40));
+  rgInterface.addNode(RGNode(25, 75, 40));
+  rgInterface.addNode(RGNode(25, 50, 40));
+  rgInterface.addNode(RGNode(25, 25, 40));
+  rgInterface.addNode(RGNode(0, 0, 40));
+  rgInterface.addNode(RGNode(75, 0, 40));
+  rgInterface.addNode(RGNode(50, 75, 60));
+  rgInterface.addNode(RGNode(50, 50, 40));
+  rgInterface.addNode(RGNode(25, 0, 40));
+  rgInterface.addNode(RGNode(0, 75, 80));
+  rgInterface.addNode(RGNode(25, 75, 20));
+  rgInterface.addNode(RGNode(25, 50, 20));
+  rgInterface.addNode(RGNode(50, 50, 20));
+  rgInterface.addNode(RGNode(25, 25, 20));
+  rgInterface.addNode(RGNode(37.4987861522, 37.4987861522, 39.9987861522));
+  rgInterface.addNode(RGNode(50, 75, 20));
+  rgInterface.addNode(RGNode(50, 25, 20));
+  rgInterface.addNode(RGNode(50, 0, 20));
+  rgInterface.addNode(RGNode(25, 0, 20));
+  rgInterface.addNode(RGNode(0, 50, 20));
+  rgInterface.addNode(RGNode(13.0587073602, 62.5517849088, 31.8030109665));
+  rgInterface.addNode(RGNode(0, 75, 20));
+  rgInterface.addNode(RGNode(0, 50, 0));
+  rgInterface.addNode(RGNode(0, 25, 0));
+  rgInterface.addNode(RGNode(0, 0, 0));
+  rgInterface.addNode(RGNode(0, 0, 20));
+  rgInterface.addNode(RGNode(0, 25, 20));
+  rgInterface.addNode(RGNode(75, 25, 20));
+  rgInterface.addNode(RGNode(75, 0, 0));
+  rgInterface.addNode(RGNode(75, 25, 0));
+  rgInterface.addNode(RGNode(50, 0, 0));
+  rgInterface.addNode(RGNode(50, 50, 0));
+  rgInterface.addNode(RGNode(75, 50, 0));
+  rgInterface.addNode(RGNode(75, 75, 0));
+  rgInterface.addNode(RGNode(25, 50, 0));
+  rgInterface.addNode(RGNode(50, 75, 0));
+  rgInterface.addNode(RGNode(25, 75, 0));
+  rgInterface.addNode(RGNode(0, 75, 0));
+  rgInterface.addNode(RGNode(50, 25, 0));
+  rgInterface.addNode(RGNode(25, 25, 0));
+  rgInterface.addNode(RGNode(25, 0, 0));
+  rgInterface.addNode(RGNode(75, 50, 20));
+  rgInterface.addNode(RGNode(75, 75, 20));
+  rgInterface.addNode(RGNode(75, 0, 20));
+}
+
+void CTestRGInterface7::createElements(RGInterface& rgInterface)
+{
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 2, 3, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 2, 3, 5)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (6, 7, 8, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 6, 7, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 13, 14)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 14, 15, 16)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 13, 17, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 6, 8, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 18, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 13, 14, 17)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 14, 17, 19)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 17, 19, 20)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 15, 18, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 21, 22, 23)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 14, 16)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 13, 20, 24)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (23, 25, 26, 27)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 23, 25, 28)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 14, 19, 21)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 13, 23, 29)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 13, 24, 6)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 18, 30, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (30, 31, 7, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 3, 32, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (32, 33, 34, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 32, 34, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 15, 18, 35)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 15, 17, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 36, 37, 38)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (30, 7, 8, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 19, 20, 24)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 13, 17, 20)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 13, 6, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 2, 36, 37)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 2, 36, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (34, 39, 5, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (23, 25, 27, 28)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 23, 28, 29)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 22, 23, 29)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (25, 28, 40, 41)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 29, 42, 43)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 22, 24, 44)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 19, 21, 22)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 22, 29, 44)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (32, 33, 34, 45)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 16, 35, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 35, 36, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 36, 38, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 18, 32, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 28, 29, 42)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 23, 25, 26)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 16, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 14, 23, 26)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (33, 34, 39, 45)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (33, 34, 39, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (25, 28, 41, 42)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 2, 47)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 37, 38, 47)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 29, 43, 44)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 2, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 30, 32, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 34, 39, 45)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 34, 5, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 2, 47, 5)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 3, 34, 5)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 34, 39, 5)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 13, 17, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 19, 22, 24)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 13, 29, 43)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 44, 48, 6)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 24, 44, 6)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 43, 44, 48)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 13, 14, 23)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (14, 21, 23, 26)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 25, 28, 42)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 2, 37, 47)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 16, 25, 26)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 15, 16, 35)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 18, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 18, 35, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (21, 23, 26, 49)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (30, 32, 33, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 30, 8, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 32, 34, 45)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 14, 16, 26)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (13, 14, 21, 23)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 13, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 14, 15, 17)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 16, 25, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 3, 32, 34)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (23, 26, 27, 49)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (30, 31, 33, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 35, 36, 4)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (10, 13, 6, 8)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 18, 30, 32)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (25, 27, 28, 40)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 41, 42, 50)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 38, 42, 47)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 52, 53, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (47, 51, 52, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 47, 51, 52)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 50, 51, 55)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (5, 56, 57, 58)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 53, 54, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (48, 5, 53, 58)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 38, 42, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 25, 42, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 41, 42, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 42, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (25, 41, 42, 46)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 47, 51, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 13, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 12, 42, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (5, 53, 54, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 43, 48, 5)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 42, 43, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (11, 13, 43, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 13, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 13, 43, 48)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (39, 48, 5, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 48, 5, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (47, 5, 54, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 13, 48, 6)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (39, 48, 5, 58)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 12, 47, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 43, 51, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (39, 5, 57, 58)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 42, 50, 51)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 5, 53, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 42, 47, 51)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 47, 5, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (5, 53, 56, 58)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 48, 5, 53)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (38, 51, 52, 55)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 51, 53, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 13, 43, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 48, 6, 9)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (47, 52, 54, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (1, 43, 5, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (12, 42, 47, 54)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 42, 59, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (50, 51, 60, 61)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (40, 59, 60, 61)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 59, 62, 63)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 64, 65, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (67, 68, 69, 70)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 39, 45, 57)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 71, 72, 73)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 53, 63, 74)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 52, 55, 75)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 62, 76, 77)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 56, 67, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (57, 67, 70, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 63, 74, 79)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 58, 78, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 58, 64, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 51, 59, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 53, 63, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 62, 74, 76)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 43, 51, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 42, 59, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 69, 72, 81)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 72, 81, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 71, 74, 79)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 67, 69, 81)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 3, 56, 67)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 37, 47, 52)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (67, 68, 70, 83)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 57, 67, 83)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 71, 78, 79)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 50, 51, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 62, 63, 74)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 73, 75, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 55, 75, 76)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 48, 53, 65)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (29, 43, 65, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (57, 67, 70, 83)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (37, 52, 55, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 45, 57, 83)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (40, 41, 60, 61)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (42, 51, 59, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 55, 75, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (50, 51, 55, 76)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (37, 38, 52, 55)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 41, 42, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (50, 51, 61, 77)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 52, 56, 67)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (37, 38, 47, 52)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 51, 53, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 59, 63, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (67, 69, 70, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (56, 57, 67, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 47, 5, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 5, 56, 57)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 56, 57, 67)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 53, 71, 74)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (48, 53, 58, 65)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 29, 42, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (29, 42, 43, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 58, 64, 65)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 44, 48, 65)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (56, 57, 58, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 59, 60, 61)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (41, 42, 50, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 40, 41, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (28, 40, 59, 60)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (41, 50, 60, 61)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 52, 74, 75)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 3, 5, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (43, 53, 65, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 63, 64, 79)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 56, 58, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 71, 73, 75)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (3, 39, 5, 57)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 61, 62, 77)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 74, 75, 76)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 64, 79, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 69, 72, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 78, 79, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 53, 71, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 47, 52, 56)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 59, 61, 62)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (37, 52, 81, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 37, 52, 81)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (53, 63, 64, 66)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 72, 73, 82)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 67, 69, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (57, 58, 78, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 71, 74, 75)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (50, 51, 76, 77)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (29, 43, 44, 65)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 53, 56, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (57, 70, 78, 80)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (2, 52, 67, 81)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (52, 71, 72, 78)));
+  rgInterface.addElement(RGElement(RGElementType::typeTE12L,
+    ITestRGInterface::createNodes <RGNodeId> (51, 52, 53, 74)));
+}
+
+void CTestRGInterface7::createProperties(RGInterface& rgInterface)
+{
+  std::vector <int> elementFormation;
+
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(1);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(2);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+  elementFormation.push_back(3);
+
+  rgInterface.saveProperty(RGPropertyType::propElementFormation,
+    elementFormation);
+}
+
+namespace
+{
+
+const std::string FORMATION_0 = "Formation0";
+const std::string FORMATION_1 = "Formation1";
+const std::string FORMATION_2 = "Formation2";
+
+} // anonymous namespace
+
+void CTestRGInterface7::createFormationNames(RGInterface& rgInterface)
+{
+  rgInterface.setFormationName(1, FORMATION_0);
+  rgInterface.setFormationName(2, FORMATION_1);
+  rgInterface.setFormationName(3, FORMATION_2);
+}

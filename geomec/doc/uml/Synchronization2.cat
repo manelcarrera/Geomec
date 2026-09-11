@@ -1,0 +1,66 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Synchronization"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C90290"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CMultiLock"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C9029B"
+	    documentation 	"An object of class CMultiLock represents the access-control mechanism used in controlling access to resources in a multithreaded program. To use the synchronization classes CSemaphore, CMutex, CCriticalSection, and CEvent, you can create either a CMultiLock or CSingleLock object to wait on and release the synchronization object. Use CMultiLock when there are multiple objects that you could use at a particular time. Use CSingleLock when you only need to wait on one object at a time."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSingleLock"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxmt.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C902E0"
+	    documentation 	"An object of class CSingleLock represents the access-control mechanism used in controlling access to a resource in a multithreaded program. In order to use the synchronization classes CSemaphore, CMutex, CCriticalSection, and CEvent, you must create either a CSingleLock or CMultiLock object to wait on and release the synchronization object. Use CSingleLock when you only need to wait on one object at a time. Use CMultiLock when there are multiple objects that you could use at a particular time. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

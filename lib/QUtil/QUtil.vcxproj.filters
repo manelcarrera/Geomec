@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\Printer.h" />
+    <ClInclude Include="h\QUtil.h" />
+    <ClInclude Include="h\Registry.h" />
+    <ClInclude Include="h\System.h" />
+    <ClInclude Include="h\Xml.h" />
+    <ClInclude Include="h\Printer_SP.h" />
+    <ClInclude Include="h\Printer_MP.h" />
+    <ClInclude Include="h\IGlobalMessage.h" />
+    <ClInclude Include="h\GlobalMessage.h" />
+    <ClInclude Include="h\Environment.h" />
+    <ClInclude Include="h\GeomecUtils.h" />
+    <ClInclude Include="h\TempPath.h" />
+    <ClInclude Include="h\IPlatform.h" />
+    <ClInclude Include="h\ISettings.h" />
+    <ClInclude Include="h\SettingsFile.h" />
+    <ClInclude Include="h\Settings.h" />
+    <ClInclude Include="h\SettingsIni.h" />
+    <ClInclude Include="h\Events.h" />
+    <ClInclude Include="h\IGI.h" />
+    <ClInclude Include="h\Interprocess_OLD.h" />
+    <ClInclude Include="h\Printer_MP_BOOST.h" />
+    <ClInclude Include="h\Global.h" />
+    <ClInclude Include="h\QuestionThreadWrapper.h" />
+    <ClInclude Include="h\EventsDiana_.h" />
+    <ClInclude Include="h\IExeDianaDlg.h" />
+    <ClInclude Include="h\Events_.h" />
+    <ClInclude Include="h\IProgressBase.h" />
+    <ClInclude Include="h\IProgressFactory.h" />
+    <ClInclude Include="h\ProgressBase.h" />
+    <ClInclude Include="h\ProgressFactory.h" />
+    <ClInclude Include="h\ProgressWrapper.h" />
+    <ClInclude Include="h\Progress_.h" />
+    <ClInclude Include="h\GlobalMessage_GUI.h" />
+    <ClInclude Include="h\ProgressWrapper_Evt.h" />
+    <ClInclude Include="h\ProgressWrapper_Data.h" />
+    <ClInclude Include="h\IRunAnalysis.h" />
+    <ClInclude Include="h\IListener.h" />
+    <ClInclude Include="h\IListenerIpc.h" />
+    <ClInclude Include="h\Wait.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Printer.cpp" />
+    <ClCompile Include="src\QUtil.cpp" />
+    <ClCompile Include="src\Registry.cpp" />
+    <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="src\Xml.cpp" />
+    <ClCompile Include="src\Printer_SP.cpp" />
+    <ClCompile Include="src\Printer_MP.cpp" />
+    <ClCompile Include="src\GlobalMessage.cpp" />
+    <ClCompile Include="src\Environment.cpp" />
+    <ClCompile Include="src\GeomecUtils.cpp" />
+    <ClCompile Include="src\TempPath.cpp" />
+    <ClCompile Include="src\IPlatform.cpp" />
+    <ClCompile Include="src\SettingsFile.cpp" />
+    <ClCompile Include="src\Settings.cpp" />
+    <ClCompile Include="src\SettingsIni.cpp" />
+    <ClCompile Include="src\Events.cpp" />
+    <ClCompile Include="src\ISettings.cpp" />
+    <ClCompile Include="src\Printer_MP_BOOST.cpp" />
+    <ClCompile Include="src\Global.cpp" />
+    <ClCompile Include="src\QuestionThreadWrapper.cpp" />
+    <ClCompile Include="src\IProgressBase.cpp" />
+    <ClCompile Include="src\ProgressBase.cpp" />
+    <ClCompile Include="src\ProgressFactory.cpp" />
+    <ClCompile Include="src\ProgressWrapper.cpp" />
+    <ClCompile Include="src\GlobalMessage_GUI.cpp" />
+    <ClCompile Include="src\ProgressWrapper_Evt.cpp" />
+    <ClCompile Include="src\ProgressDlg_Qt.cpp" />
+    <ClCompile Include="moc\moc_ProgressDlg_Qt.cpp" />
+    <ClCompile Include="src\IRunAnalysis.cpp" />
+    <ClCompile Include="src\IListener.cpp" />
+    <ClCompile Include="src\IListenerIpc.cpp" />
+    <ClCompile Include="src\Wait.cpp" />
+    <ClCompile Include="src\IGlobalMessage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\ProgressDlg_Qt.h" />
+  </ItemGroup>
+</Project>

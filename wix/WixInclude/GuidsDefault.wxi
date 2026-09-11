@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_share_lib="D36C1992-6F4B-47d3-BFE0-3095F7A93087" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="D1463572-6BB7-4b28-B54A-FB6AE053F982" ?>
+  <?define ComponentID_Diana_lib="A4DDE780-A550-4d2e-BB4D-A4B842FBD04F" ?>
+  <?define ComponentID_Diana_bin="BB33E766-8201-4f23-91AB-E13374DBBCD5" ?>
+  <?define ComponentID_Diana_bin_Qt="0BED8BD3-2325-4e7b-B257-3372DB9C4AC5" ?>
+  <?define ComponentID_Diana_share_src_ap="0ED1AF0F-2C3C-4d52-9F58-8709705A066D" ?>
+  <?define ComponentID_Diana_share_src_dc="193D76B6-6668-48b9-9DBE-B75BAEC7DBA5" ?>
+  <?define ComponentID_Diana_share_src_in="C758170A-2C70-4e87-947F-9591B6ABF535" ?>
+  <?define ComponentID_Diana_share_src_lb="DCE09C9B-F255-4459-9A1E-48787CC617B9" ?>
+  <?define ComponentID_Diana_share_src_ls="FDAE399D-AE8E-4a1e-B8BC-D65491490201" ?>
+  <?define ComponentID_Diana_share_src_nl="0DA8C0E9-0007-46f3-9D87-067AF28F0AC4" ?>
+  <?define ComponentID_Diana_share_src_po="A026AF0F-979C-4306-A275-9BE2D369CD82" ?>
+  <?define ComponentID_Diana_share_src_so="3E137ABF-3F3B-4345-B0EE-1DE9A59BC79E" ?>
+  
+  <?define ComponentID_System_Files="630875B7-87FF-4d4a-AEBD-B47AB11B5D36" ?>
+  <?define ComponentID_Math_Kernel_Library="07E233F3-56E1-491f-988B-04640902C0F4" ?>
+  
+  <?define ProductID="0BA8D631-27B0-4a9d-9500-A63B280C687C" ?>
+  <?define UpgradeCodeID="AAC6FEE0-5721-49f6-8AD0-4463800A0ECD" ?>
+  
+  <?define ComponentID_Registry_keys="32A47B99-16C7-4865-9069-2A56D03ADBF6" ?>
+  
+  <?define ComponentID_Geomec_exe="A9926F54-2082-4c55-B141-D342198E0649" ?>
+
+  <?define cid_selector="662462F6-B2B4-48DE-B744-16661EE72920" ?>
+  
+  <?define ComponentID_EditX_ocx="47991FC8-9707-45a4-BF03-1FCF20E3259E" ?>
+  
+  <?define ComponentID_GVT="D221CD02-8A58-4d87-9464-868925A794F7" ?>
+  
+  <?define ComponentID_Diana_bin_geomec="ED0EAA33-F6E3-4e36-9EDE-680562B7E629" ?>
+  
+  <?define ComponentID_SafeNet_bin_geomec="33D89C1B-1B1F-458a-BF4D-3408B5093FE9" ?>
+  
+  <?define ComponentID_Diana_binseg_ap_geomec="70D1E211-3BA8-4798-A2E7-271C564370B7" ?>
+  
+  <?define ComponentID_SVS="34F59AA1-332E-411e-BC10-CB54CA9208A3" ?>
+
+  <!-- TODO: this file is not up to date, some components needs to be added, compare it with 'GuidsDefault570.wxi' -->
+  
+</Include>

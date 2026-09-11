@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="README.TXT" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\qtiocompressor.cpp" />
+    <ClCompile Include="h\moc_qtiocompressor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\qtiocompressor.h" />
+  </ItemGroup>
+</Project>

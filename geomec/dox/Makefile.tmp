@@ -1,0 +1,7 @@
+include $(DIAINCLUDE)/Mkrules.h
+
+Geomec3.tag: FORCE
+	ssexec -p $$/Geomec3 -f .. doxygen Doxyfile
+
+FORCE:
+

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\Acceleration.h" />
+    <ClInclude Include="h\AngleQuantity.h" />
+    <ClInclude Include="h\CDependenciesManager.h" />
+    <ClInclude Include="h\CohesionQuantity.h" />
+    <ClInclude Include="h\CompressibilityQuantity.h" />
+    <ClInclude Include="h\CrackOpeningQuantity.h" />
+    <ClInclude Include="h\CurvatureQuantity.h" />
+    <ClInclude Include="h\DensityQuantity.h" />
+    <ClInclude Include="h\Dependency.h" />
+    <ClInclude Include="h\DoubleSingleQuantity.h" />
+    <ClInclude Include="h\ForceQuantity.h" />
+    <ClInclude Include="h\FractureEnergy.h" />
+    <ClInclude Include="h\GigaSinglePressureQuantity.h" />
+    <ClInclude Include="h\LengthQuantity.h" />
+    <ClInclude Include="h\LossCoefQuantity.h" />
+    <ClInclude Include="h\NoneQuantity.h" />
+    <ClInclude Include="h\PercentageQuantity.h" />
+    <ClInclude Include="h\PressureGradient.h" />
+    <ClInclude Include="h\QuantityInclude.h" />
+    <ClInclude Include="h\SinglePressure.h" />
+    <CustomBuild Include="h\SingleQuantity.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\SingleQuantityTemp.h" />
+    <ClInclude Include="h\SmallLengthQuantity.h" />
+    <ClInclude Include="h\StrainQuantity.h" />
+    <ClInclude Include="h\StressGradientQuantity.h" />
+    <ClInclude Include="h\StressGradOrDensity.h" />
+    <ClInclude Include="h\TemperatureGradientQuantity.h" />
+    <ClInclude Include="h\TemperatureQuantity.h" />
+    <ClInclude Include="h\ThermalConductivity.h" />
+    <ClInclude Include="h\ThermalExpansion.h" />
+    <ClInclude Include="h\TimeDQuantity.h" />
+    <ClInclude Include="h\TimeHQuantity.h" />
+    <ClInclude Include="h\VolumetricHeatQuantity.h" />
+    <ClInclude Include="h\VolumetricSpecificHeat.h" />
+    <ClInclude Include="h\WeightPerUnitLengthQuantity.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="moc\moc_SingleQuantity.cpp" />
+    <ClCompile Include="src\Acceleration.cpp" />
+    <ClCompile Include="src\AngleQuantity.cpp" />
+    <ClCompile Include="src\CDependenciesManager.cpp" />
+    <ClCompile Include="src\CohesionQuantity.cpp" />
+    <ClCompile Include="src\CompressibilityQuantity.cpp" />
+    <ClCompile Include="src\CrackOpeningQuantity.cpp" />
+    <ClCompile Include="src\CurvatureQuantity.cpp" />
+    <ClCompile Include="src\DensityQuantity.cpp" />
+    <ClCompile Include="src\Dependency.cpp" />
+    <ClCompile Include="src\ForceQuantity.cpp" />
+    <ClCompile Include="src\FractureEnergy.cpp" />
+    <ClCompile Include="src\GigaSinglePressureQuantity.cpp" />
+    <ClCompile Include="src\LengthQuantity.cpp" />
+    <ClCompile Include="src\LossCoefQuantity.cpp" />
+    <ClCompile Include="src\NoneQuantity.cpp" />
+    <ClCompile Include="src\PercentageQuantity.cpp" />
+    <ClCompile Include="src\PressureGradient.cpp" />
+    <ClCompile Include="src\SinglePressure.cpp" />
+    <ClCompile Include="src\SingleQuantity.cpp" />
+    <ClCompile Include="src\SmallLengthQuantity.cpp" />
+    <ClCompile Include="src\StrainQuantity.cpp" />
+    <ClCompile Include="src\StressGradientQuantity.cpp" />
+    <ClCompile Include="src\StressGradOrDensity.cpp" />
+    <ClCompile Include="src\TemperatureGradientQuantity.cpp" />
+    <ClCompile Include="src\TemperatureQuantity.cpp" />
+    <ClCompile Include="src\ThermalConductivity.cpp" />
+    <ClCompile Include="src\ThermalExpansion.cpp" />
+    <ClCompile Include="src\TimeDQuantity.cpp" />
+    <ClCompile Include="src\TimeHQuantity.cpp" />
+    <ClCompile Include="src\VolumetricHeatQuantity.cpp" />
+    <ClCompile Include="src\VolumetricSpecificHeat.cpp" />
+    <ClCompile Include="src\WeightPerUnitLengthQuantity.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BE3D76E9-9084-464E-A152-863CB45CB664}</ProjectGuid>
+    <RootNamespace>Quantity</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(QUANTITY)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(QUANTITY)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(QUANTITY)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

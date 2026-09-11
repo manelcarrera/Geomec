@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\ArgumentParser.h" />
+    <ClInclude Include="h\GeomecShellUtils.h" />
+    <ClInclude Include="h\geomec_shell.h" />
+    <ClInclude Include="h\InterfaceBase.h" />
+    <ClInclude Include="h\InterfaceContext.h" />
+    <ClInclude Include="h\InterfaceCORA.h" />
+    <ClInclude Include="h\InterfaceDiagnostics.h" />
+    <ClInclude Include="h\InterfaceGM.h" />
+    <ClInclude Include="h\InterfaceRGI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ArgumentParser.cpp" />
+    <ClCompile Include="src\GeomecShellUtils.cpp" />
+    <ClCompile Include="src\InterfaceBase.cpp" />
+    <ClCompile Include="src\InterfaceContext.cpp" />
+    <ClCompile Include="src\InterfaceCORA.cpp" />
+    <ClCompile Include="src\InterfaceDiagnostics.cpp" />
+    <ClCompile Include="src\InterfaceGM.cpp" />
+    <ClCompile Include="src\InterfaceRGI.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+</Project>

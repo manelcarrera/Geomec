@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_share_lib="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="AUTOGUID" ?>
+  <?define ComponentID_Diana_lib="AUTOGUID" ?>
+  <?define ComponentID_Diana_bin="AUTOGUID" ?>
+  <?define ComponentID_Diana_bin_Qt="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_ap="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_dc="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_in="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_lb="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_ls="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_nl="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_pf="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_po="AUTOGUID" ?>
+  <?define ComponentID_Diana_share_src_so="AUTOGUID" ?>
+  
+  <?define ComponentID_System_Files="AUTOGUID" ?>
+  <?define ComponentID_Math_Kernel_Library="AUTOGUID" ?>
+  
+  <?define ProductID="AUTOGUID" ?>
+  <?define UpgradeCodeID="AUTOGUID" ?>
+  
+  <?define ComponentID_Registry_keys="AUTOGUID" ?>
+  
+  <?define ComponentID_Geomec_exe="AUTOGUID" ?>
+  
+  <?define ComponentID_EditX_ocx="AUTOGUID" ?>
+  
+  <?define ComponentID_GVT="AUTOGUID" ?>
+  
+  <?define ComponentID_Diana_bin_geomec="AUTOGUID" ?>
+  
+  <?define ComponentID_SafeNet_bin_geomec="AUTOGUID" ?>
+  
+  <?define ComponentID_Diana_binseg_ap_geomec="AUTOGUID" ?>
+  
+  <?define ComponentID_SVS="AUTOGUID" ?>
+  
+  <?define ComponentID_OIVBin="AUTOGUID" ?>
+  
+  <?define ComponentID_QtPlatforms="AUTOGUID" ?>
+
+  <?define ComponentID_fixInstallation="AUTOGUID" ?>
+  <?define ComponentID_fixInstallation_resources="AUTOGUID" ?>
+  
+  <?define ComponentID_packages="AUTOGUID" ?>
+
+  <?define ComponentID_Changelog55="AUTOGUID" ?>
+  <?define ComponentID_Changelog56="AUTOGUID" ?>
+  <?define ComponentID_Changelog57="AUTOGUID" ?>
+  <?define ComponentID_Changelog58="AUTOGUID" ?>
+
+  <?define ComponentID_img="AUTOGUID" ?>
+  
+  <?define ComponentID_scripts="AUTOGUID" ?>
+
+  <?define cid_qt_platforms_01="AUTOGUID" ?>
+  <?define cid_dll_all_together="AUTOGUID" ?>
+
+</Include>

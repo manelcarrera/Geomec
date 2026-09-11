@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Base\SurfaceDesc.cpp" />
+    <ClCompile Include="Base\TetMeshBase.cpp" />
+    <ClCompile Include="Base\TetMeshCM2.cpp" />
+    <ClCompile Include="Base\TetSurface.cpp" />
+    <ClCompile Include="tet_src\src\tet_body.c" />
+    <ClCompile Include="tet_src\src\tet_bodyset.c" />
+    <ClCompile Include="tet_src\src\tet_edge.c" />
+    <ClCompile Include="tet_src\src\tet_femgv.c" />
+    <ClCompile Include="tet_src\src\tet_graph.c" />
+    <ClCompile Include="tet_src\src\tet_mesh.c" />
+    <ClCompile Include="tet_src\src\tet_meshtriangle.c" />
+    <ClCompile Include="tet_src\src\tet_point.c" />
+    <ClCompile Include="tet_src\src\tet_surface.c" />
+    <ClCompile Include="tet_src\src\tet_surfaceset.c" />
+    <ClCompile Include="tet_src\src\tet_tetrahedron.c" />
+    <ClCompile Include="tet_src\src\tet_triangle.c" />
+    <ClCompile Include="tet_src\src\tet_utils.c" />
+    <ClCompile Include="tet_src\src\tet_xpoint.c" />
+    <ClCompile Include="Base\TiedBodyTetSurface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SurfaceDesc.h" />
+    <ClInclude Include="include\TetMeshBase.h" />
+    <ClInclude Include="include\TetMeshCM2.h" />
+    <ClInclude Include="include\TetMeshExports.h" />
+    <ClInclude Include="include\TetSurface.h" />
+    <ClInclude Include="tet_src\h\tet_body.h" />
+    <ClInclude Include="tet_src\h\tet_bodyset.h" />
+    <ClInclude Include="tet_src\h\tet_edge.h" />
+    <ClInclude Include="tet_src\h\tet_femgv.h" />
+    <ClInclude Include="tet_src\h\tet_graph.h" />
+    <ClInclude Include="tet_src\h\tet_mesh.h" />
+    <ClInclude Include="tet_src\h\tet_meshtriangle.h" />
+    <ClInclude Include="tet_src\h\tet_point.h" />
+    <ClInclude Include="tet_src\h\tet_surface.h" />
+    <ClInclude Include="tet_src\h\tet_surfaceset.h" />
+    <ClInclude Include="tet_src\h\tet_tetrahedron.h" />
+    <ClInclude Include="tet_src\h\tet_triangle.h" />
+    <ClInclude Include="tet_src\h\tet_utils.h" />
+    <ClInclude Include="tet_src\h\tet_xpoint.h" />
+    <ClInclude Include="include\TiedBodyTetSurface.h" />
+  </ItemGroup>
+</Project>

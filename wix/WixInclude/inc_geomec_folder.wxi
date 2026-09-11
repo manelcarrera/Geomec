@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Component Id="Component_Geomec_exe" Guid="$(var.ComponentID_Geomec_exe)" Win64="yes">
+
+      <!-- Shortcut in 'Windows Start Menu'  -->
+      <Shortcut Id="Shortcut_Geomec_$(var.VersionMajor)_$(var.VersionMinor)" 
+                Directory="GeomecShortcutFolder"
+                Name="Geomec $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)"
+                Description="Launch GEOMEC" 
+                Advertise="no" 
+                Target="[INSTALLDIR]geomec_selector.exe"
+                Icon="Geomec.exe" 
+                IconIndex="0" 
+                WorkingDirectory="INSTALLDIR"/>
+
+      <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" Directory="GeomecShortcutFolder" />
+
+      <!-- binaries -->
+      <File Id="Geomec.exe" Source="$(var.Geomec_exe)" KeyPath="yes" />
+      <!-- <File Id="geomec_rgi.exe" Source="$(var.Geomec_rgi_exe)" /> -->
+      <File Id="geomec_cora.exe" Source="$(var.Geomec_cora_exe)" />
+      <File Id="geomec_shell.exe" Source="$(var.Geomec_shell_exe)" />
+      <!-- <File Id="geomec_launcher.exe" Source="$(var.Geomec_launcher_exe)" /> -->
+    
+      <File Id="gm_diana_app.exe" Source="$(var.gm_diana_app_exe)" />
+
+      <!-- selector: bin + dlls -->
+      <File Id="selector.exe" Source="$(var.selector_exe)" />
+      <!-- with dlls all together this is not needed -->
+      <!--
+      <File Id="Qt5Core.dll_2" Name="Qt5Core.dll" Source="$(var.QTDIR)\bin\Qt5Core.dll" />
+      <File Id="Qt5Widgets.dll_2" Name="Qt5Widgets.dll" Source="$(var.QTDIR)\bin\Qt5Widgets.dll" />
+      <File Id="Qt5Xml.dll_2" Name="Qt5Xml.dll" Source="$(var.QTDIR)\bin\Qt5Xml.dll" />
+      <File Id="Qt5Gui.dll_2" Name="Qt5Gui.dll" Source="$(var.QTDIR)\bin\Qt5Gui.dll" />
+      -->
+
+    <!-- Help -->
+      <File Id="Geomec.chm" Source="$(var.Geomec_chm)" >
+
+        <Shortcut Id="Geomec.chm.sc" 
+                  Directory="GeomecDocumentsShortcutFolder" 
+                  Name="Geomec Help" 
+                  Advertise="no" 
+                  WorkingDirectory="INSTALLDIR"/>
+      </File>
+  
+      <!-- pdfs -->
+    <!-- Set up as automatic; for Trunk versions it would probably be good to include some pointers that this is work in progress, etc. Or leave it out -->
+    <File Id="Geomec_$(var.VersionMajor)_$(var.VersionMinor)_Release_Notes.pdf"
+          Source="$(var.GeomecRoot)/Help/Geomec $(var.VersionMajor).$(var.VersionMinor) Release Notes.pdf" >
+
+      <Shortcut Id="Geomec_release_notes.pdf.sc"
+                Directory="GeomecDocumentsShortcutFolder"
+                Name="Geomec $(var.VersionMajor).$(var.VersionMinor) Release Notes"
+                Advertise="no"
+                WorkingDirectory="INSTALLDIR"/>
+    </File>
+
+    <File Id="License_borrowing.pdf"
+          Source="$(var.GeomecRoot)/Help/License borrowing and troubleshooting.pdf" >
+
+      <Shortcut Id="License_borrowing.pdf.sc"
+                Directory="GeomecDocumentsShortcutFolder"
+                Name="License borrowing and troubleshooting"
+                Advertise="no"
+                WorkingDirectory="INSTALLDIR"/>
+    </File>
+
+    <File Id="OIV_tutorial" Source="$(var.GeomecRoot)\Help\Geomec OIV-5.0.pdf" >
+      <Shortcut Id="OIV_tutorial.sc" Directory="GeomecDocumentsShortcutFolder" Name="Visualization Tutorial" Advertise="no" WorkingDirectory="INSTALLDIR"/>
+    </File>
+
+    <File Id="zoominwell.pdf" 
+            Source="$(var.zoominwell_pdf)" >
+
+        <Shortcut Id="zoominwell.pdf.sc" 
+                  Directory="GeomecDocumentsShortcutFolder" 
+                  Name="Well Zoom-in" 
+                  Advertise="no" 
+                  WorkingDirectory="INSTALLDIR"/>
+      </File>
+
+      <File Id="GVT_Quick_Tour.pdf" 
+            Source="$(var.GeomecRoot)/Help/GVT Quick Tour.pdf" >
+
+        <Shortcut Id="GVT_Quick_Tour.pdf.sc" 
+                  Directory="GeomecDocumentsShortcutFolder" 
+                  Name="GVT Quick Tour" 
+                  Advertise="no" 
+                  WorkingDirectory="INSTALLDIR"/>
+      </File>
+
+    <File Id="mr_pdf"
+        Source="$(var.mesh_refinement_pdf)" >
+
+      <Shortcut Id="mr_pdf.sc"
+                Directory="GeomecDocumentsShortcutFolder"
+                Name="Mesh Refinement"
+                Advertise="no"
+                WorkingDirectory="INSTALLDIR"/>
+    </File>
+
+    <File Id="show_licenses.bat" Source="$(var.WixInclude)/show_licenses.bat" />
+      <File Id="LicenseCheck.gm4" Source="$(var.WixInclude)/LicenseCheck.gm4" />
+    
+      <File Id="unzip" Name="7za.exe" Source="$(var.unzip)" />
+
+  </Component> <!-- Component_Geomec_exe -->
+  
+</Include>

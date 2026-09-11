@@ -1,0 +1,27 @@
+'$include '..\TestSuite.inc'
+
+Viewport Clear
+
+StartLog("Del_meshregions.new","Del_meshregions")
+
+Scenario("Deleting meshregions")
+	StartScenario("Deleting meshregions")
+	BreakdownStartup
+	Dim meshes AS ARRAY OF STRING
+	meshes = MeshRegions()
+	if not isempty(meshes) then
+		for count = lbound(meshes) to ubound(meshes)
+			if meshes(count) <> "Main" then
+				DeleteMeshRegion(meshes(count))
+			endif
+		next
+	endif
+
+	ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End

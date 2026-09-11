@@ -1,0 +1,77 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary Face Attributes dialog</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="applied stress change">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="global stress tensor">
+</OBJECT>
+<h1>Boundary Face Attributes dialog</h1>
+<p>This dialog allows you to specify the boundary conditions for a selected
+boundary face.</p>
+<p>A boundary face can be either</p>
+<ul>
+  <li>Supported in Northing and Easting</li>
+</ul>
+<blockquote>
+  <p>Each mesh-node of the face will be supported in Northing and
+  Easting directions. This is the default for all the side surfaces.</p>
+</blockquote>
+<ul>
+  <li>Normally supported</li>
+</ul>
+<blockquote>
+  <p>A single translation support is applied on each mesh-node of the face. The
+  support is directed in the direction of the (local) normal vector of the face.
+  The mesh-node will only be allowed to move in the plane of the face at that
+  point. Note that the local normal vector is used. This means that in general
+  support directions can vary over a single face. This is the default for the 
+	bottom surface.</p>
+</blockquote>
+<ul>
+  <li>Fully supported</li>
+</ul>
+<blockquote>
+  <p>Each mesh-node of the face will be supported in all three (Northing,
+  Easting, Depth) directions.</p>
+</blockquote>
+<ul>
+	<li>Not supported</li>
+</ul>
+<blockquote>
+	<p>No translation supports are applied to the mesh-nodes of the face. This 
+	is the default for the top surface. </p>
+	<p>When
+  this option is activated stress changes can be applied on the face. A stress
+  change is applied in each depletion stage. There are two
+  options:</p>
+	<ul>
+		<li><a href="boundary_global_stress_tensor.htm">Global stress tensor</a></li>
+		<li><a href="boundary_stress_tensor_pointset.htm">Stress tensor Pointset
+		</a>(At the moment this function is disabled when there are no interface 
+		elements on the boundary)</li>
+	</ul>
+</blockquote>
+<ul>
+	<li>Vertically supported </li>
+</ul>
+<blockquote>
+	<p>Each mesh-node of the face will be supported only in all Depth direction.</p>
+</blockquote>
+<p>If the &quot;Apply to all outer faces&quot; option is checked the specified
+support option will be applied
+to all boundary faces.</p>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

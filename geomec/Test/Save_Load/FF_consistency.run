@@ -1,0 +1,3 @@
+attrib -r test2.ff
+vtrun lt=600 FF_consistency
+attrib +r test2.ff

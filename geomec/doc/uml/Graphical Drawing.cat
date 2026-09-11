@@ -1,0 +1,875 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Graphical Drawing"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A80058"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CMetaFileDC"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxext.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A80063"
+	    documentation 	"A Windows metafile contains a sequence of graphics device interface (GDI) commands that you can replay to create a desired image or text."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A80080"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing::CDC"
+		    quidu      	"3A07D0A80261"))
+	    operations 	(list Operations
+		(object Operation "~CMetaFileDC"
+		    quid       	"3A07D0A80081"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetAttribDC"
+		    quid       	"3A07D0A8008B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hDC"
+			    quid       	"3A07D0A80094"
+			    type       	"HDC"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetOutputDC"
+		    quid       	"3A07D0A8009F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hDC"
+			    quid       	"3A07D0A800A8"
+			    type       	"HDC"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReleaseOutputDC"
+		    quid       	"3A07D0A800B3"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetClipBox"
+		    quid       	"3A07D0A800C6"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A800C7"
+			    type       	"LPRECT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PtVisible"
+		    quid       	"3A07D0A800DA"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A800E4"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A800E5"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RectVisible"
+		    quid       	"3A07D0A800EF"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A800F8"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TextOut"
+		    quid       	"3A07D0A80103"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A8010C"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A80116"
+			    type       	"int")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A80117"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A80120"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExtTextOut"
+		    quid       	"3A07D0A8012A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A80134"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A80135"
+			    type       	"int")
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A8013E"
+			    type       	"UINT")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A80148"
+			    type       	"LPCRECT")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A80149"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A80152"
+			    type       	"UINT")
+			(object Parameter "lpDxWidths"
+			    quid       	"3A07D0A80153"
+			    type       	"LPINT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TabbedTextOut"
+		    quid       	"3A07D0A80166"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A80170"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A80171"
+			    type       	"int")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A8017A"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A8017B"
+			    type       	"int")
+			(object Parameter "nTabPositions"
+			    quid       	"3A07D0A80184"
+			    type       	"int")
+			(object Parameter "lpnTabStopPositions"
+			    quid       	"3A07D0A8018E"
+			    type       	"LPINT")
+			(object Parameter "nTabOrigin"
+			    quid       	"3A07D0A8018F"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "DrawText"
+		    quid       	"3A07D0A801A2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A801A3"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A801AC"
+			    type       	"int")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A801B6"
+			    type       	"LPRECT")
+			(object Parameter "nFormat"
+			    quid       	"3A07D0A801B7"
+			    type       	"UINT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Escape"
+		    quid       	"3A07D0A801C1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nEscape"
+			    quid       	"3A07D0A801CA"
+			    type       	"int")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A801D4"
+			    type       	"int")
+			(object Parameter "lpszInData"
+			    quid       	"3A07D0A801D5"
+			    type       	"LPCSTR")
+			(object Parameter "lpOutData"
+			    quid       	"3A07D0A801DE"
+			    type       	"LPVOID"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetViewportOrg"
+		    quid       	"3A07D0A801E9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A801F3"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A801F4"
+			    type       	"int"))
+		    result     	"CPoint"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70266")
+		(object Operation "OffsetViewportOrg"
+		    quid       	"3A07D0A80207"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nWidth"
+			    quid       	"3A07D0A80208"
+			    type       	"int")
+			(object Parameter "nHeight"
+			    quid       	"3A07D0A80211"
+			    type       	"int"))
+		    result     	"CPoint"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70266")
+		(object Operation "SetViewportExt"
+		    quid       	"3A07D0A8021C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A80225"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A8022F"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "ScaleViewportExt"
+		    quid       	"3A07D0A80239"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "xNum"
+			    quid       	"3A07D0A80243"
+			    type       	"int")
+			(object Parameter "xDenom"
+			    quid       	"3A07D0A80244"
+			    type       	"int")
+			(object Parameter "yNum"
+			    quid       	"3A07D0A8024D"
+			    type       	"int")
+			(object Parameter "yDenom"
+			    quid       	"3A07D0A8024E"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDC"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A80261"
+	    documentation 	"The CDC class defines a class of device-context objects. The CDC object provides member functions for working with a device context, such as a display or printer, as well as members for working with a display context associated with the client area of a window."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A8027F"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CDC"
+		    quid       	"3A07D0A80280"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A8028A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A80293"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A8029E"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetAttribDC"
+		    quid       	"3A07D0A802B1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hDC"
+			    quid       	"3A07D0A802B2"
+			    type       	"HDC"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetOutputDC"
+		    quid       	"3A07D0A802BC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hDC"
+			    quid       	"3A07D0A802C5"
+			    type       	"HDC"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReleaseAttribDC"
+		    quid       	"3A07D0A802D0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReleaseOutputDC"
+		    quid       	"3A07D0A802DA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SaveDC"
+		    quid       	"3A07D0A802EE"
+		    stereotype 	"virtual"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RestoreDC"
+		    quid       	"3A07D0A802F8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nSavedDC"
+			    quid       	"3A07D0A80301"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SelectStockObject"
+		    quid       	"3A07D0A8030C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0A80315"
+			    type       	"int"))
+		    result     	"CGdiObject*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SelectObject"
+		    quid       	"3A07D0A80320"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFont"
+			    quid       	"3A07D0A80329"
+			    type       	"CFont*"))
+		    result     	"CFont*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetBkColor"
+		    quid       	"3A07D0A80334"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "crColor"
+			    quid       	"3A07D0A8033D"
+			    type       	"COLORREF"))
+		    result     	"COLORREF"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetTextColor"
+		    quid       	"3A07D0A80347"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "crColor"
+			    quid       	"3A07D0A80351"
+			    type       	"COLORREF"))
+		    result     	"COLORREF"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetMapMode"
+		    quid       	"3A07D0A8035B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nMapMode"
+			    quid       	"3A07D0A80365"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetViewportOrg"
+		    quid       	"3A07D0A8036F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A80370"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A80379"
+			    type       	"int"))
+		    result     	"CPoint"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70266")
+		(object Operation "OffsetViewportOrg"
+		    quid       	"3A07D0A80384"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nWidth"
+			    quid       	"3A07D0A8038D"
+			    type       	"int")
+			(object Parameter "nHeight"
+			    quid       	"3A07D0A80397"
+			    type       	"int"))
+		    result     	"CPoint"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70266")
+		(object Operation "SetViewportExt"
+		    quid       	"3A07D0A803A1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cx"
+			    quid       	"3A07D0A803A2"
+			    type       	"int")
+			(object Parameter "cy"
+			    quid       	"3A07D0A803AB"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "ScaleViewportExt"
+		    quid       	"3A07D0A803B6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "xNum"
+			    quid       	"3A07D0A803BF"
+			    type       	"int")
+			(object Parameter "xDenom"
+			    quid       	"3A07D0A803C0"
+			    type       	"int")
+			(object Parameter "yNum"
+			    quid       	"3A07D0A803C9"
+			    type       	"int")
+			(object Parameter "yDenom"
+			    quid       	"3A07D0A803D3"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "SetWindowExt"
+		    quid       	"3A07D0A803DD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cx"
+			    quid       	"3A07D0A803DE"
+			    type       	"int")
+			(object Parameter "cy"
+			    quid       	"3A07D0A803E7"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "ScaleWindowExt"
+		    quid       	"3A07D0A9000A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "xNum"
+			    quid       	"3A07D0A90013"
+			    type       	"int")
+			(object Parameter "xDenom"
+			    quid       	"3A07D0A9001D"
+			    type       	"int")
+			(object Parameter "yNum"
+			    quid       	"3A07D0A9001E"
+			    type       	"int")
+			(object Parameter "yDenom"
+			    quid       	"3A07D0A90027"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "GetClipBox"
+		    quid       	"3A07D0A90031"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A9003B"
+			    type       	"LPRECT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PtVisible"
+		    quid       	"3A07D0A90045"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A90046"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A9004F"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RectVisible"
+		    quid       	"3A07D0A9005A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A9006D"
+			    type       	"LPCRECT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TextOut"
+		    quid       	"3A07D0A90078"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A90081"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A9008B"
+			    type       	"int")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A9008C"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A90095"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExtTextOut"
+		    quid       	"3A07D0A9009F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A900A9"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A900AA"
+			    type       	"int")
+			(object Parameter "nOptions"
+			    quid       	"3A07D0A900B3"
+			    type       	"UINT")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A900B4"
+			    type       	"LPCRECT")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A900BD"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A900C8"
+			    type       	"UINT")
+			(object Parameter "lpDxWidths"
+			    quid       	"3A07D0A900C9"
+			    type       	"LPINT"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TabbedTextOut"
+		    quid       	"3A07D0A900D3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A07D0A900DC"
+			    type       	"int")
+			(object Parameter "y"
+			    quid       	"3A07D0A900E6"
+			    type       	"int")
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A900E7"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A900F0"
+			    type       	"int")
+			(object Parameter "nTabPositions"
+			    quid       	"3A07D0A900F1"
+			    type       	"int")
+			(object Parameter "lpnTabStopPositions"
+			    quid       	"3A07D0A900FA"
+			    type       	"LPINT")
+			(object Parameter "nTabOrigin"
+			    quid       	"3A07D0A90104"
+			    type       	"int"))
+		    result     	"CSize"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C702E7")
+		(object Operation "DrawText"
+		    quid       	"3A07D0A9010E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszString"
+			    quid       	"3A07D0A90118"
+			    type       	"LPCTSTR")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A90119"
+			    type       	"int")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0A90122"
+			    type       	"LPRECT")
+			(object Parameter "nFormat"
+			    quid       	"3A07D0A90123"
+			    type       	"UINT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Escape"
+		    quid       	"3A07D0A9012D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nEscape"
+			    quid       	"3A07D0A90136"
+			    type       	"int")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A90140"
+			    type       	"int")
+			(object Parameter "lpszInData"
+			    quid       	"3A07D0A90141"
+			    type       	"LPCSTR")
+			(object Parameter "lpOutData"
+			    quid       	"3A07D0A9014A"
+			    type       	"LPVOID"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CClientDC"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A90155"
+	    documentation 	"The CClientDC class is derived from CDC and takes care of calling the Windows functions GetDC at construction time and ReleaseDC at destruction time. This means that the device context associated with a CClientDC object is the client area of a window."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A9017C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing::CDC"
+		    quidu      	"3A07D0A80261"))
+	    operations 	(list Operations
+		(object Operation "~CClientDC"
+		    quid       	"3A07D0A90186"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A90190"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A9019A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A901A4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CWindowDC"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A901AE"
+	    documentation 	"The CWindowDC class is derived from CDC. It calls the Windows functions GetWindowDC at construction time and ReleaseDC at destruction time. This means that a CWindowDC object accesses the entire screen area of a CWnd (both client and nonclient areas)."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A901CC"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing::CDC"
+		    quidu      	"3A07D0A80261"))
+	    operations 	(list Operations
+		(object Operation "~CWindowDC"
+		    quid       	"3A07D0A901D6"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A901E0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A901E1"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A901F4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPaintDC"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A901FE"
+	    documentation 	"The CPaintDC class is a device-context class derived from CDC. It performs a CWnd::BeginPaint at construction time and CWnd::EndPaint at destruction time. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A9021C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing::CDC"
+		    quidu      	"3A07D0A80261"))
+	    operations 	(list Operations
+		(object Operation "~CPaintDC"
+		    quid       	"3A07D0A90226"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A90230"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A90231"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A90244"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

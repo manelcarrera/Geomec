@@ -1,0 +1,1843 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "OpenGL View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A34EB42038C"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "COpenGLLegendView"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"Dyncreate")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CView"))
+	    quid       	"3A715048013A"
+	    documentation 	"Draw the Gradients used by the CGeoView using OpenGL"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A7150480159"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLView"
+		    quidu      	"3A715047032E"))
+	    operations 	(list Operations
+		(object Operation "COpenGLLegendView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048015A"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150480169"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A715048016B"
+			    type       	"CDC*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "~COpenGLLegendView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048016C"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048016E"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150480179"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A715048017B"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "COpenGLView"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CView"))
+	    quid       	"3A715047032E"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A715047033D"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CView"
+		    quidu      	"3A07D0BD015D"))
+	    operations 	(list Operations
+		(object Operation "COpenGLView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715047034D"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "~COpenGLView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470351"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OutputGlError"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD950190"
+		    parameters 	(list Parameters
+			(object Parameter "label"
+			    quid       	"3A90DD9501AF"
+			    type       	"char*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateRGBPalette"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9501DE"
+		    documentation 	
+|
+| Support for generating RGB color palette
+		    
+		    parameters 	(list Parameters
+			(object Parameter "hDC"
+			    quid       	"3A90DD9501EE"
+			    type       	"HDC"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ComponentFromIndex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD95021D"
+		    parameters 	(list Parameters
+			(object Parameter "i"
+			    quid       	"3A90DD95022C"
+			    type       	"int")
+			(object Parameter "nbits"
+			    quid       	"3A90DD95025B"
+			    type       	"UINT")
+			(object Parameter "shift"
+			    quid       	"3A90DD95027A"
+			    type       	"UINT"))
+		    result     	"unsigned char"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9502A9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A90DD9502D8"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnCreate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_CREATE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD950317"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "lpCreateStruct"
+			    quid       	"3A90DD950355"
+			    type       	"LPCREATESTRUCT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnSize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_SIZE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD950374"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "nType"
+			    quid       	"3A90DD9503B3"
+			    type       	"UINT")
+			(object Parameter "cx"
+			    quid       	"3A90DD9503E2"
+			    type       	"int")
+			(object Parameter "cy"
+			    quid       	"3A90DD960029"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnDestroy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_DESTROY()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD960058"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnEraseBkgnd"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_ERASEBKGND()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD960096"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A90DD9600D5"
+			    type       	"CDC*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnPaletteChanged"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_PALETTECHANGED()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD960103"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "pFocusWnd"
+			    quid       	"3A90DD960142"
+			    type       	"CWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnQueryNewPalette"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_QUERYNEWPALETTE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD960171"
+		    stereotype 	"afx_msg"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_oneto8[2]"
+		    quid       	"3A90DD9403D2"
+		    type       	"unsigned char"
+		    initv      	"{0,255}"
+		    static     	TRUE)
+		(object ClassAttribute "m_twoto8[4]"
+		    quid       	"3A90DD950048"
+		    type       	"unsigned char"
+		    initv      	"{0,0x55,0xaa,0xff}"
+		    static     	TRUE)
+		(object ClassAttribute "m_threeto8[8]"
+		    quid       	"3A90DD950077"
+		    type       	"unsigned char"
+		    initv      	"{0,0111>>1,0222>>1,0333>>1,0444>>1,0555>>1,0666>>1,0377}"
+		    static     	TRUE)
+		(object ClassAttribute "m_defaultOverride[13]"
+		    quid       	"3A90DD9500A6"
+		    type       	"int"
+		    initv      	"{0,3,24,27,64,67,88,173,181,236,247,164,91}"
+		    static     	TRUE))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "COpenGLModelView"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"Dyncreate")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CView"))
+	    quid       	"3A715048006F"
+	    documentation 	
+|This view shows the model in OpenGL. The view is defined by 
+|COpenGLScene
+|
+|Draw the Model Items Currently Selected using OpenGL
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DD970132"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::COpenGLGeoItemView"
+		    quidu      	"3A90DF890058"))
+	    operations 	(list Operations
+		(object Operation "COpenGLModelView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800BD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800DC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A71504800DE"
+			    type       	"CDC*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "~COpenGLModelView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800EC"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800EE"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800F0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A71504800FB"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnZoomIn"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_ZOOM_IN, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800FC"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnZoomOut"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_ZOOM_OUT, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504800FE"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnRotateLeft"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_ROTATE_LEFT, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048010B"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnRotateRight"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_ROTATE_RIGHT, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048010D"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "CurrentScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD970152"
+		    stereotype 	"virtual"
+		    result     	"COpenGLScene&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInitialUpdate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD970154"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUpdate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD970162"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pSender"
+			    quid       	"3A90DD970171"
+			    type       	"CView*")
+			(object Parameter "lHint"
+			    quid       	"3A90DD970180"
+			    type       	"LPARAM")
+			(object Parameter "pHint"
+			    quid       	"3A90DD970181"
+			    type       	"CObject*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "COpenGLSplitView"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"Dyncreate")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CView"))
+	    quid       	"3A715047038B"
+	    documentation 	
+|The OpenGLSplit view combines the COpenGLLegendView and the 
+|COpenGLModelView in one window.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A715047039B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CView"
+		    quidu      	"3A07D0BD015D"))
+	    operations 	(list Operations
+		(object Operation "COpenGLSplitView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703AB"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInitialUpdate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703AC"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703BA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDC"
+			    quid       	"3A71504703BC"
+			    type       	"CDC*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "~COpenGLSplitView"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703BD"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703BF"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703CA"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A71504703CC"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnCreate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_CREATE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703CD"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "lpCreateStruct"
+			    quid       	"3A71504703CF"
+			    type       	"LPCREATESTRUCT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnSize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_SIZE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504703D0"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "nType"
+			    quid       	"3A71504703DB"
+			    type       	"UINT")
+			(object Parameter "cx"
+			    quid       	"3A71504703DC"
+			    type       	"int")
+			(object Parameter "cy"
+			    quid       	"3A71504703DD"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CPrimitiveSet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	"typedef std::set<CPrimitive, CLessPrimitive> CPrimitiveSet;")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A7150470253"
+	    stereotype 	"typedef"
+	    language   	"VC++")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A90DD950132"
+	    roles      	(list role_list
+		(object Role "m_defaultPalEntry[20]"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"InitialValue"
+			    value      	"{{0,0,0,0},{0x80,0,0,0},{0,0x80,0,0},{0x80,0x80,0,0},{0,0,0x80,0},{0x80,0,0x80,0},{0,0x80,0x80,0},{0xC0,0xC0,0xC0,0},{192,220,192,0},{166,202,240,0},{255,251,240,0},{160,160,164,0},{0x80,0x80,0x80,0},{0xFF,0,0,0},{0,0xFF,0,0},{0xFF,0xFF,0,0},{0,0,0xFF,0},{0xFF,0,0xFF,0},{0,0xFF,0xFF,0},{0xFF,0xFF,0xFF,0}}"))
+		    quid       	"3A90DD950133"
+		    label      	"m_defaultPalEntry[20]"
+		    supplier   	"PALETTEENTRY"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)
+		(object Role "$UNNAMED$1"
+		    quid       	"3A90DD950135"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLView"
+		    quidu      	"3A715047032E"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    quid       	"3A90DD950152"
+	    roles      	(list role_list
+		(object Role "m_hrc"
+		    quid       	"3A90DD950153"
+		    label      	"m_hrc"
+		    supplier   	"HGLRC"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$3"
+		    quid       	"3A90DD950155"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLView"
+		    quidu      	"3A715047032E"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    quid       	"3A90DD950171"
+	    roles      	(list role_list
+		(object Role "m_pPal"
+		    quid       	"3A90DD950172"
+		    label      	"m_pPal"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Graphical Drawing Objects::CPalette"
+		    quidu      	"3A07D0A70309"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A90DD950181"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::COpenGLView"
+		    quidu      	"3A715047032E")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A90DD960317"
+	    roles      	(list role_list
+		(object Role "m_pDefaultResult"
+		    quid       	"3A90DD960318"
+		    label      	"m_pDefaultResult"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::Model Items::Results::CGeoDepthResult"
+		    quidu      	"3A90DF8D0161"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$7"
+		    quid       	"3A90DD96031A"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001")))
+	(object Association "$UNNAMED$8"
+	    quid       	"3A90DD960326"
+	    roles      	(list role_list
+		(object Role "m_pHotSpot"
+		    quid       	"3A90DD960327"
+		    label      	"m_pHotSpot"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoHotSpot"
+		    quidu      	"3A90DF8A03E2"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$9"
+		    quid       	"3A90DD960329"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001")))
+	(object Association "$UNNAMED$10"
+	    quid       	"3A90DD960336"
+	    roles      	(list role_list
+		(object Role "m_pGradient"
+		    quid       	"3A90DD960337"
+		    label      	"m_pGradient"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorGradient"
+		    quidu      	"3A90DF8D02B9"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A90DD960339"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A90DD960355"
+	    roles      	(list role_list
+		(object Role "m_pCurrentColorScale"
+		    quid       	"3A90DD960356"
+		    label      	"m_pCurrentColorScale"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorScale"
+		    quidu      	"3A90DF8D026B"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$13"
+		    quid       	"3A90DD960358"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001")))
+	(object Association "$UNNAMED$14"
+	    quid       	"3A90DD960365"
+	    roles      	(list role_list
+		(object Role "m_mpDisplayList:mutable CDisplayList"
+		    quid       	"3A90DD960366"
+		    label      	"m_mpDisplayList:mutable CDisplayList"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CDisplayList"
+		    quidu      	"3A90DF8800E4"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$15"
+		    quid       	"3A90DD960368"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001")))
+	(object Class_Category "OpenGL Scene"
+	    quid       	"3A90F98A0307"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "COpenGLScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	"")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxBaseClass"
+			    value      	""))
+		    quid       	"3A7150480001"
+		    documentation 	"The OpenGL scene abstract class defines the OpenGL view. The OpenGL scene holds are list of Viewable object which can be drawed by using a result or a color scale."
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DD9602E8"
+			    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+			    quidu      	"3A71504B0214"))
+		    operations 	(list Operations
+			(object Operation "COpenGLScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A7150480012"
+			    parameters 	(list Parameters
+				(object Parameter "strInstanceName"
+				    quid       	"3A7150480020"
+				    type       	"const CString&"
+				    const      	TRUE)
+				(object Parameter "owner"
+				    quid       	"3A7150480021"
+				    type       	"CGeoGraphItem&"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "~COpenGLScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A7150480022"
+			    stereotype 	"virtual"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "NewDisplayList"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960374"
+			    stereotype 	"const"
+			    result     	"int"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "Range"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960384"
+			    stereotype 	"const"
+			    result     	"CVertex"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "MidPoint"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960386"
+			    stereotype 	"const"
+			    result     	"CVertex"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "Max"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960394"
+			    stereotype 	"const"
+			    result     	"CVertex"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "RemoveAllViewableItems"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960396"
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "Min"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD960397"
+			    stereotype 	"const"
+			    result     	"CVertex"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "ColorScale"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603A4"
+			    stereotype 	"const"
+			    result     	"CGeoColorScale&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "DefaultColorGradient"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603A6"
+			    stereotype 	"const"
+			    result     	"CGeoColorGradient&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "DefaultHotSpot"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603B4"
+			    stereotype 	"const"
+			    result     	"CGeoHotSpot&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "Result"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603B6"
+			    stereotype 	"const"
+			    result     	"CGeoResult&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "DisplayList"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603C4"
+			    stereotype 	"const"
+			    parameters 	(list Parameters
+				(object Parameter "item"
+				    quid       	"3A90DD9603C6"
+				    type       	"const CGeoViewableItem&"
+				    const      	TRUE))
+			    result     	"int"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "ViewableItem"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603D2"
+			    documentation 	"Returns the list of viewable items"
+			    stereotype 	"const"
+			    result     	"CGeoGraphItemSet"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A71504B0178")
+			(object Operation "NeighbourModified"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD9603E3"
+			    stereotype 	"virtual, const"
+			    parameters 	(list Parameters
+				(object Parameter "item"
+				    quid       	"3A90DD9603E5"
+				    type       	"const CGeoGraphItem&"
+				    const      	TRUE))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "DeleteNeighbour"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD970009"
+			    stereotype 	"virtual, const"
+			    parameters 	(list Parameters
+				(object Parameter "item"
+				    quid       	"3A90DD97000B"
+				    type       	"const CGeoGraphItem&"
+				    const      	TRUE))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "ConnectItem"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD970019"
+			    stereotype 	"virtual"
+			    parameters 	(list Parameters
+				(object Parameter "item"
+				    quid       	"3A90DD97002A"
+				    type       	"const CGeoGraphItem&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "CanConnectItem"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DD970038"
+			    stereotype 	"virtual, const"
+			    parameters 	(list Parameters
+				(object Parameter "item"
+				    quid       	"3A90DD97003A"
+				    type       	"const CGeoGraphItem&"
+				    const      	TRUE))
+			    result     	"bool"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117"
+		    language   	"VC++")
+		(object Class "CPlanarScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DF8702F7"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DF870307"
+			    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+			    quidu      	"3A7150480001"))
+		    operations 	(list Operations
+			(object Operation "CPlanarScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF870308"
+			    parameters 	(list Parameters
+				(object Parameter "strInstanceName"
+				    quid       	"3A90DF870309"
+				    type       	"const CString&"
+				    const      	TRUE)
+				(object Parameter "owner"
+				    quid       	"3A90DF87030A"
+				    type       	"CGeoGraphItem&"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "~CPlanarScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF87030B"
+			    stereotype 	"virtual"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117"
+		    language   	"VC++")
+		(object Class "CBirdEyeScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DF8D0384"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"3A90DF8D0394"
+			    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+			    quidu      	"3A7150480001"))
+		    operations 	(list Operations
+			(object Operation "CBirdEyeScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF8D0395"
+			    parameters 	(list Parameters
+				(object Parameter "strInstanceName"
+				    quid       	"3A90DF8D0396"
+				    type       	"const CString&"
+				    const      	TRUE)
+				(object Parameter "owner"
+				    quid       	"3A90DF8D03A3"
+				    type       	"CGeoGraphItem&"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "~CBirdEyeScene"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF8D03A4"
+			    stereotype 	"virtual"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "GetIconId"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF8D03A6"
+			    stereotype 	"virtual, const"
+			    result     	"UINT"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "GetTypeName"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DF8D03A8"
+			    stereotype 	"virtual, const"
+			    result     	"CString"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A07D0C70338"))
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117"
+		    language   	"VC++")
+		(object Class_Category "Color Scales"
+		    quid       	"3A9109D701BF"
+		    exportControl 	"Public"
+		    logical_models 	(list unit_reference_list
+			(object Class "CGeoColorScale"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DF8D026B"
+			    superclasses 	(list inheritance_relationship_list
+				(object Inheritance_Relationship
+				    quid       	"3A90DF8D027A"
+				    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+				    quidu      	"3A71504B0214"))
+			    operations 	(list Operations
+				(object Operation "Red"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D027B"
+				    stereotype 	"abstract, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D028B"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Green"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D028C"
+				    stereotype 	"abstract, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D028E"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Blue"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D028F"
+				    stereotype 	"abstract, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D0291"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "CGeoColorScale"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D0292"
+				    parameters 	(list Parameters
+					(object Parameter "strInstanceName"
+					    quid       	"3A90DF8D029A"
+					    type       	"const CString&"
+					    const      	TRUE)
+					(object Parameter "owner"
+					    quid       	"3A90DF8D029B"
+					    type       	"CGeoGraphItem&"))
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "~CGeoColorScale"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D029C"
+				    stereotype 	"virtual"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0))
+			    module     	"Component View::Geomec"
+			    quidu      	"3A07D7650117"
+			    language   	"VC++")
+			(object Class "CGeoColorGradient"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DF8D02B9"
+			    superclasses 	(list inheritance_relationship_list
+				(object Inheritance_Relationship
+				    quid       	"3A90DF8D02C9"
+				    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorScale"
+				    quidu      	"3A90DF8D026B"))
+			    operations 	(list Operations
+				(object Operation "Red"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02CA"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D02D9"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Green"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02DA"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D02DC"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Blue"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02DD"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8D02DF"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "CGeoColorGradient"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02E0"
+				    parameters 	(list Parameters
+					(object Parameter "strInstanceName"
+					    quid       	"3A90DF8D02E8"
+					    type       	"const CString&"
+					    const      	TRUE)
+					(object Parameter "owner"
+					    quid       	"3A90DF8D02E9"
+					    type       	"CGeoGraphItem&"))
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "~CGeoColorGradient"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02EA"
+				    stereotype 	"virtual"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "GetIconId"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02EC"
+				    stereotype 	"virtual, const"
+				    result     	"UINT"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "GetTypeName"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8D02EE"
+				    stereotype 	"virtual, const"
+				    result     	"CString"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0
+				    quidu      	"3A07D0C70338"))
+			    module     	"Component View::Geomec"
+			    quidu      	"3A07D7650117"
+			    language   	"VC++")
+			(object Class "CGeoHotSpot"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DF8A03E2"
+			    superclasses 	(list inheritance_relationship_list
+				(object Inheritance_Relationship
+				    quid       	"3A90DF8B0019"
+				    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::Color Scales::CGeoColorScale"
+				    quidu      	"3A90DF8D026B"))
+			    operations 	(list Operations
+				(object Operation "Red"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B001A"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8B001C"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Green"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B001D"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8B001F"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "Blue"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B0020"
+				    stereotype 	"virtual, const"
+				    parameters 	(list Parameters
+					(object Parameter "val"
+					    quid       	"3A90DF8B002A"
+					    type       	"const double&"
+					    const      	TRUE))
+				    result     	"double"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "CGeoHotSpot"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B002B"
+				    parameters 	(list Parameters
+					(object Parameter "strInstanceName"
+					    quid       	"3A90DF8B002C"
+					    type       	"const CString&"
+					    const      	TRUE)
+					(object Parameter "owner"
+					    quid       	"3A90DF8B002D"
+					    type       	"CGeoGraphItem&"))
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "~CGeoHotSpot"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B002E"
+				    stereotype 	"virtual"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "GetIconId"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B0030"
+				    stereotype 	"virtual, const"
+				    result     	"UINT"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0)
+				(object Operation "GetTypeName"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"VC++"
+					    name       	"Inline"
+					    value      	FALSE))
+				    quid       	"3A90DF8B0038"
+				    stereotype 	"virtual, const"
+				    result     	"CString"
+				    concurrency 	"Sequential"
+				    opExportControl 	"Public"
+				    uid        	0
+				    quidu      	"3A07D0C70338"))
+			    module     	"Component View::Geomec"
+			    quidu      	"3A07D7650117"
+			    language   	"VC++"))
+		    logical_presentations 	(list unit_reference_list)))
+	    logical_presentations 	(list unit_reference_list)))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "OpenGL Class Diagram"
+	    quid       	"3A34EBB600C2"
+	    title      	"OpenGL Class Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(225, 66)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	1
+		    max_width  	600
+		    label      	"OpenGL CView Inheritance")
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Views::CView" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1072, 352)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(958, 273)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"CView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D0BD015D"
+		    width      	246
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLLegendView" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(736, 1328)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(522, 1276)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	428
+			justify    	0
+			label      	"COpenGLLegendView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715048013A"
+		    width      	446
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLView" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1072, 816)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(924, 764)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"COpenGLView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715047032E"
+		    compartment 	(object Compartment
+			Parent_View 	@4
+			location   	(924, 825)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	5
+			max_width  	0)
+		    width      	314
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @5
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A7150480159"
+		    client     	@3
+		    supplier   	@4
+		    line_style 	0)
+		(object InheritView "" @6
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715047033D"
+		    client     	@4
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLModelView" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1488, 1344)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1282, 1292)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	412
+			justify    	0
+			label      	"COpenGLModelView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715048006F"
+		    width      	430
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLSplitView" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(576, 832)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(383, 780)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	386
+			justify    	0
+			label      	"COpenGLSplitView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715047038B"
+		    width      	404
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @9
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A715047039B"
+		    client     	@8
+		    supplier   	@2
+		    line_style 	0)))))

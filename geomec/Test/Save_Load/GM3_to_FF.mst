@@ -1,0 +1,37 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("GM3_to_FF.new","GM3_to_FF")
+
+Scenario ("GM3 to FF")
+StartScenario("GM3 to FF")
+	DIM bFileCreated as INTEGER
+	bFileCreated = 0
+	StartApp
+' Load a GM3 file
+	ImportGM3Model(curdir$, "test.gm3")
+' Dump the model
+	DumpModel("gm3dump.txt")
+' Save to .FF file
+	SaveModel(curdir$,"test.ff")
+	bFileCreated = 1
+	ExitNoSave
+	StartApp
+	LoadModel(curdir$,"test.ff")
+	Sleep(5)
+	DumpModel("ffdump.txt")
+	ExitNoSave()
+	if compare("gm3dump.txt","ffdump.txt") <> 0 then
+		tnofail( "The models are not equal.")
+	endif
+
+ScenarioPass
+Scenario Cleanup 'and handling of scenario failure
+	if bFileCreated = 1 then
+		Kill curdir$ + "/test.ff"
+	endif
+End Scenario
+
+EndLog
+End

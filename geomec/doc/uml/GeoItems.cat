@@ -1,0 +1,1407 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "GeoGraphItems"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2BC2450156"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CGeoBoundary"
+	    quid       	"3A267B480267"
+	    documentation 	"Represents the model's boundary in the document"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A267B6A009A"
+		    supplier   	"Logical View::Model::CBoundary"
+		    quidu      	"3A10F4C30230")
+		(object Inheritance_Relationship
+		    quid       	"3A267B7A0205"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem"
+		    quidu      	"3A71504900BD")))
+	(object Class "CGeoDepletionStage"
+	    quid       	"3A267A6F0388"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A267ACC0101"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::Model Items::CDepletionStage"
+		    quidu      	"3A10F4C502E7")))
+	(object Class "CGeoFault"
+	    quid       	"3A2677110310"
+	    documentation 	"A fault can accept one single surface."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A26771F032E"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem"
+		    quidu      	"3A71504900BD")
+		(object Inheritance_Relationship
+		    quid       	"3A2679A60202"
+		    supplier   	"Logical View::Model::CFault"
+		    quidu      	"3A10F4C60090"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A373E150384"
+		    label      	"has"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoSurface"
+		    quidu      	"3A373DDE0122")))
+	(object Class "CGeoWellPath"
+	    quid       	"3A27CC2D0361"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A27CC4C01F4"
+		    supplier   	"Logical View::Model::CWellPath"
+		    quidu      	"3A10F4C70132")
+		(object Inheritance_Relationship
+		    quid       	"3A717C940169"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem"
+		    quidu      	"3A71504900BD"))
+	    language   	"VC++")
+	(object Class "CGeoReport"
+	    quid       	"3A30FECE02FA"
+	    language   	"VC++")
+	(object Class "CGeoSurface"
+	    quid       	"3A373DDE0122"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A376FCC0059"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem"
+		    quidu      	"3A71504900BD")))
+	(object Class "CGeoMaterial"
+	    quid       	"3A30DB6D0184"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A30DB8300BD"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+		    quidu      	"3A71504B0214")
+		(object Inheritance_Relationship
+		    quid       	"3A30DB85034B"
+		    supplier   	"Logical View::Model::CMaterial"
+		    quidu      	"3A10F4C30009"))
+	    language   	"VC++")
+	(object Class "CGeoViewableItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504900BD"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A719A0F02F0"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+		    quidu      	"3A71504B0214"))
+	    operations 	(list Operations
+		(object Operation "CGeoViewableItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504900DC"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504900DD"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "owner"
+			    quid       	"3A71504900DE"
+			    type       	"CGeoGraphItem&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoViewableItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504900DF"
+		    parameters 	(list Parameters
+			(object Parameter "uInstanceName"
+			    quid       	"3A71504900E0"
+			    type       	"UINT")
+			(object Parameter "owner"
+			    quid       	"3A71504900E1"
+			    type       	"CGeoGraphItem&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoViewableItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504900E2"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Vertices"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD980029"
+		    stereotype 	"virtual, const"
+		    result     	"const CVertexSet&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD980039"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD98003B"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CLessGeoGraphItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504B0159"
+	    operations 	(list Operations
+		(object Operation "operator()"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A71504B0169"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "pItem1"
+			    quid       	"3A71504B016B"
+			    type       	"const CGeoGraphItem*"
+			    const      	TRUE)
+			(object Parameter "pItem2"
+			    quid       	"3A71504B016C"
+			    type       	"const CGeoGraphItem*"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoGraphItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	""))
+	    quid       	"3A71504B0214"
+	    documentation 	
+|The GeoItem is an abstact class called by the view.
+|Abstration of the DAG.
+|
+|RTTI must be enabled this is a specific c++ dependancy
+|
+|A GeoItem cannot be derived from two GeoItems (cq. iostream 
+|library ios, istream, ostream, iostream.) Heirarchically 
+|this means GeoItems can be considered as a tree.
+|
+|DAG Rules for every node:
+| - need 'connect to' operation that may fail
+| - need 'disconnect from' operation. This never fails. No 
+|links means destroy self.
+| - need 'destroy' operation. When a GeoItem is destroyed 
+|all neighbours _must_ be informed of this. The neighbours 
+|of the  GeoItem _must_ at least remove the reference.
+|
+|Construction a name and a link. This must be enforced by 
+|derived classes.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504B0234"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoItem"
+		    quidu      	"3A71504B009D"))
+	    operations 	(list Operations
+		(object Operation "CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0248"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0253"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B0254"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0255"
+		    parameters 	(list Parameters
+			(object Parameter "uInstanceName"
+			    quid       	"3A71504B0256"
+			    type       	"UINT"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "SetInstanceName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0257"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B0263"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Neighbours"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0264"
+		    stereotype 	"const"
+		    result     	"CGeoGraphItemSet&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Modified"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0266"
+		    stereotype 	"const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddNeighbour"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0268"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B026A"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NeighbourModified"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0272"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B0274"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NeighbourRenamed"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0275"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B0277"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteNeighbour"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0278"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B0283"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Destroy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0284"
+		    stereotype 	"virtual, const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanDestroy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0286"
+		    stereotype 	"virtual, const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConnectItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0288"
+		    documentation 	" Drag and drop functions"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B0291"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanConnectItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0292"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B0294"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0295"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B0296"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "owner"
+			    quid       	"3A71504B0297"
+			    type       	"CGeoGraphItem&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02A1"
+		    parameters 	(list Parameters
+			(object Parameter "uInstanceName"
+			    quid       	"3A71504B02A2"
+			    type       	"UINT")
+			(object Parameter "owner"
+			    quid       	"3A71504B02A3"
+			    type       	"CGeoGraphItem&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02B1"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoItem"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	""))
+	    quid       	"3A71504B009D"
+	    documentation 	
+|The GeoItem is an abstact class called by the view  for 
+|invoking properties of the item.
+|
+|Every Object descended from CGeoItem has an universal 
+|interface to access the object in general way.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504B00AD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "SetInstanceName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00BD"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B00BF"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetProperties"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00C0"
+		    documentation 	
+|This function invokes a property dialog window if there 
+|is any of the implemented GeoItem
+		    
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetInstanceName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00C2"
+		    stereotype 	"virtual, const"
+		    result     	"const CString&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetIconId"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00CC"
+		    stereotype 	"abstract, const"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00CE"
+		    documentation 	
+|Returns the name of the implemented GeoItem. For 
+|instance "Horizon"
+		    
+		    stereotype 	"abstract, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "CGeoItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00D0"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B00D1"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00D2"
+		    parameters 	(list Parameters
+			(object Parameter "uInstanceName"
+			    quid       	"3A71504B00D3"
+			    type       	"UINT"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B00DC"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_strInstanceName"
+		    quid       	"3A71504B00AE"
+		    type       	"CString"
+		    quidu      	"3A07D0C70338"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoGraphEntry"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	""))
+	    quid       	"3A71504B02C0"
+	    documentation 	
+|Entry point into a GeoGraph
+|
+|Since in CGeoGraphItem there is a precondition that ppLinks 
+|is never empty ppLinks is initialised with 0. This breaks 
+|the GeoItem Idiom but is required
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504B02E1"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+		    quidu      	"3A71504B0214"))
+	    operations 	(list Operations
+		(object Operation "RemoveAllGeoGraphItems"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02E2"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddGeoGraphItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02EF"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504B02F0"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02F1"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetIconId"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02F3"
+		    stereotype 	"virtual, const"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeoGraphEntry"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02F5"
+		    parameters 	(list Parameters
+			(object Parameter "strInstanceName"
+			    quid       	"3A71504B02F6"
+			    type       	"const CString&"
+			    initv      	
+|_T("Default")
+			    
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoGraphEntry"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B02FF"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class_Category "GeoViewItem"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\GeoViewItem.cat"
+	    quid       	"3A2BC28E013D")
+	(object Class_Category "Model Items"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"D:\\users\\all\\Geomec 3 Design\\Model Items.cat"
+	    quid       	"3A717DB30030")
+	(object Class_Category "Geometry Items"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"D:\\users\\all\\Geomec 3 Design\\Geometry Items.cat"
+	    quid       	"3A71947E039B"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Graph Diagram"
+	    quid       	"3A265A01019F"
+	    title      	"Graph Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoSurface" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(560, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(425, 845)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"CGeoSurface")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A373DDE0122"
+		    width      	288
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoFault" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1200, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1084, 845)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"CGeoFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2677110310"
+		    width      	250
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "has" @3
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(889, 896)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	80
+			justify    	0
+			label      	"has")
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A373E150384"
+		    client     	@2
+		    supplier   	@1
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoDepletionStage" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(560, 192)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(355, 141)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	410
+			justify    	0
+			label      	"CGeoDepletionStage")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A267A6F0388"
+		    width      	428
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoMaterial" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1792, 192)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1652, 141)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	280
+			justify    	0
+			label      	"CGeoMaterial")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30DB6D0184"
+		    width      	298
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Geometry Items::CGeoBody" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1200, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(1036, 422)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	328
+			justify    	0
+			label      	"CGeoBody")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504D013A"
+		    width      	346
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "enclosed by" @7
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1200, 707)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	219
+			justify    	0
+			label      	"enclosed by")
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71943A006F"
+		    client     	@6
+		    supplier   	@2
+		    line_style 	0)))
+	(object ClassDiagram "DAG Inhertance Diagram"
+	    quid       	"3A10F97F0020"
+	    title      	"DAG Inhertance Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	100
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoSurface" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1856, 1680)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(1721, 1628)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"CGeoSurface")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A373DDE0122"
+		    width      	288
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object Label @9
+		    location   	(80, 80)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	1
+		    max_width  	600
+		    label      	"DAG Inheritance Diagram")
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoMaterial" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1616, 1408)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1476, 1357)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	280
+			justify    	0
+			label      	"CGeoMaterial")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A30DB6D0184"
+		    width      	298
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoBoundary" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(816, 1760)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(664, 1709)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	304
+			justify    	0
+			label      	"CGeoBoundary")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A267B480267"
+		    width      	322
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoFault" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1984, 1296)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(1868, 1245)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"CGeoFault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2677110310"
+		    width      	250
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "has" @13
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(1920, 1487)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	80
+			justify    	0
+			label      	"has")
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A373E150384"
+		    client     	@12
+		    supplier   	@8
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoWellPath" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(288, 1248)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(140, 1197)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"CGeoWellPath")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A27CC2D0361"
+		    width      	314
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::GeoViewItem::CGeoCrossSection" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(256, 1024)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(66, 945)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	380
+			justify    	0
+			label      	"CGeoCrossSection")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A3F58A000AF"
+		    width      	398
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoViewableItem" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(992, 1344)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(797, 1292)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	390
+			justify    	0
+			label      	"CGeoViewableItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504900BD"
+		    width      	408
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @17
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A717C940169"
+		    client     	@14
+		    supplier   	@16
+		    line_style 	0)
+		(object InheritView "" @18
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A267B7A0205"
+		    client     	@11
+		    supplier   	@16
+		    line_style 	0)
+		(object InheritView "" @19
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A376FCC0059"
+		    client     	@8
+		    supplier   	@16
+		    line_style 	0)
+		(object InheritView "" @20
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A26771F032E"
+		    client     	@12
+		    supplier   	@16
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::Model Items::CGeoHorizon" @21
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1200, 1856)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(1061, 1782)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	278
+			justify    	0
+			label      	"CGeoHorizon")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B010B"
+		    width      	296
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @22
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B011A"
+		    client     	@21
+		    supplier   	@16
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoItem" @23
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(784, 336)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@23
+			location   	(671, 284)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	226
+			justify    	0
+			label      	"CGeoItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B009D"
+		    width      	244
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem" @24
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(784, 864)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@24
+			location   	(624, 812)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	320
+			justify    	0
+			label      	"CGeoGraphItem")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B0214"
+		    width      	338
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @25
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B0234"
+		    client     	@24
+		    supplier   	@23
+		    line_style 	0)
+		(object InheritView "" @26
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A719A0F02F0"
+		    client     	@16
+		    supplier   	@24
+		    line_style 	0)
+		(object InheritView "" @27
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A30DB8300BD"
+		    client     	@10
+		    supplier   	@24
+		    line_style 	0)))))

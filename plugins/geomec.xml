@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+<geomec title="Geomec">
+    <changelog>
+        <show>yes</show>
+    </changelog>
+    <!--
+    <visualization>
+      <scope> -->
+        <!--
+            bits:   012 -> 0: casing model ('C') | 1: zoom in model ('Z') | 2: main model ('M')
+                    CZM
+            weight: 124
+            Ex. 1 -> 'C'
+                2 -> 'Z'
+                4 -> 'M'
+                3 -> 'CZ'
+                ...
+            default: not defined params means 'C' (casing model)
+        -->
+        <!-- <deformation>1</deformation> -->
+        <!-- <xsec_improvement>1</xsec_improvement> -->
+      <!--
+      </scope>
+    </visualization> -->
+</geomec>

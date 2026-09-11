@@ -1,0 +1,164 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "DoubleEditLib"=..\DoubleEditLib\DoubleEditLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Geometry"=..\Geometry\Geometry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "OpenGL"=..\OpenGL\OpenGL.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Quantity"=..\Quantity\Quantity.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TestViewExe"=.\TestViewExe\TestViewExe.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name WellScene3D
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name OpenGL
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScheme
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name DoubleEditLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellSchemeUtils
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "WellScene3D"=..\WellScene3D\WellScene3D.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name WellScheme
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name OpenGL
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "WellScheme"=.\WellScheme.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "WellSchemeUtils"=..\WellSchemeUtils\WellSchemeUtils.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name DoubleEditLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Geometry
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name OpenGL
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Quantity
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScene3D
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name WellScheme
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,3 @@
+dia_add_sources(
+  PhMatrix.c PhPolyParam.c PhPolyhedron.c PhVector.c
+)

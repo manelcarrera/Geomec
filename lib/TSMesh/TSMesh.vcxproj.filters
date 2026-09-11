@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\MeshZone.h" />
+    <ClInclude Include="h\tsmesh.h" />
+    <ClInclude Include="h\TSNode.h" />
+    <ClInclude Include="h\TSProgressBase.h" />
+    <ClInclude Include="h\TSSurface.h" />
+    <ClInclude Include="Gts\h\config.h" />
+    <ClInclude Include="Gts\h\glib-stub.h" />
+    <ClInclude Include="Gts\h\gts-private.h" />
+    <ClInclude Include="Gts\h\predicates.h" />
+    <ClInclude Include="Gts\h\predicates_init.h" />
+    <ClInclude Include="Gts\h\rounding.h" />
+    <ClInclude Include="Gts\h\SurfaceDetail.h" />
+    <ClInclude Include="Gts\gts.h" />
+    <ClInclude Include="Gts\h\suppress_warnings.h" />
+    <ClInclude Include="Gts\h\gts.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MeshZone.cpp" />
+    <ClCompile Include="src\TSNode.cpp" />
+    <ClCompile Include="src\TSSurface.cpp" />
+    <ClCompile Include="Gts\src\bbtree.c" />
+    <ClCompile Include="Gts\src\boolean.c" />
+    <ClCompile Include="Gts\src\cdt.c" />
+    <ClCompile Include="Gts\src\container.c" />
+    <ClCompile Include="Gts\src\edge.c" />
+    <ClCompile Include="Gts\src\eheap.c" />
+    <ClCompile Include="Gts\src\face.c" />
+    <ClCompile Include="Gts\src\fifo.c" />
+    <ClCompile Include="Gts\src\glib-stub.c" />
+    <ClCompile Include="Gts\src\graph.c" />
+    <ClCompile Include="Gts\src\heap.c" />
+    <ClCompile Include="Gts\src\hsurface.c" />
+    <ClCompile Include="Gts\src\iso.c" />
+    <ClCompile Include="Gts\src\kdtree.c" />
+    <ClCompile Include="Gts\src\matrix.c" />
+    <ClCompile Include="Gts\src\misc.c" />
+    <ClCompile Include="Gts\src\named.c" />
+    <ClCompile Include="Gts\src\object.c" />
+    <ClCompile Include="Gts\src\oocs.c" />
+    <ClCompile Include="Gts\src\partition.c" />
+    <ClCompile Include="Gts\src\pgraph.c" />
+    <ClCompile Include="Gts\src\point.c" />
+    <ClCompile Include="Gts\src\predicates.c" />
+    <ClCompile Include="Gts\src\predicates_init.c" />
+    <ClCompile Include="Gts\src\psurface.c" />
+    <ClCompile Include="Gts\src\refine.c" />
+    <ClCompile Include="Gts\src\segment.c" />
+    <ClCompile Include="Gts\src\split.c" />
+    <ClCompile Include="Gts\src\stripe.c" />
+    <ClCompile Include="Gts\src\surface.c" />
+    <ClCompile Include="Gts\src\SurfaceDetail.c" />
+    <ClCompile Include="Gts\src\triangle.c" />
+    <ClCompile Include="Gts\src\vertex.c" />
+    <ClCompile Include="Gts\src\vopt.c" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,141 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Experiment file format</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Helv;
+	panose-1:2 11 6 4 2 2 2 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:Helvetica;}
+h1
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-autospace:none;
+	font-size:12.0pt;
+	font-family:Helvetica;
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=NL link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt'>The experiment
+file format</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Experiment files are Excel format files.
+The <b>Material Library</b> can read an Excel file containing multiple sheets.
+If more than one sheet is found in a file, the <b><a
+href="select_sheet_dialog.htm">Select sheet<span style='font-family:Helv;
+display:none;font-weight:normal'>HIDD_SELWORKSHEET</span></a></b> dialog is
+shown where the sheets can be selected that should be loaded.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The following data is needed for each step,
+including the allowed units.</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Axial stress</span></b><span lang=EN-US> (Pa, kPa,
+MPa, psi, bar)</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Radial stress</span></b><span lang=EN-US> (Pa, kPa,
+MPa, psi, bar)</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Axial strain</span></b><span lang=EN-US> (-)</span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Radial strain</span></b><span lang=EN-US> (-)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Besides it is possible to have</span></p>
+
+<p class=MsoNormal style='margin-left:14.15pt;text-indent:-14.15pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Time</span></b><span lang=EN-US> (days, hours,
+minutes, seconds)</span></p>
+
+<p class=MsoNormal style='margin-left:14.15pt;text-indent:-14.15pt'><span
+lang=EN-US style='font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span lang=EN-US>Pore pressure</span></b><span lang=EN-US> (Pa, kPa,
+MPa, psi, bar)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The bold words are the keywords for the
+column headers (first row). The units should appear in the second row (unit
+cells for strains are ignored, but must be present)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>If Time is not available it is assumed to
+be zero for all steps.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>If Pore pressure is available, the Axial
+and Radial stresses are assumed to be total stresses. Effective stresses are
+then calculated using the given pore pressures. If Pore pressure is not
+available, the Axial and Radial stresses are assumed to be effective stresses.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Data should start in the first column and
+the first row. No empty rows or columns are allowed in the data. It is,
+however, allowed to have empty data columns for the time and pore pressure
+below the headers.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>An example is shown below</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=555 height=356
+src="experiment001.jpg"></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

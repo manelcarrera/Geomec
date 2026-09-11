@@ -1,0 +1,540 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "ODBC Database Support"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A600E1"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CDatabase"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A600EC"
+	    documentation 	"A CDatabase object represents a connection to a data source, through which you can operate on the data source. A data source is a specific instance of data hosted by some database management system (DBMS). Examples include Microsoft SQL Server, Microsoft Access, Borland® dBASE®, and xBASE. You can have one or more CDatabase objects active at a time in your application."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A600FF"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CDatabase"
+		    quid       	"3A07D0A60109"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszDSN, bExclusive, bReadonly, lpszConnect, bUseCursorLib);
+|
+			    )))
+		    quid       	"3A07D0A60114"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszDSN"
+			    quid       	"3A07D0A6011D"
+			    type       	"LPCTSTR")
+			(object Parameter "bExclusive"
+			    quid       	"3A07D0A60127"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "bReadonly"
+			    quid       	"3A07D0A60128"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "lpszConnect"
+			    quid       	"3A07D0A60131"
+			    type       	"LPCTSTR"
+			    initv      	
+|_T("ODBC")
+			    )
+			(object Parameter "bUseCursorLib"
+			    quid       	"3A07D0A6013B"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OpenEx"
+		    quid       	"3A07D0A60145"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszConnectString"
+			    quid       	"3A07D0A6014F"
+			    type       	"LPCTSTR")
+			(object Parameter "dwOptions"
+			    quid       	"3A07D0A60159"
+			    type       	"DWORD"
+			    initv      	"0"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A60164"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetOptions"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(hstmt);
+|
+			    )))
+		    quid       	"3A07D0A60177"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hstmt"
+			    quid       	"3A07D0A60178"
+			    type       	"HSTMT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A6018B"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A60195"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A601A0"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Check"
+		    quid       	"3A07D0A601AB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A601B4"
+			    type       	"RETCODE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "BindParameters"
+		    quid       	"3A07D0A601BF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hstmt"
+			    quid       	"3A07D0A601C8"
+			    type       	"HSTMT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDBException"
+		    quid       	"3A07D0A601D3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A601DC"
+			    type       	"RETCODE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRecordset"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A601F0"
+	    documentation 	"A CRecordset object represents a set of records selected from a data source. Known as 'recordsets,' CRecordset objects are typically used in two forms: dynasets and snapshots. A dynaset stays synchronized with data updates made by other users. A snapshot is a static view of the data. Each form represents a set of records fixed at the time the recordset is opened, but when you scroll to a record in a dynaset, it reflects changes subsequently made to the record, either by other users or by other recordsets in your application."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A6020E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CRecordset"
+		    quid       	"3A07D0A6020F"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(nOpenType, lpszSql, dwOptions);
+|
+			    )))
+		    quid       	"3A07D0A60219"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nOpenType"
+			    quid       	"3A07D0A60222"
+			    type       	"UINT"
+			    initv      	"snapshot")
+			(object Parameter "lpszSql"
+			    quid       	"3A07D0A6022C"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "dwOptions"
+			    quid       	"3A07D0A6022D"
+			    type       	"DWORD"
+			    initv      	"none"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A60237"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSetOptions"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(hstmt);
+|
+			    )))
+		    quid       	"3A07D0A6024A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hstmt"
+			    quid       	"3A07D0A6024B"
+			    type       	"HSTMT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A60255"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A60268"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A60269"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Check"
+		    quid       	"3A07D0A6027C"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A6027D"
+			    type       	"RETCODE"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ThrowDBException"
+		    quid       	"3A07D0A60287"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A60290"
+			    type       	"RETCODE")
+			(object Parameter "hstmt"
+			    quid       	"3A07D0A6029A"
+			    type       	"HSTMT"
+			    initv      	"SQL_NULL_HSTMT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Move"
+		    quid       	"3A07D0A602A4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nRows"
+			    quid       	"3A07D0A602AE"
+			    type       	"long")
+			(object Parameter "wFetchType"
+			    quid       	"3A07D0A602AF"
+			    type       	"WORD"
+			    initv      	"SQL_FETCH_RELATIVE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetRowsetSize"
+		    quid       	"3A07D0A602B9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewRowsetSize"
+			    quid       	"3A07D0A602C2"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CheckRowsetError"
+		    quid       	"3A07D0A602CC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A602D6"
+			    type       	"RETCODE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddNew"
+		    quid       	"3A07D0A602E0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Edit"
+		    quid       	"3A07D0A602EB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Update"
+		    quid       	"3A07D0A602FE"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Delete"
+		    quid       	"3A07D0A60308"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Requery"
+		    quid       	"3A07D0A60312"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDefaultConnect"
+		    quid       	"3A07D0A6031D"
+		    stereotype 	"virtual"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetDefaultSQL"
+		    quid       	"3A07D0A60327"
+		    stereotype 	"virtual"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "DoFieldExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pFX);
+|
+			    )))
+		    quid       	"3A07D0A6033A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFX"
+			    quid       	"3A07D0A6033B"
+			    type       	"CFieldExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoBulkFieldExchange"
+		    quid       	"3A07D0A6034E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pFX"
+			    quid       	"3A07D0A6034F"
+			    type       	"CFieldExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetRowsetCurrencyStatus"
+		    quid       	"3A07D0A60359"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nRetCode"
+			    quid       	"3A07D0A60362"
+			    type       	"RETCODE")
+			(object Parameter "wFetchType"
+			    quid       	"3A07D0A6036C"
+			    type       	"UWORD")
+			(object Parameter "nRows"
+			    quid       	"3A07D0A6036D"
+			    type       	"long")
+			(object Parameter "dwRowsFetched"
+			    quid       	"3A07D0A60376"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PreBindFields"
+		    quid       	"3A07D0A60381"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLBFetchSize"
+		    quid       	"3A07D0A6038B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOldSize"
+			    quid       	"3A07D0A60394"
+			    type       	"long"))
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLBReallocSize"
+		    quid       	"3A07D0A6039F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOldSize"
+			    quid       	"3A07D0A603A8"
+			    type       	"long"))
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CLongBinary"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A603BC"
+	    documentation 	"Class CLongBinary simplifies working with very large binary data objects (often called BLOBs, or 'binary large objects') in a database. For example, a record field in an SQL table might contain a bitmap representing a picture. A CLongBinary object stores such an object and keeps track of its size."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A603D0"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CLongBinary"
+		    quid       	"3A07D0A603DA"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A603E4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A70007"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A70010"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,39 @@
+#set -x
+############################################################################
+#CLEAR ALL RESOURCES ACQUIRED BY PORT FORWARDING PROCESS
+# This will take below Inputs
+# PID_PF : Process ID of the Port Forwarding process
+# REMOTE_PORT : Remote port ID of the remote server 
+# SRMS_LOGFILE : SRMS Log file name to log the messages
+############################################################################
+
+PID_PF=$1
+LOCAL_PORT=$2
+REMOTE_HOST=$3
+REMOTE_PORT=$4
+SRMS_LOGFILE=$5
+
+PORT_FWD_UDP_STR="ncat -l -k -4 -u -p ${LOCAL_PORT} -c ncat -4 -u ${REMOTE_HOST} ${REMOTE_PORT}"
+
+#Store netstat output in a Shell variable and validate it later to kill the port forwarding 
+NETSTAT_OP=`netstat -an | egrep "tcp.*:${LOCAL_PORT} .*ESTABLISHED"`
+# If port Forwarding being used by some other process then don't kill the process otherwise kill it
+if [ -z "$NETSTAT_OP" ] ; 
+then
+    	#With this condition kill command will be executed only if port forwarding process is running in the server
+	if [ ! -z $PID_PF ];
+	then
+        	#As per Yaakoub's suggestion kill -9 is used instead of pkill
+	        kill -9 $PID_PF
+		kill -9 `pgrep -f -x "${PORT_FWD_UDP_STR}" `
+		if [ $? -eq 0 ] ;
+		then
+			echo -e "\n-----------------Port Forwarding with PID $PID_PF has been released successfully----------------\n"  >> $SRMS_LOGFILE 2>&1
+		fi
+	else
+		echo -e "\n-----------------There is no active Port Forwarding available to release----------------\n"  >> $SRMS_LOGFILE 2>&1
+	fi
+else
+	echo -e "\n------------------Port Forwarding can't be released since it is in use-------------\n"  >> $SRMS_LOGFILE 2>&1
+fi
+

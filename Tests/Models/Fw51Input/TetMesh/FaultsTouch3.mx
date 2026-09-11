@@ -1,0 +1,305 @@
+# multiply linked fault points
+GOCAD TSurf
+HEADER {
+name:back
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 3 2 6
+TRGL 3 6 7
+END
+GOCAD TSurf
+HEADER {
+name:bottom
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 0 1 2
+TRGL 0 2 3
+END
+GOCAD TSurf
+HEADER {
+name:front
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 0 1 5
+TRGL 0 5 4
+END
+GOCAD TSurf
+HEADER {
+name:left
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 0 3 7
+TRGL 0 7 4
+END
+GOCAD TSurf
+HEADER {
+name:right
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 1 2 6
+TRGL 1 6 5
+END
+GOCAD TSurf
+HEADER {
+name:top
+}
+TFACE
+VRTX 0 -2.000000 -2.000000 -2.000000 
+VRTX 1 2.000000 -2.000000 -2.000000 
+VRTX 2 2.000000 2.000000 -2.000000 
+VRTX 3 -2.000000 2.000000 -2.000000 
+VRTX 4 -2.000000 -2.000000 2.000000 
+VRTX 5 2.000000 -2.000000 2.000000 
+VRTX 6 2.000000 2.000000 2.000000 
+VRTX 7 -2.000000 2.000000 2.000000 
+TRGL 4 5 6
+TRGL 4 6 7
+END
+GOCAD TSurf
+HEADER {
+name:f_fault1
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 1 2 5
+TRGL 1 4 5
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:b_fault1
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 1 2 5
+TRGL 1 4 5
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:f_fault2
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 3 2 5
+TRGL 3 5 6
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:b_fault2
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 3 2 5
+TRGL 3 5 6
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:f_fault3
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 4 5 7
+TRGL 5 7 8
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:b_fault3
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL 4 5 7
+TRGL 5 7 8
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:f_fault4
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL  5 6 9
+TRGL  5 8 9
+
+END
+
+
+GOCAD TSurf
+HEADER {
+name:b_fault4
+}
+TFACE
+
+
+VRTX 1     -1  -1      0
+VRTX 2      0  -1      0
+VRTX 3      1  -1      0
+
+VRTX 4     -1   0      0
+VRTX 5      0   0      0
+VRTX 6      1   0      0
+
+VRTX 7     -1   1      0
+VRTX 8      0   1      0
+VRTX 9      1   1      0
+
+
+TRGL  5 6 9
+TRGL  5 8 9
+
+END
+
+

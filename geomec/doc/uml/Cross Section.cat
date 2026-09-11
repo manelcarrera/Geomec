@@ -1,0 +1,433 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Cross Section"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A23DA050201"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Add Cross Section"
+	    quid       	"3A2E164A0388"
+	    documentation 	
+|Create a new cross section.
+|A default plane is shown witch can be rotated(x,y,z) and translated.
+|(In a seperate dialog? or BirdEye?)
+	    )
+	(object UseCase "Delete Cross Section"
+	    quid       	"3A2E169A0210")
+	(object UseCase "Delete All Cross Sections"
+	    quid       	"3A2E16AF0198")
+	(object UseCase "Modify Cross Section"
+	    quid       	"3A2E16EE01AD"
+	    documentation 	
+|Modify a crossection by rotating(x,y,z) and translating a plane.
+|
+|Modifying, adding or deleting crossections does not invalidate a valid model.
+	    )
+	(object Association "$UNNAMED$0"
+	    quid       	"3A2E174303E0"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A2E174402D3"
+		    supplier   	"Use Case View::Model Use Cases::Cross Section::Add Cross Section"
+		    quidu      	"3A2E164A0388"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3A2E174402E7"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$3"
+	    quid       	"3A2E1747002E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"3A2E174703A0"
+		    supplier   	"Use Case View::Model Use Cases::Cross Section::Delete Cross Section"
+		    quidu      	"3A2E169A0210"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A2E174703B4"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2E1749024E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2E174A023B"
+		    supplier   	"Use Case View::Model Use Cases::Cross Section::Delete All Cross Sections"
+		    quidu      	"3A2E16AF0198"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2E174A024F"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A2E174C023E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"3A2E174D0109"
+		    supplier   	"Use Case View::Model Use Cases::Cross Section::Modify Cross Section"
+		    quidu      	"3A2E16EE01AD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A2E174D0113"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279")))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A2E4C3303B5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3A2E4C340258"
+		    supplier   	"Use Case View::View Use Cases::GeoView::Planar::Add To Planer"
+		    quidu      	"3A2E4C0A026B"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A2E4C34026C"
+		    supplier   	"Use Case View::Geomec User"
+		    quidu      	"39FEEF4B0279"))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Cross Section"
+	    quid       	"3A2E16180119"
+	    title      	"Cross Section"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(80, 80)
+		    font       	(object Font
+			size       	12
+			face       	"Arial"
+			bold       	TRUE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	2
+		    max_width  	944
+		    label      	"Cross Section Use Cases")
+		(object UseCaseView "Use Case View::Model Use Cases::Cross Section::Add Cross Section" @2
+		    location   	(256, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(256, 592)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add Cross Section")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E164A0388"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Cross Section::Delete Cross Section" @3
+		    location   	(768, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(768, 592)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete Cross Section")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E169A0210"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Cross Section::Delete All Cross Sections" @4
+		    location   	(1360, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1360, 592)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Delete All Cross Sections")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E16AF0198"
+		    height     	118)
+		(object UseCaseView "Use Case View::Model Use Cases::Cross Section::Modify Cross Section" @5
+		    location   	(1952, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1952, 592)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Modify Cross Section")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E16EE01AD"
+		    height     	118)
+		(object UseCaseView "Use Case View::View Use Cases::GeoView::Planar::Add To Planer" @6
+		    location   	(288, 896)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(288, 1040)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	630
+			justify    	0
+			label      	"Add To Planer")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A2E4C0A026B")
+		(object ClassView "Class" "Use Case View::Geomec User" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1088, 1008)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1088, 1168)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	331
+			justify    	0
+			label      	"Geomec User")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    quidu      	"39FEEF4B0279"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$0" @8
+		    location   	(769, 792)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E174303E0"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @9
+			    Parent_View 	@8
+			    location   	(449, 472)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174402D3"
+			    client     	@8
+			    supplier   	@2
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @10
+			    Parent_View 	@8
+			    location   	(449, 472)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174402E7"
+			    client     	@8
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @11
+		    location   	(952, 772)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E1747002E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @12
+			    Parent_View 	@11
+			    location   	(632, 452)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174703A0"
+			    client     	@11
+			    supplier   	@3
+			    line_style 	0)
+			(object RoleView "$UNNAMED$5" @13
+			    Parent_View 	@11
+			    location   	(632, 452)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174703B4"
+			    client     	@11
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$6" @14
+		    location   	(1199, 772)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E1749024E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$7" @15
+			    Parent_View 	@14
+			    location   	(879, 452)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174A023B"
+			    client     	@14
+			    supplier   	@4
+			    line_style 	0)
+			(object RoleView "$UNNAMED$8" @16
+			    Parent_View 	@14
+			    location   	(879, 452)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174A024F"
+			    client     	@14
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$9" @17
+		    location   	(1417, 792)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E174C023E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$10" @18
+			    Parent_View 	@17
+			    location   	(1097, 472)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174D0109"
+			    client     	@17
+			    supplier   	@5
+			    line_style 	0)
+			(object RoleView "$UNNAMED$11" @19
+			    Parent_View 	@17
+			    location   	(1097, 472)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E174D0113"
+			    client     	@17
+			    supplier   	@7
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$12" @20
+		    location   	(712, 953)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2E4C3303B5"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @21
+			    Parent_View 	@20
+			    location   	(8, 9)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4C340258"
+			    client     	@20
+			    supplier   	@6
+			    line_style 	0)
+			(object RoleView "$UNNAMED$14" @22
+			    Parent_View 	@20
+			    location   	(8, 9)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A2E4C34026C"
+			    client     	@20
+			    supplier   	@7
+			    line_style 	0)))))))

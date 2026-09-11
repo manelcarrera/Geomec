@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Base\2DGraphBase.cpp" />
+    <ClCompile Include="Base\2DGraphLineBase.cpp" />
+    <ClCompile Include="Base\2DGraphParentBase.cpp" />
+    <ClCompile Include="Base\ColorScale.cpp" />
+    <ClCompile Include="Base\ColorScaleDrawDef.cpp" />
+    <ClCompile Include="Base\CurveFunction.cpp" />
+    <ClCompile Include="Base\DisplayPair.cpp" />
+    <ClCompile Include="Base\Dragger.cpp" />
+    <ClCompile Include="Base\DrawCountVisitor.cpp" />
+    <ClCompile Include="Base\DrawDef.cpp" />
+    <ClCompile Include="Base\DrawVisitor.cpp" />
+    <ClCompile Include="Base\DrawVisitorBase.cpp" />
+    <ClCompile Include="Base\GeoObjectHandlerBase.cpp" />
+    <ClCompile Include="Base\InterfaceDrawDef.cpp" />
+    <ClCompile Include="Base\IOpenGLFrame.cpp" />
+    <ClCompile Include="Base\LabelPoint.cpp" />
+    <ClCompile Include="Base\LegendFrameBase.cpp" />
+    <ClCompile Include="Base\LineModifier.cpp" />
+    <ClCompile Include="Base\Marker.cpp" />
+    <ClCompile Include="Base\MouseListener.cpp" />
+    <ClCompile Include="Base\ObjectModifier.cpp" />
+    <ClCompile Include="Base\OpenGLArrow.cpp" />
+    <ClCompile Include="Base\OpenGLAxis.cpp" />
+    <ClCompile Include="Base\OpenGLDraw.cpp" />
+    <ClCompile Include="Base\OpenGLFrame.cpp" />
+    <ClCompile Include="Base\OpenGLScene.cpp" />
+    <ClCompile Include="Base\OpenGLStar.cpp" />
+    <ClCompile Include="Base\OpenGLViewProxy.cpp" />
+    <ClCompile Include="Base\PointModifier.cpp" />
+    <ClCompile Include="Base\PolygonCreator.cpp" />
+    <ClCompile Include="Base\PolygonModifier.cpp" />
+    <ClCompile Include="Base\PolyLineCreator.cpp" />
+    <ClCompile Include="Base\RectangleModifier.cpp" />
+    <ClCompile Include="Base\SphereSymbol.cpp" />
+    <ClCompile Include="Base\VectorSymbol.cpp" />
+    <ClCompile Include="Base\ZoomWindowDragger.cpp" />
+    <ClCompile Include="moc\moc_GeoObjectHandlerBase.cpp" />
+    <ClCompile Include="moc\moc_OpenGLScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\2DGraphBase.h" />
+    <ClInclude Include="include\2DGraphLineBase.h" />
+    <ClInclude Include="include\2DGraphParentBase.h" />
+    <ClInclude Include="include\ColorScale.h" />
+    <ClInclude Include="include\ColorScaleDrawDef.h" />
+    <ClInclude Include="include\CurveFunction.h" />
+    <ClInclude Include="include\DisplayPair.h" />
+    <ClInclude Include="include\Dragger.h" />
+    <ClInclude Include="include\DrawCountVisitor.h" />
+    <ClInclude Include="include\DrawDef.h" />
+    <ClInclude Include="include\DrawVisitor.h" />
+    <ClInclude Include="include\DrawVisitorBase.h" />
+    <CustomBuild Include="include\GeoObjectHandlerBase.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="include\IDrawDef.h" />
+    <ClInclude Include="include\InterfaceDrawDef.h" />
+    <ClInclude Include="include\IOpenGLDraw.h" />
+    <ClInclude Include="include\IOpenGLFrame.h" />
+    <ClInclude Include="include\ISymbol.h" />
+    <ClInclude Include="include\LabelPoint.h" />
+    <ClInclude Include="include\LegendFrameBase.h" />
+    <ClInclude Include="include\LineModifier.h" />
+    <ClInclude Include="include\Marker.h" />
+    <ClInclude Include="include\MouseListener.h" />
+    <ClInclude Include="include\ObjectModifier.h" />
+    <ClInclude Include="include\OpenGL.h" />
+    <ClInclude Include="include\OpenGLArrow.h" />
+    <ClInclude Include="include\OpenGLAxis.h" />
+    <ClInclude Include="include\OpenGLDraw.h" />
+    <ClInclude Include="include\OpenGLFrame.h" />
+    <ClInclude Include="include\OpenGLFrameExports.h" />
+    <CustomBuild Include="include\OpenGLScene.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="include\OpenGLStar.h" />
+    <ClInclude Include="include\OpenGLViewProxy.h" />
+    <ClInclude Include="include\PointModifier.h" />
+    <ClInclude Include="include\PolygonCreator.h" />
+    <ClInclude Include="include\PolygonModifier.h" />
+    <ClInclude Include="include\PolyLineCreator.h" />
+    <ClInclude Include="include\RectangleModifier.h" />
+    <ClInclude Include="include\SphereSymbol.h" />
+    <ClInclude Include="include\VectorSymbol.h" />
+    <ClInclude Include="include\ZoomWindowDragger.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6EB909D5-A8FA-48FE-9FB2-3FDCC75977DB}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>FW51-OpenGLFrame</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" />
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FW-OPENGLFRAME);</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile />
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FW-OPENGLFRAME);</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(FW-OPENGLFRAME);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0413</Culture>
+    </ResourceCompile>
+    <Lib />
+    <Bscmake />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

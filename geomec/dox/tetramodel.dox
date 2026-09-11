@@ -1,0 +1,74 @@
+/*! 
+\page GEOMEC_TETRA Tetrahedron model
+
+The aim of the tetrahedron type model is to be able to analyse GoCad type models and Eclipse type models in Geomec. The tetrahedron type model is divided into two separate model spaces, the sub model and the super model. The sub model contains the imported Eclipse type or imported GoCad type model. The super model incorporates the sub model, the overburden and the side burden of the geological model. This division is created since the sub model and super model have different properties and validation criteria. The tetrahedron type model (CTetraModel) generates a tetrahedron volume mesh (CTetraMesh) for the Diana analysis.
+
+\section TET_GOC Gocad format
+
+The workflow describing the export and import of GoCad files as well as the following processing steps in Geomec is illustrated in figure below:
+\image html workflow_gocad.jpg "Workflow from GoCad design to post-processing in Geomec"
+The user designs the geometry of the model in the geo-mechanical program GoCad, which is then exported to a GoCad file (CGocadFile). The first option is to import the GoCad file including the 3D mesh (CTetraMesh. The user can contruct a super model outside the imported gocad model by adding for example a constant depth horizon(CTetraSuperHorizon). The import of complete GoCad mesh is not supported now, but Shell needs it desperately. 
+The second option is to read in different surfaces(CTetraSurface) that make up the GoCad model. The user will have to make sure that all the surfaces (CTetraSurface) that are read in construct a closed sub model (CTetraSubHorizon). Surfaces are not allowed to cross each other. 
+After the surfaces are read in (either one by one or via the GoCad file) the user will have to specify which surfaces make up the CTetraSubBoundary and which surfaces make up the horizons and faults (CTetraSubHorizon) of the sub model (TSubModelEntry).
+The user must also assign a top and bottom (CTetraSubBoundary::CHorizonPlaceHolder)horizon on the CTetraSubBoundary.
+When the user decides to construct a super model, the surfaces making up the top and bottom of the boundary (CTetraSubBoundary) will be treated like they are part of a horizon (CTetraSubHorizon) which will be extended to the boundary of the super model.
+Models containing borderless surfaces or surfaces that have more than one Z co-ordinate at one N, E co-ordinate (e.g. mushroom shaped salt dome) can only be read in via a GoCad file containing the 3D mesh.
+Next the user has to define the depletion stages (CDepletionStage), loads (CPressure) and materials (IMaterial) in the model. 
+When the imported GoCad file only contains horizons and/or faults (C2DSubHorizon) or the sub model was created by reading in different surfaces the model has to be meshed. If, on the other hand, a GoCad file was read in that already contained a 3D mesh (CTetraMesh) this is not necessary. The user can analyse the model (CGeomec3DDianaRunner) and use the post-processor (CResultRegister) to view the results (CResultTree) of the analysis.
+
+\section TET_ECL Eclipse format
+
+The workflow describing the import of an Eclipse file (CEclipseFile), the conversion to a sub model (CEclipseSubModelEntry) and the final export to an CEclipseFile (with calculated results) is shown in figure below:
+\image html workflow_eclipse.jpg "From Eclipse file to Eclipse file with calculated results"
+The CEclipseFile is read in and the appropriate(CTetraSurface) and faults (CTetraSubHorizon) are extracted. If the file contains material properties and / or initial stresses and / or initial pressures and / or depletion stage pressures (CValueType), these will also be read in. The user can insert additional layers in the  surfaces and faults are used to construct a sub model, see paragraph 2.2. The analysis can be performed on the sub model and visualised in Geomec. After the analysis has taken place the results can be exported onto the original Eclipse grid.
+
+\subsection ECL_OVERVIEW Eclipse overview
+
+The Eclipse model is defined by an Eclipse file in the GRID format. A specification can be found documents (DOC) folder in source safe. The mesh exists of NUMRES separated reservoirs (CEclipseReservoir). Each reservoir has a top- and bottom grid with dimensions NX and NY. The quadrilaterals in the top- and bottom grid don’t necessarily need to connect. The thickness of the model is defined by NZ. The mesh can be represented as NX*NY pillars for each reservoir. The raw GRID mesh supplied by the grid file cannot be directly offered to the Diana kernel, because the mesh may contain discontinuities that the Diana kernel cannot handle, therefore horizons and faults are extracted. The user can define properties in the Eclipse file by defining tags in the same way as was possible in the 2.x versions. This means that the user can assign one or more properties to every Eclipse cell, one value per property per cell. Mapping of properties and results from Eclipse grid to tetrahedron mesh and vice versa will be done using element to element mapping.
+\image html eclipse_cube.jpg "The eclipse grid"
+\subsection ECL_CONV Conversion to the sub model
+The Eclipse mesh may contain shifted elements, pinch-outs, bad-shaped elements, holes and disconnected pillars. The Diana kernel does not support the discontinuities in the mesh. On top of that the results of the analysis using such a bad mesh may be very unreliable. A better approach is to deduce the characteristic properties from the Eclipse model in terms of horizons, faults (CTetraSubHorizon) and create the sub model (CEclipseSubModel). The sub model creates a new tetrahedron mesh that is analysed by Diana. The original Eclipse mesh is also exported to the tetrahedron type model as an element set, so the results of the analysis can be mapped and exported on the original Eclipse mesh. The drawback of this approach is that the input properties mapped on the original Eclipse mesh do not match exactly with the generated tetrahedron mesh. This will result in loss of data. The same will occur by mapping the results back to the original Eclipse grid. 
+The Eclipse model does not supply all the information needed for an analysis in Geomec. The user must specify at least the following additional information if they were not present in the file:
+-	The amount of CDepletionStage
+-	The IMaterial for each CTetraFormation
+-	The 	pressure definition for each formation and each depletion stage
+-	The initial stresses
+\subsection ECL_MERG_POINT	Merging grid points
+The Eclipse mesh may contain holes and disconnected elements. The first conversion step is to repair the holes and reconnect the elements. This is done by merging the shared points of quadrilateral elements in upper and lower grid for each formation. Figure 2.5 illustrates this operation. All the pillars of the Eclipse model are connected now.
+\image html eclipse_connect.jpg "Reconnect quadrilaterals"
+The pillars themselves may still contain holes in the k direction. These holes disappear when points of disconnected elements in the k direction are merged as illustrated in figure 2.6. 
+\image html eclipse_pillar.jpg "Reconnected pillars"
+\subsection ECL_FAULT Detect faults
+In the tetrahedron model a cohesion- and a friction angle value are defined for the fault. Faults are modelled with contact elements in the tetrahedron model. Geomec will identify the faults through fault keyword in the Eclipse file. Details about the fault identification through keywords will be provided by Shell.
+\subsection ECL_HORI Detect horizons
+As a result of merging the points the mesh contains no holes. The model exists of NZ + 1 layers of quadrilaterals. These layers can be seen as potential horizons. During the conversion the user has to select at least two layers of quadrilaterals. Default the top- and bottom layers are selected. The selected layers are exported to the tetrahedron model as horizons. The horizon consists of at least one surface. When a horizon (this includes the top and bottom horizon) is crossed by a fault the horizon is split up in multiple surfaces, see figure 2.8.
+\image html eclipse_fault.jpg "Horizon is split in two surfaces by a fault"
+The points of the quadrilateral surfaces of the selected horizons are exported to the tetrahedron model. The tetrahedron model uses these points to mesh triangular surfaces. The surfaces are assigned to a previously created horizon.
+\subsection ECL_GRID Detect grid points
+The user has the option to import the original merged grid points from the Eclipse grid into the tetrahedron model. The imported points are the points of the Eclipse grid before applying the merging procedure of paragraph 2.2.2.1. In the tetrahedron model the merged grid points are used as input for the meshing procedure. As a result the tetrahedron mesh will include the grid points extracted from the merged Eclipse grid. Mapping the results from the merged grid onto the original grid can result in loss of accuracy of the results. Of course it is always possible to export the merged Eclipse grid with the results.
+\subsection ECL_ELEMENTSET Detect element sets
+The original Eclipse grid is always imported as an element set even if the Eclipse model contains no properties. The element set may contain properties like pressures or material properties as defined in the Eclipse model. The user can assign for example pressure and material properties to formations. After the model is analysed the results of the analysis can be mapped to the original Eclipse grid by simply assigning the results to the element set, and exported as a new Eclipse file.
+
+\section TETRA_MODEL The tetrahedron model
+After importing a CGoCadModel or an CEclipseModel and completing the model by inserting more horizons (if desired) a CTetraModel is the result. The CTetraModel consists of the TSubModelEntry (in effect the imported GoCad or Eclipse model) and the super model (the complete model including the sub model). The figure below shows the CTetraModel with the sub- and super model. The super model incorporates the sub model and allows the definition of a side-burden and overburden. In the super model the horizons from the sub model are extended horizontally, connecting the horizons of the sub model to the boundary of the super model. Faults (CTetraSubHorizon) are never extended outside the CTetraSubBoundary. The super model is very similar to the CHexaModel.
+\image html tetra_model.jpg "The tetrahedron model with sub and super model"
+The tetrahedron meshing routine generates bodies defined as volumes containing tetrahedrons enclosed by the surfaces of the horizons, faults and the boundary of the sub- and super model. If possible, formations are detected automatically and are named after the top horizon. Geomec will try to assign the bodies to formations, if this is not possible the user will have to assign the bodies to a formation manually. The user can never delete the bodies. When all the bodies are assigned to a formation the analysis can be performed.
+\subsection TET_BODY Bodies
+The generation of the volumetric mesh (CTetraMesh) results in a number of bodies (CTetraFormationVolume). A body is defined by tetrahedrons (geo::CTetrahedron) in a volume enclosed by the surfaces of the horizons, faults and boundary of sub model and super model. Each body can be assigned to a formation and one formation only. A formation (CTetraFormation) can contain multiple bodies. Bodies can have any geometrical shape.
+\subsection TET_BOUNDARY Boundary 
+In effect there are two boundaries in the tetrahedron model. One boundary enclosing the sub model (CTetraSubBoundary) and one boundary enclosing the super model (CTetraBoundary). The boundary enclosing the sub model is used (boundary conditions are prescribed for it) only when the sub and super model coincide. The side surfaces of the boundary can be refined and coarsened in exactly the same way as any regular surface, including the insertion of mesh regions.
+Surfaces of either boundary may never be removed, not even the surfaces of the boundary of the sub model inside a super model. 
+- Super model is equal to sub model
+If the user does not want to add any horizons after construction and the sub model is constructed via a GoCad model, the user will have to define the boundary manually if the boundary information was not provided in the files. The user will have to assign which surfaces of the model are considered to be the top of the boundary, which surfaces are considered to be the side of the boundary and which surfaces are considered to be the bottom of the boundary. All these surfaces together will have to describe a closed volume containing all the horizons and faults. As a result the model can have any geometrical shape (potato shape).
+If the model is constructed via an Eclipse file the boundary is constructed automatically. Although the GUI will ask the user whether the imported Eclipse file is defined having the Z-axis upward or downward. Which k-index if the top and which is the bottom of the grid will then be determined based on the co-ordinates.  
+- Super model is not equal to sub model
+Before the user starts to construct a super model by adding horizons outside the sub model, the sub model will have to be created. The surfaces defining the top and bottom of the sub model (as described in 3.4.1) will be considered to be part of a horizon and these horizons will be stretched horizontally to the boundary of the super model.
+ 
+The boundary consists of four surfaces when the sub model is not equal to the super model. None of the horizons or faults can cross the boundary. For the tetrahedron type model the boundary can have the following states:
+1.	Best-fit 
+The best-fit definition resizes the boundary to the smallest bounding box containing all the horizons and faults. The boundary generates four side surfaces enclosing the model on the front, back, left and right side of the model. The top and bottom of the model is enclosed by the top and bottom horizon. 
+2.	User defined
+The user can manually set the boundary by either defining the rectangle of the boundary in the north-east plane or by completing the northing and easting co-ordinates of the minimum and maximum corner points of the boundary in a dialog box. The rectangle must contain all horizons and faults defined at that moment. 
+The top and bottom of the boundary are equal to the top and bottom horizons of the model. 
+
+*/

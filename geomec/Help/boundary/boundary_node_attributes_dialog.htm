@@ -1,0 +1,48 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary Node Attributes dialog</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="global strain tensor">
+	<param name="Keyword" value="prescribed displacements">
+</OBJECT>
+<h1>Boundary Node Attributes dialog</h1>
+<p>This dialog allows you to specify the prescribed displacement for a selected
+corner node. </p>
+<p>A corner node can have either</p>
+<ul>
+  <li>Zero displacement</li>
+</ul>
+<blockquote>
+  <p>No displacement is imposed on the corner node. This is the default</p>
+</blockquote>
+<ul>
+  <li>A local displacement vector</li>
+</ul>
+<blockquote>
+  <p>The given vector will be applied.</p>
+</blockquote>
+<ul>
+  <li>A displacement vector deduced from a global strain tensor</li>
+</ul>
+<blockquote>
+  <p>This option is only available if a <a href="boundary_global_strain_tensor.htm">global
+  strain tensor</a> has been specified. The displacement vector at each corner
+  node is deduced from the global strain tensor taking the Reference point and
+  the specified Reference line as fixed. See <a href="boundary_displacement_from_tensor.htm">Prescribed
+  displacements from a global strain tensor</a> for a mathematical description.</p>
+</blockquote>
+<p>If the &quot;Apply to all corner nodes&quot; option is checked the specified
+displacement option will be applied to all corner nodes in the model.</p>
+
+</body>
+
+</html>

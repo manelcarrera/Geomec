@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\IDianaRunController.h" />
+    <ClInclude Include="h\IRetrieveDianaFileNames.h" />
+    <ClInclude Include="h\ISaveModel.h" />
+    <ClInclude Include="h\IExecuteDianaDialog.h" />
+    <ClInclude Include="h\RetrieveDianaFileNamesConsole.h" />
+    <ClInclude Include="h\SaveModelConsole.h" />
+    <ClInclude Include="h\RetrieveDianaFileNames.h" />
+    <ClInclude Include="h\SaveModel.h" />
+    <ClInclude Include="h\Functions.h" />
+    <ClInclude Include="h\Classes.h" />
+    <ClInclude Include="h\ExecuteDianaDialogQt.h" />
+    <ClInclude Include="h\Diana.h" />
+    <ClInclude Include="h\DianaProgress.h" />
+    <ClInclude Include="h\dianaxqt.h" />
+    <ClInclude Include="h\idianax.h" />
+    <ClInclude Include="h\DianaRunner.h" />
+    <ClInclude Include="h\DianaXWrapper.h" />
+    <ClInclude Include="h\IDianaXWrapper.h" />
+    <ClInclude Include="h\DianaExecuter.h" />
+    <ClInclude Include="h\ExecuteDianaSignals.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\RetrieveDianaFileNamesConsole.cpp" />
+    <ClCompile Include="src\SaveModelConsole.cpp" />
+    <ClCompile Include="src\Diana.cpp" />
+    <ClCompile Include="src\dianaxqt.cpp" />
+    <ClCompile Include="src\DianaExecuter.cpp" />
+    <ClCompile Include="src\DianaRunner.cpp" />
+    <ClCompile Include="src\DianaXWrapper.cpp" />
+    <ClCompile Include="src\ExecuteDianaSignals.cpp" />
+    <ClCompile Include="src\ExecuteDianaDialogQt.cpp" />
+    <ClCompile Include="src\IRetrieveDianaFileNames.cpp" />
+    <ClCompile Include="src\ISaveModel.cpp" />
+    <ClCompile Include="moc\moc_DianaExecuterSignalHandler.cpp" />
+    <ClCompile Include="src\DianaExecuterSignalHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\DianaExecuterSignalHandler.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,66 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Command Line"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C502E5"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CCommandLineInfo"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0C502F0"
+	    documentation 	
+|The CCommandLineInfo class aids in parsing the command line at application startup.
+|
+|An MFC application will typically create a local instance of this class in the InitInstance function of its application object. This object is then passed to CWinApp::ParseCommandLine, which repeatedly calls ParseParam to fill the CCommandLineInfo object. The CCommandLineInfo object is then passed to CWinApp::ProcessShellCommand to handle the command-line arguments and flags.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C5032B"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "ParseParam"
+		    quid       	"3A07D0C5032C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pszParam"
+			    quid       	"3A07D0C50335"
+			    type       	"const TCHAR*")
+			(object Parameter "bFlag"
+			    quid       	"3A07D0C5033F"
+			    type       	"BOOL")
+			(object Parameter "bLast"
+			    quid       	"3A07D0C50340"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

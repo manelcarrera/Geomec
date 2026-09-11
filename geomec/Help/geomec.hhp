@@ -1,0 +1,431 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1 or later
+Binary Index=Yes
+Compiled file=geomec.chm
+Contents file=TOC.hhc
+Default Window=Secondary
+Default topic=contents.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=Index.hhk
+Language=0x809 English (United Kingdom)
+Title=GEOMEC Help
+
+[WINDOWS]
+Secondary=,"TOC.hhc","Index.hhk","contents.htm","contents.htm",,,,,0x63520,,0x384e,[271,372,593,566],,,,,,,0
+
+[FILES]
+background\strain_methods.htm
+background\anisotropy.htm
+background\averaging_methods.htm
+background\calibration_algorithm.htm
+background\cam_clay.htm
+background\constant_stiffness.htm
+background\construction_and_constrain.htm
+background\convergence_norm_type.htm
+background\default_values_iteration.htm
+background\displacement_norm.htm
+background\element_to_element_mapping.htm
+background\elements.htm
+background\energy_norm.htm
+background\fault_frictional.htm
+background\force_norm.htm
+background\frac_and_transv_anisotropy.htm
+background\geomec_theory_description.htm
+background\homogenization.htm
+background\initial_stresses.htm
+background\inverse_averaging.htm
+background\inverse_volume_based_mapping.htm
+background\iteration_schemes.htm
+background\iteration_schemes_theory.htm
+background\linear_material.htm
+background\linear_stiffness.htm
+background\mapping_routines.htm
+background\material_models.htm
+background\modified_mohr_coulomb.htm
+background\mohr_coulomb.htm
+background\newton_modified.htm
+background\newton_regular.htm
+background\nodal_interpolation.htm
+background\non_smoothed.htm
+background\non_weighted_averaging.htm
+background\nonlinear_material.htm
+background\point_interpolation.htm
+background\rules.htm
+background\results_theory.htm
+background\salt_creep.htm
+background\smoothed_point_interpolation.htm
+background\undrained.htm
+background\upscaled_anisotropy.htm
+background\upscaling.htm
+background\volume_based_mapping.htm
+background\volume_weighted_averaging.htm
+background\zoom-in-technique.htm
+background\zoom-in_on_well_principle.htm
+background\heat-flow.htm
+background\GVT_analysis.htm
+boundary\boundary_conditions.htm
+boundary\boundary_conditions_with_interfaces.htm
+boundary\boundary_displacement_from_tensor.htm
+boundary\boundary_face_attributes_dialog.htm
+boundary\boundary_general.htm
+boundary\boundary_global_strain_tensor.htm
+boundary\boundary_global_stress_tensor.htm
+boundary\boundary_interface_attributes.htm
+boundary\boundary_interface_side_effects.htm
+boundary\boundary_node_attributes_dialog.htm
+boundary\boundary_prescribed_displacements.htm
+boundary\boundary_stress_tensor_pointset.htm
+boundary\boundary_tensor_specification.htm
+calculate\calculating_in_geomec.htm
+calculate\troubleshooting.htm
+contents.htm
+context\along_vertical_depth.htm
+context\attributes\attributes_distributed_element_value_dialog.htm
+context\attributes\attributes_distributed_value_dialog.htm
+context\attributes\attributes_property_dialog.htm
+context\attributes\mesh_attributes_datastorage.htm
+context\attributes\pointset_attributes.htm
+context\attributes\wellpath_attributes.htm
+context\calculate_optimum_mudweight.htm
+context\change_position_wellpath.htm
+context\delete_wellpath.htm
+context\dialogs\create_pointset.htm
+context\dialogs\graph_limits.htm
+context\formation_depth_lines.htm
+context\markers.htm
+context\reset_limits.htm
+context\select_points_dstabor.htm
+context\track_coordinates.htm
+context\true_vertical_depth.htm
+context\attributes\boundary_attributes.htm
+context\attributes\cross_section_attributes.htm
+context\attributes\formation_attributes.htm
+context\attributes\formation_plane_attributes.htm
+context\attributes\global_color_scale.htm
+context\attributes\horizon_attributes.htm
+context\attributes\hotspots.htm
+context\attributes\initial_pore_pressure.htm
+context\attributes\initial_stress.htm
+context\attributes\initial_temperature_field.htm
+context\attributes\local_color_scale.htm
+context\attributes\main_mesh_attributes.htm
+context\attributes\mesh_attributes.htm
+context\attributes\mesh_region_attributes.htm
+context\attributes\model_attributes.htm
+context\attributes\model_depletion_stage.htm
+context\attributes\model_general.htm
+context\attributes\model_global_stresses.htm
+context\attributes\pressure_attributes.htm
+context\attributes\rpn_calculator.htm
+context\attributes\fault_attributes.htm
+context\attributes\sub_horizon_attributes.htm
+context\attributes\analysis_point_attributes.htm
+context\attributes\scaling_box_attributes.htm
+context\attributes\point_elementset_attributes.htm
+context\attributes\formation_tetra_attributes.htm
+context\attributes\formation_volume_attributes.htm
+context\attributes\quantity_attributes.htm
+context\attributes\surface_attributes.htm
+context\attributes\restart.htm
+context\attributes\restart_branches.htm
+context\change_position_cross_section.htm
+context\convert_to_tetramodel.htm
+context\create_global_gradient.htm
+context\create_horizon.htm
+context\create_hotspot.htm
+context\delete_cross_section.htm
+context\delete_horizon.htm
+context\dialogs\analysis_options.htm
+context\dialogs\calculation_criteria.htm
+context\dialogs\color_scale.htm
+context\dialogs\new_model.htm
+context\dialogs\nonlinear_calculation_parameter.htm
+context\dialogs\linear_analysis_settings.htm
+context\dialogs\open_model.htm
+context\dialogs\save_model.htm
+context\dialogs\save_model_as.htm
+context\dialogs\select_result.htm
+context\dialogs\view_settings.htm
+context\dialogs\fist_export.htm
+context\dialogs\points_fist_export.htm
+context\dialogs\global_stress_tensor.htm
+context\dialogs\global_strain_tensor.htm
+context\dialogs\far_field.htm
+context\dialogs\interface.htm
+context\dialogs\select_surfaces.htm
+context\dialogs\cut_surfaces.htm
+context\dialogs\upgrade_mesher.htm
+context\export_results.htm
+context\insert_cross_section.htm
+context\insert_cross_section_by_value.htm
+context\insert_cross_section_graphical.htm
+context\insert_deviated_wellpath.htm
+context\insert_vertical_wellpath.htm
+context\insert_vertical_wellpath_graphical.htm
+context\insert_vertical_wellpath_value.htm
+context\legend_attributes.htm
+context\material_library_formation.htm
+context\modify_boundary.htm
+context\move_horizon.htm
+context\remove_material_formation.htm
+datastorage\2d_pointset.htm
+datastorage\3d_pointset.htm
+datastorage\datastorage_general.htm
+datastorage\element_pointset.htm
+datastorage\list_material_models.htm
+datastorage\list_of_pointsets.htm
+datastorage\list_surfaces_tree.htm
+datastorage\materials_tree.htm
+datastorage\mesh_tree.htm
+datastorage\point_sets_tree.htm
+datastorage\pointset.htm
+datastorage\surfaces_tree.htm
+datastorage\datastorage_tree.htm
+file formats\experiment_file_format.htm
+file formats\geomec_file_format.htm
+file formats\ascii.htm
+file formats\eclipse_grid.htm
+file formats\element_section.htm
+file formats\element_set_file.htm
+file formats\excel.htm
+file formats\file_formats.htm
+file formats\gocad_file.htm
+file formats\point_section.htm
+file formats\point_set_file.htm
+file formats\tagged_format.htm
+file formats\untagged_format.htm
+file formats\well_path_format.htm
+general\context_sensitive_menu.htm
+general\distributed_quantities.htm
+general\distributed_value.htm
+general\extrapolated_value.htm
+general\general.htm
+general\generic_tags.htm
+general\material_tags.htm
+general\pressure_temperature_pointset_values.htm
+general\result_tags.htm
+general\tags.htm
+general\units.htm
+general\values.htm
+main window\drawing_area.htm
+main window\dynamic.htm
+main window\legend_area.htm
+main window\legend_geology.htm
+main window\legend_value.htm
+main window\main_window.htm
+main window\value_mesh_results.htm
+main window\value_results.htm
+material library\working_mat_lib.htm
+material library\Calibration.htm
+material library\Experiment_tab.htm
+material library\Linear_input_conversions.htm
+material library\Mat_parameters_dialog.htm
+material library\Model_tab.htm
+material library\Undrain_elastic_conversions.htm
+material library\about_dialog.htm
+material library\calib_settings_dialog.htm
+material library\duplicate_name_dialog.htm
+material library\experiment_file_format.htm
+material library\graph_area.htm
+material library\no_help.htm
+material library\rename_mat_dialog.htm
+material library\select_sheet_dialog.htm
+material library\unit_dialog.htm
+material library\working_with_mat_lib.htm
+menus\Export\export_menu.htm
+menus\Settings\settings_menu.htm
+menus\File\exit.htm
+menus\File\file_menu.htm
+menus\File\recent_file.htm
+menus\Help\about_geomec.htm
+menus\Help\help_menu.htm
+menus\Help\help_topics.htm
+menus\Import\import_menu.htm
+menus\View\axis.htm
+menus\View\boundary.htm
+menus\View\fill.htm
+menus\View\geology.htm
+menus\View\global_colorscale.htm
+menus\View\hotspot.htm
+menus\View\local_colorscale.htm
+menus\View\perspective.htm
+menus\View\rotate.htm
+menus\View\status_bar.htm
+menus\View\value.htm
+menus\View\view_menu.htm
+menus\analysis\analysis_log.htm
+menus\analysis\analysis_menu.htm
+menus\analysis\linear_depletion.htm
+menus\analysis\nonlinear_depletion.htm
+menus\analysis\heat_flow.htm
+menus\geomec_menus.htm
+menus\Edit\delete.htm
+models\eclipse_model.htm
+toolbars\analysis_create_mesh.htm
+toolbars\analysis_invalidate_mesh.htm
+toolbars\toolbar_analysis.htm
+toolbars\toolbar_general.htm
+toolbars\toolbar_topview.htm
+toolbars\toolbar_view.htm
+toolbars\toolbars.htm
+toolbars\topview_polygonal_mesh_region.htm
+toolbars\view_birdeye_view.htm
+toolbars\view_depth_direction.htm
+toolbars\view_easting_direction.htm
+toolbars\view_lighting.htm
+toolbars\view_lock_depth.htm
+toolbars\view_lock_easting.htm
+toolbars\view_lock_northing.htm
+toolbars\view_northing_direction.htm
+toolbars\view_unlock.htm
+toolbars\view_zoom_all.htm
+toolbars\view_zoom_in.htm
+toolbars\view_zoom_in_cursor.htm
+toolbars\view_zoom_out.htm
+tree\Model\list_wellpaths_tree.htm
+tree\Defined results\user_defined_results_tree.htm
+tree\Derived result\derived_result_tree.htm
+tree\Mesh_results\Max_edge.htm
+tree\Mesh_results\depth.htm
+tree\Mesh_results\mean_edge.htm
+tree\Mesh_results\mesh_results_tree.htm
+tree\Mesh_results\surface.htm
+tree\Mesh_results\volume.htm
+tree\Model\boundary_tree.htm
+tree\Model\cross_sections_tree.htm
+tree\Model\formation_plane_tree.htm
+tree\Model\formations_tree.htm
+tree\Model\hexa\hexahedron_tree.htm
+tree\Model\hexa\horizon_tree.htm
+tree\Model\hexa\list_horizons_tree.htm
+tree\Model\tetra\tetrahedron_tree.htm
+tree\Model\tetra\gocad_sub_model_tree.htm
+tree\Model\horizons_formation_tree.htm
+tree\Model\list_cross_sections_tree.htm
+tree\Model\list_depletion_formation_tree.htm
+tree\Model\list_formations_tree.htm
+tree\Model\list_of_meshregions_tree.htm
+tree\Model\material_formation_tree.htm
+tree\Model\mesh_tree.htm
+tree\Model\model_tree.htm
+tree\Model\planes_formations_tree.htm
+tree\Model\pressure_formation_tree.htm
+tree\Model\wellpaths_tree.htm
+tree\Results\depletion_stages.htm
+tree\Results\displacements.htm
+tree\Results\fault.htm
+tree\Results\linear_nonlinear.htm
+tree\Results\optimum.htm
+tree\Results\pore_pressure.htm
+tree\Results\results_tree.htm
+tree\Results\strains.htm
+tree\Results\stresses.htm
+tree\Views\2D_line_graph.htm
+tree\Views\Birdeye_view.htm
+tree\Views\cross_sections.htm
+tree\Views\default.htm
+tree\Views\top_view.htm
+tree\Views\views_tree.htm
+tree\geomec_tree.htm
+menus\analysis\analysis_calculation_criteria.htm
+tree\Model\model_types.htm
+file formats\hotspot_file_format.htm
+
+[ALIAS]
+IDH_MATLIBDLG=material library\Working_with_Mat_Lib.htm
+IDH_PARAMETERSDLG=material library\Mat_parameters_dialog.htm
+IDH_TABMODEL=material library\Model_tab.htm
+IDH_TABEXPERIMENT=material library\Experiment_tab.htm
+IDH_ABOUTBOX_MATLIBX=material library\about_dialog.htm
+IDH_DUPLICATENAMEDLG=material library\duplicate_name_dialog.htm
+IDH_RENAMEMATERIALDLG=material library\rename_mat_dialog.htm
+IDH_SELWORKSHEET=material library\select_sheet_dialog.htm
+IDH_CALIBSETTINGS=material library\calib_settings_dialog.htm
+IDH_UNITDLG=material library\unit_dialog.htm
+IDH_ANALYSIS_LINEAR_DEPLETION=menus\analysis\linear_depletion.htm
+IDH_ANALYSIS_NONLINEAR_CALCULATION=menus\analysis\nonlinear_depletion.htm
+IDH_ANALYSISLOG=menus\analysis\analysis_log.htm
+IDH_APP_ABOUT=menus\Help\about_geomec.htm
+IDH_APP_EXIT=menus\File\exit.htm
+IDH_ATRI_HOR_FORMATION=context\attributes\formation_attributes.htm
+IDH_ATRI_HORIZON=context\attributes\horizon_attributes.htm
+IDH_ATRI_SURFACE=context\attributes\surface_attributes.htm
+IDH_ATTRI_3DHORIZON=context\attributes\horizon_attributes.htm
+IDH_ATTRI_ANALYSIS_POINT=context\attributes\analysis_point_attributes.htm
+IDH_ATTRI_BODY_FORMATION=context\attributes\formation_attributes.htm
+IDH_ATTRI_HEXA_BOUNDARY=context\attributes\boundary_attributes.htm
+IDH_ATTRI_TETRA_BOUNDARY=context\attributes\boundary_attributes.htm
+IDH_ATTRI_COLOR_SCALE_ENTRY=context\dialogs\color_scale.htm
+IDH_ATTRI_COLOR_SCALE=context\attributes\global_color_scale.htm
+IDH_ATTRI_FACE_SUPPORT=boundary\boundary_face_attributes_dialog.htm
+IDH_ATTRI_FORMATION_VOLUME=context\attributes\formation_volume_attributes.htm
+IDH_ATTRI_FORMPLANE_DLG=context\attributes\formation_plane_attributes.htm
+IDH_ATTRI_GLOBAL_PRESSURE=context\attributes\initial_pore_pressure.htm
+IDH_ATTRI_GLOBAL_STRESS=context\attributes\initial_stress.htm
+IDH_ATTRI_HOMOGENIZATION=context\attributes\scaling_box_attributes.htm
+IDH_ATTRI_HORIZON=context\attributes\horizon_attributes.htm
+IDH_ATTRI_HOTSPOT=context\attributes\hotspots.htm
+IDH_ATTRI_MAIN_MESH_REGION=context\attributes\main_mesh_attributes.htm
+IDH_ATTRI_MESH_DEPTH=context\attributes\mesh_attributes.htm
+IDH_ATTRI_MESH=context\attributes\mesh_attributes_datastorage.htm
+IDH_ATTRI_MODEL_GENERAL=context\attributes\model_general.htm
+IDH_ATTRI_MODEL_GEOLOGY=context\attributes\model_global_stresses.htm
+IDH_ATTRI_MODEL_TIMESTEP=context\attributes\model_depletion_stage.htm
+IDH_ATTRI_NODAL_SUPPORT=boundary\boundary_node_attributes_dialog.htm
+IDH_ATTRI_POINTSET=context\attributes\point_elementset_attributes.htm
+IDH_ATTRI_PRESSURE=context\attributes\pressure_attributes.htm
+IDH_ATTRI_TEMPERATURE=context\attributes\temperature_attributes.htm
+IDH_ATTRI_SCENE=context\dialogs\view_settings.htm
+IDH_ATTRI_FAULT=context\attributes\fault_attributes.htm
+IDH_ATTRI_FAULT_PRESSURE=context\attributes\fault_attributes.htm
+IDH_ATTRI_NON_SLIP_HORIZON=context\attributes\sub_horizon_attributes.htm
+IDH_ATTRI_SUB_MESH_REGION=context\attributes\mesh_region_attributes.htm
+IDH_ATTRI_VALUE_TYPE=context\attributes\quantity_attributes.htm
+IDH_ATTRI_WELLPATH=context\attributes\wellpath_attributes.htm
+IDH_ATTRI_XSEC=context\attributes\cross_section_attributes.htm
+IDH_CAL_PROPERTIES=context\dialogs\analysis_options.htm
+IDH_CREATE_POINTSET=context\dialogs\create_pointset.htm
+IDH_DELHORIZONDLG=context\delete_horizon.htm
+IDH_DIALOG_INTFACE_ATTR=context\dialogs\interface.htm
+IDH_DIALOG_SELECT_SURFACE=context\dialogs\select_surfaces.htm
+IDH_DSBATCH_SELECT_POINTS=context\select_points_dstabor.htm
+IDH_EDIT_COPY=menus\Edit\copy.htm
+IDH_EDIT_DELETE=menus\Edit\delete.htm
+IDH_EXPORT_DLG=context\export_results.htm
+IDH_FARFIELD=context\dialogs\far_field.htm
+IDH_GLOBAL_TENSOR_AZI=boundary\boundary_global_strain_tensor.htm
+IDH_GLOBAL_TENSOR_AZI=context\dialogs\global_strain_tensor.htm
+IDH_GLOBAL_TENSOR=boundary\boundary_global_stress_tensor.htm
+IDH_GLOBAL_TENSOR=context\dialogs\global_stress_tensor.htm
+IDH_GRAPHLIMITS=context\dialogs\graph_limits.htm
+IDH_HELP_FINDER=menus\Help\help_topics.htm
+IDH_INITIAL_TEMPERATURE=context\attributes\initial_temperature_field.htm
+IDH_MAINFRAME=contents.htm
+IDH_MODEL_VALID_DLG=context\dialogs\calculation_criteria.htm
+IDH_NEW_MODEL_DLG=context\dialogs\new_model.htm
+IDH_LINSTA_PARAMS=context\dialogs\linear_analysis_settings.htm
+IDH_NONLIN_PARAMS=context\dialogs\nonlinear_calculation_parameter.htm
+IDH_UPGRADE_MESHER=context\dialogs\upgrade_mesher.htm
+IDH_OPTIMUMMUD=context\calculate_optimum_mudweight.htm
+IDH_PROP_POINTSET=context\attributes\pointset_attributes.htm
+IDH_RPN_DIALOG=context\attributes\rpn_calculator.htm
+IDH_SELECT_RESULT=context\dialogs\select_result.htm
+IDH_SURFACE_SELECT_CUT_DLG=context\dialogs\cut_surfaces.htm
+IDH_VIEW_AXIS=menus\View\axis.htm
+IDH_VIEW_BOUNDARY=menus\View\boundary.htm
+IDH_VIEW_COLOR=menus\View\geology.htm
+IDH_VIEW_FILL=menus\View\fill.htm
+IDH_VIEW_GLOBAL=menus\View\global_colorscale.htm
+IDH_VIEW_HOTSPOT=menus\View\hotspot.htm
+IDH_VIEW_LOCAL=menus\View\local_colorscale.htm
+IDH_VIEW_PERSPECTIVE=menus\View\perspective.htm
+IDH_VIEW_ROTATE=menus\View\rotate.htm
+IDH_VIEW_STATUS_BAR=menus\View\status_bar.htm
+IDH_VIEW_VALUE=menus\View\value.htm
+
+[MAP]
+#include geomec.hm
+
+[INFOTYPES]

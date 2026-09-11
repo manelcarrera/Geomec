@@ -1,0 +1,358 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,3
+ PRODUCTVERSION 1,0,0,3
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Shell International"
+            VALUE "FileDescription", "CutSurfaceUtil DLL"
+            VALUE "FileVersion", "1, 0, 0, 3"
+            VALUE "InternalName", "CutSurfaceUtil"
+            VALUE "LegalCopyright", "Copyright (C) 2005 - 2020"
+            VALUE "OriginalFilename", "CutSurfaceUtil.DLL"
+            VALUE "ProductName", "CutSurfaceUtil Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 3"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOGBAR_CUTSURFACE DIALOG 0, 0, 330, 17
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDC_BUTTON_SPREAD_CANCEL,237,2,39,13
+    PUSHBUTTON      "OK",IDC_BUTTON_SPREAD_OK,197,2,40,13
+END
+
+IDD_FORMVIEW DIALOG 0, 0, 141, 299
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_BASE_NAME,14,20,112,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MIN_X,76,62,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MIN_Y,76,78,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MIN_Z,76,94,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MAX_X,76,113,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MAX_Y,76,129,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MAX_Z,76,145,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NODE_X,76,187,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NODE_Y,76,203,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NODE_Z,76,219,50,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Generate surfaces",IDC_BUTTON_GEN_SURFACES,7,245,127,14
+    PUSHBUTTON      "Clear surfaces",IDC_BUTTON_CLEAR_SURFACES,7,260,127,14
+    PUSHBUTTON      "OK",ID_BUTTON_OK,7,276,60,16
+    PUSHBUTTON      "Cancel",ID_BUTTON_CANCEL,87,276,47,16
+    LTEXT           "Min point North:",IDC_STATIC,14,62,54,9
+    LTEXT           "Min point East:",IDC_STATIC,14,78,54,9
+    LTEXT           "Min point Depth:",IDC_STATIC,14,94,54,9
+    LTEXT           "Max point North:",IDC_STATIC,14,114,54,9
+    LTEXT           "Max point East:",IDC_STATIC,14,130,54,9
+    LTEXT           "Max point Depth:",IDC_STATIC,14,146,54,9
+    LTEXT           "Nr of nodes North",IDC_STATIC,14,188,58,9
+    LTEXT           "Nr of nodes East",IDC_STATIC,14,204,59,9
+    LTEXT           "Nr of nodes Depth",IDC_STATIC,14,220,59,9
+    GROUPBOX        "Box definition",IDC_FRAME_BOX_DEF,7,49,127,117
+    GROUPBOX        "Base name",IDC_STATIC,7,4,127,38
+    GROUPBOX        "Nr of nodes in ortho directions",IDC_STATIC,7,172,127,68
+END
+
+IDD_FORMVIEW_SELECT_SURF DIALOGEX 0, 0, 239, 288
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      ">",IDC_BUTTON_TO,107,89,29,18
+    PUSHBUTTON      "All",IDC_BUTTON_TO_ALL,107,109,29,18
+    PUSHBUTTON      "<",IDC_BUTTON_FROM,107,129,29,18
+    PUSHBUTTON      "None",IDC_BUTTON_FROM_ALL,107,149,29,18
+    LISTBOX         IDC_LIST_FROM,7,7,87,255,LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_TO,145,7,87,255,LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDC_BUTTON_OK,21,267,63,14
+    PUSHBUTTON      "Cancel",IDC_BUTTON_CANCEL,159,267,63,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOGBAR_CUTSURFACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_FORMVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 134
+        VERTGUIDE, 14
+        VERTGUIDE, 68
+        VERTGUIDE, 76
+        VERTGUIDE, 126
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 292
+    END
+
+    IDD_FORMVIEW_SELECT_SURF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        VERTGUIDE, 98
+        VERTGUIDE, 107
+        VERTGUIDE, 136
+        VERTGUIDE, 145
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 281
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_ISOLATED_EDGES      "Isolated edges were found.\n\nNote that this is not a problem if these edges belong to a fault. Horizons however should be fully connected."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Netherlands) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR_OPENGL_VIEW TOOLBAR 16, 16
+BEGIN
+    BUTTON      ED_ID_3DV_ZOOMIN
+    BUTTON      ED_ID_3DV_ZOOMOUT
+    BUTTON      ED_ID_3DV_ZOOM_WINDOW
+    BUTTON      ED_ID_3DV_ZOOM_RESET
+    SEPARATOR
+    BUTTON      ED_ID_3DV_LOCK_EAST
+    BUTTON      ED_ID_3DV_LOCK_NORTH
+    BUTTON      ED_ID_3DV_LOCK_DEPTH
+    BUTTON      ED_ID_3DV_LOCK_RESET
+    SEPARATOR
+    BUTTON      ED_ID_3DV_VIEW_AXIS
+    BUTTON      ED_ID_3DV_VIEW_PERSPECTIVE
+    BUTTON      ED_ID_3DV_VIEW_BOUNDARY
+    SEPARATOR
+    BUTTON      ED_ID_3DV_VIEW_Z_DIREC
+    BUTTON      ED_ID_3DV_VIEW_E_DIREC
+    BUTTON      ED_ID_3DV_VIEW_N_DIREC
+    BUTTON      ED_ID_3DV_VIEW_BE_DIREC
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR_OPENGL_VIEW BITMAP                  "well_view_bar.bmp"
+#endif    // Dutch (Netherlands) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United Kingdom) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SURFACE_CUT_DLG DIALOG 0, 0, 508, 380
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Cut surfaces"
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_DIALOG_SELECT_SURFACE DIALOG 0, 0, 714, 290
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Select surfaces"
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_SURFACE_CUT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 501
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 373
+    END
+
+    IDD_DIALOG_SELECT_SURFACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 707
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 283
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR_CUTSURFACES TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_BUTTON32771
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR_CUTSURFACES BITMAP                  "toolbar1.bmp"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CutSurfaceUtil.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United Kingdom) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\CutSurfaceUtil.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

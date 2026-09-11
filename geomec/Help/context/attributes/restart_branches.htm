@@ -1,0 +1,224 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Branches, restart and parameter changes</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Arial Unicode MS";}
+h2
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:18.0pt;
+	font-family:"Arial Unicode MS";}
+p.notes, li.notes, div.notes
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=NL>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="restart">
+</OBJECT>
+<div class=Section1>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:24.0pt'>Branches,
+restarts and parameter changes</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Geomec allows Branching of a run file.
+Within the model attributes, the Output type has to be selected as “Branch”</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img width=382 height=375
+src="restart_branch001.jpg"></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Branching has several advantages. The user
+can:</span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal><span lang=EN-US>restart a run after branching, for
+     instance after divergence of the run, hence re-using the successful part
+     of the run</span></li>
+ <li class=MsoNormal><span lang=EN-US>run more than one variation of depletion
+     scenario’s without having to rerun the initial (history matched) stages</span></li>
+ <li class=MsoNormal><span lang=EN-US>change material properties between the
+     stages, for instance to distinguish between geological time-scale
+     properties and depletion time scale properties</span></li>
+ <li class=MsoNormal><span lang=EN-US>do some paleospastic reconstruction by
+     simulating material deposition or erosion (by changing the density and
+     stiffness parameters to sea-water like properties)</span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The disadvantages of branching are:</span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal><span lang=EN-US>writing and reading intermediate files
+     slows down computation</span></li>
+ <li class=MsoNormal><span lang=EN-US>restart files can take of lot of disk
+     memory. The user needs to clear them manually if they are no longer
+     required.</span></li>
+ <li class=MsoNormal><span lang=EN-US>Geomec will perform an extra step,
+     basically initializing the model with the stresses from the previous step.</span></li>
+ <li class=MsoNormal><span lang=EN-US>The branching does not work in Linear
+     Elastic run-mode. The user must run in non-linear mode, although all
+     material models might be elastic. </span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN-US><span style='text-decoration:none'>&nbsp;</span></span></u></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:18.0pt'>Output Type: 
+Results, Branches, None</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:18.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>The output selection “Results” is the
+default. Computation results are stored and saved in the GMP file. If the user
+chooses “Branch”, two additional files get exported, that allow restarting from
+this point (see below). If the user chooses “none”, then Geomec results will not
+get saved on the GMP –file. This can be a necessary option to limit the file
+size, where the Stage is required, given that superposition principle does not
+apply for non-linear runs. This is mainly a problem for PCs with limited
+internal memory or that run with the 32bit version of Geomec.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>For linear runs all results will be written
+out and the other options do not apply. Restarts will also not work in linear
+runs. The parameters of the initial depletion stage will be used in all
+depletion stages.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN-US><span style='text-decoration:none'>&nbsp;</span></span></u></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:18.0pt'>Branch files</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>If we have a Geomec file (named run1.gmp)
+and if a Depletion Stage (say Depletion Stage 2, in short D2) is labeled as
+Branch Stage, then Geomec will export an intermediate results file after
+finishing Depletion Stage 2. A suffix _D2 will be given to the file
+(run1_D2.gmp) that ends up in the same directory as the active file. Also a
+Diana restart file will be created with the same name, but with a .ff
+extension, in this case run1_D2.ff. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>Whilst the run “run1” is continuing, the
+user can already open the file “run1_D2.gmp”. The user can modify pressure,
+temperature data or change material parameters from Depletion Stage 3 on (not
+the historic data). Also user defined Fault parameter can be changed. In order
+to rerun, the user must have a GMP and FF of the same name, in the same folder.
+If “run1_D2.gmp” is renamed into “run2”, than the associated “run1_D2.ff”
+should be manually renamed into “run2.ff” </span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:18.0pt'>Limitations</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The user cannot change the material model
+type (for instance from Elastic to Camclay). The user can change parameters
+(the model), either by creating and assigning a new model (of the same kind) or
+by assigning different pointsets.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Some parameters are not available for
+changing, like pore collapse parameters. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:18.0pt'>Example</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>In the screenshot below, there is a branch
+request after the stress initialization (D0) and after the second depletion
+stage (D2). The screen shows that for Depletion Stage 1 (D1) and 3 (D3), new
+material models can be added. If nothing is added, Geomec will take the same material
+properties as in the previous stage, including any attached pointsets. Geomec
+will show a blue arrow up, indication the link to previous models. In this case
+however, D0 and D1 have an identical general material model (called test). The
+attached density pointset is however different (“hisdensity” versus “density”).
+In D3 a different set of  (base) parameters is used in a material model called
+”changed”, whereas the density pointset remains unchanged.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>If you wish to attach a different pointset,
+you must also attribute a material model, which can be the same model, but can
+also be a different model.</span></p>
+
+<p class=MsoNormal>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=24 height=0></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=184 height=242 src="Restart_branch002.gif"></td>
+ </tr>
+</table>
+
+<br clear=ALL>
+</p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Used (attributed) materials models are
+sometimes locked (indicated with the exclamation mark (!) sign, to prevent
+changing historic parameters. To change parameters or the model type, the user
+has to make a copy of the model or delete the model from the Formations first.</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6DE80D09-E816-4640-BE34-F94E3FCC9E6F}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <RootNamespace>Tests</RootNamespace>
+    <ProjectName>RunTsts</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="..\Tests.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile />
+    <Link>
+      <AdditionalDependencies>$(TESTSTESTS_LIBS_DEBUG)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(TESTSTESTS_LIBS_D)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptTestDebug)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionTestDebug)</Message>
+    </PostBuildEvent>
+    <ClCompile>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(TESTSRUNTESTS)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile />
+    <Link>
+      <AdditionalDependencies>$(TESTSTESTS_LIBS)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TESTSTESTS_LIBS_D)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptTestRelease)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionTestRelease)</Message>
+    </PostBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TESTSRUNTESTS)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <ClCompile />
+    <Link>
+      <AdditionalDependencies>$(TESTSTESTS_LIBS)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TESTSTESTS_LIBS_D)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>$(BuildPostScriptTestRelease)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>$(BuildPostDescriptionTestRelease)</Message>
+    </PostBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TESTSRUNTESTS)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4100;4127;4131;4189;4251;4505;4706;4714;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\fw51\FieldValueFile\FieldValueFile.vcxproj">
+      <Project>{466422f4-3259-419b-80ea-65d3de4bd8c6}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\Geometry\Geometry.vcxproj">
+      <Project>{be554a53-3201-496e-912b-fd63c8962b90}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\ModelFrame\ModelFrame.vcxproj">
+      <Project>{ff0762fd-0778-4be1-97dd-e7aa6e8b104a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\OpenGLFrame\OpenGLFrame.vcxproj">
+      <Project>{6eb909d5-a8fa-48fe-9fb2-3fdcc75977db}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\Tensor\Tensor.vcxproj">
+      <Project>{bb3007b8-17c5-427d-b723-e3b8324218fc}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\TetMesh\TetMesh.vcxproj">
+      <Project>{aeeacd24-e222-4747-832f-b010c51d9bbd}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\fw51\Triangle\triangle.vcxproj">
+      <Project>{a9906d73-fb4f-495d-bca1-54f4bf13a444}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\blosc_filter\blosc_filter.vcxproj">
+      <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+      <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
+      <Project>{d5ca483c-e972-4ca4-9ce2-f4ebc521108c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\ConsoleLibrary\ConsoleLibrary.vcxproj">
+      <Project>{b86ff4e0-616b-4972-9f3e-7094d1ca0347}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\CutSurfaceUtilModel\CutSurfaceUtilModel.vcxproj">
+      <Project>{761de266-29aa-40e9-9f2a-90dace0d8a2f}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\DCasing\DCasing.vcxproj">
+      <Project>{f641edd0-67f9-4488-8f2d-ab1fe0ddb148}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\DianaCore\DianaCore.vcxproj">
+      <Project>{5272d857-c66b-4b8f-9aff-22e1a11d7886}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\DianaGlue\DianaGlue.vcxproj">
+      <Project>{344f283e-11eb-452d-973b-49589be2f0b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\DianaSignals\DianaSignals.vcxproj">
+      <Project>{ef5f3acb-d5d7-4aca-bf80-3c80280848a4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\DianaStartup\DianaStartup.vcxproj">
+      <Project>{9dd2d3b7-87c1-42d2-99c6-6dd2dbd71507}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\FemAppGUI\FemAppGUI.vcxproj">
+      <Project>{d123fa8c-5a4d-44a8-a1bb-04b5b8fe86ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\FemAppModel\FemAppModel.vcxproj">
+      <Project>{27902801-b1f4-435f-8e7d-dde68fd398ba}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\GeomecModel\GeomecModel.vcxproj">
+      <Project>{ee2e3ba6-3ce5-4962-a545-4399139e3efe}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\GeomecStringTable\GeomecStringTable.vcxproj">
+      <Project>{82df03e6-336a-4458-808b-d02fb1ccbaae}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\geomec_cora_library\geomec_cora_library.vcxproj">
+      <Project>{b864e7d0-c3b5-4c34-a1e4-03f62b610709}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\geomec_rgi_library\geomec_rgi_library.vcxproj">
+      <Project>{3f5693c3-5060-4f23-837a-57d3c2deb768}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\gmock-1.7.0\gtest\msvc\gtest-md.vcxproj">
+      <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be8}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\GMSkuaConnector\GMSkuaConnector.vcxproj">
+      <Project>{7dff0108-6cff-4da1-985c-de482241d396}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\MaterialLibraryXML\MaterialLibraryXML.vcxproj">
+      <Project>{a499d6a1-480e-4409-82f9-699e5658cfcd}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\MaterialLibrary\MaterialLibrary.vcxproj">
+      <Project>{6471453a-ba91-4241-823e-ff6cae2a242a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\MeshDataCacher\MeshDataCacher.vcxproj">
+      <Project>{c0204739-a48c-4d3b-bd5f-c74d65871061}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\NewWellScheme\NewWellScheme.vcxproj">
+      <Project>{2a6e8f7b-8d6b-4d66-ae56-1989dff03f6a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\qtiocompressor\qtiocompressor.vcxproj">
+      <Project>{4ffd48fe-053e-4c8d-8060-cdbca4835590}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\Quantity\Quantity.vcxproj">
+      <Project>{be3d76e9-9084-464e-a152-863cb45cb664}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\QUtil\QUtil.vcxproj">
+      <Project>{f99b429a-1152-459d-8716-007a42c94625}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\RGInterface\RGInterface.vcxproj">
+      <Project>{01a770e4-2db0-4c68-9b61-f249a3048154}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\RPN\RPN.vcxproj">
+      <Project>{4f25fb23-f39c-4e66-baf6-db3f6f8f15ac}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\TSMesh\TSMesh.vcxproj">
+      <Project>{0c6809c8-2d74-44a9-95d6-6b7f930007f9}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\Util\Util.vcxproj">
+      <Project>{992d5320-b6c5-4f0d-a19f-40644956e729}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\WELLSCHEMEUTILS\WellSchemeUtils.vcxproj">
+      <Project>{6b2bed05-e28a-4f03-8237-c23e23a95cb1}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\WellScheme\WellScheme.vcxproj">
+      <Project>{196d6005-6814-4b11-89d7-dd391a44c239}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">
+      <Project>{b12702ad-abfb-343a-a199-8e24837244a3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Fw51\Fw51.vcxproj">
+      <Project>{d295d167-40e4-49f0-9af6-0ec2751d0561}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\Materials\Materials.vcxproj">
+      <Project>{d1332b5c-807c-448c-a93e-d9d9245d3952}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelOperations\ModelOperations.vcxproj">
+      <Project>{bc8d4c81-7d31-41ac-a170-378e9a5a54d4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SanityChecks\SanityChecks.vcxproj">
+      <Project>{68571a84-2922-4aaf-a05b-744623230924}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\TestLib\TestLib.vcxproj">
+      <Project>{22a0cb19-de79-4135-b46b-dfae7b81c12d}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Printers.cpp" />
+    <ClCompile Include="src\Tests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\Printers.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

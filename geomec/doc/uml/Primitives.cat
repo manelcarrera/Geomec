@@ -1,0 +1,1144 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Primitives"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A22959D03A3"
+    documentation 	"These are the primitive elements every geometric structure consists of."
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CRectangle"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A7150460300"
+	    documentation 	
+|The rectangle class defines a rectangle by defining four 
+|points
+	    
+	    operations 	(list Operations
+		(object Operation "CRectangle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715046031E"
+		    parameters 	(list Parameters
+			(object Parameter "pFactory"
+			    quid       	"3A715046031F"
+			    type       	"CFactory*")
+			(object Parameter "v0"
+			    quid       	"3A7150460320"
+			    type       	"CVertex&")
+			(object Parameter "v1"
+			    quid       	"3A7150460321"
+			    type       	"CVertex&")
+			(object Parameter "v2"
+			    quid       	"3A7150460322"
+			    type       	"CVertex&")
+			(object Parameter "v3"
+			    quid       	"3A7150460323"
+			    type       	"CVertex&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "~CRectangle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150460324"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CFactory"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD4025B"
+	    operations 	(list Operations
+		(object Operation "GetSize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4028A"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnRegisterVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4028B"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD4028C"
+			    type       	"CVertex&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RegisterVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4028D"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD4029A"
+			    type       	"CVertex&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4029B"
+		    parameters 	(list Parameters
+			(object Parameter "nDensity"
+			    quid       	"3A90DFD4029C"
+			    type       	"const int"
+			    initv      	"11"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4029D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CLessPrimitive"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD400A8"
+	    operations 	(list Operations
+		(object Operation "operator()"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A90DFD400C5"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "p1"
+			    quid       	"3A90DFD400C7"
+			    type       	"const CPrimitive*"
+			    const      	TRUE)
+			(object Parameter "p2"
+			    quid       	"3A90DFD400C8"
+			    type       	"const CPrimitive*"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "BASEVERTEX"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD703D2"
+	    stereotype 	"struct"
+	    operations 	(list Operations
+		(object Operation "BASEVERTEX"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A90DFD80009"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_nReference"
+		    quid       	"3A90DFD8000A"
+		    type       	"int"
+		    exportControl 	"Public"))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CLine"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD401AF"
+	    documentation 	"A line connects two points"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DFD401CF"
+		    supplier   	"Logical View::Geometry::Primitives::CPrimitive"
+		    quidu      	"3A90DFD40067"))
+	    operations 	(list Operations
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401D0"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401DE"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Fyz"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401E0"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A90DFD401E2"
+			    type       	"const double"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Fxz"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401E3"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "y"
+			    quid       	"3A90DFD401E5"
+			    type       	"const double"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Fxy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401E6"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "z"
+			    quid       	"3A90DFD401EF"
+			    type       	"const double"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "HasVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401F0"
+		    parameters 	(list Parameters
+			(object Parameter "vertex"
+			    quid       	"3A90DFD401F1"
+			    type       	"CVertex&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetStartVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401F2"
+		    stereotype 	"const"
+		    result     	"CVertex*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetEndVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401F4"
+		    stereotype 	"const"
+		    result     	"CVertex*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD401FD"
+		    parameters 	(list Parameters
+			(object Parameter "v1"
+			    quid       	"3A90DFD401FE"
+			    type       	"CVertex&")
+			(object Parameter "v2"
+			    quid       	"3A90DFD401FF"
+			    type       	"CVertex&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "operator=="
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40200"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "a"
+			    quid       	"3A90DFD40202"
+			    type       	"const CLine&"
+			    const      	TRUE))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40203"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CPrimitive"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD40067"
+	    documentation 	"The base class of the primitives."
+	    operations 	(list Operations
+		(object Operation "CPrimitive"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40089"
+		    parameters 	(list Parameters
+			(object Parameter "pFactory"
+			    quid       	"3A90DFD4008A"
+			    type       	"CFactory*"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "GetFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40096"
+		    stereotype 	"const"
+		    result     	"CFactory*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetMidPoint"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40098"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40099"
+		    stereotype 	"abstract, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4009B"
+		    stereotype 	"abstract, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPrimitive"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD400A6"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CTetrahedron"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD3024C"
+	    operations 	(list Operations
+		(object Operation "CTetrahedron"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3025C"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CTetrahedron"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3026B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CTriangle"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD3021D"
+	    operations 	(list Operations
+		(object Operation "CTriangle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3023C"
+		    parameters 	(list Parameters
+			(object Parameter "pFactory"
+			    quid       	"3A90DFD3023D"
+			    type       	"CFactory*")
+			(object Parameter "v1"
+			    quid       	"3A90DFD3023E"
+			    type       	"const CVertex&"
+			    const      	TRUE)
+			(object Parameter "v2"
+			    quid       	"3A90DFD3023F"
+			    type       	"const CVertex&"
+			    const      	TRUE)
+			(object Parameter "v3"
+			    quid       	"3A90DFD30240"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "~CTriangle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30241"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CVertex"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD30161"
+	    documentation 	
+|The CVertex class represents a vertex in 3D space. The 
+|CVertex can be stored in a factory, because this save 
+|memory space and enables quick pointerwise search.
+	    
+	    operations 	(list Operations
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30185"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD30186"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30190"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30191"
+		    documentation 	"Get the minor x, y and z coordinate of two vertices."
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30193"
+		    documentation 	"Get the maxium x, y and z coordinate of two vertices."
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "~CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30195"
+		    documentation 	
+|The destructor calls the factory and unregisters the 
+|vertex.
+		    
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301A0"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301A2"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301A3"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301A5"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "Z"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A90DFD301A6"
+		    stereotype 	"const"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Y"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A90DFD301B0"
+		    stereotype 	"const"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "X"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3A90DFD301B2"
+		    stereotype 	"const"
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301B4"
+		    parameters 	(list Parameters
+			(object Parameter "f"
+			    quid       	"3A90DFD301BF"
+			    type       	"CFactory&")
+			(object Parameter "x"
+			    quid       	"3A90DFD301C0"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD301C1"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "z"
+			    quid       	"3A90DFD301C2"
+			    type       	"const double&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301C3"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A90DFD301C4"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD301C5"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "z"
+			    quid       	"3A90DFD301C6"
+			    type       	"const double&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301CF"
+		    parameters 	(list Parameters
+			(object Parameter "f"
+			    quid       	"3A90DFD301D0"
+			    type       	"CFactory&")
+			(object Parameter "x"
+			    quid       	"3A90DFD301D1"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD301D2"
+			    type       	"const double&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301D3"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A90DFD301DE"
+			    type       	"const double&"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD301DF"
+			    type       	"const double&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "operator="
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301E0"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301E1"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"CVertex&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsEmpty"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301E2"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "operator/"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301E4"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301EF"
+			    type       	"const double&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "operator*"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301F0"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301F2"
+			    type       	"const double&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "operator=="
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301F3"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD301FD"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "operator+"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD301FE"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD30200"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "operator-"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30201"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD30203"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "DistanceFrom"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30204"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD3020E"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "operator<"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3020F"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD30211"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CVoxet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD20386"
+	    operations 	(list Operations
+		(object Operation "CVoxet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203B9"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD203C3"
+			    type       	"const CVoxet&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVoxet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203C4"
+		    parameters 	(list Parameters
+			(object Parameter "factory"
+			    quid       	"3A90DFD203C5"
+			    type       	"CFactory&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CVoxet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203C6"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CVoxet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203C7"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetAt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203D2"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A90DFD203D3"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD203D4"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "z"
+			    quid       	"3A90DFD203D5"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "vertex"
+			    quid       	"3A90DFD203D6"
+			    type       	"const CVertex&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetAt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203D7"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "x"
+			    quid       	"3A90DFD203D9"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "y"
+			    quid       	"3A90DFD203E2"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "z"
+			    quid       	"3A90DFD203E3"
+			    type       	"const int"
+			    const      	TRUE))
+		    result     	"CVertex&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203E4"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203E6"
+		    stereotype 	"virtual, const"
+		    result     	"CVertex"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A90DFD30161")
+		(object Operation "operator="
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD203E8"
+		    parameters 	(list Parameters
+			(object Parameter "rhs"
+			    quid       	"3A90DFD30009"
+			    type       	"const CVoxet&"
+			    const      	TRUE))
+		    result     	"CVoxet&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,904 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Document"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A100248023A"
+    documentation 	
+|The Document is a Facade (see Design Patterns)
+|
+|Document uses the view
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CGeoDoc"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"Dyncreate")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CDocument"))
+	    quid       	"3A07D9DA0298"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D9DA02C0"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CDocument"
+		    quidu      	"3A07D0B101A5"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	TRUE))
+		    quid       	"3A10F9D602EC"
+		    label      	"m_pModel"
+		    supplier   	"Logical View::Model::CModel"
+		    quidu      	"3A10F4C5014D"
+		    exportControl 	"Private"
+		    client_cardinality 	(value cardinality "1..1"))
+		(object Uses_Relationship
+		    quid       	"3A1EA03703E2"
+		    label      	"m_pVertexSet"
+		    supplier   	"CVertexSetE"
+		    quidu      	"3A1E71CF01AE"
+		    exportControl 	"Private"
+		    client_cardinality 	(value cardinality "0..n")))
+	    operations 	(list Operations
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA02CA"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D9DA02DE"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA02E8"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Serialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA0306"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ar"
+			    quid       	"3A07D9DA031A"
+			    type       	"CArchive&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewDocument"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA0324"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CGeomecDoc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA032F"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "CGeoDoc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0011"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "GetGeometryEntry"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0020"
+		    result     	"CGeoGraphEntry*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "RebuildModel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0021"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetHorizonCount"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0030"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoDoc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0031"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewSurface"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_NEW_SURFACE, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0041"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInsertFault"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_INSERT_FAULT, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D004F"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInsertHorizon"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_INSERT_HORIZON, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0051"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInsertVertexSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_INSERT_POINTSET, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0060"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInsertSurface"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_INSERT_SURFACE, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D006F"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnInsertFormation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_INSERT_FORMATION, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D0071"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnAnalysisFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_ANALYSIS_FACTORY, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504D007F"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Selection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9B0096"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A90DD9B0097"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ResultEntry"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9B00B5"
+		    stereotype 	"const"
+		    result     	"CGeoGraphEntry&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CurrentScene"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9B00B7"
+		    stereotype 	"const"
+		    result     	"COpenGLScene&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SceneEntry"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9B00C6"
+		    stereotype 	"const"
+		    result     	"CGeoGraphEntry&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnInsertBirdEye"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_VIEW_BIRDEYEVIEW, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9B00E4"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CProgressDlg"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CDialog"))
+	    quid       	"3A71504603CA"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504603DA"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "StartDialog"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470050"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NextJob"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470051"
+		    parameters 	(list Parameters
+			(object Parameter "strJobName"
+			    quid       	"3A715047005F"
+			    type       	"CString&")
+			(object Parameter "strTitle"
+			    quid       	"3A7150470060"
+			    type       	"CString&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NextJob"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470061"
+		    parameters 	(list Parameters
+			(object Parameter "uJobNameID"
+			    quid       	"3A7150470062"
+			    type       	"UINT")
+			(object Parameter "strTitle"
+			    quid       	"3A7150470063"
+			    type       	"CString&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NextJob"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715047006F"
+		    parameters 	(list Parameters
+			(object Parameter "uJobNameID"
+			    quid       	"3A7150470070"
+			    type       	"UINT")
+			(object Parameter "uTitleID"
+			    quid       	"3A7150470071"
+			    type       	"UINT"
+			    initv      	"IDS_TOTAL_PROGRESS"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NextJob"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715047007E"
+		    parameters 	(list Parameters
+			(object Parameter "strJobName"
+			    quid       	"3A715047007F"
+			    type       	"CString&")
+			(object Parameter "uTitleID"
+			    quid       	"3A7150470080"
+			    type       	"UINT"
+			    initv      	"IDS_TOTAL_PROGRESS"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CProgressDlg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470081"
+		    parameters 	(list Parameters
+			(object Parameter "nJobs"
+			    quid       	"3A715047008E"
+			    type       	"int")
+			(object Parameter "m_bCancel"
+			    quid       	"3A715047008F"
+			    type       	"bool"
+			    initv      	"true")
+			(object Parameter "pParent"
+			    quid       	"3A7150470090"
+			    type       	"CWnd*"
+			    initv      	"NULL"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CProgressDlg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A7150470091"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoDataExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715047009D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDX"
+			    quid       	"3A715047009F"
+			    type       	"CDataExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504700A0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnDestroy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_DESTROY()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504700A2"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "OnProgress"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_MESSAGE(WM_PROGRESS, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504700AE"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "l"
+			    quid       	"3A71504700B0"
+			    type       	"WPARAM")
+			(object Parameter "p"
+			    quid       	"3A71504700B1"
+			    type       	"LPARAM"))
+		    result     	"LRESULT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "DoMessagePump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DD9402A9"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_strPrimary"
+		    quid       	"3A7150470032"
+		    type       	"CString"
+		    quidu      	"3A07D0C70338"
+		    exportControl 	"Protected")
+		(object ClassAttribute "m_strSecundary"
+		    quid       	"3A7150470040"
+		    type       	"CString"
+		    quidu      	"3A07D0C70338"
+		    exportControl 	"Protected")
+		(object ClassAttribute "m_nTotalJobs"
+		    quid       	"3A7150470041"
+		    type       	"int"
+		    exportControl 	"Protected")
+		(object ClassAttribute "m_nCurJob"
+		    quid       	"3A715047004F"
+		    type       	"int"
+		    exportControl 	"Protected")
+		(object ClassAttribute "m_bCancel"
+		    quid       	"3A90DD9402C9"
+		    type       	"bool"
+		    exportControl 	"Protected"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeoDocObserver"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A71504C0224"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504C0235"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphItem"
+		    quidu      	"3A71504B0214"))
+	    operations 	(list Operations
+		(object Operation "CGeoDocObserver"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0253"
+		    parameters 	(list Parameters
+			(object Parameter "doc"
+			    quid       	"3A71504C0254"
+			    type       	"CGeoDoc&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGeoDocObserver"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0255"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddObservedItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0257"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C0259"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NeighbourModified"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C025A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C0264"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NeighbourRenamed"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0265"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C0267"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DeleteNeighbour"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0268"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C026A"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetIconId"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0272"
+		    stereotype 	"virtual, const"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0274"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "ConnectItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0276"
+		    documentation 	" Drag and drop functions"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C0278"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanConnectItem"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504C0282"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "item"
+			    quid       	"3A71504C0284"
+			    type       	"const CGeoGraphItem&"
+			    const      	TRUE))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A71504C037C"
+	    roles      	(list role_list
+		(object Role "m_factory"
+		    quid       	"3A71504C037D"
+		    label      	"m_factory"
+		    supplier   	"Logical View::VC++ Reverse Engineered::Geomec::CFactoryDlg"
+		    quidu      	"3A71504D0188"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$1"
+		    quid       	"3A71504C038B"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    quid       	"3A71504C039B"
+	    roles      	(list role_list
+		(object Role "m_pCurrentScene"
+		    quid       	"3A71504C039C"
+		    documentation 	" Scenes"
+		    label      	"m_pCurrentScene"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$3"
+		    quid       	"3A71504C039E"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298")))
+	(object Association "$UNNAMED$4"
+	    quid       	"3A71504C03AB"
+	    roles      	(list role_list
+		(object Role "m_pBirdEyeScene:CBirdEyeScene*"
+		    quid       	"3A71504C03AC"
+		    label      	"m_pBirdEyeScene:CBirdEyeScene*"
+		    supplier   	"Logical View::Geomec::View::OpenGL View::OpenGL Scene::COpenGLScene"
+		    quidu      	"3A7150480001"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"3A71504C03AE"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298")))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A71504C03CA"
+	    roles      	(list role_list
+		(object Role "m_pDocObserver"
+		    quid       	"3A71504C03CB"
+		    label      	"m_pDocObserver"
+		    supplier   	"Logical View::Geomec::Document::CGeoDocObserver"
+		    quidu      	"3A71504C0224"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$7"
+		    quid       	"3A71504C03CD"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298")))
+	(object Association "$UNNAMED$8"
+	    quid       	"3A71504C03DA"
+	    roles      	(list role_list
+		(object Role "m_pGeometryEntry"
+		    quid       	"3A71504C03DB"
+		    label      	"m_pGeometryEntry"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$9"
+		    quid       	"3A71504C03DD"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298")))
+	(object Association "$UNNAMED$10"
+	    quid       	"3A90DD9B0058"
+	    roles      	(list role_list
+		(object Role "m_geSceneEntry"
+		    quid       	"3A90DD9B0059"
+		    label      	"m_geSceneEntry"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"3A90DD9B0067"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    quid       	"3A90DD9B0077"
+	    roles      	(list role_list
+		(object Role "m_geResultEntry"
+		    quid       	"3A90DD9B0078"
+		    label      	"m_geResultEntry"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$13"
+		    quid       	"3A90DD9B007A"
+		    supplier   	"Logical View::Geomec::Document::CGeoDoc"
+		    quidu      	"3A07D9DA0298"
+		    is_aggregate 	TRUE)))
+	(object Class_Category "GeoGraphItems"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\GeoItems.cat"
+	    quid       	"3A2BC2450156"))
+    logical_presentations 	(list unit_reference_list))

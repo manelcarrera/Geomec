@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <TBBDIR>$(DEVELOP)/lib/tbb/windows</TBBDIR>
+    <PATHPREFIX>$(TBBDIR)/bin/intel64/vc14;$(PATHPREFIX)</PATHPREFIX>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TBBDIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(TBBDIR)/lib/intel64/vc14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(TBBDIR)/lib/intel64/vc14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="TBBDIR">
+      <Value>$(TBBDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PATHPREFIX">
+      <Value>$(PATHPREFIX)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

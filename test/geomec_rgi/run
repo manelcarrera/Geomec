@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Just for test
+# GEMHOME needs to be adjusted
+
+cd ../common
+. run_PRE
+cd -
+
+##################################################################################
+# FIXME:
+GEMHOME=/scratch/build_20191125_132256/bin/release/install_files/INST06
+
+LD_LIBRARY_PATH_=\
+$GEMHOME/Qt:\
+$GEMHOME/UserDLLs:\
+$GEMHOME/tbb:\
+$GEMHOME/diana/lib:\
+$GEMHOME/diana/hasp:\
+$GEMHOME/diana/intel:\
+$GEMHOME/gcc/lib64:\
+$GEMHOME/glib:\
+$GEMHOME/png:\
+$GEMHOME/zlib
+
+env -i \
+\
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH_ \
+DIAPATH=$GEMHOME/diana \
+DianaExeName=gm42 \
+\
+../../bin/release/geomec_shell "$@" 
+##################################################################################
+
+cd ../common
+. run_POST
+cd -

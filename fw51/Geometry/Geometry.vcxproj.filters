@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{190c18ac-0cca-4377-ba87-e440216f3114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{47b81cba-cb7a-49de-bd3e-f241f6c072e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Coordinate">
+      <UniqueIdentifier>{bf7763ac-92d2-4829-9e52-f7d36f190651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dispatch">
+      <UniqueIdentifier>{e0a0c932-fbba-45e2-b06a-da47a6ee4c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Element">
+      <UniqueIdentifier>{801c132b-0ad0-477e-987b-e0128906efb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Matrix">
+      <UniqueIdentifier>{4a9ef7c2-7408-4381-87a6-998807b28817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{b18c03e1-bf61-41e9-89dd-5123523b308c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NearestNeighbour">
+      <UniqueIdentifier>{5753acdd-8288-455e-8693-63e61300fa7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Polyhedron">
+      <UniqueIdentifier>{d539aa14-371a-4256-a944-15fa1d9b9fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Surface">
+      <UniqueIdentifier>{fb075383-f5aa-4b1b-b4bc-77683dbdfe49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Volume">
+      <UniqueIdentifier>{5c860d28-9ea5-48ca-8208-ade10efbf7be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BlockMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BodyGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BodyLine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BodyQuadrilateral.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BodyTriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Box.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BucketKernel.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CacheInterfaceDefault.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Circle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Connect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Conus.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConvexHull.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConvexHull_2D.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CoordinateMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CoordinateSet.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DispatchVisitorBase.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ElementCacheObject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ElementGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ElementPoint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EmbeddedTriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FaceGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Geometry.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GeoStream.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hexahedron.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBody.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBodyFace.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICacheInterface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICircle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IConus.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICoordinate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IElementSet.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IFace.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IHexahedron.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IInterfaceElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ILine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMatrix.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMesh3D.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\INode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InterfaceElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InterfaceElementPart.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InterfaceElementTempl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IObject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IPlane.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IPoint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IPointElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IPolygon.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IPolyLine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IQuadrilateral.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IRectangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISphere.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISpline.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISupport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISurface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITetrahedron.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IValue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IValueSet.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IValueSetTemplate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVolume.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IWedge.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Line.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LineInterface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Loki.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MeshNodeGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MeshTriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NearestNeighbour.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Node.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectDispatcher.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Octree.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OrthogonalBase.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhMatrix.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhPolyhedron.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhPolyLib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhPolyParam.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhVector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Plane.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Point.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Polygon.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PolyLine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PolyLineGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ProgressScaler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rectangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RegisterVolume.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RingFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sphere.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpringLineElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Surface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Tetrahedron.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Triangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TriSurface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Tying.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Value.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ValueSet.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VectorTempl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Volume.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GeometryExports.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConvexHullImpl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParallelInitializationCallback.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CylindricHull.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TiedBodyTriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TiedPointBodyTriangle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BoundingBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Element\ElementCacheObject.cpp" />
+    <ClCompile Include="Base\Circle.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Conus.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\DirectedSegment.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ICircle.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IConus.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IElementSet.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ILine.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IObject.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IPolyLine.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ISphere.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IValue.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IValueSet.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Line.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\OrthogonalBase.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\PolyLine.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ProgressScaler.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\RingFactory.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\RingPolygon.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Sphere.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Value.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ValueSet.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\VectorTempl.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\ElementPoint.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\ICoordinate.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\IPoint.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\IVector.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\Point.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Coordinate\Vector.cpp">
+      <Filter>Coordinate</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatch\DispatchVisitorBase.cpp">
+      <Filter>Dispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatch\ObjectDispatcher.cpp">
+      <Filter>Dispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\BodyLine.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\BodyQuadrilateral.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\BodyTriangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Box.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Connect.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ConvexHull.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ConvexHull_2D.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\EmbeddedTriangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Hexahedron.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IBody.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IBodyFace.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IBox.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IElement.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IFace.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IHexahedron.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IPointElement.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IPolygon.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IQuadrilateral.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IRectangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ISpline.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ITetrahedron.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ITriangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\IWedge.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\LineInterface.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\LinkedLine.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Polygon.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Polygon0.c">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Polygon1.c">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Rectangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Tetrahedron.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\Triangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\VectMatr.c">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix\IMatrix.cpp">
+      <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix\Matrix.cpp">
+      <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume\IVolume.cpp">
+      <Filter>Volume</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume\RegisterVolume.cpp">
+      <Filter>Volume</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume\Volume.cpp">
+      <Filter>Volume</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface\IPlane.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface\ISurface.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface\Plane.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface\Surface.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface\TriSurface.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyhedron\PhMatrix.c">
+      <Filter>Polyhedron</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyhedron\PhPolyhedron.c">
+      <Filter>Polyhedron</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyhedron\PhPolyParam.c">
+      <Filter>Polyhedron</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyhedron\PhVector.c">
+      <Filter>Polyhedron</Filter>
+    </ClCompile>
+    <ClCompile Include="NearestNeighbour\NearestNeighbour.cpp">
+      <Filter>NearestNeighbour</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\BlockMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\BodyGroup.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\ElementGroup.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\FaceGroup.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\IMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\IMesh3D.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\INode.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\InterfaceElement.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\ISupport.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Mesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\MeshNodeGroup.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\MeshTriangle.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Node.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\PolyLineGroup.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\SpringLineElement.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Tying.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\ConvexHullImpl.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\IParallelInitializationCallback.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\CylindricHull.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\TiedBodyTriangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Element\TiedPointBodyTriangle.cpp">
+      <Filter>Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\BoundingBox.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

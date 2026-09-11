@@ -1,0 +1,49 @@
+#!/bin/bash
+#set -x
+
+#Let's assign the pf_ncat.log file name. We will store all port forwarding related logs here in this file
+NCAT_LOGFILE=/tmp/pf_ncat.log
+
+#Create a LOG file or append the content to it depending on the existance.
+if [ -f $NCAT_LOGFILE ]
+then
+	echo "Port Forwarding Creation script" >> $NCAT_LOGFILE 2>&1
+else
+	echo "Port Forwarding Creation script" > $NCAT_LOGFILE 2>&1
+fi
+
+#Let's Check whether coordinate server has been set by SRMS.ini
+if [ ! -z $HASP_LICENSE_IP ]
+then
+	HASP_REMOTE_HOST=${HASP_LICENSE_IP}
+else
+	#Get the hostname of the box
+	HOSTNAME=`hostname`
+
+	#Set HASP_REMOTE HOST depending on the hostname where the script is running
+	if [[ $HOSTNAME =~ hou* ]] ;
+	then
+	    HASP_REMOTE_HOST="houcy1-s-07026.americas.shell.com"
+	else
+	    HASP_REMOTE_HOST="amsdc1-s-90588.europe.shell.com"
+	    #HASP_REMOTE_HOST="amsdc1-s-47942.europe.shell.com"
+	fi
+fi
+############################################################################
+# NCAT PORT FORWARDING LOGIC IMPLEMENTED BELOW
+############################################################################
+
+echo "Coordinator Server used to download DIANA License = $HASP_REMOTE_HOST" >> $NCAT_LOGFILE 2>&1
+
+HASP_LOCAL_PORT=1947
+HASP_REMOTE_PORT=1947
+HASP_RELEASE_PORT_FWD="releasePortForwarding"
+
+
+PF_PID=`echo $PID_PF | cut -d'=' -f2`
+
+if [ -z $PF_PID ];
+then
+	echo "One or more required parameters were not supplied correctly. Port Forwarding Creation Failed" >> $NCAT_LOGFILE 2>&1
+#	exit 1
+fi

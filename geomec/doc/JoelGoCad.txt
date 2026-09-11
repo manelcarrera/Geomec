@@ -1,0 +1,42 @@
+GOCAD TSolid 1
+HEADER {
+.
+.
+.
+}
+.
+.
+.
+PVRTX 1 . . .
+.
+.
+.
+TETRA 1 2 3 4
+#CTETRA region +(boundary)side1 +side2 -side3 -side4
+.
+.
+.
+END
+
+
+region - region (i.e. geological formation) tetrahedral 
+         element resides in.
++(boundary)side1 - name of surface object that the face 
+         described by nodes 2,3,4 lies on. If this face
+         is internal to the region, the word "none" would
+         appear. The "+" means that the tetrahedra lies 
+         on the side of the surface object denoted by the
+         right handed normal. A "-" means it lies on the
+         side denoted by the left handed normal. The
+         "(boundary" part of the key word indicates that
+         at least one edge of this face lies on the
+         boundary of the surface object it is associated
+         with.
++side2 - same as +(boundary)side1 except the face is 
+         described by nodes 3,4,1.
+-side3 - same as +(boundary)side1 except the face is 
+         described by nodes 4,1,2.
+
+-side4 - same as +(boundary)side1 except the face is 
+         described by nodes 1,2,3.
+

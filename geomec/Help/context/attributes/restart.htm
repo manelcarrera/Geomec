@@ -1,0 +1,407 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>Restart options</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-right:0in;
+	margin-left:0in;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.heading2char0
+	{mso-style-name:heading2char;
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	font-style:italic;}
+span.msoins0
+	{mso-style-name:msoins;
+	color:teal;
+	text-decoration:underline;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=blue>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="restart">
+	<param name="Keyword" value="phased analysis">
+</OBJECT>
+<div class=WordSection1>
+
+<h1>Restart capabilities and Results Storage</h1>
+
+<h3><span class=heading2char0><span lang=NL style='font-family:"Times New Roman","serif";
+font-style:normal'>Storage (nonlin computations)</span></span></h3>
+
+<p style='margin:0in;margin-bottom:.0001pt'>The default setting of Geomec is
+that </p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:21.3pt;
+margin-bottom:.0001pt;text-indent:-21.3pt'>(i) the computation runs from stress
+initialization (D0) up to the last depletion stage (Dl). </p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:21.3pt;
+margin-bottom:.0001pt;text-indent:-21.3pt'>(ii) all Depletion Stages contain
+results </p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:21.3pt;
+margin-bottom:.0001pt;text-indent:-21.3pt'>(iii) material parameters remain
+constant during the run) </p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:21.3pt;
+margin-bottom:.0001pt;text-indent:-21.3pt'>(iv) no intermediate results are
+saved or exported. </p>
+
+<p style='margin:0in;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-bottom:.0001pt'>The user can deviate from this
+default (for non-linear computations only):</p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span style='font-family:Symbol'>·</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>allowing
+material parameters to change during a run (Phased approach)</p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span style='font-family:Symbol'>·</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>exporting
+intermediate restart files (Branching), including the option to change material
+parameters after such a Branch</p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span style='font-family:Symbol'>·</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>applying
+different elastic parameters at the start of a new phase or branch, dependent
+on whether the trend is compaction or decompaction.</p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in'><span style='font-family:Symbol'>·</span><span
+style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>choosing
+to NOT save results for certain depletion stages to keep the file size small
+(mainly to get around file size limits on 32bit Operating Systems)</p>
+
+<p class=MsoNormal>Secondly, a user might want to see the effects of depletion
+forecast variants without having to rerun the full –history matched – past over
+and over again. This is possible by restarting a calculation after a certain
+depletion stage. A second advantage of saving intermediate results is that
+divergence (resulting from too large time steps or too little iterations) can
+be corrected (iteratively) without running the full model. Also, a new
+depletion stage can be added, allowing continuation of a model when new
+pressure data come available.</p>
+
+<p class=MsoNormal>The Restart and Storage items are valid only for <b>Non-linear
+</b>calculations. For linear calculations little profit can be gained from
+using old data (since the Finite Element matrix is inverted only once for the
+complete set of Depletion Stages).</p>
+
+<p class=MsoNormal>Running a non-linear calculation in linear mode (to compare
+results) might render a data overflow for large models. All the linear data for
+all Depletion Stages are stored in the Geomec file as are any depletion stages
+which have been set to a &quot;None&quot; output type.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Depletion Stages without Results</h3>
+
+<p class=MsoNormal>Under the “Model attributes”, “Depletion Stages” the user
+can click on the Output column, which reads “Results” by default. A drop down
+box appears allowing the user to change the selection to either “None”,
+&nbsp;“Phase”, &nbsp;or “Branch”. When “None” is selected Geomec will not store
+output for the selected Depletion Stage. </p>
+
+<p class=MsoNormal>In the Figure, Depletion Stage 4 is earmarked as “None”. A
+small red X is shown on the small drill rig symbol on the left-hand side.</p>
+
+<p class=MsoNormal><img width=383 height=349 src="restart_attributes.png"
+alt="Description: \\ijsseldijk\users\fnc\Geomec\geomec3\Help\context\attributes\restart_attributes.png"></p>
+
+<p class=MsoNormal>The Initialization Stage and the Last Depletion Stage must
+always have results. There is no option to select &quot;None&quot; here.
+Branch/Phase Stages always have results by definition.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Phased analysis (Changing parameters)</h3>
+
+<p class=MsoNormal>When the user wishes to create a <span lang=NL><a
+href="restart_branches.htm"><span lang=EN-US>Phased option</span></a></span>,
+he/she should select “Phase” under the “Model attributes”, “Depletion Stages”,
+“Output” column.</p>
+
+<p class=MsoNormal>When a Phase option is chosen for a certain Depletion Stage
+(say D2), this Depletion Stage will create a temporary save file, so that the
+next Stage (D3 in this case) can be restarted with new material parameters. New
+leaves will open up in the material sections of Formations and Faults, labeled
+as D3. The user can attribute a new material model, which must be the same
+constitutive model. Hence you cannot replace a Camclay model for a salt creep
+model. The user can also attribute different material parameter pointsets for
+different stages.</p>
+
+<p class=MsoNormal>Basically what happens is the stress field of D2 is imposed
+as initial stress on a stiffness matrix with properties of D3. One extra step
+is included to perform the stress initialization. If the user had set 4 time
+steps for D3, he will observe 5 steps, including the stess initializing load
+step. </p>
+
+<p class=MsoNormal>Main difference with the Branch option, is that no
+intermediate restart files get created that take a lot of disk space (and a bit
+of writing time). This option should be used for the benefit of changing
+material parameters only. &nbsp;&nbsp;</p>
+
+<p class=MsoNormal>The user can not set a Phase option for the last depletion
+stage (Dl), since there is no follow-up from that stage.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Creating Restart options (Branch Stages)</h3>
+
+<p class=MsoNormal>When a Restart option is chosen for a certain Depletion
+Stage, this Depletion Stage will be saved to file as a GMP file and a
+Filosfile. The user can open up this intermediate GMP file and restart the
+computation from here. This can be the starting point for any future
+calculations, for instance to run variants for depletion strategies (using the
+same history matched past Depletion Stages), but can also be used to change
+material parameters, similar to the Phased Analysis A Restart also allows to
+restart a diverged, unfinished or crashed calculation, hence saving time by not
+rerunning the first depletion stages.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Creating a Restart</h3>
+
+<p class=MsoNormal>When the user wishes to create a Restart option or <a
+href="restart_branches.htm">Branch option</a>, he/she should select “Branch”
+under the “Model attributes”, “Depletion Stages”, “Output” column. In the
+Figure Depletion stages 2 and 5 have been given a “Branch” status.</p>
+
+<p class=MsoNormal>During such a run, 2 files are created per Branched
+Depletion Stage. A separate Geomec file (*.GMP) is created and a FILOS-file
+(*.FF). The FILOS-file contains all the internal state parameters of the Finite
+Element package, that are not preserved in the Geomec *.GMP file. </p>
+
+<p class=MsoNormal>The file names of both files start with the original file
+name and get extended by the characters “_Dx”, where x is the number of the
+depletion stage. A branch of depletion Stage 2 of the model “Test.GMP” will
+result in the files “Test_D2.GMP” and “Test_D2.FF”.</p>
+
+<p class=MsoNormal>After creation of the Branch files, the original file will
+continue to run. It resets the step numbers in the Diana-output screen to zero.
+This might be confusing sometimes if you keep track on a lengthy run (with many
+steps).</p>
+
+<p class=MsoNormal>Within a single run, multiple Branch (Restart) files can be
+written to disk if the user selects multiple branch Stages. The user should
+realise that the *.GMP and *.FF files can grow and become rather large thereby
+filling up the hard-disc quickly.</p>
+
+<p class=MsoNormal>If a user observes that a calculation is not running
+properly anymore (non-convergence or divergence), he/she can kill the run
+(using the Stop button) and continue the run from a saved Restart file (after
+having modified the step sizes and/or the iteration scheme).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Restart a file</h3>
+
+<p class=MsoNormal>When opening a branched file (recognised by a Dn extension,
+with n being a step number), the user is not able to modify material parameters,
+global settings or properties (pressures, iteration schemes, etc) belonging to
+the Depletion Stages which have been calculated already. If this were allowed,
+than the Geomec Depletion Stage data would no longer refer to the calculated
+results.</p>
+
+<p class=MsoNormal>To reuse a branched file as a new Geomec file the user can
+choose menu option “Analysis” and “Clear Analysis History”. All results will
+then be deleted and the link with the FILOS- file will be broken. The user can
+now modify all parameters. If for some reason the data-entries remain blocked
+it is advised to unmesh and re-mesh the model to remove the block.</p>
+
+<p class=MsoNormal>The Depletion Stage which contains the last
+&quot;frozen&quot; results and is the starting point for new calculations, can
+be recognised by a small brown branch icon, to the left of the drill rig symbol
+(Depletion Stage 2 in figure). In this example any data that belongs to
+depletion stages 3 and higher (temperature, pressure, time-step, iteration
+scheme) can be changed, others are frozen.</p>
+
+<p class=MsoNormal>When the user changes input data the results of all stages
+become invalid. This might alarm users afraid of losing data. However, when
+running the updated model Geomec will extract &quot;old&quot; data from the
+FILOS file and complement them with new results.</p>
+
+<p class=MsoNormal>To continue a Restart run the user needs to press the
+non-linear button (or issue the non-linear command from the file menu).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>Multiple Restarts / Renaming Restart files</h3>
+
+<p class=MsoNormal>The Restart file and the FILOS file have the same name
+before the extension. The Geomec file Test_D1.GMP will look for a FILOS-file
+called Test_D1.FF in the same directory.</p>
+
+<p class=MsoNormal>Renaming the Geomec file will require a (manual) renaming of
+the FILOS file also.</p>
+
+<p class=MsoNormal>If multiple variations are run from the same Branched GMP
+file the user should create separate folders with copies of the GMP and FF
+files. Alternatively the user can make copies with renamed versions of the GMP
+and FF files. The file name (before the extension) should be identical for the
+GMP and FF file. Otherwise, newer results will overwrite older results.</p>
+
+<p class=MsoNormal>If the FILOS-file (FF) gets lost, or is in a different
+directory to the Geomec (GMP) file or is not identical in name to the GMP file,
+restarts are impossible. The user gets an error message when issuing the run
+command.</p>
+
+<p class=MsoNormal>A branch file from a previous branched file will get a
+double extension. In the given example, a branch file at Depletion Stage 5
+using the “Test_D2.GMP” file will result in the files “Test_D2_D5.GMP” and
+“Test_D2_D5.FF”.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>&nbsp;<span lang=NL>Compaction / decompaction parameters</span></h3>
+
+<p class=MsoNormal>A special feature in Geomec is to apply compaction and
+decompaction parameters for “elastic” response. &nbsp;This routine must be
+switched on under “Settings \ Analysis Options” by checking “use separate
+linear compaction and decompaction parameters”</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The background of the method is some materials respond
+differently to compaction or decompaction as a result of formation of
+microcracks under decompaction. The method does not take hysteresis into
+account. Multiple cycles of compaction and decompaction will result in
+increasing dilation, assuming the decompaction stiffness is lower than the
+compaction stiffness. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Geomec only determines (and distributes) decompaction
+parameters (for Young’s Modulus and Poisson’s Ratio) after a Phase or Branch
+stage. Geomec will apply a very small loading step (1% of total depletion) with
+the new material compaction parameters new depletion/injection trends. Based on
+the compaction or decompaction strain per element, Geomec attributes compaction
+or decompaction parameters. There is no iteration loop or updates of the parameters
+until a new Phase or Stage is encountered. (De)compaction parameters hence
+remain unchanged, even if the trend flips between compaction and decompaction.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>If the user applies pointsets for Young’s Modulus and/or
+Poisson’s ratio (in compaction), he should also enter pointsets for
+decompaction, either direct copies or modified values. The alternative is that
+Geomec takes compaction parameters from the pointset and decompaction
+parameters from the Material Library! </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Since changing material parameters is a non-linearity, the
+method only works for non-linear computations. If only linear elastic material
+and fault parameters ae being used, the maximum nr of steps (per depletion
+stage) can be set to 1. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>As a result of the stress initialization at the beginning of
+a Branch/Phase, the small (scouting) step and the stress initialization with
+the (potential) decompaction parameters, 3 extra steps will be taken, with
+respect to the case without branches or phases. <span lang=NL>This will slow
+down the total computation time.</span></p>
+
+<p class=MsoNormal><span lang=NL>&nbsp;</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

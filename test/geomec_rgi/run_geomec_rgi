@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "`basename "$0"` : $0 $@"
+
+#this line sould point to the location where geomec_rgi is installed
+GEMHOME=`dirname $0`
+SW=$GM_SW_TOOL_PATH
+
+#FIXME: MCR: doing this way you need to be where geomec_rgi binary is
+ROOT=../..
+
+#do not change anything after this line
+echo [Paths] > geomec.ini
+echo DIAPATH = $SW/diana >> geomec.ini
+echo DianaExeName = gm42 >> geomec.ini
+
+
+LD_LIBRARY_PATH_=\
+$SW/diana/lib \
+$ROOT/UserDLLs:
+
+echo "`basename "$0"` : LD_LIBRARY_PATH_=$LD_LIBRARY_PATH_"
+
+eval LD_PRELOAD=/usr/lib64/libGL.so \
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH_:$LD_LIBRARY_PATH \
+$GEMHOME/geomec_rgi \
+$*

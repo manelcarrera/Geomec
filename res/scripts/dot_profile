@@ -1,0 +1,17 @@
+[[ -r /glb/data/hpcrnd/easybuild/public/etc/profile.d/shell-envmodules.sh ]] && . /glb/data/hpcrnd/easybuild/public/etc/profile.d/shell-envmodules.sh
+
+#module load intel/2019a
+
+#module load Qt5 
+#module load Qt5/5.10.1-foss-2018b
+module load libpng/1.6.34-GCCcore-7.3.0
+module load zlib/1.2.11-GCCcore-7.3.0
+module load GLib/2.54.3-GCCcore-7.3.0
+module load GCCcore/7.3.0
+module load binutils/2.30-GCCcore-7.3.0
+
+
+export PATH=$PATH:$HOME
+
+. ~/software/SCRIPT/setenv
+. ~/software/SCRIPT/setenv TFS

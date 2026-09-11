@@ -1,0 +1,1324 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Tagged format</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Batang;
+	panose-1:2 3 6 0 0 1 1 1 1 1;}
+@font-face
+	{font-family:"\@Batang";
+	panose-1:2 3 6 0 0 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman";}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=NL link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1><span lang=EN-GB>Tagged format<u1:p> </u1:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-GB>The tagged format for the pointset always
+starts with the keyword </span><span lang=EN-GB style='font-family:Courier'>POINTSET</span><span
+lang=EN-GB> to distinguish between <a href="../datastorage/pointset.htm">point
+sets</a> and <a href="../datastorage/element_pointset.htm">element sets</a>. </span></p>
+
+<p class=MsoNormal><span lang=EN-GB>The keyword </span><span lang=EN-GB
+style='font-family:Courier'>UNIT</span><span lang=EN-GB> is optional (but
+advised) and can have the following values:<u1:p> </u1:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=130 valign=top style='width:97.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>UNIT&nbsp;
+  FIELD</span><span lang=EN-GB><u1:p> </span></p>
+  </td>
+  </u1:p>
+  <td width=438 valign=top style='width:328.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>The unit of the file is field.<u1:p></u1:p>
+  </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=130 valign=top style='width:97.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>UNIT&nbsp; SI</span><span
+  lang=EN-GB><u1:p> </span></p>
+  </td>
+  </u1:p>
+  <td width=438 valign=top style='width:328.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>The unit of the file is SI<u1:p></u1:p>. </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>If no unit is specified, the unit is set to
+SI. In EXCEL, make sure that the words UNIT and FIELD or SI are in separate
+cells.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>When using EXCEL you can use multiple Tab-sheets
+with data. A single sheet may contain data rows with several types of input or
+output per coordinate. You can leave the formulas leading to the pointset in
+the cells. Geomec will take the value that results from the formula (as shown
+by Excel when not editing) and not the formula. You can use additional
+calculation lines to arrive at the pointset, but make sure that you use the
+first column to comment the line out (with a #), so Geomec will ignore the
+line.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The keyword </span><span lang=EN-US
+style='font-family:Courier'>PROPERTY</span><span lang=EN-US> is optional and defines
+the properties in the point set. The property is defined by a type(</span><span
+lang=EN-US style='font-family:Courier'>&lt;TYPE&gt;</span><span lang=EN-US>)
+which can be found in </span><a href="../general/tags.htm"><span lang=EN-US>Tags
+for data</span></a><span lang=EN-US>. A type which requires one column like a
+pressure for instance is followed by a column name(</span><span lang=EN-US
+style='font-family:Courier'>&lt;COL_NAME&gt;</span><span lang=EN-US>). The
+column name must be unique and is used in the header to specify the column in
+the point set data. The column name is also the name of the property in the
+pointset.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Courier'>PROPERTY
+&lt;TYPE&gt; &lt;COL_NAME&gt;</span></p>
+
+<p class=MsoNormal><i><span lang=EN-GB>Example:</span></i></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=144
+ style='width:108.0pt;border-collapse:collapse' id=table3>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>POINTSET</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>UNIT</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>SI</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=314
+ style='width:235.5pt;border-collapse:collapse' id=table2>
+ <tr>
+  <td width=75 valign=top style='width:55.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY</span></p>
+  </td>
+  <td width=80 valign=top style='width:60.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Pressure<u1:p> </span></p>
+  </td>
+  </u1:p>
+  <td width=99 valign=top style='width:74.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyPressure</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=75 valign=top style='width:55.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY<u1:p> </span></p>
+  </td>
+  </u1:p>
+  <td width=80 valign=top style='width:60.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Cohesion</span></p>
+  </td>
+  <td width=99 valign=top style='width:74.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyCohesion</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse' id=table1>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>NORTHING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>EASTING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>DEPTH<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>My</span><span
+  lang=EN-GB style='font-family:Courier'>Pressure </span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyCohesion </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>5.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>END</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>If a property is unknown to Geomec (for
+instance Resistivity), but is intended to be correlated to a Geomec parameter, the
+user can choose “Unknown”. The line would become “PROPERTY Unknown
+Resistivity”. Geomec has no knowledge of units in this case and assumes
+unitless. All unknown parameters have to be manually assigned to a parameter,
+with or without the use of the </span><a
+href="../context/attributes/rpn_calculator.htm"><span lang=EN-US>RPN Calculator</span></a><span
+lang=EN-US> to make the necessary correlations.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Some group types (vectors, tensors and
+fracture densities) require multiple columns. A stress tensor requires six
+(random but unique) column names and a property name. The property name becomes
+the tensor name. &nbsp;If the property name is omitted, the tensor/vector name
+will be equal to the first data column name. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>The order of the tensors or vectors in
+mandatory: </span></p>
+
+<p class=MsoNormal><span lang=EN-US>Tensors:&nbsp; NN, EE, VV, NE, EV, NV (=NN, EE, DD, NE, ED, ND)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Vectors: &nbsp;&nbsp;N, E, D</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:Courier'>PROPERTY
+&lt;TYPE&gt; &lt;COL_NAME_1&gt; ... &lt;COL_NAME_N&gt; &lt;PROPNAME&gt;</span></p>
+
+<p class=MsoNormal><i><span lang=EN-GB>Example:</span></i></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=144
+ style='width:108.0pt;border-collapse:collapse' id=table7>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>POINTSET</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>UNIT</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>SI</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=588
+ style='width:441.0pt;border-collapse:collapse' id=table8>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY</span></p>
+  </td>
+  <td width=50 valign=top style='width:37.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'><u1:p>Stress </u1:p></span></p>
+  </td>
+  <td width=36 valign=top style='width:27.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyNN</span></p>
+  </td>
+  <td width=43 valign=top style='width:32.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyEE</span></p>
+  </td>
+  <td width=44 valign=top style='width:32.85pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyVV</span></p>
+  </td>
+  <td width=41 valign=top style='width:30.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyEN</span></p>
+  </td>
+  <td width=41 valign=top style='width:30.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyEV</span></p>
+  </td>
+  <td width=38 valign=top style='width:28.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyNV</span></p>
+  </td>
+  <td width=68 valign=top style='width:51.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyStress</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=50 valign=top style='width:37.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=36 valign=top style='width:27.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=43 valign=top style='width:32.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=44 valign=top style='width:32.85pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=41 valign=top style='width:30.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=41 valign=top style='width:30.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=38 valign=top style='width:28.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=68 valign=top style='width:51.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=587
+ style='width:440.25pt;border-collapse:collapse' id=table9>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>NORTHING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>EASTING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>DEPTH<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>MyNN </span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyEE </span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyVV </span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyEN </span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyNV </span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>MyEV </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>2</span><span
+  lang=EN-GB style='font-family:Courier'>.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=63 valign=top style='width:47.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=56 valign=top style='width:41.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=39 valign=top style='width:29.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>5.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=67 valign=top style='width:50.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=69 valign=top style='width:51.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>END</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>Each coordinate keywords may only appear
+once. Of the coordinate keywords only the 'Depth' keyword is optional
+(determines whether the set will be </span><a
+href="../datastorage/2d_pointset.htm"><span lang=EN-US>2D</span></a><span
+lang=EN-US> or </span><a href="../datastorage/3d_pointset.htm"><span
+lang=EN-US>3D</span></a><span lang=EN-US>), the Northing and Easting columns
+are required. All keywords the must refer to column names defined by the
+properties in the case that the property keyword is used. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>The user can add Units to the data file as
+last entry of the Property Line. When the unit is known to Geomec, the UNIT SI
+or UNIT FIELD statement will be ignored. The unit will be converted into Geomec
+SI-standards. For instance “bar” will be translated to “MPa” by dividing by 10.
+The alternative units are (SI/Field defaults between brackets)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>-Displacement (not coordinate !) : inch,
+cm, mm (m, ft)<br>
+-Stress/pressure: bar, kbar, ksi, kpsi, Pa, GPa (MPa, psi)<br>
+-density:&nbsp; g/cc, g/cm3, t/m3 (kg/m3; ppg)<br>
+-viscosity: P, MPas, Pas (cP)<br>
+-permeability:&nbsp; D, m2 (mD)<br>
+-Temperature/thermal activation: K,F (C)<br>
+-Heat conductivity:&nbsp; W/mK, W/mF, W/ftK, W/ftF, cal/smK, cal/sftF&nbsp;
+(W/mC)<br>
+-Heat capacity kJ/kgC, kJ/kgC, cal/kgC, cal/lbF, kcal/lbF&nbsp; (J/kgC)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Other alternative conversions might&nbsp;
+be added in time.</span></p>
+
+<p class=MsoNormal><i>Example:</i></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=144
+ style='width:108.0pt;border-collapse:collapse'>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>POINTSET</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=61 valign=top style='width:45.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>UNIT</span></p>
+  </td>
+  <td width=83 valign=top style='width:62.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>FIELD</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=432
+ style='width:324.3pt;border-collapse:collapse'>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Pressure </span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>kpsi</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Cohesion</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Coh</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>bar</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Temperature</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>T1</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>F</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>NORTHING </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>EASTING </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>DEPTH </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Coh </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>T1</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>100</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>120</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>2.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>100</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>2.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>120</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>5.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>110</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=EN-US>When the </span><span lang=EN-US
+style='font-family:Courier'>PROPERTY</span><span lang=EN-US> keyword is <u>not</u>
+used (at all), types could be directly used in the header. See </span><a
+href="../general/tags.htm"><span lang=EN-US>Tags for data</span></a> <span
+lang=EN-US>for a complete list of all possible types. The properties will
+appear under their type name in the point set which makes it hard to
+distinguish several properties of the same type. It is advised not to import
+more than one set of identical properties, not to confuse data
+afterwards.&nbsp; </span></p>
+
+<p class=MsoNormal><span lang=EN-GB>Commas, tabs or spaces separate the
+numbers. The file should always end with the keyword </span><span lang=EN-GB
+style='font-family:Courier'>END.</span><span lang=EN-GB> </span></p>
+
+<p class=MsoNormal><i><span lang=EN-GB>Example :<u1:p> </u1:p></span></i></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=144
+ style='width:108.0pt;border-collapse:collapse' id=table13>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>POINTSET</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>UNIT</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>SI</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:18.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=74 valign=top style='width:55.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse' id=table15>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>NORTHING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>EASTING<u1:p>
+  </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>DEPTH<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>Pressure </span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>Cohesion </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>2.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>1.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>5.0<u1:p> </u1:p></span></p>
+  </td>
+  <td width=114 valign=top style='width:85.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB style='font-family:Courier'>0.0<u1:p> </u1:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=114 valign=top style='width:85.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>END</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><span lang=EN-US style='font-style:normal'>Depletion Stage Dependent
+parameters</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Pressure, temperatures and volume strains
+can be assigned per Depletion Stage. If the model contains Restarts (Phases or
+Branches), also material parameters can be Depletion Stage dependent. When the
+user makes sure that the Property name ends on the (internal) depletion name
+tag (_Dx, with x=0...100), the pointset can be dropped on a Formation. The
+Depletion Stage parameters will then only be attached to that specific
+Depletion Stage. A parameter like Pressure_D1 can still be dragged and dropped
+to other Depletion Stages, like D2. In the example below, the unit for P1_D3
+will be assumed psi (since UNIT=FIELD) </span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=144
+ style='width:108.0pt;border-collapse:collapse'>
+ <tr>
+  <td colspan=2 valign=top style='padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>POINTSET</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=61 valign=top style='width:45.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>UNIT</span></p>
+  </td>
+  <td width=83 valign=top style='width:62.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>FIELD</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=432
+ style='width:324.3pt;border-collapse:collapse'>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Pressure </span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D1</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>kpsi</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Pressure</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D2</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>bar</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>PROPERTY </span></p>
+  </td>
+  <td width=98 valign=top style='width:73.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>Pressure</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D3</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>NORTHING </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>EASTING </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D1 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D2 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>P1_D3</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>100</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>120</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=107 valign=top style='width:80.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=104 valign=top style='width:77.75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>1.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>0.0 </span></p>
+  </td>
+  <td width=113 valign=top style='width:84.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>2.0 </span></p>
+  </td>
+  <td width=83 valign=top style='width:61.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:Courier'>100</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><span style='font-style:normal'>Unknown Parameters or unknown units</span></h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span lang=EN-US>If Geomec reads in parameter or units, that
+it cannot understand (for instance Resistivity with Unit Ohm) or cannot
+partially understand (unit BTU instead of Joules or mmHg instead of MPa), the
+data will be read in as an unassigned parameter. The user can create
+correlations himself with the Calculator to transform the unit into Geomec-SI.
+Geomec SI are the units that appear in the Material Library data import when
+the model is in SI-display. Densities have to be converted to kg/m<sup>3</sup>,
+even if the display is in FIELD (with ppg as unit).</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# FIXME: by now only one test but iy should run all
+
+#this line must point to the location where geomec_rgi is installed
+GEMHOME=$(cd $(dirname $0); pwd -P)
+
+LD_LIBRARY_PATH_=\
+$GEMHOME/Qt:\
+$GEMHOME/UserDLLs:\
+$GEMHOME/tbb:\
+$GEMHOME/diana/lib:\
+$GEMHOME/diana/hasp:\
+$GEMHOME/diana/intel:\
+$GEMHOME/gcc/lib64:\
+$GEMHOME/glib:\
+$GEMHOME/png:\
+$GEMHOME/zlib
+
+env -i \
+\
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH_ \
+DIAPATH=$GEMHOME/diana \
+DianaExeName=gm42 \
+\
+$GEMHOME/geomec_shell --interface gm run linear test1_tetra.gm5

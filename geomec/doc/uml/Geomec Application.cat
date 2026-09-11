@@ -1,0 +1,744 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Geomec Application"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A012D620179"
+    documentation 	
+|The Application is a SDI
+|This package has the following responsibilities are:
+| - Builds the Windows UI
+| - Maintains the Windows Registry
+    
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"3A2268D800C8"
+	    supplier   	"Logical View::Geomec::Document"
+	    quidu      	"3A100248023A")
+	(object Visibility_Relationship
+	    quid       	"3A2269A001A2"
+	    supplier   	"Logical View::Geomec::View"
+	    quidu      	"3A07E95F01E6"))
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CAboutDlg"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CDialog"))
+	    quid       	"3A07D9D903E1"
+	    documentation 	
+|///////////////////////////////////////////////////////////////////////////
+| CAboutDlg dialog used for App About
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D9DA0021"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog"
+		    quidu      	"3A07D0BA02E0"))
+	    operations 	(list Operations
+		(object Operation "DoDataExchange"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA002B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pDX"
+			    quid       	"3A07D9DA003F"
+			    type       	"CDataExchange*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "CAboutDlg"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9DA0049"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CMainFrame"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"Dyncreate")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CFrameWnd"))
+	    quid       	"3A07D9D60211"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D9D60256"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd"
+		    quidu      	"3A07D0B6024E"))
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A2653C50227"
+		    stereotype 	"Instantiates"
+		    label      	"CGeomecTreeView"
+		    supplier   	"Logical View::Geomec::View::Tree View::CGeoTreeView"
+		    quidu      	"3A07D9D70384"
+		    exportControl 	"Private"
+		    client_cardinality 	(value cardinality "1..1"))
+		(object Uses_Relationship
+		    quid       	"3A265601000C"
+		    stereotype 	"Instantiates"
+		    label      	"m_p"
+		    supplier   	"COpenGLViewE"
+		    quidu      	"3A2648170213"
+		    exportControl 	"Private"))
+	    operations 	(list Operations
+		(object Operation "OnCreate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_WM_CREATE()")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D7006D"
+		    stereotype 	"afx_msg"
+		    parameters 	(list Parameters
+			(object Parameter "lpCreateStruct"
+			    quid       	"3A07D9D70078"
+			    type       	"LPCREATESTRUCT"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "Dump"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D7008B"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D9D7009F"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D700B3"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CMainFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D700C7"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCreateClient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D700DB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpcs"
+			    quid       	"3A07D9D700EF"
+			    type       	"LPCREATESTRUCT")
+			(object Parameter "pContext"
+			    quid       	"3A07D9D700F9"
+			    type       	"CCreateContext*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "PreCreateWindow"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D7010D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "cs"
+			    quid       	"3A07D9D70121"
+			    type       	"CREATESTRUCT&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CMainFrame"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A07D9D70135"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "BeginDrag"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048034D"
+		    documentation 	" Drag and Drop"
+		    parameters 	(list Parameters
+			(object Parameter "stDraggedItems"
+			    quid       	"3A715048035D"
+			    type       	"CGeoGraphItemSet&"))
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndDrag"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048036C"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dragging"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048037C"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetDraggedItems"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048038B"
+		    result     	"CGeoGraphItemSet&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CanPaste"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A715048039B"
+		    documentation 	" Cut, Copy and Paste"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Copy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504803AB"
+		    parameters 	(list Parameters
+			(object Parameter "stCopiedItems"
+			    quid       	"3A71504803BA"
+			    type       	"CGeoGraphItemSet&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCopiedItems"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504803DA"
+		    result     	"CGeoGraphItemSet&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Class "CGeomecApp"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	"")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxBaseClass"
+		    value      	"CWinApp"))
+	    quid       	"3A71504B005F"
+	    documentation 	"The Geomec Application class. Generated by the class wizard."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A71504B006F"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::CWinApp"
+		    quidu      	"3A07D0AF0012"))
+	    operations 	(list Operations
+		(object Operation "CGeomecApp"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0070"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxVirtual"
+			    value      	"True")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B007E"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAppAbout"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxMsg"
+			    value      	"ON_COMMAND(ID_APP_ABOUT, $NAME)")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A71504B0080"
+		    stereotype 	"afx_msg"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Association "$UNNAMED$0"
+	    quid       	"3A07DEA00335"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3A07DEA00336"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE)
+		(object Role "m_wndSplitter"
+		    quid       	"3A07DEA00337"
+		    label      	"m_wndSplitter"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB"
+		    client_cardinality 	(value cardinality "2")
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    quid       	"3A07DEA00399"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"3A07DEA0039A"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE)
+		(object Role "m_wndToolBar"
+		    quid       	"3A07DEA003A3"
+		    label      	"m_wndToolBar"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Control Bars::CToolBar"
+		    quidu      	"3A07D0B903C4"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    quid       	"3A07DEA10001"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"3A07DEA10002"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE)
+		(object Role "m_wndStatusBar"
+		    quid       	"3A07DEA1000B"
+		    label      	"m_wndStatusBar"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Control Bars::CStatusBar"
+		    quidu      	"3A07D0B902DD"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    quid       	"3A2652D901B9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3A2652DC0312"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB"
+		    is_navigable 	TRUE
+		    is_aggregate 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"3A2652DC036C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CSplitterWnd"
+		    quidu      	"3A07D0B800FB")))
+	(object Association "$UNNAMED$9"
+	    quid       	"3A90DD970336"
+	    roles      	(list role_list
+		(object Role "m_draggedItems"
+		    quid       	"3A90DD970337"
+		    documentation 	" Drag and Drop"
+		    label      	"m_draggedItems"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$10"
+		    quid       	"3A90DD970339"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$11"
+	    quid       	"3A90DD970355"
+	    roles      	(list role_list
+		(object Role "m_copiedItems"
+		    quid       	"3A90DD970356"
+		    documentation 	" Cut, Copy and Paste"
+		    label      	"m_copiedItems"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$12"
+		    quid       	"3A90DD970358"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$13"
+	    quid       	"3A90DD970374"
+	    roles      	(list role_list
+		(object Role "m_destroyItems"
+		    quid       	"3A90DD970375"
+		    label      	"m_destroyItems"
+		    supplier   	"Logical View::Geomec::Document::GeoGraphItems::CGeoGraphEntry"
+		    quidu      	"3A71504B02C0"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"3A90DD970377"
+		    supplier   	"Logical View::Geomec::Geomec Application::CMainFrame"
+		    quidu      	"3A07D9D60211"
+		    is_aggregate 	TRUE))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Geomec Application Inhertiance Diagram"
+	    quid       	"3A01933401A7"
+	    title      	"Geomec Application Inhertiance Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    location   	(80, 80)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	3
+		    max_width  	2212
+		    label      	
+|Geomec3D Model Update Overview
+|This diagram was automatically created by Rational Rose Model Update Tool.
+|Thursday, November 02, 2000 5:15:48 PM
+		    )
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::CWinApp" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(448, 400)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(173, 321)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	550
+			justify    	0
+			label      	"CWinApp")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0AF0012"
+		    width      	568
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Frame Windows::CFrameWnd" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1824, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1618, 305)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	412
+			justify    	0
+			label      	"CFrameWnd")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0B6024E"
+		    width      	430
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::MFC 6.0::CObject Classes::Application Architecture::Window Support::Dialog Boxes::CDialog" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1216, 384)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1037, 305)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	358
+			justify    	0
+			label      	"CDialog")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	14671839
+		    quidu      	"3A07D0BA02E0"
+		    width      	376
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CAboutDlg" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1216, 816)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(912, 685)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	608
+			justify    	0
+			label      	"CAboutDlg")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D903E1"
+		    width      	626
+		    height     	286
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @6
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9DA0021"
+		    client     	@5
+		    supplier   	@4
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CMainFrame" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1824, 1520)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1510, 1114)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	628
+			justify    	0
+			label      	"CMainFrame")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D60211"
+		    compartment 	(object Compartment
+			Parent_View 	@7
+			location   	(1510, 1175)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	15
+			max_width  	625)
+		    width      	646
+		    height     	836
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @8
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A07D9D60256"
+		    client     	@7
+		    supplier   	@3
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CGeomecApp" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(448, 800)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(161, 669)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	574
+			justify    	0
+			label      	"CGeomecApp")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A71504B005F"
+		    width      	592
+		    height     	286
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @10
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A71504B006F"
+		    client     	@9
+		    supplier   	@2
+		    line_style 	0)))))

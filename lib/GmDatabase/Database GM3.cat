@@ -1,0 +1,2140 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Database GM3"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Lib/DATABASE GM3", JAIAAAAA
+	    )))
+    quid       	"3BA8A1E700CF"
+    documentation 	"This unit loads the old gm3 databases ..."
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "C3DDatabase"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C90052"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3BA8A1C90053"
+		    supplier   	"CDaoDatabase"))
+	    operations 	(list Operations
+		(object Operation "Open"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90064"
+		    documentation 	" Open function is hidded for end-user.."
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszName"
+			    quid       	"3BA8A1C90066"
+			    type       	"LPCTSTR")
+			(object Parameter "bExclusive"
+			    quid       	"3BA8A1C90067"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "bReadOnly"
+			    quid       	"3BA8A1C90068"
+			    type       	"BOOL"
+			    initv      	"FALSE")
+			(object Parameter "lpszConnect"
+			    quid       	"3BA8A1C90071"
+			    type       	"LPCTSTR"
+			    initv      	
+|_T("")
+			    ))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "OpenDB"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90072"
+		    documentation 	
+| PRE	: Incomplete :
+|			TRUE	Incomplete models are accepted
+|			FALSE	Incomplete models are rejected by the CIncompleteException
+		    
+		    parameters 	(list Parameters
+			(object Parameter "strPathName"
+			    quid       	"3BA8A1C90073"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "bComplete"
+			    quid       	"3BA8A1C90074"
+			    type       	"const BOOL"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Complete"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90075"
+		    stereotype 	"const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Version"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90082"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "C3DDatabase"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90084"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~C3DDatabase"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90085"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_dVersion"
+		    quid       	"3BA8A1C90062"
+		    type       	"double"
+		    initv      	"-1")
+		(object ClassAttribute "m_bComplete"
+		    quid       	"3BA8A1C90063"
+		    type       	"BOOL"
+		    initv      	"false"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "C3DModel"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C8036F"
+	    operations 	(list Operations
+		(object Operation "TotalRecords"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90004"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "db"
+			    quid       	"3BA8A1C90006"
+			    type       	"C3DDatabase&"))
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "LoadModel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90013"
+		    parameters 	(list Parameters
+			(object Parameter "strPath"
+			    quid       	"3BA8A1C90014"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "bComplete"
+			    quid       	"3BA8A1C90015"
+			    type       	"const BOOL"
+			    const      	TRUE)
+			(object Parameter "callback"
+			    quid       	"3BA8A1C90016"
+			    type       	"CProgressCallBack&"
+			    initv      	"CProgressCallBack()"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Timesteps"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90017"
+		    stereotype 	"const"
+		    result     	"const std::vector<CTimestep>&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ProjectInfo"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90023"
+		    stereotype 	"const"
+		    result     	"const CString&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "C3DModel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90025"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~C3DModel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90026"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadGlobalSettings"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90028"
+		    documentation 	" Read functions ..."
+		    parameters 	(list Parameters
+			(object Parameter "db"
+			    quid       	"3BA8A1C90029"
+			    type       	"C3DDatabase&")
+			(object Parameter "callback"
+			    quid       	"3BA8A1C90033"
+			    type       	"CProgressCallBack&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "ReadTimeSteps"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C90034"
+		    parameters 	(list Parameters
+			(object Parameter "db"
+			    quid       	"3BA8A1C90035"
+			    type       	"C3DDatabase&")
+			(object Parameter "callback"
+			    quid       	"3BA8A1C90036"
+			    type       	"CProgressCallBack&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_dTotalVerticalStressGradient"
+		    quid       	"3BA8A1C80370"
+		    type       	"double")
+		(object ClassAttribute "m_dWaterColumnStressGradient"
+		    quid       	"3BA8A1C80371"
+		    type       	"double")
+		(object ClassAttribute "m_dVerticalStressExponent"
+		    quid       	"3BA8A1C8037E"
+		    type       	"double")
+		(object ClassAttribute "m_bEclipseFile"
+		    quid       	"3BA8A1C8037F"
+		    type       	"BOOL")
+		(object ClassAttribute "m_strProjectInfo"
+		    quid       	"3BA8A1C80380"
+		    type       	"CString"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "CCancelException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C80330"
+	    operations 	(list Operations
+		(object Operation "CCancelException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80331"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CCancelException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80332"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "CFormation"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C80207"
+	    operations 	(list Operations
+		(object Operation "CFormation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80275"
+		    documentation 	" Formation"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CFormation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80276"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadFormation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80278"
+		    parameters 	(list Parameters
+			(object Parameter "db"
+			    quid       	"3BA8A1C80279"
+			    type       	"C3DDatabase&")
+			(object Parameter "model"
+			    quid       	"3BA8A1C80284"
+			    type       	"const C3DModel&"
+			    const      	TRUE)
+			(object Parameter "lFormationKey"
+			    quid       	"3BA8A1C80285"
+			    type       	"const long"
+			    const      	TRUE)
+			(object Parameter "callback"
+			    quid       	"3BA8A1C80286"
+			    type       	"CProgressCallBack&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_strName"
+		    quid       	"3BA8A1C80208"
+		    type       	"CString")
+		(object ClassAttribute "m_lColor"
+		    quid       	"3BA8A1C80217"
+		    type       	"long")
+		(object ClassAttribute "m_lElement"
+		    quid       	"3BA8A1C8025B"
+		    type       	"long")
+		(object ClassAttribute "m_bReservoir"
+		    quid       	"3BA8A1C80265"
+		    type       	"BOOL")
+		(object ClassAttribute "m_strMaterial"
+		    quid       	"3BA8A1C80266"
+		    type       	"CString"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++"
+	    nestedClasses 	(list nestedClasses
+		(object Class "TPressureVec"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef std::vector<CPressure> TPressureVec;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C80287"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")))
+	(object Class "CHorizon"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C801AA"
+	    operations 	(list Operations
+		(object Operation "ConstantDepth"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C801C9"
+		    stereotype 	"const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LoadHorizon"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C801CB"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3BA8A1C801CC"
+			    type       	"const long"
+			    const      	TRUE)
+			(object Parameter "db"
+			    quid       	"3BA8A1C801CD"
+			    type       	"C3DDatabase&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C801CE"
+		    stereotype 	"const"
+		    result     	"const CString&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CHorizon"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C801D9"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CHorizon"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C801DA"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_lColor"
+		    quid       	"3BA8A1C801AB"
+		    type       	"long")
+		(object ClassAttribute "m_bConstantDepth"
+		    quid       	"3BA8A1C801BE"
+		    type       	"BOOL")
+		(object ClassAttribute "m_strName"
+		    quid       	"3BA8A1C801BF"
+		    type       	"CString"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++"
+	    nestedClasses 	(list nestedClasses
+		(object Class "TVertexVec"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef CGeoVecTemp<CVertex> TVertexVec;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C801DC"
+		    stereotype 	"typedef"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")))
+	(object Class "CPressure"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C80071"
+	    operations 	(list Operations
+		(object Operation "CPressure"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C800DF"
+		    documentation 	" Construction / Destruction"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPressure"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C800E0"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadPressure"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C800E2"
+		    parameters 	(list Parameters
+			(object Parameter "db"
+			    quid       	"3BA8A1C800E3"
+			    type       	"C3DDatabase&")
+			(object Parameter "lFormationKey"
+			    quid       	"3BA8A1C800EE"
+			    type       	"const long"
+			    const      	TRUE)
+			(object Parameter "nTimeStep"
+			    quid       	"3BA8A1C800EF"
+			    type       	"const int"
+			    const      	TRUE)
+			(object Parameter "callback"
+			    quid       	"3BA8A1C800F0"
+			    type       	"CProgressCallBack&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnDefined"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C800FE"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GWC"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80100"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Constant"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80102"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Distributed"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80104"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Type"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8010D"
+		    documentation 	" Pressure type"
+		    stereotype 	"const"
+		    result     	"enum PressureType"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReferenceDepth"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8010F"
+		    documentation 	" Constant and GWC Access"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReferencePressure"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80111"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Gradient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80113"
+		    documentation 	" Constant"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpperGradient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80115"
+		    documentation 	" GWC"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LowerGradient"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8011E"
+		    stereotype 	"const"
+		    result     	"const double&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "begin"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80120"
+		    documentation 	" Distributed pressure access"
+		    stereotype 	"const"
+		    result     	"TPressureIt"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3BA8A1C8015D")
+		(object Operation "end"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80122"
+		    stereotype 	"const"
+		    result     	"TPressureIt"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3BA8A1C8015D")
+		(object Operation "SourceFileName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80124"
+		    stereotype 	"const"
+		    result     	"const CString&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Max"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8012D"
+		    stereotype 	"const"
+		    result     	"const CVertex&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Min"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8012F"
+		    stereotype 	"const"
+		    result     	"const CVertex&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_dReferenceDepth"
+		    quid       	"3BA8A1C80090"
+		    documentation 	" Constant and GWC"
+		    type       	"double"
+		    initv      	"0")
+		(object ClassAttribute "m_dReferencePressure"
+		    quid       	"3BA8A1C80091"
+		    type       	"double"
+		    initv      	"0")
+		(object ClassAttribute "m_strSourceFileName"
+		    quid       	"3BA8A1C800D4"
+		    type       	"CString"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++"
+	    nestedClasses 	(list nestedClasses
+		(object Class "TPressureVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef std::pair<CVertex, double>		TPressureVertex;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C8014C"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")
+		(object Class "TPressureVec"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef std::vector<TPressureVertex>	TPressureVec;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C8014E"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")
+		(object Class "TPressureIt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef TPressureVec::const_iterator	TPressureIt;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C8015D"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")
+		(object Class "PressureType"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C8016B"
+		    stereotype 	"enum"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")))
+	(object Class "CProgressCallBack"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C802A4"
+	    operations 	(list Operations
+		(object Operation "CProgressCallBack"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802B4"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TotalRecords"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802B5"
+		    parameters 	(list Parameters
+			(object Parameter "lTotalRecords"
+			    quid       	"3BA8A1C802B6"
+			    type       	"const long"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TotalRecords"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802B7"
+		    stereotype 	"const"
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewRecord"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802B9"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnNewTable"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802C4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "strTableName"
+			    quid       	"3BA8A1C802C6"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnCancel"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C802C7"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_lTotalRecords"
+		    quid       	"3BA8A1C802A5"
+		    type       	"long"
+		    initv      	"0")
+		(object ClassAttribute "m_lRecordCount"
+		    quid       	"3BA8A1C802B3"
+		    type       	"long"
+		    initv      	"0"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "TCheckedDouble"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	(value Text 
+|typedef CCheckedValue<double>	TCheckedDouble;
+		    ))
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C80311"
+	    stereotype 	"typedef"
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "TCheckedInt"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"ImplementationType"
+		    value      	(value Text 
+|typedef CCheckedValue<int>		TCheckedInt;
+		    ))
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C80321"
+	    stereotype 	"typedef"
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Parameterized_Class "CCheckedValue"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C802D3"
+	    operations 	(list Operations
+		(object Operation "CCheckedValue"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C802F2"
+		    parameters 	(list Parameters
+			(object Parameter "value"
+			    quid       	"3BA8A1C802F3"
+			    type       	"const T&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CCheckedValue"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C802F4"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Valid"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C802F5"
+		    stereotype 	"const"
+		    result     	"bool"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Invalidate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C802F7"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Value"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C802F8"
+		    stereotype 	"const"
+		    result     	"const T&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Value"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	TRUE))
+		    quid       	"3BA8A1C80301"
+		    parameters 	(list Parameters
+			(object Parameter "value"
+			    quid       	"3BA8A1C80302"
+			    type       	"const T&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++"
+	    parameters 	(list Parameters
+		(object Parameter "T"
+		    quid       	"3BA8A1C802D4"
+		    type       	"class"))
+	    nestedClasses 	(list nestedClasses
+		(object Class "TValue"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	(value Text 
+|	typedef std::pair<T, bool> TValue;
+			    ))
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3BA8A1C80303"
+		    stereotype 	"typedef"
+		    exportControl 	"Private"
+		    module     	"Component View::DATABASE GM3"
+		    quidu      	"3BA8A1BD013C")))
+	(object Class "CIncompleteException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C8017C"
+	    operations 	(list Operations
+		(object Operation "CIncompleteException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8018A"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CIncompleteException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C8018B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Class "CTimestep"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3BA8A1C70392"
+	    operations 	(list Operations
+		(object Operation "ReadRecord"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C703E2"
+		    parameters 	(list Parameters
+			(object Parameter "rs"
+			    quid       	"3BA8A1C80004"
+			    type       	"CDaoRecordset&")
+			(object Parameter "dVersion"
+			    quid       	"3BA8A1C80005"
+			    type       	"const double&"
+			    const      	TRUE))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CTimestep"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80006"
+		    documentation 	" Construction"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CTimestep"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80007"
+		    parameters 	(list Parameters
+			(object Parameter "strName"
+			    quid       	"3BA8A1C80008"
+			    type       	"const CString&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CTimestep"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80009"
+		    parameters 	(list Parameters
+			(object Parameter "strName"
+			    quid       	"3BA8A1C8000A"
+			    type       	"const CString&"
+			    const      	TRUE)
+			(object Parameter "nYear"
+			    quid       	"3BA8A1C8000B"
+			    type       	"const int"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80013"
+		    stereotype 	"const"
+		    result     	"const CString&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Year"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3BA8A1C80015"
+		    stereotype 	"const"
+		    result     	"const TCheckedInt&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_strName"
+		    quid       	"3BA8A1C703E1"
+		    type       	"CString"
+		    initv      	
+|_T("")
+		    ))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CFormation>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3BA8A1C803CD"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3BA8A1C803CE"
+		    supplier   	"vector"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CHorizon>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3BA8A1C803AD"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3BA8A1C803AE"
+		    supplier   	"vector"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<CTimestep>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3BA8A1C8038E"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3BA8A1C8038F"
+		    supplier   	"vector"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++")
+	(object Instantiated_Class "vector<double>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3BA8A1C800A0"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3BA8A1C800A1"
+		    supplier   	"vector"))
+	    module     	"Component View::DATABASE GM3"
+	    quidu      	"3BA8A1BD013C"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "DATABASE GM3 Model Update Overview"
+	    quid       	"3BA8A1C90090"
+	    title      	"DATABASE GM3 Model Update Overview"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	12111
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object Label @1
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	3
+		    max_width  	1998
+		    label      	
+|DATABASE GM3 Model Update Overview
+|This diagram was automatically created by Rational Rose Model Update Tool.
+|19 September 2001 15:46:49
+		    )
+		(object ClassView "Class" "Logical View::Database GM3::CProgressCallBack" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(208, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(15, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	386
+			justify    	0
+			label      	"CProgressCallBack")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C802A4"
+		    width      	404
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CPressure::TPressureVertex" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(192, 656)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(26, 624)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	332
+			justify    	0
+			label      	"TPressureVertex")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@3
+			location   	(26, 574)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	332
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8014C"
+		    width      	350
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CFormation::TPressureVec" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(208, 880)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(44, 848)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	328
+			justify    	0
+			label      	"TPressureVec")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@4
+			location   	(44, 798)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	328
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80287"
+		    width      	346
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Database GM3::vector<CTimestep>" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(240, 1072)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(48, 1021)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	384
+			justify    	0
+			label      	"vector<CTimestep>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8038E"
+		    width      	402
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Database GM3::vector<CHorizon>" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(224, 1248)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(50, 1197)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"vector<CHorizon>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C803AD"
+		    width      	366
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::TCheckedDouble" @7
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(2112, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(1945, 395)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	334
+			justify    	0
+			label      	"TCheckedDouble")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@7
+			location   	(1945, 345)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	334
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80311"
+		    width      	352
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CPressure::TPressureVec" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(2464, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(2310, 384)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"TPressureVec")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@8
+			location   	(2310, 334)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8014E"
+		    width      	326
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CFormation" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(2784, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(2660, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	248
+			justify    	0
+			label      	"CFormation")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80207"
+		    width      	266
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Database GM3::vector<CFormation>" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3152, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(2955, 365)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	394
+			justify    	0
+			label      	"vector<CFormation>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C803CD"
+		    width      	412
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::C3DModel" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3488, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(3373, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	230
+			justify    	0
+			label      	"C3DModel")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8036F"
+		    width      	248
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CCancelException" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(3824, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(3637, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	374
+			justify    	0
+			label      	"CCancelException")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80330"
+		    width      	392
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CIncompleteException" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4272, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(4054, 365)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	436
+			justify    	0
+			label      	"CIncompleteException")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8017C"
+		    width      	454
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::C3DDatabase" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(4672, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(4531, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	282
+			justify    	0
+			label      	"C3DDatabase")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C90052"
+		    width      	300
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CPressure::TPressureIt" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(4976, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(4822, 384)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"TPressureIt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@15
+			location   	(4822, 334)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8015D"
+		    width      	326
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CCheckedValue::TValue" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(5264, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(5060, 384)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"TValue")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@16
+			location   	(5060, 334)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80303"
+		    width      	426
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "ParameterizedClass" "Logical View::Database GM3::CCheckedValue" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(5584, 432)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(5416, 402)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	336
+			justify    	0
+			label      	"CCheckedValue")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C802D3"
+		    width      	354
+		    height     	161
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CPressure::PressureType" @18
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(5968, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@18
+			location   	(5814, 359)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"PressureType")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@18
+			location   	(5814, 309)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	308
+			justify    	0
+			label      	"<<enum>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C8016B"
+		    width      	326
+		    height     	238
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "InstantiatedClass" "Logical View::Database GM3::vector<double>" @19
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6288, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@19
+			location   	(6137, 365)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"vector<double>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C800A0"
+		    width      	320
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CPressure" @20
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(6592, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@20
+			location   	(6476, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"CPressure")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80071"
+		    width      	250
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CHorizon::TVertexVec" @21
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(6688, 1408)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(6546, 1376)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	284
+			justify    	0
+			label      	"TVertexVec")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@21
+			location   	(6546, 1326)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	284
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C801DC"
+		    width      	302
+		    height     	188
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CHorizon" @22
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7152, 416)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(7054, 364)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	196
+			justify    	0
+			label      	"CHorizon")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C801AA"
+		    width      	214
+		    height     	128
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::TCheckedInt" @23
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    location   	(7552, 1408)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@23
+			location   	(7423, 1387)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	258
+			justify    	0
+			label      	"TCheckedInt")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@23
+			location   	(7423, 1337)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	258
+			justify    	0
+			label      	"<<typedef>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C80321"
+		    width      	276
+		    height     	167
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Database GM3::CTimestep" @24
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(7136, 1120)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@24
+			location   	(7017, 1069)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	238
+			justify    	0
+			label      	"CTimestep")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3BA8A1C70392"
+		    width      	256
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)))))

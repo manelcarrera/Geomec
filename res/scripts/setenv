@@ -1,0 +1,249 @@
+#!/bin/bash
+
+# modules:
+
+# .profile
+
+# [[ -r /glb/data/hpcrnd/easybuild/public/etc/profile.d/shell-envmodules.sh ]] && . /glb/data/hpcrnd/easybuild/public/etc/profile.d/shell-envmodules.sh
+
+# icc compiler
+# #module load intel/2019a
+
+# needed modules to compile/run Geomec:
+# module load Qt5
+# module load libpng/1.6.34-GCCcore-7.3.0
+# module load zlib/1.2.11-GCCcore-7.3.0
+# module load GLib/2.54.3-GCCcore-7.3.0
+
+# Just for help
+# #$QTDIR/../../zlib/1.2.11-GCCcore-7.3.0
+# Look at 'SHELLSOFTBASE' below
+
+do_TFS ()
+{
+export https_proxy=https://proxy-eu.shell.com:8080/
+export http_proxy=http://proxy-eu.shell.com:8080/
+export no_proxy=localhost,shell.com,127.0.0.0/8
+export TF_AUTO_SAVE_CREDENTIALS=1
+export PATH=/apps/sssdev/tools/eclipse_tfs/TEE-CLC-14.0.2:$PATH
+
+echo https_proxy: $https_proxy
+echo http_proxy: $http_proxy
+echo no_proxy: $no_proxy
+echo TF_AUTO_SAVE_CREDENTIALS: $TF_AUTO_SAVE_CREDENTIALS
+echo
+echo PATH: 
+echo
+echo $PATH
+}
+
+
+do_ ()
+{
+echo 'do_'
+
+export SHELLSOFTBASE=/glb/data/hpcrnd/easybuild/PRODUCTION/software/rhel/7
+
+#
+# Just local
+#
+SOFT=/glb/data/geomechanics/software
+
+export BOOST=$SOFT/BOOST/boost_CURRENT
+
+ROOT=$(pwd)/..
+echo $ROOT
+
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR2=$DIR/..
+echo DIR:$DIR
+echo DIR2:$DIR2
+
+
+#dirname "$0"
+#basename "$0"
+#echo "The script you are running has basename `basename "$0"`, dirname `dirname "$0"`"
+#echo "The present working directory is `pwd`"
+
+CONF_=release
+BASEPATH=$SOFT/RHEL/74
+
+#
+# we take ORIGIN files
+# and we split them in two folders: 'release' and 'debug' 
+# to make DEV and PROD environment identical
+#
+DIAPATH_=$BASEPATH/diana/$CONF_ 
+
+DIAROOT_=$DIAPATH_
+DIALIB_=$DIAPATH_/lib # this is only for development, in production is: '$DIAPATH_/lib'
+DIASRC_=$DIAPATH_/share/src
+DIAINTEL_=$DIAPATH_/intel
+DIAHASP_=$DIAPATH_/hasp
+
+#qt
+#QTDIR_=$SHELLSOFTBASE/Qt5/5.10.1-foss-2018b
+QTDIR_=$SOFT/QT/QT_5120
+QTBIN_=$QTDIR_/bin
+QTLIB_=$QTDIR_/lib
+
+# gcc
+# local
+#GCCPATH==$BASEPATH/GCC
+# shell gcc
+export GCCPATH=$SHELLSOFTBASE/GCCcore/7.3.0
+
+#GCCLIB=$GCCPATH/lib64
+export GCCLIB64=$GCCPATH/lib64
+
+# no need, already at path when load modules
+#GCCBIN=$GCCPATH/bin
+
+
+# regular
+PATH_=\
+$QTBIN_:\
+$PATH
+#$BASEPATH/GCC/bin:\
+#/usr/bin:\
+#/bin
+
+#$PATH:\
+if [ -n "$PATH_ORIGINAL" ]; then # exist
+	#echo PATH_ORIGINAL defined
+	export PATH=$PATH_ORIGINAL
+else
+	export PATH_ORIGINAL=$PATH		
+fi
+# no need to touch the PATH as it alredy done on module load in .profile
+# with shell Qt 
+#PATH_=\
+#$GCCBIN:\
+#$QTBIN_:\
+#/usr/bin:\
+#:/bin
+
+ROOT=../..
+if [ "$CONF_" == "release" ]; then
+	USRLIB=$ROOT/UserDLLs
+else
+	USRLIB=$ROOT/UserDLLs/debug
+fi
+TBBLIB=$ROOT/lib/tbb/linux/lib/intel64/gcc4.7
+
+
+# no need to add GCC and QT as already done on modules load
+
+if [ -n "$LD_LIBRARY_PATH_ORIGINAL" ]; then # exist
+	#echo LD_LIBRARY_PATH_ORIGINAL defined
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH_ORIGINAL
+else
+	export LD_LIBRARY_PATH_ORIGINAL=$LD_LIBRARY_PATH		
+fi
+
+#echo 1: $LD_LIBRARY_PATH
+
+LD_LIBRARY_PATH_=\
+$LD_LIBRARY_PATH:\
+$USRLIB:\
+$TBBLIB:\
+$DIALIB_:\
+$DIAHASP_:\
+$DIAINTEL_:\
+$BASEPATH/local/lib:\
+$QTLIB_:\
+$BOOST/lib
+
+#echo 2: $LD_LIBRARY_PATH_
+
+# already Ok... load mdules does the work
+#LIBRARY_PATH_=\
+#$GCCLIB64:\
+#$QTLIB_
+
+#------------------------------------------------- conf: debug/release
+export CONF=$CONF_
+#------------------------------------------------- diana
+export DIAPATH=$DIAPATH_
+export DIAROOT=$DIAROOT_
+export DIALIB=$DIALIB_
+export DIASRC=$DIASRC_
+export DIAINTEL=$DIAINTEL_
+export DIAHASP=$DIAHASP_
+#------------------------------------------------- qt
+export QTDIR=$QTDIR_
+export QTLIB=$QTLIB_
+export QTBIN=$QTBIN_
+#------------------------------------------------- path
+export PATH=$PATH_
+#------------------------------------------------- lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH_
+#export LIBRARY_PATH=$LIBRARY_PATH_
+#------------------------------------------------- others
+export GM_SW_TOOL_PATH=$BASEPATH
+#------------------------------------------------- tmp
+export TMP=/scratch/tmp
+}
+
+
+
+print_ () 
+{
+echo 'print_'
+
+echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+echo ----------------- base
+echo SOFT: $SOFT
+echo ----------------- modules
+echo SHELLSOFTBASE: $SHELLSOFTBASE
+echo ----------------- conf
+echo CONF: $CONF
+echo ----------------- qt, 3x
+echo QTDIR: $QTDIR
+echo QTLIB: $QTLIB
+echo QTBIN: $QTBIN
+echo ----------------- diana, 6x
+echo DIAPATH: $DIAPATH
+echo DIAROOT: $DIAROOT
+echo DIALIB: $DIALIB
+echo DIASRC: $DIASRC
+echo DIAINTEL: $DIAINTEL
+echo DIAHASP: $DIAHASP
+echo ----------------- path
+echo PATH: ... not modified
+echo
+echo $PATH
+echo
+echo ----------------- gcc
+echo GCCPATH: $GCCPATH
+echo GCCLIB64: $GCCLIB64
+echo ----------------- lib
+echo LD_LIBRARY_PATH:
+echo
+echo $LD_LIBRARY_PATH
+echo 
+echo LIBRARY_PATH: ... not modified
+echo
+echo $LIBRARY_PATH
+echo
+echo ----------------- others
+echo GM_SW_TOOL_PATH: $GM_SW_TOOL_PATH
+echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+}
+
+
+if [ -n "$1" ]; then
+	if [ "$1" == "PRINT" ]; then
+		echo -- only print --
+		print_
+	elif [ "$1" == "TFS" ]; then
+		echo -- TFS --
+		do_TFS
+	fi
+else
+	echo -- set and print --
+	do_
+	print_
+fi
+

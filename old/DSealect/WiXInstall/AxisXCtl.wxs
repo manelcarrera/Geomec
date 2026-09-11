@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="RegisterAxisXCtlOCX" Guid="B0C4966E-6DB9-48c5-8E25-9741CB0B2D34" Win64="no">
+                <Class Id="{D5DE8D20-5BB8-11D1-A1E3-00A0C90F2731}" Context="InprocServer32" Description="VBPropertyBag" ThreadingModel="apartment" ForeignServer="msvbvm60.dll" />
+                <File Id="AxisXCtlOCX" KeyPath="yes" Source="$(var.WiXInstall)\AxisXCtl.ocx">
+                    <TypeLib Id="{AA21080F-DFCB-4269-88D5-69C9C466E09D}" Control="yes" Description="AxisXCtl" HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="1" MinorVersion="1">
+                        <Class Id="{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}" Context="InprocServer32" Description="AxisXCtl.AxisX" ThreadingModel="apartment" Version="1.1" Control="yes">
+                            <ProgId Id="AxisXCtl.AxisX" Description="AxisXCtl.AxisX" />
+                        </Class>
+                        <Interface Id="{EA544FC0-9B65-4309-AB13-FEE06A024D18}" Name="AxisX" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FD2740A7-1CD4-4636-824B-5C6B29AC46E8}" Name="AxisX" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                    </TypeLib>
+                </File>
+                <Interface Id="{105EA9C6-ABE8-4444-A39F-2B7D403ABD32}" Name="AxisX" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                <Interface Id="{9DB2A901-616C-47B8-976F-BF1B836A5A33}" Name="AxisX" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\Implemented Categories\{0DE86A52-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\Implemented Categories\{0DE86A53-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\Implemented Categories\{0DE86A57-2BAA-11CF-A229-00AA003D7352}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\Implemented Categories\{40FC6ED4-2438-11CF-A3DB-080036F12502}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\MiscStatus\1" Value="131473" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\MiscStatus" Value="0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5BEA0BCB-5A64-4650-B59E-DD418A9D6154}\ToolboxBitmap32" Value="[AxisXCtlOCX], 30000" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{105EA9C6-ABE8-4444-A39F-2B7D403ABD32}\Forward" Value="{EA544FC0-9B65-4309-AB13-FEE06A024D18}" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Interface\{9DB2A901-616C-47B8-976F-BF1B836A5A33}\Forward" Value="{FD2740A7-1CD4-4636-824B-5C6B29AC46E8}" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

@@ -1,0 +1,521 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,1,0,0
+ PRODUCTVERSION 3,1,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Shell International"
+            VALUE "FileDescription", "WellSchemeUtils DLL"
+            VALUE "FileVersion", "3, 1, 0, 0"
+            VALUE "InternalName", "WellSchemeUtils"
+            VALUE "LegalCopyright", "Copyright (C) 2003 - 2019"
+            VALUE "OriginalFilename", "WellSchemeUtils.DLL"
+            VALUE "ProductName", "WellSchemeUtils Dynamic Link Library"
+            VALUE "ProductVersion", "3, 1, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOGBAR_SPEAD_EDIT DIALOG 0, 0, 330, 17
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDC_BUTTON_SPREAD_CANCEL,237,2,39,13
+    PUSHBUTTON      "OK",IDC_BUTTON_SPREAD_OK,197,2,40,13
+    COMBOBOX        ID_COMBO_SPREAD_TYPE,7,2,93,49,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Azimuth",ID_CHECK_SPREAD_AZIMUTH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,117,2,51,13
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOGBAR_SPEAD_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 15
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOGBAR_SPEAD_EDIT DLGINIT
+BEGIN
+    ID_COMBO_SPREAD_TYPE, 0x403, 8, 0
+0x4d54, 0x2d44, 0x5654, 0x0044, 
+    ID_COMBO_SPREAD_TYPE, 0x403, 16, 0
+0x4d54, 0x2d44, 0x6e49, 0x6c63, 0x6e69, 0x7461, 0x6f69, 0x006e, 
+    0
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Netherlands) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+UT_IDD_DIALOG_PICK_POINTS DIALOG 0, 0, 583, 386
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Wellpath points"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "",IDC_STATIC,7,26,200,32
+    GROUPBOX        "",IDC_STATIC,7,63,200,65
+    CONTROL         "Single point",UT_IDC_RADIO_SINGLE_POINT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,25,53,10
+    CONTROL         "Range",UT_IDC_RADIO_RANGE,"Button",BS_AUTORADIOBUTTON,14,63,37,10
+    LTEXT           "**WELLPATH NAME**",UT_IDC_STATIC_WP_NAME,59,10,148,15
+    EDITTEXT        UT_IDC_EDIT_SINGLE,59,38,71,15,ES_AUTOHSCROLL
+    EDITTEXT        UT_IDC_EDIT_RANGE_FROM,59,73,71,15,ES_AUTOHSCROLL
+    EDITTEXT        UT_IDC_EDIT_RANGE_TO,59,89,71,15,ES_AUTOHSCROLL
+    EDITTEXT        UT_IDC_EDIT_RANGE_NROPTS,59,105,71,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add to list",UT_IDC_BUTTON_ADD,7,142,60,15
+    PUSHBUTTON      "Remove from list",UT_IDC_BUTTON_REMOVE,77,142,60,15
+    CONTROL         "List1",UT_IDC_LIST_DSBATCH_POINTS,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,223,42,344,333
+    DEFPUSHBUTTON   "OK",IDOK,11,366,64,15
+    PUSHBUTTON      "Cancel",IDCANCEL,147,366,64,15
+    LTEXT           "Wellpath:",IDC_STATIC,15,10,35,15
+    LTEXT           "UNIT",UT_IDC_STATIC_SINGLE_UNIT,134,41,28,10
+    LTEXT           "(AHD)",IDC_STATIC,162,41,25,10
+    LTEXT           "From:",IDC_STATIC,14,73,25,10
+    LTEXT           "UNIT",UT_IDC_ST_RNGE_FR_UNIT,134,76,28,10
+    LTEXT           "(AHD)",IDC_STATIC,162,76,25,10
+    LTEXT           "To:",IDC_STATIC,14,89,19,10
+    LTEXT           "UNIT",UT_IDC_ST_RNGE_TO_UNIT,134,92,28,10
+    LTEXT           "(AHD)",IDC_STATIC,162,92,25,10
+    LTEXT           "Nr. of points:",IDC_STATIC,14,105,42,15
+    GROUPBOX        "Selected points",IDC_STATIC,217,27,360,354
+    LTEXT           "Position:",IDC_STATIC,14,39,33,10
+    PUSHBUTTON      "Add default",UT_IDC_BUTTON_RECALCDEF,147,142,60,15
+END
+
+UT_IDD_WELLLIST_DLG DIALOG 0, 0, 328, 279
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,259,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,257,23,50,14
+    CONTROL         "List1",UT_IDC_LIST_WELLLIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,13,81,300,186
+    COMBOBOX        UT_IDC_COMBO_LISTS,13,13,154,50,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+UT_IDD_WELLOG_DLG DIALOG 0, 0, 537, 365
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Well log data"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,480,7,50,14
+    CONTROL         "List4",IDC_LIST_WELLOG,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,10,41,464,317
+    LTEXT           "Sand cut-off value:",IDC_STATIC,11,13,65,12
+    LTEXT           "Static",IDC_STATIC_SNDCUT,114,13,131,14
+    LTEXT           "Total average compressibility:",IDC_STATIC,11,27,94,12
+    LTEXT           "Static",IDC_STATIC_TOTAVGCOMP,114,27,131,14
+END
+
+UT_IDD_RADACT_DLG DIALOG 0, 0, 371, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Radioactive tag data"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,314,7,50,14
+    CONTROL         "List1",IDC_LIST_RADACT,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,7,7,295,246
+END
+
+UT_IDD_DLG_WELL_EDIT DIALOGEX 0, 0, 500, 337
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_THICKFRAME
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Well edit"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
+
+UT_IDD_FORMVIEW DIALOG 0, 0, 40, 47
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SPREAD1,"{B02F3641-766B-11CE-AF28-C3A2FBE76A13}",WS_TABSTOP,1,2,34,39
+END
+
+IDD_DEXIMPORT_FORMATIONTYPE DIALOG 0, 0, 199, 69
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Depth type"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,142,7,50,14
+    CONTROL         "Prognosed Depth",IDC_PROGNOSED,"Button",BS_AUTORADIOBUTTON | WS_GROUP,21,21,90,12
+    CONTROL         "Logged Depth",IDC_LOGGED,"Button",BS_AUTORADIOBUTTON,21,39,90,12
+    GROUPBOX        "Select depth type for import",IDC_STATIC,7,7,126,55
+END
+
+IDD_WELLPATH_ATTRI DIALOG 0, 0, 310, 322
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Wellpath information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ED_DESCRIPTION,16,19,221,97,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_ED_COMM_NAME,84,140,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_WELL_TYPE,84,159,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_FIELD,84,178,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_LOC_NAME,84,197,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_COUNTRY,84,216,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_CUST_NAME,84,235,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_CUST_CONTACT,84,254,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_JOB_NR,84,273,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ED_SPUD_DATE,84,292,79,14,ES_CENTER | ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "Change date",IDC_BTN_SPUD_CHANGE,170,292,66,14
+    DEFPUSHBUTTON   "OK",IDOK,253,10,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,253,27,50,14
+    GROUPBOX        "Well description",IDC_STATIC,7,7,239,116
+    RTEXT           "Well common name:",IDC_STATIC,13,142,66,14
+    RTEXT           "Well type:",IDC_STATIC,13,161,66,14
+    RTEXT           "Field:",IDC_STATIC,13,180,66,14
+    RTEXT           "Location name:",IDC_STATIC,13,199,66,14
+    RTEXT           "Country:",IDC_STATIC,13,218,66,14
+    RTEXT           "Customer name:",IDC_STATIC,13,237,66,14
+    RTEXT           "Job number:",IDC_STATIC,13,275,66,14
+    RTEXT           "Spud date:",IDC_STATIC,13,294,66,14
+    GROUPBOX        "Miscellaneous",IDC_STATIC,7,128,239,188
+    RTEXT           "Customer contact:",IDC_STATIC,13,256,66,14
+END
+
+IDD_DATEEDITDLG DIALOG 0, 0, 126, 81
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "MonthCalendar1",IDC_MONTH_CALENDAR,"SysMonthCal32",MCS_NOTODAY | MCS_NOTODAYCIRCLE | WS_TABSTOP,0,0,126,82
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    UT_IDD_WELLOG_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 530
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 358
+    END
+
+    UT_IDD_RADACT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 364
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 253
+    END
+
+    UT_IDD_DLG_WELL_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 493
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 330
+    END
+
+    IDD_DEXIMPORT_FORMATIONTYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_WELLPATH_ATTRI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 315
+    END
+
+    IDD_DATEEDITDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 16
+        RIGHTMARGIN, 80
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+0 DLGINIT
+BEGIN
+    UT_IDC_EDIT_SINGLE, 0x403, 5, 0
+0x4554, 0x5453, "\000" 
+    UT_IDC_EDIT_SINGLE, 0x403, 4, 0
+0x4848, 0x0048, 
+    UT_IDC_EDIT_SINGLE, 0x403, 4, 0
+0x4b4b, 0x004b, 
+    0
+END
+
+UT_IDD_WELLLIST_DLG DLGINIT
+BEGIN
+    UT_IDC_COMBO_LISTS, 0x403, 5, 0
+0x4554, 0x5453, "\000" 
+    UT_IDC_COMBO_LISTS, 0x403, 4, 0
+0x4848, 0x0048, 
+    UT_IDC_COMBO_LISTS, 0x403, 4, 0
+0x4b4b, 0x004b, 
+    0
+END
+
+UT_IDD_FORMVIEW DLGINIT
+BEGIN
+    IDC_SPREAD1, 0x37a, 800, 0
+0x001b, 0x0000, 0x0043, 0x006f, 0x0070, 0x0079, 0x0072, 0x0069, 0x0067, 
+0x0068, 0x0074, 0x0020, 0x0028, 0x0063, 0x0029, 0x0020, 0x0031, 0x0039, 
+0x0039, 0x0035, 0x0020, 0x0046, 0x0061, 0x0072, 0x0050, 0x006f, 0x0069, 
+0x006e, 0x0074, 0x0012, 0x0000, 0x0001, 0x0000, 0x000a, 0x0000, 0x0023, 
+0x0000, 0x0000, 0x0005, 0x0002, 0x0545, 0x0000, 0x0683, 0x0000, 0x0040, 
+0x0000, 0x0001, 0x0000, 0x0000, 0x0101, 0x0000, 0x0100, 0x0000, 0x0200, 
+0x0000, 0x0000, 0x0100, 0x0101, 0x0201, 0x0100, 0x0101, 0x0000, 0x0100, 
+0x0300, 0xe352, 0x910b, 0xce8f, 0x9d11, 0x00e3, 0x00aa, 0xb84b, 0x0151, 
+0x0000, 0x9000, 0x4401, 0x0142, 0x0d00, 0x534d, 0x5320, 0x6e61, 0x2073, 
+0x6553, 0x6972, 0x0166, 0xc0c0, 0x00c0, 0xc0c0, 0x00c0, 0x0101, 0x0701, 
+0x0000, 0xf400, 0x0001, 0x0100, 0x0000, 0x0000, 0x0000, 0x0100, 0x0001, 
+0x0100, 0x0001, 0x0000, 0x0000, 0x0100, 0x0003, 0x0f01, 0x0f00, 0x0000, 
+0x1080, 0x0000, 0x1280, 0x0000, 0x1680, 0x0002, 0x0100, 0x1604, 0x0002, 
+0x1900, 0x0e00, 0x0000, 0x0700, 0x0000, 0xf400, 0x0001, 0x0100, 0x0f00, 
+0x0000, 0x0000, 0x01f4, 0x0000, 0x01f4, 0x0000, 0x0042, 0x0008, 0x0000, 
+0x0000, 0x0005, 0x0016, 0x0000, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0x00ff, 0x0000, 0x0000, 0x000b, 0x000c, 0x0000, 0x0000, 0x0100, 0x0001, 
+0x000c, 0x0011, 0x0000, 0x0000, 0x0100, 0x0000, 0x0100, 0x0001, 0x3f00, 
+0x5c00, 0x0000, 0x0200, 0xc700, 0xfffc, 0x00ff, 0x0000, 0x0000, 0x0000, 
+0xbc00, 0x0002, 0x0000, 0x0000, 0x0000, 0x0000, 0x0e00, 0x0000, 0x4d00, 
+0x2053, 0x6153, 0x736e, 0x5320, 0x7265, 0x6669, 0xc700, 0xfffc, 0x00ff, 
+0x0000, 0x0000, 0x0000, 0x9000, 0x0001, 0x0000, 0x0000, 0x0100, 0x0102, 
+0x0e22, 0x0000, 0x4d00, 0x2053, 0x6153, 0x736e, 0x5320, 0x7265, 0x6669, 
+0x0d00, 0x1000, 0x0000, 0xff00, 0xffff, 0xffff, 0xffff, 0x01ff, 0x1600, 
+0x1100, 0x0000, 0x0000, 0x0001, 0xa9fc, 0xd2f1, 0x624d, 0x3f50, 0x0018, 
+0x000e, 0x0000, 0xffff, 0xffff, 0xffff, 0xffff, 0x0025, 0x0016, 0x0000, 
+0x000f, 0x8000, 0x0012, 0x8000, 0x0010, 0x8000, 0x0014, 0x8000, 0x002b, 
+0x002d, 0x0000, 0xffff, 0xffff, 0xffff, 0xffff, 0x0002, 0x0000, 0x0008, 
+0x0002, 0xc28f, 0xfff5, 0xd783, 0xc197, 0xc28f, 0xfff5, 0xd783, 0x4197, 
+0x6601, 0x2c00, 0x2e00, 0x3000, 0x1200, 0x0000, 0x0000, 0x0000, 0xff00, 
+0xffff, 0xccff, 0x0000, 0x0600, 0x1200, 0x0000, 0x0100, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x2000, 0x2b40, 0x2d00, 0x0000, 0x0200, 0x0000, 0xff00, 
+0xffff, 0x02ff, 0x0000, 0x0700, 0x0300, 0xd900, 0xf7ce, 0xcfff, 0x6312, 
+0xd9c1, 0xf7ce, 0xcfff, 0x6312, 0x0141, 0x0066, 0x002c, 0x002e, 0x002b, 
+0x002d, 0x0000, 0x0003, 0x0000, 0xffff, 0xffff, 0x0002, 0x0000, 0x0008, 
+0x0003, 0xf9db, 0xfffe, 0xd783, 0xc197, 0xf9db, 0xfffe, 0xd783, 0x4197, 
+0x6601, 0x2c00, 0x2e00, 0x2b00, 0x2d00, 0x0000, 0x0400, 0x0000, 0xff00, 
+0xffff, 0x02ff, 0x0000, 0x0800, 0x0300, 0xdb00, 0xfef9, 0x83ff, 0x97d7, 
+0xdbc1, 0xfef9, 0x83ff, 0x97d7, 0x0141, 0x0066, 0x002c, 0x002e, 0x002b, 
+0x002d, 0x0000, 0x0005, 0x0000, 0xffff, 0xffff, 0x0002, 0x0000, 0x0008, 
+0x0003, 0xf9db, 0xfffe, 0xd783, 0xc197, 0xf9db, 0xfffe, 0xd783, 0x4197, 
+0x6601, 0x2c00, 0x2e00, 0x3000, 0x1200, 0x0000, 0xff00, 0xffff, 0x00ff, 
+0x0000, 0xcc00, 0x0000, 0x0100, 0x0000, 0x0100, 0x0000, 0x0100, 0x0300, 
+0xff00, 0xffff, 0x00ff, 0x0000, 0x0000, 0x0000, 0x0000, 0xf400, 0x0001, 
+0xf400, 0x0001, 0x0000, 0x0000, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\WellSchemeUtils.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR_WELL_EDIT TOOLBAR 16, 16
+BEGIN
+    BUTTON      ED_ID_3DV_ZOOMIN
+    BUTTON      ED_ID_3DV_ZOOMOUT
+    BUTTON      ED_ID_3DV_ZOOM_WINDOW
+    BUTTON      ED_ID_3DV_ZOOM_RESET
+    SEPARATOR
+    BUTTON      ED_ID_3DV_LOCK_EAST
+    BUTTON      ED_ID_3DV_LOCK_NORTH
+    BUTTON      ED_ID_3DV_LOCK_DEPTH
+    BUTTON      ED_ID_3DV_LOCK_RESET
+    SEPARATOR
+    BUTTON      ED_ID_3DV_VIEW_AXIS
+    BUTTON      ED_ID_3DV_VIEW_PERSPECTIVE
+    BUTTON      ED_ID_3DV_VIEW_BOUNDARY
+    BUTTON      ED_ID_3DV_VIEW_LIGHTING
+    SEPARATOR
+    BUTTON      ED_ID_3DV_VIEW_Z_DIREC
+    BUTTON      ED_ID_3DV_VIEW_E_DIREC
+    BUTTON      ED_ID_3DV_VIEW_N_DIREC
+    BUTTON      ED_ID_3DV_VIEW_BE_DIREC
+    SEPARATOR
+    BUTTON      ED_ID_3DV_COPYPICTURE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR_WELL_EDIT   BITMAP                  "well_view_bar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR_DRAW         CURSOR                  "cursor1.cur"
+IDC_CURSOR_NODROP       CURSOR                  "cur00001.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_WELL_EDIT MENU
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "&Import",                     IDR_MENU_WE_OPEN
+        MENUITEM "&Apply and Exit",             IDR_MENU_WE_APPLY
+        MENUITEM "&Exit",                       IDR_MENU_WE_CLOSE
+    END
+END
+
+#endif    // Dutch (Netherlands) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\WellSchemeUtils.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

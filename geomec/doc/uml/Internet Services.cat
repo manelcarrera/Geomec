@@ -1,0 +1,788 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Internet Services"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A200B3"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CInternetSession"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A200BE"
+	    documentation 	"Use class CInternetSession to create and initialize a single or several simultaneous Internet sessions and, if necessary, to describe your connection to a proxy server. If your Internet connection must be maintained for the duration of an application, you can create a CInternetSession member of the class CWinApp."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A200D1"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0A200F0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnStatusCallback"
+		    quid       	"3A07D0A200FB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwContext"
+			    quid       	"3A07D0A20104"
+			    type       	"DWORD")
+			(object Parameter "dwInternetStatus"
+			    quid       	"3A07D0A20105"
+			    type       	"DWORD")
+			(object Parameter "lpvStatusInformation"
+			    quid       	"3A07D0A2010E"
+			    type       	"LPVOID")
+			(object Parameter "dwStatusInformationLength"
+			    quid       	"3A07D0A20118"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A20122"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A20123"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CInternetConnection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A20136"
+	    documentation 	
+|The MFC class CInternetConnection manages your connection to an Internet server. It is the base class for MFC classes CFtpConnection, CHttpConnection, and CGopherConnection. Each of these classes provides additional functionality for communicating with the respective FTP, HTTP, or gopher server.
+|
+|To communicate directly with an Internet server, you must have a CInternetSession object and a CInternetConnection object.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A2014A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0A2014B"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A2015E"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A2015F"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFtpConnection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A20172"
+	    documentation 	"The MFC class CFtpConnection both manages your FTP connection to an Internet server and allows direct manipulation of directories and files on that server. FTP is one of the three Internet services recognized by the MFC WinInet classes."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A20186"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Internet Services::CInternetConnection"
+		    quidu      	"3A07D0A20136"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0A20187"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A20191"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A2019A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A201A4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CGopherConnection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A201B8"
+	    documentation 	"The MFC class CGopherConnection manages your connection to a gopher Internet server. The gopher service is one of three Internet services recognized by the MFC WinInet classes. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A201CC"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Internet Services::CInternetConnection"
+		    quidu      	"3A07D0A20136"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0A201E0"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A201EB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A201F4"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A201FF"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpConnection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A20212"
+	    documentation 	"The MFC class CHttpConnection manages your connection to an HTTP server. HTTP is one of three Internet server protocols implemented by the MFC WinInet classes. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A20226"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Internet Services::CInternetConnection"
+		    quidu      	"3A07D0A20136"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0A20227"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A20231"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A2023A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A20245"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFileFind"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A20258"
+	    documentation 	
+|The MFC class CFileFind performs local file searches and is the base class for CGopherFileFind and CFtpFileFind, which perform Internet file searches. CFileFind includes member functions that begin a search, locate a file, and return the title, name, or path of the file. For Internet searches, the member function GetFileURL returns the file's URL.
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A2026C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CFileFind"
+		    quid       	"3A07D0A2026D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFileName"
+		    quid       	"3A07D0A20277"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetFileTitle"
+		    quid       	"3A07D0A2028A"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetFilePath"
+		    quid       	"3A07D0A20294"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetFileURL"
+		    quid       	"3A07D0A2029F"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetRoot"
+		    quid       	"3A07D0A202A9"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetLastWriteTime"
+		    quid       	"3A07D0A202BC"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A202BD"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastWriteTime"
+		    quid       	"3A07D0A202D0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A202D1"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastAccessTime"
+		    quid       	"3A07D0A202DB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A202E4"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastAccessTime"
+		    quid       	"3A07D0A202EF"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A202F8"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCreationTime"
+		    quid       	"3A07D0A20303"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A2030C"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCreationTime"
+		    quid       	"3A07D0A20316"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A20320"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "MatchesMask"
+		    quid       	"3A07D0A2032A"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dwMask"
+			    quid       	"3A07D0A20334"
+			    type       	"DWORD"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsDots"
+		    quid       	"3A07D0A2033E"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindFile"
+		    quid       	"3A07D0A20348"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pstrName"
+			    quid       	"3A07D0A20352"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "dwUnused"
+			    quid       	"3A07D0A20353"
+			    type       	"DWORD"
+			    initv      	"0"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindNextFile"
+		    quid       	"3A07D0A2035D"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CloseContext"
+		    quid       	"3A07D0A20370"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFtpFileFind"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A2037A"
+	    documentation 	"Class CFtpFileFind aids in Internet file searches of FTP servers. CFtpFileFind includes member functions that begin a search, locate a file, and return the URL or other descriptive information about the file. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A2038E"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Internet Services::CFileFind"
+		    quidu      	"3A07D0A20258"))
+	    operations 	(list Operations
+		(object Operation "~CFtpFileFind"
+		    quid       	"3A07D0A20398"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A203A2"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A203AD"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A203B7"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindFile"
+		    quid       	"3A07D0A203C1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pstrName"
+			    quid       	"3A07D0A203CB"
+			    type       	"LPCTSTR"
+			    initv      	"NULL")
+			(object Parameter "dwFlags"
+			    quid       	"3A07D0A203CC"
+			    type       	"DWORD"
+			    initv      	"INTERNET_FLAG_RELOAD"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindNextFile"
+		    quid       	"3A07D0A203D6"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CloseContext"
+		    quid       	"3A07D0A30001"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CGopherFileFind"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A3000B"
+	    documentation 	"Class CGopherFileFind aids in Internet file searches of gopher servers. CGopherFileFind includes member functions that begin a search, locate a file, and return a file's URL. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A3001F"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::Internet Services::CFileFind"
+		    quidu      	"3A07D0A20258"))
+	    operations 	(list Operations
+		(object Operation "~CGopherFileFind"
+		    quid       	"3A07D0A30029"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A30033"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A3003D"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLength"
+		    quid       	"3A07D0A30047"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A30052"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindFile"
+		    quid       	"3A07D0A3005C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "refLocator"
+			    quid       	"3A07D0A30065"
+			    type       	"CGopherLocator&")
+			(object Parameter "pstrString"
+			    quid       	"3A07D0A3006F"
+			    type       	"LPCTSTR")
+			(object Parameter "dwFlags"
+			    quid       	"3A07D0A30070"
+			    type       	"DWORD"
+			    initv      	"INTERNET_FLAG_RELOAD"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindFile"
+		    quid       	"3A07D0A30083"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pstrString"
+			    quid       	"3A07D0A30084"
+			    type       	"LPCTSTR")
+			(object Parameter "dwFlags"
+			    quid       	"3A07D0A3008D"
+			    type       	"DWORD"
+			    initv      	"INTERNET_FLAG_RELOAD"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "FindNextFile"
+		    quid       	"3A07D0A30097"
+		    stereotype 	"virtual"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CloseContext"
+		    quid       	"3A07D0A300A2"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsDots"
+		    quid       	"3A07D0A300B5"
+		    stereotype 	"virtual, const"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastWriteTime"
+		    quid       	"3A07D0A300BF"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A300C0"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastWriteTime"
+		    quid       	"3A07D0A300D3"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A300D4"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastAccessTime"
+		    quid       	"3A07D0A300E7"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A300E8"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLastAccessTime"
+		    quid       	"3A07D0A300FB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A300FC"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCreationTime"
+		    quid       	"3A07D0A3010F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pTimeStamp"
+			    quid       	"3A07D0A30110"
+			    type       	"FILETIME*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCreationTime"
+		    quid       	"3A07D0A30123"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "refTime"
+			    quid       	"3A07D0A30124"
+			    type       	"CTime&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLength64"
+		    quid       	"3A07D0A3012E"
+		    stereotype 	"virtual, const"
+		    result     	"__int64"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CGopherLocator"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A30141"
+	    documentation 	
+|The class CGopherLocator gets a gopher 'locator' from a gopher server, determines the locator's type, and makes the locator available to CGopherFileFind. 
+|
+|An application must get a gopher server's locator before it can retrieve information from that server. Once it has the locator, it must treat the locator as an opaque token.
+|
+|Each gopher locator has attributes that determine the type of file or server found.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A30155"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

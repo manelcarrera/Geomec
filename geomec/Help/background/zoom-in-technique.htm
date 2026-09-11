@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Zoom-in technique</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	text-align:justify;
+	line-height:13.0pt;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="interface elements">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="stiffness">
+	<param name="Keyword" value="zoom-in">
+</OBJECT>
+
+
+<h1>Zoom-in technique</h1>
+<p style="text-autospace: none"><font face="Times New Roman"><span lang="EN-GB">
+Zoom-in is a scaling down technique using mixed boundary conditions. The 
+displacements and stresses retrieved from a large scale model are applied to 
+the boundary of the small scale model (zoom-in model). Discrepancies between the 
+stress-displacement response of the zoom-in model and the prescribed 
+stress-displacement boundary conditions are compensated for by using interface elements. 
+The stiffness of these interface elements represents the stiffness of the 
+surrounding rock.</span></font></p>
+<p class="MsoNormal" style="text-autospace: none"><font face="Times New Roman">
+<span lang="EN-GB">The zoom-in technique includes the following components:</span></font></p>
+<ul style="margin-top: 0in; margin-bottom: 0in" type="disc">
+	<li class="MsoNormal" style="text-align: left; line-height: normal">
+	<span lang="EN-GB"><font size="3">The boundary faces of the zoomed-in model 
+	are lined with interface elements. </font></span></li>
+	<li class="MsoNormal" style="text-align: left; line-height: normal">
+	<span lang="EN-GB"><font size="3">The outer face nodes of the interface 
+	elements are supported. The displacements predicted by the larger model are 
+	applied to these nodes.</font></span></li>
+	<li class="MsoNormal" style="text-align: left; line-height: normal">
+	<span lang="EN-GB"><font size="3">The stresses of the larger model are 
+	applied on the inside faces of the interface elements. </font></span></li>
+	<li class="MsoNormal" style="text-align: left; line-height: normal">
+	<span lang="EN-GB"><font size="3">The 
+	<a href="../boundary/boundary_interface_attributes.htm">stiffnesses of the interface elements</a> 
+	are based on </font></span>
+	<span style="font-family: Times New Roman; color: black">
+	the analytical solution for the stiffness of a cylinder in an infinite 
+	space. Geomec applies the average model 
+(brick) size&nbsp; R ( =(L+W+H)/6 ) instead:</span></li>
+</ul>
+<blockquote>
+	<ul>
+		<li><font size="3">K-rad = K-normal = 3.04 * G / R</font></li>
+		<li><font size="3">K-tan = K-shear&nbsp; = 1.56 *&nbsp; G / R&nbsp; 
+		</font>
+		<span style="font-size: 11.0pt; font-family: Symbol; color: black">@</span><font size="3">&nbsp; 
+	½ * K-normal</font></li>
+	</ul>
+	<p>This is only possible for tetrahedron models. </p>
+</blockquote>
+<p>&nbsp;More information on zoom-in is given in
+<a href="../boundary/boundary_conditions_with_interfaces.htm">Boundary 
+conditions with interface elements</a></p>
+<p><font face="Times New Roman"><span lang="EN-GB">&nbsp;</span></font></p>
+
+</body>
+
+</html>

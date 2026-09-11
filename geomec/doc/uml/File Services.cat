@@ -1,0 +1,2251 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "File Services"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0A9024E"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0A90259"
+	    documentation 	
+|CFile is the base class for Microsoft Foundation file classes. It directly provides unbuffered, binary disk input/output services, and it indirectly supports text files and memory files through its derived classes. CFile works in conjunction with the CArchive class to support serialization of Microsoft Foundation Class objects. 
+|
+|Use CFile and its derived classes for general-purpose disk I/O. Use ofstream or other Microsoft iostream classes for formatted text sent to a disk file. 
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0A90276"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "GetLength"
+		    quid       	"3A07D0A90280"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CFile"
+		    quid       	"3A07D0A9028A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0A90295"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0A9029F"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0A902A8"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPosition"
+		    quid       	"3A07D0A902B3"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFileName"
+		    quid       	"3A07D0A902BD"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetFileTitle"
+		    quid       	"3A07D0A902D0"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "GetFilePath"
+		    quid       	"3A07D0A902DA"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338")
+		(object Operation "SetFilePath"
+		    quid       	"3A07D0A902E4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszNewName"
+			    quid       	"3A07D0A902EE"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0A902F8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszFileName"
+			    quid       	"3A07D0A90302"
+			    type       	"LPCTSTR")
+			(object Parameter "nOpenFlags"
+			    quid       	"3A07D0A90303"
+			    type       	"UINT")
+			(object Parameter "pError"
+			    quid       	"3A07D0A9030C"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Duplicate"
+		    quid       	"3A07D0A90316"
+		    stereotype 	"virtual, const"
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0A90320"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOff"
+			    quid       	"3A07D0A9032A"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0A9032B"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetLength"
+		    quid       	"3A07D0A90335"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0A9033E"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0A90349"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A90352"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A90353"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0A90366"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0A90367"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A90370"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LockRange"
+		    quid       	"3A07D0A9037B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0A90385"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0A90386"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnlockRange"
+		    quid       	"3A07D0A90390"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0A90399"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0A903A3"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0A903AD"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0A903B7"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0A903C2"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetBufferPtr"
+		    quid       	"3A07D0A903CC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCommand"
+			    quid       	"3A07D0A903D5"
+			    type       	"UINT")
+			(object Parameter "nCount"
+			    quid       	"3A07D0A903DF"
+			    type       	"UINT"
+			    initv      	"0")
+			(object Parameter "ppBufStart"
+			    quid       	"3A07D0A903E0"
+			    type       	"void**"
+			    initv      	"NULL")
+			(object Parameter "ppBufMax"
+			    quid       	"3A07D0AA0001"
+			    type       	"void**"
+			    initv      	"NULL"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMemFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AA000B"
+	    documentation 	"CMemFile is the CFile-derived class that supports memory files. These memory files behave like disk files except that the file is stored in RAM rather than on disk. A memory file is useful for fast temporary storage or for transferring raw bytes or serialized objects between independent processes."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AA0029"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::CObject"
+		    quidu      	"3A07D0A20046"))
+	    operations 	(list Operations
+		(object Operation "~CMemFile"
+		    quid       	"3A07D0AA0033"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AA003D"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AA0048"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AA0051"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPosition"
+		    quid       	"3A07D0AA005B"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Duplicate"
+		    quid       	"3A07D0AA0066"
+		    stereotype 	"virtual, const"
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0AA0070"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOff"
+			    quid       	"3A07D0AA0079"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0AA0083"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetLength"
+		    quid       	"3A07D0AA008D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0AA008E"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AA00A1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AA00A2"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AA00AB"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AA00B5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AA00BF"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AA00C0"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LockRange"
+		    quid       	"3A07D0AA00CA"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AA00D3"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AA00DD"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnlockRange"
+		    quid       	"3A07D0AA00E7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AA00E8"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AA00F1"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0AA00FC"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AA0106"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AA0119"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetBufferPtr"
+		    quid       	"3A07D0AA0123"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCommand"
+			    quid       	"3A07D0AA012D"
+			    type       	"UINT")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AA012E"
+			    type       	"UINT"
+			    initv      	"0")
+			(object Parameter "ppBufStart"
+			    quid       	"3A07D0AA0137"
+			    type       	"void**"
+			    initv      	"NULL")
+			(object Parameter "ppBufMax"
+			    quid       	"3A07D0AA0138"
+			    type       	"void**"
+			    initv      	"NULL"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Alloc"
+		    quid       	"3A07D0AA014B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nBytes"
+			    quid       	"3A07D0AA014C"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Realloc"
+		    quid       	"3A07D0AA0156"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0AA015F"
+			    type       	"BYTE*")
+			(object Parameter "nBytes"
+			    quid       	"3A07D0AA0169"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Memcpy"
+		    quid       	"3A07D0AA0173"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMemTarget"
+			    quid       	"3A07D0AA0174"
+			    type       	"BYTE*")
+			(object Parameter "lpMemSource"
+			    quid       	"3A07D0AA017D"
+			    type       	"const BYTE*")
+			(object Parameter "nBytes"
+			    quid       	"3A07D0AA0187"
+			    type       	"UINT"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Free"
+		    quid       	"3A07D0AA0191"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0AA0192"
+			    type       	"BYTE*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GrowFile"
+		    quid       	"3A07D0AA01A5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0AA01A6"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSharedFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxadv.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AA01B9"
+	    documentation 	
+|CSharedFile is the CMemFile-derived class that supports shared memory files. Memory files behave like disk files except that the file is stored in RAM rather than on disk. A memory file is useful for fast temporary storage or for transferring raw bytes or serialized objects between independent processes.
+|
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AA01D7"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CMemFile"
+		    quidu      	"3A07D0AA000B"))
+	    operations 	(list Operations
+		(object Operation "~CSharedFile"
+		    quid       	"3A07D0AA01D8"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Alloc"
+		    quid       	"3A07D0AA01E2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nBytes"
+			    quid       	"3A07D0AA01EB"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Realloc"
+		    quid       	"3A07D0AA01F6"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0AA01FF"
+			    type       	"BYTE*")
+			(object Parameter "nBytes"
+			    quid       	"3A07D0AA0200"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Free"
+		    quid       	"3A07D0AA0213"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0AA0214"
+			    type       	"BYTE*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleStreamFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AA0227"
+	    documentation 	"A COleStreamFile object represents a stream of data (IStream) in a compound file as part of OLE Structured Storage. An IStorage object must exist before the stream can be opened or created unless it is a memory stream."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AA0245"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CFile"
+		    quidu      	"3A07D0A90259"))
+	    operations 	(list Operations
+		(object Operation "~COleStreamFile"
+		    quid       	"3A07D0AA0246"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AA0251"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AA0264"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AA0265"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AA026F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPosition"
+		    quid       	"3A07D0AA0282"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetStorageName"
+		    quid       	"3A07D0AA028C"
+		    stereotype 	"virtual, const"
+		    result     	"const CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Duplicate"
+		    quid       	"3A07D0AA0297"
+		    stereotype 	"virtual, const"
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0AA02A1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOff"
+			    quid       	"3A07D0AA02AA"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0AA02B4"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetLength"
+		    quid       	"3A07D0AA02BE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0AA02C8"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLength"
+		    quid       	"3A07D0AA02D2"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AA02DC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AA02E6"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AA02E7"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AA02F1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AA02FA"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AA0304"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LockRange"
+		    quid       	"3A07D0AA030E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AA0318"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AA0319"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnlockRange"
+		    quid       	"3A07D0AA0323"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AA032C"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AA0336"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0AA0340"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AA034A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CMonikerFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AA035E"
+	    documentation 	
+|A CMonikerFile object represents a stream of data (IStream) named by an IMoniker.
+|
+|A moniker contains information much like a pathname to a file. If you have a pointer to a moniker object's IMoniker interface, you can get access to the identified file without having any other specific information about where the file is actually located. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AA037C"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::COleStreamFile"
+		    quidu      	"3A07D0AA0227"))
+	    operations 	(list Operations
+		(object Operation "~CMonikerFile"
+		    quid       	"3A07D0AA037D"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AA0387"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AA0391"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AA039A"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AA03A5"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AA03B8"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AA03C2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszURL"
+			    quid       	"3A07D0AA03CC"
+			    type       	"LPCTSTR")
+			(object Parameter "pError"
+			    quid       	"3A07D0AA03CD"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AA03E0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AA03E1"
+			    type       	"IMoniker*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0002"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB000D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszUrl"
+			    quid       	"3A07D0AB0016"
+			    type       	"LPCTSTR")
+			(object Parameter "pBindHost"
+			    quid       	"3A07D0AB0020"
+			    type       	"IBindHost*")
+			(object Parameter "pBSC"
+			    quid       	"3A07D0AB0021"
+			    type       	"IBindStatusCallback*")
+			(object Parameter "pBindCtx"
+			    quid       	"3A07D0AB002A"
+			    type       	"IBindCtx*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0034"
+			    type       	"CFileException*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB003E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AB0048"
+			    type       	"IMoniker*")
+			(object Parameter "pBindHost"
+			    quid       	"3A07D0AB0052"
+			    type       	"IBindHost*")
+			(object Parameter "pBSC"
+			    quid       	"3A07D0AB0053"
+			    type       	"IBindStatusCallback*")
+			(object Parameter "pBindCtx"
+			    quid       	"3A07D0AB005C"
+			    type       	"IBindCtx*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB005D"
+			    type       	"CFileException*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PostBindToStream"
+		    quid       	"3A07D0AB0070"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0071"
+			    type       	"CFileException*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CAsyncMonikerFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AB0084"
+	    documentation 	"CAsyncMonikerFile provides functionality for the use of asynchronous monikers in ActiveX controls (formerly OLE controls). Derived from CMonikerFile, which in turn is derived from COleStreamFile, CAsyncMonikerFile uses the IMoniker interface to access any data stream asynchronously, including loading files asynchronously from a URL. The files can be datapath properties of ActiveX controls."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AB00A2"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CMonikerFile"
+		    quidu      	"3A07D0AA035E"))
+	    operations 	(list Operations
+		(object Operation "~CAsyncMonikerFile"
+		    quid       	"3A07D0AB00A3"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AB00AD"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AB00C0"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AB00C1"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AB00D4"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AB00DE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AB00E8"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AB00E9"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB00F3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszURL"
+			    quid       	"3A07D0AB00FC"
+			    type       	"LPCTSTR")
+			(object Parameter "pBindHost"
+			    quid       	"3A07D0AB0106"
+			    type       	"IBindHost*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0107"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB011B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AB011C"
+			    type       	"IMoniker*")
+			(object Parameter "pBindHost"
+			    quid       	"3A07D0AB0125"
+			    type       	"IBindHost*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB012F"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB0139"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AB0143"
+			    type       	"IMoniker*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0144"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB0157"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AB0161"
+			    type       	"IMoniker*")
+			(object Parameter "pServiceProvider"
+			    quid       	"3A07D0AB0162"
+			    type       	"IServiceProvider*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB016B"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB017F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pMoniker"
+			    quid       	"3A07D0AB0189"
+			    type       	"IMoniker*")
+			(object Parameter "pUnknown"
+			    quid       	"3A07D0AB018A"
+			    type       	"IUnknown*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0193"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(lpszURL, pError);
+|
+			    )))
+		    quid       	"3A07D0AB01A7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszURL"
+			    quid       	"3A07D0AB01B1"
+			    type       	"LPCTSTR")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB01B2"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB01CF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszURL"
+			    quid       	"3A07D0AB01D0"
+			    type       	"LPCTSTR")
+			(object Parameter "pServiceProvider"
+			    quid       	"3A07D0AB01D9"
+			    type       	"IServiceProvider*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB01E3"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB01F7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszURL"
+			    quid       	"3A07D0AB0201"
+			    type       	"LPCTSTR")
+			(object Parameter "pUnknown"
+			    quid       	"3A07D0AB0202"
+			    type       	"IUnknown*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB020B"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PostBindToStream"
+		    quid       	"3A07D0AB0216"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pError"
+			    quid       	"3A07D0AB021F"
+			    type       	"CFileException*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CreateBindStatusCallback"
+		    quid       	"3A07D0AB022A"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pUnkControlling"
+			    quid       	"3A07D0AB0233"
+			    type       	"IUnknown*"))
+		    result     	"IUnknown*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetBindInfo"
+		    quid       	"3A07D0AB023D"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPriority"
+		    quid       	"3A07D0AB0248"
+		    stereotype 	"virtual, const"
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDataAvailable"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwSize, bscfFlag);
+|
+			    )))
+		    quid       	"3A07D0AB025B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwSize"
+			    quid       	"3A07D0AB025C"
+			    type       	"DWORD")
+			(object Parameter "bscfFlag"
+			    quid       	"3A07D0AB0265"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnLowResource"
+		    quid       	"3A07D0AB026F"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnStartBinding"
+		    quid       	"3A07D0AB027A"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnProgress"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(ulProgress, ulProgressMax, ulStatusCode, szStatusText);
+|
+			    )))
+		    quid       	"3A07D0AB028D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "ulProgress"
+			    quid       	"3A07D0AB028E"
+			    type       	"ULONG")
+			(object Parameter "ulProgressMax"
+			    quid       	"3A07D0AB0297"
+			    type       	"ULONG")
+			(object Parameter "ulStatusCode"
+			    quid       	"3A07D0AB02A1"
+			    type       	"ULONG")
+			(object Parameter "szStatusText"
+			    quid       	"3A07D0AB02A2"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnStopBinding"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(hresult, szError);
+|
+			    )))
+		    quid       	"3A07D0AB02AC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "hresult"
+			    quid       	"3A07D0AB02B5"
+			    type       	"HRESULT")
+			(object Parameter "szError"
+			    quid       	"3A07D0AB02BF"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDataPathProperty"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AB02D3"
+	    documentation 	"Class CDataPathProperty implements an OLE control property that can be loaded asynchronously. Asynchronous properties are loaded after synchronous initiation. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AB02FB"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CAsyncMonikerFile"
+		    quidu      	"3A07D0AB0084"))
+	    operations 	(list Operations
+		(object Operation "Open"
+		    quid       	"3A07D0AB02FC"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pControl"
+			    quid       	"3A07D0AB0305"
+			    type       	"COleControl*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0306"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB0319"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPath"
+			    quid       	"3A07D0AB031A"
+			    type       	"LPCTSTR")
+			(object Parameter "pControl"
+			    quid       	"3A07D0AB0323"
+			    type       	"COleControl*")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB032D"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB0337"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPath"
+			    quid       	"3A07D0AB0341"
+			    type       	"LPCTSTR")
+			(object Parameter "pError"
+			    quid       	"3A07D0AB0342"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AB0355"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pError"
+			    quid       	"3A07D0AB035F"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ResetData"
+		    quid       	"3A07D0AB0369"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AB0373"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AB037E"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AB0387"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CCachedDataPathProperty"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AB0392"
+	    documentation 	"Class CCachedDataPathProperty implements an OLE control property transferred asynchronously and cached in a memory file. A memory file is stored in RAM rather than on disk and is useful for fast temporary transfers. "
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AB03B9"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CDataPathProperty"
+		    quidu      	"3A07D0AB02D3"))
+	    operations 	(list Operations
+		(object Operation "ResetData"
+		    quid       	"3A07D0AB03BA"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AB03C4"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AB03D8"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AB03D9"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnDataAvailable"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(dwSize, bscfFlag);
+|
+			    )))
+		    quid       	"3A07D0AB03E3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwSize"
+			    quid       	"3A07D0AC0004"
+			    type       	"DWORD")
+			(object Parameter "bscfFlag"
+			    quid       	"3A07D0AC000E"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AC0018"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CSocketFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxsock.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AC0023"
+	    documentation 	"A CSocketFile object is a CFile object used for sending and receiving data across a network via Windows Sockets. You can attach the CSocketFile object to a CSocket object for this purpose. You also can (and usually do) attach the CSocketFile object to a CArchive object to simplify sending and receiving data using MFC serialization."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AC004A"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CFile"
+		    quidu      	"3A07D0A90259"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0AC004B"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSocketFile"
+		    quid       	"3A07D0AC005E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AC0068"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AC0072"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AC007C"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AC0086"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC0090"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC0091"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AC009B"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC00A4"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC00AE"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AC00B8"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszFileName"
+			    quid       	"3A07D0AC00C2"
+			    type       	"LPCTSTR")
+			(object Parameter "nOpenFlags"
+			    quid       	"3A07D0AC00C3"
+			    type       	"UINT")
+			(object Parameter "pError"
+			    quid       	"3A07D0AC00CC"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Duplicate"
+		    quid       	"3A07D0AC00D6"
+		    stereotype 	"virtual, const"
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPosition"
+		    quid       	"3A07D0AC00E1"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0AC00F4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOff"
+			    quid       	"3A07D0AC00F5"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0AC00FE"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetLength"
+		    quid       	"3A07D0AC0108"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0AC0112"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLength"
+		    quid       	"3A07D0AC011C"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LockRange"
+		    quid       	"3A07D0AC0127"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AC0130"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AC0131"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnlockRange"
+		    quid       	"3A07D0AC0144"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AC0145"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AC014E"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AC0159"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0AC0163"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CStdioFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afx.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AC0176"
+	    documentation 	"A CStdioFile object represents a C run-time stream file as opened by the run-time function fopen. Stream files are buffered and can be opened in either text mode (the default) or binary mode."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AC0194"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CFile"
+		    quidu      	"3A07D0A90259"))
+	    operations 	(list Operations
+		(object Operation "~CStdioFile"
+		    quid       	"3A07D0AC019E"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetPosition"
+		    quid       	"3A07D0AC01A8"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Open"
+		    quid       	"3A07D0AC01B3"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszFileName"
+			    quid       	"3A07D0AC01BC"
+			    type       	"LPCTSTR")
+			(object Parameter "nOpenFlags"
+			    quid       	"3A07D0AC01C6"
+			    type       	"UINT")
+			(object Parameter "pError"
+			    quid       	"3A07D0AC01C7"
+			    type       	"CFileException*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Duplicate"
+		    quid       	"3A07D0AC01DA"
+		    stereotype 	"virtual, const"
+		    result     	"CFile*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0AC01E4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOff"
+			    quid       	"3A07D0AC01EE"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0AC01F8"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AC0202"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC020C"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC020D"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AC0220"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC0221"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC022A"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LockRange"
+		    quid       	"3A07D0AC0235"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AC023E"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AC0248"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UnlockRange"
+		    quid       	"3A07D0AC0252"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwPos"
+			    quid       	"3A07D0AC025C"
+			    type       	"DWORD")
+			(object Parameter "dwCount"
+			    quid       	"3A07D0AC0266"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0AC0270"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AC027B"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0AC028E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteString"
+		    quid       	"3A07D0AC0298"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpsz"
+			    quid       	"3A07D0AC02A3"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadString"
+		    quid       	"3A07D0AC02AE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpsz"
+			    quid       	"3A07D0AC02B7"
+			    type       	"LPTSTR")
+			(object Parameter "nMax"
+			    quid       	"3A07D0AC02C1"
+			    type       	"UINT"))
+		    result     	"LPTSTR"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadString"
+		    quid       	"3A07D0AC02CB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rString"
+			    quid       	"3A07D0AC02D5"
+			    type       	"CString&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CInternetFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AC02E9"
+	    documentation 	"The MFC class CInternetFile provides a base class for the CHttpFile and CGopherFile file classes. CInternetFile and its derived classes allow access to files on remote systems that use Internet protocols. You never create a CInternetFile object directly. Instead, create an object of one of its derived classes by calling CGopherConnection::OpenFile or CHttpConnection::OpenRequest. You also can create a CInternetFile object by calling CFtpConnection::OpenFile."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AC0307"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CStdioFile"
+		    quidu      	"3A07D0AC0176"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0AC0308"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CInternetFile"
+		    quid       	"3A07D0AC031B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AC0325"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AC032F"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Seek"
+		    quid       	"3A07D0AC0339"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lOffset"
+			    quid       	"3A07D0AC033A"
+			    type       	"LONG")
+			(object Parameter "nFrom"
+			    quid       	"3A07D0AC0343"
+			    type       	"UINT"))
+		    result     	"LONG"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Read"
+		    quid       	"3A07D0AC034E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC0357"
+			    type       	"void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC0358"
+			    type       	"UINT"))
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AC0362"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AC036B"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AC0375"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Abort"
+		    quid       	"3A07D0AC0393"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Flush"
+		    quid       	"3A07D0AC039E"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetLength"
+		    quid       	"3A07D0AC03B1"
+		    stereotype 	"virtual, const"
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadString"
+		    quid       	"3A07D0AC03BB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rString"
+			    quid       	"3A07D0AC03C5"
+			    type       	"CString&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadString"
+		    quid       	"3A07D0AC03CF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pstr"
+			    quid       	"3A07D0AC03D9"
+			    type       	"LPTSTR")
+			(object Parameter "nMax"
+			    quid       	"3A07D0AC03DA"
+			    type       	"UINT"))
+		    result     	"LPTSTR"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteString"
+		    quid       	"3A07D0AC03E4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pstr"
+			    quid       	"3A07D0AD0005"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetLength"
+		    quid       	"3A07D0AD0010"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0AD0019"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AD0023"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CGopherFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD0037"
+	    documentation 	
+|The MFC class CGopherFile provides the functionality to find and read files on a gopher server. 
+|
+|The gopher service does not allow users to write data to a gopher file because this service functions mainly as a menu-driven interface for finding information. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD0055"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CInternetFile"
+		    quidu      	"3A07D0AC02E9"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0AD0056"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CGopherFile"
+		    quid       	"3A07D0AD0060"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AD0073"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AD0074"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0AD007E"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0AD0087"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0AD0091"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AD009B"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpFile"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxinet.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CObject"))
+	    quid       	"3A07D0AD00AF"
+	    documentation 	"The class CHttpFile provides the functionality to request and read files on an HTTP server."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0AD00CD"
+		    supplier   	"Logical View::MFC 6.0::CObject Classes::File Services::CInternetFile"
+		    quidu      	"3A07D0AC02E9"))
+	    operations 	(list Operations
+		(object Operation "Close"
+		    quid       	"3A07D0AD00CE"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CHttpFile"
+		    quid       	"3A07D0AD00D8"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Dump"
+		    quid       	"3A07D0AD00EB"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "dc"
+			    quid       	"3A07D0AD00EC"
+			    type       	"CDumpContext&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AssertValid"
+		    quid       	"3A07D0AD00F6"
+		    stereotype 	"virtual, const"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFileURL"
+		    quid       	"3A07D0AD0109"
+		    stereotype 	"virtual, const"
+		    result     	"CString"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"3A07D0C70338"))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRecentFileList"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxadv.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0AD0113"
+	    documentation 	
+|CRecentFileList is a CObject class that supports control of the most recently used (MRU) file list. Files can be added to or deleted from the MRU file list, the file list can be read from or written to the registry or an .INI file, and the menu displaying the MRU file list can be updated. 
+|
+|NOTE: According to documentation this class inherits from CObject, according to source it does not. Hence removed the inheritance.
+	    
+	    operations 	(list Operations
+		(object Operation "~CRecentFileList"
+		    quid       	"3A07D0AD013B"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Remove"
+		    quid       	"3A07D0AD0145"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nIndex"
+			    quid       	"3A07D0AD014F"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Add"
+		    quid       	"3A07D0AD0159"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszPathName"
+			    quid       	"3A07D0AD015A"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UpdateMenu"
+		    quid       	"3A07D0AD016D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pCmdUI"
+			    quid       	"3A07D0AD016E"
+			    type       	"CCmdUI*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ReadList"
+		    quid       	"3A07D0AD0179"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteList"
+		    quid       	"3A07D0AD018C"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

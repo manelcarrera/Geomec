@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Component IDs -->
+  <?define ComponentID_Diana_share_lib="896c8836-91b8-4ea2-8b65-1c164d655f44" ?>
+  <?define ComponentID_Diana_share_lib_ElmTyp="f239aba4-1904-4c89-a2db-4b06179ab02d" ?>
+  <?define ComponentID_Diana_lib="af3d32f7-13d5-4885-97f5-71798be717ce" ?>
+  <?define ComponentID_Diana_bin="38eaab7c-c342-49dc-8d7a-d0c5e48b04b6" ?>
+  <?define ComponentID_Diana_bin_Qt="f0cee4e3-b04f-4d3b-87b2-73c1d3f16456" ?>
+  <?define ComponentID_Diana_share_src_ap="1f325380-eab6-4396-8feb-0409918f98e4" ?>
+  <?define ComponentID_Diana_share_src_dc="74813aa7-0080-4431-99de-62591aa2dad4" ?>
+  <?define ComponentID_Diana_share_src_in="8ca352c7-12f1-4d5a-9432-3abc70f6f9bc" ?>
+  <?define ComponentID_Diana_share_src_lb="8e89cf3a-1e98-4c25-ad20-f2486749405e" ?>
+  <?define ComponentID_Diana_share_src_ls="04e2c174-b35f-47af-b699-c8e5f00bf680" ?>
+  <?define ComponentID_Diana_share_src_nl="c19eec85-0d01-4319-bff3-97fd611ce0d5" ?>
+  <?define ComponentID_Diana_share_src_pf="2b242566-824c-4c39-afb6-8d0184a23d78" ?>
+  <?define ComponentID_Diana_share_src_po="0eb2cf84-bef0-4dbd-b2a5-24ecda205bbd" ?>
+  <?define ComponentID_Diana_share_src_so="ee9ebce3-2c19-4b3e-bd5e-ffccaa315857" ?>
+  
+  <?define ComponentID_System_Files="2ccf4144-adb0-410a-ae4f-c5a2d97c6847" ?>
+  <?define ComponentID_Math_Kernel_Library="a9899267-0e96-4862-8b32-ee11756ccfc3" ?>
+  
+  <?define ProductID="71ca7fed-8099-4458-a8db-efbe688b34c0" ?>
+  <?define UpgradeCodeID="54a51c0f-a517-41ef-a430-c9540e0b7963" ?>
+  
+  <?define ComponentID_Registry_keys="e65e81ba-dd92-423e-85f0-2ef53961922a" ?>
+  
+  <?define ComponentID_Geomec_exe="475bd0df-5a70-478f-ab96-fd917a93c1c6" ?>
+  
+  <?define ComponentID_EditX_ocx="5b9c282e-e5ea-4883-b96b-641707f29bf9" ?>
+  
+  <?define ComponentID_GVT="63297248-17af-44ef-bedd-2366c3357d8f" ?>
+  
+  <?define ComponentID_Diana_bin_geomec="c91e0557-53ac-46c9-95e1-b205f2f22c74" ?>
+  
+  <?define ComponentID_SafeNet_bin_geomec="2339d902-6cee-48d9-9008-56fdd96c1063" ?>
+  
+  <?define ComponentID_Diana_binseg_ap_geomec="2ee01737-895c-45cc-b18c-93c804338337" ?>
+  
+  <?define ComponentID_SVS="3b9ae442-22f6-4685-9b49-fb2f4ba4f0fb" ?>
+  
+  <?define ComponentID_OIVBin="2581a616-ece4-4533-b69b-51244c44b917" ?>
+  
+  <?define ComponentID_QtPlatforms="4721cc94-f3c8-4f15-8ed2-861ea1ea63ce" ?>
+
+  <?define ComponentID_fixInstallation="a63afcdf-2ec7-443f-bc54-9d87663e7165" ?>
+  <?define ComponentID_fixInstallation_resources="f12dbd8b-3dd6-4421-af13-c236d901c830" ?>
+  
+  <?define ComponentID_packages="1c54f7c1-cb07-4fe6-8a00-f4bb0ce8b016" ?>
+
+  <?define ComponentID_Changelog55="28914294-76b3-4ca5-9287-4cd05daaf7c7" ?>
+  
+</Include>

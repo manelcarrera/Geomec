@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\qmfcapp.cpp" />
+    <ClCompile Include="src\qwinhost.cpp" />
+    <ClCompile Include="src\qwinwidget.cpp" />
+    <ClCompile Include="h\moc_qwinwidget.cpp" />
+    <ClCompile Include="h\moc_qwinhost.cpp" />
+    <ClCompile Include="h\moc_qmfcapp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="h\qwinhost.h" />
+    <CustomBuild Include="h\qwinwidget.h" />
+    <CustomBuild Include="h\qmfcapp.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+- first make the install script executable by executing the command
+  'chmod +x install',
+- install the compressed archive ('geomec_rgi.tar.bz2') by executing the
+  commands 'mkdir <dir>', './install <dir>',
+- the installation can now be verified by executing the commands 'cd <dir>',
+  './test_geomec_rgi [debug]'.
+- due to an unknown and unresolved issue the test may have to be executed
+  several times before the result 'TEST SUCCEEDED' is returned.

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5FAAB67D-7ED6-4980-893D-7DCAA67A331A}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <RootNamespace>geomec_shell</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>geomec_shell</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile />
+    <Link />
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(CM2LIBPATH);$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>shlwapi.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;$(LIBLBCX);$(LIBLBDS);$(LIBLBFL);$(LIBLBGS);$(LIBLBEL);$(LIBLBCI);$(LIBLBDC);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);libhdf5_D.lib;libhdf5_cpp_D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>python27.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GEOMECSHELL)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile />
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>shlwapi.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;$(LIBLBCX);$(LIBLBDS);$(LIBLBFL);$(LIBLBGS);$(LIBLBEL);$(LIBLBCI);$(LIBLBDC);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(CM2LIBPATH);$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>python27.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GEOMECSHELL)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <ClCompile />
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>shlwapi.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;$(LIBLBCX);$(LIBLBDS);$(LIBLBFL);$(LIBLBGS);$(LIBLBEL);$(LIBLBCI);$(LIBLBDC);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)/lib;$(DIAOBJ);$(CM2LIBPATH);$(BOOST_LIBS_D);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>python27.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GEOMECSHELL)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fw51\FieldValueFile\FieldValueFile.vcxproj">
+      <Project>{466422f4-3259-419b-80ea-65d3de4bd8c6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Geometry\Geometry.vcxproj">
+      <Project>{be554a53-3201-496e-912b-fd63c8962b90}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\ModelFrame\ModelFrame.vcxproj">
+      <Project>{ff0762fd-0778-4be1-97dd-e7aa6e8b104a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\OpenGLFrame\OpenGLFrame.vcxproj">
+      <Project>{6eb909d5-a8fa-48fe-9fb2-3fdcc75977db}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Tensor\Tensor.vcxproj">
+      <Project>{bb3007b8-17c5-427d-b723-e3b8324218fc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\TetMesh\TetMesh.vcxproj">
+      <Project>{aeeacd24-e222-4747-832f-b010c51d9bbd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fw51\Triangle\triangle.vcxproj">
+      <Project>{a9906d73-fb4f-495d-bca1-54f4bf13a444}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\blosc_filter\blosc_filter.vcxproj">
+      <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+      <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
+      <Project>{d5ca483c-e972-4ca4-9ce2-f4ebc521108c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\ConsoleLibrary\ConsoleLibrary.vcxproj">
+      <Project>{b86ff4e0-616b-4972-9f3e-7094d1ca0347}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\CutSurfaceUtilModel\CutSurfaceUtilModel.vcxproj">
+      <Project>{761de266-29aa-40e9-9f2a-90dace0d8a2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DCasing\DCasing.vcxproj">
+      <Project>{f641edd0-67f9-4488-8f2d-ab1fe0ddb148}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\DianaGlue\DianaGlue.vcxproj">
+      <Project>{344f283e-11eb-452d-973b-49589be2f0b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\FemAppModel\FemAppModel.vcxproj">
+      <Project>{27902801-b1f4-435f-8e7d-dde68fd398ba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GeomecModel\GeomecModel.vcxproj">
+      <Project>{ee2e3ba6-3ce5-4962-a545-4399139e3efe}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GeomecStringTable\GeomecStringTable.vcxproj">
+      <Project>{82df03e6-336a-4458-808b-d02fb1ccbaae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\geomec_cora_library\geomec_cora_library.vcxproj">
+      <Project>{b864e7d0-c3b5-4c34-a1e4-03f62b610709}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\geomec_rgi_library\geomec_rgi_library.vcxproj">
+      <Project>{3f5693c3-5060-4f23-837a-57d3c2deb768}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\GMSkuaConnector\GMSkuaConnector.vcxproj">
+      <Project>{7dff0108-6cff-4da1-985c-de482241d396}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MaterialLibraryXML\MaterialLibraryXML.vcxproj">
+      <Project>{a499d6a1-480e-4409-82f9-699e5658cfcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MaterialLibrary\MaterialLibrary.vcxproj">
+      <Project>{6471453a-ba91-4241-823e-ff6cae2a242a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\MeshDataCacher\MeshDataCacher.vcxproj">
+      <Project>{c0204739-a48c-4d3b-bd5f-c74d65871061}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\NewWellScheme\NewWellScheme.vcxproj">
+      <Project>{2a6e8f7b-8d6b-4d66-ae56-1989dff03f6a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Plugins\Plugins.vcxproj">
+      <Project>{f2b1aa28-9235-41af-85ed-9a6a7acddbd0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\PyLib\PyLib.vcxproj">
+      <Project>{cf6d0c66-92da-4d28-b7e3-4fab2370427e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\qtiocompressor\qtiocompressor.vcxproj">
+      <Project>{4ffd48fe-053e-4c8d-8060-cdbca4835590}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Quantity\Quantity.vcxproj">
+      <Project>{be3d76e9-9084-464e-a152-863cb45cb664}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\QUtil\QUtil.vcxproj">
+      <Project>{f99b429a-1152-459d-8716-007a42c94625}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RESCUE\Rescue.vcxproj">
+      <Project>{1b818b98-cc70-4a22-9bd7-f48242463489}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RGInterface\RGInterface.vcxproj">
+      <Project>{01a770e4-2db0-4c68-9b61-f249a3048154}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\RPN\RPN.vcxproj">
+      <Project>{4f25fb23-f39c-4e66-baf6-db3f6f8f15ac}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\TSMesh\TSMesh.vcxproj">
+      <Project>{0c6809c8-2d74-44a9-95d6-6b7f930007f9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\Util\Util.vcxproj">
+      <Project>{992d5320-b6c5-4f0d-a19f-40644956e729}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\WellScheme\WellScheme.vcxproj">
+      <Project>{196d6005-6814-4b11-89d7-dd391a44c239}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">
+      <Project>{b12702ad-abfb-343a-a199-8e24837244a3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\ArgumentParser.h" />
+    <ClInclude Include="h\GeomecShellUtils.h" />
+    <ClInclude Include="h\geomec_shell.h" />
+    <ClInclude Include="h\InterfaceBase.h" />
+    <ClInclude Include="h\InterfaceContext.h" />
+    <ClInclude Include="h\InterfaceCORA.h" />
+    <ClInclude Include="h\InterfaceDiagnostics.h" />
+    <ClInclude Include="h\InterfaceGM.h" />
+    <ClInclude Include="h\InterfaceRGI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ArgumentParser.cpp" />
+    <ClCompile Include="src\GeomecShellUtils.cpp" />
+    <ClCompile Include="src\InterfaceBase.cpp" />
+    <ClCompile Include="src\InterfaceContext.cpp" />
+    <ClCompile Include="src\InterfaceCORA.cpp" />
+    <ClCompile Include="src\InterfaceDiagnostics.cpp" />
+    <ClCompile Include="src\InterfaceGM.cpp" />
+    <ClCompile Include="src\InterfaceRGI.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

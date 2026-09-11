@@ -1,0 +1,693 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Internet Server API"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C5035E"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CHtmlStream"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxisapi.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C50368"
+	    documentation 	"CHtmlStream is a class that manages in-memory HTML. HTML memory files are useful for temporarily storing raw bytes or serialized objects prior to their transmission. Although it is not derived from CFile, CHtmlStream behaves like the CFile-derived class CMemFile, except CHtmlStream is used to store data in a temporary buffer prior to sending it out, and the data stored in a CHtmlStream memory file cannot be read."
+	    operations 	(list Operations
+		(object Operation "Abort"
+		    quid       	"3A07D0C503A3"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Close"
+		    quid       	"3A07D0C503AE"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitStream"
+		    quid       	"3A07D0C503C1"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Reset"
+		    quid       	"3A07D0C503CB"
+		    stereotype 	"virtual"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Write"
+		    quid       	"3A07D0C503D5"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpBuf"
+			    quid       	"3A07D0C503DF"
+			    type       	"const void*")
+			(object Parameter "nCount"
+			    quid       	"3A07D0C503E0"
+			    type       	"UINT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Alloc"
+		    quid       	"3A07D0C60002"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nBytes"
+			    quid       	"3A07D0C6000B"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Realloc"
+		    quid       	"3A07D0C60016"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0C6001F"
+			    type       	"BYTE*")
+			(object Parameter "nBytes"
+			    quid       	"3A07D0C60029"
+			    type       	"DWORD"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Memcpy"
+		    quid       	"3A07D0C60033"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMemTarget"
+			    quid       	"3A07D0C60034"
+			    type       	"BYTE*")
+			(object Parameter "lpMemSource"
+			    quid       	"3A07D0C6003D"
+			    type       	"const BYTE*")
+			(object Parameter "nBytes"
+			    quid       	"3A07D0C60047"
+			    type       	"UINT"))
+		    result     	"BYTE*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GrowStream"
+		    quid       	"3A07D0C60051"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwNewLen"
+			    quid       	"3A07D0C60052"
+			    type       	"DWORD"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Free"
+		    quid       	"3A07D0C6005C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpMem"
+			    quid       	"3A07D0C60065"
+			    type       	"BYTE*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CHtmlStream"
+		    quid       	"3A07D0C60070"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpFilter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxisapi.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C60083"
+	    documentation 	"CHttpFilter creates and manages, with CHttpFilterContext, a Hypertext Transfer Protocol (HTTP) filter object. An HTTP filter is a replaceable dynamic link library (DLL) that the server calls on every HTTP request. When the filter is loaded, it tells the server what sort of notifications it is interested in. After that, whenever the selected events occur, the filter is called and given the opportunity to process that event."
+	    operations 	(list Operations
+		(object Operation "HttpFilterProc"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, dwNotificationType, pvNotification);
+|
+			    )))
+		    quid       	"3A07D0C600BF"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C600C9"
+			    type       	"PHTTP_FILTER_CONTEXT")
+			(object Parameter "dwNotificationType"
+			    quid       	"3A07D0C600CA"
+			    type       	"DWORD")
+			(object Parameter "pvNotification"
+			    quid       	"3A07D0C600D3"
+			    type       	"LPVOID"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetFilterVersion"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pVer);
+|
+			    )))
+		    quid       	"3A07D0C600DE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pVer"
+			    quid       	"3A07D0C600E7"
+			    type       	"PHTTP_FILTER_VERSION"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnReadRawData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pRawData);
+|
+			    )))
+		    quid       	"3A07D0C600F1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C600FB"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pRawData"
+			    quid       	"3A07D0C600FC"
+			    type       	"PHTTP_FILTER_RAW_DATA"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnPreprocHeaders"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pHeaders);
+|
+			    )))
+		    quid       	"3A07D0C6010F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C60110"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pHeaders"
+			    quid       	"3A07D0C60119"
+			    type       	"PHTTP_FILTER_PREPROC_HEADERS"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnAuthentication"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pAuthent);
+|
+			    )))
+		    quid       	"3A07D0C60123"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C6012D"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pAuthent"
+			    quid       	"3A07D0C6012E"
+			    type       	"PHTTP_FILTER_AUTHENT"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnUrlMap"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pUrlMap);
+|
+			    )))
+		    quid       	"3A07D0C60141"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C60142"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pUrlMap"
+			    quid       	"3A07D0C6014B"
+			    type       	"PHTTP_FILTER_URL_MAP"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnSendRawData"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pRawData);
+|
+			    )))
+		    quid       	"3A07D0C60155"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C6015F"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pRawData"
+			    quid       	"3A07D0C60160"
+			    type       	"PHTTP_FILTER_RAW_DATA"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnLog"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc, pLog);
+|
+			    )))
+		    quid       	"3A07D0C60173"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C60174"
+			    type       	"CHttpFilterContext*")
+			(object Parameter "pLog"
+			    quid       	"3A07D0C6017D"
+			    type       	"PHTTP_FILTER_LOG"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEndOfNetSession"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pfc);
+|
+			    )))
+		    quid       	"3A07D0C60187"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C60191"
+			    type       	"CHttpFilterContext*"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnEndOfRequest"
+		    quid       	"3A07D0C6019C"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pfc"
+			    quid       	"3A07D0C601A6"
+			    type       	"CHttpFilterContext*"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpFilterContext"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxisapi.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C601B0"
+	    documentation 	"CHttpFilterContext provides the tools that a CHttpFilter object needs to process data that passes through the filter. When the filter receives a request, a CHttpFilter object is created and initialized, and a CHttpFilterContext object is created. As the filter processes requests, it uses CHttpFilterContext member functions to perform tasks. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpServer"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxisapi.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C601F6"
+	    documentation 	"The class CHttpServer, with CHttpServerContext, provides a means to extend the functionality of an ISAPI-compliant HTTP server. The class CHttpServer wraps the Internet Server API (ISAPI) functionality and can process all types of client requests, including both Common Gateway Interface (CGI) executables and extension DLLs. These extension DLLs are sometimes called Internet Server Applications; however, they are DLLs, rather than EXEs."
+	    operations 	(list Operations
+		(object Operation "~CHttpServer"
+		    quid       	"3A07D0C60232"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CallFunction"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pCtxt, pszQuery, pszCommand);
+|
+			    )))
+		    quid       	"3A07D0C6023D"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C60246"
+			    type       	"CHttpServerContext*")
+			(object Parameter "pszQuery"
+			    quid       	"3A07D0C60250"
+			    type       	"LPTSTR")
+			(object Parameter "pszCommand"
+			    quid       	"3A07D0C60251"
+			    type       	"LPTSTR"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnParseError"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pCtxt, nCause);
+|
+			    )))
+		    quid       	"3A07D0C60264"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C60265"
+			    type       	"CHttpServerContext*")
+			(object Parameter "nCause"
+			    quid       	"3A07D0C6026E"
+			    type       	"int"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnWriteBody"
+		    quid       	"3A07D0C60279"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C60282"
+			    type       	"CHttpServerContext*")
+			(object Parameter "pbContent"
+			    quid       	"3A07D0C6028C"
+			    type       	"LPBYTE")
+			(object Parameter "dwSize"
+			    quid       	"3A07D0C6028D"
+			    type       	"DWORD")
+			(object Parameter "dwReserved"
+			    quid       	"3A07D0C60296"
+			    type       	"DWORD"
+			    initv      	"0"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "EndContent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pCtxt);
+|
+			    )))
+		    quid       	"3A07D0C602A1"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C602AA"
+			    type       	"CHttpServerContext*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "StartContent"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pCtxt);
+|
+			    )))
+		    quid       	"3A07D0C602B4"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C602BE"
+			    type       	"CHttpServerContext*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "WriteTitle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|%1::%2(pCtxt);
+|
+			    )))
+		    quid       	"3A07D0C602C8"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C602D2"
+			    type       	"CHttpServerContext*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTitle"
+		    quid       	"3A07D0C602DC"
+		    stereotype 	"virtual, const"
+		    result     	"LPCTSTR"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "TerminateExtension"
+		    quid       	"3A07D0C602E7"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwFlags"
+			    quid       	"3A07D0C602F0"
+			    type       	"DWORD"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "HttpExtensionProc"
+		    quid       	"3A07D0C602FB"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pECB"
+			    quid       	"3A07D0C60304"
+			    type       	"EXTENSION_CONTROL_BLOCK*"))
+		    result     	"DWORD"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetExtensionVersion"
+		    quid       	"3A07D0C6030F"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pVer"
+			    quid       	"3A07D0C60318"
+			    type       	"HSE_VERSION_INFO*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ConstructStream"
+		    quid       	"3A07D0C60323"
+		    stereotype 	"virtual"
+		    result     	"CHtmlStream*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InitInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"DefaultBody"
+			    value      	(value Text 
+| 
+|%4 %R1
+| 
+|return %1::%2(pCtxt);
+|
+			    )))
+		    quid       	"3A07D0C60336"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pCtxt"
+			    quid       	"3A07D0C60337"
+			    type       	"CHttpServerContext*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CHttpServerContext"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxisapi.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C6034A"
+	    documentation 	"CHttpServerContext provides the tools that a CHttpServer object needs to process data that a client has sent to the HTTP server. When a Microsoft Internet Information Server (MIIS) receives a request from a client browser, a CHttpServer object is created and initialized, and a CHttpServerContext object is created. As the server extension DLL processes requests, it uses CHttpServerContext member functions to perform tasks. "
+	    operations 	(list Operations
+		(object Operation "~CHttpServerContext"
+		    quid       	"3A07D0C60386"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

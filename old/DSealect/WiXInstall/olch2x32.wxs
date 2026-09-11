@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?include Variable.wxi ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="Registerolch2x32OCX" Guid="14EC940D-0723-412f-8D93-53D6714B06E8" Win64="no">
+                <File Id="olch2x32OCX" KeyPath="yes" Source="$(var.WiXInstall)\olch2x32.ocx">
+                    <Class Id="{12FEEAB1-5B26-11CF-A683-C56BA13DBB18}" Context="InprocServer32" Description="Legend Property Page" />
+                    <Class Id="{12FEEAB3-5B26-11CF-A683-C56BA13DBB18}" Context="InprocServer32" Description="ChartLabels Property Page" />
+                    <Class Id="{408B7561-6609-11CF-80BC-0020AF19EE14}" Context="InprocServer32" Description="ChartArea Property Page" />
+                    <Class Id="{408B7563-6609-11CF-80BC-0020AF19EE14}" Context="InprocServer32" Description="PlotArea Property Page" />
+                    <Class Id="{78B17C71-4B7A-11CF-8153-0020AFD59659}" Context="InprocServer32" Description="Titles Property Page" />
+                    <Class Id="{7F7DC6A1-738E-11CF-815E-0020AFD59659}" Context="InprocServer32" Description="Markers Property Page" />
+                    <Class Id="{92D71E94-25A8-11CF-A640-9986B64D9618}" Context="InprocServer32" Description="Control Property Page" />
+                    <Class Id="{A3A07D71-6626-11CF-8155-0020AFD59659}" Context="InprocServer32" Description="Axes Property Page" />
+                    <Class Id="{A5715491-6C6D-11CF-A68D-F92E29CB8918}" Context="InprocServer32" Description="ChartStyles Property Page" />
+                    <Class Id="{AFC120B1-601B-11CF-A687-A9F8D4DD8918}" Context="InprocServer32" Description="ChartGroups Property Page" />
+                    <Class Id="{CB10B651-66D5-11CF-80BC-0020AF19EE14}" Context="InprocServer32" Description="View3D Property Page" />
+                    <Class Id="{D86FB461-2743-11CF-A641-E996DF2C9318}" Context="InprocServer32" Description="OlectraChart2D.Data.1">
+                        <ProgId Id="OlectraChart2D.Data.1" Description="OlectraChart2D.Data.1" />
+                    </Class>
+                    <TypeLib Id="{92D71E90-25A8-11CF-A640-9986B64D9618}" Control="yes" Description="Olectra Chart 2D Control" HelpDirectory="INSTALLLOCATION" Language="0" MajorVersion="6" MinorVersion="0">
+                        <Class Id="{92D71E93-25A8-11CF-A640-9986B64D9618}" Context="InprocServer32" Description="Olectra Chart 2D Control" ThreadingModel="apartment" Version="6.0" Insertable="yes" Control="yes">
+                            <ProgId Id="OlectraChart2D.Control.1" Description="Olectra Chart 2D Control" />
+                        </Class>
+                        <Interface Id="{02D76C60-C501-11D2-BDBB-00105AA7D4A8}" Name="IEvaluation" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{03727C80-51FF-11D1-AA18-00A0245E13F3}" Name="IDerivedLong_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{03727C81-51FF-11D1-AA18-00A0245E13F3}" Name="IDerivedString_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{05478A90-26E2-11CF-A641-E996DF2C9318}" Name="IMarker" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{05478A92-26E2-11CF-A641-E996DF2C9318}" Name="IDataCoord" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{05478A94-26E2-11CF-A641-E996DF2C9318}" Name="IDataIndex" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{05478A96-26E2-11CF-A641-E996DF2C9318}" Name="ICoord" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{05478A98-26E2-11CF-A641-E996DF2C9318}" Name="IMarkerCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{155376D0-263C-11D2-BD0B-006097CF02D2}" Name="IBubble_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{245631F0-F6C4-11CF-811C-0020AF19EE14}" Name="IHiLoOpenClose" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{245631F2-F6C4-11CF-811C-0020AF19EE14}" Name="ICandle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{26E525C0-51E4-11D1-AA18-00A0245E13F3}" Name="IBorder_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{2BB6A8B0-268F-11CF-A641-E996DF2C9318}" Name="ILegend" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{53609215-4A3F-11D2-BD2A-006097CF02D2}" Name="IPointStyleCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF61-59A9-11D0-B476-0020AFD59EF6}" Name="IDerivedBoolean" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF6B-59A9-11D0-B476-0020AFD59EF6}" Name="INumberVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF6D-59A9-11D0-B476-0020AFD59EF6}" Name="ICurrencyVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF6F-59A9-11D0-B476-0020AFD59EF6}" Name="IAccountingVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF71-59A9-11D0-B476-0020AFD59EF6}" Name="IPercentageVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF73-59A9-11D0-B476-0020AFD59EF6}" Name="IFractionVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF75-59A9-11D0-B476-0020AFD59EF6}" Name="IScientificVF" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{5DF9BF79-59A9-11D0-B476-0020AFD59EF6}" Name="IValueFormat" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{609AA2E0-5432-11D1-AA18-00A0245E13F3}" Name="IDerivedDouble_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{609AA2E2-5432-11D1-AA18-00A0245E13F3}" Name="IDerivedBoolean_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{609AA2E3-5432-11D1-AA18-00A0245E13F3}" Name="IDerivedEnum_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{609AA2E4-5432-11D1-AA18-00A0245E13F3}" Name="IBar_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC1-5744-11D1-AA18-00A0245E13F3}" Name="IStringCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC2-5744-11D1-AA18-00A0245E13F3}" Name="IChartLabel_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC3-5744-11D1-AA18-00A0245E13F3}" Name="IChartLabelCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC4-5744-11D1-AA18-00A0245E13F3}" Name="ILabelCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC5-5744-11D1-AA18-00A0245E13F3}" Name="IChartStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC6-5744-11D1-AA18-00A0245E13F3}" Name="IChartStyleCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC7-5744-11D1-AA18-00A0245E13F3}" Name="IChartGroup_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC8-5744-11D1-AA18-00A0245E13F3}" Name="IChartGroupCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AC9-5744-11D1-AA18-00A0245E13F3}" Name="IChart2DData_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DE87AD0-5744-11D1-AA18-00A0245E13F3}" Name="IChart2D_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A61-568B-11D1-AA18-00A0245E13F3}" Name="IAxisCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A62-568B-11D1-AA18-00A0245E13F3}" Name="IChartArea_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A63-568B-11D1-AA18-00A0245E13F3}" Name="IActionMap_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A64-568B-11D1-AA18-00A0245E13F3}" Name="IActionMapCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A65-568B-11D1-AA18-00A0245E13F3}" Name="ILegend_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A66-568B-11D1-AA18-00A0245E13F3}" Name="ISymbolStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A68-568B-11D1-AA18-00A0245E13F3}" Name="ICoord_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A69-568B-11D1-AA18-00A0245E13F3}" Name="IChart2DCoordResult_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A6A-568B-11D1-AA18-00A0245E13F3}" Name="IChart2DDataCoordResult_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A6B-568B-11D1-AA18-00A0245E13F3}" Name="IChart2DDataIndexResult_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6DEC4A6C-568B-11D1-AA18-00A0245E13F3}" Name="IChart2DCheckNewPointsResult_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{6E5B3FD4-4C5D-11D0-813A-0020AF19EE14}" Name="IImage" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F61-54F9-11D1-AA18-00A0245E13F3}" Name="IInterior_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F62-54F9-11D1-AA18-00A0245E13F3}" Name="IPlotArea_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F63-54F9-11D1-AA18-00A0245E13F3}" Name="ICandle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F64-54F9-11D1-AA18-00A0245E13F3}" Name="IHiLoOpenClose_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F65-54F9-11D1-AA18-00A0245E13F3}" Name="IFillStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F66-54F9-11D1-AA18-00A0245E13F3}" Name="ITitle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F67-54F9-11D1-AA18-00A0245E13F3}" Name="IPie_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F68-54F9-11D1-AA18-00A0245E13F3}" Name="ILineStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F69-54F9-11D1-AA18-00A0245E13F3}" Name="IDataIndex_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F6A-54F9-11D1-AA18-00A0245E13F3}" Name="IDataCoord_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{72688F6B-54F9-11D1-AA18-00A0245E13F3}" Name="IMarker_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{781CFCA0-3165-11D2-AF2B-00A024C3C1C2}" Name="ISliceStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{781CFCA1-3165-11D2-AF2B-00A024C3C1C2}" Name="ISliceStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{7BF6C920-333E-11D0-8126-0020AF19EE14}" Name="IPolar" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{8027AB63-85DC-11D0-B4AF-0020AFD59EF6}" Name="IDerivedEnum" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E1-55B8-11D1-AA18-00A0245E13F3}" Name="IMarkerCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E2-55B8-11D1-AA18-00A0245E13F3}" Name="IGridLines_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E3-55B8-11D1-AA18-00A0245E13F3}" Name="ITimeScale_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E4-55B8-11D1-AA18-00A0245E13F3}" Name="IAccountingVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E5-55B8-11D1-AA18-00A0245E13F3}" Name="ICurrencyVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E6-55B8-11D1-AA18-00A0245E13F3}" Name="INumberVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E7-55B8-11D1-AA18-00A0245E13F3}" Name="IPercentageVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E8-55B8-11D1-AA18-00A0245E13F3}" Name="IFractionVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00E9-55B8-11D1-AA18-00A0245E13F3}" Name="IScientificVF_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00EA-55B8-11D1-AA18-00A0245E13F3}" Name="IValueFormat_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00EB-55B8-11D1-AA18-00A0245E13F3}" Name="IValueLabel_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00EC-55B8-11D1-AA18-00A0245E13F3}" Name="IValueLabelCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{823E00ED-55B8-11D1-AA18-00A0245E13F3}" Name="IAxis_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{86E43510-1D29-11D0-B3FB-0020AFD59EF6}" Name="IStringCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{8847CF30-2610-11CF-A640-9986B64D9618}" Name="IInterior" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{8847CF32-2610-11CF-A640-9986B64D9618}" Name="IDerivedLong" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{8847CF34-2610-11CF-A640-9986B64D9618}" Name="ILocation" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{92D71E91-25A8-11CF-A640-9986B64D9618}" Name="_DChart2D" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{92D71E92-25A8-11CF-A640-9986B64D9618}" Name="_DChart2DEvents" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{92D71E98-25A8-11CF-A640-9986B64D9618}" Name="IBorder" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{92D71E9A-25A8-11CF-A640-9986B64D9618}" Name="ITitle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{92D71E9C-25A8-11CF-A640-9986B64D9618}" Name="ILabel" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{A2850640-4A54-11D2-BD2A-006097CF02D2}" Name="IPointStyleCollection_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{BCC503C6-2630-11D2-BD0B-006097CF02D2}" Name="IBubble" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{C23B5F11-79F1-11D0-813F-0020AF19EE14}" Name="IChart2DCoordResult" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{C23B5F13-79F1-11D0-813F-0020AF19EE14}" Name="IChart2DDataCoordResult" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{C23B5F15-79F1-11D0-813F-0020AF19EE14}" Name="IChart2DDataIndexResult" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{C23B5F18-79F1-11D0-813F-0020AF19EE14}" Name="IChart2DCheckNewPointsResult" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB460-2743-11CF-A641-E996DF2C9318}" Name="IChart2DData" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB462-2743-11CF-A641-E996DF2C9318}" Name="IChartGroup" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB464-2743-11CF-A641-E996DF2C9318}" Name="IChartGroupCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB466-2743-11CF-A641-E996DF2C9318}" Name="IChartStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB468-2743-11CF-A641-E996DF2C9318}" Name="IChartStyleCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB46A-2743-11CF-A641-E996DF2C9318}" Name="ILabelCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB46C-2743-11CF-A641-E996DF2C9318}" Name="IValueLabel" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB46E-2743-11CF-A641-E996DF2C9318}" Name="IValueLabelCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB470-2743-11CF-A641-E996DF2C9318}" Name="IChartLabel" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{D86FB472-2743-11CF-A641-E996DF2C9318}" Name="IChartLabelCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{DA683211-1FD4-11D2-AF1F-00A024C3C1C2}" Name="IAxisStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{DA683212-1FD4-11D2-AF1F-00A024C3C1C2}" Name="IAxisStyle_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F03CF301-5453-11D1-AA18-00A0245E13F3}" Name="IImage_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F03CF302-5453-11D1-AA18-00A0245E13F3}" Name="ILabel_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F03CF303-5453-11D1-AA18-00A0245E13F3}" Name="IPolar_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F03CF304-5453-11D1-AA18-00A0245E13F3}" Name="IView3D_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F03CF305-5453-11D1-AA18-00A0245E13F3}" Name="ILocation_Dual" ProxyStubClassId="{00020424-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F4CC7DE0-9AE0-11CF-B9E2-00A024169263}" Name="IActionMap" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{F4CC7DE2-9AE0-11CF-B9E2-00A024169263}" Name="IActionMapCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F10-26A2-11CF-A641-E996DF2C9318}" Name="IChartArea" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F12-26A2-11CF-A641-E996DF2C9318}" Name="IBar" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F14-26A2-11CF-A641-E996DF2C9318}" Name="IView3D" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F16-26A2-11CF-A641-E996DF2C9318}" Name="IPie" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F18-26A2-11CF-A641-E996DF2C9318}" Name="IFillStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F1A-26A2-11CF-A641-E996DF2C9318}" Name="IPlotArea" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F1C-26A2-11CF-A641-E996DF2C9318}" Name="ITimeScale" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F1E-26A2-11CF-A641-E996DF2C9318}" Name="IDerivedString" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F20-26A2-11CF-A641-E996DF2C9318}" Name="IDerivedDouble" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F22-26A2-11CF-A641-E996DF2C9318}" Name="IAxis" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F24-26A2-11CF-A641-E996DF2C9318}" Name="ILineStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F26-26A2-11CF-A641-E996DF2C9318}" Name="ISymbolStyle" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F28-26A2-11CF-A641-E996DF2C9318}" Name="IGridLines" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                        <Interface Id="{FC2C9F2A-26A2-11CF-A641-E996DF2C9318}" Name="IAxisCollection" ProxyStubClassId="{00020420-0000-0000-C000-000000000046}" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+                    </TypeLib>
+                </File>
+                <RegistryValue Root="HKCR" Key="CLSID\{92D71E93-25A8-11CF-A640-9986B64D9618}\MiscStatus\1" Value="131473" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{92D71E93-25A8-11CF-A640-9986B64D9618}\MiscStatus" Value="0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{92D71E93-25A8-11CF-A640-9986B64D9618}\ToolboxBitmap32" Value="[!olch2x32OCX], 1" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="OlectraChart2D.Control.1\Insertable" Value="" Type="string" Action="write" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

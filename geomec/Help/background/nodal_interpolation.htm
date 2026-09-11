@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Nodal interpolation</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="element to element mapping">
+	<param name="Keyword" value="interpolation">
+	<param name="Keyword" value="mapping">
+	<param name="Keyword" value="nodal interpolation">
+</OBJECT>
+<h1><a name="_Toc24265382"><span style="mso-ansi-language:EN-GB">Nodal
+interpolation</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="Body">This method will take a value for each node of the target
+element from the source element mesh, using the <a href="point_interpolation.htm">point
+interpolation</a> method, with one condition added:<o:p>
+</o:p>
+</p>
+<p class="Body">If a node of the target element lies on the edge between two
+elements of the source mesh, or on a node of the source mesh, only the elements
+in the source mesh that overlap with the target element contribute in the
+averaging for the value (see figure).</p>
+<p class="Body"><img border="0" src="nodal_17.gif" width="343" height="109"></p>
+<p class="Body">Only the shaded source elements contribute in the
+nodal values for the red target element<o:p>
+</o:p>
+<o:p>
+</o:p>
+.</p>
+<p class="Body">This can only be done using <a href="non_smoothed.htm">non-smoothed</a>
+nodal values from the source mesh. Any of the three <a href="averaging_methods.htm">averaging
+methods</a> can be used.</p>
+<p class="Body">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

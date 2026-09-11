@@ -1,0 +1,228 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Enhanced Assumed Strain Methods</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="enhanced assumed strain method">
+</OBJECT>
+<h1><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:16.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA">Enhanced Assumed Strain Method</span></b></h1>
+
+<p class="MsoNormal"><span lang="NL" style="mso-fareast-font-family:&quot;Arial Unicode MS&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The linear brick
+elements used in GEOMEC perform poorly in bending dominated problems and in
+nearly incompressible situations. For this reason an assumed strain concept is
+available. This method is not applicable to quadratic elements. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;In GEOMEC the
+selective reduced integration method is implemented termed constant shear. In
+selective reduced integration the shear strains and/or volumetric strains are
+evaluated in the element midpoint only. This leads to a modified strain operator
+<!-- MATH
+ $\bar{\mathbf{B}}$
+ -->
+<span style="mso-text-raise:-2.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:12.75pt;
+ height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<i><span style="text-decoration: overline">B</span></i> </span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126102518">
+ </o:OLEObject>
+</xml><![endif]-->
+with no additional degrees of freedom involved. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="NL">For a standard displacement finite element,
+the definition of the strain in geometrically linear Finite Element Analysis is
+now written as</span></p>
+<p class="MsoNormal"><span lang="NL">&nbsp;<span style="mso-text-raise:-3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:36pt;height:14.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="strain28.gif" v:shapes="_x0000_i1026" width="48" height="19"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1026"
+  DrawAspect="Content" ObjectID="_1126102520">
+ </o:OLEObject>
+</xml><![endif]-->
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Matrix <!-- MATH
+ $\mathbf{B}$
+ -->
+<b>B</b> relates the strains to the (nodal) displacements. The key idea of the <!-- MATH
+ $\bar{\mathbf{B}}$
+ -->
+<span style="mso-text-raise:-2.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1028"
+ type="#_x0000_t75" style='width:12.75pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+</span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1028"
+  DrawAspect="Content" ObjectID="_1126102521">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-text-raise:-2.0pt"><i><span style="text-decoration: overline">B
+</span></i></span>approach is to replace the compatible strain operator <!-- MATH
+ $\mathbf{B}$
+ -->
+<b>B</b> by an assumed strain operator <span style="mso-text-raise:-2.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:12.75pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<i><span style="text-decoration: overline">B</span></i></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1029"
+  DrawAspect="Content" ObjectID="_1126102522">
+ </o:OLEObject>
+</xml><![endif]-->
+. The element properties are now defined as <o:p>
+</o:p>
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="149" valign="top" style="width:111.75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><span style="mso-text-raise:-16.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1027"
+   type="#_x0000_t75" style='width:80.25pt;height:30pt' o:ole="">
+   <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image007.wmz"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="strain29.gif" v:shapes="_x0000_i1027" width="107" height="40"></span><!--[if gte mso 9]><xml>
+   <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1027"
+    DrawAspect="Content" ObjectID="_1126102523">
+   </o:OLEObject>
+  </xml><![endif]-->
+      <o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="419" style="width:314.35pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Element
+      stiffness<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="149" valign="top" style="width:111.75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><span style="mso-text-raise:-16.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1030"
+   type="#_x0000_t75" style='width:74.25pt;height:30pt' o:ole="">
+   <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image009.wmz"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="strain30.gif" v:shapes="_x0000_i1030" width="99" height="40"></span><!--[if gte mso 9]><xml>
+   <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1030"
+    DrawAspect="Content" ObjectID="_1126102524">
+   </o:OLEObject>
+  </xml><![endif]-->
+      <o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="419" style="width:314.35pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Element
+      internal force<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">In GEOMEC the
+constant shear method is available with the assumed strain operator <span style="mso-text-raise:-2.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1031"
+ type="#_x0000_t75" style='width:12.75pt;height:15pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<span style="text-decoration: overline"><i>B</i></span></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1031"
+  DrawAspect="Content" ObjectID="_1126102525">
+ </o:OLEObject>
+</xml><![endif]-->
+:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">&nbsp;<span style="mso-text-raise:-52.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1032"
+ type="#_x0000_t75" style='width:96.75pt;height:110.25pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image012.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="strain32.gif" v:shapes="_x0000_i1032" width="129" height="147"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1032"
+  DrawAspect="Content" ObjectID="_1126102526">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><span style="mso-spacerun: yes">&nbsp;</span></p>
+<p class="MsoNormal"><span lang="NL" style="mso-fareast-font-family:&quot;Arial Unicode MS&quot;">&nbsp;</span><span style="mso-ansi-language:EN-GB"><!-- MATH
+ \begin{equation}
+\setlength{\arraycolsep}{0.3em}\renewedcommand{arraystretch}{1.5}\bar{\mathbf{B}} =
+\begin{bmatrix}
+\mathbf{B}_{1} & 0 & 0 \\
+0 & \mathbf{B}_{2} & 0 \\
+0 & 0 & \mathbf{B}_{3} \\
+\mathbf{B}_{2}^{0} & \mathbf{B}_{1}^{0} & 0 \\
+0 & \mathbf{B}_{3}^{0} & \mathbf{B}_{2}^{0} \\
+\mathbf{B}_{3}^{0} & 0 & \mathbf{B}_{1}^{0}
+\end{bmatrix}
+\end{equation}
+ -->
+with <!-- MATH
+ $\mathbf{B}_{i}^{0}$
+ -->
+<b>B</b><sub>i</sub><sup>0</sup> being the values evaluated in the element
+midpoint in case of an eight-node brick. The resulting element has constant
+shear strains and is superior to the standard element in bending dominated
+problems. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">For rectangular
+geometries, this element does not suffer from parasitic shear strains and gives
+the exact solution for pure bending. </span><span lang="NL">However, for solid
+bricks constant shear may cause torsional spurious modes. <o:p>
+</o:p>
+</span></p>
+<p><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:EN-GB;mso-fareast-language:EN-US;
+mso-bidi-language:AR-SA">Default no enhanced assumed strain method is used. To
+activate this option, mark Use Enhanced Assumed Strain Method in the <a href="../context/dialogs/analysis_options.htm">Analysis
+options</a> dialog.</span></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

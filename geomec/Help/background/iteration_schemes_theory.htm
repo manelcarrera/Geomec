@@ -1,0 +1,231 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Iteration schemes</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="iteration methods">
+	<param name="Keyword" value="iteration schemes">
+</OBJECT>
+<h1><a name="_Toc48442887"><span style="mso-ansi-language:EN-GB">Iteration
+schemes</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">This
+is the Help on the analysis procedures with respect to iteration schemes and
+convergence criteria.<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">GEOMEC
+calculates the solution of an elasto-plastic problem via striving to an
+equilibrium state in which the internal force vector equals the external force
+vector, satisfying boundary conditions. For reasons of simplicity, here we focus
+on the force equilibrium.<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-text-raise: -6.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:62.25pt;
+ height:18pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="83" height="24" src="iterat21.gif" v:shapes="_x0000_i1025"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>and<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span></span><span lang="EN-US" style="mso-text-raise: -6.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:36.75pt;height:18.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="49" height="25" src="iterat22.gif" v:shapes="_x0000_i1026"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;</span><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">The
+system described above is already discretized in space. To enable a numerical
+solution, a time discretization is performed as well. Here ‘time’ can have a
+real physical meaning, or it can be a pseudo-time, only to describe the sequence
+of situations. Starting at time <i>t</i> with the approximated solution </span><span lang="EN-US" style="mso-text-raise: -3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:12.75pt;height:15.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image005.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="17" height="21" src="iterat23.gif" v:shapes="_x0000_i1027"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">,
+a solution </span><span lang="EN-US" style="mso-text-raise: -3.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:24.75pt;height:15.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image007.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="33" height="21" src="iterat24.gif" v:shapes="_x0000_i1028"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><span style="mso-spacerun: yes">&nbsp;</span>is
+searched for which the equilibrium equation holds. Within the time-increment
+only the displacements at start and end are known. The internal force vector is
+calculated from the situation at time <i>t</i>, the time increment </span><i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">D</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">t</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">
+and the displacement increment </span><i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">D</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">.
+If we consider only one increment, the time-increment and the situation at the
+start of the increment are fixed. The equilibrium equation within the increment
+then only depends on </span><i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">D</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">.
+We can than write the nonlinear problem as: find </span><i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">D</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">
+such that<o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-text-raise: -3.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1029" type="#_x0000_t75"
+ style='width:66.75pt;height:15.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image009.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="89" height="21" src="iterat25.gif" v:shapes="_x0000_i1029"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><span lang="EN-US"><font size="3">and
+with <i>g</i> as the out-of-balance force vector</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-text-raise: -5.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1030" type="#_x0000_t75"
+ style='width:9pt;height:17.25pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image011.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="12" height="23" src="iterat26.gif" v:shapes="_x0000_i1030"></span><span lang="EN-US" style="mso-text-raise: -6.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1031"
+ type="#_x0000_t75" style='width:131.25pt;height:18pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image013.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="175" height="24" src="iterat27.gif" v:shapes="_x0000_i1031"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><font size="3"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">In
+GEOMEC for every load increment in an iterative process the errors that occur
+can be reduced successively. The general procedure is the same for all iteration
+processes. In all procedures, the total displacement increment<span style="mso-spacerun: yes">&nbsp;
+</span></span><i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">D</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u
+</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">is adapted
+iteratively by iterative increments </span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">d</span><i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u</span></i><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">
+until equilibrium is reached, up to a prescribed tolerance. <o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><font size="3"><span lang="EN-US"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1032" type="#_x0000_t75" style='width:173.25pt;height:273pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image015.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="231" height="364" src="iterat28.gif" v:shapes="_x0000_i1032"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">Indicating
+the iteration number with a right subscript, the incremental displacements at
+iteration <i>I+1</i> are calculated from<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-text-raise: -6.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1033" type="#_x0000_t75"
+ style='width:90.75pt;height:18pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image017.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="121" height="24" src="iterat29.gif" v:shapes="_x0000_i1033"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">The
+difference between several procedures is the way in which </span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 12.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman" lang="EN-US">d</span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt">u
+is determined. The iterative increments are calculated by use of a ‘stiffness
+matrix’ <i>K</i>, that represents some kind of linearized form of the relation
+between the force vector and displacement vector. The used stiffness matrix can
+change every iteration, the matrix that is used in iteration <i>i</i> is called <i>K<sub>i</sub></i>.
+A direct approach is to determine the iterative increments by<o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><font size="3"><span lang="EN-US" style="mso-text-raise: -6.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1034" type="#_x0000_t75"
+ style='width:63pt;height:18.75pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/fnc/LOCALS~1/Temp/msoclip1/03/clip_image019.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="84" height="25" src="iterat30.gif" v:shapes="_x0000_i1034"></span><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 12.0pt"><font size="3">&nbsp;</font></span><span lang="EN-US"><font size="3">where
+<i>g<sub>I</sub> </i>is the out-of-balance force vector at the start of
+iteration <i>i.</i> In this case a linear set of equations is solved at every
+iteration.<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoFootnoteText"><span lang="EN-US"><font size="3">Four different
+iterative procedures are presented:<o:p>
+</o:p>
+</font></span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="111" valign="top" style="width:83.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="constant_stiffness.htm">Constant</a></span></p>
+    </td>
+    <td width="457" valign="top" style="width:342.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Constant
+      Stiffness iterative method<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="111" valign="top" style="width:83.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="linear_stiffness.htm">Linear</a></span></p>
+    </td>
+    <td width="457" valign="top" style="width:342.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Linear
+      Stiffness iterative method<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="111" valign="top" style="width:83.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="newton_regular.htm">Regular</a></span></p>
+    </td>
+    <td width="457" valign="top" style="width:342.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Regular
+      Newton-Raphson iterative method<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="111" valign="top" style="width:83.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="newton_modified.htm">Modified</a></span></p>
+    </td>
+    <td width="457" valign="top" style="width:342.7pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Modified
+      Newton-Raphson iterative method<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

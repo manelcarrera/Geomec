@@ -1,0 +1,49 @@
+<?xml version="1.0"?> 
+ <logs title="Logs"> 
+
+  <info/> 
+  <error/>
+  <!-- <debug/> -->
+
+  <multiprocess/>
+
+  <maxfilesize>5000</maxfilesize> 
+
+  <modules>
+    <!-- both formats are correct
+    <module_name>DIE</module_name>
+    <module_name any_attribute_name="DIE"/>
+    -->
+    <sel/><!-- geomec sedlector app -->
+  	<gen/><!-- default logs if not assigned to any speecific module -->
+  	<app/><!-- initializations -->
+
+    <!-- workflows: gui / non-gui -->
+  	<doc/><!-- geomec doc -->
+    <doc-t /><!-- geomec doc thread -->
+    <gm-shell/>
+    <tests/>
+
+    <evt/><!-- events broker -->
+
+    <!-- run -->
+  	<run-a/><!-- gui workflow -->
+    <run-wf/><!-- non-gui workflow -->
+    
+    <run-c any_attribute_name="DIE"/><!-- controller -->
+    <run-r any_attribute_name="DIE"/><!-- runner -->
+    <run-res/><!-- results -->
+    <run-u/><!-- diana start up : the one that runs diana -->
+
+    <!--<run-W/>--><!-- progress wrapper-->
+    <!--<run-p/>--><!-- progress dialog implementation -->
+
+    <!-- dsa -->
+  	<dia-i/><!-- diana interface: geomec app side -->
+    <dia-h/><!-- diana app heartbeat -->
+  	<dia-e/><!-- diana executer: diana app side -->
+
+    <!-- others -->
+    <!--<mr/>-->
+  </modules>
+ </logs>

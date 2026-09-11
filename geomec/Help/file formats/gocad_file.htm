@@ -1,0 +1,270 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>GoCad file</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+<h1>GoCad file</h1>
+<p>The GoCad format allows the user to import:</p>
+<ul>
+	<li>Surfaces (*.ts, *.mx)</li>
+	<li>properties attached to solids (*.so, *.mx)</li>
+	<li>Wellspaths (*.mx)</li>
+</ul>
+<h2><span lang="EN-GB">General</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">Every GoCad file (except Wellpaths) starts with the keyword
+</span><span lang="EN-GB" style="font-family:Courier">GOCAD</span><span lang="EN-GB"> 
+and ends with the keyword </span><span lang="EN-GB" style="font-family:Courier">END</span><span lang="EN-GB">. 
+It is possible to have multiple GoCad definitions in one file by defining 
+multiple GOCAD-END sections. The GoCad file type follows the GOCAD keyword. This 
+could be TSurf for a surface definition and TSolid for volume definition.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The header section starts with keyword 
+HEADER and the header itself is contained between { }. Geomec ignores most of 
+the keywords in the header except the </span>
+<span lang="EN-GB" style="font-family:
+Courier">name</span><span lang="EN-GB"> keyword. This name is used in Geomec. 
+Note that the GOCAD keyword and the END keyword is not used in well path files.</span></p>
+<h2><span lang="EN-GB">Comment</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">The comment tags of the GoCad format are 
+“#” and the “*” character.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;</span><i><span lang="EN-GB">Example:</span></i></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">GOCAD</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier"># This is 
+a comment</span></p>
+<h2><span lang="EN-GB">Properties</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">The GoCad file can contain properties 
+assigned to the points of the GoCad structure. The properties must be declared 
+after the header block and before the first point data line as:</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">PROPERTIES 
+Pname1 Pname2 …</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">
+PROPERTY_CLASSES class_name1 class_name2… (Optional)</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">UNITS unit1 
+unit2 … (Optional)</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">
+NO_DATA_VALUES v1 v2</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">ESIZES 
+esize1 esize2</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The PROPERTIES line lists all the 
+properties that will be attached to the point. The ordering of the properties on 
+the line corresponds to the ordering of the properties values associated to the 
+point definition.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The PROPERTY_CLASSES line lists the 
+property class names of each property defined in the PROPERTIES list. If one 
+property class must be listed then all property classes must be listed.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The NO_DATA_VALUES line lists the no-data values for each of the property defined in the property list. For vectorial 
+properties, there is only one no-data value and each property vector element 
+should be equal to the value if it is to be treated as a no data value vectorial 
+property.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The UNITS line lists the units for each 
+of the property defined in the property list.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The ESIZES line lists the dimension of 
+each property defined in the property list. By default the dimension of a 
+property is 1, but for example a property representing a 3D vector will be of 
+dimension 3. For example if you have a set of points with a 1 dimensional 
+property Cohesion and a 3D Displacement the definition of the properties on 
+one point will look like:</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">PROPERTIES 
+Cohesion Displacement</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">ESIZE 1 3</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">PVRTX 1 X Y 
+Z porosity_displacement_x displacement_y displacement_z</span></p>
+<h2><span lang="EN-GB">Vertices</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">The vertices in GoCad are defined by
+</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">VRTX ID X Y 
+Z</span></p>
+<p class="MsoNormal"><span lang="EN-GB">or when properties are attached</span></p>
+<p class="MsoNormal"><span lang="EN-GB">PVRTX ID X Y Z P1 P2 …</span></p>
+<h2><span lang="EN-GB">Surfaces</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">Surfaces are defined by keyword TSurf 
+after the GOCAD keyword. Surface files are defined by a list of indexed vertices 
+and a list of triangles using three indices of the vertices.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">TRGL id1 id2 id3 </span></p>
+<p class="MsoNormal"><span lang="EN-GB">Example:</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">GOCAD TSurf</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">HEADER {</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">name:Top</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">}</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">TFACE</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">VRTX 0 0 0 0</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span lang="NL" style="font-family: Courier">VRTX 1 100 0 0</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span lang="NL" style="font-family: Courier">VRTX 2 100 100 0</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span lang="NL" style="font-family: Courier">VRTX 3 0 100 0</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">TRGL 0 1 2</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">TRGL 0 2 3</span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="font-family: Courier">END</span><span lang="EN-GB">&nbsp;</span></p>
+<h2><span lang="EN-GB">Solids (not functional yet for meshing)</span></h2>
+<p class="MsoNormal"><span lang="EN-GB">Solids are defined by the keyword TSolid 
+after the GOCAD keyword. Solid files are defined by a list of indexed vertices 
+and a list of tetrahedrons using four indices of the vertices</span></p>
+<p class="MsoNormal"><span lang="EN-GB">TETRA id1 id2 id3 id4</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;&nbsp;Geomec also supports an additional 
+format for importing solids as a mesh. The definition of a tetrahedron is 
+followed by a comment starting with #CTETRA like</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;</span><span lang="EN-GB" style="font-family:Courier">TETRA 
+1 2 3 4</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">#CTETRA 
+region +(boundary)side1 +side2–-side3–-side4</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family:Courier">&nbsp;</span><span lang="EN-GB">where</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; region 
+(i.e. geological formation) tetrahedral element resides in.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">+(boundary)side1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name of surface 
+object that the face described by nodes 2,3,4 lies on. 
+If this face is internal to the region, the word “&quot;non”&quot; would appear. The “&quot;”&quot; means that thee trahedra lie 
+on the side of the surface object denoted by 
+the right handed normal. A “&quot;“&quot; means it lies 
+on the side denoted by the left handed normal. The “&quot;(boundar”&quot; 
+part of the key word indicates that at least one edge of this face lies on the boundary 
+of the surface object it is associated with.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">+side2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; same as 
++(boundary)side1 except the face is described by nodes 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3,4,1.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">-side3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; same as 
++(boundary)side1 except the face is described by nodes 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4,1,2.</span></p>
+<span lang="EN-GB" style="font-size: 12.0pt; font-family: Times New Roman">
+-side4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; same as +(boundary)side1 except the face is 
+described by nodes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,2,3. </span>
+<h2>&nbsp;</h2>
+<h2>Wellpaths</h2>
+<p>Geomec reads GoCad well files which are exported using the GoCad 
+functionality &quot;Export to&quot; \ &quot;Well Path and logs ASCII&quot;. The user can select 
+multiple (or all) wells. Ensure that the export file has a *.mx extension so 
+that it is understood by Geomec.</p>
+<p>The export file contains a header line starting with the word WELLPATH and 
+then supplies 5 data columns with Wellname, Easting (X), Northing (Y), Depth (Z) 
+and Measured Depth (MD) containing the multiple wells. </p>
+<p><img border="0" src="gocad.gif" width="374" height="245"></p>
+
+<p>&nbsp;</p>
+<p><font face="Times New Roman">When the name in the first column changes Geomec 
+supposes that a new well begins so the user is allowed to import multiple wells 
+in the same file. </font></p>
+<p><i><font face="Times New Roman">Example:</font></i></p>
+<table id="table1" style="border-collapse: collapse" cellSpacing="0" cellPadding="0" width="552" border="0">
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		WELLNAME</td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<p class="MsoNormal"><span style="FONT-FAMILY: Courier">X</span><span style="font-family: Courier"><O:P> 
+</O:P></span></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<p class="MsoNormal"><span style="FONT-FAMILY: Courier">Y</span><span style="font-family: Courier"><O:P> 
+</O:P></span></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<p class="MsoNormal"><span style="FONT-FAMILY: Courier">Z</span></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<p class="MsoNormal"><span style="FONT-FAMILY: Courier">MD</span></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">617128.518066</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6322872.73706</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">3467.05102539</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">&nbsp;0 </font></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">617223.093994</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6322540.18701</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">4329.8828125 </font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">929.523 </font></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">616853</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6321590</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">5219.93994141</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">2283.05 </font></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">617291.451172 </font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6321853.354 </font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6357.04345703</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">3529.88</font></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">617407.304688</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6321491.08777 </font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">7272.21777344</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">4520.94 </font></td>
+	</tr>
+	<tr>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">wWEKLL</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">617477.534424 </font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 68px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">6321122.37878</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 62px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">8295.71484375</font></td>
+		<td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 86px; PADDING-TOP: 0cm" vAlign="top">
+		<font face="Times New Roman">5611.09 </font></td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<h2>Exporting to GoCad</h2>
+<p>When exporting to GoCad, the user is advised to Export Mesh Result (for 
+instance Depth) on the required Wells as a DAT file.</p>
+<p>In GoCad the &quot;Import from &quot; \ &quot;Column-based file&quot; under the wells section can 
+be used to import the well data by selecting the appropriate sections of the 
+column.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

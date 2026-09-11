@@ -1,0 +1,85 @@
+#set -x
+#############################################################################
+# NCAT PORT FORWARDING LOGIC IMPLEMENTED BELOW
+# This will take below parameters as input
+# LOCAL_PORT : Port number where port forwarding proess will keep listen
+# REMOTE_HOST : Windows coordinator server name [either IP address or Hostname]
+# REMOTE_PORT : Remote server port number to which traffic will be forwarded
+# SRMS_LOGFILE : Logfile name to log the message
+# Return value : This script will return the Process ID of the port forwarding process. Script will communicate to the parent script with PID= echo statement. 
+############################################################################
+
+#Let's define Shell input variables for every command line arguments
+LOCAL_PORT=$1
+REMOTE_HOST=$2
+REMOTE_PORT=$3
+SRMS_LOGFILE=$4
+
+# Let's verify the command line arguments whether they are empty
+if [[ ( -z $LOCAL_PORT ) || ( -z $REMOTE_HOST ) || ( -z $REMOTE_PORT ) || ( -z $SRMS_LOGFILE ) ]] ;
+then
+	# This error message is logged in SRMS.ini script
+	echo "PID_PF="
+	exit 1
+fi
+
+#---------------Create Port Forwarding---------------------------------------------------
+PORT_FWD_TCP_STR="ncat -l -k -4 -p ${LOCAL_PORT} -c ncat -4 ${REMOTE_HOST} ${REMOTE_PORT}"
+PORT_FWD_UDP_STR="ncat -l -k -4 -u -p ${LOCAL_PORT} -c ncat -4 -u ${REMOTE_HOST} ${REMOTE_PORT}"
+
+#Get the Parent Process ID of port forwarding process
+PID_PF=`ps -eaf --sort=start_time | grep "$PORT_FWD_TCP_STR" | grep -v "grep" | tr -s ' ' | head -1 | cut -d' ' -f2`
+
+#Check whether port forwarding process is already running the background
+if [ ! -z $PID_PF ] ;
+then
+    #   Since port forwarding process already running in the system, we need to kill this process depending on the below 2 conditions 
+    #   1. There should not be any established connection or traffic on the port
+    #   2. geomec_rgi process should not be running
+
+    #Get the PID of geomec_shell process
+    PID_GEOMEC=`pgrep -f "/geomec_shell"`
+    # Getting netstat result is a challenge since we should not use ssh to connect to remote host to verify whether active connections are existing
+    NETSTAT_OP=`netstat -an | egrep "tcp.*:${REMOTE_PORT} .*ESTABLISHED"`
+    if [[ ( -z $NETSTAT_OP ) && ( -z $PID_GEOMEC ) ]] ;
+    then
+		#Below KILL command will fail if the port forwarding process is created by other user
+		#Kill TCP port forwarding
+	        kill -9 $PID_PF
+		if [ $? -eq 0 ] ; 
+		then
+			#Kill UDP port forwarding
+			kill -9 `pgrep -f -x "${PORT_FWD_UDP_STR}" `
+			#Now Start the new Port Forwarding process for both TCP and UDP
+			ncat -l -k -4 -p ${LOCAL_PORT} -c "ncat -4 ${REMOTE_HOST} ${REMOTE_PORT}" &
+			PID_PF=`ps -eaf --sort=start_time | grep "$PORT_FWD_TCP_STR" | grep -v "grep" | tr -s ' ' | head -1 | cut -d' ' -f2`
+			echo -e "\n-----------------Killed Existing Port Forwarding. Created a new one successfully and running with PID ${PID_PF}----------------"  >> $SRMS_LOGFILE 2>&1
+			ncat -l -k -4 -u -p ${LOCAL_PORT} -c "ncat -4 -u ${REMOTE_HOST} ${REMOTE_PORT}" &
+			if [ $? -ne 0 ] ;
+			then
+				echo "NCAT for UDP Failed"  >> $SRMS_LOGFILE 2>&1
+			fi
+		else
+			echo -e "\n-----------------Existing Port Forwarding with PID ${PID_PF} will be re-used----------------"  >> $SRMS_LOGFILE 2>&1
+		fi
+    else
+        echo -e "\n-----------------Existing Port Forwarding with PID ${PID_PF} will be re-used----------------"  >> $SRMS_LOGFILE 2>&1
+    fi
+else
+    # Need to srart port Forwarding process since there is no running port forwarding is available
+    ncat -l -k -4 -p ${LOCAL_PORT} -c "ncat -4 ${REMOTE_HOST} ${REMOTE_PORT}" &
+    if [ $? -ne 0 ];
+    then
+	echo "Failed to create Port Forwarding" >> $SRMS_LOGFILE 2>&1
+	PID_PF=''
+    else
+	PID_PF=`ps -eaf --sort=start_time | grep "$PORT_FWD_TCP_STR" | grep -v "grep" | tr -s ' ' | head -1 | cut -d' ' -f2`
+        echo -e "\n-----------------Port Forwarding has been created successfully and running with PID ${PID_PF}----------------"  >> $SRMS_LOGFILE 2>&1
+    	ncat -l -k -4 -u -p ${LOCAL_PORT} -c "ncat -4 -u ${REMOTE_HOST} ${REMOTE_PORT}" &
+	if [ $? -ne 0 ] ;
+	then
+		echo "NCAT for UDP Failed"  >> $SRMS_LOGFILE 2>&1
+	fi
+    fi
+fi
+export PID_PF

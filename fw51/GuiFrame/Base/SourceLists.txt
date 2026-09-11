@@ -1,0 +1,4 @@
+dia_add_sources(
+  ISelectionContext.cpp    ModelFileObs.cpp         ModelObjectObserver.cpp  
+  ModelObjectScene.cpp     OpenGLObjectObserver.cpp                          
+)

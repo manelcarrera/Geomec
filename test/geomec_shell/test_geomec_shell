@@ -1,0 +1,145 @@
+#!/bin/bash
+
+
+test_output=${1:-test_output}
+binpath=${2:-release}
+
+mkdir $test_output >/dev/null 2>&1
+
+if [ ! -d "$test_output" ]; then
+  echo Can\'t perform tests, because directory \'$test_output\' doesn\'t exist
+  echo You can specify a different directory as first parameter
+  exit 1
+fi
+
+TESTHOME=$(cd $(dirname $0); pwd -P)
+
+echo "test_output:$test_output | binpath:$binpath | TESTHOME:$TESTHOME"
+
+
+## CORA tests
+
+retval=0
+
+MODELS_PATH=../../Tests
+
+for i in `find $MODELS_PATH/Models/CORA -name "*.gm4" | sort`; do
+#for i in `find data/CORA -name "*.gm4" | sort`; do
+
+  path=`dirname $i`
+  base=${i%.gm4}
+  base=${base#$path/}
+
+  echo -e "\r\r-> path:$path | base:$base\r\r"
+  #continue
+
+  #1
+  #echo "/bin/bash $TESTHOME/run_geomec_shell \
+  #$binpath \
+  #$path/$base.gm4 \
+  #getmodelinfo \
+  #$test_output/$base.modelinfo \
+  #test_output/$base.modelinfo_result_summary"
+
+  /bin/bash $TESTHOME/run_geomec_shell \
+  $binpath \
+  $path/$base.gm4 \
+  getmodelinfo \
+  $test_output/$base.modelinfo \
+  $test_output/$base.modelinfo_result_summary
+
+  
+  if [ $? -ne 0 ]; then
+    retval=$[retval + 1];
+    echo TEST FAILED
+  fi
+
+  if [ -f $path/$base.reference ]; then
+    # test previous one (no version), and below v1.7 and v2.0 (xml)
+    diff $path/$base.reference \
+    $test_output/$base.modelinfo \
+    > /dev/null
+
+    if [ $? -ne 0 ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+
+    #2
+    /bin/bash $TESTHOME/run_geomec_shell \
+    $binpath \
+    $path/$base.gm4 \
+    getmodelinfo \
+    1.7 \
+    $test_output/$base.modelinfo_1.7 \
+    $test_output/$base.modelinfo_result_summary_1.7
+
+    diff $path/$base.reference \
+    $test_output/$base.modelinfo_1.7 \
+    > /dev/null
+
+    if [ $? -ne 0 ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+
+    #3
+    /bin/bash $TESTHOME/run_geomec_shell \
+    $binpath \
+    $path/$base.gm4 \
+    getmodelinfo \
+    2.0 \
+    $test_output/$base.modelinfo_2.0 \
+    $test_output/$base.modelinfo_result_summary_2.0
+
+    diff $path/$base.reference.xml \
+    $test_output/$base.modelinfo_2.0.xml \
+    > /dev/null
+
+    if [ $? -ne 0 ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+
+  fi
+
+  # either test running model or recognition of wellpaths
+  if [ -f $path/$base.parameterfile ]; then
+    #4
+    /bin/bash $TESTHOME/run_geomec_shell \
+    $binpath \
+    $path/$base.gm4 \
+    runmodel \
+    1.7 \
+    $path/$base.parameterfile \
+    $path/$base.selectedlsfs \
+    $test_output/$base.response_parameters \
+    $test_output/$base.runmodel_result_summary minimum_output
+
+    if [ $? -ne 0 ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+  else
+    wp_total=`echo $base | awk -F'[^0-9]+' '{ print $2 + $3; }'`
+    if [ `grep -c '^well:New Wellpath' $test_output/$base.modelinfo` -ne $wp_total ]; then
+      retval=$[retval + 1];
+      echo TEST FAILED
+    fi
+  fi
+
+done
+
+
+## RGI tests
+
+
+
+
+if [ $retval -ne 0 ]; then
+  echo $retval TESTS FAILED
+  exit 1
+else
+  echo TESTS SUCCEEDED
+fi
+

@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Initial pore pressure attributes</title>
+</head>
+
+<body>
+
+<h1>Global<span style="mso-ansi-language:EN-GB"> pore pressure attributes <o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The global pore 
+pressure attributes dialog is displayed by right-clicking on the Global
+ pore <b> </b>
+ pressure
+branch in the model tree and selecting Attributes.<o:p>
+</o:p>
+</span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The global pore
+pressure attributes are used to define the global pore pressure situation for the initial
+depletion stage. This global pressure definition is used to calculate the initial
+pressure situation. The global pressures can be overwritten by specifying the
+pore pressure in a formation (e.g. by assigning a distributed pressure
+definition).<o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The following items
+must be assigned to calculate the initial pressure situation:<o:p>
+</o:p>
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="158" valign="top" style="width:118.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Reference
+      pressure<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="410" valign="top" style="width:307.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Field for the
+      reference pressure (=<i>p<sub>ref</sub></i> see formula below)<o:p>
+      at the reference deth</o:p></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="158" valign="top" style="width:118.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Reference depth<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="410" valign="top" style="width:307.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Field for 
+      </span><span lang="en-gb">Depth at which the Reference pressure is present
+		</span><span style="mso-ansi-language:EN-GB">(=<i>z<sub>ref</sub></i>
+      see formula below)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="158" valign="top" style="width:118.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Gradient<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="410" valign="top" style="width:307.3pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Field for </span>
+		<span lang="en-gb">(water/brine) gravity gradient of the pore pressure
+		</span><span style="mso-ansi-language:EN-GB">&nbsp;(=</span><i><span style="font-family:Symbol;
+  mso-ansi-language:EN-GB">g</span><sub><span style="mso-ansi-language:
+  EN-GB">p</span></sub></i><span style="mso-ansi-language:EN-GB"><i><sub> </sub></i>see formula
+      below)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The global pore
+pressure can be defined with a distributed quantity ‘pressure’.
+There are two options to define the value outside this distributed value:<o:p>
+</o:p>
+</span><span style="mso-ansi-language:EN-GB"><o:p>
+&nbsp;
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Outside
+set of <a href="../../general/Distributed_value.htm">distributed values</a> use: <o:p>
+</o:p>
+</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="196" valign="top" style="width:147.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="../../general/Predefined_value.htm">Predefined</a>
+      pressure value<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="372" valign="top" style="width:278.95pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The pressure
+      outside the pointset of the distributed value equals the global pore
+      pressure value obtained with the formula below. <o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="196" valign="top" style="width:147.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><a href="../../general/Extrapolated_value.htm">Extrapolated</a>
+      pressure value<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="372" valign="top" style="width:278.95pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The stress
+      outside the pointset of the distributed value equals the extrapolated
+      pressure value of the distributed value.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The global 
+pore pressure is defined by the following formula:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><span style="mso-text-raise:-7.0pt">
+ </span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA"><span style="mso-text-raise:-7.0pt">
+<img src="initia10.gif" v:shapes="_x0000_i1025" width="157" height="25"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1126357441">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.3" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1122267303">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">With<o:p></o:p>
+</span></p>
+<table border="0" width="100%">
+  <tr>
+    <td width="10%"><i><span style="mso-ansi-language:EN-GB">p<sub>ini</sub></span></i></td>
+    <td width="90%"><span style="mso-ansi-language:EN-GB">initial pore pressure &nbsp;
+</span></td>
+  </tr>
+  <tr>
+    <td width="10%"><i><span style="mso-ansi-language:EN-GB">z</span></i></td>
+    <td width="90%"><span style="mso-ansi-language:EN-GB"> z-coordinate<o:p>
+      &nbsp;
+</span></td>
+  </tr>
+  <tr>
+    <td width="10%"><i><span style="mso-ansi-language:EN-GB">z<sub>ref</sub></span></i></td>
+    <td width="90%"><span style="mso-ansi-language:EN-GB"> z-coordinate of reference depth<o:p>
+      &nbsp;
+</span></td>
+  </tr>
+  <tr>
+    <td width="10%"><i><span style="font-family:Symbol;mso-ansi-language:EN-GB">g</span><sub><span style="mso-ansi-language:EN-GB">p</span></sub></i></td>
+    <td width="90%"><span style="mso-ansi-language:
+EN-GB"> stress gradient of pore pressure<o:p>
+      &nbsp;
+</span></td>
+  </tr>
+  <tr>
+    <td width="10%"><i><span style="mso-ansi-language:EN-GB">p<sub>ref</sub></span></i></td>
+    <td width="90%"><span style="mso-ansi-language:EN-GB"> reference pore pressure<o:p>
+</span></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

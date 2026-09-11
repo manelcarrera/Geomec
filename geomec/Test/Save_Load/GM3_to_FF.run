@@ -1,0 +1,3 @@
+attrib -r test2.ff
+vtrun lt=600 GM3_to_FF
+attrib +r test2.ff

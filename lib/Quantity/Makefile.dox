@@ -1,0 +1,10 @@
+include $(DIAINCLUDE)/Mkrules.h
+
+All:	Release_Quantity.lib
+
+Release_Quantity.lib:
+	$(DSPMAKE) $(DSPMAKE_FLAGS)
+	cp Release/Quantity.lib $(DSPLIB)
+
+Documentation:
+	-( cd dox; $(MAKE) $(MFLAGS) )

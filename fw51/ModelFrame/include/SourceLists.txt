@@ -1,0 +1,5 @@
+dia_add_sources(
+  DocumentBase.h        IModelFile.h          IModelFileItem.h      
+  IModelObject.h        ModelOperation.h      ModelOperationStack.h 
+  Operation.h                                                       
+)

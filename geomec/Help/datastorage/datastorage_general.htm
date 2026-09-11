@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Datastorage</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="data storage">
+</OBJECT>
+<h1>Data storage</h1>
+<p>The data storage contains data that is or can be used in the current GEOMEC
+model. It is represented as a <a href="datastorage_tree.htm"> tree</a> below the
+<a href="../tree/Model/model_tree.htm"> model tree</a>. Imported data from
+external files are added to the data storage tree which can then be assigned to the 
+model by dragging to the model tree.</p>
+<p><img border="0" src="data_storage_collapsed.bmp" width="166" height="90"></p>
+<p>The data storage tree contains the following main nodes</p>
+<table border="0" width="100%">
+  <tr>
+    <td width="20%" valign="top">
+      <ul>
+        <li>Casing Grade</li>
+      </ul>
+    </td>
+    <td width="80%" valign="top">Contains the materials for the well paths using 
+	the DCasint application. This leaf is only visible when DCasint is 
+	enabled.</td>
+  </tr>
+  <tr>
+    <td width="20%" valign="top">
+      <ul>
+        <li>Point/elementsets</li>
+      </ul>
+    </td>
+    <td width="80%" valign="top">Contains <a href="2d_pointset.htm"> 2D</a> and <a href="3d_pointset.htm"> 3D</a> point- and elementsets and
+      their attached properties. Right-click any set and click 'Attributes' to
+      enter the <a href="../context/attributes/pointset_attributes.htm">Pointset
+      attributes</a> dialog, which allows you to assign properties or create new
+      properties using the <a href="../context/attributes/rpn_calculator.htm">RPN
+      calculator</a>.</td>
+  </tr>
+  <tr>
+    <td width="20%" valign="top">
+      <ul>
+		<li>Rock material</li>
+		</ul>
+    </td>
+    <td width="80%" valign="top">This branch is used to create and maintain materials. Note that you can use 
+	one
+      material definition in multiple <a href="../tree/Model/list_formations_tree.htm">formations</a>. Editing the material at one
+      location (e.g. in one formation or in the materials entry in the data
+      storage tree) will change the material for all formations that use it.</td>
+  </tr>
+  <tr>
+    <td width="20%" valign="top">
+      <ul>
+        <li>Surfaces</li>
+      </ul>
+    </td>
+    <td width="80%" valign="top">Surfaces are generated from 2D pointsets or
+      elementsets using the <a href="../context/attributes/pointset_attributes.htm">Pointset
+      attributes</a> dialog. Surfaces can be used to create horizons or faults,
+      or can be used as parts of the boundary of a tetrahedron model.</td>
+  </tr>
+</table>
+<p>See <a href="datastorage_tree.htm">Data storage tree</a> for general options.</p>
+
+<p>&nbsp;</p>
+
+<p>The "Change" button above the <a href="../tree/geomec_tree.htm">GEOMEC Tree</a> can be used for <a href="../tree/Multiple%20delete/multiple_delete.htm">Multiple deletions</a>.</p>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

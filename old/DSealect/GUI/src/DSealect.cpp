@@ -1,0 +1,263 @@
+// DSealect.cpp : Defines the class behaviors for the application.
+//
+
+#include "stdafx.h"
+#include "DSealect.h"
+#include "Splah.h"
+#include "MultiViewSplitter.h"
+#include "MainFrm.h"
+#include "FormationPropertiesForm.h"
+#include "DSealectDoc.h"
+#include "CasingStressForm.h"
+#include "WindowsRegistry.h"
+#include "AppVersionInfo.h"
+#include "CDataModel.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#ifdef _MSC_VER#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;#endif  // _MSC_VER
+#endif
+
+#define REGISTRY_BASE "TNO"
+#define APPLICATION   "Wellbore Cement Integrity Model\\version10"
+#define SYSTEM_KEY    "SOFTWARE\\TNO\\"APPLICATION
+#define USER_KEY      "SOFTWARE\\TNO\\"APPLICATION
+
+
+/////////////////////////////////////////////////////////////////////////////
+// CDSealectApp
+
+BEGIN_MESSAGE_MAP(CDSealectApp, CWinApp)
+	//{{AFX_MSG_MAP(CDSealectApp)
+	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+		// NOTE - the ClassWizard will add and remove mapping macros here.
+		//    DO NOT EDIT what you see in these blocks of generated code!
+	//}}AFX_MSG_MAP
+	// Standard file based document commands
+	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
+	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
+	// Standard print setup command
+	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
+	ON_COMMAND(ID_HELP, OnHelp)
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CDSealectApp construction
+
+//##ModelId=3C0DC15C02C0
+CDSealectApp::CDSealectApp()
+{
+	// add construction code here,
+	// Place all significant initialization in InitInstance
+	CWindowsRegistry::init();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// The one and only CDSealectApp object
+
+CDSealectApp theApp;
+
+/////////////////////////////////////////////////////////////////////////////
+// CDSealectApp initialization
+
+//##ModelId=3C0DC15C02C1
+BOOL CDSealectApp::InitInstance()
+{
+	
+#if defined(_WELLLIFE)
+	new CSplash(IDB_SPLASHWELL,5000,CSplash::KillOnClick);
+#else
+	new CSplash(IDB_SPLASH,5000,CSplash::KillOnClick);
+#endif
+
+		// BLOCK: doc template registration
+		// Register the document template.  Document templates serve
+		// as the connection between documents, frame windows and views.
+		// Attach this form to another document or frame window by changing
+		// the document or frame class in the constructor below.
+		CSingleDocTemplate* pNewDocTemplate = new CSingleDocTemplate(
+			IDR_MAINFRAME,
+			RUNTIME_CLASS(CDSealectDoc),		// document class
+			RUNTIME_CLASS(CMainFrame),		// frame class
+			RUNTIME_CLASS(CCasingStressForm));		// view class
+		AddDocTemplate(pNewDocTemplate);
+	
+
+
+	AfxEnableControlContainer();
+
+	// Standard initialization
+	// If you are not using these features and wish to reduce the size
+	//  of your final executable, you should remove from the following
+	//  the specific initialization routines you do not need.
+
+#ifdef _AFXDLL
+	Enable3dControls();			// Call this when using MFC in a shared DLL
+#else
+	Enable3dControlsStatic();	// Call this when linking to MFC statically
+#endif
+
+	// Change the registry key under which our settings are stored.
+	// TODO: You should modify this string to be something appropriate
+	// such as the name of your company or organization.
+	SetRegistryKey(_T(REGISTRY_BASE));
+
+	IRegistry* registry = IRegistry::instance();
+
+	assert(CString(m_pszRegistryKey) == _T(REGISTRY_BASE));
+
+	registry->setRegistryKey(m_pszRegistryKey);
+	registry->setProfileName(APPLICATION);
+
+	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
+
+	CoInitialize( NULL );
+
+	// Parse command line for standard shell commands, DDE, file open
+	CCommandLineInfo cmdInfo;
+	ParseCommandLine(cmdInfo);
+
+	// Dispatch commands specified on the command line
+	if (!ProcessShellCommand(cmdInfo))
+		return FALSE;
+
+  // The main windows does not exists before this moment!
+
+  POSITION position = pNewDocTemplate->GetFirstDocPosition();
+  CDSealectDoc* dSealectDoc =
+    dynamic_cast <CDSealectDoc*> (pNewDocTemplate->GetNextDoc(position));
+
+  assert(dSealectDoc != 0);
+
+  CDataModel* dataModel = dSealectDoc->DSealectModel();
+
+  assert(dataModel->InitInstance());
+
+	// The one and only window has been initialized, so show and update it.
+	m_pMainWnd->ShowWindow(SW_MAXIMIZE);
+	//m_pMainWnd->ShowWindow(SW_SHOW);
+	m_pMainWnd->UpdateWindow();
+
+	return TRUE;
+}
+
+//##ModelId=3C204402038C
+int CDSealectApp::ExitInstance() 
+{
+
+	// uninitialize COM
+	CoUninitialize();
+
+	
+	return CWinApp::ExitInstance();
+}
+
+//##ModelId=3CA011A60167
+BOOL CDSealectApp::OnIdle(LONG lCount)
+{
+	// call base class idle first
+	return CWinApp::OnIdle(lCount);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// CAboutDlg dialog used for App About
+
+//##ModelId=3C0DC16101D4
+class CAboutDlg : public CDialog
+{
+public:
+	//##ModelId=3C0DC16101F5
+	CAboutDlg();
+
+// Dialog Data
+	//{{AFX_DATA(CAboutDlg)
+	enum { IDD = IDD_ABOUTBOX };
+	//}}AFX_DATA
+
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CAboutDlg)
+	protected:
+	//##ModelId=3C0DC16101F6
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+	//{{AFX_MSG(CAboutDlg)
+		// No message handlers
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+};
+
+//##ModelId=3C0DC16101F5
+CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+{
+	//{{AFX_DATA_INIT(CAboutDlg)
+	//}}AFX_DATA_INIT
+}
+
+//##ModelId=3C0DC16101F6
+void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CString str;
+	str = "DSealect.exe";
+	CAppVersionInfo *version = new CAppVersionInfo();
+	version->GetVersionInfo((char*)LPCTSTR(str));
+	str.Format("Version %s", version->m_strFixedProductVersion);
+	delete version;
+
+	((CStatic*)GetDlgItem(IDC_VERSION))->SetWindowText(str);
+
+  str.LoadStringA(IDS_COPYRIGHT);
+  GetDlgItem(IDC_COPYRIGHT)->SetWindowText(str);
+
+	CDialog::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(CAboutDlg)
+	//}}AFX_DATA_MAP
+}
+
+BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
+	//{{AFX_MSG_MAP(CAboutDlg)
+		// No message handlers
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+// App command to run the dialog
+//##ModelId=3C0DC15C02C3
+void CDSealectApp::OnAppAbout()
+{
+	CAboutDlg aboutDlg;
+	aboutDlg.DoModal();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// CDSealectApp message handlers
+
+CDSealectApp* GetApp()
+{
+	return &theApp;
+}
+
+
+//##ModelId=3C204402038B
+IRegistry* CDSealectApp::RegistryX()
+{
+	return IRegistry::instance();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

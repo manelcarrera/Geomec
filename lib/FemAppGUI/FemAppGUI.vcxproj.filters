@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ArchiveCArchive.cpp" />
+    <ClCompile Include="src\ColorNode_Delegate.cpp" />
+    <ClCompile Include="src\FemAppDoc.cpp" />
+    <ClCompile Include="src\FemAppMainWindow.cpp" />
+    <ClCompile Include="src\FemAppOpenGLView.cpp" />
+    <ClCompile Include="src\GraphMainFrameProgress.cpp" />
+    <ClCompile Include="src\GraphMainFrm.cpp" />
+    <ClCompile Include="src\graphtreectrl.cpp" />
+    <ClCompile Include="src\GraphTreeView.cpp" />
+    <ClCompile Include="src\openglscenenode.cpp" />
+    <ClCompile Include="src\openglvaluescene.cpp" />
+    <ClCompile Include="src\SceneDrawDef.cpp" />
+    <ClCompile Include="src\ScenePtr.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\TreeNode.cpp" />
+    <ClCompile Include="delegate\src\ColorNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\FemAppModel_Delegate.cpp" />
+    <ClCompile Include="delegate\src\GraphEntry_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IColorScaleEntry_Delegate.cpp" />
+    <ClCompile Include="delegate\src\GraphNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IColorScaleNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IValueComponent_Delegate.cpp" />
+    <ClCompile Include="delegate\src\IValueComposite_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLNodeBase_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLSceneNode_Delegate.cpp" />
+    <ClCompile Include="delegate\src\OpenGLValueScene_Delegate.cpp" />
+    <ClCompile Include="delegate\src\StorageNode_Delegate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\ArchiveCArchive.h" />
+    <ClInclude Include="h\AttributeTempl.h" />
+    <ClInclude Include="h\ChildEnumerator.h" />
+    <ClInclude Include="h\EnumerationBranch.h" />
+    <ClInclude Include="h\FemAppDoc.h" />
+    <ClInclude Include="h\FemAppMainWindow.h" />
+    <ClInclude Include="h\FemAppOpenGLView.h" />
+    <ClInclude Include="h\GraphMainFrameProgress.h" />
+    <ClInclude Include="h\GraphMainFrm.h" />
+    <ClInclude Include="h\graphtreectrl.h" />
+    <ClInclude Include="h\GraphTreeView.h" />
+    <ClInclude Include="h\openglscenenode.h" />
+    <ClInclude Include="h\openglvaluescene.h" />
+    <ClInclude Include="h\SceneDrawDef.h" />
+    <ClInclude Include="h\ScenePtr.h" />
+    <ClInclude Include="h\StateBranch.h" />
+    <ClInclude Include="h\StateEnumerationBranch.h" />
+    <ClInclude Include="h\StdAfx.h" />
+    <ClInclude Include="h\TreeNode.h" />
+    <ClInclude Include="delegate\h\ColorNode_Delegate.h" />
+    <ClInclude Include="delegate\h\FemAppModel_Delegate.h" />
+    <ClInclude Include="delegate\h\GraphNode_Delegate.h" />
+    <ClInclude Include="delegate\h\GraphPtr_Delegate.h" />
+    <ClInclude Include="delegate\h\IColorScaleEntry_Delegate.h" />
+    <ClInclude Include="delegate\h\IColorScaleNode_Delegate.h" />
+    <ClInclude Include="delegate\h\IValueComponent_Delegate.h" />
+    <ClInclude Include="delegate\h\IValueComposite_Delegate.h" />
+    <ClInclude Include="delegate\h\NodeObserver_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLNode_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLNodeBase_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLSceneNode_Delegate.h" />
+    <ClInclude Include="delegate\h\OpenGLValueScene_Delegate.h" />
+    <ClInclude Include="delegate\h\StateBranch_Delegate.h" />
+    <ClInclude Include="delegate\h\StorageNode_Delegate.h" />
+    <ClInclude Include="delegate\h\GraphEntry_Delegate.h" />
+    <ClInclude Include="observer\h\NodeObserver.h" />
+  </ItemGroup>
+</Project>

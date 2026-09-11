@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="BranchSettings.props" />
+    <Import Project="fw51_shared.props" />
+    <Import Project="Diana.props" />
+    <Import Project="Environment.props" />
+    <Import Project="OIV.props" />
+    <Import Project="TBB.props" />
+    <Import Project="HDF5.props" />
+    <Import Project="EnvironmentPy.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+
+    <GEOMEC_VERSION>$(DEVELOP)/version/h;</GEOMEC_VERSION>
+
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////// GEOMEC ///////////////////////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <GEOMEC_IT>$(GMROOT)/IT/h;</GEOMEC_IT>
+    <GEOMEC_HEXAMODEL>
+      $(GMROOT)/HexaModel/h;
+      $(GMROOT)/HexaModel/attr/h;
+      $(GMROOT)/HexaModel/delegate/h;
+      $(GMROOT)/HexaModel/dlg/h;
+      $(GMROOT)/HexaModel/observer/h;
+    </GEOMEC_HEXAMODEL>
+    <GEOMEC_GEOLOGY>
+      $(GMROOT)/Geology/h;
+      $(GMROOT)/Geology/attrdlg/h;
+      $(GMROOT)/Geology/delegate/h;
+      $(GMROOT)/Geology/dlg/h;
+      $(GMROOT)/Geology/observer/h;
+    </GEOMEC_GEOLOGY>
+    <GEOMEC_TETRAMODEL>
+      $(GMROOT)/TetraModel/h;
+      $(GMROOT)/TetraModel/delegate/h;
+      $(GMROOT)/TetraModel/dlg/h;
+      $(GMROOT)/TetraModel/observer/h;
+      $(GMROOT)/TetraModel/Eclipse/h;
+      $(GMROOT)/TetraModel/GoCad/delegate/h;
+    </GEOMEC_TETRAMODEL>
+    <GEOMEC_VALUE>
+      $(GMROOT)/Value/h;
+      $(GMROOT)/Value/delegate/h;
+      $(GMROOT)/Value/dlg/h;
+      $(GMROOT)/Value/observer/h;
+    </GEOMEC_VALUE>
+    <GEOMEC_VIEW>
+      $(GMROOT)/View/h;
+      $(GMROOT)/View/dlg/h;
+      $(GMROOT)/View/delegate/h;
+      $(GMROOT)/View/observer/h;
+      $(GMROOT)/View/TensorViz/h;
+    </GEOMEC_VIEW>
+    <GEOMEC_WELLZOOMINMODEL>
+      $(GMROOT)/WellZoomInModel/attr/h;
+      $(GMROOT)/WellZoomInModel/delegate/h;
+      $(GMROOT)/WellZoomInModel/dlg/h;
+      $(GMROOT)/WellZoomInModel/observer/h;
+    </GEOMEC_WELLZOOMINMODEL>
+    <GEOMEC_BASEMODEL>
+      $(GMROOT)/BaseModel/h;
+      $(GMROOT)/BaseModel/attr/h;
+      $(GMROOT)/BaseModel/delegate/h;
+      $(GMROOT)/BaseModel/observer/h;
+    </GEOMEC_BASEMODEL>
+    <GEOMEC_FLEXLM>
+      $(GMROOT)/FlexLM/License;
+      $(GMROOT)/FlexLM/include;
+      $(GMROOT)/FlexLM/lib64;
+    </GEOMEC_FLEXLM>
+    <GEOMEC_OPENINVENTOR>
+      $(GMROOT)/OpenInventor/h;
+      $(GMROOT)/OpenInventor/delegate/h;
+      $(GMROOT)/OpenInventor/observer/h;
+    </GEOMEC_OPENINVENTOR>
+    <GEOMEC_MATERIAL>
+      $(GMROOT)/Material/h;
+      $(GMROOT)/Material/GUI/h;
+    </GEOMEC_MATERIAL>
+    <GEOMEC_DSTABORLINK>
+      $(GMROOT)/DStaborLink/h;
+      $(GMROOT)/DStaborLink/dlg/h;
+    </GEOMEC_DSTABORLINK>
+    <GEOMEC_BASE>
+
+      $(GMROOT); <!-- resource.h (and other resource headers) -->
+      $(GMROOT)/h;
+      $(GEOMEC_VERSION);  <!-- version.h -->
+      $(GMROOT)/attr/h;
+      $(GEOMEC_BASEMODEL);
+      $(GMROOT)/delegate/h;
+      $(GMROOT)/dlg/h;
+      $(GEOMEC_DSTABORLINK);
+      $(GMROOT)/Excel/h;
+      $(GEOMEC_FLEXLM);
+      $(GMROOT)/ShellExecute;
+      $(GMROOT)/SurfaceThinOut;
+      $(GEOMEC_GEOLOGY);
+      $(GMROOT)/GUI/h;
+      $(GEOMEC_HEXAMODEL);
+      $(GEOMEC_IT);
+      $(GEOMEC_MATERIAL);
+      $(GMROOT)/observer/h;
+      $(GEOMEC_OPENINVENTOR);
+      <!--$(GMROOT)/OpenInventorDataInterface/inc;--><!-- LIB -->
+      $(GMROOT)/TcxMsgBox;
+      $(GEOMEC_TETRAMODEL);
+      $(GMROOT)/Util/h;
+      $(GEOMEC_VALUE);
+      $(GEOMEC_VIEW);
+      $(GEOMEC_WELLZOOMINMODEL);
+      $(GMROOT)/ZoomIn/delegate/h;
+      $(GMROOT)/progress/h;
+
+    </GEOMEC_BASE>
+
+    <!-- Synonymous for convenience -->
+    <GEOMEC_PATH>$(GMROOT);</GEOMEC_PATH>
+    <GMINCLUDES>$(GEOMEC_BASE);</GMINCLUDES>
+
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////// BASE /////////////////////////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <MODGMBACKEND_BASE>$(DEVELOP)/Prototypes/ModularGeomec/ModGMBackend/h;</MODGMBACKEND_BASE>
+    <MODGMBUS_BASE>$(DEVELOP)/Prototypes/ModularGeomec/ModGMBus/h;</MODGMBUS_BASE>
+    <DIANAAPP_BASE>$(DEVELOP)/diana_app/h;</DIANAAPP_BASE>
+    <GMDIANAAPP_BASE>$(DEVELOP)/gm_diana_app/h;</GMDIANAAPP_BASE>
+    <CREATEFILOSAPP_BASE>$(DEVELOP)/createfilos_app/h;</CREATEFILOSAPP_BASE>
+    <DIANAGLUE_BASE>$(LBROOT)/DianaGlue/h;</DIANAGLUE_BASE>
+    <CREATERGIINTERFACETESTS_BASE>$(TESTSROOT)/CreateRGInterfaceTests/h;</CREATERGIINTERFACETESTS_BASE>
+    <MFCMODELFRAME_BASE>$(LBROOT)/MfcModelFrame/h;</MFCMODELFRAME_BASE>
+    <!-- FW51 -->
+    <FW-GEOMETRY_BASE>$(FWROOT)\Geometry\include;</FW-GEOMETRY_BASE>
+    <FW-MODELFRAME_BASE>$(FWROOT)\ModelFrame\include;</FW-MODELFRAME_BASE>
+    <FW-FIELDVALUEFILE_BASE>$(FWROOT)/FieldValueFile/include;</FW-FIELDVALUEFILE_BASE>
+    <FW-TENSOR_BASE>$(FWROOT)/Tensor/include;</FW-TENSOR_BASE>
+    <FW-OPENGLFRAME_BASE>$(FWROOT)/OpenGLFrame/include;</FW-OPENGLFRAME_BASE>
+    <FW-TETMESH_BASE>
+      $(FWROOT)/TetMesh/include;
+      $(FWROOT)/TetMesh/tet_src/h;
+    </FW-TETMESH_BASE>
+    <FW-GUIFRAME_BASE>$(FWROOT)/GuiFrame/include;</FW-GUIFRAME_BASE>
+    <FW-TRIANGLE_BASE>$(FWROOT)/Triangle/include;</FW-TRIANGLE_BASE>
+    <!-- QT -->
+    <QTINCLUDES>
+      $(QTDIR)/include;
+      $(QTDIR)/include/QtCore;
+      $(QTDIR)/include/QtGui;
+      $(QTDIR)/include/QtOpenGL;
+      $(QTDIR)/include/QtXml;
+      $(QTDIR)/include/QtWidgets;
+      $(QWTDIR)/src
+    </QTINCLUDES>
+    <FEMAPPGUI_BASE>
+      $(LBROOT)\FemAppGUI\h;
+      $(LBROOT)\FemAppGUI\observer\h;
+      $(LBROOT)\FemAppGUI\delegate\h;
+    </FEMAPPGUI_BASE>
+    <DIANA>
+      $(DIAROOT)\share\src\include;
+      $(DIAROOT)\release\src\include; <!-- dimple.h -->
+      $(DIAROOT)\share\src\lb\gc51\classes\include; <!-- NumRange.h / GeomecModel > GeomecDianaRunner -->
+      $(BOOST_DIR)
+	</DIANA>
+    <DIANA_GOCAD>$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;</DIANA_GOCAD>
+    <DIANA_GC51>$(DIAROOT)\share\src\lb\gc51\classes\include;</DIANA_GC51>
+    <MFCGUIFRAME_BASE>
+      $(LBROOT)/MfcGuiFrame/h;
+      $(LBROOT)/MfcGuiFrame/observer/h;
+    </MFCGUIFRAME_BASE>
+    <CUTSURFACEUTILMODEL_BASE>$(LBROOT)/CutSurfaceUtilModel/h;</CUTSURFACEUTILMODEL_BASE>
+    <MATLIB_BASE>$(LBROOT)/MaterialLibrary/h;</MATLIB_BASE>
+    <MATLIBXML_BASE>$(LBROOT)/MaterialLibraryXML/h;</MATLIBXML_BASE>
+    <QUANTITY_BASE>$(LBROOT)/Quantity/h;</QUANTITY_BASE>
+    <DCASING_BASE>$(LBROOT)/DCasing/h;</DCASING_BASE>
+    <COMMONWELLSCHEME_BASE>$(LBROOT)/CommonWellScheme/h;</COMMONWELLSCHEME_BASE>
+    <WELLSCHEME_BASE>$(LBROOT)/WellScheme/h;</WELLSCHEME_BASE>
+    <MESHDATACACHER_BASE>$(LBROOT)/MeshDataCacher/h;</MESHDATACACHER_BASE>
+    <DIANASIGNALS_BASE>$(LBROOT)/DianaSignals/h;</DIANASIGNALS_BASE>
+    <GEOMECSTRINGTABLE_BASE>$(LBROOT)/GeomecStringTable/h;</GEOMECSTRINGTABLE_BASE>
+    <MPKERNEL_BASE>$(LBROOT)/MPKernel/h;</MPKERNEL_BASE>
+    <MPKERNELAPP_BASE></MPKERNELAPP_BASE>
+    <RPN>$(LBROOT)/RPN/h;</RPN>
+    <FEMAPPMODEL_BASE>
+      $(LBROOT)/FemAppModel/h;
+      $(LBROOT)/FemAppModel/diana/h;
+      $(LBROOT)/FemAppModel/delegate/h;
+    </FEMAPPMODEL_BASE>
+    <DOUBLEEDITLIB_BASE>$(LBROOT)/DoubleEditLib/h;</DOUBLEEDITLIB_BASE>
+    <CUTSURFACEUTIL_BASE>
+      $(LBROOT)/CutSurfaceUtil; <!-- resource.h --> 
+      $(LBROOT)/CutSurfaceUtil/h;
+    </CUTSURFACEUTIL_BASE>
+    <DIANASTARTUP_BASE>$(LBROOT)/DianaStartUp/h;</DIANASTARTUP_BASE>
+    <DIANACORE_BASE>
+      $(LBROOT)/DianaCore/h;
+      $(LBROOT)/DianaCore/Loads/h;
+    </DIANACORE_BASE>
+    <TSMESH_BASE>
+      $(LBROOT)/TSMesh/h;
+      $(LBROOT)/TSMesh/Gts/h;
+      $(LBROOT)/TSMesh/glib;
+      $(LBROOT)/TSMesh/glib/gmodule;
+      $(LBROOT)/TSMesh/glib/gobject;
+    </TSMESH_BASE>
+    <WELLSCENE3D_BASE>$(LBROOT)/WellScene3D/h;</WELLSCENE3D_BASE>
+    <NEWWELLSCHEME_BASE>$(LBROOT)/NewWellScheme/h;</NEWWELLSCHEME_BASE>
+    <GMDATABASE_BASE>$(LBROOT)/GmDatabase/h;</GMDATABASE_BASE>
+    <WELLSCHEMEUTILS_BASE>
+      $(LBROOT)/WellSchemeUtils/h;
+      $(LBROOT)/WellSchemeUtils/dlg/h;
+    </WELLSCHEMEUTILS_BASE>
+    <HDF5_BASE>$(LBROOT)/hdf5/windows/include;</HDF5_BASE>
+
+    <BLOSC_PATH>$(LBROOT)/c-blosc-1.9.0</BLOSC_PATH> <!-- not semicolon at the end -->
+    <BLOSC_BASE>$(BLOSC_PATH)/blosc;</BLOSC_BASE>
+    <BLOSCSHARED_BASE>
+      $(BLOSC_PATH)/blosc;
+      $(BLOSC_PATH)/internal-complibs/lz4-1.7.2;
+      $(BLOSC_PATH)/internal-complibs/snappy-1.1.1;
+      $(BLOSC_PATH)/internal-complibs/zlib-1.2.8;
+      $(BLOSC_PATH)/build/blosc;
+    </BLOSCSHARED_BASE>
+
+    <BLOSCFILTER_BASE>$(LBROOT)/blosc_filter/h;</BLOSCFILTER_BASE>
+    <CONSOLELIBRARY_BASE>$(LBROOT)/ConsoleLibrary/h;</CONSOLELIBRARY_BASE>
+    <GEOMECMODEL_PATH>$(LBROOT)/GeomecModel</GEOMECMODEL_PATH>
+    
+    <GEOMECMODEL_BASE>
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+      $(GEOMECMODEL_PATH)/CLI/h;
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(GEOMECMODEL_PATH)/Geology/h;
+      $(GEOMECMODEL_PATH)/GVT/h;
+      $(GEOMECMODEL_PATH)/h;
+      $(GEOMECMODEL_PATH)/HexaModel/h;
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      $(GEOMECMODEL_PATH)/observer/h;
+      $(GEOMECMODEL_PATH)/TetraModel/h;
+      $(GEOMECMODEL_PATH)/TetraModel/Eclipse/h;
+      $(GEOMECMODEL_PATH)/TetraModel/Gocad/h;
+      $(GEOMECMODEL_PATH)/Value/h;
+      $(GEOMECMODEL_PATH)/View/h;
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/WellPath/h;
+      $(GEOMECMODEL_PATH)/WellZoomInModel/h;
+      $(GEOMECMODEL_PATH)/Zoomin/h;
+    </GEOMECMODEL_BASE>
+
+    <QTIOCOMPRESSOR_BASE>$(LBROOT)/qtiocompressor/h;</QTIOCOMPRESSOR_BASE>
+    <ZLIB_BASE>$(LBROOT)/zlib-1.2.6;</ZLIB_BASE>
+    <QTWINMIGRATE_BASE>$(LBROOT)/qtwinmigrate/h;</QTWINMIGRATE_BASE>
+    <RESCUE_BASE>$(LBROOT)/RESCUE/h;</RESCUE_BASE>
+    <RPN_BASE>$(LBROOT)/RPN/h;</RPN_BASE>
+    <OPENINVENTORDATAINTERFACE_BASE>$(LBROOT)/OpenInventorDataInterface/h;</OPENINVENTORDATAINTERFACE_BASE>
+    <!-- <OPENINVENTOR_BASE>$(LBROOT)/OpenInventor/h;</OPENINVENTOR_BASE> -->
+    <GEOMECCORA_BASE>$(APP)/geomec_cora/h;</GEOMECCORA_BASE>
+    <GEOMECCORAWRAPPER_BASE>$(APP)/geomec_cora_wrapper/h;</GEOMECCORAWRAPPER_BASE>
+    <GEOMECRGI_BASE>$(APP)/geomec_rgi/h;</GEOMECRGI_BASE>
+    <GEOMECSHELL_BASE>$(DEVELOP)/geomec_shell/h;</GEOMECSHELL_BASE>
+    <GEOMECCORALIB_BASE>$(LBROOT)/geomec_cora_library/h;</GEOMECCORALIB_BASE>
+    <GEOMECRGILIB_BASE>$(LBROOT)/geomec_rgi_library/h;</GEOMECRGILIB_BASE>
+    <GMSKUACONNECTOR_BASE>$(LBROOT)/GMSkuaConnector/h;</GMSKUACONNECTOR_BASE>
+    <RGINTERFACE_BASE>$(LBROOT)/RGInterface/h;</RGINTERFACE_BASE>
+    <WINDOWSREGISTRY_BASE>$(LBROOT)/WindowsRegistry/h;</WINDOWSREGISTRY_BASE>
+    <XMLLIB_BASE>$(LBROOT)/XMLLib/h;</XMLLIB_BASE>
+    <!-- IT -->
+    <PYLIB_BASE>$(LBROOT)/PyLib/h;</PYLIB_BASE>
+    <QUTIL_BASE>$(LBROOT)/QUtil/h;</QUTIL_BASE>
+    <UTIL_BASE>$(LBROOT)/Util/h;</UTIL_BASE>
+    <!-- in win depends on 'shlwapi.lib -->
+    <PLUGINS_BASE>$(LBROOT)/Plugins/h;</PLUGINS_BASE>
+    <IT_BASE>$(LBROOT)/IT/h;</IT_BASE>
+    <!-- TESTS -->
+    <!--<TESTSROOT>$(DEVELOP)/Tests</TESTSROOT>-->
+    <TESTSMODELOPERATIONS_BASE>$(TESTSROOT)/ModelOperations/h;</TESTSMODELOPERATIONS_BASE>
+    <TESTSTESTLIB_BASE>$(TESTSROOT)/TestLib/h;</TESTSTESTLIB_BASE>
+    <TESTSRUNTESTS_BASE>$(TESTSROOT)/Tests/h;</TESTSRUNTESTS_BASE>
+    <TESTSSANITYCHECKS_BASE>$(TESTSROOT)/SanityChecks/h;</TESTSSANITYCHECKS_BASE>
+    <TESTSFW51_BASE>$(TESTSROOT)/Fw51/h;</TESTSFW51_BASE>
+    <TESTSMAT_BASE>$(TESTSROOT)/Materials/h;</TESTSMAT_BASE>
+    <TESTSBUILDENVIRONMENT_BASE>$(TESTSROOT)/BuildEnvironment/h;</TESTSBUILDENVIRONMENT_BASE>
+    <GTEST_BASE>$(LBROOT)/gmock-1.7.0/gtest/include;</GTEST_BASE>
+    <GEOMECLAUNCHER_BASE>$(DEVELOP)/geomec_launcher/h;</GEOMECLAUNCHER_BASE>
+    <GEOMECSELECTOR_BASE>$(DEVELOP)/geomec_selector/h;</GEOMECSELECTOR_BASE>
+    <MINIMALAPPQT_BASE>$(DEVELOP)/minimal_app_qt/h;</MINIMALAPPQT_BASE>
+
+    <!-- this one is different -->
+
+
+    <!-- ////////////////////////////////////////////////// APPS & LIBS //////////////////////////////////////////////////////////////// -->
+
+
+    <MINIMALAPPQT>
+      $(MINIMALAPPQT_BASE);
+      $(QUTIL_BASE);
+      $(UTIL_BASE);
+      $(QTINCLUDES);
+      $(BOOST_DIR);
+      $(DIANASTARTUP_BASE);
+    </MINIMALAPPQT>
+
+    <GEOMECSELECTOR>
+      $(GEOMECSELECTOR_BASE);
+      $(QUTIL_BASE);
+      $(UTIL_BASE);
+      <!-- Qt -->
+      <!-- $(QTDIR)\include\QtCore;
+      $(QTDIR)\include\QtGui;
+      $(QTDIR)\include\QtXml; --> <!-- Needed by QUtil -->
+      $(QTINCLUDES);
+    </GEOMECSELECTOR>
+
+    <GEOMECLAUNCHER>
+      $(GEOMECLAUNCHER_BASE);
+      .\GeneratedFiles\$(ConfigurationName);
+      $(MODGMBUS_BASE);
+      $(CONSOLELIBRARY_BASE);
+        $(GEOMECSTRINGTABLE_BASE);
+      $(UTIL_BASE);
+      $(QUTIL_BASE); <!-- Printer.h -> logs --><!--
+      $(QTDIR)\include\QtCore;
+      $(QTDIR)\include\QtGui;
+      -->
+      $(QTDIR)\include\QtANGLE;
+      $(QTINCLUDES);
+    </GEOMECLAUNCHER>
+
+    <MODGMBACKEND>
+      $(MODGMBACKEND_BASE);
+      $(MODGMBUS_BASE);
+      $(DIANASTARTUP_BASE);
+      $(DIANA);
+      $(QTINCLUDES);
+    </MODGMBACKEND>
+
+    <MODGMBUS>
+      $(MODGMBUS_BASE);
+      $(QTINCLUDES);
+    </MODGMBUS>
+    <!-- CAN'T BE USED, NEEDS TO BE COMPLETED, BUT MAYBE IT'S NOT NEED AS PROJECT IS ALSO NOT NEEDED -->
+    <GENDIATEST>
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+      $(FEMAPPMODEL_BASE); <!-- AnalysisLogger.h -->
+      $(QTINCLUDES);
+    </GENDIATEST>
+
+    <DIANAGLUE>
+      $(DIANAGLUE_BASE);
+      $(DIANACORE_BASE);
+        $(FW-GEOMETRY_BASE); <!-- Vector.h -->
+        $(FW-TENSOR_BASE);
+      $(DIANASIGNALS_BASE);
+      $(DIANASTARTUP_BASE);
+      $(CONSOLELIBRARY_BASE);
+      $(QUTIL_BASE); <!-- Interprocess.h from GeomecDoc.h -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </DIANAGLUE>
+
+    <DIANAAPP>
+      $(DIANAAPP_BASE);
+      $(DIANAGLUE_BASE);
+      $(MODGMBUS_BASE);
+      $(DIANASTARTUP_BASE);
+      $(DIANASIGNALS_BASE); <!-- ExecuteDianaSignals -->
+      $(DIANACORE_BASE); <!-- IDCDianaRunner.h -->
+        $(FW-GEOMETRY_BASE); <!-- Vector.h -->
+      $(QUTIL_BASE); <!-- Printer.h -> logs -->
+        $(UTIL_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </DIANAAPP>
+
+    <GMDIANAAPP>
+      $(GMDIANAAPP_BASE);
+      $(DIANAGLUE_BASE);
+      $(DIANASTARTUP_BASE);
+      $(DIANASIGNALS_BASE); <!-- ExecuteDianaSignals -->
+      $(DIANACORE_BASE); <!-- IDCDianaRunner.h -->
+        $(FW-GEOMETRY_BASE); <!-- Vector.h -->
+      $(QUTIL_BASE); <!-- Printer.h -> logs -->
+        $(UTIL_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+      <!-- $(BOOST_DIR); --> <!-- already included in DIANA -->
+      $(UTIL_BASE); <!-- SafeQueue -->
+    </GMDIANAAPP>
+
+    <CREATEFILOSAPP>
+      $(CREATEFILOSAPP_BASE);
+      <!-- $(MODGMBUS_BASE); -->
+
+      <!-- BaseModel -->
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+          $(GEOMECMODEL_PATH)/visitor/h;
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+          $(GEOMECSTRINGTABLE_BASE);
+          $(FEMAPPMODEL_BASE);
+            $(FW-OPENGLFRAME_BASE);
+              $(FW-GEOMETRY_BASE);
+            $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+              $(FW-GUIFRAME_BASE); <!-- GuiCommand.h -->
+            $(DIANACORE_BASE);
+        $(GEOMECMODEL_PATH)/Geology/h; <!-- PointSet.h -->
+        $(GEOMECMODEL_PATH)/h;
+          $(NEWWELLSCHEME_BASE);
+        $(FW-MODELFRAME_BASE); <!-- StreamVersion.h -->
+          $(DIANA);  <!-- dimple.h  -->
+          
+      $(GEOMECMODEL_PATH)/TetraModel/h;
+  
+      $(QUTIL_BASE); <!-- Printer.h -> logs -->
+        $(UTIL_BASE);
+      $(QTINCLUDES);
+      $(DIAROOT)/share/src/lb/gc51/classes/include
+    </CREATEFILOSAPP> 
+
+    <CREATERGIINTERFACETESTS>
+      $(CREATERGIINTERFACETESTS_BASE);
+      $(RGINTERFACE_BASE);
+      <!-- EXTERN -->
+      $(DIANA_GOCAD);
+      $(DIANA);
+      $(QTINCLUDES);
+    </CREATERGIINTERFACETESTS>
+
+    <!-- ALL FW51 LIBS DEPEND ON DIANA, CAN THIS DEPENDENCY BE BROKEN ? -->
+
+    <FW-GEOMETRY>
+      $(FW-GEOMETRY_BASE);
+      $(DIANA_GOCAD);
+      $(MPKERNEL_BASE);
+      $(GEOMECMODEL_PATH)/h; <!-- ProgressCancel.h -->
+      <!-- EXTERN -->
+      $(TBBDIR)/include;
+      $(DIANA); <!-- it needs dimple.h ... why? -->
+      $(QTINCLUDES);
+      $(QUTIL_BASE); <!-- Progress_.h, CProgressCancel, IProgressBase -->
+    </FW-GEOMETRY>
+
+    <FW-MODELFRAME>
+      $(FW-MODELFRAME_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-MODELFRAME>
+
+    <FW-FIELDVALUEFILE>
+      $(FW-FIELDVALUEFILE_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-FIELDVALUEFILE>
+
+    <FW-TENSOR>
+      $(FW-TENSOR_BASE);
+      $(FW-GEOMETRY_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-TENSOR>
+
+    <FW-OPENGLFRAME>
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-OPENGLFRAME>
+
+    <FW-GUIFRAME>
+      $(FW-GUIFRAME_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-GUIFRAME>
+
+    <FW-TRIANGLE>    
+      $(FW-TRIANGLE_BASE);
+      $(FW-GEOMETRY_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+      $(QTINCLUDES);
+    </FW-TRIANGLE>
+
+    <FW-TETMESH>
+      $(FW-TETMESH_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(CONSOLELIBRARY_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(TBBDIR)/include;
+      $(QTINCLUDES);
+      $(DIANA);
+      $(DIANA_GOCAD);
+    </FW-TETMESH>
+
+    <TESTSBUILDENVIRONMENT>
+      $(TESTSBUILDENVIRONMENT_BASE)
+      <!-- Geomec -->
+      $(GEOMEC_VERSION); <!-- version.h -->
+    </TESTSBUILDENVIRONMENT>
+
+    <TESTSMAT>
+      $(TESTSMAT_BASE);
+      $(GTEST_BASE);
+      $(TESTSTESTLIB_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE); <!-- ModelContainer.h -->
+      $(GEOMECMODEL_PATH)/h; <!-- AnalysisType.h -->
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(GEOMECMODEL_PATH)/Value/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      $(QUTIL_BASE);<!-- IProgressBase.h -->
+      <!-- LIBS -->
+      $(MATLIB_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </TESTSMAT>
+
+    <TESTSFW51>
+      $(TESTSFW51_BASE);
+      $(GTEST_BASE);
+      $(TESTSTESTLIB_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(FW-TRIANGLE);
+      $(FW-TENSOR_BASE);
+      $(FW-FIELDVALUEFILE_BASE);
+      $(FW-TETMESH_BASE);
+      <!-- GeomecModel --><!-- h -->
+      $(GEOMECMODEL_PATH)/h; <!-- AnalysisType.h -->
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h --><!-- EXTERN -->
+      $(QUTIL_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </TESTSFW51>
+
+    <TESTSSANITYCHECKS>
+      $(TESTSSANITYCHECKS_BASE);
+      $(GTEST_BASE);
+      $(TESTSTESTLIB_BASE);
+      $(GEOMECCORALIB_BASE);
+      $(MATLIB_BASE);
+      $(GEOMEC_PATH); <!-- resource.h --><!-- FIXME !!!!! -->
+      $(MPKERNEL_BASE);
+        $(TBBDIR)/include;
+      $(RGINTERFACE_BASE);
+      $(FEMAPPGUI_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(GEOMECMODEL_PATH)/h; <!-- AnalysisType.h -->
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+          $(FW-OPENGLFRAME_BASE); <!-- IOpenGLFrame.h -->  
+        $(NEWWELLSCHEME_BASE);
+          $(COMMONWELLSCHEME_BASE);
+      <!-- BaseModel -->
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+          $(GEOMECSTRINGTABLE_BASE);
+          $(FW-TENSOR_BASE);
+          $(WELLSCHEME_BASE);
+        $(DIANACORE_BASE);
+        $(GEOMECMODEL_PATH)/Geology/h; <!-- PointSet.h -->
+        $(CONSOLELIBRARY_BASE);
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      $(GEOMECMODEL_PATH)/WellZoomInModel/h;
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </TESTSSANITYCHECKS>
+
+    <TESTSTESTRUNNER>
+      <!-- it has no TESTSTESTRUNNER_BASE -->
+      $(QUTIL_BASE);
+      $(QTINCLUDES); <!-- not all are needed -->
+    </TESTSTESTRUNNER>
+
+    <TESTSRUNTESTS>
+      $(TESTSRUNTESTS_BASE);
+      $(GEOMEC_VERSION);
+	    $(CONSOLELIBRARY_BASE);
+      $(GTEST_BASE);
+      $(TESTSTESTLIB_BASE);
+      $(TESTSSANITYCHECKS_BASE);
+      $(TESTSFW51_BASE);
+      $(TESTSMAT_BASE);
+      $(TESTSMODELOPERATIONS_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(GEOMECMODEL_PATH)/h;
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+          $(DIANACORE_BASE); <!-- IDCAnalysisLogger.h -->
+      $(DIANASTARTUP_BASE); <!-- DiaanEnv.h -->
+      $(GEOMECMODEL_PATH)/diana/h;
+      <!-- EXTERN -->
+	  $(QUTIL_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </TESTSRUNTESTS>
+
+    <TESTSTESTLIB>
+      $(TESTSTESTLIB_BASE);
+      $(DIANAGLUE_BASE);
+      $(GEOMEC_VERSION); <!-- version.h -->
+      $(GTEST_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(GEOMECMODEL_PATH)/h; <!-- AnalysisType.h -->
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+        $(NEWWELLSCHEME_BASE);
+          $(COMMONWELLSCHEME_BASE);
+        $(FW-OPENGLFRAME_BASE); <!-- IOpenGLFrame.h -->  
+        $(DIANACORE_BASE); <!-- IDCAnalysisLogger.h --><!-- BaseModel -->
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+          $(GEOMECSTRINGTABLE_BASE);
+      <!-- others -->
+      $(GEOMECMODEL_PATH)/HexaModel/h;
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(QUTIL_BASE);
+      $(UTIL_BASE); <!-- SafeQueue.h -->
+      $(DIANASTARTUP_BASE)
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+      <!-- FIXME -->
+      $(GEOMECSHELL_BASE); <!-- InterfaceContext.h for CDianaRunWorkFlow -->
+    </TESTSTESTLIB>
+
+    <TESTSMODELOPERATIONS>
+      $(TESTSMODELOPERATIONS_BASE);
+      $(GTEST_BASE);
+      $(TESTSTESTLIB_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(FW-TENSOR_BASE);
+      <!-- GeomecModel --><!-- h -->
+      $(GEOMECMODEL_PATH)/h; <!-- AnalysisType.h -->
+        $(GEOMEC_PATH); <!-- resourceIDI.h --><!-- FIXME !!!!! -->
+        $(CONSOLELIBRARY_BASE);
+        $(FEMAPPMODEL_BASE); <!-- StorageNode.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+          $(FW-OPENGLFRAME_BASE); <!-- IOpenGLFrame.h -->  
+        $(DIANACORE_BASE);
+        $(NEWWELLSCHEME_BASE);
+          $(COMMONWELLSCHEME_BASE);
+      <!-- BaseModel -->
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(MATLIB_BASE);
+        $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+          $(GEOMECSTRINGTABLE_BASE);
+        $(GEOMECMODEL_PATH)/MaterialCreator/h;
+          $(TBBDIR)/include;
+       $(GEOMECMODEL_PATH)/visitor/h; 
+       $(GEOMECMODEL_PATH)/Material/h;
+    <!-- diana  --> <!-- to use CDianaRunWorkFlow that depends on CDianaRunController -->
+    $(GEOMECMODEL_PATH)/diana/h;
+      <!-- others -->
+	  $(RGINTERFACE_BASE);
+      $(GEOMECMODEL_PATH)/Geology/h;
+        $(CUTSURFACEUTILMODEL_BASE);
+      $(GEOMECMODEL_PATH)/HexaModel/h;
+      $(GEOMECMODEL_PATH)/TetraModel/h;
+        $(GEOMECMODEL_PATH)/TetraModel/GoCad/h;
+        $(FW-TETMESH_BASE);
+          $(DIANA_GOCAD);
+      <!-- LIBS -->
+       $(MESHDATACACHER_BASE);
+	   $(GMSKUACONNECTOR_BASE);
+	   $(GEOMECRGILIB_BASE)
+    $(DIANASTARTUP_BASE);
+    $(DIANAGLUE_BASE); <!-- DinaRunner.h -->
+    <!-- EXTERN -->
+      $(DIANA);
+      $(QUTIL_BASE); <!-- Printer.h -> logs -->
+        $(UTIL_BASE);
+	  $(QTINCLUDES);
+    </TESTSMODELOPERATIONS>
+
+    <XMLLIB>
+      $(XMLLIB_BASE);
+      $(QTINCLUDES);
+    </XMLLIB>
+
+    <WINDOWSREGISTRY>
+      $(WINDOWSREGISTRY_BASE);
+      $(QUTIL_BASE);
+      $(QTINCLUDES);
+    </WINDOWSREGISTRY>
+
+    <WIXPOSTINSTALLCHANGELOG>
+      $(QUTIL_BASE);
+      $(UTIL_BASE);
+      $(QTINCLUDES);
+    </WIXPOSTINSTALLCHANGELOG>
+
+    <WIXPOSTINSTALL>
+      $(GEOMEC_VERSION);
+    </WIXPOSTINSTALL>
+
+    <MPKERNELAPP>
+      $(MPKERNEL_BASE);
+      $(GEOMECMODEL_PATH)/h;
+      <!-- EXTERN -->
+      $(TBBDIR)/include;
+      $(DIANA);
+      $(QTINCLUDES);
+      $(QUTIL_BASE); <!-- IProgressBase.h --><!-- Progress_.h, CProgressCancel -->
+    </MPKERNELAPP>
+
+    <MPKERNEL>
+      $(MPKERNEL_BASE);
+      $(GEOMECMODEL_PATH)/h;
+      <!-- EXTERN -->
+      $(TBBDIR)/include;
+      $(DIANA);
+      $(QTINCLUDES);
+    </MPKERNEL>
+    <!--
+    <OPENINVENTOR>
+      $(OPENINVENTOR_BASE); 
+      $(OIVHOME)/include;     
+    </OPENINVENTOR>
+    -->
+    <OPENINVENTORDATAINTERFACE>
+      $(OPENINVENTORDATAINTERFACE_BASE);      
+      <!-- FW51 -->
+      $(FW-GEOMETRY_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      <!-- GeomecModel -->
+      $(GEOMECMODEL_PATH)/Value/h;
+        $(QUANTITY_BASE);
+        $(GEOMECSTRINGTABLE_BASE);
+        $(FW-TENSOR_BASE);
+        $(WELLSCHEME_BASE);
+        $(GEOMECMODEL_PATH)/WellZoomInModel/h;
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+      $(GEOMECMODEL_PATH)/HexaModel/h;
+      $(GEOMECMODEL_PATH)/h;
+        $(FW-MODELFRAME_BASE);
+        $(MATLIB_BASE);
+        $(GEOMECMODEL_PATH)/Geology/h;
+        $(GEOMECMODEL_PATH)/Material/h;
+        $(CONSOLELIBRARY_BASE);
+        $(GMROOT); <!-- resourceIDI.h -->
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      <!-- LIBS -->
+      $(FEMAPPMODEL_BASE);
+        $(DIANACORE_BASE);
+        $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+          $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(NEWWELLSCHEME_BASE);
+      $(MPKERNEL_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(OIVHOME)/include;
+      $(TBBDIR)/include;
+      $(DIANA);
+      $(QTINCLUDES);
+    </OPENINVENTORDATAINTERFACE>
+
+    <GEOMEC>
+      $(GEOMEC_BASE);
+      $(GEOMECMODEL_BASE);
+
+      $(MODGMBUS_BASE);
+      $(DIANAGLUE_BASE);
+
+      $(MFCMODELFRAME_BASE);
+      $(MFCGUIFRAME_BASE);
+
+      <!-- FW51 -->
+      $(FW-GEOMETRY_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-FIELDVALUEFILE_BASE);
+      $(FW-TENSOR_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-TETMESH_BASE);
+      $(FW-GUIFRAME);
+      $(FW-TRIANGLE);
+
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+      $(DIANA_GOCAD);
+      $(DIANA_GC51);
+      $(OIVHOME)\include;
+      $(TBBDIR)/include;
+      $(QTINCLUDES);
+
+      $(FEMAPPMODEL_BASE);
+      $(FEMAPPGUI_BASE);
+      
+      $(CUTSURFACEUTILMODEL_BASE);
+      $(CUTSURFACEUTIL_BASE);
+      
+      $(MATLIB_BASE);
+      $(MATLIBXML_BASE);
+
+      $(COMMONWELLSCHEME_BASE);
+      $(WELLSCHEME_BASE);
+      $(WELLSCENE3D_BASE);
+      $(NEWWELLSCHEME_BASE);
+      $(WELLSCHEMEUTILS_BASE);
+
+      $(QUANTITY_BASE);
+      $(DCASING_BASE);
+      $(MESHDATACACHER_BASE);
+      $(DIANASIGNALS_BASE);
+      $(GEOMECSTRINGTABLE_BASE);
+      $(MPKERNEL_BASE);
+      $(RPN_BASE);
+      $(DOUBLEEDITLIB_BASE);
+      
+      $(DIANASTARTUP_BASE);
+      $(DIANACORE_BASE);
+      $(TSMESH_BASE);
+      $(GMDATABASE_BASE);
+      
+      $(HDF5_BASE);
+      $(BLOSC_BASE);
+      $(BLOSCFILTER_BASE);
+      
+      $(CONSOLELIBRARY_BASE);
+      $(QTIOCOMPRESSOR_BASE);
+      $(ZLIB_BASE);
+      $(QTWINMIGRATE_BASE);
+      $(RESCUE_BASE);
+      $(OPENINVENTORDATAINTERFACE_BASE);
+
+      <!-- $(GEOMECCORA_BASE); --><!-- $(GEOMECRGI_BASE); --><!-- $(GEOMECSHELL_BASE); --><!-- $(GEOMECCORALIB_BASE); --><!-- $(GEOMECRGILIB_BASE); -->
+	  
+	  $(GMSKUACONNECTOR_BASE)
+
+      $(RGINTERFACE_BASE);
+      
+      $(WINDOWSREGISTRY_BASE);
+      $(XMLLIB_BASE);
+
+      <!-- IT -->
+      $(PYLIB_BASE);
+      $(QUTIL_BASE);
+      $(UTIL_BASE);
+      $(PLUGINS_BASE);
+      $(IT_BASE);
+
+    </GEOMEC>
+
+    <IT>
+      $(IT_BASE);
+      $(PLUGINS_BASE);
+      $(PYLIB_BASE);
+      $(QUTIL_BASE); <!-- Printer.h --><!-- EXTERN -->
+      $(UTIL_BASE); <!-- SafeQueue.h -->
+      $(PYTHONROOT)\include; <!-- Python.h -->
+      $(PYTHONROOT)\Lib\site-packages\numpy\core\include; <!-- numpy -->
+      $(TBBDIR)/include;
+      <!-- TO BE FIXED -->
+      $(GEOMEC_IT); <!-- FIXME !!!!! -->
+      $(QTDIR)/include;
+      $(QTDIR)/include/QtCore;
+    </IT>
+
+    <PLUGINS>
+      $(PLUGINS_BASE);
+      $(IT_BASE);
+      $(QUTIL_BASE);
+      $(UTIL_BASE); <!-- SafeQueue -->
+      $(PYLIB_BASE);
+      $(TBBDIR)/include;
+      $(QTINCLUDES);
+      $(PYTHONROOT)\include; <!-- Python.h -->
+      $(PYTHONROOT)\Lib\site-packages\numpy\core\include; <!-- numpy -->
+      $(GEOMECMODEL_PATH)/h; <!-- GeomecUtils.h -->
+    </PLUGINS>
+
+    <PYLIB>
+      $(PYLIB_BASE);
+      $(QUTIL_BASE);
+      $(PYTHONROOT)\include; <!-- Python.h --><!-- Referenced in PyInc.h -->
+      $(PYTHONROOT)\Lib\site-packages\numpy\core\include; <!-- numpy -->
+      $(QTDIR)/include;
+      $(QTDIR)/include/QtCore;
+    </PYLIB>
+
+    <QUTIL>
+      $(QUTIL_BASE);
+      $(UTIL_BASE);
+      $(QTINCLUDES);
+      $(GEOMEC_VERSION);
+      $(BOOST_DIR); <!-- Printer_MP_BOOST -->
+    </QUTIL>
+
+    <UTIL>
+      $(UTIL_BASE);
+    </UTIL>
+
+    <GMSKUACONNECTOR>
+      $(GMSKUACONNECTOR_BASE)
+      $(TBBDIR)/include
+    </GMSKUACONNECTOR>
+
+    <RGINTERFACE>
+      $(RGINTERFACE_BASE);
+      $(RESCUE_BASE);
+    </RGINTERFACE>
+
+    <GEOMECSHELL>
+      $(GEOMECSHELL_BASE);
+      $(GEOMECCORALIB_BASE);
+      $(GEOMECRGILIB_BASE);
+        $(RGINTERFACE_BASE);
+        $(DIANAGLUE_BASE);
+      $(DIANASTARTUP_BASE); <!-- DianaEnv.h -->
+      <!-- GeomecModel -->
+      $(GEOMECMODEL_BASE);
+        $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+        $(FW-MODELFRAME_BASE); <!-- StreamVersion.h -->
+        $(GEOMECSTRINGTABLE_BASE);
+        $(NEWWELLSCHEME_BASE);
+          $(COMMONWELLSCHEME_BASE);
+        $(WELLSCHEME_BASE);
+        $(FW-TENSOR_BASE);
+        $(MATLIB_BASE);
+        $(CONSOLELIBRARY_BASE);
+        $(TBBDIR)/include;
+        $(CUTSURFACEUTILMODEL_BASE);
+      <!-- Geomec -->
+      $(GEOMEC_PATH);
+      $(GEOMEC_VERSION); <!-- version.h --><!-- LIBS -->
+      $(FEMAPPMODEL_BASE); <!-- AnalysisLogger.h -->
+        $(DIANACORE_BASE);
+        $(FW-OPENGLFRAME_BASE);
+        $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+          $(FW-GUIFRAME); <!-- Guicommand.h -->
+		$(FW-TETMESH)
+      $(PYLIB_BASE);
+      $(PYTHONROOT)\include; <!-- Python.h -->
+      $(PYTHONROOT)\Lib\site-packages\numpy\core\include; <!-- numpy -->
+      $(MESHDATACACHER_BASE);
+    $(GMSKUACONNECTOR_BASE);
+      $(QUTIL); <!-- Printer.h -->
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+    <!-- $(UTIL); --><!-- SafeQueue.h -->
+    </GEOMECSHELL>
+
+    <GEOMECCORAWRAPPER>
+      $(GEOMECCORAWRAPPER_BASE);
+    </GEOMECCORAWRAPPER>
+    
+    <GEOMECCORA>
+      $(GEOMECCORA_BASE);
+      $(DIANAGLUE_BASE);
+      $(DIANASTARTUP_BASE); <!-- DianaEnv.h -->
+      $(GEOMECCORALIB_BASE);
+      $(GEOMEC_PATH);
+      $(GEOMEC_VERSION); <!-- version.h --><!-- GeomecModel -->
+      $(GEOMECMODEL_PATH)/h; <!-- VersionNumbers.h -->
+        $(FEMAPPMODEL_BASE); <!-- AnalysisLogger.h -->
+          $(DIANACORE_BASE);
+          $(FW-OPENGLFRAME_BASE);
+        $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+          $(FW-GUIFRAME); <!-- Guicommand.h -->
+        $(NEWWELLSCHEME_BASE);
+      $(GEOMECMODEL_PATH)/BaseModel/h;  <!-- ValidateModel.h -->
+        $(FW-MODELFRAME_BASE); <!-- StreamVersion.h -->
+        $(MATLIB_BASE);
+        $(CONSOLELIBRARY_BASE);
+        $(GEOMECMODEL_PATH)/Geology/h;
+        $(GEOMECMODEL_PATH)/Material/h;
+          $(TBBDIR)/include;
+      $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+        $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+        $(GEOMECSTRINGTABLE_BASE);
+        $(FW-TENSOR_BASE);
+        $(WELLSCHEME_BASE);
+        $(GEOMECMODEL_PATH)/WellZoomInModel/h; <!-- WellCasingModel.h -->
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+    </GEOMECCORA>
+    <GEOMECRGI>
+      $(GEOMECRGI_BASE);
+      $(DIANAGLUE_BASE);
+      $(DIANASTARTUP_BASE); <!-- DianaEnv.h -->
+      $(GEOMECRGILIB_BASE);
+        $(DCASING_BASE); <!-- DCasingDefines.h -->
+        $(GEOMEC_PATH);
+        $(GEOMEC_VERSION); <!-- version.h --><!-- GeomecModel -->
+      $(FEMAPPMODEL_BASE); <!-- AnalysisLogger.h -->
+        $(DIANACORE_BASE);
+        $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+          $(FW-GUIFRAME); <!-- Guicommand.h -->
+        $(FW-OPENGLFRAME_BASE);
+      $(GEOMECMODEL_PATH)/h;
+        $(NEWWELLSCHEME_BASE);
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(FW-MODELFRAME_BASE); <!-- StreamVersion.h -->
+        $(GEOMECMODEL_PATH)/Value/h; <!-- ElementSet.h -->
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+          $(GEOMECSTRINGTABLE_BASE);
+          $(FW-TENSOR_BASE);
+          $(WELLSCHEME_BASE);
+          $(GEOMECMODEL_PATH)/WellZoomInModel/h; <!-- WellCasingModel.h -->
+        $(GEOMECMODEL_PATH)/Geology/h;
+          $(CUTSURFACEUTILMODEL_BASE);
+        $(MATLIB_BASE);
+        $(GEOMECMODEL_PATH)/Material/h;
+          $(TBBDIR)/include;
+      $(GEOMECMODEL_PATH)/TetraModel/GoCad/h; <!-- GoCadModel.h --><!-- GocadData.h -> CSurface !! -->
+        $(GEOMECMODEL_PATH)/TetraModel/h;
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(QUTIL_BASE); <!-- Printer.h, logs --><!-- LIBS -->
+      $(RGINTERFACE_BASE);
+      $(CONSOLELIBRARY_BASE);
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+    </GEOMECRGI>
+    <GEOMECCORALIB>
+      $(GEOMECCORALIB_BASE);
+      $(DIANAGLUE_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(FW-MODELFRAME_BASE);
+      <!-- GeomecModel (+dependencies) -->
+      $(GEOMECMODEL_PATH);
+      $(GEOMECMODEL_PATH)/h;
+        $(GEOMECMODEL_PATH)/HexaModel/h;
+        $(GEOMECMODEL_PATH)/TetraModel/h;
+          $(GEOMECMODEL_PATH)/TetraModel/GoCad/h;
+          $(FW-TETMESH_BASE);
+            $(DIANA_GOCAD);
+        $(GEOMECMODEL_PATH)/Geology/h;
+          $(CUTSURFACEUTILMODEL_BASE);
+      $(GEOMECMODEL_PATH)/MaterialCreator/h;
+        $(MATLIB_BASE);
+      $(GEOMECMODEL_PATH)/Value/h;
+        $(FW-TENSOR_BASE);
+        $(GMROOT); <!-- resourceIDS.h -->
+        $(GEOMECMODEL_PATH)/WellZoomInModel/h;
+        $(WELLSCHEME_BASE); <!-- WellPoint.h -->
+      $(GEOMECMODEL_PATH)/BaseModel/h;
+        $(NEWWELLSCHEME_BASE);
+          $(COMMONWELLSCHEME_BASE);
+        $(CONSOLELIBRARY_BASE);
+      $(GEOMECMODEL_PATH)/Material/h;
+      $(GEOMECMODEL_PATH)/visitor/h;
+      $(GEOMECMODEL_PATH)/observer/h;
+      $(GEOMECMODEL_PATH)/diana/h;
+      <!-- LIBS -->  
+      $(FEMAPPMODEL_BASE);
+        $(FW-OPENGLFRAME_BASE); 
+        $(MFCMODELFRAME_BASE);
+          $(FW-GUIFRAME);
+        $(DIANACORE_BASE);
+      $(QUANTITY_BASE);
+      $(GEOMECSTRINGTABLE_BASE);
+      $(QUTIL_BASE); <!-- Printer.h -> logs --><!-- EXTERN -->  
+      $(UTIL_BASE); <!-- SafeQueue.h -->
+      $(QTINCLUDES);
+      $(DIANA);
+      $(TBBDIR)/include;
+      <!-- $(DIANASTARTUP_BASE);--> <!-- dsu->dsa() -->
+    </GEOMECCORALIB>
+    <GEOMECRGILIB>
+      $(GEOMECRGILIB_BASE);
+      $(DIANAGLUE_BASE);
+      $(DCASING_BASE);
+      $(FW-GEOMETRY_BASE); <!-- BodyTriangle.h --><!-- 'geo::CSurface' -> needs to be set NOT before 'GeomecModel' (CSurface) but before DIANA_GOCAD that also has a 'Surface.h' -->
+      $(FW-TETMESH_BASE);
+        $(DIANA_GOCAD); <!-- TAKE CARE !!!! It also has a 'Surface.h' as in FW-GEOMETRY -->
+      $(GEOMECMODEL_BASE);
+        $(CONSOLELIBRARY_BASE);
+        <!-- Geology -->
+          $(CUTSURFACEUTILMODEL_BASE);
+        <!-- Value -->
+          $(MATLIB_BASE); 
+          $(WELLSCHEME_BASE);
+          $(FW-TENSOR_BASE);
+          $(GEOMECSTRINGTABLE_BASE);
+          $(GMROOT); <!-- resourceIDS.h -->
+          $(QUANTITY_BASE); <!-- SingleQuantity.h  --><!-- BaseModel -->
+          $(DIANACORE_BASE); 
+       <!-- headers -->
+          $(NEWWELLSCHEME_BASE);
+          $(FW-MODELFRAME_BASE);
+            $(DIANA);
+        $(FEMAPPMODEL_BASE); <!-- BaseModel -> StorageNode.h / value -> ivaluecomposite.h -->
+          $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+            $(FW-GUIFRAME); <!-- Guicommand.h -->
+          $(FW-OPENGLFRAME_BASE); <!-- IOpenGLFrame.h -->
+	  $(RPN_BASE)
+      $(RGINTERFACE_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(TBBDIR)/include;
+      $(UTIL_BASE); <!-- SafeQueue.h -->
+      <!-- $(DIANASTARTUP_BASE); --> <!-- dsu->dsa() -->
+    </GEOMECRGILIB>
+    <RPN>
+      $(RPN_BASE);
+      $(FEMAPPMODEL_BASE); <!-- ivaluecomponent.h -->
+        $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+          $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(QUANTITY_BASE); <!-- SingleQuantity.h  -->
+      $(FW-OPENGLFRAME_BASE); <!-- ISymbol.h -->
+      $(FW-MODELFRAME_BASE); <!-- StreamVersion.h -->
+      $(GEOMECSTRINGTABLE_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+    </RPN>
+    <RESCUE>
+      $(RESCUE_BASE);
+      <!-- $(OIVPATH); --><!-- not needed --></RESCUE>
+    <QTWINMIGRATE>
+      $(QTWINMIGRATE_BASE);
+      $(QTINCLUDES);
+    </QTWINMIGRATE>
+    <QTIOCOMPRESSOR>
+     $(QTIOCOMPRESSOR_BASE);
+     $(ZLIB_BASE);
+     $(QTINCLUDES);
+    </QTIOCOMPRESSOR>
+    <MFCGUIFRAME>
+      $(MFCGUIFRAME_BASE);
+      $(QTINCLUDES); <!-- QT -->
+      $(GMROOT); <!-- resourceIDI.h --><!-- Geomec --><!-- LIBS -->
+      $(GEOMECSTRINGTABLE_BASE);
+      $(MFCMODELFRAME_BASE);
+      $(FEMAPPMODEL_BASE);
+      $(FEMAPPGUI_BASE);
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE);
+      $(FW-GUIFRAME);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(DIANA);
+    </MFCGUIFRAME>
+    <!-- MCR 2018-10-16: MANY MANY MANY DEPENDENCIES, THIS NEEDS TO BE REFACTORED !!!! -->
+    <FEMAPPGUI>
+      $(FEMAPPGUI_BASE);
+      $(FEMAPPMODEL_BASE);
+      $(MFCMODELFRAME_BASE);
+      $(MFCGUIFRAME_BASE);
+      $(QUANTITY_BASE);
+      $(FW-GUIFRAME);
+      $(QTINCLUDES);
+
+      $(DIANAGLUE_BASE);
+      
+      $(DIANACORE_BASE);
+        $(FW-TENSOR_BASE); <!-- dependency introduced by DIANACORE -->
+      
+      $(GMROOT)/dlg/h; 
+      $(GMROOT); <!-- resource.h -->
+      $(GMROOT)/GUI/h;
+      $(GMROOT)/View/h;
+      $(GMROOT)/h; <!-- GeomecDoc.h -->
+      
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-MODELFRAME_BASE);
+      
+      $(DIANASIGNALS_BASE);
+      
+      $(GEOMECMODEL_PATH)/h; <!-- GeomecDianaRunner.h -->
+        $(GEOMECMODEL_PATH)/TetraModel/h; <!-- dependency introduced by GeomecDianaRunner.h -->
+      $(GEOMECMODEL_PATH)/diana/h;
+      $(GEOMECMODEL_PATH)/visitor/h;
+      
+      $(GEOMECMODEL_PATH)/BaseModel/h; <!-- Introduced by includes in 'TetraModel/h' -->
+        $(GEOMECMODEL_PATH)/Value/h; <!-- Introduced by includes in 'BaseModel/h' -->
+          $(GEOMECSTRINGTABLE_BASE); <!-- Introduced by includes in 'Value/h' -->
+      
+      $(NEWWELLSCHEME_BASE); <!-- introduced by $(GEOMECMODEL_PATH)/h --><!-- introduced by $(GMROOT)/View/inc; -->
+        $(OPENINVENTORDATAINTERFACE_BASE); 
+        $(GMROOT)/observer/h;
+      <!-- introduced by $(GMROOT)/observer/inc; -->
+        $(GMROOT)/delegate/h;
+      $(QUTIL_BASE); <!-- Interprocess.h from GeomecDoc.h -->
+        $(UTIL_BASE);
+    </FEMAPPGUI>
+    <CUTSURFACEUTILMODEL>
+      $(CUTSURFACEUTILMODEL_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-TRIANGLE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </CUTSURFACEUTILMODEL>
+    <MATLIB>
+      $(MATLIB_BASE);
+      $(QTINCLUDES);
+    </MATLIB>
+    <MATLIBXML>
+      $(MATLIBXML_BASE);
+      $(MATLIB_BASE);
+      $(QTINCLUDES);
+    </MATLIBXML>
+    <QUANTITY>
+      $(QUANTITY_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </QUANTITY>
+    <DCASING>
+      $(DCASING_BASE);
+      $(QUANTITY_BASE);
+      $(DIANASTARTUP_BASE);
+      $(GEOMECMODEL_PATH)/h; 
+      $(DIANASIGNALS_BASE);
+      $(QUTIL_BASE); <!-- Interprocess.h from GeomecDoc.h -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </DCASING>
+    <COMMONWELLSCHEME>
+      $(COMMONWELLSCHEME_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </COMMONWELLSCHEME>
+    <WELLSCHEME>
+      $(WELLSCHEME_BASE);
+      $(COMMONWELLSCHEME_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(FW-MODELFRAME_BASE); <!-- DocumentBase.h -->
+      $(FW-FIELDVALUEFILE_BASE); <!-- FvTextFile.h -->
+      $(QUANTITY_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </WELLSCHEME>
+    <MESHDATACACHER>
+      $(MESHDATACACHER_BASE);
+      $(CONSOLELIBRARY_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(DIANA);
+      $(QTINCLUDES);
+      $(TBBDIR)/include; <!-- FIXME -->
+      $(QUTIL_BASE);
+    </MESHDATACACHER>
+    <DIANASIGNALS>
+      $(DIANASIGNALS_BASE);
+      $(DCASING_BASE);
+      $(QTINCLUDES);
+    </DIANASIGNALS>
+    <FEMAPPMODEL>
+      $(FEMAPPMODEL_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(GEOMECSTRINGTABLE_BASE);
+      $(QUANTITY_BASE);
+      $(MFCMODELFRAME_BASE);
+      $(DIANACORE_BASE);
+      $(GEOMECMODEL_BASE);
+      $(QTIOCOMPRESSOR_BASE);
+      $(HDF5_BASE);
+      $(BLOSCFILTER_BASE);
+      $(BLOSC_BASE);
+      $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </FEMAPPMODEL>
+    <DOUBLEEDITLIB>
+      $(DOUBLEEDITLIB_BASE);
+      $(QUANTITY_BASE);
+      $(QTINCLUDES);
+      $(QUTIL_BASE);
+    </DOUBLEEDITLIB>
+    <CUTSURFACEUTIL>
+      $(CUTSURFACEUTIL_BASE);
+      $(CUTSURFACEUTILMODEL_BASE);
+      $(MFCGUIFRAME_BASE);
+      $(QUANTITY_BASE);
+      $(DOUBLEEDITLIB_BASE);
+      $(QTINCLUDES);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(DIANA);
+      $(QUTIL_BASE);
+    </CUTSURFACEUTIL>
+    <DIANASTARTUP>
+      $(DIANASTARTUP_BASE);
+      $(MODGMBUS_BASE);
+      $(QUTIL_BASE);
+      $(UTIL_BASE); <!-- SafeQueue -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </DIANASTARTUP>
+    <DIANACORE>
+      $(DIANACORE_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(FW-TENSOR_BASE)
+      $(QUTIL_BASE);
+      $(DIANA);
+      $(QTINCLUDES);
+    </DIANACORE>
+    <TSMESH>
+      $(TSMESH_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(QTINCLUDES);
+      $(DIANA);
+    </TSMESH>
+    <WELLSCENE3D>
+      $(WELLSCENE3D_BASE);
+      $(WELLSCHEME_BASE);
+      $(COMMONWELLSCHEME_BASE);
+      $(QUANTITY_BASE);
+      $(FW-GEOMETRY_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(DIANA);
+      $(QTINCLUDES);
+    </WELLSCENE3D>
+    <NEWWELLSCHEME>
+      $(NEWWELLSCHEME_BASE);
+      $(WELLSCHEME_BASE);
+      $(COMMONWELLSCHEME_BASE)
+      $(QUANTITY_BASE);
+      <!-- FW51 -->
+      $(FW-GEOMETRY_BASE);
+      $(FW-MODELFRAME_BASE);
+      $(FW-FIELDVALUEFILE_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </NEWWELLSCHEME>
+    <GMDATABASE>
+      $(GMDATABASE_BASE)
+      <!-- FW51 -->
+      $(FW-GEOMETRY_BASE);
+      $(QUTIL_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+    </GMDATABASE>
+    <WELLSCHEMEUTILS>
+      <!-- FW51 -->
+      $(FW-MODELFRAME_BASE); <!-- DocumentBase.h -->
+      $(FW-GEOMETRY_BASE); 
+      $(FW-OPENGLFRAME_BASE);
+      <!-- WELLS -->
+      $(WELLSCHEMEUTILS_BASE);
+      $(NEWWELLSCHEME_BASE);
+      $(WELLSCHEME_BASE);
+      $(WELLSCENE3D_BASE);
+      $(COMMONWELLSCHEME_BASE); <!-- WellScheme introduces this depoendency --><!-- LIBS -->
+      $(CUTSURFACEUTIL_BASE);
+      $(QUANTITY_BASE);
+      $(MFCGUIFRAME_BASE);
+      $(DOUBLEEDITLIB_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+      $(QUTIL_BASE);
+    </WELLSCHEMEUTILS>
+    <BLOSCSHARED>
+      $(BLOSCSHARED_BASE);
+    </BLOSCSHARED>
+    <BLOSCFILTER>
+      $(BLOSCFILTER_BASE);
+      $(BLOSC_BASE);
+      $(HDF5_BASE);
+      $(DIANA_GOCAD);
+      $(OIVPATH);
+    </BLOSCFILTER>
+    <CONSOLELIBRARY>
+      $(CONSOLELIBRARY_BASE);
+      <!-- LIBS -->
+      $(FEMAPPMODEL_BASE);
+      $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+      $(GEOMECSTRINGTABLE_BASE);
+      $(QUANTITY_BASE);
+      $(NEWWELLSCHEME_BASE); <!-- NewWellPoint.h -->
+      $(GEOMECMODEL_BASE); <!-- FIXME: why this dependency -->
+      $(QUTIL_BASE);
+      <!-- FW51 -->
+      $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(FW-OPENGLFRAME_BASE); <!-- ISymbol.h --><!-- EXTERN -->
+      $(QTINCLUDES);
+    </CONSOLELIBRARY>
+    <GEOMECSTRINGTABLE>
+      $(GEOMECSTRINGTABLE_BASE);
+      $(GMROOT);
+      $(QTINCLUDES);
+    </GEOMECSTRINGTABLE>
+    <GEOMECMODEL>
+      $(GEOMECMODEL_BASE);
+      $(GMROOT); <!-- Geomec!!! resource.h (and other resource headers) -->
+      $(GEOMEC_VERSION);  <!-- version.h --><!-- FW51 -->
+      $(FW-GEOMETRY_BASE);       
+      $(FW-MODELFRAME_BASE);    
+      $(FW-FIELDVALUEFILE_BASE);
+      $(FW-TENSOR_BASE);
+      $(FW-OPENGLFRAME_BASE);
+      $(FW-GUIFRAME); <!-- Guicommand.h -->
+      $(FW-TETMESH_BASE);
+      $(FW-TRIANGLE_BASE);
+      <!-- LIBS -->
+      $(MATLIB_BASE);
+      $(QUANTITY_BASE);
+      $(NEWWELLSCHEME_BASE);
+      $(WELLSCHEME_BASE);
+      $(WELLSCENE3D_BASE);
+      $(COMMONWELLSCHEME_BASE);
+      $(CONSOLELIBRARY_BASE);
+      $(GEOMECSTRINGTABLE_BASE);
+      $(GMSKUACONNECTOR_BASE);
+      $(DCASING_BASE);
+      $(MESHDATACACHER_BASE);
+      $(DIANASIGNALS_BASE);
+      $(MPKERNEL_BASE);
+      $(RPN_BASE);
+      $(TSMESH_BASE);
+      $(FEMAPPMODEL_BASE);
+      $(CUTSURFACEUTIL_BASE);
+      $(DIANACORE_BASE);
+      $(DIANASTARTUP_BASE);
+      $(MFCMODELFRAME_BASE); <!-- ICommand.h -->
+      $(CUTSURFACEUTILMODEL_BASE);
+      $(MATLIBXML_BASE);
+      $(UTIL_BASE); <!-- SafeQueue, Interface -->
+      $(QUTIL_BASE); <!-- Printer -->
+      $(DIANAGLUE_BASE);
+      <!-- EXTERN -->
+      $(QTINCLUDES);
+      $(DIANA);
+      $(OIVPATH);
+      $(TBBDIR)/include;
+      $(DIANA_GOCAD); <!-- FIXME: Must go after FW-Geometry, both have Surface.h -->
+      $(DIANA_GC51);
+    </GEOMECMODEL>
+    
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////// LIBS GROUPS //////////////////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    
+    <!-- LIBS INCLUDES (Start) -->
+
+    <!-- ///////////////////////////////////////////////////// BASE ///////////////////////////////////////////////////// -->
+
+    <BOOST_LIBS_D>$(BOOST_DIR)\lib64-msvc-14.0</BOOST_LIBS_D>
+    <TBB_LIBS_D>$(TBBDIR)/lib/intel64/vc14</TBB_LIBS_D>
+    <FLEX_LIBS_D>$(FLEXLM)/../lib64</FLEX_LIBS_D>
+    <HDF5_LIBS_D>$(DEVELOP)/lib/hdf5/windows/lib</HDF5_LIBS_D>
+
+    <DIALIB>$(DIAROOT)/$(Configuration)/lib</DIALIB> <!-- FIXME -->
+    <DIALIB_RWD>$(DIAROOT)/release/lib</DIALIB_RWD> <!-- RWD: release with debug -->
+
+    <!-- ///////////////////////////////////////////////////// LIBS ///////////////////////////////////////////////////// -->
+
+    <DIANA_LIBS>
+      $(LIBLBCX);
+      $(LIBLBEL);
+      $(LIBLBFL);
+      $(LIBLBCI);
+      $(LIBLBDC);
+      $(LIBLBDS);
+      $(LIBLBGS);
+      $(LIBLBCP);
+      $(LIBLBGCCLASSES);
+      $(LIBLBGCROUTINES);
+      $(CM2LIBS);
+    </DIANA_LIBS>
+
+    <HDF5_LIBS>
+      libhdf5.lib;
+      libhdf5_cpp.lib;
+    </HDF5_LIBS>
+
+    <HDF5_LIBS_DEBUG>
+      libhdf5_D.lib;
+      libhdf5_cpp_D.lib;
+    </HDF5_LIBS_DEBUG>
+
+    <TESTSTESTS_LIBS>
+      Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;
+      qwt.lib;
+      $(DIANA_LIBS);
+      glu32.lib;
+      opengl32.lib;
+      psapi.lib;
+      HtmlHelp.lib;
+      Rpcrt4.lib;
+      $(HDF5_LIBS);
+      Shlwapi.lib;
+      User32.lib;
+    </TESTSTESTS_LIBS>
+
+    <TESTSTESTS_LIBS_DEBUG>
+      Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;
+      qwt.lib;
+      $(DIANA_LIBS);
+      glu32.lib;
+      opengl32.lib;
+      psapi.lib;
+      HtmlHelp.lib;
+      Rpcrt4.lib;
+      $(HDF5_LIBS_DEBUG);
+      Shlwapi.lib;
+      User32.lib;
+    </TESTSTESTS_LIBS_DEBUG>
+
+    <GM_DIANA_APP_LIBS>
+      Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5OpenGL.lib;
+      shlwapi.lib;
+      Shell32.lib;
+      User32.lib;
+      $(LIBLBFL);$(LIBLBCP);$(LIBLBDC);$(LIBLBCX);$(LIBLBDS);$(LIBLBCI);$(LIBLBEL);$(LIBLBGS);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);
+      $(CM2LIBS)
+    </GM_DIANA_APP_LIBS>
+
+    <GM_DIANA_APP_LIBS_DEBUG>
+      Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5OpenGLd.lib;
+      shlwapi.lib;
+      Shell32.lib;
+      User32.lib;
+      $(LIBLBFL);$(LIBLBCP);$(LIBLBDC);$(LIBLBCX);$(LIBLBDS);$(LIBLBCI);$(LIBLBEL);$(LIBLBGS);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);
+      $(CM2LIBS)
+    </GM_DIANA_APP_LIBS_DEBUG>
+
+    <!-- ///////////////////////////////////////////////////// DIRS ///////////////////////////////////////////////////// -->
+
+    <DIANA_LIBS_D>
+      $(DIALIB);
+      $(DIALIB)/ci;
+      $(DIALIB)/lib;
+      $(CM2LIBPATH);
+   </DIANA_LIBS_D>
+
+    <DIANA_LIBS_RWD_D> <!-- RWD: release with debug -->
+      $(DIALIB_RWD);
+      $(DIALIB_RWD)/ci;
+      $(DIALIB_RWD)/lib;
+      $(CM2LIBPATH);
+   </DIANA_LIBS_RWD_D>
+
+    <GM_DIANA_APP_LIBS_D>
+      $(DIANA_LIBS_D);
+      $(QTDIR)/lib;
+      $(QWTDIR)/lib;
+      $(FLEX_LIBS_D);
+      $(TBB_LIBS_D);
+      $(BOOST_LIBS_D);
+    </GM_DIANA_APP_LIBS_D>
+
+    <GM_DIANA_APP_LIBS_RWD_D>
+      $(DIANA_LIBS_RWD_D);
+      $(QTDIR)/lib;
+      $(QWTDIR)/lib;
+      $(FLEX_LIBS_D);
+      $(TBB_LIBS_D);
+      $(BOOST_LIBS_D);
+    </GM_DIANA_APP_LIBS_RWD_D>
+
+    <TESTSTESTS_LIBS_D>
+      $(QTDIR)/lib;
+      $(DIAROOT)/release/lib; <!-- HARD CODED TO 'release' !!!!!! -->
+      $(QWTDIR)/lib;
+      $(FLEX_LIBS_D);
+      $(CM2LIBPATH);
+      $(HDF5_LIBS_D);
+      $(TBB_LIBS_D);
+      $(BOOST_LIBS_D);
+    </TESTSTESTS_LIBS_D>
+
+
+    <!-- ORIGINAL
+
+    DEBUG:
+    Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;$(LIBLBCX);glu32.lib;opengl32.lib;$(LIBLBEL);$(LIBLBFL);$(LIBLBCI);$(LIBLBDC);$(LIBLBDS);$(LIBLBGS);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);qwtd.lib;psapi.lib;HtmlHelp.lib;Rpcrt4.lib;
+    libhdf5_D.lib;libhdf5_cpp_D.lib;
+    %(AdditionalDependencies)
+
+    RELEASE:
+     Qt5Core.lib;Qt5Gui.lib;Qt5Xml.lib;$(LIBLBCX);glu32.lib;opengl32.lib;$(LIBLBEL);$(LIBLBFL);$(LIBLBCI);$(LIBLBDC);$(LIBLBDS);$(LIBLBGS);$(LIBLBCP);$(LIBLBGCCLASSES);$(LIBLBGCROUTINES);qwt.lib;psapi.lib;HtmlHelp.lib;Rpcrt4.lib;libhdf5.lib;libhdf5_cpp.lib;$(CM2LIBS);%(AdditionalDependencies)
+
+      $(QTDIR)/lib;$(DIAOBJ);$(QWTDIR)/lib;../../geomec3/FlexLM/lib64;$(CM2LIBPATH);%(AdditionalLibraryDirectories)
+    -->
+    <!--  LIBS INCLUDES (End) -->
+    <!-- TODO -->
+    <LBINCLUDES>
+      $(LBROOT)/QUtil/h;
+      $(LBROOT)/Plugins/h;
+      $(LBROOT)/IT/h;
+      $(LBROOT)/2DWellViewLib;
+      $(LBROOT)/ConsoleLibrary;
+      $(LBROOT)/CutSurfaceUtil;
+      $(LBROOT)/CutSurfaceUtil/h;
+      $(LBROOT)/CutSurfaceUtilModel/h;
+      $(LBROOT)/DCasingLib/DCasing/h;
+      $(LBROOT)/DianaCore;
+      $(LBROOT)/DianaCore/Loads/src;
+      $(LBROOT)/DianaCore/src;
+      $(LBROOT)/DianaSignals/h;
+      $(LBROOT)/DoubleEditLib;
+      $(LBROOT)/FemAppGUI/h;
+      $(LBROOT)/FemAppModel/h;
+      <!-- GeomecModel -->
+      $(LBROOT)/GeomecModel/CLI/h;
+      $(LBROOT)/GeomecModel/Geology/h;
+      $(LBROOT)/GeomecModel/GVT/h;
+      $(LBROOT)/GeomecModel/h;
+      $(LBROOT)/GeomecModel/HexaModel/h;
+      $(LBROOT)/GeomecModel/Material/h;
+      <!-- $(LBROOT)/GeomecModel/RGInterface; -->
+      $(LBROOT)/GeomecModel/TetraModel/h;
+      $(LBROOT)/GeomecModel/TetraModel/Eclipse/h;
+      $(LBROOT)/GeomecModel/TetraModel/GoCad/h;
+      $(LBROOT)/GeomecModel/Value/h;
+      $(LBROOT)/GeomecModel/View/h;
+      $(LBROOT)/GeomecModel/WellPath/h;
+      $(LBROOT)/GeomecModel/WellZoomInModel/h;
+      $(LBROOT)/GeomecModel/Zoomin/h;
+
+      $(LBROOT)/GeomecStringTable/h;
+      $(LBROOT)/GlobalMessage/h;
+      $(LBROOT)/GmDatabase/h;
+	  $(LBROOT)/GMSkuaConnector/h;
+      $(LBROOT)/MaterialLibrary/h;
+      $(LBROOT)/MaterialLibraryXML/h;
+      $(LBROOT)/MeshDataCacher/h;
+      $(LBROOT)/MfcGuiFrame/h;
+      $(LBROOT)/MfcModelFrame/h;
+      $(LBROOT)/NewWellScheme/h;
+      $(LBROOT)/DianaStartUp/h;
+      $(LBROOT)/Quantity/h;
+      $(LBROOT)/Quantity/h;
+      $(LBROOT)/RESCUE;
+      $(LBROOT)/RGInterface/h;
+      $(LBROOT)/RPN/h;
+      
+      $(TSMESH_BASE);
+      
+      $(LBROOT)/WellScene3D/h;
+      $(LBROOT)/CommonWellScheme;
+      $(LBROOT)/WellScheme/h;
+      $(LBROOT)/WellSchemeUtils/h;
+      $(LBROOT)/WindowsRegistry;
+      $(LBROOT)/XMLLib;
+      $(LBROOT)/qtiocompressor/h;
+      $(LBROOT)/qtwinmigrate/h;
+      $(LBROOT)/zlib-1.2.6;
+      $(LBROOT)/geomec_rgi_library;
+      $(LBROOT)/geomec_cora_library;
+      $(LBROOT)/OpenInventorDataInterface/h;
+    </LBINCLUDES>
+    <!-- TODO -->
+    <FWINCLUDES>
+      $(FWROOT)/FieldValueFile/include;
+      
+      $(FWROOT)/Geometry/Base;
+      $(FWROOT)/Geometry/Element;
+      $(FWROOT)/Geometry/include;
+      
+      $(FWROOT)/GuiFrame/include;
+      
+      $(FWROOT)/ModelFrame/include;
+      
+      $(FWROOT)/OpenGLFrame/Base;
+      $(FWROOT)/OpenGLFrame/include;
+      
+      $(FWROOT)/Tensor/include;
+      
+      $(FWROOT)/TetMesh/include;
+      $(FWROOT)/TetMesh/tet_src;
+      
+      $(FWROOT)/Triangle/Base;
+      $(FWROOT)/Triangle/Triangle;
+      $(FWROOT)/Triangle/include
+    </FWINCLUDES>
+    <!-- TODO -->
+    <FWCOMPATINCLUDES>
+      $(FWDIR)/FieldValueFile/include;
+      
+      $(FWDIR)/Geometry/Base;
+      $(FWDIR)/Geometry/Element;
+      $(FWDIR)/Geometry/include;
+      
+      $(FWDIR)/GuiFrame/include;
+      
+      $(FWDIR)/ModelFrame/include;
+      
+      $(FWDIR)/OpenGLFrame/Base;
+      $(FWDIR)/OpenGLFrame/include;
+      
+      $(FWDIR)/Tensor/include;
+      $(FWDIR)/TetMesh/include;
+      $(FWDIR)/TetMesh/tet_src;
+      
+      $(FWDIR)/Triangle/Base;
+      $(FWDIR)/Triangle/Triangle;
+      $(FWDIR)/Triangle/include
+    </FWCOMPATINCLUDES>
+    <ALLINCLUDES>.;$(FWINCLUDES);$(GMINCLUDES);$(LBINCLUDES);$(DIASRCINCLUDE);$(DIAOBJINCLUDE);$(DIAOBJ)/fl44;$(QTINCLUDES)</ALLINCLUDES>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_WIN32;WIN32;WIN64;_WINDOWS;_MFC_VER;QT4;QT_DLL;QT_THREAD_SUPPORT;_CRT_SECURE_NO_WARNINGS;NO_WARN_MBCS_MFC_DEPRECATION;SKUA_NEW;$(BuildType);$(BuildLicenseOption);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(BuildExtraCompileOptions) %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level4</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4100;4127;4131;4189;4251;4505;4706;4714;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Lib>
+      <AdditionalOptions>$(BuildExtraLibOptions) %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <Link>
+      <AdditionalOptions>$(BuildExtraLinkOptions) %(AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ResourceCompile>
+      <Culture>0x0809</Culture>
+      <PreprocessorDefinitions>_WIN32;WIN32;WIN64;_WINDOWS;_MFC_VER;QT4;QT_DLL;QT_THREAD_SUPPORT;_CRT_SECURE_NO_WARNINGS;$(BuildType);$(BuildLicenseOption);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GMINCLUDES">
+      <Value>$(GMINCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LBINCLUDES">
+      <Value>$(LBINCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FWINCLUDES">
+      <Value>$(FWINCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FWCOMPATINCLUDES">
+      <Value>$(FWCOMPATINCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="QTINCLUDES">
+      <Value>$(QTINCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ALLINCLUDES">
+      <Value>$(ALLINCLUDES)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,60 @@
+'$include 'Recorder.inc'
+'$include '..\TestSuite.inc'
+
+
+' DIM statements, TYPE declarations, global variables,
+' constants, and so on for test case
+'-------------------------------------------------------------------
+
+
+' *************************
+' **** BEGIN TEST CASE ****
+' *************************
+
+'******* Test Case INITIALIZATION/SETUP *********
+Viewport Clear
+
+StartLog("Shearwater_Build.new","Shearwater_Build")
+
+
+
+'******* SCENARIO SECTION ***********************
+
+'*** Scenario 1:
+Scenario ("Shearwater_Build")
+StartScenario("Shearwater_Build")
+	StartApp
+	NewModel("Horizon")
+	' Read horizons
+	FILELIST CLEAR
+	FILELIST ADD CurDir$ + "\Horizons\*.txt"
+	FOR TestFile$ IN FILELIST SORTED BY NAME
+		Import(GetPathName(TestFile), GetFileName(TestFile))
+		CreateHorizonFromSurface(GetFileNameNoExt(TestFile))
+	NEXT
+		
+	' Read Pressures
+	FILELIST CLEAR
+	FILELIST ADD CurDir$ + "\Pressures\*.txt"
+	FOR TestFile$ IN FILELIST SORTED BY NAME
+		Import(GetPathName(TestFile), GetFileName(TestFile))
+	NEXT
+
+	DumpModel(curdir$ + "\shear.dump")
+	if compare(curdir$ + "\shear.dump",curdir$ + "\shearwater.dump") <> 0 then
+		fail "The model is not built correctly according to the dump."
+	endif
+
+ScenarioPass		
+Scenario Cleanup 'and handling of scenario failure
+	ExitNoSave
+End Scenario
+
+
+EndLog
+
+
+End
+
+
+

@@ -1,0 +1,15 @@
+The set of input forms grouped under Formations allows you to define 
+the topology and the mechanical properties of the drill site.
+ 
+Use the form Formation Definition to define the topography of the 
+formations at the drill site. This form includes:
+- the range of the model, i.e. region of interest
+- the vertical position of the formations
+- the names of the formations
+ 
+Use the form Insitu Stresses to define the state of insitu stresses 
+in each of the formations
+ 
+Use the form Formation Properties to attach material properties to 
+each of the formations
+ 

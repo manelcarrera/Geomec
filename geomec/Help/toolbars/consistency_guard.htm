@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio">
+<TITLE>Consistency Guard</TITLE>
+</HEAD>
+<BODY>
+
+<h2>Consistency Guard</h2>
+
+<p>The concistency guard gives feedback about the consistency of the model, and can take automatic actions to ensure consistency.</p>
+
+<table>
+    <tr><td><img src="cg_unknown.png" /></td><td>The model is in an unknown state. Checking will be done shortly, or can be forced by clicking on the icon.</td></tr>
+    <tr><td><img src="cg_ok.png"/></td><td>The model is consistent and ready to be calculated.</td></tr>
+    <tr><td><img src="cg_messy.png" /></td><td>The model contains unnecessary items, but can be calculated.</td></tr>
+    <tr><td><img src="cg_invalid.png" /></td><td>The model is either inconsistent, or cannot be calculated yet.</td></tr>
+    <tr><td><img src="cg_broken.png" /></td><td>The guard prevented unexpected actions that would make the model inconsistent.</td></tr>
+</table>
+
+<p>By clicking on these icons, a dialog pops up with two tabs. The left is identical to <a href="../menus/analysis/analysis_calculation_criteria.htm">Calculation Criteria</a>. In the right tab, automatic actions taken by the guard can be turned on or off:</p>
+
+<ul>
+    <li><em>Automatically clear results of child models.</em>
+    <br/>When results are invalidated or when new results are available, the related results in child models are also invalidated.</li>
+    <li><em>Automatically copy wellpaths to all applicable models.</em>
+    <br/>This ensures that if a wellpath is present at a geographic location, it is present in all models that contain that location.</li>
+    <li><em>On failed hull creation, move pointset to a different dimension.</em>
+    <br/>Currently this only pertains to 3D pointsets: if the creation of the convex hull fails, the pointset is moved to the wellpath section and a cylindrical hull is generated.</li>
+    <li><em>Automatically export results according to macro settings.</em>
+    <br/>If an export result macro is turned on for automatic export, then the macro is executed for the last calculation.</li>
+</ul>
+
+<p>Currently the only action that is prevented by the Consistency Guard is deleting results in a parent model of the current child model. When this has happened a third tab appears on the right, showing information about this error.</p>
+<p>By pressing "Clear errors" you can reset the status to unknown, and continue with your model. You are advised not to do this, and contact support instead.</p>
+
+</BODY>
+</HTML>

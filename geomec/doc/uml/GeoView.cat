@@ -1,0 +1,45 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "GeoView"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2E0FDF03C1"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object UseCase "Change View Item Analysis Type"
+	    quid       	"3A2E08E90184")
+	(object UseCase "Change View Item Depletion Stage"
+	    quid       	"3A2E08780182")
+	(object UseCase "Change View Item Gradient"
+	    quid       	"3A2E083800E9")
+	(object UseCase "Change View Item Result Type"
+	    quid       	"3A2E0621034D")
+	(object UseCase "Make it the Current View"
+	    quid       	"3A2E4DCA016B")
+	(object Class_Category "Bird Eye"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Bird Eye.cat"
+	    quid       	"3A23D04802C5")
+	(object Class_Category "Graph"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Graph.cat"
+	    quid       	"3A23D05302DF")
+	(object Class_Category "Planar"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Planar.cat"
+	    quid       	"3A23D00E028F"))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Component Id="Component_Diana_lib" Guid="$(var.ComponentID_Diana_lib)" Win64="yes">
+    <File Id="SCHEMA" Source="$(var.DIAPATH)\lib\SCHEMA" KeyPath="yes" />
+    <File Id="SCHEMA.bin" Source="$(var.DIAPATH)\lib\SCHEMA.bin" />
+    <File Id="ElmTypes.dat" Source="$(var.DIAPATH)\lib\ElmTypes.dat" />
+  </Component>
+</Include>

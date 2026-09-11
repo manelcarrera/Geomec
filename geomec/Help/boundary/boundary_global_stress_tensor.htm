@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Global stress tensor</title>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="applied stress change">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="global stress tensor">
+</OBJECT>
+<h1>Global stress tensor</h1>
+
+<p>The applied stress changes on the boundary faces of the model can be
+specified through a single global stress tensor.</p>
+<p>To specify a global stress tensor, open the &quot;Boundary&quot; tree node,
+and right-click its subnode &quot;Boundary Conditions&quot;. A context sensitive
+menu appears with the option &quot;Global stress tensor&quot;. Click the option,
+and the Global Stress Tensor dialog appears.</p>
+<p>By default, the stress tensor is &quot;Undefined&quot;. If this is the case, the
+options that use this tensor will not available. If the stress tensor was defined, and
+its state is set to &quot;Undefined&quot;, all options that refer to the tensor
+are switched back to their defaults.</p>
+<p>A stress tensor can be specified in two ways:</p>
+<ul>
+  <li>General</li>
+</ul>
+<blockquote>
+  <p>The Full Stress tensor is specified in terms of NN, EE, DD, NE, ND and ED
+	<span style="color: black">(including shear components)</span>.</p>
+</blockquote>
+<ul>
+  <li>Vertical</li>
+</ul>
+<blockquote>
+  <p>Set the Half Stress tensor, <span style="color: black">assuming one 
+	principal stress is vertical. </span>This options allows only rotation in the NE plane. The azimuth is the angle
+  between the Northing axis and the Maximum horizontal direction. A positive
+  rotation is towards the Easting axis.</p>
+</blockquote>
+<p>If a stress tensor is specified in one way it will automatically converted to the
+other if the selection changes. If the selection changes from
+&quot;General&quot; to &quot;Vertical&quot; and the tensor contains shear
+terms in the vertical directions, these are set to zero.</p>
+
+<p><span style="font-size: 12.0pt; font-family: Times New Roman; color: black">
+The stress tensor needs to be set manually for each Depletion stage (drop down 
+menu at the top).</span></p>
+
+<p>See <a href="boundary_tensor_specification.htm">Specifying stress 
+boundary conditions</a> for more help on stress boundary conditions.</p>
+
+</body>
+
+</html>

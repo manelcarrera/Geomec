@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Excel file format</title>
+</head>
+
+<body>
+<h2><a name="_Toc48442880"><span style="mso-ansi-language:EN-GB">The Excel file
+format</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Excel files can be
+used to describe:<o:p>
+</o:p>
+</span></p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l20 level1 lfo30;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-GB"><a href="point_set_file.htm">Pointset files</a>
+    </o:p>
+    </span></li>
+  <li class="MsoNormal" style="mso-list:l20 level1 lfo30;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-GB"><a href="element_set_file.htm">Elementset files</a><o:p>
+    </o:p>
+    </span></li>
+</ul>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB"><o:p></o:p>The excel format is defined similarly
+to the <a href="ascii.htm">ASCII file format.</a><o:p></o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language: EN-GB">Note that GEOMEC can
+only read or write Excel files if Excel is installed on the system.</span></p>
+
+<p class="MsoNormal">&nbsp;</p>
+<h2>Excel well file format</h2>
+<p><font face="Arial" size="2">The Excel or ASCII well format is very similar to 
+a pointset input. The input requires a pointset with Northing, Easting and Depth 
+from top to bottom (i.e. no random order). The well name is picked from the file 
+name (and in Excel the TAB name). The well data need to be followed with an END 
+statement in EXCEL. Multiple wells can be inserted this way on multiple TABs. 
+Northing and Easting may be switched in order.</font></p>
+<p><font face="Arial" size="2">A column with AHD (along hole depth) or TMD (true 
+measured depth) may be present but will be ignored. Geomec calculates the AHD 
+itself and adds a column when results are being exported on a well. Presently 
+the AHD in the first point is always zero. In future releases the offset AHD can 
+be set by the user, since the supplied top point may not be the well head 
+location.</font></p>
+<p><font face="Arial" size="2">Unit and SI (or Field) need to be in different 
+cells (Excel) or separated by a {tab} (not a space) in Txt files.&nbsp; </font></p>
+<p><font face="Arial" size="2">The file format is:&nbsp;&nbsp;&nbsp; {...} =optional</font> </p>
+<p><font face="Arial" size="2">POINTSET</font> <br>
+<font face="Arial" size="2">UNIT&nbsp;&nbsp;&nbsp;&nbsp; SI&nbsp; (or UNIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELD)</font> <br>
+<font face="Arial" size="2">Easting Northing DEPTH&nbsp;&nbsp; {AHD }</font> <br>
+<font face="Arial" size="2">40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -200&nbsp;&nbsp;&nbsp; {0}</font> <br>
+<font face="Arial" size="2">65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -150&nbsp;&nbsp;&nbsp; {56.78908346}</font> <br>
+<font face="Arial" size="2">90&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -100&nbsp;&nbsp;&nbsp; {113.5781669}</font> <br>
+<font face="Arial" size="2">........</font> <br>
+<font face="Arial" size="2">END</font> </p>
+
+</body>
+
+</html>

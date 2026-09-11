@@ -1,0 +1,542 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Support Classes"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A07D0C80180"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CCmdUI"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C8018B"
+	    documentation 	
+|The CCmdUI class is used only within an ON_UPDATE_COMMAND_UI handler in a CCmdTarget-derived class.
+|
+|When a user of your application pulls down a menu, each menu item needs to know whether it should be displayed as enabled or disabled. The target of a menu command provides this information by implementing an ON_UPDATE_COMMAND_UI handler. 
+|
+|When the menu is pulled down, the framework searches for and calls each ON_UPDATE_COMMAND_UI handler, each handler calls CCmdUI member functions such as Enable and Check, and the framework then appropriately displays each menu item.
+	    
+	    operations 	(list Operations
+		(object Operation "Enable"
+		    quid       	"3A07D0C801D0"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bOn"
+			    quid       	"3A07D0C801DA"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetCheck"
+		    quid       	"3A07D0C801E4"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCheck"
+			    quid       	"3A07D0C801EF"
+			    type       	"int"
+			    initv      	"1"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetRadio"
+		    quid       	"3A07D0C801F9"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bOn"
+			    quid       	"3A07D0C801FA"
+			    type       	"BOOL"
+			    initv      	"TRUE"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetText"
+		    quid       	"3A07D0C80204"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszText"
+			    quid       	"3A07D0C8020D"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleCmdUI"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdocob.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C80221"
+	    documentation 	
+|The COleCmdUI class implements a method for MFC to update the state of user-interface objects related to the IOleCommandTarget-driven features of your application. In an application that is enabled for DocObjects, MFC processes UPDATE_OLE_COMMAND_UI notifications and assigns COleCmdUI objects.
+|
+|COleCmdUI allows a DocObject to receive commands that originate in its container's user interface (such as FileNew, Open, Print, and so on), and allows a container to receive commands that originate in the DocObject's user interface. 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A07D0C8025D"
+		    supplier   	"Logical View::MFC 6.0::Non-CObject Classes::Support Classes::CCmdUI"
+		    quidu      	"3A07D0C8018B"))
+	    operations 	(list Operations
+		(object Operation "Enable"
+		    quid       	"3A07D0C80267"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "bOn"
+			    quid       	"3A07D0C80268"
+			    type       	"BOOL"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetCheck"
+		    quid       	"3A07D0C80272"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nCheck"
+			    quid       	"3A07D0C8027B"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SetText"
+		    quid       	"3A07D0C80286"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpszText"
+			    quid       	"3A07D0C8028F"
+			    type       	"LPCTSTR"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DoUpdate"
+		    quid       	"3A07D0C80299"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "pTarget"
+			    quid       	"3A07D0C802A3"
+			    type       	"CCmdTarget*")
+			(object Parameter "bDisableIfNoHandler"
+			    quid       	"3A07D0C802A4"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDaoFieldExchange"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdao.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C802B7"
+	    documentation 	"The CDaoFieldExchange class supports the DAO record field exchange (DFX) routines used by the DAO database classes. Use this class if you are writing data exchange routines for custom data types; otherwise, you will not directly use this class. DFX exchanges data between the field data members of your CDaoRecordset object and the corresponding fields of the current record on the data source. DFX manages the exchange in both directions, from the data source and to the data source. "
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CDataExchange"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C802FD"
+	    documentation 	"The CDataExchange class supports the dialog data exchange (DDX) and dialog data validation (DDV) routines used by the Microsoft Foundation classes. Use this class if you are writing data exchange routines for custom data types or controls, or if you are writing your own data validation routines.")
+	(object Class "CDBVariant"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C80343"
+	    documentation 	"A CDBVariant object represents a variant data type for the MFC ODBC classes. CDBVariant is similar to COleVariant; however, CDBVariant does not use OLE. CDBVariant allows you to store a value without worrying about the value's data type. CDBVariant tracks the data type of the current value, which is stored in a union."
+	    operations 	(list Operations
+		(object Operation "~CDBVariant"
+		    quid       	"3A07D0C80389"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CFieldExchange"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdb.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"NoDefConstr"
+		    value      	"True")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C80393"
+	    documentation 	"The CFieldExchange class supports the record field exchange (RFX) and bulk record field exchange (Bulk RFX) routines used by the database classes. Use this class if you are writing data exchange routines for custom data types or when you are implementing bulk row fetching; otherwise, you will not directly use this class. RFX and Bulk RFX exchanges data between the field data members of your recordset object and the corresponding fields of the current record on the data source."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDataObject"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxole.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C803D9"
+	    documentation 	
+|The COleDataObject class is used in data transfers for retrieving data in various formats from the Clipboard, through drag and drop, or from an embedded OLE item. 
+|
+|This class enables you to determine whether the data exists in a specified format. You can also enumerate the available data formats or check whether a given format is available and then retrieve the data in the preferred format. Object retrieval can be accomplished in several different ways, including the use of a CFile, an HGLOBAL, or an STGMEDIUM structure.
+	    
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "COleDispatchDriver"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxdisp.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C90041"
+	    documentation 	"The COleDispatchDriver class implements the client side of OLE automation. OLE dispatch interfaces provide access to an object's methods and properties. Member functions of COleDispatchDriver attach, detach, create, and release a dispatch connection of type IDispatch. Other member functions use variable argument lists to simplify calling IDispatch::Invoke."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CPropExchange"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxctl.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C90087"
+	    documentation 	
+|CPropExchange establishes the context and direction of a property exchange.
+|
+|The CPropExchange class supports the implementation of persistence for your OLE controls. Persistence is the exchange of the control's state information, usually represented by its properties, between the control itself and a medium.
+|
+|The framework constructs an object derived from CPropExchange when it is notified that an OLE control's properties are to be loaded from or stored to persistent storage.
+	    
+	    operations 	(list Operations
+		(object Operation "ExchangeVersion"
+		    quid       	"3A07D0C900CE"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "dwVersionLoaded"
+			    quid       	"3A07D0C900D8"
+			    type       	"DWORD&")
+			(object Parameter "dwVersionDefault"
+			    quid       	"3A07D0C900D9"
+			    type       	"DWORD")
+			(object Parameter "bConvert"
+			    quid       	"3A07D0C900E2"
+			    type       	"BOOL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExchangeProp"
+		    quid       	"3A07D0C900ED"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pszPropName"
+			    quid       	"3A07D0C900F6"
+			    type       	"LPCTSTR")
+			(object Parameter "vtProp"
+			    quid       	"3A07D0C900F7"
+			    type       	"VARTYPE")
+			(object Parameter "pvProp"
+			    quid       	"3A07D0C90100"
+			    type       	"void*")
+			(object Parameter "pvDefault"
+			    quid       	"3A07D0C9010A"
+			    type       	"const void*"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExchangeBlobProp"
+		    quid       	"3A07D0C90114"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pszPropName"
+			    quid       	"3A07D0C90115"
+			    type       	"LPCTSTR")
+			(object Parameter "phBlob"
+			    quid       	"3A07D0C9011E"
+			    type       	"HGLOBAL*")
+			(object Parameter "hBlobDefault"
+			    quid       	"3A07D0C90128"
+			    type       	"HGLOBAL"
+			    initv      	"NULL"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExchangeFontProp"
+		    quid       	"3A07D0C90132"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pszPropName"
+			    quid       	"3A07D0C90133"
+			    type       	"LPCTSTR")
+			(object Parameter "font"
+			    quid       	"3A07D0C9013C"
+			    type       	"CFontHolder&")
+			(object Parameter "pFontDesc"
+			    quid       	"3A07D0C90146"
+			    type       	"const FONTDESC*")
+			(object Parameter "pFontDispAmbient"
+			    quid       	"3A07D0C90147"
+			    type       	"LPFONTDISP"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExchangePersistentProp"
+		    quid       	"3A07D0C90151"
+		    stereotype 	"abstract"
+		    parameters 	(list Parameters
+			(object Parameter "pszPropName"
+			    quid       	"3A07D0C9015A"
+			    type       	"LPCTSTR")
+			(object Parameter "ppUnk"
+			    quid       	"3A07D0C90164"
+			    type       	"LPUNKNOWN*")
+			(object Parameter "iid"
+			    quid       	"3A07D0C90165"
+			    type       	"REFIID")
+			(object Parameter "pUnkDefault"
+			    quid       	"3A07D0C9016E"
+			    type       	"LPUNKNOWN"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CRectTracker"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxext.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C90178"
+	    documentation 	
+|The CRectTracker class allows an item to be displayed, moved, and resized in different fashions. Although the CRectTracker class is designed to allow the user to interact with OLE items by using a graphical interface, its use is not restricted to OLE-enabled applications. It can be used anywhere such a user interface is required. 
+|
+|CRectTracker borders can be solid or dotted lines. The item can be given a hatched border or overlaid with a hatched pattern to indicate different states of the item. You can place eight resize handles on either the outside or the inside border of the item. Finally, a CRectTracker allows you to change the orientation of an item during resizing. 
+	    
+	    operations 	(list Operations
+		(object Operation "~CRectTracker"
+		    quid       	"3A07D0C901BE"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DrawTrackerRect"
+		    quid       	"3A07D0C901D2"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C901D3"
+			    type       	"LPCRECT")
+			(object Parameter "pWndClipTo"
+			    quid       	"3A07D0C901DC"
+			    type       	"CWnd*")
+			(object Parameter "pDC"
+			    quid       	"3A07D0C901DD"
+			    type       	"CDC*")
+			(object Parameter "pWnd"
+			    quid       	"3A07D0C901E6"
+			    type       	"CWnd*"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AdjustRect"
+		    quid       	"3A07D0C901F1"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "nHandle"
+			    quid       	"3A07D0C901FA"
+			    type       	"int")
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C901FB"
+			    type       	"LPRECT"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "OnChangedRect"
+		    quid       	"3A07D0C90205"
+		    stereotype 	"virtual"
+		    parameters 	(list Parameters
+			(object Parameter "rectOld"
+			    quid       	"3A07D0C9020E"
+			    type       	"const CRect&"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetHandleMask"
+		    quid       	"3A07D0C90219"
+		    stereotype 	"virtual, const"
+		    result     	"UINT"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetHandleSize"
+		    quid       	"3A07D0C9022C"
+		    stereotype 	"virtual, const"
+		    parameters 	(list Parameters
+			(object Parameter "lpRect"
+			    quid       	"3A07D0C9022D"
+			    type       	"LPCRECT"
+			    initv      	"NULL"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++")
+	(object Class "CWaitCursor"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"HeaderFile"
+		    value      	"<afxwin.h>")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxClassType"
+		    value      	"CItem"))
+	    quid       	"3A07D0C90240"
+	    documentation 	"The CWaitCursor class provides a one-line way to show a wait cursor, which is usually displayed as an hourglass, while you're doing a lengthy operation. Good Windows programming practices require that you display a wait cursor whenever you're performing an operation that takes a noticeable amount of time."
+	    module     	"Component View::MFC 6.0"
+	    quidu      	"3A07D0A101E8"
+	    language   	"VC++"))
+    logical_presentations 	(list unit_reference_list))

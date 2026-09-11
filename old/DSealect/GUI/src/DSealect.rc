@@ -1,0 +1,1907 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\DSealect.ico"
+IDR_DSEALETYPE          ICON                    "res\\DSealectDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(_WELLLIFE)
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+#endif
+#if defined(APSTUDIO_INVOKED) || defined(_WELLLIFE)
+#if defined(APSTUDIO_INVOKED)
+IDR_MAINFRAME$(_WELLLIFE) BITMAP                  "res\\mainfram.bmp"
+#else
+IDR_MAINFRAME           BITMAP                  "res\\mainfram.bmp"
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(_WELLLIFE)
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_APP_RUN
+    BUTTON      ID_APP_TOOLTIP
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(_WELLLIFE)
+#if defined(APSTUDIO_INVOKED)
+IDR_MAINFRAME$(_WELLLIFE) TOOLBAR  16, 15
+#else
+IDR_MAINFRAME TOOLBAR  16, 15
+#endif
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_APP_RUN
+    BUTTON      ID_APP_TOOLTIP
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(_WELLLIFE)
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Views"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Actions"
+    BEGIN
+        MENUITEM "&Formation Library",          ID_ACTIONS_FORMATIONLIBRARY
+        MENUITEM "C&ement Library",             ID_ACTIONS_CEMENTLIBRARY
+        MENUITEM "C&asing Library",             ID_ACTIONS_CASINGLIBRARY
+        MENUITEM SEPARATOR
+        MENUITEM "&Options",                    ID_ACTIONS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Contents",                   ID_HELP_INDEX
+        MENUITEM "&Index",                      ID_HELP_FINDER
+        MENUITEM "&About Wellbore Cement Integrity Model...", ID_APP_ABOUT
+    END
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(_WELLLIFE)
+#if defined(APSTUDIO_INVOKED)
+IDR_MAINFRAME$(_WELLLIFE) MENU 
+#else
+IDR_MAINFRAME MENU 
+#endif
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Views"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Actions"
+    BEGIN
+        MENUITEM "&Formation Library",          ID_ACTIONS_FORMATIONLIBRARY
+        MENUITEM "C&ement Library",             ID_ACTIONS_CEMENTLIBRARY
+        MENUITEM "C&asing Library",             ID_ACTIONS_CASINGLIBRARY
+        MENUITEM SEPARATOR
+        MENUITEM "&Options",                    ID_ACTIONS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Contents",                   ID_HELP_INDEX
+        MENUITEM "&Index",                      ID_HELP_FINDER
+        MENUITEM "&About WellLife...",          ID_APP_ABOUT
+    END
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_ACTIONS_FORMATIONLIBRARY, VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(_WELLLIFE)
+IDD_ABOUTBOX DIALOGEX 0, 0, 240, 113
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Wellbore Cement Integrity Model"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,7,21,20
+    LTEXT           "Version w.x.y.z",IDC_VERSION,38,15,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C)",IDC_COPYRIGHT,38,43,144,8
+    DEFPUSHBUTTON   "OK",IDOK,183,7,50,14,WS_GROUP
+    ICON            IDI_ICOTNO,IDC_STATIC,38,84,21,20
+    ICON            IDI_ICONShell,IDC_STATIC,7,84,21,20
+    LTEXT           "Shell Exploration && Production Technology Co.",IDC_STATIC,38,59,147,8
+END
+#endif
+
+IDD_Info DIALOGEX 0, 0, 199, 364
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+EXSTYLE WS_EX_CLIENTEDGE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
+
+IDD_DIALOGBAR_UNITS DIALOG  0, 0, 107, 18
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_UNITS,2,3,89,56,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+#if defined(APSTUDIO_INVOKED) || defined(_WELLLIFE)
+#if defined(APSTUDIO_INVOKED)
+IDD_ABOUTBOX$(_WELLLIFE) DIALOG  0, 0, 240, 132
+#else
+IDD_ABOUTBOX DIALOG  0, 0, 240, 132
+#endif
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About WellLife"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
+    LTEXT           "WellLife Version 1.2.1",IDC_STATIC,38,7,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2012\nHalliburton Energy Services\nShell Exploration && Production Technology Co.",IDC_STATIC,38,26,163,26
+    DEFPUSHBUTTON   "OK",IDOK,183,7,50,14,WS_GROUP
+    ICON            IDI_ICOHalliburton,IDC_STATIC,7,100,20,20
+    ICON            IDI_ICOTNO,IDC_STATIC,67,100,20,20
+    ICON            IDI_ICONShell,IDC_STATIC,38,100,20,20
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        VERTGUIDE, 38
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+        HORZGUIDE, 104
+    END
+
+    IDD_Info, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 357
+    END
+
+    IDD_DIALOGBAR_UNITS, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 91
+        TOPMARGIN, 3
+        HORZGUIDE, 15
+    END
+
+    "IDD_ABOUTBOX$(_WELLLIFE)", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        VERTGUIDE, 38
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 125
+        HORZGUIDE, 120
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_APP_TOOLTIP          "Activate Tooltip"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Dutch (Netherlands) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#ifdef _WIN32
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICGraphFolder       ICON                    "res\\Graph Folder.ico"
+IDI_ICWildFolder37      ICON                    "res\\Wild Folder 37.ico"
+IDI_ICAppsStop          ICON                    "res\\APPS Stop.ico"
+IDI_ICBeCardStack       ICON                    "res\\Be Card Stack.ico"
+IDI_ICBeEdit            ICON                    "res\\Be Edit.ico"
+IDI_ICBeGenericFile     ICON                    "res\\Be Generic File.ico"
+IDI_ICBeKaleidoscope    ICON                    "res\\Be Kaleidoscope.ico"
+IDI_ICRecycling         ICON                    "res\\Recycling.ico"
+IDI_ICBeMagnify         ICON                    "res\\Be Magnify.ico"
+IDI_ICBeScript          ICON                    "res\\Be Script.ico"
+IDI_ICBeBounce          ICON                    "res\\BeBounce.ico"
+IDI_ICCalculator3D      ICON                    "res\\Calculator 3D.ico"
+IDI_ICControlFolders    ICON                    "res\\Control Folders.ico"
+IDI_ICDropFolder        ICON                    "res\\Drop Folder.ico"
+IDI_ICExpand            ICON                    "res\\expand.ico"
+IDI_ICPurpleTabFolder   ICON                    "res\\Purple Tab Folder.ico"
+IDI_ICShadedReports     ICON                    "res\\Shaded Reports.ico"
+IDI_ICSphere            ICON                    "res\\Sphere.ico"
+IDI_ICStonedFolder      ICON                    "res\\Stoned Folder.ico"
+IDI_ICSunburst          ICON                    "res\\Sunburst.ico"
+IDI_ICTime              ICON                    "res\\Time.ico"
+IDI_ICTools             ICON                    "res\\Tools.ico"
+IDI_ICWeight            ICON                    "res\\Weight.ico"
+IDI_ICShadedUtilities   ICON                    "res\\Shaded Utilities.ico"
+IDI_ICTubeEmptyM        ICON                    "res\\Tube Empty_m.ico"
+IDI_ICShieldM           ICON                    "res\\Shield.ico"
+IDI_ICInkJet            ICON                    "res\\Ink Jet.ico"
+IDI_ICON_DISABLE        ICON                    "res\\disable.ico"
+IDI_ICON_ENABLE         ICON                    "res\\iconenable.ico"
+IDI_ICON1               ICON                    "res\\icon1.ico"
+IDI_DIANA               ICON                    "res\\diana.ico"
+IDI_ICOHalliburton      ICON                    "res\\HallIcon.ico"
+IDI_ICONShell           ICON                    "res\\ShellIcon.ico"
+IDI_ICOTNO              ICON                    "res\\TNOIcon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\Splash.bmp"
+IDB_SPLASH2             BITMAP                  "res\\splah2.bmp"
+IDB_BITMAP2             BITMAP                  "res\\bitmap2.bmp"
+IDB_BITMAP4             BITMAP                  "res\\bitmap4.bmp"
+IDB_SPLASHWELL          BITMAP                  "res\\splashwe.bmp"
+IDB_CASING_DEBONDING    BITMAP                  "res\\CasingDebonding.bmp"
+IDB_FORMATION_DEBONDING BITMAP                  "res\\FormationDebonding.bmp"
+IDB_SPLASH              BITMAP                  "res\\bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUPMENU_COPY MENU 
+BEGIN
+    POPUP "Copy"
+    BEGIN
+        MENUITEM "Copy",                        ID_POPUP_COPY
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FormationDefinition DIALOGEX 0, 0, 209, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Onshore definition",IDC_optOnshoreDefinition,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,26,84,10,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebMeanGroundLevel,110,39,45,12,ES_AUTOHSCROLL
+    CONTROL         "Offshore definition",IDC_optOffshoreDefinition,"Button",BS_AUTORADIOBUTTON,14,57,85,8,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebMeanSeaLevel,110,73,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebWaterDepth,110,87,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebOverburdenBottomTVD,109,116,45,12,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_lstFormationDefinition,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,18,188,173,98
+    PUSHBUTTON      "Add",IDC_btnAddFormation,18,293,50,14
+    PUSHBUTTON      "Remove",IDC_btnRemoveFormation,141,292,50,14,WS_DISABLED
+    GROUPBOX        "",IDC_fraOnshoreDefinition,7,27,195,28
+    GROUPBOX        "",IDC_fraOffShoreDefinition,7,58,195,43
+    LTEXT           "Substructure height",IDC_lbMeanGroundlevel,14,41,62,8
+    LTEXT           "Air gap",IDC_lbMeanSeaLevel,14,74,60,10
+    LTEXT           "Water depth",IDC_lbWaterDepth,14,87,60,10
+    LTEXT           "Overburden bottom TVD",IDC_lbOverburdenBottomTVD,13,116,86,10
+    LTEXT           "Model bottom TVD",IDC_lbModelBottomTVD,13,158,60,10
+    EDITTEXT        IDC_ebModelBottomTVD,109,158,45,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "[m]",IDC_lbUMeanGroundLevel,157,41,30,8
+    LTEXT           "[m]",IDC_lbUMeanSeaLevel,157,73,30,8
+    LTEXT           "[m]",IDC_lbUWaterDepth,157,87,30,8
+    LTEXT           "[m]",IDC_lbUOverburdenBottomTVD,157,116,30,8
+    LTEXT           "[m]",IDC_lbUModelBottomTVD,157,158,30,8
+    GROUPBOX        "Formation definition",IDC_fraFormationDefinition,7,177,195,133
+    GROUPBOX        "Model range",IDC_fraModelRange,7,105,195,68
+    LTEXT           "Model top TVD",IDC_lbModelTopTVD,13,142,60,10
+    EDITTEXT        IDC_ebModelTopTVD,109,143,45,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "[m]",IDC_lbUModelTopTVD,157,143,30,8
+    LTEXT           "Model range for analysis:",IDC_STATIC,13,130,91,10
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,7,20,20
+    LTEXT           "The reference point for true vertical depths (TVD) is taken as Rig Kelly Bush (RKB)",IDC_STATIC,37,7,150,20
+END
+
+IDD_InsituStresses DIALOGEX 0, 0, 210, 369
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_lstFormationName,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,135,196,67
+    EDITTEXT        IDC_ebSurfaceUndisturbedTemp,110,217,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebGeothermalGradient,110,232,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebAverageDensity,110,246,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebGeothermalGradientF,110,275,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebMaxHorizontalStressRatio,110,289,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebMinHorizontalStressRatio,110,303,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebAzimuthOfSHWithNorth,110,317,45,12,ES_AUTOHSCROLL
+    GROUPBOX        "Overburden",IDC_fraOverburden,7,208,196,53
+    LTEXT           "Surface undisturbed temp",IDC_lbSurfaceUndisturbedTemp,14,219,90,9
+    LTEXT           "Geothermal gradient",IDC_lbGeothermalGradient,14,232,76,10
+    LTEXT           "Average density",IDC_lbAverageDensity,14,246,90,10
+    LTEXT           "[C]",IDC_lbUSurfaceUndisturbedTemp,157,220,30,8
+    LTEXT           "[C/m]",IDC_lbUGeothermalGradient,157,234,30,8
+    LTEXT           "[kg/m3]",IDC_lbUAverageDensity,157,248,26,8
+    GROUPBOX        "Formation insitu stresses",IDC_fraFormationInsituStresses,7,265,196,97
+    LTEXT           "Geothermal gradient",IDC_lbGeothermalGradientF,14,275,72,9
+    LTEXT           "Max. horizontal stress ratio",IDC_lbMaxHorizontalStressRatio,14,289,83,10
+    LTEXT           "[C/m]",IDC_lbUGeothermalGradientF,157,275,30,8
+    LTEXT           "[-]",IDC_lbUMaxHorizontalStressRatio,157,289,30,8
+    LTEXT           "Min. horizontal stress ratio",IDC_lbMinHorizontalStressRatio,14,303,85,9
+    LTEXT           "Azimuth of Max.H.S with North",IDC_lbAzimuthOfShWithNorth,14,317,96,10
+    LTEXT           "[-]",IDC_lbUMinHorizontalStressRatio,157,303,30,8
+    LTEXT           "[degrees]",IDC_lbUAzimuthOfSHWithNorth,157,317,30,8
+    ICON            IDI_ICAppsStop,IDC_PICTURE,7,113,21,20,0,WS_EX_TRANSPARENT
+    LTEXT           "Select formation for entering / editing data",IDC_STATIC,38,119,136,8
+    EDITTEXT        IDC_ebPorePressAtFormationTop,110,331,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebPorePressFormationBottom,110,345,45,12,ES_AUTOHSCROLL
+    LTEXT           "Pore press. at formation top",IDC_lbPorePressAtFormationTop,14,331,87,9
+    LTEXT           "Pore press. formation bottom",IDC_lbPorePressFormationBottom,13,344,89,10
+    LTEXT           "[MPa]",IDC_lbUPorePressAtFormationTop,157,331,23,8
+    LTEXT           "[MPa]",IDC_lbUPorePressFormationBottom,157,345,23,8
+    PUSHBUTTON      "Import pore pressure profile",IDC_ButtonImportPressure,7,7,95,14
+    EDITTEXT        IDC_EditPressureFileName,7,23,159,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Remove",IDC_ButtonRemovePressure,171,23,32,14
+    PUSHBUTTON      "Import density profile",IDC_ButtonImportDensity,7,43,95,14
+    EDITTEXT        IDC_EditDensityFileName,7,59,159,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Remove",IDC_ButtonRemoveDensity,171,59,32,14
+    PUSHBUTTON      "Import temperature profile",IDC_ButtonImportTemperature,7,80,95,14
+    EDITTEXT        IDC_EditTemperatureFileName,7,96,159,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Remove",IDC_ButtonRemoveTemperature,171,96,32,14
+END
+
+IDD_FormationProperties DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,7,20,20
+    LTEXT           "Select formation to display/define material properties",IDC_STATIC,28,13,165,11
+    CONTROL         "List1",IDC_lstFormationMaterial,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,40,186,85
+    LTEXT           "No material specified. Enter new material or import from library!",IDC_Warning,69,290,62,37
+    CONTROL         "List2",IDC_lstFormationMaterialParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,132,186,155
+    PUSHBUTTON      "New",IDC_btnNew,7,291,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,7,309,50,14
+    PUSHBUTTON      "From library",IDC_btnFromLibrary,143,291,50,14
+    PUSHBUTTON      "To library",IDC_btnToLibrary,143,309,50,14
+END
+
+IDD_EditFormationMaterial DIALOGEX 0, 0, 214, 242
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Formation Material"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ebName,105,20,73,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebYoungsModulus,105,34,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebPoissonRatio,105,47,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebVolumetricSpecificHeat,105,60,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalConductivity,105,73,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalExpansion,105,86,45,12,ES_AUTOHSCROLL
+    CONTROL         "Plasticity",IDC_chkPlasticity,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,127,40,10,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebCohesion,105,142,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebFrictionAngle,105,156,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_cmbHardeningType,105,170,75,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_ebHardeningGradient,105,184,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebFractureEnergy,105,198,45,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDOK,13,215,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,149,215,50,14
+    GROUPBOX        "",IDC_fraEditFormationMaterial,7,7,200,229
+    LTEXT           "Name",IDC_lbName,21,22,72,9
+    LTEXT           "Young's modulus",IDC_lbYoungsModulus,21,34,83,10
+    LTEXT           "Poisson ratio",IDC_lbPoissonRatio,21,46,83,10
+    LTEXT           "[GPa]",IDC_lbUYoungsModulus,151,34,42,8
+    LTEXT           "[-]",IDC_lbUPoissonRatio,151,47,42,8
+    LTEXT           "Volumetric specific heat",IDC_lbVolumetricSpecificHeat,21,61,77,9
+    LTEXT           "Thermal conductivity",IDC_ThermalConductivity,21,72,66,8
+    LTEXT           "[MJ/m3.C]",IDC_lbUVolumetricSpecificHeat,151,61,42,8
+    LTEXT           "[W/m.C]",IDC_lbUThermalConductivity,151,74,42,8
+    LTEXT           "Cohesion",IDC_lbCohesion,21,143,70,9
+    LTEXT           "Friction angle",IDC_lbFrictionAngle,21,157,70,9
+    LTEXT           "[MPa]",IDC_lbUCohesion,151,142,42,8
+    LTEXT           "[degrees]",IDC_lbUFrictionAngle,151,156,42,8
+    GROUPBOX        "",IDC_fraPlasticity,13,128,186,84
+    LTEXT           "Thermal expansion",IDC_lbThermalExpansion,21,86,60,8
+    LTEXT           "[1/C]",IDC_lbUThermalExpansion,151,88,42,8
+    GROUPBOX        "Elasticity",IDC_fraElasticity,13,13,185,104
+    LTEXT           "Hardening type",IDC_lbHardeningType,21,171,70,9
+    LTEXT           "Hardening gradient",IDC_lbHardeningGradient,21,185,70,9
+    LTEXT           "[GPa]",IDC_lbUHardeningGradient,151,184,42,8
+    LTEXT           "Fracture energy",IDC_lbFractureEnergy,21,199,70,9
+    LTEXT           "[J/m2]",IDC_lbUFractureEnergy,151,198,42,8
+    EDITTEXT        IDC_ebDensity,105,99,45,12,ES_AUTOHSCROLL
+    LTEXT           "Density",IDC_lbDensity,21,99,24,8
+    LTEXT           "[kg/m3]",IDC_lbUDensity,151,101,42,8
+END
+
+IDD_FormationLibrary DIALOG  0, 0, 200, 327
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Formation Library"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,13,241,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,241,50,14
+    CONTROL         "List1",IDC_lstFormationLibrary,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,186,73
+    CONTROL         "List1",IDC_lstFormationLibraryParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,89,186,136
+    PUSHBUTTON      "New",IDC_btnNew,75,292,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,13,292,50,14
+    PUSHBUTTON      "Delete",IDC_btnDelete,135,292,50,14
+    GROUPBOX        "Direct library access",IDC_fraDirLibAccess,7,278,186,33
+    GROUPBOX        "",IDC_STATIC,7,230,186,47
+    PUSHBUTTON      "Help",IDC_btnHelp,135,258,50,14
+END
+
+IDD_DrillingOperation DIALOGEX 0, 0, 200, 358
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Well path definition",IDC_fraWellPathDefinition,7,7,186,88
+    CONTROL         "Vertical",IDC_OptVertical,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,23,39,10
+    CONTROL         "Deviated",IDC_OptDeviated,"Button",BS_AUTORADIOBUTTON,15,38,45,10
+    PUSHBUTTON      "Import Survey",IDC_ButtonImport,26,53,53,14,WS_GROUP
+    GROUPBOX        "Well geometry [const. radius over model range]",IDC_fraWellGeometry,7,100,186,28
+    LTEXT           "Borehole diameter",IDC_lbBoreholeDiameter,13,114,90,9
+    EDITTEXT        IDC_ebBoreholeDiameter,109,111,45,12,ES_AUTOHSCROLL
+    LTEXT           "[m]",IDC_lbUBoreholeDiameter,158,113,34,8
+    GROUPBOX        "Drilling fluid weight",IDC_fraDrillingFluidWeight,7,138,186,130
+    CONTROL         "Density definition",IDC_optDensityDefinition,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,151,124,11
+    CONTROL         "Pressure gradient definition",IDC_optStressGradientDefinition,
+                    "Button",BS_AUTORADIOBUTTON,13,162,101,11
+    LTEXT           "Mud density at surface",IDC_lbMudDensityAtSurface,13,175,90,9
+    EDITTEXT        IDC_ebMudDensityAtSurface,109,173,45,12,ES_AUTOHSCROLL
+    LTEXT           "[kg/m3]",IDC_lbUMudDensityAtSurface,157,175,34,8,NOT WS_GROUP
+    LTEXT           "Mud press grad. at surface",IDC_lbMudStressGradAtSurface,13,190,90,9,NOT WS_GROUP
+    EDITTEXT        IDC_ebMudStressGradAtSurface,109,188,45,12,ES_AUTOHSCROLL
+    LTEXT           "[kPa/m]",IDC_lbUMudStressGradAtSurface,157,191,34,8,NOT WS_GROUP
+    LTEXT           "Mud compressibility",IDC_lbMudCompressibility,14,207,76,10
+    EDITTEXT        IDC_ebMudCompressibility,110,207,45,12,ES_AUTOHSCROLL
+    LTEXT           "[1/MPa]",IDC_lbUMudCompressibility,157,210,34,8,NOT WS_GROUP
+    ICON            IDI_ICAppsStop,IDC_STATIC,15,233,21,20
+    LTEXT           "Consider here the lowest mud pressure seen by the borehole. This should be the most critical case for borehole stability.",IDC_STATIC,58,231,128,28
+    EDITTEXT        IDC_LabelFileName,26,71,159,14,ES_AUTOHSCROLL | ES_READONLY
+    ICON            IDI_ICAppsStop,IDC_ExclTrajectoryWarning,7,274,21,20
+    LTEXT           "The imported well trajectory does not run below the overburden.",IDC_LblTrajectoryWarning,37,277,156,16
+END
+
+IDD_CasingOperation DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ebPercentageEccentricity,110,15,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebGuideShoeDepth,110,31,45,12,ES_AUTOHSCROLL
+    CONTROL         "List2",IDC_lstCasingParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,55,186,110
+    PUSHBUTTON      "New",IDC_btnNew,7,173,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,7,191,50,14
+    PUSHBUTTON      "From library",IDC_btnFromLibrary,143,173,50,14
+    PUSHBUTTON      "To library",IDC_btnToLibrary,143,191,50,14
+    GROUPBOX        "Casing placement",IDC_fraCasingPlacement,7,7,186,40
+    LTEXT           "Percentage Eccentricity",IDC_lbPercentageEccentricity,14,18,90,9
+    LTEXT           "Guide shoe depth along hole",IDC_lbGuideShoeDepth,14,31,94,10
+    LTEXT           "[%]",IDC_lbUPercentageEccentricity,157,18,17,8
+    LTEXT           "[m]",IDC_lbUGuideShoeDepth,157,33,17,8
+    LTEXT           "No material specified. Enter new material or import from library!",IDC_Warning,71,172,62,37
+END
+
+IDD_EditCasingMaterial DIALOGEX 0, 0, 213, 266
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Casing Material"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ebCasingType,105,20,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebCasingOuterDiameter,105,34,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebCasingInnerDiameter,105,49,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebYoungsModulus,105,62,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebPoissonRatio,105,77,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebVolumetricSpecificHeat,105,90,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalConductivity,105,105,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalExpansion,105,119,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebWeightPerUnitLength,105,134,45,12,ES_AUTOHSCROLL
+    CONTROL         "Plasticity",IDC_chkPlasticity,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,150,41,8,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebYieldStrength,103,159,45,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,13,193,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,193,50,14
+    GROUPBOX        "Casing details",IDC_fraCasingDetails,7,7,199,206
+    LTEXT           "Casing type",IDC_lbCasingType,14,20,72,9
+    LTEXT           "Casing outer diameter",IDC_lbCasingOuterDiameter,14,34,83,10
+    LTEXT           "Casing inner diameter",IDC_lbCasingInnerDiameter,14,48,83,10
+    LTEXT           "[m]",IDC_lbUCasingOuterDiameter,151,34,48,8
+    LTEXT           "[m]",IDC_lbUCasingInnerDiameter,151,49,48,8
+    LTEXT           "Young's modulus",IDC_lbYoungsModulus,14,63,77,9
+    LTEXT           "Poisson ratio",IDC_lbPoissonRatio,14,76,84,10
+    LTEXT           "[GPa]",IDC_lbUYoungsModulus,151,63,48,8
+    LTEXT           "[-]",IDC_lbUPoissonRatio,151,78,48,8
+    LTEXT           "Thermal conductivity",IDC_lbThermalConductivity,14,106,70,9
+    LTEXT           "Thermal expansion",IDC_lbThermalExpansion,14,120,70,9
+    LTEXT           "[W/m.C]",IDC_lbUThermalConductivity,151,105,48,8
+    LTEXT           "[1/C]",IDC_lbUThermalExpansion,151,119,48,8
+    LTEXT           "Volumetric specific heat",IDC_lbVolumetricSpecificHeat,14,90,84,10
+    LTEXT           "[MJ/m3.C]",IDC_lbUVolumetricSpecificHeat,151,92,48,8
+    LTEXT           "Weight per unit length",IDC_lbWeightPerUnitLength,14,135,70,9
+    LTEXT           "[kg/m]",IDC_lbUWeightPerUnitLength,151,134,48,8
+    LTEXT           "Yield Strength",IDC_lbYieldStrength,19,162,70,9
+    LTEXT           "[MPa]",IDC_lbUYieldStrength,151,162,31,8
+    GROUPBOX        "",IDC_fraPlasticity,13,151,174,25
+END
+
+IDD_CasingLibrary DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Casing Library"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,13,213,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,213,50,14
+    CONTROL         "List2",IDC_lstCasingLibraryParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,88,186,113
+    PUSHBUTTON      "Help",IDC_btnHelp,135,228,50,14
+    CONTROL         "List1",IDC_lstCasingLibrary,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,186,71
+    PUSHBUTTON      "New",IDC_btnNew,75,261,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,13,261,50,14
+    PUSHBUTTON      "Delete",IDC_btnDelete,135,261,50,14
+    GROUPBOX        "Direct library access",IDC_fraDirLibAccess,7,247,186,33
+    GROUPBOX        "",IDC_STATIC,7,203,186,42
+END
+
+IDD_CasingStresses DIALOGEX 0, 0, 205, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Axial Stresses",IDC_fraAxialStresses,7,26,191,50
+    GROUPBOX        "",IDC_fraAdvanced,14,49,176,24
+    GROUPBOX        "",IDC_STATIC,7,77,191,30
+    GROUPBOX        "Cross-sectional Stresses",IDC_fraCrossSectionalStresses,7,110,191,210
+    GROUPBOX        "",IDC_fraNoWorkString,13,122,178,43
+    GROUPBOX        "",IDC_fraWorkStringUsed,13,172,178,142
+    GROUPBOX        "",IDC_fraNewFluid,18,251,167,56
+    CONTROL         "Automatic",IDC_optAutomatic,"Button",BS_AUTORADIOBUTTON | WS_GROUP,21,38,82,10
+    CONTROL         "Advanced",IDC_optAdvanced,"Button",BS_AUTORADIOBUTTON,21,48,60,9,WS_EX_TRANSPARENT
+    CONTROL         "Fluid pressure gradient definition",IDC_optFluidPressureGradientDefinition,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,163,9
+    CONTROL         "Fluid density definintion",IDC_optFluidDensityDefinition,
+                    "Button",BS_AUTORADIOBUTTON,14,95,177,9
+    CONTROL         "No work string",IDC_optNoWorkString,"Button",BS_AUTORADIOBUTTON | WS_GROUP,21,121,81,10,WS_EX_TRANSPARENT
+    CONTROL         "Work string used",IDC_optWorkStringUsed,"Button",BS_AUTORADIOBUTTON,21,171,88,10,WS_EX_TRANSPARENT
+    CONTROL         "Mud",IDC_optMud,"Button",BS_AUTORADIOBUTTON | WS_GROUP,26,241,34,9
+    CONTROL         "New fluid",IDC_optNewFluid,"Button",BS_AUTORADIOBUTTON,26,250,67,10,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebHookLoad,110,58,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebNewFluidStressGrad,100,261,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebNewFluidOverpressure,100,275,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebNewFluidCompressibility,100,289,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebDispFluidStressGradientNWS,109,136,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebDispFluidCompressibilityNWS,109,150,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebDispFluidStressGrad,110,184,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebDispFluidCompressibility,110,199,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebWorkStringPackersTMD,110,214,45,12,ES_AUTOHSCROLL
+    LTEXT           "Hook load",IDC_lbHookLoad,21,59,87,9
+    LTEXT           "Displ. fluid stress grad",IDC_lbDispFluidStressGrad,21,185,87,9,NOT WS_GROUP
+    LTEXT           "Disp.fluid compressibility",IDC_lbDispFluidCompressibility,21,200,89,10,NOT WS_GROUP
+    LTEXT           "Work string packers TMD",IDC_lbWorkStringPackersTMD,21,216,87,9,NOT WS_GROUP
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,7,20,20
+    LTEXT           "Define casing initial stresses during waiting on cement time, i.e. while cement is hardening.",IDC_STATIC,37,7,149,17
+    LTEXT           "[MPa]",IDC_lbUHookLoad,157,58,24,8
+    LTEXT           "Disp. fluid stress gradient",IDC_lbDispFluidStressGradientNWS,21,137,87,9,NOT WS_GROUP
+    LTEXT           "Disp. fluid compressibility",IDC_lbDispFluidCompressibilityNWS,21,149,82,10,NOT WS_GROUP
+    LTEXT           "[kPa/m]",IDC_lbUDispFluidStressGradientNWS,157,136,28,8,NOT WS_GROUP
+    LTEXT           "[1/MPa]",IDC_lbUDispFluidCompressibilityNWS,157,150,28,8,NOT WS_GROUP
+    LTEXT           "[kPa/m]",IDC_lbUDispFluidStressGrad,157,184,27,8,NOT WS_GROUP
+    LTEXT           "[1/MPa]",IDC_lbUDispFluidCompressibility,157,199,27,8,NOT WS_GROUP
+    LTEXT           "New fluid stress grad",IDC_lbNewFluidStressGrad,23,263,66,8,NOT WS_GROUP
+    LTEXT           "[m]",IDC_lbUWorkStringPackersTMD,157,214,23,8,NOT WS_GROUP
+    LTEXT           "[kPa/m]",IDC_lbUNewFluidStressGrad,147,261,30,8,NOT WS_GROUP
+    LTEXT           "New fluid overpressure",IDC_lbNewFluidOverpressure,22,278,73,8,NOT WS_GROUP
+    LTEXT           "New fluid compressibility",IDC_lbNewFluidCompressibility,22,293,77,8,NOT WS_GROUP
+    LTEXT           "[MPa]",IDC_lbUNewFluidOverpressure,147,277,20,8,NOT WS_GROUP
+    LTEXT           "[1/MPa]",IDC_lbUNewFluidCompressibility,147,291,27,8,NOT WS_GROUP
+    LTEXT           "Fluid in Casing/Work string annulus:",IDC_lbFluidInCasingWorkStringA,21,232,144,8,NOT WS_GROUP
+    EDITTEXT        IDC_ebDispFluidDensityNWS,109,136,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebDispFluidDensity,110,184,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebNewFluidDensity,100,261,45,12,ES_AUTOHSCROLL
+    LTEXT           "!!!stressgrad edit boxes: two boxes over each other!!!",IDC_STATIC,97,106,90,27,NOT WS_VISIBLE
+END
+
+IDD_CementingOperation DIALOGEX 0, 0, 208, 365
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Cementing Operation"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ebTopOfCementTMD,110,23,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebPressureFromFluidsAbove,110,59,45,12,ES_AUTOHSCROLL
+    CONTROL         "Lead && Tail Cements - Yes",IDC_optLeadTailCementsYes,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,21,104,116,8,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebTopOfTailCementTMD,110,117,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebLeadCementStressGrad,110,168,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTailCementStressGrad,110,181,45,12,ES_AUTOHSCROLL
+    CONTROL         "Lead && tail cements - No",IDC_optLeadTailCementsNo,
+                    "Button",BS_AUTORADIOBUTTON,21,204,114,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebCementStressGradient,110,245,45,12,ES_AUTOHSCROLL
+    GROUPBOX        "Cement weight and placement",IDC_fraCementWeightAndPlacement,7,7,194,261
+    LTEXT           "Lead cement pressure grad",IDC_lbLeadCementStressGrad,21,169,87,9
+    LTEXT           "Tail cement pressure grad",IDC_lbTailCementStressGrad,21,181,89,10
+    LTEXT           "[kPa/m]",IDC_lbULeadCementStressGrad,157,168,29,8
+    LTEXT           "[kPa/m]",IDC_lbUTailCementStressGrad,157,181,29,8
+    LTEXT           "Top of tail cement TMD",IDC_lbTopOfTailCementTMD,21,120,87,9
+    LTEXT           "[m]",IDC_lbUTopOfTailCementTMD,159,121,17,8
+    GROUPBOX        "",IDC_fraLeadTailCementsYes,14,105,178,94
+    LTEXT           "Cement pressure gradient",IDC_lbCementStressGradient,21,247,87,9
+    LTEXT           "[kPa/m]",IDC_lbUCementStressGradient,157,245,29,8
+    GROUPBOX        "",IDC_fraLeadTailCementsNo,13,205,179,59
+    LTEXT           "Top of cement TMD",IDC_lbTopOfCement,15,23,70,9
+    LTEXT           "Pressure from fluids above",IDC_lbPressureFromFluidsAbove,14,61,89,10
+    LTEXT           "[MPa]",IDC_lbUPressureFromFluidsAbove,157,61,23,8
+    ICON            IDI_ICAppsStop,IDC_STATIC,23,138,20,20
+    LTEXT           "Enter the average stress gradient at bottom hole conditions, taking into account the effect of compressibility",IDC_lbEnterTheBottomLTY,57,135,118,27
+    ICON            IDI_ICAppsStop,IDC_STATIC,23,218,20,20
+    LTEXT           "Enter the average stress gradient at bottom hole conditions, taking into account the effect of compressibility",IDC_lbEnterTheBottomLTN,59,215,121,24
+    EDITTEXT        IDC_ebTopOfCementTVD,110,38,45,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "[m]",IDC_lbUTopOfCementsTMD,157,25,17,8,NOT WS_GROUP
+    LTEXT           "[m]",IDC_lbUTopOfCementsTVD,157,39,15,8,NOT WS_GROUP
+    LTEXT           "Top of cement TVD",IDC_lbTopOfCement2,15,39,87,9
+    GROUPBOX        "",IDC_STATIC,14,70,178,30
+    CONTROL         "Fluid pressure gradient definition",IDC_optFluidPressureGradientDefinition,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,21,77,122,8
+    CONTROL         "Fluid density definition",IDC_optFluidDensityDefinition,
+                    "Button",BS_AUTORADIOBUTTON,21,87,123,9
+    EDITTEXT        IDC_ebTailCementDensity,110,180,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebCementDensity,110,245,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebLeadCementDensity,110,168,45,12,ES_AUTOHSCROLL
+    LTEXT           "!!! stress gradient: 2 editboxes over each other !!!",IDC_STATIC,148,74,53,36,NOT WS_VISIBLE
+END
+
+IDD_DepthsForAnalysis DIALOG  0, 0, 219, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_lstAnalysisPoint,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,16,17,188,102
+    GROUPBOX        "Analysis point TMD",IDC_fraAnalysisPointTMD,7,7,205,163
+    PUSHBUTTON      "Remove",IDC_btnRemoveAnalysisPoint,15,148,50,14
+    PUSHBUTTON      "Add",IDC_btnAddAnalysisPoint,15,127,50,14
+END
+
+IDD_CementProperties DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ebNumberOfCementScenarios,110,13,45,12,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_lstCementProperties,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,50,186,85
+    PUSHBUTTON      "New",IDC_btnNew,7,284,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,7,302,50,14
+    PUSHBUTTON      "From library",IDC_btnFromLibrary,143,284,50,14
+    PUSHBUTTON      "To library",IDC_btnToLibrary,143,302,50,14
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,26,20,20
+    LTEXT           "Select cement to display/define material properties",IDC_lbSelectCementToDisplay,28,32,159,11
+    CONTROL         "List2",IDC_lstCementPropertiesParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,139,186,143
+    LTEXT           "Number of cement scenarios",IDC_lbNumberOfCementScenarios,14,15,91,9
+    LTEXT           "[-]",IDC_lbUNumberOfCementScenarios,157,15,29,8
+    LTEXT           "No material specified. Enter new material or import from library!",IDC_Warning,72,282,62,37
+END
+
+IDD_EditCementMaterial DIALOG  0, 0, 214, 282
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Cement Material"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ebCementName,105,20,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebYoungsModulus,105,34,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebPoissonRatio,105,48,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebVolumetricSpecificHeat,105,62,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalConductivity,105,76,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebThermalExpansion,105,90,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTensileStrength,105,104,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTensFractureEnergy,105,118,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebCohesion,105,132,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebFrictionAngle,105,146,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_cmbCompHardeningType,105,160,79,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_ebCompHardeningGradient,105,174,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebCompFractureEnergy,105,188,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebVolumetricShrinkage,105,202,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebHydrationHeat,105,216,45,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,13,246,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,246,50,14
+    GROUPBOX        "",IDC_fraEditCementMaterial,7,7,200,262
+    LTEXT           "Cement name",IDC_lbCementName,14,20,72,9
+    LTEXT           "Young's modulus",IDC_lbYoungsModulus,14,34,83,10
+    LTEXT           "Poisson ratio",IDC_lbPoissonRatio,14,48,83,10
+    LTEXT           "[Gpa]",IDC_lbUYoungsModulus,151,34,48,8
+    LTEXT           "[-]",IDC_lbUPoissonRatio,151,49,48,8
+    LTEXT           "Volumetric specific heat",IDC_lbVolumetricSpecificHeat,14,63,77,9
+    LTEXT           "Thermal conductivity",IDC_lbThermalConductivity,14,76,84,10
+    LTEXT           "[MJ/m3.C]",IDC_lbUVolumetricSpecificHeat,151,63,48,8
+    LTEXT           "[W/m.C]",IDC_lbUThermalConductivity,151,78,48,8
+    LTEXT           "Tensile strength",IDC_lbTensileStrenght,14,106,70,9
+    LTEXT           "Tens. fracture energy",IDC_lbTensFractureEnergy,14,120,70,9
+    LTEXT           "[MPa]",IDC_lbUTensileStrenght,151,105,48,8
+    LTEXT           "[J/m2]",IDC_lbUTensFractureEnergy,151,119,48,8
+    LTEXT           "Thermal expansion",IDC_lbThermalExpansion,14,90,84,10
+    LTEXT           "[1/C]",IDC_lbUThermalExpansion,151,92,48,8
+    LTEXT           "Cohesion",IDC_lbCohesion,14,135,70,9
+    LTEXT           "[MPa]",IDC_lbUCohesion,151,134,48,8
+    LTEXT           "Friction angle",IDC_lbFrictionAngle,14,149,70,9
+    LTEXT           "[degrees]",IDC_lbUFrictionAngle,151,148,48,8
+    LTEXT           "Comp. hardening type",IDC_lbCompHardeningType,14,162,70,9
+    LTEXT           "Comp. hardening gradient",IDC_lbCompHardeningGradient,14,177,84,9
+    LTEXT           "[GPa]",IDC_lbUCompHardeningGradient,151,175,48,8
+    LTEXT           "Comp. fracture energy",IDC_lbCompFractureEnergy,14,191,70,9
+    LTEXT           "[J/m2]",IDC_lbUCompFractureEnergy,151,191,48,8
+    LTEXT           "Hydration volume change",IDC_lbVolumetricShrinkage,14,206,87,9
+    LTEXT           "[%]",IDC_lbUVolumetricShrinkage,151,205,48,8
+    LTEXT           "Hydration heat",IDC_lbHydrationHeat,13,220,70,9
+    LTEXT           "[MJ/m3]",IDC_lbUHydrationHeat,151,219,48,8
+END
+
+IDD_CementLibrary DIALOG  0, 0, 200, 322
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Cement Library"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,13,235,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,235,50,14
+    CONTROL         "List2",IDC_lstCementLibraryParams,"SysListView32",LVS_REPORT | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,84,186,140
+    PUSHBUTTON      "Help",IDC_btnHelp,135,252,50,14
+    CONTROL         "List1",IDC_lstCementLibrary,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,186,72
+    PUSHBUTTON      "New",IDC_btnNew,75,283,50,14
+    PUSHBUTTON      "Edit",IDC_btnEdit,13,283,50,14
+    PUSHBUTTON      "Delete",IDC_btnDelete,135,283,50,14
+    GROUPBOX        "Direct library access",IDC_fraDirLibAccess,7,269,186,33
+    GROUPBOX        "",IDC_STATIC,7,226,186,43
+END
+
+IDD_CompletionAndTesting DIALOGEX 0, 0, 210, 353
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "Well type",IDC_lbWellType,14,14,65,11
+    COMBOBOX        IDC_cmbWellType,101,11,84,83,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_fraCompletionBalance,7,25,196,41
+    CONTROL         "Balanced completion",IDC_optBalancedCompletion,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,33,169,9
+    CONTROL         "Underbalanced completion",IDC_optUnderbalancedCompletion,
+                    "Button",BS_AUTORADIOBUTTON,14,43,169,9
+    CONTROL         "Overbalanced completion",IDC_optOverbalancedCompletion,
+                    "Button",BS_AUTORADIOBUTTON,14,53,169,9
+    GROUPBOX        "Pressure test",IDC_fraPressureTest,7,70,196,44,WS_GROUP
+    LTEXT           "Test pressure at RKB",IDC_lbTestPressure,13,85,68,8
+    EDITTEXT        IDC_ebTestPressure,103,83,45,12,ES_AUTOHSCROLL
+    LTEXT           "[MPa]",IDC_lbUTestPressure,154,85,31,8
+    LTEXT           "Fluid pressure gradient",IDC_lbFluidPressureGradient,13,99,72,8
+    EDITTEXT        IDC_ebFluidPressureGradient,103,97,45,12,ES_AUTOHSCROLL
+    LTEXT           "[MPa/m]",IDC_lbUFluidPressureGradient,154,99,31,8
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,120,21,20
+    LTEXT           "Select analysis point to define start-up operation at TVD",IDC_lbSelectAnalysisPoint,39,122,121,18
+    CONTROL         "List1",IDC_lstAnalysisPoints,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,147,196,67
+    GROUPBOX        "Analysis point",IDC_fraAnalysisPoint,7,216,196,104
+    GROUPBOX        "Bottom hole situation prior to completion",IDC_fraBottomHoleSituationPrior,14,227,180,44
+    LTEXT           "Drilling fluid temperature",IDC_fraDrillingFluidTemperature,21,241,87,9
+    EDITTEXT        IDC_ebDrillingFluidTemperature,110,240,45,12,ES_AUTOHSCROLL
+    LTEXT           "[C]",IDC_lbUDrillingFluidTemperature,157,240,24,8
+    LTEXT           "Exposure time to dril. fluid",IDC_lbTimeOfExposToDrilFluid,21,254,89,10
+    EDITTEXT        IDC_ebTimeOfExposToDrilFluid,110,254,45,12,ES_AUTOHSCROLL
+    LTEXT           "[days]",IDC_lbUTimeOfExposToDrilFluid,157,254,24,8
+    GROUPBOX        "Completion",IDC_fraCompletion,13,277,180,37
+    LTEXT           "Pressure difference between completions fluid and pore pressure",IDC_lbPressureDifference,24,286,79,26
+    EDITTEXT        IDC_ebPressureDifference,110,292,45,12,ES_AUTOHSCROLL
+    LTEXT           "[MPa]",IDC_lbUPressureDifference,157,292,24,8
+    GROUPBOX        "Shut-in",IDC_fraShutIn,7,323,196,23
+    CONTROL         "Shut-in",IDC_chkShutIn,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,332,98,10
+END
+
+IDD_ProductionAndInjection DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Conversion to injector/productor",IDC_chkConversion,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,32,163,11
+    CONTROL         "List1",IDC_lstAnalysisPoint,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,76,186,67
+    EDITTEXT        IDC_ebPorePressure,110,178,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebBottomHoleFlowingPress,110,194,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebBottomHoleFlowingTemp,110,210,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTimeOfContinuousProd,110,227,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebMaximumInjectionPressure,109,260,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebInjectionTemperature,109,285,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTimeOfContinuousInjection,109,302,46,12,ES_AUTOHSCROLL
+    GROUPBOX        "Analysis point",IDC_fraAnalysisPoint,7,146,186,179
+    LTEXT           "formation pore pressure",IDC_lbPorePressure,20,179,85,9
+    LTEXT           "tubular fluid pressure",IDC_lbBottomHoleFlowingPress,21,194,69,12
+    LTEXT           "[MPa]",IDC_lbUPorePressure,157,178,22,8
+    LTEXT           "[MPa]",IDC_lbUBottomHoleFlowingPress,157,195,22,8
+    GROUPBOX        "Production (at maximum draw-down)",IDC_fraProduction,14,158,172,85
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,54,20,20
+    LTEXT           "Select analysis point to define prod/injec loads at TMD",IDC_lbSelectAnalysisPoint,44,54,127,18
+    LTEXT           "Chosen well type",IDC_lbChosenWellType,14,17,65,11
+    LTEXT           "At the point max. tubular fluid pressure inside the cement casing",IDC_lbMaximumInjectionPressure,21,257,82,26
+    LTEXT           "[MPa]",IDC_lbUMaximumInjectionPressure,157,262,22,8
+    GROUPBOX        "Injection (at most severe loading)",IDC_fraInjection,13,246,172,73
+    EDITTEXT        IDC_ebChosenWellType,95,15,84,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "At the point tubular fluid temperature",IDC_lbBottomHoleFlowingTemp,21,210,67,18
+    LTEXT           "Time of continuous prod.",IDC_lbTimeOfContinuousProd,21,227,89,10
+    LTEXT           "[C]",IDC_lbUBottomHoleFlowingTemp,157,210,22,8
+    LTEXT           "[days]",IDC_lbUTimeOfContinuousProd,157,227,22,8
+    LTEXT           "At the point tubular fluid temperature",IDC_lbInjectionTemperature,21,284,68,17
+    LTEXT           "Time of continuous injection",IDC_lbTimeOfContinuousInjection,19,303,89,10
+    LTEXT           "[C]",IDC_lbUInjectionTemperature,157,285,22,8
+    LTEXT           "[days]",IDC_lbUTimeOfContinuousInjection,157,302,22,8
+    LTEXT           "At the point pressures inside the cement casing:",IDC_STATIC,21,167,158,9
+END
+
+IDD_ExtremeOperations DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Fracturing / High rate killing",IDC_chkFracturingHighRateKilling,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,44,163,11
+    CONTROL         "Evacuation / unloading",IDC_chkEvacuationUnloading,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,55,163,11
+    CONTROL         "List1",IDC_lstAnalysisPoint,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,93,186,67
+    EDITTEXT        IDC_ebMaximumInjectionPressure,110,190,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTreatingFluidTemperature,110,213,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTimeOfExposToTreatFluid,110,233,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebBottomHoleTreatingPres,110,267,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTreatingFluidTemperatureEU,110,290,45,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebTimeOfExposToTreatFluidEU,110,307,45,12,ES_AUTOHSCROLL
+    GROUPBOX        "Analysis point",IDC_fraAnalysisPoint,7,162,186,166
+    LTEXT           "At the point max. tubular fluid pressure inside the cement casing",IDC_lbMaximumInjectionPressure,21,184,84,26
+    LTEXT           "[MPa]",IDC_lbUMaximumInjectionPressure,157,191,21,8
+    GROUPBOX        "Fracturing / High rate killing",IDC_fraFracturingHighRateKilling,14,172,172,76
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,72,20,20
+    LTEXT           "Select analysis point to define extreme operation loads at TVD",IDC_lbSelectAnalysisPoint,44,72,127,18
+    LTEXT           "Chosen well type",IDC_lbChosenWellType,14,17,65,11
+    LTEXT           "At the point tubular fluid pressure inside the cement casing",IDC_lbBottomHoleTreatingPres,21,260,72,27
+    LTEXT           "[MPa]",IDC_lbUBottomHoleTreatingPres,157,269,21,8
+    GROUPBOX        "Evacuation / Unloading",IDC_fraEvacuationUnloading,14,251,172,72
+    EDITTEXT        IDC_ebChosenWellType,95,15,84,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "At the point tubular fluid temperature",IDC_lbTreatingFluidTemperature,21,212,71,16
+    LTEXT           "Exposure time to treat. fluid",IDC_lbTimeOfExposToTreatFluid,21,234,85,10
+    LTEXT           "[C]",IDC_lbUTreatingFluidTemperature,157,215,21,8
+    LTEXT           "[hours]",IDC_lbUTimeOfExposToTreatFluid,157,234,21,8
+    LTEXT           "At the point tubular fluid temperature",IDC_lbTreatingFluidTemperatureEU,21,289,72,18
+    LTEXT           "Exposure time to treat. fluid",IDC_lbTimeOfExposToTreatFluidEU,21,308,89,10
+    LTEXT           "[C]",IDC_lbUTreatingFluidTemperatureEU,157,291,21,8
+    LTEXT           "[hours]",IDC_lbUTimeOfExposToTreatFluidEU,157,307,21,8
+    LTEXT           "Select extreme operation(s)",IDC_lbSelectExtremeOperations,14,34,169,9
+END
+
+IDD_MeshRefinement DIALOGEX 0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Default mesh refinement",IDC_optDefaultMeshRefinement,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,13,108,9
+    CONTROL         "Advanced tuning of mesh refinement",IDC_optAdvancedTuningOfMeshRefinement,
+                    "Button",BS_AUTORADIOBUTTON,14,24,158,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebRockRefinementLevel,99,37,16,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_ebCasingRefinementLevel,99,54,16,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_ebCementRefinementLevel,99,70,16,12,ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "",IDC_fraAdvancedTuningOfMeshRefinement,7,25,186,63
+    LTEXT           "Rock refinement level",IDC_lbRockRefinementLevel,14,39,73,8
+    LTEXT           "Casing refinement level",IDC_lbCasingRefinementLevel,14,56,73,8
+    LTEXT           "Cement refinement level",IDC_lbCementRefinementLevel,14,73,78,8
+    CONTROL         "Slider1",IDC_sldRockRefinementLevel,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,119,40,67,14
+    CONTROL         "Slider1",IDC_sldCasingRefinementLevel,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,119,55,67,15
+    CONTROL         "Slider1",IDC_sldCementRefinementLevel,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,119,70,67,16
+END
+
+IDD_OutputSelection DIALOGEX 0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Overview tables only",IDC_optOverview1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,25,108,9
+    GROUPBOX        "Select output level",IDC_fraSelectOutputLevel,7,13,186,61
+    CONTROL         "Overview tables and detailed results for cement",IDC_optOverview2,
+                    "Button",BS_AUTORADIOBUTTON,14,37,169,9,WS_EX_TRANSPARENT
+    CONTROL         "Overview tables and detailed results for",IDC_optOverview3,
+                    "Button",BS_AUTORADIOBUTTON,14,48,144,11,WS_EX_TRANSPARENT
+    LTEXT           "cement, formation and casing",IDC_STATIC,25,58,129,10
+END
+
+IDD_Analysis DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_lstAnalysis,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,36,186,91
+    PUSHBUTTON      "Save project",IDC_btnSaveProject,7,199,50,27
+    PUSHBUTTON      "Run analysis",IDC_btnRunAnalysis,75,199,50,27
+    PUSHBUTTON      "  Review diagnostic",IDC_btnReviewDiagnostic,143,199,50,27,BS_MULTILINE | WS_DISABLED
+    ICON            IDI_ICAppsStop,IDC_STATIC,7,7,20,20
+    LTEXT           "Select row for showing diagnostic file",IDC_lbCheckBoxForSelectingBatchRuns,29,15,151,10
+END
+
+IDD_ResultsOverview DIALOG  0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Options",IDC_fraOptions,7,7,186,42
+    LTEXT           "Depth along well",IDC_lbDepthAlongWell,14,18,83,10
+    LTEXT           "Well component",IDC_lbWellComponenet,13,33,83,10
+    COMBOBOX        IDC_cmbDepthAlongWell,100,16,76,50,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_cmbWellComponent,100,31,76,42,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Presentation",IDC_fraPresentation,7,54,186,35
+    CONTROL         "Damage status overview table",IDC_optDamageStatusOverviewTable,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,66,129,9
+    CONTROL         "Risk of damage bar chart",IDC_optRiskOfDamageBarChart,
+                    "Button",BS_AUTORADIOBUTTON,14,77,100,9
+END
+
+IDD_DetailedResults DIALOGEX 0, 0, 200, 366
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_cmbDepthAlongWell,101,18,76,95,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_cmbCementScenario,101,33,76,151,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_cmbResultType,76,98,100,95,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_cmbTypeOfDamage,76,133,100,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_cmbPlotSpace,76,164,100,155,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_fraDetailedResults,7,74,186,114
+    GROUPBOX        "",IDC_fraCompareResults,14,83,172,32
+    CONTROL         "Present result against load && damage types",IDC_optPresentResultAgainstLoadDamageTypes,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,21,82,151,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_fraViewResults,14,120,172,61
+    CONTROL         "Present result against space or time",IDC_optPresentResultAgainstSpaceTime,
+                    "Button",BS_AUTORADIOBUTTON,21,119,127,10,WS_EX_TRANSPARENT
+    GROUPBOX        "Select variation case",IDC_fraSelectVariationCase,7,7,186,59
+    LTEXT           "Cement scenario",IDC_lbCementScenario,15,35,83,10
+    LTEXT           "Corresp. cement material",IDC_lbCorrespondingCementMaterial,14,50,85,10
+    LTEXT           "Result type",IDC_lbResultType,21,98,43,10
+    LTEXT           "Load type",IDC_lbLoadType,22,149,51,10
+    LTEXT           "Plot space",IDC_lbPlotSpace,22,165,51,10
+    LTEXT           "Depth along well",IDC_lbDepthAlongWellResult,15,20,83,10
+    EDITTEXT        IDC_ebCorrespondingCementMaterial,101,48,76,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Type of damage",IDC_lbTypeOfDamage,21,136,51,9
+    EDITTEXT        IDC_ebLoadType,76,148,100,12,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_frmAddFormation DIALOG  0, 0, 230, 142
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Formation"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,18,95,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,145,94,50,14
+    LTEXT           "Bottom TVD",IDC_lbBottomTVD,14,19,70,8
+    LTEXT           "Formation name",IDC_lbFormationName,15,37,65,11,NOT WS_GROUP
+    EDITTEXT        IDC_ebBottomTVD,85,21,71,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ebFormationName,85,41,71,12,ES_AUTOHSCROLL
+    LTEXT           "[m]",IDC_lbUBottomTVD,177,22,37,16
+END
+
+IDD_AddAnalysisPoint DIALOGEX 0, 0, 179, 119
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Analysis Point"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,96,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,118,96,55,14
+    EDITTEXT        IDC_debAddAnalysisPointTMD,30,46,86,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_debAddAnalysisPointTVD,30,71,86,12,ES_AUTOHSCROLL
+    LTEXT           "TMD",IDC_STATIC,7,46,16,12
+    LTEXT           "TVD",IDC_STATIC,7,72,16,11
+    LTEXT           "[m]",IDC_lbUAddAnalysisPointTMD,148,49,25,9
+    LTEXT           "[m]",IDC_lbUAddAnalysisPointTVD,148,72,16,11
+    ICON            IDI_ICAppsStop,IDC_PICTURE,20,8,21,20,0,WS_EX_TRANSPARENT
+    LTEXT           "Static",IDC_lbAttention,47,9,126,19
+END
+
+IDD_SPLASH DIALOG  0, 0, 446, 278
+STYLE DS_SETFONT | WS_CHILD | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         217,IDC_STATIC,"Static",SS_BITMAP,0,0,15,13
+END
+
+IDD_CalculationWindow DIALOGEX 0, 0, 325, 367
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION "Calculation Window"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_lstAnalysis,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,13,305,91
+    CONTROL         "Stop batch run if divergence",IDC_chkStopBatchRunIfDivergence,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,202,139,105,9
+    CONTROL         "Allow further post-processing",IDC_chkAllowFurtherPostProcessing,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,202,161,105,9
+    CONTROL         "Save diagnostic",IDC_chkSaveDiagnostic,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,202,183,105,9
+    GROUPBOX        "Calculation options",IDC_fraCalculationOptions,195,126,115,73
+    CONTROL         "Default stepping scheme",IDC_optDefaultSteppingScheme,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,114,108,9
+    CONTROL         "Advanced options for stepping scheme",IDC_optAdvancedOptionsForSteppingScheme,
+                    "Button",BS_AUTORADIOBUTTON,14,125,161,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_ebNrOfTimeSteps,99,139,45,12
+    COMBOBOX        IDC_cmbIterationScheme,99,153,84,83,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_ebMaxNumberOfIterations,99,167,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_cmbConvergenceNorm,99,181,84,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_fraAdvancedOptionsForSteppingScheme,7,126,186,73
+    LTEXT           "Number of time steps",IDC_lbNumberOfTimeSteps,14,140,73,8
+    LTEXT           "Iteration scheme",IDC_lbIterationScheme,14,155,73,8
+    LTEXT           "Max. number of iterations",IDC_lbMaxNumberOfIterations,14,170,83,8
+    LTEXT           "Convergence norm",IDC_lbConvergenceNorm,14,185,73,8
+    LTEXT           "[-]",IDC_lbUNumberOfTimeSteps,149,141,14,9
+    LTEXT           "[-]",IDC_lbUMaxNumberOfIterations,149,168,14,9
+    PUSHBUTTON      "Start",IDC_bttnStart,195,204,52,24
+    PUSHBUTTON      "Close",IDC_bttnCancel,257,204,52,24
+END
+
+IDD_Options DIALOG  0, 0, 338, 170
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,79,149,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,249,149,50,14
+    LTEXT           "Temp Directory",IDC_lbTempDir,17,24,53,9,NOT WS_GROUP
+    LTEXT           "Formation library",IDC_lbFormationLibrary,17,78,53,9,NOT WS_GROUP
+    LTEXT           "Cement library",IDC_lbCementLibrary,17,95,53,9,NOT WS_GROUP
+    LTEXT           "Casing library",IDC_lbCasingLibrary,17,112,53,9,NOT WS_GROUP
+    EDITTEXT        IDC_ebTempDir,79,21,220,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ebFormationLibrary,79,75,220,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ebCementLibrary,79,92,220,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ebCasingLibrary,79,109,220,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_btnBrowseFormLib,305,75,13,12
+    PUSHBUTTON      "...",IDC_btnBrowseCemLib,305,92,13,12
+    PUSHBUTTON      "...",IDC_btnBrowseCasLib,305,109,13,12
+    LTEXT           "Work Directory",IDC_lbWorkDir,17,42,53,9,NOT WS_GROUP
+    EDITTEXT        IDC_ebWorkDir,79,39,220,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_btnBrowseTempDir,305,21,13,12
+    PUSHBUTTON      "...",IDC_btnBrowseWorkDirOptions,305,39,13,12
+END
+
+IDD_ImportSurvey DIALOGEX 0, 0, 389, 450
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Import Directional Survey"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,332,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,332,24,50,14
+    LTEXT           "File Name",IDC_STATIC,7,8,32,8
+    EDITTEXT        IDC_EditFileName,91,7,233,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Start import at row",IDC_STATIC,7,38,58,8
+    EDITTEXT        IDC_EditStartRow,91,36,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinStartRow,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,36,10,14
+    LTEXT           "First row number with depth at or near surface",IDC_STATIC,150,38,144,8
+    LTEXT           "End import at row",IDC_STATIC,7,58,56,8
+    EDITTEXT        IDC_EditEndRow,91,56,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinEndRow,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,56,10,14
+    LTEXT           "Last row number with depth at or near DT for the job",IDC_STATIC,150,58,165,8
+    LTEXT           "Measured Depth column",IDC_STATIC,7,77,78,8
+    EDITTEXT        IDC_EditMDColumn,91,75,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinMDColumn,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,75,10,14
+    COMBOBOX        IDC_ComboMDUnit,150,75,48,46,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Inclination column",IDC_STATIC,7,96,58,8
+    EDITTEXT        IDC_EditInclinationColumn,91,94,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinInclinationColumn,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,95,10,14
+    LTEXT           "Deviation angle",IDC_STATIC,150,96,50,8
+    LTEXT           "Azimuth column",IDC_STATIC,7,115,50,8
+    EDITTEXT        IDC_EditAzimuthColumn,91,113,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinAzimuthColumn,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,113,10,14
+    GROUPBOX        "Preview",IDC_FramePreview,7,137,375,306
+    CONTROL         "",IDC_ListPreview,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,15,150,359,285
+    PUSHBUTTON      "Reset",IDC_ButtonReset,332,42,50,14
+END
+
+IDD_FemgvProgress DIALOGEX 0, 0, 211, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,81,60,50,14
+    LTEXT           "Running pre/post processor",IDC_STATIC,7,7,90,8
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",PBS_SMOOTH | WS_BORDER,7,32,197,17
+END
+
+IDD_TVDDataImport DIALOGEX 0, 0, 389, 431
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "*** CAPTION ***"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,332,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,332,24,50,14
+    PUSHBUTTON      "Reset",IDC_ButtonReset,332,42,50,14
+    LTEXT           "File Name",IDC_STATIC,7,8,32,8
+    EDITTEXT        IDC_EditFileName,91,7,233,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Start import at row",IDC_STATIC,7,38,58,8
+    EDITTEXT        IDC_EditStartRow,91,36,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinStartRow,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,36,11,14
+    LTEXT           "First row number with depth data",IDC_STATIC,150,38,151,8
+    LTEXT           "End import at row",IDC_STATIC,7,58,56,8
+    EDITTEXT        IDC_EditEndRow,91,56,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinEndRow,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,56,11,14
+    LTEXT           "Last row number with depth data",IDC_STATIC,150,58,171,8
+    LTEXT           "TVD column",IDC_STATIC,7,77,38,8
+    EDITTEXT        IDC_EditTVDColumn,91,75,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinTVDColumn,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,75,11,14
+    COMBOBOX        IDC_ComboTVDUnit,150,75,48,46,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "*** DATA COLUMN ***",IDC_LabelDataColumn,7,96,77,8
+    EDITTEXT        IDC_EditDataColumn,91,94,52,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SpinDataColumn,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,127,94,11,14
+    COMBOBOX        IDC_ComboDataUnit,150,94,48,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Preview",IDC_FramePreview,7,118,375,306
+    CONTROL         "",IDC_ListPreview,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,15,131,359,285
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_FormationDefinition, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 202
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_InsituStresses, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 362
+    END
+
+    IDD_FormationProperties, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_EditFormationMaterial, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 207
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 235
+    END
+
+    IDD_FormationLibrary, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+
+    IDD_DrillingOperation, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 351
+    END
+
+    IDD_CasingOperation, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_EditCasingMaterial, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 206
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 259
+    END
+
+    IDD_CasingLibrary, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_CasingStresses, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_CementingOperation, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 201
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 358
+    END
+
+    IDD_DepthsForAnalysis, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 212
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_CementProperties, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_EditCementMaterial, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 207
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    IDD_CementLibrary, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 315
+    END
+
+    IDD_CompletionAndTesting, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 346
+    END
+
+    IDD_ProductionAndInjection, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_ExtremeOperations, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_MeshRefinement, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_OutputSelection, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_Analysis, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_ResultsOverview, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_DetailedResults, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_frmAddFormation, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 135
+    END
+
+    IDD_AddAnalysisPoint, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 173
+        VERTGUIDE, 30
+        VERTGUIDE, 116
+        VERTGUIDE, 148
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 110
+        HORZGUIDE, 28
+        HORZGUIDE, 53
+    END
+
+    IDD_CalculationWindow, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 318
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 360
+    END
+
+    IDD_Options, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 331
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+    END
+
+    IDD_ImportSurvey, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 382
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 443
+    END
+
+    IDD_FemgvProgress, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_TVDDataImport, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 382
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 424
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(_WELLLIFE)
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,5
+ PRODUCTVERSION 1,0,0,5
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041304b0"
+        BEGIN
+            VALUE "CompanyName", "TNO Diana BV"
+            VALUE "FileDescription", "DSealect"
+            VALUE "FileVersion", "1, 0, 0, 5"
+            VALUE "InternalName", "DSealect"
+            VALUE "LegalCopyright", "Copyright © 2001-2013"
+            VALUE "OriginalFilename", "DSealect.exe"
+            VALUE "ProductName", "Wellbore Cement Integrity Model"
+            VALUE "ProductVersion", "1, 0, 0, 5"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x413, 1200
+    END
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(_WELLLIFE)
+#if defined(APSTUDIO_INVOKED)
+VS_VERSION_INFO$(_WELLLIFE) VERSIONINFO
+#else
+VS_VERSION_INFO VERSIONINFO
+#endif
+ FILEVERSION 1,2,0,0
+ PRODUCTVERSION 1,2,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041304b0"
+        BEGIN
+            VALUE "CompanyName", "TNO BOUW"
+            VALUE "FileDescription", "DSealect"
+            VALUE "FileVersion", "1, 2, 0, 0"
+            VALUE "InternalName", "DSealect"
+            VALUE "LegalCopyright", "Copyright © 2002"
+            VALUE "OriginalFilename", "DSealect.exe"
+            VALUE "ProductName", "TNO BOUW DSealect"
+            VALUE "ProductVersion", "1, 2, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x413, 1200
+    END
+END
+#endif
+
+#endif    // Dutch (Netherlands) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SHELL_BITMAP        BITMAP                  "res\\Shell.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Wellbore Cement Integrity Model\n\nWellbore Cement Integrity Model\n.dsl\n.dsl\nDSealect.Document\nWellbore Cement Integrity Model Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Wellbore Cement Integrity Model"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+    ID_MATLIBX              "matlib id"
+    IDP_FGVPATHNOTFOUND     "No path to Femview found in the registry"
+    IDP_DIANAPATHNOTFOUND   "No Path to Diana found in the registry"
+    IDP_CANNOTCREATELIBRARYDIR 
+                            "Can not create a directory to tore the default matlib"
+    IDP_MSG_SELECTNEWTEMP   "No temoprary folder was found"
+    IDP_MSG_NOTEMPFOLDER    "No temp folder"
+    IDP_CANNOTCREATETEMPDIR "Can not create tempdir"
+    IDP_INSTALLLOCATIONNOTFOUND "Installation location not found"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OILPRODUCER         "Oil producer"
+    IDS_GASPRODUCER         "Gas producer"
+    IDS_GASSTORAGE          "Gas storage"
+    IDS_WATERINJECTOR       "Water injector"
+    IDS_STEAMINJECTOR       "Steam injector"
+    IDS_THERMALWELL         "Thermal well"
+    IDS_WATERSOURCE         "Water source"
+    IDS_COPYRIGHT           "Copyright (C) 2001-2013"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONSTANT            "Constant"
+    IDS_REGULARNR           "Regular Newton-Raph."
+    IDS_MODIFIEDNR          "Modified Newton-Raph."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FORCE               "Force"
+    IDS_DISPLACEMENT        "Displacement"
+    IDS_ENERGY              "Energy"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_YOUNGS_MODULUS      "Young's modulus"
+    IDS_POISSON_RATIO       "Poisson ratio"
+    IDS_VOLUMETRIC_SPEC_HEAT "Volumetric specific heat"
+    IDS_THERMAL_CONDUCTIVITY "Thermal conductivity"
+    IDS_THERMAL_EXPANSION   "Thermal expansion"
+    IDS_DENSITY             "Density"
+    IDS_PLASTICITY          "Plasticity"
+    IDS_COHESION            "Cohesion"
+    IDS_FRICTION_ANGLE      "Friction Angle"
+    IDS_HARDENING_TYPE      "Hardening type"
+    IDS_HARDENING_GRADIENT  "Hardening gradient"
+    IDS_FRACTURE_ENERGY     "Fracture energy"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HARDENING_NONE      "None"
+    IDS_LINEAR_HARD         "Linear hardening"
+    IDS_LINEAR_SOFT         "Linear softening"
+    IDS_PARABOLIC_SOFT      "Parabolic softening"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CAS_OUTER_DIAMETER  "Casing outer diameter"
+    IDS_CAS_INNER_DIAMETER  "Casing inner diameter"
+    IDS_CAS_YOUNGS_MODULUS  "Casing Youngs modulus"
+    IDS_CAS_POISSON_RATIO   "Casing Poisson ratio"
+    IDS_CAS_VOLUMETRIC_SPEC_HEAT "Casing volumetric specific heat"
+    IDS_CAS_THERMAL_CONDUCTIVITY "Casing thermal conductivity"
+    IDS_CAS_THERMAL_EXPANSION "Casing thermal expansion"
+    IDS_CAS_WEIGHT_PER_UNIT_LENGTH "Casing weight per unit length"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CAS_PLASTICITY      "Casing plasticity"
+    IDS_CAS_YIELD_STRENGTH  "Casing yield strength"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CEM_YOUNGS_MODULUS  "Cement Youngs modulus"
+    IDS_CEM_POISSON_RATIO   "Cement Poisson ratio"
+    IDS_CEM_VOLUMETRIC_SPEC_HEAT "Cement volumetric specific heat"
+    IDS_CEM_THERMAL_CONDUCTIVITY "Cement thermal conductivity"
+    IDS_CEM_TERMAL_EXPANSION "Cement thermal expansion"
+    IDS_CEM_TENSILE_STRENGTH "Cement tensile strength"
+    IDS_CEM_TENS_FRACTURE_ENERGY "Cement tens. fracture energy"
+    IDS_CEM_COHESION        "Cement cohesion"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CEM_FRICTION_ANGLE  "Cement friction angle"
+    IDS_CEM_HARDENING_TYPE  "Cement hardening type"
+    IDS_CEM_HARDENING_GRADIENT "Cement hardening gradient"
+    IDS_CEM_COMP_FRACTURE_ENERGY "Cement comp fracture energy"
+    IDS_CEM_VOLUMETRIC_SHRINKAGE "Cement hydration volume change"
+    IDS_CEM_HYDRATION_HEAT  "Cement hydration heat"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MATLIB_NO_MATERIAL  "Selected material library is empty"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ACTIONS_FORMATIONLIBRARY "Direct access to Formation Library"
+    ID_ACTIONS_CEMENTLIBRARY "Direct access to Cement Library"
+    ID_ACTIONS_CASINGLIBRARY "Direct access to Casing Library"
+    ID_ACTIONS_OPTIONS      "Set WorkingDir and Library-paths"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

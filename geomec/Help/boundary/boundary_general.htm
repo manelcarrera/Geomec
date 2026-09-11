@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Boundary conditions - General</title>
+<style>
+<!--
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="applied stress change">
+	<param name="Keyword" value="boundary conditions">
+	<param name="Keyword" value="prescribed displacements">
+</OBJECT>
+<h1>Boundary conditions</h1>
+<p>In a tetrahedron model it is possible to set boundary conditions manually. </p>
+<p style="text-autospace: none; margin: 5.0pt 0in"><span style="color:black">By 
+default, all side surfaces are supported in Easting and Northing. The bottom 
+surface is usually supported in normal direction, whereas the default for the 
+top surface is &quot;unsupported&quot;. The seawater pressure (to be specified as a 
+gradient and a mean sea level) acts as a vertical stress on the top surface of 
+the model, provided there exists a positive water depth. A negative water depth 
+results in a zero top surface loading.</span></p>
+<p>Before the boundary conditions can be specified, the following prerequisites
+must be satisfied.</p>
+<ul>
+  <li>at least one depletion stage (apart from the initial stage) exists</li>
+  <li>a mesh has been generated</li>
+</ul>
+<p>When this is done, the two tree sub nodes under &quot;Boundary&quot; named
+&quot;Boundary Conditions&quot; and &quot;Prescribed Displacements&quot; will be
+enabled.</p>
+<p>The user can change the supports when there are no interface elements on the 
+boundary. There are no interface elements when<span style="font-family: Times New Roman; color: black"> 
+right-clicking on “boundary ” and the context sensitive menu “Apply Boundary 
+Interfaces ” is unchecked. When checked, interface elements are 
+automatically added.</span></p>
+<p><span style="font-family: Times New Roman">More information is given on 
+setting boundary conditions in </span><a href="boundary_conditions.htm">without 
+using 
+interface elements</a> or <a href="boundary_conditions_with_interfaces.htm">with 
+using interface elements.</a></p>
+
+</body>
+
+</html>

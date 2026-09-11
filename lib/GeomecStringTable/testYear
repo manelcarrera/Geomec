@@ -1,0 +1,11 @@
+#!/bin/sh
+
+grep -sq `date +%Y` $1
+
+if [ $? -eq 0 ]
+then
+	echo "proper copyright message in '$1'"
+else
+	echo "update the copyright message year in '$1'"
+	exit 1
+fi

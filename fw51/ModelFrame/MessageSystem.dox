@@ -1,0 +1,122 @@
+/*!
+  \page messageSystemPage Status and error messages
+  The DIANA framework libraries provide a common messaging system for reading
+  and writing framework files. This page introduces the system purpose and its
+  setup. To get more detailed insight, see the documentation of the involved
+  classes.
+
+  For the building blocks, see IModelFile, IModelFileItem and CModelFileObs.
+
+  For the application to the DIANA data file, see CDiaDataFile, CDatInputFile
+  and CDatInputField.
+
+  For the application to the Nastran format, see CNastranFile, CNasCard and
+  CNasField.
+
+  \section msgReportingSection Message reporting
+  An input/output module will most often have a hierarchy of classes. At the
+  topmost level there is an IModelFile specialization. Its interface provides
+  members to put messages to the outside world, for example
+  IModelFile::putFatalMessage(). Specialized code calling this member must
+  provide all message information, like text, code, severity and location.
+  
+  A more abstract way of putting messages is provided in the IModelFileItem
+  class. By specializing this class, client code just needs to provide the
+  message or error and the location information will be appended by
+  IModelFileItem.
+
+  Note that both classes provide the messaging functionality by non-const
+  members. The reason behind it is that no processing can take place in a const
+  member causing state changes and thus messages.
+  
+  \subsection msgTextSection Message text
+  All message texts must be marked in code for translation by tr(). Wherever
+  possible, use arguments for reusability of the translation.
+
+  \subsection msgSeveritySection Error severity
+  There are four types of messages identified.
+  -# A status message for passing information not related to unexpected
+     situations.
+  -# A warning message for situations that might cause an undesired result, but
+     do not invalidate the process as such.
+  -# A fatal message for situations that invalidate the process result.
+  -# An abort message for situations that not only invalidate the process
+     result, but also force the immediate abortion of the process.
+
+  \subsection msgCodeSection Error codes
+  The primary purpose of error codes is to facilitate quality feedback to users
+  encountering errors and to aid maintenance. All warning, fatal and abort
+  messages processed by the framework need a distinct error number.
+
+  The error numbers are grouped by module using ranges of numbers. For instance
+  the NastranFile library has error numbers in the range of 5000-6999.
+  Within the library the grouping is refined to classes, using a convenient
+  increase (100). For example one class uses error numbers starting with 5301,
+  the next class starts numbering at 5401.
+
+  The CFilosModelFile redirects errors from the filos kernel code. The error
+  numbers already in use are augmented with 9000 to get into the range
+  9000-9999.
+
+  The programmer is responsible for staying within a specific range and for
+  avoiding duplicate error numbers. For this he/she can use the script command
+  \a gpm, which stands for 'get put messages'.
+  This will provide a sorted list of all error messaging calls in the code.
+  It makes it very easy to identify ranges of numbers and spot numbers not in
+  use. Note that the 9000- range, originating from the filos kernel code, does
+  not show up in the list.
+  
+  Needless to say, error numbers should not change once in use. It is a unique
+  identification used by quality assurance, support, users and possibly in
+  documentation.
+
+  \subsection msgLocationSection Error location
+  Part of the feedback about an error is about the location in the file. When
+  messaging at the IModelFile level, one must provide the information of a
+  TFilePosition explicitly. Examples are line number and character position.
+
+  When messaging at the IModelFileItem level, this information is automatically
+  retreived and passed. The functionality is in operator format so that
+  IModelFileItem specializations can pass for a TFilePosition argument.
+  
+  \section msgExceptionSection Exception handling
+  The framework will throw an exception after a fatal or abort message has
+  been put to the world outside. By this mechanism the client code can recover
+  from errors at the appropriate level. For instance a fatal message for
+  reading some coordinate could be dealt with at line level by proceeding to
+  the next coordinate. The programmer needs to catch the exception at the level
+  at which the processing needs to continue. The idea is to validate as much
+  of the input as is possible.
+
+  \subsection msgExceptionTypesSection Exception types
+  The standard type of exceptions in the input/output framework are
+  TAbortException and TFatalException. The implementation of an input/output
+  module must catch these at the appropriate level.
+  
+  The TAbortException is meant to abort the entire process. Therefore it needs
+  to be catched at the toplevel entry.
+
+  The TFatalException is meant to invalidate the process, but to continue for
+  collecting as much validation information as possible. It needs to be catched
+  at least at the toplevel but rather at multiple levels.
+
+  \subsection msgThrowCatchSection About throw try catch
+  The exceptions are thrown allocated on the stack. They need to be catched by
+  reference or type.
+
+  \todo Entry and reference to style about throwing on heap versus stack.
+
+  \section msgUsersSection Messaging users
+  The framework brings the messages to the toplevel object, which in turn
+  emits the messages to the outside world.
+  
+  To pass these messages to end users, an observer class is needed. This class
+  needs some slots with the signals connected to them.
+  In the slots custom formatting can take place.
+  
+  A simple example, used for testing, is CModelFileObs. It is
+  very straightforward to create a similar class, showing the messages in
+  a dialog.
+
+  \todo Add progress messaging (and cancelling?)
+*/

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="h\mlxmlException.h" />
+    <ClInclude Include="h\mlxmlFunctions.h" />
+    <ClInclude Include="h\mlxmlMaterial.h" />
+    <ClInclude Include="h\mlxmlMaterialLibrary.h" />
+    <ClInclude Include="h\mlxmlMaterialParameter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\mlxmlException.cpp" />
+    <ClCompile Include="src\mlxmlFunctions.cpp" />
+    <ClCompile Include="src\mlxmlMaterial.cpp" />
+    <ClCompile Include="src\mlxmlMaterialLibrary.cpp" />
+    <ClCompile Include="src\mlxmlMaterialParameter.cpp" />
+  </ItemGroup>
+</Project>

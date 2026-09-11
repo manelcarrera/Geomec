@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Formation attributes</title>
+</head>
+
+<body>
+
+<h1><a name="_Toc34189407"><span style="mso-ansi-language:EN-GB">Formation
+attributes</span></a><span style="mso-ansi-language:EN-GB"><o:p>
+</o:p>
+</span></h1>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The formation
+attributes dialog appears by right-clicking on a<b>  </b> Formation in the
+<a href="../../tree/Model/tetra/tetrahedron_tree.htm">tetrahedron model
+tree</a> and selecting attributes.</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The formation
+attributes provides information about the formation. <o:p>
+</o:p>
+</span><span style="mso-ansi-language:EN-GB"><o:p>
+&nbsp;
+</span></p>
+<p class="MsoNormal"><span style="mso-ansi-language:EN-GB">These attributes
+consist of four parts: General, Formation type, Fluid Type and Bodies</span></p>
+<h2 style="margin-left:5.0cm;text-indent:-5.0cm">&nbsp;</h2>
+<h2 style="margin-left:5.0cm;text-indent:-5.0cm">
+<span style="mso-ansi-language:EN-GB">General:<o:p>
+ <b>
+</o:p>
+</b>
+</span></h2>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Name<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Name of the
+      formation. The default name can be changed by renaming it.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">Formation color<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-ansi-language:EN-GB">The color of
+      the formation in which it is displayed. The color can be changed by clicking on the
+      colored square and selecting the desired color.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  </table>
+<h2>&nbsp;</h2>
+<h2><span style="mso-ansi-language:EN-GB">Formation Type:<o:p>
+ <b>
+</o:p>
+</b>
+</span></h2>
+<p class="MsoNormal"><span style="background-repeat: repeat; background-attachment: scroll; mso-highlight: yellow; mso-ansi-language: EN-GB; background-position: 0%">In formation type
+a material type can be selected for the formation. This setting is only used by 
+DStabor and FIST. DStabor uses
+this setting for <a href="../calculate_optimum_mudweight.htm"> optimum mudweight</a> analyses, and that currently only the shale
+option is supported. In short this means that if optimum mudweight analyses are
+required for the formation, the formation type should be set to shale. The 
+formation type should be set to sand to export points to FIST. </span></p>
+<p class="MsoNormal">&nbsp;</p>
+<h2><span style="background-position: 0% 50%">Fluid Type:</span></h2>
+<p class="MsoNormal"><span style="background-position: 0% 50%">There are three 
+options to select a fluid type:</span></p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt" id="table1">
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Automatic (currently : Water)</p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      To select the default as fluid type. Oil/Gas is taken if depleted, water 
+		for no depletion. </td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Oil/Gas</td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      To select oil/gas as fluid type</td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      Water</td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      To select water as fluid type</td>
+  </tr>
+  </table>
+<p class="MsoNormal">
+<span style="background-position: 0% 50%">This option&nbsp; is only needed for 
+the definition of the pore pressure within faults. Pore pressure from water wet 
+side is taken if there is a difference on each side of the fault (one side water 
+and other side oil). Else, if 2 times oil or 2 times water, the pore pressure is 
+set to the maximum of the two sides. </span></p>
+
+<h2>&nbsp;</h2>
+<h2><span style="background-position: 0% 50%">Bodies</span></h2>
+<p>A formation consists of one or more bodies. A table is given with information 
+per body. This table contains the following column items:</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt" id="table2">
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Name</p>
+    </td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      Name body</td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Pressure</td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      Pressure from formation or initial pressure. This is only required&nbsp; 
+		for 2D</td>
+  </tr>
+  <tr>
+    <td width="187" valign="top" style="width:140.1pt;padding:0cm 5.4pt 0cm 5.4pt">
+      Elements</td>
+    <td width="381" valign="top" style="width:286.0pt;padding:0cm 5.4pt 0cm 5.4pt">
+      Total number of elements in body</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

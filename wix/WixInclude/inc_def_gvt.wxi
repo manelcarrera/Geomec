@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <?define GVT_exe="$(var.GVT)\GVT.exe" ?>
+  <?define gvt_3dio_dll="$(var.GVT)\3dio.dll" ?>
+  <?define gvt_GVTCore_dll="$(var.GVT)\GVTCore.dll" ?>
+  <?define gvt_GVTDatamanager_dll="$(var.GVT)\GVTDatamanager.dll" ?>
+  <?define gvt_GVTUtils_dll="$(var.GVT)\Utils.dll" ?>
+  <?define gvt_QtCore4_dll="$(var.GVT)\QtCore4.dll" ?>
+  <?define gvt_QtGui4_dll="$(var.GVT)\QtGui4.dll" ?>
+  <?define gvt_Sp_dll="$(var.GVT)\Sp.dll" ?>
+  <?define gvt_SpData_dll="$(var.GVT)\SpData.dll" ?>
+  <?define gvt_SpMessage_dll="$(var.GVT)\SpMessage.dll" ?>
+  <?define gvt_SpShell_dll="$(var.GVT)\SpShell.dll" ?>
+  <?define gvt_SpUnit_dll="$(var.GVT)\SpUnit.dll" ?>
+  <?define gvt_SpUtil_dll="$(var.GVT)\SpUtil.dll" ?>
+  <?define gvt_libifcoremd_dll="$(var.GVT)\libifcoremd.dll" ?>
+  <?define gvt_libmmd_dll="$(var.GVT)\libmmd.dll" ?>
+  <?define gvt_pcre_dll="$(var.GVT)\pcre.dll" ?>
+  <?define gvt_pcreposix_dll="$(var.GVT)\pcreposix.dll" ?>
+  <?define gvt_pthreadVC2_dll="$(var.GVT)\pthreadVC2.dll" ?>
+  <?define gvt_xerces-c_2_8_dll="$(var.GVT)\xerces-c_2_8.dll" ?>
+  
+</Include>

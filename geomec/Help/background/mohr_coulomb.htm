@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Mohr-Coulomb plasticity</title>
+<style>
+<!--
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic}
+-->
+</style>
+</head>
+
+<body>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="background theory">
+	<param name="Keyword" value="cohesion">
+	<param name="Keyword" value="dilatation angle">
+	<param name="Keyword" value="friction angle">
+	<param name="Keyword" value="material library">
+	<param name="Keyword" value="materials">
+	<param name="Keyword" value="mohr-coulomb">
+	<param name="Keyword" value="Poisson's ratio">
+	<param name="Keyword" value="Young's modulus">
+</OBJECT>
+<h1><span lang="EN-GB">Mohr-Coulomb plasticity </span></h1>
+<p class="MsoNormal"><span lang="EN-GB">The simplest version of the Mohr-Coulomb 
+model requires only the input of 3 parameters to describe the (occurrence and 
+direction) of plastic deformation. The model is especially suitable for 
+calculation of shear failure in sand-like materials, where non-linear compaction 
+is not very relevant (i.e. can be represented via elastic parameters).</span></p>
+<p class="MsoNormal"><span lang="EN-GB">In Mohr-Coulomb plastic deformation is 
+always assumed to occur on a shear plane or shear band, a model particularly 
+applicable for loose or slightly coherent sand. </span></p>
+<p class="MsoNormal"><span lang="EN-GB">These shear planes may change in 
+direction as a result of plastic strain on weak planes to allow more complex 
+deformation systems. At this shear plane, the shear stress overcomes the 
+(normal-stress dependent) friction and the cohesion. </span></p>
+<p class="MsoNormal"><span lang="EN-GB">The failure (plasticity) criterion is:</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;<img border="0" src="mohr_c40.GIF" width="478" height="96"></span></p>
+<p class="MsoNormal"><span lang="EN-GB">[Equation 
+1]</span></p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = friction angle [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB">]</span></p>
+<p class="MsoNormal"><span lang="ES">c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+= cohesion&nbsp; (MPa)</span></p>
+<p class="MsoNormal">
+<img border="0" src="mohr_c41.GIF" width="645" height="336"></p>
+<p class="MsoNormal"><span lang="EN-GB">At elasticity, f&lt;0. Stress combinations 
+leading to f&gt;0 are not possible, hence at plasticity not only f=0 but also&nbsp;
+</span><span lang="EN-GB" style="font-family: Symbol">S</span><span lang="EN-GB"> 
+df/d</span><span lang="EN-GB" style="font-family: Symbol">s</span><span lang="EN-GB">
+</span><span lang="EN-GB" style="font-family: Symbol">Ds</span><span lang="EN-GB">=0, 
+which determines the change in:</span></p>
+<p class="MsoNormal"><img border="0" src="mohr_c42.GIF" width="541" height="70"></p>
+<p class="MsoNormal"><span lang="EN-GB">If plasticity occurs, the type of deformation 
+which takes place needs to be defined. Usually the plastic strain 
+(tensor) is dependent on the stress (tensor).</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The (derivative of the) deformation 
+function is generally not equal to the plasticity law, but similar in that the 
+friction angle is replaced with a dilation angle </span>
+<span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">:</span></p>
+<p class="MsoNormal"><span lang="EN-GB">
+<img border="0" src="mohr_c43.GIF" width="226" height="46"></span></p>
+<p class="MsoNormal"><img border="0" src="mohr_c44.GIF" width="77" height="48"></p>
+<p class="MsoNormal">[Equation 2]</p>
+<p class="MsoNormal"><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+= dilation angle [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB">]</span></p>
+<p class="MsoNormal"><span lang="EN-GB">The deformation can now be written (in 
+main stress-strain notation): </span></p>
+<p class="MsoNormal">
+<img border="0" src="mohr_c45.GIF" width="232" height="113"></p>
+<p class="MsoNormal"><span lang="EN-GB">The dilation under biaxial or triaxial 
+conditions can be expressed as -</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">v</span></sub><span lang="EN-GB">/</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> 
+= (</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB">+</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">2</span></sub><span lang="EN-GB">+</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">3</span></sub><span lang="EN-GB">)/</span><span lang="EN-GB" style="font-family: Symbol">e</span><sub><span lang="EN-GB">1</span></sub><span lang="EN-GB"> 
+= - sin </span><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">/(½(1- 
+sin </span><span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB">))
+</span></p>
+<p class="MsoNormal"><img border="0" src="mohr_c46.GIF" width="169" height="54"></p>
+<p class="MsoNormal"><span lang="EN-GB">The intermediate stress </span>
+<span lang="EN-GB" style="font-family: Symbol">s</span><sub><span lang="EN-GB">2</span></sub><span lang="EN-GB"> 
+is hence of no importance to neither the failure criterion nor the deformation, 
+which is in line with the shear plane approach.</span></p>
+<p class="MsoNormal"><span lang="EN-GB">&nbsp;</span></p>
+<h2><span lang="EN-GB">Input parameters</span></h2>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">E and </span>
+<span lang="EN-GB" style="font-family: Symbol">n</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(Young’s modulus [MPa], Poisson’s ratio [-]) </span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Elastic parameters, 
+which determine elastic shear and bulk response. The values should be derived 
+from triaxial loading tests.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Symbol">r</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(density [ kg / m<sup>3</sup>] )</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><span lang="EN-GB">Bulk density for gravitational 
+calculations. </span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">c and </span>
+<span lang="EN-GB" style="font-family: Symbol">f</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(cohesion [MPa] and friction [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">])</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Used to define the 
+failure and deformation mechanisms at initial plasticity conditions.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">&nbsp;</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Symbol">y</span><span lang="EN-GB" style="font-family: Times New Roman"> 
+(dilation [</span><span lang="EN-GB" style="font-family: Symbol">°</span><span lang="EN-GB" style="font-family: Times New Roman">])</span></u></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+<span lang="EN-GB" style="font-family: Times New Roman">Used to define the 
+relative amount of dilation during plastic deformation.</span></p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt"><u>
+<span lang="EN-GB" style="font-family: Times New Roman">SHtot/Svtot; Shtot/Svtot, 
+SHtot-azimuth</span></u></p>
+<p class="body" style="margin-bottom:6pt; margin-left:0in; margin-right:0in; margin-top:0in">
+<span lang="EN-GB" style="font-family: Times New Roman">Initial stress field 
+(after gravity loading). SHtot/Svtot [-] is the highest horizontal/vertical 
+stress ratio. SHtot-azimuth [º] is the clockwise angle between the SHtot 
+direction and the Northing. Shtot/Svtot is the lowest horizontal/vertical stress ratio [-], 
+perpendicular to the SHtot direction.</span></p>
+<p class="body" style="margin-bottom:0pt; margin-left:0in; margin-right:0in; margin-top:6pt">
+<u><font face="symbol">a</font><sub>v</sub> (Volumetric Thermal Expansion 
+Coefficient [°C<sup>-1</sup> or K<sup>-1</sup>]</u></p>
+<p class="MsoNormal" style="margin-top:0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%">Relative volumetric expansion per degree 
+temperature change. The value is three times the linear expansion coefficient, 
+sometimes provided for solids.</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+<p class="body" style="margin:0in;margin-bottom:.0001pt">
+&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,529 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Geomec"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A228C3D0398"
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"3A228E050389"
+	    supplier   	"Logical View::Model"
+	    quidu      	"3A07DEA5007F")
+	(object Visibility_Relationship
+	    quid       	"3A228E0803D4"
+	    supplier   	"Logical View::Files"
+	    quidu      	"3A07EDCB0162")
+	(object Visibility_Relationship
+	    quid       	"3A228E43022A"
+	    supplier   	"Logical View::MFC 6.0"
+	    quidu      	"3A07D0A103E7"))
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "Document"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Document.cat"
+	    quid       	"3A100248023A")
+	(object Class_Category "Geomec Application"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\Geomec Application.cat"
+	    quid       	"3A012D620179")
+	(object Class_Category "View"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"\\\\Tsv-dsp\\users\\all\\Geomec 3 Design\\View.cat"
+	    quid       	"3A07E95F01E6"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Package Relation Diagram"
+	    quid       	"3A228D4501CB"
+	    title      	"Package Relation Diagram"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object CategoryView "Logical View::Geomec::Document" @1
+		    location   	(416, 944)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(272, 860)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Document")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A100248023A"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::Geomec::Geomec Application" @2
+		    location   	(1024, 320)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(880, 236)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Geomec Application")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A012D620179"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::Geomec::View" @3
+		    location   	(1520, 944)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1376, 860)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"View")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07E95F01E6"
+		    width      	300
+		    height     	180)
+		(object Label @4
+		    location   	(720, 960)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	4
+		    max_width  	637
+		    label      	"The view package knows the interface of the Geomec document and the interfaces of the document objects")
+		(object ImportView "" @5
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2268D800C8"
+		    client     	@2
+		    supplier   	@1
+		    line_style 	0)
+		(object ImportView "" @6
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2269960035"
+		    client     	@3
+		    supplier   	@1
+		    line_style 	0)
+		(object ImportView "" @7
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A2269A001A2"
+		    client     	@2
+		    supplier   	@3
+		    line_style 	0)
+		(object Label @8
+		    location   	(352, 432)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	5
+		    max_width  	444
+		    label      	"The Geomec application owns a instance of the document")
+		(object Label @9
+		    location   	(1248, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	5
+		    max_width  	750
+		    label      	"The Geomec application supports multiple views on the document")))
+	(object ClassDiagram "Application Architecture"
+	    quid       	"3A2654F50382"
+	    title      	"Application Architecture"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	313
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::Geomec::Document::CGeoDoc" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1472, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1321, 417)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"CGeoDoc")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9DA0298"
+		    width      	320
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "CGeoApp" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(304, 496)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(104, 421)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	400
+			justify    	0
+			label      	"CGeoApp")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D8019A"
+		    width      	418
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::View::Tree View::CGeoTreeView" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(1744, 1904)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(1594, 1829)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	300
+			justify    	0
+			label      	"CGeoTreeView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D70384"
+		    width      	318
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geomec::Geomec Application::CMainFrame" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(304, 1328)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(104, 1253)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	400
+			justify    	0
+			label      	"CMainFrame")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A07D9D60211"
+		    width      	418
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "CGeomecTreeView" @14
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(1049, 1626)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	345
+			justify    	0
+			label      	"CGeomecTreeView")
+		    stereotype 	(object SegLabel @15
+			Parent_View 	@14
+			location   	(1041, 1581)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			anchor     	10
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"<<Instantiates>>"
+			pctDist    	0.479665
+			height     	40
+			orientation 	0)
+		    line_color 	3342489
+		    quidu      	"3A2653C50227"
+		    client     	@13
+		    supplier   	@12
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::Geomec::View::OpenGL View::COpenGLView" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1312, 1232)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(1165, 1158)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	294
+			justify    	0
+			label      	"COpenGLView")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A715047032E"
+		    compartment 	(object Compartment
+			Parent_View 	@16
+			location   	(1165, 1324)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	17
+			max_width  	0)
+		    width      	312
+		    height     	172
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UsesView "m_pGeomecDoc" @17
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(912, 496)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	303
+			justify    	0
+			label      	"m_pGeomecDoc")
+		    stereotype 	(object SegLabel @18
+			Parent_View 	@17
+			location   	(926, 457)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			anchor     	10
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"<<Instantiates>>"
+			pctDist    	0.518648
+			height     	40
+			orientation 	0)
+		    line_color 	3342489
+		    quidu      	"3A2656E20038"
+		    client     	@11
+		    supplier   	@10
+		    line_style 	0)
+		(object UsesView "m_pMainFrame" @19
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@19
+			location   	(304, 911)
+			anchor_loc 	1
+			nlines     	1
+			max_width  	290
+			justify    	0
+			label      	"m_pMainFrame")
+		    stereotype 	(object SegLabel @20
+			Parent_View 	@19
+			location   	(326, 862)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			anchor     	10
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"<<Instantiates>>"
+			pctDist    	0.424658
+			height     	22
+			orientation 	0)
+		    line_color 	3342489
+		    quidu      	"3A265711037F"
+		    client     	@11
+		    supplier   	@13
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::std\\:\\:set<CPrimitive>" @21
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(272, 128)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(65, 78)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	414
+			justify    	0
+			label      	"std::set<CPrimitive>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DFD30307"
+		    width      	432
+		    height     	124
+		    annotation 	8
+		    autoResize 	TRUE)))))

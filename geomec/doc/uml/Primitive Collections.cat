@@ -1,0 +1,1412 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.1.9642.27"
+    charSet    	0)
+
+(object Class_Category "Primitive Collections"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"sc"
+	    name       	"SourceControlSpec"
+	    value      	(value Text 
+|"$/Geomec3/doc", HYEAAAAA
+	    )))
+    quid       	"3A2296140368"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Instantiated_Class "block_allocated_set<CVertex,100>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A7150450253"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A7150450263"
+		    supplier   	"Logical View::Geometry::Block Allocator::block_allocated_set"
+		    quidu      	"3A90DFD603C3"))
+	    module     	"Component View::Geomec"
+	    quidu      	"3A07D7650117"
+	    language   	"VC++")
+	(object Instantiated_Class "C3DArray<CVertex>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A90DFD203A3"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A90DFD203B3"
+		    supplier   	"Logical View::Geometry::Primitive Collections::3D Array::C3DArray"
+		    quidu      	"3A71504D03AB"))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CPlane"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD40142"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DFD40161"
+		    supplier   	"Logical View::Geometry::Primitive Collections::CPrimitiveCollection"
+		    quidu      	"3A90DFD303A3"))
+	    operations 	(list Operations
+		(object Operation "ProjectVertex"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40162"
+		    parameters 	(list Parameters
+			(object Parameter "vertex"
+			    quid       	"3A90DFD40163"
+			    type       	"CVertex&"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetNormal"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40164"
+		    result     	"CVertex&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Refine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40165"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Coasen"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40171"
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CPlane"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40172"
+		    parameters 	(list Parameters
+			(object Parameter "v1"
+			    quid       	"3A90DFD40173"
+			    type       	"CVertex&")
+			(object Parameter "v2"
+			    quid       	"3A90DFD40174"
+			    type       	"CVertex&")
+			(object Parameter "v3"
+			    quid       	"3A90DFD40175"
+			    type       	"CVertex&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPlane"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40176"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CPolyLine"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD400D5"
+	    documentation 	
+|A polyline is defined by a deque of lines. A CLine can be 
+|added under the condition that the line connects to one of 
+|the begin- and endpoints of the existing polyline.
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DFD400F4"
+		    supplier   	"Logical View::Geometry::Primitive Collections::CPrimitiveCollection"
+		    quidu      	"3A90DFD303A3"))
+	    operations 	(list Operations
+		(object Operation "AddLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40123"
+		    parameters 	(list Parameters
+			(object Parameter "l"
+			    quid       	"3A90DFD40124"
+			    type       	"const CLine&"
+			    const      	TRUE))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CPolyLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40125"
+		    parameters 	(list Parameters
+			(object Parameter "l"
+			    quid       	"3A90DFD40126"
+			    type       	"const CLine&"
+			    const      	TRUE))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPolyLine"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40132"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CSurface"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD3027A"
+	    operations 	(list Operations
+		(object Operation "InterSection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3029F"
+		    parameters 	(list Parameters
+			(object Parameter "pSurface"
+			    quid       	"3A90DFD302A0"
+			    type       	"CSurface*"))
+		    result     	"CPolyLine*"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "AddTriangle"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD302A9"
+		    parameters 	(list Parameters
+			(object Parameter "pTriangle"
+			    quid       	"3A90DFD302AA"
+			    type       	"CTriangle*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CSurface"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD302AB"
+		    parameters 	(list Parameters
+			(object Parameter "f"
+			    quid       	"3A90DFD302AC"
+			    type       	"CTriangle&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CSurface"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD302AD"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CVolume"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD3000A"
+	    documentation 	"A volume is defined by the enclosing surfaces and/or planes."
+	    operations 	(list Operations
+		(object Operation "CVolume"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30029"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "~CVolume"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3002A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CPrimitiveSet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD302E8"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DFD30318"
+		    supplier   	"Logical View::Geometry::Primitive Collections::std\\:\\:set<CPrimitive>"
+		    quidu      	"3A90DFD30307"))
+	    operations 	(list Operations
+		(object Operation "CPrimitiveSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30319"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "CPrimitiveSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD3031A"
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    quid       	"3A90DFD30326"
+			    type       	"CPrimitive&"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetTypeInfo"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30327"
+		    result     	"type_info&"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPrimitiveSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30328"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CVertexSet"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD30058"
+	    documentation 	
+|The vertexset is a conceptual class for representing a set 
+|of points with a property
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3A90DFD30087"
+		    supplier   	"Logical View::Geometry::Block Allocator::block_allocated_set<CVertex,100>"
+		    quidu      	"3A90DFD30068"))
+	    operations 	(list Operations
+		(object Operation "CVertexSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30088"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CVertexSet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD30089"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Instantiated_Class "std::set<CPrimitive>"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"Generate"
+		    value      	FALSE))
+	    quid       	"3A90DFD30307"
+	    used_nodes 	(list uses_relationship_list
+		(object Uses_Relationship
+		    quid       	"3A90DFD30317"
+		    supplier   	"std::set"))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class "CPrimitiveCollection"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AppliedPattern"
+		    value      	"none")
+		(object Attribute
+		    tool       	"VC++"
+		    name       	"AfxSupportMacro"
+		    value      	""))
+	    quid       	"3A90DFD303A3"
+	    documentation 	
+|The primitive collection is the abstract baseclass of all 
+|primitive collections like surfaces, vertexsets etc. The 
+|primitive collection is extended with a 3D primitive mapper 
+|for the nearest neighbour algoritm.
+	    
+	    operations 	(list Operations
+		(object Operation "CPrimitiveCollection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40019"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "~CPrimitiveCollection"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4001A"
+		    stereotype 	"virtual"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DestroyMap"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD40039"
+		    documentation 	" Helper functions"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "GetCount"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4003A"
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "IsInsideBoudary"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4003B"
+		    stereotype 	"const"
+		    parameters 	(list Parameters
+			(object Parameter "pVertex"
+			    quid       	"3A90DFD40049"
+			    type       	"CVertex*"))
+		    result     	"BOOL"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "BuildMap"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Inline"
+			    value      	FALSE))
+		    quid       	"3A90DFD4004A"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "m_ySize"
+		    quid       	"3A90DFD4001C"
+		    type       	"int"
+		    exportControl 	"Public")
+		(object ClassAttribute "m_zSize"
+		    quid       	"3A90DFD40029"
+		    type       	"int"
+		    exportControl 	"Public")
+		(object ClassAttribute "m_dBucketSize"
+		    quid       	"3A90DFD4002A"
+		    type       	"double"
+		    exportControl 	"Public")
+		(object ClassAttribute "m_nDensity"
+		    quid       	"3A90DFD40038"
+		    type       	"int"
+		    exportControl 	"Public"))
+	    module     	"Component View::Geometry"
+	    quidu      	"3A0FFF5C0393"
+	    language   	"VC++")
+	(object Class_Category "3D Array"
+	    quid       	"3A9106E601A0"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "CXVector"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	"typedef std::vector <CYVector*> CXVector;")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD30365"
+		    stereotype 	"typedef"
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Class "CYVector"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	"typedef std::vector <CZVector*> CYVector;")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD30347"
+		    stereotype 	"typedef"
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Class "CZVector"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"ImplementationType"
+			    value      	"typedef std::vector <CPrimitiveSet*> CZVector;")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A90DFD3032A"
+		    stereotype 	"typedef"
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++")
+		(object Parameterized_Class "C3DArray"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AfxSupportMacro"
+			    value      	""))
+		    quid       	"3A71504D03AB"
+		    operations 	(list Operations
+			(object Operation "C3DArray"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A71504E0011"
+			    parameters 	(list Parameters
+				(object Parameter "nXSize"
+				    quid       	"3A71504E0012"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "nYSize"
+				    quid       	"3A71504E0013"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "nZSize"
+				    quid       	"3A71504E0014"
+				    type       	"const int"
+				    const      	TRUE))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "SetAt"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A71504E0015"
+			    parameters 	(list Parameters
+				(object Parameter "x"
+				    quid       	"3A71504E0016"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "y"
+				    quid       	"3A71504E0020"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "z"
+				    quid       	"3A71504E0021"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "type"
+				    quid       	"3A71504E0022"
+				    type       	"const T&"
+				    const      	TRUE))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "GetAt"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A71504E0023"
+			    parameters 	(list Parameters
+				(object Parameter "x"
+				    quid       	"3A71504E0024"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "y"
+				    quid       	"3A71504E0025"
+				    type       	"const int"
+				    const      	TRUE)
+				(object Parameter "z"
+				    quid       	"3A71504E0026"
+				    type       	"const int"
+				    const      	TRUE))
+			    result     	"T&"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "Size"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A71504E0030"
+			    result     	"CVertex"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"3A90DFD30161")
+			(object Operation "~C3DArray"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A71504E0031"
+			    stereotype 	"virtual"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "C3DArray"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"Inline"
+				    value      	FALSE))
+			    quid       	"3A90DFD80096"
+			    parameters 	(list Parameters
+				(object Parameter "rhs"
+				    quid       	"3A90DFD800A6"
+				    type       	"const C3DArray<T>&"
+				    const      	TRUE))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    module     	"Component View::Geometry"
+		    quidu      	"3A0FFF5C0393"
+		    language   	"VC++"
+		    parameters 	(list Parameters
+			(object Parameter "T"
+			    quid       	"3A71504D03BA"
+			    type       	"class"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "CZaxis"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	(value Text 
+|	typedef std::vector<T> CZaxis;
+				    ))
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A71504E0033"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "CYaxis"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	(value Text 
+|	typedef std::vector<CZaxis> CYaxis;
+				    ))
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A71504E004F"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "CZaxis"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	
+|	typedef std::vector<T> CZaxis;
+				    )
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DE23021D"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")
+			(object Class "CYaxis"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AppliedPattern"
+				    value      	"none")
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"ImplementationType"
+				    value      	
+|	typedef std::vector<CZaxis> CYaxis;
+				    )
+				(object Attribute
+				    tool       	"VC++"
+				    name       	"AfxSupportMacro"
+				    value      	""))
+			    quid       	"3A90DE23024C"
+			    stereotype 	"typedef"
+			    exportControl 	"Private"
+			    module     	"Component View::Geometry"
+			    quidu      	"3A0FFF5C0393")))
+		(object Instantiated_Class "vector<CYaxis>"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"AppliedPattern"
+			    value      	"none")
+			(object Attribute
+			    tool       	"VC++"
+			    name       	"Generate"
+			    value      	FALSE))
+		    quid       	"3A71504D03CA"
+		    used_nodes 	(list uses_relationship_list
+			(object Uses_Relationship
+			    quid       	"3A71504E0001"
+			    supplier   	"vector"))
+		    module     	"Component View::Geomec"
+		    quidu      	"3A07D7650117"
+		    language   	"VC++"))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "3D Array"
+		    quid       	"3A91076100C5"
+		    title      	"3D Array"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::Geometry::Primitive Collections::3D Array::CXVector" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressAttribute 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(672, 864)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(555, 848)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"CXVector")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@1
+				location   	(555, 798)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	231
+				justify    	0
+				label      	"<<typedef>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD30365"
+			    width      	252
+			    height     	157
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::Geometry::Primitive Collections::3D Array::CYVector" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressAttribute 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(672, 656)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(555, 640)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"CYVector")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@2
+				location   	(555, 590)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	231
+				justify    	0
+				label      	"<<typedef>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD30347"
+			    width      	252
+			    height     	157
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::Geometry::Primitive Collections::3D Array::CZVector" @3
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressAttribute 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(672, 448)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(555, 432)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"CZVector")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@3
+				location   	(555, 382)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	231
+				justify    	0
+				label      	"<<typedef>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A90DFD3032A"
+			    width      	252
+			    height     	157
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CYaxis" @4
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressAttribute 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(192, 1120)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(75, 1093)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"CYaxis")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@4
+				location   	(75, 1043)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	231
+				justify    	0
+				label      	"<<typedef>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A71504D0244"
+			    width      	252
+			    height     	178
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::VC++ Reverse Engineered::Geomec::CZaxis" @5
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressAttribute 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(192, 928)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@5
+				location   	(75, 901)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	234
+				justify    	0
+				label      	"CZaxis")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@5
+				location   	(75, 851)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	231
+				justify    	0
+				label      	"<<typedef>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A71504D0226"
+			    width      	252
+			    height     	178
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::3D Array::vector<CYaxis>" @6
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(224, 1344)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(59, 1292)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	330
+				justify    	0
+				label      	"vector<CYaxis>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A71504D03CA"
+			    width      	348
+			    height     	128
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "ParameterizedClass" "Logical View::Geometry::Primitive Collections::3D Array::C3DArray" @7
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(960, 1680)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@7
+				location   	(713, 1495)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	494
+				justify    	0
+				label      	"C3DArray")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3A71504D03AB"
+			    compartment 	(object Compartment
+				Parent_View 	@7
+				location   	(713, 1556)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	7
+				max_width  	491)
+			    width      	512
+			    height     	470
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "" @8
+			    location   	(533, 1484)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3A71504E0002"
+			    roleview_list 	(list RoleViews
+				(object RoleView "" @9
+				    Parent_View 	@8
+				    location   	(309, 140)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @10
+					Parent_View 	@9
+					location   	(690, 1511)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					hidden     	TRUE
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	450
+					justify    	0
+					label      	""
+					pctDist    	0.800000
+					height     	42
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"3A71504E0005"
+				    client     	@8
+				    supplier   	@7
+				    line_style 	0)
+				(object RoleView "m_Xaxis:std::vector<CYaxis>" @11
+				    Parent_View 	@8
+				    location   	(309, 140)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @12
+					Parent_View 	@11
+					location   	(412, 1385)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	547
+					justify    	0
+					label      	"-m_Xaxis"
+					pctDist    	0.800000
+					height     	42
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"3A71504E0003"
+				    client     	@8
+				    supplier   	@6
+				    line_style 	0))))))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Primitive Collections"
+	    quid       	"3A910741024C"
+	    title      	"Primitive Collections"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::std\\:\\:set<CPrimitive>" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(352, 1088)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(149, 1037)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	406
+			justify    	0
+			label      	"std::set<CPrimitive>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DFD30307"
+		    width      	424
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geometry::Primitive Collections::CPrimitiveSet" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(352, 1616)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(71, 1460)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	562
+			justify    	0
+			label      	"CPrimitiveSet")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DFD302E8"
+		    compartment 	(object Compartment
+			Parent_View 	@14
+			location   	(71, 1521)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	13434879
+			anchor     	2
+			nlines     	5
+			max_width  	559)
+		    width      	580
+		    height     	336
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @15
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3A90DFD30318"
+		    client     	@14
+		    supplier   	@13
+		    line_style 	0)
+		(object ClassView "InstantiatedClass" "Logical View::Geometry::Primitive Collections::block_allocated_set<CVertex,100>" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(960, 448)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(625, 397)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	670
+			justify    	0
+			label      	"block_allocated_set<CVertex,100>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A7150450253"
+		    width      	688
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::Geometry::Primitive Collections::CVertexSet" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(976, 752)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(712, 646)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	528
+			justify    	0
+			label      	"CVertexSet")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3A90DFD30058"
+		    compartment 	(object Compartment
+			Parent_View 	@17
+			location   	(712, 707)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	13434879
+			anchor     	2
+			nlines     	3
+			max_width  	534)
+		    width      	546
+		    height     	236
+		    annotation 	8
+		    autoResize 	TRUE)))))

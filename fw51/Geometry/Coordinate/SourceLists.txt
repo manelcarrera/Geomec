@@ -1,0 +1,4 @@
+dia_add_sources(
+  ElementPoint.cpp ICoordinate.cpp  IPoint.cpp       IVector.cpp      
+  Point.cpp        Vector.cpp                                         
+)

@@ -1,0 +1,31 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Eclipse model</title>
+</head>
+
+<body>
+<h1>Eclipse model</h1>
+<p>An Eclipse model is imported from an existing mesh created by the external 
+Eclipse reservoir simulator program. The file format is
+described in <a href="../file%20formats/eclipse_grid.htm">Eclipse / Grid file</a>.</p>
+<p>Eclipse models are converted to tetrahedron type GEOMEC models. The grid from the Eclipse file is the
+sub-model and a super-model can be generated to extend the model, e.g. by adding an
+overburden to it.</p>
+<p>To create an Eclipse model, click File -&gt; New, and the <a href="../context/dialogs/new_model.htm">New
+Model dialog</a> appears. Select &quot;Eclipse&quot; and click OK.</p>
+<p>In the Open dialog, select an Eclipse model file, and click &quot;Open&quot;.
+After the file has been read in successfully, the &quot;Select horizons from
+Eclipse file&quot; dialog appears. This dialog lists all horizons detected in
+the imported Eclipse file. These horizons are deduced from the number of layers
+found in the Eclipse file. By default, all horizons are selected.</p>
+<p>Unselect the horizons that should not be taken into account. Note that at
+least two horizons should be selected. Click OK to generate the Eclipse model.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE ExportResultMacros>
+<ExportResultMacros>
+<ExportResultMacro Name="ResultsBranched">
+  <Settings>
+   <!-- Calculation = All | Linear | Nonlinear | Heat | Mixture | MixtureContainment or a comma-separated list thereof -->
+   <!-- Unit = SI | FIELD -->
+   <!-- Mapping = InterpolatedPoints | None | Voight | Reuss -->
+   <!-- Geography = Element | Center | WellpathCenter -->
+   <!-- FormationNames = yes | no -->
+   <!-- WellpathMeshIntersection = yes | no -->
+   <Setting Name="Calculation" Value="Nonlinear"/>
+   <Setting Name="Unit" Value="SI"/>
+   <Setting Name="Mapping" Value="InterpolatedPoints"/>
+   <Setting Name="Geography" Value="Element"/>
+  </Settings>
+  <DepletionStageFilters>
+   <!-- Value = All | Initial | Last when Type = Set || Value = name when Type = ByName || Value = Results | Branch | Phase when Type = ByType -->
+   <DepletionStageFilter Type="Set" Value="All"/>
+  </DepletionStageFilters>
+  <ModelFilters>
+   <!-- Filter = Faults | Horizons | Formations | FormationPlanes | Wellpaths | Pointsets | Elementsets | NonMeshedSurfaces -->
+   <!-- Value = All when Type = Set || Value = name when Type = ByName -->
+   <!-- for FormationPlanes: Value = formationName:All | formationName:Top,Middle,Bottom or a selection thereof -->
+   <ModelFilter Type="Set" Filter="Horizons" Value="All"/>
+   <ModelFilter Type="Set" Filter="Formations" Value="All"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 0 m:Top"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 0 m:Middle"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 0 m:Bottom"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 100 m:Top"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 100 m:Middle"/>
+   <ModelFilter Type="ByName" Filter="FormationPlanes" Value="Constant depth at 100 m:Bottom"/>
+   <ModelFilter Type="Set" Filter="Wellpaths" Value="All"/>
+  </ModelFilters>
+  <ResultFilters>
+   <!-- Filter = Materials | Results | Mesh -->
+   <!-- Value = All when Type = Set || Value = mainExportLabel when Type = ByName -->
+   <!-- additional for Materials: Value = Normal | FractureIntensity when Type = Set -->
+   <ResultFilter Type="ByName" Filter="Results" Value="DisplacementV"/>
+  </ResultFilters>
+  <!-- Deformation: TimeStep = Initial | Last when Type = Set || TimeStep = name when Type = ByName; Calculation = Linear | Nonlinear | Mixture -->
+  <Deformation Type="Set" TimeStep="Initial" Calculation="Linear"/>
+  <!-- HotSpot: Name = name; CenterIsTransparent = yes | no ; MinColor = #000000; MaxColor = #ffffff; MinValue = double; MaxValue = double -->
+ </ExportResultMacro>
+</ExportResultMacros>

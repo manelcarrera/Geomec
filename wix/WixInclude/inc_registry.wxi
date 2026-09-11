@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Component Id="Component_Registry_keys" Guid="$(var.ComponentID_Registry_keys)" Win64="yes">
+
+    <!--
+    <RegistryKey Root="HKLM" Key="SOFTWARE\TNO\Geomec $(var.VersionMajor).$(var.VersionMinor)$(var.VersionQualifier)">
+      <RegistryKey Key="Paths">
+        <RegistryValue Name="DianaExeName" Value="gm42.exe" Type="string" KeyPath="yes" />
+        <RegistryValue Name="DIAPATH" Value="[INSTALLDIR]Diana" Type="string" />
+        <RegistryValue Name="DIASHARE" Value="[INSTALLDIR]Diana\share" Type="string" />
+        <RegistryValue Name="FgvExeName" Value="fgv4gm.exe" Type="string" />
+        <RegistryValue Name="InputExeName" Value="in51.exe" Type="string" />
+      </RegistryKey>
+      <RegistryKey Key="Settings" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Geomec.exe">
+      <RegistryValue Value="[INSTALLDIR]Geomec.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_rgi.exe">
+      <RegistryValue Value="[INSTALLDIR]geomec_rgi.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_cora.exe">
+      <RegistryValue Value="[INSTALLDIR]geomec_cora.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_shell.exe">
+      <RegistryValue Value="[INSTALLDIR]geomec_shell.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\geomec_launcher.exe">
+      <RegistryValue Value="[INSTALLDIR]geomec_launcher.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\diana_app.exe">
+      <RegistryValue Value="[INSTALLDIR]diana_app.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\gm42.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\gm42.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\in51.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\in51.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\ca40.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\ca40.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\ho40.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\ho40.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mc41.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\mc41.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\bo40.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\bo40.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\se51.exe">
+      <RegistryValue Value="[INSTALLDIR]Diana\binseg\ap\se51.exe" Type="string" />
+      <RegistryValue Name="Path" Value="[INSTALLDIR]Diana\bin" Type="string" />
+    </RegistryKey>
+  -->
+
+    <!-- '.gm4' files opened with 'geomec_selector.exe' -->
+    <RegistryKey Root="HKCR" Key=".gm4">
+      <RegistryValue Value="Geomec4.Document" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKCR" Key="Geomec4.Document">
+
+      <RegistryValue Value="GEOMEC 4 Project" Type="string" />
+
+      <RegistryKey Key="DefaultIcon">
+        <RegistryValue Value="&quot;[INSTALLDIR]geomec_selector.exe&quot;,0" Type="string" />
+      </RegistryKey>
+
+      <RegistryKey Key="shell">
+        <RegistryKey Key="open">
+          <RegistryKey Key="command">
+            <RegistryValue Value="&quot;[INSTALLDIR]geomec_selector.exe&quot; &quot;%1&quot;" Type="string" />
+          </RegistryKey>
+        </RegistryKey>
+      </RegistryKey>
+
+    </RegistryKey>
+
+    <!-- '.gm5' files opened with 'geomec_selector.exe' -->
+    <RegistryKey Root="HKCR" Key=".gm5">
+      <RegistryValue Value="Geomec5.Document" Type="string" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKCR" Key="Geomec5.Document">
+
+      <RegistryValue Value="GEOMEC 5 Project" Type="string" />
+
+      <RegistryKey Key="DefaultIcon">
+        <RegistryValue Value="&quot;[INSTALLDIR]geomec_selector.exe&quot;,0" Type="string" />
+      </RegistryKey>
+
+      <RegistryKey Key="shell">
+        <RegistryKey Key="open">
+          <RegistryKey Key="command">
+            <RegistryValue Value="&quot;[INSTALLDIR]geomec_selector.exe&quot; &quot;%1&quot;" Type="string" />
+          </RegistryKey>
+        </RegistryKey>
+      </RegistryKey>
+      
+    </RegistryKey>
+
+  </Component>
+</Include>

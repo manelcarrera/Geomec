@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseWithDebug|x64">
+      <Configuration>ReleaseWithDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="h\Events.h" />
+    <ClInclude Include="h\Environment.h" />
+    <ClInclude Include="h\EventsDiana_.h" />
+    <ClInclude Include="h\GeomecUtils.h" />
+    <ClInclude Include="h\Global.h" />
+    <ClInclude Include="h\GlobalMessage.h" />
+    <ClInclude Include="h\GlobalMessage_GUI.h" />
+    <ClInclude Include="h\IExeDianaDlg.h" />
+    <ClInclude Include="h\IGI.h" />
+    <ClInclude Include="h\IGlobalMessage.h" />
+    <ClInclude Include="h\Events_.h" />
+    <ClInclude Include="h\IListener.h" />
+    <ClInclude Include="h\IListenerIpc.h" />
+    <ClInclude Include="h\Interprocess_OLD.h" />
+    <ClInclude Include="h\IPlatform.h" />
+    <ClInclude Include="h\IProgressBase.h" />
+    <ClInclude Include="h\IProgressFactory.h" />
+    <ClInclude Include="h\IRunAnalysis.h" />
+    <ClInclude Include="h\ISettings.h" />
+    <ClInclude Include="h\Printer.h" />
+    <ClInclude Include="h\Printer_MP.h" />
+    <ClInclude Include="h\Printer_MP_BOOST.h" />
+    <ClInclude Include="h\Printer_SP.h" />
+    <ClInclude Include="h\ProgressBase.h" />
+    <ClInclude Include="h\ProgressFactory.h" />
+    <CustomBuild Include="h\ProgressDlg_Qt.h">
+      <Command>%QTDIR%\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp"</Command>
+      <Message>MOCing %(Filename).h...</Message>
+      <Outputs>%(RootDir)%(Directory)..\moc\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="h\ProgressWrapper.h" />
+    <ClInclude Include="h\ProgressWrapper_Data.h" />
+    <ClInclude Include="h\ProgressWrapper_Evt.h" />
+    <ClInclude Include="h\Progress_.h" />
+    <ClInclude Include="h\QuestionThreadWrapper.h" />
+    <ClInclude Include="h\SettingsFile.h" />
+    <ClInclude Include="h\Settings.h" />
+    <ClInclude Include="h\QUtil.h" />
+    <ClInclude Include="h\Registry.h" />
+    <ClInclude Include="h\SettingsIni.h" />
+    <ClInclude Include="h\System.h" />
+    <ClInclude Include="h\TempPath.h" />
+    <ClInclude Include="h\Wait.h" />
+    <ClInclude Include="h\Xml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="moc\moc_ProgressDlg_Qt.cpp" />
+    <ClCompile Include="src\Environment.cpp" />
+    <ClCompile Include="src\Events.cpp" />
+    <ClCompile Include="src\GeomecUtils.cpp" />
+    <ClCompile Include="src\Global.cpp" />
+    <ClCompile Include="src\GlobalMessage.cpp" />
+    <ClCompile Include="src\GlobalMessage_GUI.cpp" />
+    <ClCompile Include="src\IGlobalMessage.cpp" />
+    <ClCompile Include="src\IListener.cpp" />
+    <ClCompile Include="src\IListenerIpc.cpp" />
+    <ClCompile Include="src\IPlatform.cpp" />
+    <ClCompile Include="src\IProgressBase.cpp" />
+    <ClCompile Include="src\IRunAnalysis.cpp" />
+    <ClCompile Include="src\ISettings.cpp" />
+    <ClCompile Include="src\Printer.cpp" />
+    <ClCompile Include="src\Printer_MP.cpp" />
+    <ClCompile Include="src\Printer_MP_BOOST.cpp" />
+    <ClCompile Include="src\Printer_SP.cpp" />
+    <ClCompile Include="src\ProgressBase.cpp" />
+    <ClCompile Include="src\ProgressFactory.cpp" />
+    <ClCompile Include="src\ProgressDlg_Qt.cpp" />
+    <ClCompile Include="src\ProgressWrapper.cpp" />
+    <ClCompile Include="src\ProgressWrapper_Evt.cpp" />
+    <ClCompile Include="src\QuestionThreadWrapper.cpp" />
+    <ClCompile Include="src\SettingsFile.cpp" />
+    <ClCompile Include="src\Settings.cpp" />
+    <ClCompile Include="src\QUtil.cpp" />
+    <ClCompile Include="src\Registry.cpp" />
+    <ClCompile Include="src\SettingsIni.cpp" />
+    <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="src\TempPath.cpp" />
+    <ClCompile Include="src\Wait.cpp" />
+    <ClCompile Include="src\Xml.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F99B429A-1152-459D-8716-007A42C94625}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <RootNamespace>QUtil</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\..\vsprops\BuildDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\..\vsprops\BuildRelease.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'" Label="PropertySheets">
+    <Import Project="..\..\vsprops\BuildReleaseWithDebug.props" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IntDir>$(INTERMEDIATEDIR)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(OUTPUT_DIR)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(QUTIL)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(QUTIL)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(QUTIL)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

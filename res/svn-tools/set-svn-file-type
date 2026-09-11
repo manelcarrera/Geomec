@@ -1,0 +1,127 @@
+#! /bin/sh
+#
+# This script sets a file's svn properties to record a file's type
+#
+
+# Print usage info and report failure
+#
+usage()
+{
+	cat >&2 <<EOF
+usage: $0 [<option> ...] <type> <file>
+sets <file>'s svn properties according to <type> - one of
+  unknown   not set
+  binary    binary file
+  native    text file with native end-of-line markers
+  unix      text file with unix end-of-line markers
+  dos       text file with dos end-of-line markers
+options are:
+  -v        verbose
+EOF
+	exit 1
+}
+
+# 
+# Main program
+#
+
+# Check command line
+#
+svn_quiet="--quiet"
+while getopts ":v" option ; do
+	case "$option" in
+	v)
+		svn_quiet=""
+		;;
+	*)
+		usage
+		;;
+	esac
+done
+shift $(expr $OPTIND - 1)
+[ $# -eq 2 ] || usage
+
+case "$1" in
+unknown|binary|native|unix|dos)
+	type=$1
+	;;
+*)
+	usage
+	;;
+esac
+
+file=$2
+
+# Check for a regular file
+#
+if [ -h "$file" ] || [ ! -f "$file" ] ; then
+	echo "$0: $file does not exist, or is not a regular file" >&2
+	exit 1
+fi
+
+# Map file name to the platform's native syntax
+#
+case "$(uname)" in
+CYGWIN*)
+	natfile=$(cygpath --windows -- "$file") || exit 1
+	;;
+*)
+	natfile=$file
+	;;
+esac
+
+# Check the svn mime type
+#
+mime_type=$(svn propget -- svn:mime-type "$natfile") || exit 1
+if [ -z "$mime_type" ] ; then
+	is_binary=""
+else
+	case "$mime_type" in
+	text/*)
+		is_binary=""
+		;;
+	*)
+		is_binary=yes
+		;;
+	esac
+fi
+
+case "$type" in
+binary)
+	if [ -z "$is_binary" ] ; then
+		svn propset $svn_quiet -- \
+			svn:mime-type application/octet-stream "$natfile" || exit 1
+	fi
+	;;
+*)
+	if [ -n "$is_binary" ] ; then
+		svn propdel $svn_quiet -- svn:mime-type "$natfile" || exit 1
+	fi
+	;;
+esac
+
+# Check the svn eol style
+#
+eol_style=$(svn propget -- svn:eol-style "$natfile") || exit 1
+case "$type" in
+unknown|binary)
+	if [ -n "$eol_style" ] ; then
+		svn propdel $svn_quiet -- svn:eol-style "$natfile" || exit 1
+	fi
+	;;
+native)
+	if [ "$eol_style" != native ] ; then
+		svn propset $svn_quiet -- svn:eol-style native "$natfile" || exit 1
+	fi
+	;;
+unix)
+	if [ "$eol_style" != lf ] && [ "$eol_style" != LF ] ; then
+		svn propset $svn_quiet -- svn:eol-style LF "$natfile" || exit 1
+	fi
+	;;
+dos)
+	if [ "$eol_style" != crlf ] && [ "$eol_style" != CRLF ] ; then
+		svn propset $svn_quiet -- svn:eol-style CRLF "$natfile" || exit 1
+	fi
+	;;
+esac

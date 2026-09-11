@@ -1,0 +1,18 @@
+'$include '..\TestSuite.inc'
+
+Viewport clear
+
+StartLog("wp_create_dev.new","wp_create_dev")
+
+Scenario ("Creation of deviated wellpath")
+StartScenario("Creation of deviated wellpath")
+	WellPathStartUp()
+	AddDeviatedWellPath(curdir$ + "\test1.mwr","EU4")
+ScenarioPass
+Scenario Cleanup
+	ExitNoSave
+End Scenario
+
+EndLog
+
+End
